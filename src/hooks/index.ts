@@ -1,3 +1,5 @@
-export { useScrollProgress } from './useScrollProgress'
-export { useIntersectionObserver } from './useIntersectionObserver'
-export { useWindowSize } from './useWindowSize'
+// Custom hooks for the application
+export { useScrollAnimation } from './useScrollAnimation'
+export { useMediaQuery } from './useMediaQuery'
+export { useDebounce } from './useDebounce'
+export { useInView } from './useInView'

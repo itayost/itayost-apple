@@ -1,42 +1,54 @@
 'use client'
 
+import { motion, HTMLMotionProps } from 'framer-motion'
 import { ReactNode } from 'react'
-import { motion } from 'framer-motion'
-import { cn } from '@/utils/cn'
+import { twMerge } from 'tailwind-merge'
 
-interface CardProps {
+interface CardProps extends HTMLMotionProps<"div"> {
   children: ReactNode
   className?: string
   hover?: boolean
+  gradient?: string
   glass?: boolean
-  gradient?: boolean
 }
 
 export function Card({
   children,
-  className = '',
-  hover = true,
+  className,
+  hover = false,
+  gradient,
   glass = false,
-  gradient = false,
+  ...props
 }: CardProps) {
+  const baseStyles = 'relative overflow-hidden rounded-2xl'
+  
+  const glassStyles = glass
+    ? 'bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl'
+    : 'bg-white shadow-lg'
+  
   return (
     <motion.div
-      whileHover={hover ? { y: -5, scale: 1.02 } : undefined}
-      transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-      className={cn(
-        'relative rounded-2xl p-8 transition-all duration-300',
-        glass
-          ? 'bg-white/70 backdrop-blur-xl border border-white/20'
-          : 'bg-white border border-gray-200',
-        hover && 'hover:shadow-xl cursor-pointer',
-        gradient && 'overflow-hidden',
+      className={twMerge(
+        baseStyles,
+        glassStyles,
+        hover && 'cursor-pointer',
         className
       )}
+      whileHover={hover ? { 
+        scale: 1.02,
+        y: -5,
+        transition: { duration: 0.3 }
+      } : {}}
+      {...props}
     >
       {gradient && (
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-purple-50 opacity-50" />
+        <div 
+          className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-5`}
+        />
       )}
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10">
+        {children}
+      </div>
     </motion.div>
   )
 }

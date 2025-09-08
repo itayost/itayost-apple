@@ -3,6 +3,7 @@ import Script from 'next/script'
 import './globals.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
+import { WhatsAppButton } from '@/components/common/WhatsAppButton'
 import { seoConfig } from '@/config/seo'
 
 export const metadata: Metadata = {
@@ -142,6 +143,7 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   )

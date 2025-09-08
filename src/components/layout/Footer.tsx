@@ -3,31 +3,27 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { content } from '@/config/content'
+import { socialLinks } from '@/config/socialLinks'
 
 const footerLinks = {
   services: [
-    { label: content.footer.links.services.webDev, href: '/services#web' },
-    { label: content.footer.links.services.mobileApps, href: '/services#mobile' },
-    { label: content.footer.links.services.uiux, href: '/services#design' },
-    { label: content.footer.links.services.consulting, href: '/services#consulting' },
+    { label: content.footer.links.services.websites, href: '/services#web' },
+    { label: content.footer.links.services.ecommerce, href: '/services#ecommerce' },
+    { label: content.footer.links.services.apps, href: '/services#apps' },
+    { label: content.footer.links.services.crm, href: '/services#crm' },
+    { label: content.footer.links.services.maintenance, href: '/services#maintenance' },
   ],
-  company: [
-    { label: content.footer.links.company.about, href: '/about' },
-    { label: content.footer.links.company.portfolio, href: '/portfolio' },
-    { label: content.footer.links.company.blog, href: '#' },
-    { label: content.footer.links.company.careers, href: '#' },
-  ],
-  resources: [
-    { label: content.footer.links.resources.documentation, href: '#' },
-    { label: content.footer.links.resources.support, href: '#' },
-    { label: content.footer.links.resources.terms, href: '#' },
-    { label: content.footer.links.resources.privacy, href: '#' },
+  quickLinks: [
+    { label: content.footer.links.quickLinks.about, href: '/about' },
+    { label: content.footer.links.quickLinks.portfolio, href: '/portfolio' },
+    { label: content.footer.links.quickLinks.contact, href: '/contact' },
+    { label: content.footer.links.quickLinks.privacy, href: '#' },
   ],
   social: [
-    { label: 'LinkedIn', href: 'https://linkedin.com', icon: 'in' },
-    { label: 'GitHub', href: 'https://github.com', icon: 'gh' },
-    { label: 'Twitter', href: 'https://twitter.com', icon: 'tw' },
-    { label: 'Instagram', href: 'https://instagram.com', icon: 'ig' },
+    { label: 'LinkedIn', href: socialLinks.linkedin, icon: 'in' },
+    { label: 'Instagram', href: socialLinks.instagram, icon: 'ig' },
+    { label: 'Facebook', href: socialLinks.facebook, icon: 'fb' },
+    { label: 'WhatsApp', href: socialLinks.whatsapp, icon: 'wa' },
   ],
 }
 
@@ -142,7 +138,7 @@ export function Footer() {
             </motion.div>
           </div>
 
-          {/* Company */}
+          {/* Quick Links */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -150,9 +146,9 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="font-medium mb-4">{content.footer.sections.company}</h4>
+              <h4 className="font-medium mb-4">{content.footer.sections.quickLinks}</h4>
               <ul className="space-y-2">
-                {footerLinks.company.map((link) => (
+                {footerLinks.quickLinks.map((link) => (
                   <li key={link.label}>
                     <Link 
                       href={link.href}
@@ -166,7 +162,7 @@ export function Footer() {
             </motion.div>
           </div>
 
-          {/* Resources */}
+          {/* Contact Info */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -174,18 +170,19 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <h4 className="font-medium mb-4">{content.footer.sections.resources}</h4>
-              <ul className="space-y-2">
-                {footerLinks.resources.map((link) => (
-                  <li key={link.label}>
-                    <Link 
-                      href={link.href}
-                      className="text-[#86868B] hover:text-white transition-colors text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+              <h4 className="font-medium mb-4">{content.footer.sections.contact}</h4>
+              <ul className="space-y-2 text-sm text-[#86868B]">
+                <li>
+                  <a href={socialLinks.phone} className="hover:text-white transition-colors">
+                    {content.contact.details.phone}
+                  </a>
+                </li>
+                <li>
+                  <a href={socialLinks.email} className="hover:text-white transition-colors">
+                    {content.contact.details.email}
+                  </a>
+                </li>
+                <li>{content.contact.details.address}</li>
               </ul>
             </motion.div>
           </div>
@@ -203,17 +200,9 @@ export function Footer() {
             <p className="text-[#86868B] text-sm">
               {content.footer.copyright.replace('{year}', currentYear.toString())}
             </p>
-            <div className="flex gap-6">
-              <Link href="#" className="text-[#86868B] hover:text-white text-sm transition-colors">
-                {content.footer.legal.terms}
-              </Link>
-              <Link href="#" className="text-[#86868B] hover:text-white text-sm transition-colors">
-                {content.footer.legal.privacy}
-              </Link>
-              <Link href="#" className="text-[#86868B] hover:text-white text-sm transition-colors">
-                {content.footer.legal.cookies}
-              </Link>
-            </div>
+            <p className="text-[#86868B] text-sm">
+              {content.footer.developer}
+            </p>
           </div>
         </motion.div>
       </div>

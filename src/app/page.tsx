@@ -1,9 +1,6 @@
 'use client'
 
-import { Hero } from '@/components/sections/Hero'
-import { Services } from '@/components/sections/Services'
-import { Portfolio } from '@/components/sections/Portfolio'
-import { Contact } from '@/components/sections/Contact'
+import { Hero, Services, Portfolio, Contact } from '@/components'
 
 export default function HomePage() {
   return (

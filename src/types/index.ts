@@ -1,54 +1,50 @@
-export interface Service {
-  id: string
-  icon: string
-  title: string
-  description: string
-  features: string[]
-}
+// Type definitions for the application
 
-export interface PortfolioProject {
-  id: string
+export interface PortfolioItem {
+  id: number
   title: string
   category: string
   description: string
   image: string
+  gradient: string
   technologies: string[]
-  link?: string
-  featured?: boolean
+  link: string | null
+  featured: boolean
 }
 
-export interface TeamMember {
-  id: string
+export interface Service {
+  icon: string
+  title: string
+  description: string
+  features?: string[]
+  price?: string
+}
+
+export interface ContactFormData {
   name: string
-  role: string
-  bio: string
-  image: string
-  social?: {
-    linkedin?: string
-    github?: string
-    twitter?: string
-  }
+  email: string
+  phone: string
+  subject: string
+  message: string
+}
+
+export interface SocialLink {
+  label: string
+  href: string
+  icon: string
+}
+
+export interface NavigationItem {
+  label: string
+  href: string
 }
 
 export interface Testimonial {
-  id: string
+  id: number
   name: string
   role: string
   company: string
   content: string
   image?: string
-  rating: number
-}
-
-export interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  content: string
-  date: string
-  author: string
-  category: string
-  image?: string
-  tags: string[]
-  readTime: number
+  rating?: number
 }
