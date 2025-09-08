@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { portfolioItems } from '@/data/portfolio'
 import { SmoothReveal } from '@/components/ScrollAnimations/SmoothReveal'
+import { content } from '@/config/content'
 
 export function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -61,13 +62,14 @@ export function Portfolio() {
       <div className="absolute top-0 left-0 right-0 z-10 pt-32 pb-16 px-6 pointer-events-none">
         <SmoothReveal direction="up" className="text-center">
           <div className="text-sm font-medium text-[#86868B] uppercase tracking-wider mb-4">
-            Our Work
+            {content.portfolio.sectionLabel}
           </div>
           <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
-            Featured{' '}
             <span className="bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent">
-              Projects
+              {content.portfolio.title}
             </span>
+            {' '}
+            {content.portfolio.subtitle}
           </h2>
         </SmoothReveal>
       </div>
@@ -106,8 +108,8 @@ export function Portfolio() {
 
               {/* Featured Badge */}
               {item.featured && (
-                <span className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur text-sm font-medium rounded-full z-10">
-                  Featured
+                <span className="absolute top-6 right-6 px-4 py-2 bg-white/90 backdrop-blur text-sm font-medium rounded-full z-10">
+                  {content.common.featured}
                 </span>
               )}
 
@@ -145,11 +147,11 @@ export function Portfolio() {
 
               {/* View Project Indicator */}
               <motion.div
-                className="absolute top-6 right-6 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                whileHover={{ scale: 1.1, rotate: 45 }}
+                className="absolute top-6 left-6 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                whileHover={{ scale: 1.1, rotate: -45 }}
                 transition={{ duration: 0.2 }}
               >
-                <span className="text-[#0071E3] text-lg">↗</span>
+                <span className="text-[#0071E3] text-lg">↖</span>
               </motion.div>
             </motion.div>
           ))}
@@ -172,10 +174,10 @@ export function Portfolio() {
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 className="text-6xl mb-4"
               >
-                →
+                ←
               </motion.div>
-              <h3 className="text-2xl font-semibold mb-2">View All Projects</h3>
-              <p className="opacity-90">Explore our complete portfolio</p>
+              <h3 className="text-2xl font-semibold mb-2">{content.portfolio.viewAll}</h3>
+              <p className="opacity-90">{content.portfolio.explore}</p>
             </div>
           </motion.div>
         </motion.div>
@@ -189,17 +191,17 @@ export function Portfolio() {
         transition={{ delay: 0.5 }}
       >
         <motion.span
-          animate={{ x: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          ←
-        </motion.span>
-        <span>Scroll to explore</span>
-        <motion.span
           animate={{ x: [0, -10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
           →
+        </motion.span>
+        <span>{content.portfolio.scrollHint}</span>
+        <motion.span
+          animate={{ x: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          ←
         </motion.span>
       </motion.div>
     </section>

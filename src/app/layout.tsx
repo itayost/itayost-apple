@@ -1,42 +1,121 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
+import { seoConfig } from '@/config/seo'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://itayost.com'),
-  title: 'ITAYOST - Digital Experiences',
-  description: 'Building the future of digital with cutting-edge technology and beautiful design',
-  keywords: 'web development, UI/UX design, mobile apps, digital transformation',
-  authors: [{ name: 'ITAYOST' }],
+  metadataBase: new URL('https://www.itayost.com'),
+  title: {
+    default: seoConfig.default.title,
+    template: seoConfig.default.titleTemplate,
+  },
+  description: seoConfig.default.description,
+  keywords: seoConfig.default.keywords,
+  authors: [{ name: 'ITAYOST' }, { name: 'איתי אוסט' }],
+  creator: 'ITAYOST',
+  publisher: 'ITAYOST',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
-    title: 'ITAYOST - Digital Experiences',
-    description: 'Building the future of digital with cutting-edge technology and beautiful design',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://itayost.com',
+    title: seoConfig.default.title,
+    description: seoConfig.default.description,
+    url: 'https://www.itayost.com',
     siteName: 'ITAYOST',
     images: [
       {
-        url: '/og-image.jpg',
+        url: 'https://www.itayost.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'ITAYOST - Digital Experiences',
+        alt: 'ITAYOST - פיתוח אתרים ואפליקציות',
       },
     ],
+    locale: 'he_IL',
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ITAYOST - Digital Experiences',
-    description: 'Building the future of digital with cutting-edge technology and beautiful design',
-    images: ['/og-image.jpg'],
+    title: seoConfig.default.title,
+    description: seoConfig.default.description,
+    creator: '@itayost',
+    images: ['https://www.itayost.com/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://www.itayost.com',
+    languages: {
+      'he-IL': 'https://www.itayost.com',
+      'en-US': 'https://www.itayost.com/en',
+    },
   },
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 5,
   themeColor: '#0071E3',
+}
+
+// Structured Data Script Component
+function StructuredData() {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      seoConfig.structuredData.organization,
+      seoConfig.structuredData.website,
+      seoConfig.structuredData.localBusiness,
+    ],
+  }
+
+  return (
+    <Script
+      id="structured-data"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData),
+      }}
+      strategy="afterInteractive"
+    />
+  )
+}
+
+// Google Analytics Component
+function GoogleAnalytics() {
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'
+  
+  return (
+    <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}', {
+            page_path: window.location.pathname,
+          });
+        `}
+      </Script>
+    </>
+  )
 }
 
 export default function RootLayout({
@@ -45,8 +124,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="he" dir="rtl">
+      <head>
+        <link rel="canonical" href="https://www.itayost.com" />
+        <link rel="alternate" hrefLang="he-IL" href="https://www.itayost.com" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.itayost.com" />
+        <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+        <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+        <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
+        <meta name="p:domain_verify" content="YOUR_PINTEREST_VERIFICATION_CODE" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className="antialiased">
+        <StructuredData />
+        <GoogleAnalytics />
         <Navigation />
         {children}
         <Footer />

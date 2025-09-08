@@ -44,7 +44,7 @@
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 'Helvetica', 'Arial', 'Noto Sans Hebrew', 'Heebo', sans-serif;
     font-feature-settings: "ss01", "ss02", "cv01";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -52,7 +52,19 @@
     background: var(--off-white);
     color: var(--black);
     overflow-x: hidden;
-    line-height: 1.5;
+    line-height: 1.6;
+    direction: rtl;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  /* Fix for English text within Hebrew */
+  .ltr {
+    direction: ltr;
+    text-align: left;
   }
 
   /* Typography Scale */

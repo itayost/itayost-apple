@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { SmoothReveal } from '@/components/ScrollAnimations/SmoothReveal'
 import { AppleParallax } from '@/components/ScrollAnimations/AppleParallax'
+import { content } from '@/config/content'
 
 export function Hero() {
   const [mounted, setMounted] = useState(false)
@@ -82,68 +83,66 @@ export function Hero() {
           {/* Main Title with SmoothReveal */}
           <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[1.05] tracking-[-0.03em]">
             <SmoothReveal direction="up" cascade>
-              <span className="block">Create</span>
+              <span className="block">{content.hero.title.line1}</span>
               <span className="block bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent">
-                Amazing
+                {content.hero.title.line2}
               </span>
-              <span className="block">Experiences</span>
+              <span className="block">{content.hero.title.line3}</span>
             </SmoothReveal>
           </h1>
 
           {/* Subtitle */}
           <SmoothReveal direction="up" delay={0.3}>
-            <p className="text-[clamp(1.1rem,2vw,1.5rem)] text-[#86868B] leading-[1.5] max-w-[600px] mx-auto">
-              Building the future of digital with cutting-edge technology, 
-              beautiful design, and seamless animations.
+            <p className="text-[clamp(1.1rem,2vw,1.5rem)] text-[#86868B] leading-[1.8] max-w-[600px] mx-auto">
+              {content.hero.subtitle}
             </p>
           </SmoothReveal>
 
           {/* CTA Buttons */}
           <SmoothReveal direction="up" delay={0.5}>
             <div className="flex flex-wrap gap-4 justify-center pt-4">
-              <Link href="#services">
+              <Link href="/services">
                 <motion.button 
                   className="px-8 py-[14px] bg-[#0071E3] text-white rounded-full font-medium text-base hover:bg-[#0077ED] hover:shadow-lg transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Get Started
+                  {content.hero.cta.primary}
                 </motion.button>
               </Link>
               
-              <Link href="#portfolio">
+              <Link href="/portfolio">
                 <motion.button 
                   className="px-8 py-[14px] bg-white text-[#0071E3] rounded-full font-medium text-base border border-[#C7C7CC] hover:bg-[#F5F5F7] transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  View Our Work
+                  {content.hero.cta.secondary}
                 </motion.button>
               </Link>
             </div>
           </SmoothReveal>
         </div>
 
-        {/* Scroll Indicator with Parallax */}
-        <AppleParallax offset={30} speed={0.8} className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        {/* Scroll Indicator - Fixed position and smaller size */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.5 }}
+        >
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.5 }}
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-5 h-8 border border-[#C7C7CC] rounded-full flex justify-center p-1"
           >
             <motion.div
-              animate={{ y: [0, 10, 0] }}
+              animate={{ y: [0, 10, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="w-7 h-12 border-2 border-[#C7C7CC] rounded-full flex justify-center p-2"
-            >
-              <motion.div
-                animate={{ y: [0, 15, 0], opacity: [1, 0.3, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1 h-1 bg-[#86868B] rounded-full"
-              />
-            </motion.div>
+              className="w-0.5 h-0.5 bg-[#86868B] rounded-full"
+            />
           </motion.div>
-        </AppleParallax>
+        </motion.div>
       </div>
     </motion.section>
   )

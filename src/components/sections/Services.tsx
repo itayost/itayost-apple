@@ -4,45 +4,19 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { AppleParallax } from '@/components/ScrollAnimations/AppleParallax'
 import { SmoothReveal } from '@/components/ScrollAnimations/SmoothReveal'
+import { content } from '@/config/content'
 
-const services = [
-  {
-    icon: '✨',
-    title: 'Web Development',
-    description: 'Modern, responsive websites built with the latest technologies and best practices for optimal performance.',
-    gradient: 'from-blue-500 to-cyan-500'
-  },
-  {
-    icon: '🎨',
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive interfaces that delight users and drive engagement through thoughtful design.',
-    gradient: 'from-purple-500 to-pink-500'
-  },
-  {
-    icon: '🚀',
-    title: 'Performance',
-    description: 'Lightning-fast applications optimized for speed, accessibility, and search engine visibility.',
-    gradient: 'from-orange-500 to-red-500'
-  },
-  {
-    icon: '📱',
-    title: 'Mobile Apps',
-    description: 'Native and cross-platform applications that work seamlessly across all devices and platforms.',
-    gradient: 'from-green-500 to-teal-500'
-  },
-  {
-    icon: '⚡',
-    title: 'API Development',
-    description: 'Scalable backend solutions and RESTful APIs that power modern digital experiences.',
-    gradient: 'from-indigo-500 to-blue-500'
-  },
-  {
-    icon: '🔐',
-    title: 'Security',
-    description: 'Enterprise-grade security implementations to protect your data and maintain user trust.',
-    gradient: 'from-gray-600 to-gray-900'
-  }
-]
+const services = content.services.items.map((item, index) => ({
+  ...item,
+  gradient: [
+    'from-blue-500 to-cyan-500',
+    'from-purple-500 to-pink-500',
+    'from-orange-500 to-red-500',
+    'from-green-500 to-teal-500',
+    'from-indigo-500 to-blue-500',
+    'from-gray-600 to-gray-900'
+  ][index]
+}))
 
 export function Services() {
   const containerRef = useRef(null)
@@ -54,14 +28,14 @@ export function Services() {
         {/* Section Header with SmoothReveal */}
         <SmoothReveal direction="up" className="text-center mb-20">
           <div className="text-sm font-medium text-[#86868B] uppercase tracking-wider mb-4">
-            What We Do
+            {content.services.sectionLabel}
           </div>
           <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
             <span className="bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent">
-              Services
+              {content.services.title}
             </span>
-            {' '}&{' '}
-            <span className="text-[#1D1D1F]">Solutions</span>
+            {' '}
+            <span className="text-[#1D1D1F]">{content.services.subtitle}</span>
           </h2>
         </SmoothReveal>
 
@@ -117,12 +91,12 @@ export function Services() {
                   <motion.div 
                     className="mt-6 text-[#0071E3] font-medium flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
-                    <span>Learn more</span>
+                    <span>{content.services.learnMore}</span>
                     <motion.span
-                      animate={{ x: [0, 5, 0] }}
+                      animate={{ x: [0, -5, 0] }}
                       transition={{ duration: 1, repeat: Infinity }}
                     >
-                      →
+                      ←
                     </motion.span>
                   </motion.div>
 

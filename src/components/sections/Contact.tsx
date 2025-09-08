@@ -2,13 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-
-const contactInfo = {
-  email: 'hello@itayost.com',
-  phone: '+972 54-499-4417',
-  address: 'Tel Aviv, Israel',
-  hours: 'Sun-Thu: 9:00 AM - 6:00 PM',
-}
+import { content } from '@/config/content'
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -27,7 +21,7 @@ export function Contact() {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000))
     setIsSubmitting(false)
-    alert('Thank you for your message! We\'ll get back to you soon.')
+    alert(content.contact.form.success)
     setFormData({ name: '', email: '', subject: '', message: '' })
   }
 
@@ -54,7 +48,7 @@ export function Contact() {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Get in Touch
+            {content.contact.sectionLabel}
           </motion.div>
           <motion.h2 
             className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] mb-6"
@@ -62,9 +56,9 @@ export function Contact() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Let's Start a{' '}
+            {content.contact.title}{' '}
             <span className="bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent">
-              Conversation
+              {content.contact.subtitle}
             </span>
           </motion.h2>
           <motion.p
@@ -73,15 +67,15 @@ export function Contact() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Have a project in mind? We'd love to hear about it. Send us a message and we'll get back to you as soon as possible.
+            {content.contact.description}
           </motion.p>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:col-span-2"
           >
@@ -93,7 +87,7 @@ export function Contact() {
                   transition={{ duration: 0.5, delay: 0.5 }}
                 >
                   <label htmlFor="name" className="block text-sm font-medium text-[#424245] mb-2">
-                    Your Name
+                    {content.contact.form.name.label}
                   </label>
                   <input
                     type="text"
@@ -103,7 +97,7 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-[#F5F5F7] border border-[#C7C7CC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071E3] focus:border-transparent transition-all"
-                    placeholder="John Doe"
+                    placeholder={content.contact.form.name.placeholder}
                   />
                 </motion.div>
 
@@ -113,7 +107,7 @@ export function Contact() {
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
                   <label htmlFor="email" className="block text-sm font-medium text-[#424245] mb-2">
-                    Your Email
+                    {content.contact.form.email.label}
                   </label>
                   <input
                     type="email"
@@ -123,7 +117,7 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-[#F5F5F7] border border-[#C7C7CC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071E3] focus:border-transparent transition-all"
-                    placeholder="john@example.com"
+                    placeholder={content.contact.form.email.placeholder}
                   />
                 </motion.div>
               </div>
@@ -134,7 +128,7 @@ export function Contact() {
                 transition={{ duration: 0.5, delay: 0.7 }}
               >
                 <label htmlFor="subject" className="block text-sm font-medium text-[#424245] mb-2">
-                  Subject
+                  {content.contact.form.subject.label}
                 </label>
                 <select
                   id="subject"
@@ -144,11 +138,11 @@ export function Contact() {
                   required
                   className="w-full px-4 py-3 bg-[#F5F5F7] border border-[#C7C7CC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071E3] focus:border-transparent transition-all"
                 >
-                  <option value="">Select a subject</option>
-                  <option value="project">New Project</option>
-                  <option value="consultation">Consultation</option>
-                  <option value="support">Support</option>
-                  <option value="other">Other</option>
+                  <option value="">{content.contact.form.subject.placeholder}</option>
+                  <option value="project">{content.contact.form.subject.options.newProject}</option>
+                  <option value="consultation">{content.contact.form.subject.options.consultation}</option>
+                  <option value="support">{content.contact.form.subject.options.support}</option>
+                  <option value="other">{content.contact.form.subject.options.other}</option>
                 </select>
               </motion.div>
 
@@ -158,7 +152,7 @@ export function Contact() {
                 transition={{ duration: 0.5, delay: 0.8 }}
               >
                 <label htmlFor="message" className="block text-sm font-medium text-[#424245] mb-2">
-                  Message
+                  {content.contact.form.message.label}
                 </label>
                 <textarea
                   id="message"
@@ -168,7 +162,7 @@ export function Contact() {
                   required
                   rows={6}
                   className="w-full px-4 py-3 bg-[#F5F5F7] border border-[#C7C7CC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071E3] focus:border-transparent transition-all resize-none"
-                  placeholder="Tell us about your project..."
+                  placeholder={content.contact.form.message.placeholder}
                 />
               </motion.div>
 
@@ -186,15 +180,15 @@ export function Contact() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.9 }}
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? content.contact.form.sending : content.contact.form.submit}
               </motion.button>
             </form>
           </motion.div>
 
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="space-y-8"
           >
@@ -208,9 +202,9 @@ export function Contact() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#0071E3] to-[#BF5AF2] rounded-full flex items-center justify-center text-white text-xl">
                   ✉
                 </div>
-                <h3 className="ml-4 text-lg font-semibold text-[#1D1D1F]">Email</h3>
+                <h3 className="mr-4 text-lg font-semibold text-[#1D1D1F]">{content.contact.info.email}</h3>
               </div>
-              <p className="text-[#86868B]">{contactInfo.email}</p>
+              <p className="text-[#86868B]">{content.contact.details.email}</p>
             </motion.div>
 
             <motion.div
@@ -222,9 +216,9 @@ export function Contact() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#30D158] to-[#5AC8FA] rounded-full flex items-center justify-center text-white text-xl">
                   📱
                 </div>
-                <h3 className="ml-4 text-lg font-semibold text-[#1D1D1F]">Phone</h3>
+                <h3 className="mr-4 text-lg font-semibold text-[#1D1D1F]">{content.contact.info.phone}</h3>
               </div>
-              <p className="text-[#86868B]">{contactInfo.phone}</p>
+              <p className="text-[#86868B]">{content.contact.details.phone}</p>
             </motion.div>
 
             <motion.div
@@ -236,9 +230,9 @@ export function Contact() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#FF375F] to-[#FF9500] rounded-full flex items-center justify-center text-white text-xl">
                   📍
                 </div>
-                <h3 className="ml-4 text-lg font-semibold text-[#1D1D1F]">Location</h3>
+                <h3 className="mr-4 text-lg font-semibold text-[#1D1D1F]">{content.contact.info.location}</h3>
               </div>
-              <p className="text-[#86868B]">{contactInfo.address}</p>
+              <p className="text-[#86868B]">{content.contact.details.address}</p>
             </motion.div>
 
             <motion.div
@@ -250,9 +244,9 @@ export function Contact() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#BF5AF2] to-[#FF375F] rounded-full flex items-center justify-center text-white text-xl">
                   🕐
                 </div>
-                <h3 className="ml-4 text-lg font-semibold text-[#1D1D1F]">Office Hours</h3>
+                <h3 className="mr-4 text-lg font-semibold text-[#1D1D1F]">{content.contact.info.hours}</h3>
               </div>
-              <p className="text-[#86868B]">{contactInfo.hours}</p>
+              <p className="text-[#86868B]">{content.contact.details.hours}</p>
             </motion.div>
           </motion.div>
         </div>

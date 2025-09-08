@@ -39,6 +39,8 @@ module.exports = {
           '"Helvetica Neue"',
           'Helvetica',
           'Arial',
+          '"Noto Sans Hebrew"',
+          '"Heebo"',
           'sans-serif',
         ],
       },

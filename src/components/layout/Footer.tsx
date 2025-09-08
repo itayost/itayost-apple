@@ -2,25 +2,26 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { content } from '@/config/content'
 
 const footerLinks = {
   services: [
-    { label: 'Web Development', href: '#' },
-    { label: 'Mobile Apps', href: '#' },
-    { label: 'UI/UX Design', href: '#' },
-    { label: 'Consulting', href: '#' },
+    { label: content.footer.links.services.webDev, href: '/services#web' },
+    { label: content.footer.links.services.mobileApps, href: '/services#mobile' },
+    { label: content.footer.links.services.uiux, href: '/services#design' },
+    { label: content.footer.links.services.consulting, href: '/services#consulting' },
   ],
   company: [
-    { label: 'About', href: '/about' },
-    { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Blog', href: '#' },
-    { label: 'Careers', href: '#' },
+    { label: content.footer.links.company.about, href: '/about' },
+    { label: content.footer.links.company.portfolio, href: '/portfolio' },
+    { label: content.footer.links.company.blog, href: '#' },
+    { label: content.footer.links.company.careers, href: '#' },
   ],
   resources: [
-    { label: 'Documentation', href: '#' },
-    { label: 'Support', href: '#' },
-    { label: 'Terms', href: '#' },
-    { label: 'Privacy', href: '#' },
+    { label: content.footer.links.resources.documentation, href: '#' },
+    { label: content.footer.links.resources.support, href: '#' },
+    { label: content.footer.links.resources.terms, href: '#' },
+    { label: content.footer.links.resources.privacy, href: '#' },
   ],
   social: [
     { label: 'LinkedIn', href: 'https://linkedin.com', icon: 'in' },
@@ -46,22 +47,22 @@ export function Footer() {
             className="text-center"
           >
             <h2 className="text-[clamp(2rem,4vw,3rem)] font-semibold mb-6">
-              Ready to start your{' '}
+              {content.footer.cta.title}{' '}
               <span className="bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent">
-                next project?
+                {content.footer.cta.highlight}
               </span>
             </h2>
             <p className="text-[#86868B] text-lg mb-8 max-w-2xl mx-auto">
-              Let's work together to create something amazing. Get in touch today.
+              {content.footer.cta.subtitle}
             </p>
             <motion.div className="flex gap-4 justify-center flex-wrap">
-              <Link href="#contact">
+              <Link href="/contact">
                 <motion.button
                   className="px-8 py-3 bg-white text-[#1D1D1F] rounded-full font-medium hover:bg-[#F5F5F7] transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Start a Project
+                  {content.footer.cta.startProject}
                 </motion.button>
               </Link>
               <Link href="/portfolio">
@@ -70,7 +71,7 @@ export function Footer() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  View Portfolio
+                  {content.footer.cta.viewPortfolio}
                 </motion.button>
               </Link>
             </motion.div>
@@ -91,11 +92,11 @@ export function Footer() {
             >
               <Link href="/">
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent mb-4">
-                  ITAYOST
+                  {content.brand.name}
                 </h3>
               </Link>
               <p className="text-[#86868B] mb-6 max-w-xs">
-                Building exceptional digital experiences with cutting-edge technology and beautiful design.
+                {content.footer.tagline}
               </p>
               {/* Social Links */}
               <div className="flex gap-3">
@@ -125,7 +126,7 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h4 className="font-medium mb-4">Services</h4>
+              <h4 className="font-medium mb-4">{content.footer.sections.services}</h4>
               <ul className="space-y-2">
                 {footerLinks.services.map((link) => (
                   <li key={link.label}>
@@ -149,7 +150,7 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="font-medium mb-4">Company</h4>
+              <h4 className="font-medium mb-4">{content.footer.sections.company}</h4>
               <ul className="space-y-2">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
@@ -173,7 +174,7 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <h4 className="font-medium mb-4">Resources</h4>
+              <h4 className="font-medium mb-4">{content.footer.sections.resources}</h4>
               <ul className="space-y-2">
                 {footerLinks.resources.map((link) => (
                   <li key={link.label}>
@@ -200,17 +201,17 @@ export function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[#86868B] text-sm">
-              © {currentYear} ITAYOST. All rights reserved.
+              {content.footer.copyright.replace('{year}', currentYear.toString())}
             </p>
             <div className="flex gap-6">
               <Link href="#" className="text-[#86868B] hover:text-white text-sm transition-colors">
-                Terms
+                {content.footer.legal.terms}
               </Link>
               <Link href="#" className="text-[#86868B] hover:text-white text-sm transition-colors">
-                Privacy
+                {content.footer.legal.privacy}
               </Link>
               <Link href="#" className="text-[#86868B] hover:text-white text-sm transition-colors">
-                Cookies
+                {content.footer.legal.cookies}
               </Link>
             </div>
           </div>

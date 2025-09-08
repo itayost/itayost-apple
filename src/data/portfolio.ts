@@ -1,9 +1,9 @@
 export const portfolioItems = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    category: 'Web Development',
-    description: 'Modern shopping experience with seamless checkout and real-time inventory management.',
+    title: 'פלטפורמת מסחר אלקטרוני',
+    category: 'פיתוח אתרים',
+    description: 'חוויית קניות מודרנית עם תשלום חלק וניהול מלאי בזמן אמת.',
     image: '/portfolio/ecommerce.jpg',
     gradient: 'from-blue-500 to-purple-500',
     technologies: ['Next.js', 'Stripe', 'PostgreSQL', 'Tailwind CSS'],
@@ -12,9 +12,9 @@ export const portfolioItems = [
   },
   {
     id: 2,
-    title: 'Mobile Banking App',
-    category: 'Mobile App',
-    description: 'Secure financial management with biometric authentication and instant transfers.',
+    title: 'אפליקציית בנקאות',
+    category: 'אפליקציות מובייל',
+    description: 'ניהול פיננסי מאובטח עם זיהוי ביומטרי והעברות מיידיות.',
     image: '/portfolio/banking.jpg',
     gradient: 'from-green-500 to-teal-500',
     technologies: ['React Native', 'Node.js', 'MongoDB', 'Plaid API'],
@@ -23,9 +23,9 @@ export const portfolioItems = [
   },
   {
     id: 3,
-    title: 'SaaS Dashboard',
-    category: 'UI/UX Design',
-    description: 'Analytics platform with real-time data visualization and custom reporting.',
+    title: 'ממשק ניהול SaaS',
+    category: 'עיצוב UI/UX',
+    description: 'פלטפורמת אנליטיקס עם ויזואליזציית נתונים בזמן אמת ודוחות מותאמים.',
     image: '/portfolio/dashboard.jpg',
     gradient: 'from-orange-500 to-red-500',
     technologies: ['React', 'D3.js', 'Express', 'Redis'],
@@ -34,9 +34,9 @@ export const portfolioItems = [
   },
   {
     id: 4,
-    title: 'AI Content Generator',
-    category: 'AI/ML',
-    description: 'Smart content creation tool powered by machine learning algorithms.',
+    title: 'מחולל תוכן AI',
+    category: 'בינה מלאכותית',
+    description: 'כלי יצירת תוכן חכם המופעל על ידי אלגוריתמי למידת מכונה.',
     image: '/portfolio/ai-tool.jpg',
     gradient: 'from-purple-500 to-pink-500',
     technologies: ['Python', 'TensorFlow', 'FastAPI', 'React'],
@@ -45,9 +45,9 @@ export const portfolioItems = [
   },
   {
     id: 5,
-    title: 'Real Estate Platform',
-    category: 'Web Development',
-    description: 'Property marketplace with virtual tours and automated valuation.',
+    title: 'פלטפורמת נדל"ן',
+    category: 'פיתוח אתרים',
+    description: 'שוק נכסים עם סיורים וירטואליים והערכת שווי אוטומטית.',
     image: '/portfolio/realestate.jpg',
     gradient: 'from-cyan-500 to-blue-500',
     technologies: ['Vue.js', 'Laravel', 'MySQL', 'MapBox'],
@@ -56,9 +56,9 @@ export const portfolioItems = [
   },
   {
     id: 6,
-    title: 'Fitness Tracking App',
-    category: 'Mobile App',
-    description: 'Health monitoring with personalized workout plans and nutrition tracking.',
+    title: 'אפליקציית כושר',
+    category: 'אפליקציות מובייל',
+    description: 'מעקב בריאות עם תוכניות אימון מותאמות אישית ומעקב תזונה.',
     image: '/portfolio/fitness.jpg',
     gradient: 'from-pink-500 to-rose-500',
     technologies: ['Flutter', 'Firebase', 'HealthKit', 'Google Fit'],
@@ -68,9 +68,9 @@ export const portfolioItems = [
 ]
 
 export const categories = [
-  'All',
-  'Web Development',
-  'Mobile App',
-  'UI/UX Design',
-  'AI/ML',
+  'הכל',
+  'פיתוח אתרים',
+  'אפליקציות מובייל',
+  'עיצוב UI/UX',
+  'בינה מלאכותית',
 ]

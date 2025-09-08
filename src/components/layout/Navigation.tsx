@@ -6,11 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'בית', href: '/' },
+  { label: 'שירותים', href: '/services' },
+  { label: 'תיק עבודות', href: '/portfolio' },
+  { label: 'אודות', href: '/about' },
+  { label: 'צור קשר', href: '/contact' },
 ]
 
 export function Navigation() {
@@ -79,9 +79,9 @@ export function Navigation() {
               ))}
             </ul>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle - on the left for RTL */}
             <button
-              className="md:hidden relative w-6 h-6 flex flex-col justify-center items-center"
+              className="md:hidden relative w-6 h-6 flex flex-col justify-center items-center order-first"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
