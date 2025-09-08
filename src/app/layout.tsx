@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: 'ITAYOST',
     images: [
       {
-        url: 'https://www.itayost.com/og-image.jpg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'ITAYOST - פיתוח אתרים ואפליקציות',
@@ -127,15 +127,27 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <head>
+        {/* Favicons */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Canonical and Language */}
         <link rel="canonical" href="https://www.itayost.com" />
         <link rel="alternate" hrefLang="he-IL" href="https://www.itayost.com" />
         <link rel="alternate" hrefLang="x-default" href="https://www.itayost.com" />
+        
+        {/* Verification Tags */}
         <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
         <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
-        <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
-        <meta name="p:domain_verify" content="YOUR_PINTEREST_VERIFICATION_CODE" />
+        
+        {/* Preconnect for Performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Theme Color */}
+        <meta name="theme-color" content="#0071E3" />
       </head>
       <body className="antialiased">
         <StructuredData />
