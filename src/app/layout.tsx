@@ -6,6 +6,17 @@ import { Footer } from '@/components/layout/Footer'
 import { WhatsAppButton } from '@/components/common/WhatsAppButton'
 import { seoConfig } from '@/config/seo'
 
+// Import Google Fonts
+import { Heebo } from 'next/font/google'
+
+// Configure Heebo font
+const heebo = Heebo({
+  subsets: ['hebrew', 'latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-heebo',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.itayost.com'),
   title: {
@@ -125,7 +136,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="he" dir="rtl">
+    <html lang="he" dir="rtl" className={heebo.variable}>
       <head>
         {/* Favicons */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
