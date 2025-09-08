@@ -8,7 +8,7 @@ interface PageSEOProps {
   image?: string
   canonical?: string
   noindex?: boolean
-  type?: 'website' | 'article' | 'product'
+  type?: 'website' | 'article'
 }
 
 export function generatePageMetadata({

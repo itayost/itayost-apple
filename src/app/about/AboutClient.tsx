@@ -125,7 +125,8 @@ export default function AboutClient() {
               </p>
             </SmoothReveal>
 
-            <SmoothReveal direction="left" delay={0.3}>
+            {/* Stats section - hidden for now as requested */}
+            {/* <SmoothReveal direction="left" delay={0.3}>
               <div className="flex gap-12 pt-6">
                 <div>
                   <h4 className="text-3xl font-bold text-[#0071E3]">50+</h4>
@@ -140,7 +141,7 @@ export default function AboutClient() {
                   <p className="text-sm text-[#86868B]">{content.about.stats.years}</p>
                 </div>
               </div>
-            </SmoothReveal>
+            </SmoothReveal> */}
           </div>
         </div>
       </section>
