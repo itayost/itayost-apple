@@ -3,15 +3,30 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-// Custom hook for Apple-style scroll effects
+// Detect if device is mobile
+const isMobile = () => {
+  if (typeof window === 'undefined') return false
+  return window.innerWidth < 768 || 'ontouchstart' in window
+}
+
+// Custom hook for Apple-style scroll effects with mobile optimization
 export const useAppleScrollEffects = (threshold = 0.1) => {
   const [scrollY, setScrollY] = useState(0)
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up')
   const [isScrolling, setIsScrolling] = useState(false)
   const lastScrollY = useRef(0)
   const scrollTimeout = useRef<NodeJS.Timeout>()
+  const mobile = isMobile()
 
   const handleScroll = useCallback(() => {
+    // Skip complex calculations on mobile
+    if (mobile) {
+      const currentScrollY = window.scrollY
+      setScrollY(currentScrollY)
+      lastScrollY.current = currentScrollY
+      return
+    }
+
     const currentScrollY = window.scrollY
     
     // Update scroll position
@@ -38,7 +53,7 @@ export const useAppleScrollEffects = (threshold = 0.1) => {
     scrollTimeout.current = setTimeout(() => {
       setIsScrolling(false)
     }, 150)
-  }, [])
+  }, [mobile])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -58,12 +73,16 @@ export const useAppleScrollEffects = (threshold = 0.1) => {
   }
 }
 
-// Hook for parallax effects
+// Hook for parallax effects - disabled on mobile
 export const useParallax = (speed = 0.5) => {
   const [offset, setOffset] = useState(0)
   const elementRef = useRef<HTMLElement>(null)
+  const mobile = isMobile()
 
   useEffect(() => {
+    // Disable parallax on mobile for performance
+    if (mobile) return
+
     const handleScroll = () => {
       if (!elementRef.current) return
       
@@ -83,12 +102,12 @@ export const useParallax = (speed = 0.5) => {
     handleScroll() // Initial calculation
     
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [speed])
+  }, [speed, mobile])
 
-  return { ref: elementRef, offset }
+  return { ref: elementRef, offset: mobile ? 0 : offset }
 }
 
-// Hook for reveal animations
+// Hook for reveal animations with mobile optimization
 interface RevealAnimationOptions {
   threshold?: number
   rootMargin?: string
@@ -96,7 +115,13 @@ interface RevealAnimationOptions {
 }
 
 export const useRevealAnimation = (options: RevealAnimationOptions = {}) => {
-  const { threshold = 0.15, rootMargin = '0px', triggerOnce = true } = options
+  const mobile = isMobile()
+  // Adjust threshold for mobile
+  const { 
+    threshold = mobile ? 0.05 : 0.15, 
+    rootMargin = mobile ? '50px' : '0px', 
+    triggerOnce = true 
+  } = options
   
   const [ref, inView, entry] = useInView({
     threshold,
@@ -119,13 +144,17 @@ export const useRevealAnimation = (options: RevealAnimationOptions = {}) => {
   }
 }
 
-// Hook for sticky elements with progress
+// Hook for sticky elements with progress - simplified for mobile
 export const useStickyProgress = () => {
   const [progress, setProgress] = useState(0)
   const elementRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLElement>(null)
+  const mobile = isMobile()
 
   useEffect(() => {
+    // Simplified calculation for mobile
+    if (mobile) return
+
     const handleScroll = () => {
       if (!elementRef.current || !containerRef.current) return
       
@@ -151,16 +180,16 @@ export const useStickyProgress = () => {
     handleScroll()
     
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [mobile])
 
   return {
     elementRef,
     containerRef,
-    progress
+    progress: mobile ? 0 : progress
   }
 }
 
-// Hook for smooth counter animations
+// Hook for smooth counter animations - simplified for mobile
 export const useCountAnimation = (
   endValue: number,
   duration: number = 2000,
@@ -169,9 +198,16 @@ export const useCountAnimation = (
   const [count, setCount] = useState(0)
   const startTime = useRef<number | null>(null)
   const animationFrame = useRef<number>()
+  const mobile = isMobile()
 
   useEffect(() => {
     if (!startTrigger) return
+
+    // Instant count on mobile
+    if (mobile) {
+      setCount(endValue)
+      return
+    }
 
     const animate = (timestamp: number) => {
       if (!startTime.current) {
@@ -198,7 +234,7 @@ export const useCountAnimation = (
         cancelAnimationFrame(animationFrame.current)
       }
     }
-  }, [endValue, duration, startTrigger])
+  }, [endValue, duration, startTrigger, mobile])
 
   return count
 }
@@ -249,12 +285,16 @@ export const useHorizontalScroll = () => {
   }
 }
 
-// Hook for mouse parallax
+// Hook for mouse parallax - disabled on mobile
 export const useMouseParallax = (intensity = 1) => {
   const [offset, setOffset] = useState({ x: 0, y: 0 })
   const elementRef = useRef<HTMLElement>(null)
+  const mobile = isMobile()
 
   useEffect(() => {
+    // Disable on mobile
+    if (mobile) return
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!elementRef.current) return
       
@@ -274,18 +314,27 @@ export const useMouseParallax = (intensity = 1) => {
     window.addEventListener('mousemove', handleMouseMove)
     
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [intensity])
+  }, [intensity, mobile])
 
-  return { ref: elementRef, offset }
+  return { ref: elementRef, offset: mobile ? { x: 0, y: 0 } : offset }
 }
 
-// Hook for text splitting animation
+// Hook for text splitting animation - simplified for mobile
 export const useTextSplitAnimation = (text: string, delay: number = 50) => {
   const [displayedText, setDisplayedText] = useState<string[]>([])
   const [isComplete, setIsComplete] = useState(false)
+  const mobile = isMobile()
 
   useEffect(() => {
     const words = text.split(' ')
+    
+    // Show all text immediately on mobile
+    if (mobile) {
+      setDisplayedText(words)
+      setIsComplete(true)
+      return
+    }
+
     let currentIndex = 0
 
     const interval = setInterval(() => {
@@ -299,7 +348,7 @@ export const useTextSplitAnimation = (text: string, delay: number = 50) => {
     }, delay)
 
     return () => clearInterval(interval)
-  }, [text, delay])
+  }, [text, delay, mobile])
 
   return { displayedText, isComplete }
 }
