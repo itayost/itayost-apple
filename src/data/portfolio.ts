@@ -9,6 +9,7 @@ export const portfolioData = [
     longDescription: 'פיתחתי מערכת מקיפה לניהול מטבח מסחרי הכוללת ניהול מלאי חכם, מעקב אחר הזמנות, וניהול פרופילי לקוחות עם התחשבות באלרגנים ומגבלות תזונתיות. המערכת מאפשרת למסעדות לנהל את כל תהליכי המטבח בצורה יעילה ומדויקת.',
     image: '/images/AmosKitchen.png',
     tags: ['React', 'Node.js', 'Supabase', 'PostgreSQL'],
+    technologies: ['React', 'Node.js', 'Supabase'],
     gradient: 'from-orange-500 to-red-500',
     stats: { 
       efficiency: '+40%',
@@ -20,6 +21,7 @@ export const portfolioData = [
     year: '2024',
     duration: '4 חודשים',
     link: null,
+    featured: true,
     features: [
       'ניהול מלאי בזמן אמת',
       'מעקב אלרגנים והעדפות תזונתיות',
@@ -48,6 +50,7 @@ export const portfolioData = [
     longDescription: 'עיצוב ופיתוח אתר תדמית יוקרתי למסעדת Lola Martin. האתר כולל תפריט אינטראקטיבי, גלריית תמונות מרהיבה, מערכת הזמנת שולחנות, ואינטגרציה עם רשתות חברתיות. דגש מיוחד על חוויית משתמש מעולה במובייל.',
     image: '/images/LolaMartin.png',
     tags: ['Next.js', 'Vercel', 'Tailwind CSS', 'Framer Motion'],
+    technologies: ['Vercel', 'Next.js'],
     gradient: 'from-purple-500 to-pink-500',
     stats: { 
       views: '50K+/חודש',
@@ -59,6 +62,8 @@ export const portfolioData = [
     year: '2024',
     duration: '6 שבועות',
     link: 'https://lolamartin.co.il',
+    linkType: 'live',
+    featured: true,
     features: [
       'עיצוב רספונסיבי מלא',
       'תפריט אינטראקטיבי',
@@ -87,6 +92,7 @@ export const portfolioData = [
     longDescription: 'פיתוח פלטפורמה מקיפה לאקדמיית ספרות The Fader, הכוללת אתר תדמית מרשים, מערכת רישום לקורסים, ומערכת CRM מתקדמת למעקב אחר לידים ותלמידים. אינטגרציה מלאה עם Google APIs לניהול יומנים ואירועים.',
     image: '/images/TheFader.png',
     tags: ['Next.js', 'Google API', 'Python', 'CRM', 'PostgreSQL'],
+    technologies: ['Next.js', 'GoogleAPI', 'Python'],
     gradient: 'from-indigo-500 to-purple-500',
     stats: { 
       students: '500+',
@@ -98,6 +104,8 @@ export const portfolioData = [
     year: '2024',
     duration: '3 חודשים',
     link: 'https://thefader.co.il',
+    linkType: 'live',
+    featured: false,
     features: [
       'מערכת CRM מותאמת אישית',
       'ניהול קורסים ותלמידים',
@@ -126,6 +134,7 @@ export const portfolioData = [
     longDescription: 'עיצוב ופיתוח דף נחיתה ממוקד המרות לסוכן נדל״ן מוביל. הדף כולל טפסי יצירת קשר חכמים, גלריית נכסים דינמית, מערכת ניהול לידים, ואינטגרציה עם מערכות שיווק. דגש על חוויית משתמש מעולה ושיעורי המרה גבוהים.',
     image: '/images/TalNadlan.png',
     tags: ['Next.js', 'Vercel', 'Lead Generation', 'Analytics'],
+    technologies: ['Next.js', 'Vercel'],
     gradient: 'from-blue-500 to-cyan-500',
     stats: { 
       leads: '200+/חודש',
@@ -137,6 +146,8 @@ export const portfolioData = [
     year: '2024',
     duration: '3 שבועות',
     link: 'https://tanadlan.com',
+    linkType: 'live',
+    featured: false,
     features: [
       'עיצוב ממוקד המרות',
       'טפסי לידים חכמים',
@@ -157,5 +168,9 @@ export const portfolioData = [
     }
   }
 ]
+
+// For compatibility with old imports
+export const portfolioItems = portfolioData
+export const categories = ['הכל', 'אתרים', 'אפליקציות', 'עיצוב']
 
 export default portfolioData

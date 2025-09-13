@@ -67,7 +67,13 @@ export const useDebouncedScroll = (delay = 100) => {
 }
 
 // Intersection observer hook for reveal animations
-export const useInView = (options = {}) => {
+interface InViewOptions {
+  threshold?: number
+  rootMargin?: string
+  [key: string]: any
+}
+
+export const useInView = (options: InViewOptions = {}) => {
   const ref = useRef<HTMLElement>(null)
   const [isInView, setIsInView] = useState(false)
   const [hasAnimated, setHasAnimated] = useState(false)

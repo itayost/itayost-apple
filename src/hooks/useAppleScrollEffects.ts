@@ -89,7 +89,13 @@ export const useParallax = (speed = 0.5) => {
 }
 
 // Hook for reveal animations
-export const useRevealAnimation = (options = {}) => {
+interface RevealAnimationOptions {
+  threshold?: number
+  rootMargin?: string
+  triggerOnce?: boolean
+}
+
+export const useRevealAnimation = (options: RevealAnimationOptions = {}) => {
   const { threshold = 0.15, rootMargin = '0px', triggerOnce = true } = options
   
   const [ref, inView, entry] = useInView({
