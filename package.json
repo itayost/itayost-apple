@@ -9,7 +9,11 @@
     "lint": "next lint",
     "format": "prettier --write .",
     "type-check": "tsc --noEmit",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "build:production": "sh build-production.sh",
+    "test:performance": "sh test-performance.sh",
+    "lighthouse:mobile": "npx lighthouse http://localhost:3000 --preset=mobile --view",
+    "lighthouse:desktop": "npx lighthouse http://localhost:3000 --preset=desktop --view"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
