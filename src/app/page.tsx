@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
 // Dynamic imports with loading states for better performance
-const Hero = dynamic(() => import('@/components/sections/Hero'), {
-  loading: () => <div className="min-h-screen bg-gradient-to-b from-white to-apple-gray-50 animate-pulse" />
+const Hero = dynamic(() => import('@/components/sections/HeroOptimized'), {
+  loading: () => <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 animate-pulse" />
 })
 
 const Services = dynamic(() => import('@/components/sections/Services'), {

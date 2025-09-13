@@ -48,6 +48,11 @@ module.exports = {
         'fade-up': 'fadeUp 0.6s ease-out forwards',
         'fade-in': 'fadeIn 0.5s ease-out',
         'float': 'float 20s ease-in-out infinite',
+        'bounce-slow': 'bounceSlow 2s ease-in-out infinite',
+        'blink': 'blink 1s ease-in-out infinite',
+        'gradient-shift-1': 'gradientShift1 20s ease-in-out infinite',
+        'gradient-shift-2': 'gradientShift2 15s ease-in-out infinite',
+        'gradient-shift-3': 'gradientShift3 25s linear infinite',
       },
       keyframes: {
         fadeUp: {
@@ -59,8 +64,30 @@ module.exports = {
           '100%': { opacity: '1' },
         },
         float: {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(180deg)' },
+        },
+        bounceSlow: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+        gradientShift1: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(50px, -30px) scale(1.1)' },
+          '66%': { transform: 'translate(-30px, 20px) scale(0.95)' },
+        },
+        gradientShift2: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(-40px, 30px) scale(1.15)' },
+          '66%': { transform: 'translate(30px, -20px) scale(0.9)' },
+        },
+        gradientShift3: {
+          '0%, 100%': { transform: 'translate(-50%, -50%) scale(1) rotate(0deg)' },
+          '50%': { transform: 'translate(-50%, -50%) scale(1.1) rotate(180deg)' },
         },
       },
     },
