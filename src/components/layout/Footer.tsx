@@ -7,8 +7,8 @@ import {
   Phone, 
   MapPin,
   Github,
-  Linkedin,
   Instagram,
+  Facebook,
   Heart,
   ArrowUp
 } from 'lucide-react'
@@ -44,9 +44,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' }
+  { icon: Github, href: 'https://github.com/itayost', label: 'GitHub' },
+  { icon: Facebook, href: 'https://www.facebook.com/itayost', label: 'Facebook' },
+  { icon: Instagram, href: 'https://instagram.com/itayost', label: 'Instagram' }
 ]
 
 export function Footer() {

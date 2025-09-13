@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
-import AboutClient from './AboutClient'
+import AboutPage from './AboutPage'
 import { seoConfig } from '@/config/seo'
 
-// Generate metadata for this page
 export const metadata: Metadata = {
   title: seoConfig.pages.about.title,
   description: seoConfig.pages.about.description,
@@ -18,6 +17,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function AboutPage() {
-  return <AboutClient />
+export default function Page() {
+  return <AboutPage />
 }

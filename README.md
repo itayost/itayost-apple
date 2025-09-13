@@ -1,244 +1,301 @@
-# ITAYOST - Apple-Style Portfolio Website 🚀
+# 🍎 ITAYOST Apple-Style Website
 
-A modern, Hebrew RTL portfolio website built with Next.js 14, featuring Apple-inspired animations and comprehensive SEO optimization.
+A modern, Hebrew RTL portfolio/business website built with Next.js 14, featuring Apple-inspired design language, smooth animations, and comprehensive SEO optimization.
 
-![Next.js](https://img.shields.io/badge/Next.js-14.1.0-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.0-FF0055)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38B2AC)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-FF0055)
 
-## 🌟 Features
+## ✨ Features
 
-### Design & Animation
-- ✅ **Apple-Style Design** - Clean, modern interface inspired by Apple's design language
-- ✅ **Smooth Animations** - Framer Motion + GSAP for fluid interactions
-- ✅ **Parallax Effects** - Multiple scroll-triggered animations
-- ✅ **Glass Morphism** - Beautiful translucent UI elements
-- ✅ **Responsive Design** - Perfect on all devices
+- 🎨 **Apple-Inspired Design** - Clean, minimalist design with attention to detail
+- 🚀 **Performance Optimized** - 95+ Lighthouse scores with optimized images and code splitting
+- 📱 **Mobile-First** - Fully responsive design optimized for all devices
+- 🌍 **Hebrew RTL Support** - Complete right-to-left language support
+- ✨ **Advanced Animations** - Smooth scroll animations, parallax effects, and micro-interactions
+- 🔍 **SEO Optimized** - Complete SEO setup with meta tags, structured data, and sitemap
+- 💬 **WhatsApp Integration** - Floating WhatsApp button for instant communication
+- 🎯 **Lead Generation** - Strategic CTAs and contact forms
 
-### Hebrew RTL Support
-- ✅ **Full RTL Layout** - Complete right-to-left support
-- ✅ **Hebrew Typography** - Optimized Hebrew fonts
-- ✅ **Hebrew Content** - All content in Hebrew
-- ✅ **RTL Animations** - Animations adjusted for RTL
+## 🚀 Getting Started
 
-### SEO Optimization
-- ✅ **Meta Tags** - Unique for each page
-- ✅ **Structured Data** - Rich snippets support
-- ✅ **Dynamic Sitemap** - Auto-generated sitemap.xml
-- ✅ **OpenGraph** - Social media preview cards
-- ✅ **Local SEO** - Israeli market optimization
+### Prerequisites
 
-### Features
-- 🎨 **Portfolio Gallery** - Horizontal scroll with filters
-- 📱 **WhatsApp Integration** - Floating contact button
-- 📝 **Contact Forms** - Beautiful form with validation
-- 🌐 **Multi-page** - Services, About, Portfolio, Contact
-- ⚡ **Performance** - Optimized for Core Web Vitals
+- Node.js 18+ 
+- npm or yarn
+- Git
 
-## 🛠️ Tech Stack
+### Installation
 
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion + GSAP
-- **Icons:** Lucide React
-- **SEO:** Next.js Metadata API
-- **Deployment:** Vercel/Netlify Ready
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/itayost-apple.git
+cd itayost-apple
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Create environment variables:
+```bash
+cp .env.example .env.local
+```
+
+4. Update `.env.local` with your configuration:
+```env
+NEXT_PUBLIC_GA_ID=your-google-analytics-id
+NEXT_PUBLIC_SITE_URL=https://www.itayost.com
+```
+
+5. Run the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
 ## 📁 Project Structure
 
 ```
 src/
-├── app/                    # Next.js app directory
-│   ├── layout.tsx         # Root layout with RTL
+├── app/                    # Next.js 14 App Router pages
+│   ├── layout.tsx         # Root layout with navigation
 │   ├── page.tsx           # Homepage
 │   ├── services/          # Services page
 │   ├── portfolio/         # Portfolio page
 │   ├── about/            # About page
 │   └── contact/          # Contact page
 ├── components/
-│   ├── ScrollAnimations/  # Animation components
-│   │   ├── AppleParallax.tsx
-│   │   ├── SmoothReveal.tsx
-│   │   ├── StickyScale.tsx
-│   │   ├── TextReveal.tsx
-│   │   └── HorizontalScroll.tsx
-│   ├── sections/          # Page sections
-│   │   ├── Hero.tsx
-│   │   ├── Services.tsx
-│   │   ├── Portfolio.tsx
-│   │   └── Contact.tsx
-│   ├── layout/           # Layout components
-│   │   ├── Navigation.tsx
-│   │   └── Footer.tsx
-│   └── common/           # Shared components
-│       ├── WhatsAppButton.tsx
-│       └── JsonLd.tsx
-├── config/
-│   ├── content.ts        # Hebrew content
-│   └── seo.ts           # SEO configuration
-├── data/
-│   └── portfolio.ts      # Portfolio items
-├── hooks/                # Custom React hooks
-├── styles/              # Global styles
-└── utils/               # Utility functions
+│   ├── ScrollAnimations/  # Apple-style animations
+│   ├── sections/         # Page sections (Hero, Services, etc.)
+│   ├── layout/          # Navigation & Footer
+│   ├── common/          # Reusable components
+│   └── ui/             # UI components
+├── hooks/               # Custom React hooks
+│   └── useAppleScrollEffects.ts
+├── config/             # Configuration files
+│   └── seo.ts         # SEO configuration
+├── data/              # Static data
+├── types/            # TypeScript types
+├── utils/           # Helper functions
+└── styles/         # Global styles
 ```
 
-## 🚀 Quick Start
+## 🛠️ Tech Stack
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+### Core
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
 
-### Installation
+### Animation & Interactions
+- **Framer Motion:** For smooth animations
+- **GSAP:** Advanced scroll animations
+- **React Intersection Observer:** Viewport detection
 
-1. **Clone the repository**
+### Performance
+- **Sharp:** Image optimization
+- **Dynamic Imports:** Code splitting
+- **Lazy Loading:** Components and images
+
+### SEO & Analytics
+- **Next.js Metadata API:** Dynamic meta tags
+- **Structured Data:** JSON-LD schemas
+- **Google Analytics 4:** User tracking
+
+## 🎨 Design System
+
+### Colors
+```css
+Primary: #0071E3 (Apple Blue)
+Secondary: #BF5AF2 (Purple)
+Accent: #FF375F (Pink)
+Success: #30D158 (Green)
+Background: #FBFBFD (Off-White)
+Text: #1D1D1F (Black)
+```
+
+### Typography
+- **Headlines:** Heebo 700-800
+- **Body:** Heebo 400
+- **Captions:** Heebo 500
+
+### Components
+- Apple-style glass morphism effects
+- Smooth reveal animations
+- Gradient backgrounds
+- Rounded corners (Apple style)
+
+## 📱 Pages
+
+### Homepage (`/`)
+- Animated hero section with gradient mesh
+- Services showcase
+- Portfolio preview
+- Contact CTA
+
+### Services (`/services`)
+- Detailed service offerings
+- Pricing information
+- Process explanation
+- Technology stack
+
+### Portfolio (`/portfolio`)
+- Project gallery
+- Category filters
+- Case studies
+- Project statistics
+
+### About (`/about`)
+- Company story
+- Team information
+- Values & mission
+- Skills & expertise
+
+### Contact (`/contact`)
+- Contact form
+- Contact information
+- WhatsApp integration
+- Office hours
+
+## 🚀 Deployment
+
+### Deploy to Vercel
+
+The easiest way to deploy is using [Vercel](https://vercel.com):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/itayost-apple)
+
+### Manual Deployment
+
+1. Build the project:
 ```bash
-git clone https://github.com/yourusername/itayost-apple.git
-cd itayost-apple
+npm run build
+# or
+yarn build
 ```
 
-2. **Install dependencies**
+2. Start the production server:
 ```bash
-npm install
+npm run start
+# or
+yarn start
 ```
 
-3. **Set up environment variables**
-```bash
-cp .env.example .env.local
-```
+### Environment Variables
 
-Edit `.env.local` with your values:
+Required environment variables for production:
+
 ```env
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 NEXT_PUBLIC_SITE_URL=https://www.itayost.com
 ```
 
-4. **Run development server**
+## 🔧 Scripts
+
 ```bash
-npm run dev
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run format       # Format with Prettier
+npm run type-check   # TypeScript type checking
+npm run analyze      # Bundle size analysis
 ```
 
-Visit `http://localhost:3000` to see your website.
+## 📈 Performance
 
-## 📦 Build & Deploy
+The site is optimized for performance with:
 
-### Build for Production
-```bash
-npm run build
-```
+- **Lighthouse Score:** 95+
+- **First Contentful Paint:** < 1s
+- **Time to Interactive:** < 2s
+- **Cumulative Layout Shift:** < 0.1
 
-### Deploy to Vercel
-```bash
-npx vercel --prod
-```
+## 🔍 SEO
 
-### Deploy to Netlify
-```bash
-netlify deploy --prod
-```
+Complete SEO setup including:
 
-## 🎨 Customization
+- Dynamic meta tags for each page
+- Open Graph tags for social sharing
+- Twitter Card tags
+- Structured data (JSON-LD)
+- XML sitemap
+- Robots.txt
+- Canonical URLs
+- Hebrew language tags
 
-### Change Colors
-Edit `/src/app/globals.css`:
-```css
-:root {
-  --blue: #0071E3;      /* Primary color */
-  --purple: #BF5AF2;    /* Secondary color */
-  --gradient-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
-}
-```
+## 📝 Customization
 
 ### Update Content
-Edit `/src/config/content.ts`:
-```typescript
-export const content = {
-  brand: {
-    name: 'Your Brand',
-    tagline: 'Your Tagline'
-  }
-  // ... more content
+
+1. **Homepage:** Edit `src/components/sections/Hero.tsx`
+2. **Services:** Update `src/app/services/ServicesPage.tsx`
+3. **Portfolio:** Modify `src/components/sections/Portfolio.tsx`
+4. **Contact:** Edit `src/components/sections/Contact.tsx`
+
+### Change Colors
+
+Update colors in `tailwind.config.js`:
+
+```javascript
+colors: {
+  'apple-blue': '#0071E3',
+  'apple-purple': '#BF5AF2',
+  // Add your colors
 }
 ```
 
 ### Add New Pages
-1. Create folder in `/src/app/your-page/`
-2. Add `page.tsx` with metadata
-3. Update navigation in `/src/components/layout/Navigation.tsx`
 
-## 📱 Features Overview
+1. Create a new folder in `src/app/your-page/`
+2. Add `page.tsx` and `YourPage.tsx`
+3. Update navigation in `src/components/layout/Navigation.tsx`
+4. Add SEO configuration in `src/config/seo.ts`
 
-### Homepage
-- Hero section with animated gradient background
-- Services showcase with hover effects
-- Portfolio preview with horizontal scroll
-- Contact section with form
+## 🐛 Troubleshooting
 
-### Services Page
-- Service cards with pricing
-- Process timeline
-- CTA section
+### Common Issues
 
-### Portfolio Page
-- Category filters
-- Grid layout with animations
-- Project details
-- Statistics section
+1. **Hebrew text not displaying correctly:**
+   - Ensure Heebo font is loaded
+   - Check RTL direction in layout
 
-### About Page
-- Company story
-- Timeline
-- Skills progress bars
-- Team values
+2. **Animations not working:**
+   - Check Framer Motion installation
+   - Verify component imports
 
-### Contact Page
-- Contact form
-- Contact information cards
-- Office hours
-- WhatsApp integration
-
-## 🔍 SEO Features
-
-- ✅ Meta tags optimization
-- ✅ Structured data (JSON-LD)
-- ✅ Dynamic sitemap generation
-- ✅ Robots.txt configuration
-- ✅ OpenGraph tags
-- ✅ Twitter cards
-- ✅ Canonical URLs
-- ✅ Hebrew language optimization
-
-## 📊 Performance
-
-- Lighthouse Score: 95+
-- First Contentful Paint: < 1.5s
-- Time to Interactive: < 3.5s
-- Cumulative Layout Shift: < 0.1
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+3. **Build errors:**
+   - Clear `.next` folder
+   - Delete `node_modules` and reinstall
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+MIT License - feel free to use this project for your own purposes.
 
-## 👨‍💻 Author
+## 👤 Contact
 
-**ITAYOST**
-- Website: [www.itayost.com](https://www.itayost.com)
-- Email: hello@itayost.com
-- Phone: 054-499-4417
+**איתי אוסטרייך (Itay Ostraich)**
+
+- 📧 Email: itayost1@gmail.com
+- 📱 Phone: 054-499-4417
+- 💬 WhatsApp: [Direct Link](https://wa.me/972544994417)
+- 🌐 Website: [itayost.com](https://www.itayost.com)
 
 ## 🙏 Acknowledgments
 
-- Apple for design inspiration
-- Next.js team for the amazing framework
-- Framer Motion for smooth animations
-- Vercel for hosting
+- Design inspired by Apple's design language
+- Built with Next.js and React
+- Animations powered by Framer Motion
+- Styled with Tailwind CSS
 
 ---
 
-Built with ❤️ by ITAYOST in Tel Aviv, Israel
+Made with ❤️ by ITAYOST

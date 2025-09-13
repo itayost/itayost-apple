@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
-import PortfolioClient from './PortfolioClient'
+import PortfolioPage from './PortfolioPage'
 import { seoConfig } from '@/config/seo'
 
-// Generate metadata for this page
 export const metadata: Metadata = {
   title: seoConfig.pages.portfolio.title,
   description: seoConfig.pages.portfolio.description,
@@ -18,6 +17,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function PortfolioPage() {
-  return <PortfolioClient />
+export default function Page() {
+  return <PortfolioPage />
 }

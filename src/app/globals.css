@@ -258,6 +258,17 @@
   .scroll-container {
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
+    transform: translateZ(0);
+    will-change: scroll-position;
+  }
+
+  /* Performance optimizations for navigation */
+  nav {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* Disable user selection for UI elements */
@@ -309,11 +320,15 @@
     }
   }
 
-  /* Mobile-First Glass Effect */
+  /* Mobile-First Glass Effect with Performance */
   .glass {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   @media (min-width: 768px) {
