@@ -1,79 +1,114 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { MessageCircle, X } from 'lucide-react'
 
 export function WhatsAppButton() {
-  const [isHovered, setIsHovered] = useState(false)
-  const phoneNumber = '972544994417' // Your WhatsApp number
-  const message = 'שלום, אני מעוניין/ת לשמוע עוד על השירותים שלכם'
+  const [isVisible, setIsVisible] = useState(false)
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false)
   
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-
+  const phoneNumber = '972544994417'
+  const message = 'שלום! אשמח לקבל מידע נוסף על השירותים שלך'
+  
+  useEffect(() => {
+    // Show button after a delay
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, 2000)
+    
+    // Show tooltip after button appears
+    const tooltipTimer = setTimeout(() => {
+      setIsTooltipVisible(true)
+    }, 5000)
+    
+    // Hide tooltip after some time
+    const hideTooltipTimer = setTimeout(() => {
+      setIsTooltipVisible(false)
+    }, 10000)
+    
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(tooltipTimer)
+      clearTimeout(hideTooltipTimer)
+    }
+  }, [])
+  
+  const handleClick = () => {
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+    window.open(url, '_blank')
+  }
+  
   return (
-    <motion.div
-      className="fixed bottom-8 left-8 z-50"
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ 
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-        delay: 1 
-      }}
-    >
-      <motion.a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative flex items-center"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {/* Tooltip */}
-        <motion.div
-          className="absolute left-16 bg-white px-4 py-2 rounded-lg shadow-xl whitespace-nowrap"
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ 
-            opacity: isHovered ? 1 : 0,
-            x: isHovered ? 0 : -10
-          }}
-          transition={{ duration: 0.2 }}
-        >
-          <span className="text-sm font-medium text-[#424245]">דברו איתנו בוואטסאפ</span>
-          <div className="absolute right-[-8px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[8px] border-l-white" />
-        </motion.div>
-
-        {/* Button */}
-        <motion.div
-          className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg"
-          animate={isHovered ? { rotate: [0, -10, 10, -10, 0] } : {}}
-          transition={{ duration: 0.5 }}
-        >
-          <svg
-            viewBox="0 0 24 24"
-            className="w-7 h-7 text-white fill-current"
+    <AnimatePresence>
+      {isVisible && (
+        <>
+          {/* Tooltip */}
+          <AnimatePresence>
+            {isTooltipVisible && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.8, x: 20 }}
+                className="fixed bottom-20 left-4 z-40 bg-white rounded-2xl shadow-2xl p-4 max-w-xs"
+              >
+                <button
+                  onClick={() => setIsTooltipVisible(false)}
+                  className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full hover:bg-apple-gray-100 transition-colors"
+                  aria-label="Close tooltip"
+                >
+                  <X size={14} />
+                </button>
+                
+                <p className="text-sm text-apple-gray-700 pl-6">
+                  💬 יש לך שאלה? דבר איתי ב-WhatsApp!
+                </p>
+                
+                {/* Arrow pointing to button */}
+                <div className="absolute -bottom-2 left-8 w-4 h-4 bg-white transform rotate-45" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
+          {/* WhatsApp Button */}
+          <motion.button
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            exit={{ scale: 0, rotate: 180 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20
+            }}
+            onClick={handleClick}
+            onMouseEnter={() => setIsTooltipVisible(true)}
+            onMouseLeave={() => setIsTooltipVisible(false)}
+            className="fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all group"
+            aria-label="Contact on WhatsApp"
           >
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-        </motion.div>
-      </motion.a>
-
-      {/* Pulse animation */}
-      <motion.div
-        className="absolute inset-0 w-14 h-14 bg-[#25D366] rounded-full"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.5, 0, 0.5],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-    </motion.div>
+            {/* Pulse effect */}
+            <motion.div
+              className="absolute inset-0 bg-green-500 rounded-full"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.7, 0, 0.7]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Icon */}
+            <MessageCircle 
+              size={28} 
+              className="text-white relative z-10 group-hover:scale-110 transition-transform"
+              fill="white"
+            />
+          </motion.button>
+        </>
+      )}
+    </AnimatePresence>
   )
 }

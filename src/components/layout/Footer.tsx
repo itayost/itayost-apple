@@ -2,133 +2,130 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { content } from '@/config/content'
-import { socialLinks } from '@/config/socialLinks'
+import { 
+  Mail, 
+  Phone, 
+  MapPin,
+  Github,
+  Linkedin,
+  Instagram,
+  Heart,
+  ArrowUp
+} from 'lucide-react'
 
 const footerLinks = {
-  services: [
-    { label: content.footer.links.services.websites, href: '/services#web' },
-    { label: content.footer.links.services.ecommerce, href: '/services#ecommerce' },
-    { label: content.footer.links.services.apps, href: '/services#apps' },
-    { label: content.footer.links.services.crm, href: '/services#crm' },
-    { label: content.footer.links.services.maintenance, href: '/services#maintenance' },
-  ],
-  quickLinks: [
-    { label: content.footer.links.quickLinks.about, href: '/about' },
-    { label: content.footer.links.quickLinks.portfolio, href: '/portfolio' },
-    { label: content.footer.links.quickLinks.contact, href: '/contact' },
-    { label: content.footer.links.quickLinks.privacy, href: '#' },
-  ],
-  social: [
-    { label: 'LinkedIn', href: socialLinks.linkedin, icon: 'in' },
-    { label: 'Instagram', href: socialLinks.instagram, icon: 'ig' },
-    { label: 'Facebook', href: socialLinks.facebook, icon: 'fb' },
-    { label: 'WhatsApp', href: socialLinks.whatsapp, icon: 'wa' },
-  ],
+  services: {
+    title: 'שירותים',
+    links: [
+      { label: 'פיתוח אתרים', href: '/services#web-development' },
+      { label: 'אפליקציות מובייל', href: '/services#mobile-apps' },
+      { label: 'עיצוב UI/UX', href: '/services#ui-ux' },
+      { label: 'ייעוץ טכנולוגי', href: '/services#consulting' }
+    ]
+  },
+  company: {
+    title: 'החברה',
+    links: [
+      { label: 'אודות', href: '/about' },
+      { label: 'תיק עבודות', href: '/portfolio' },
+      { label: 'לקוחות', href: '/clients' },
+      { label: 'צור קשר', href: '/contact' }
+    ]
+  },
+  resources: {
+    title: 'משאבים',
+    links: [
+      { label: 'בלוג', href: '/blog' },
+      { label: 'מדריכים', href: '/guides' },
+      { label: 'שאלות נפוצות', href: '/faq' },
+      { label: 'תנאי שימוש', href: '/terms' }
+    ]
+  }
 }
 
+const socialLinks = [
+  { icon: Github, href: 'https://github.com', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' }
+]
+
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
-    <footer className="bg-[#1D1D1F] text-white">
-      {/* CTA Section */}
-      <div className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-[clamp(2rem,4vw,3rem)] font-semibold mb-6">
-              {content.footer.cta.title}{' '}
-              <span className="bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent">
-                {content.footer.cta.highlight}
-              </span>
-            </h2>
-            <p className="text-[#86868B] text-lg mb-8 max-w-2xl mx-auto">
-              {content.footer.cta.subtitle}
-            </p>
-            <motion.div className="flex gap-4 justify-center flex-wrap">
-              <Link href="/contact">
-                <motion.button
-                  className="px-8 py-3 bg-white text-[#1D1D1F] rounded-full font-medium hover:bg-[#F5F5F7] transition-all"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {content.footer.cta.startProject}
-                </motion.button>
-              </Link>
-              <Link href="/portfolio">
-                <motion.button
-                  className="px-8 py-3 bg-transparent text-white border border-white/20 rounded-full font-medium hover:bg-white/10 transition-all"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {content.footer.cta.viewPortfolio}
-                </motion.button>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-          {/* Logo & Description */}
-          <div className="col-span-2 md:col-span-2">
+    <footer className="bg-apple-gray-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5" />
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
+      
+      <div className="container relative z-10 py-16 lg:py-20">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
+          {/* Brand Column */}
+          <div className="lg:col-span-2">
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
             >
-              <Link href="/">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent mb-4">
-                  {content.brand.name}
-                </h3>
+              <Link href="/" className="inline-block mb-6">
+                <div className="text-3xl font-bold bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">
+                  ITAYOST
+                </div>
               </Link>
-              <p className="text-[#86868B] mb-6 max-w-xs">
-                {content.footer.tagline}
+              
+              <p className="text-apple-gray-400 mb-6 max-w-sm leading-relaxed">
+                מעצב ומפתח פתרונות דיגיטליים מתקדמים עם דגש על חדשנות, יצירתיות וחוויית משתמש מושלמת.
               </p>
-              {/* Social Links */}
-              <div className="flex gap-3">
-                {footerLinks.social.map((social) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    aria-label={social.label}
-                  >
-                    <span className="text-sm font-medium">{social.icon}</span>
-                  </motion.a>
-                ))}
+              
+              {/* Contact Info */}
+              <div className="space-y-3">
+                <a
+                  href="tel:0544994417"
+                  className="flex items-center gap-3 text-apple-gray-400 hover:text-white transition-colors"
+                >
+                  <Phone size={18} />
+                  <span>054-499-4417</span>
+                </a>
+                
+                <a
+                  href="mailto:itayost1@gmail.com"
+                  className="flex items-center gap-3 text-apple-gray-400 hover:text-white transition-colors"
+                >
+                  <Mail size={18} />
+                  <span>itayost1@gmail.com</span>
+                </a>
+                
+                <div className="flex items-center gap-3 text-apple-gray-400">
+                  <MapPin size={18} />
+                  <span>ישראל</span>
+                </div>
               </div>
             </motion.div>
           </div>
-
-          {/* Services */}
-          <div>
+          
+          {/* Links Columns */}
+          {Object.entries(footerLinks).map(([key, section], index) => (
             <motion.div
+              key={key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <h4 className="font-medium mb-4">{content.footer.sections.services}</h4>
+              <h3 className="font-semibold text-white mb-4">
+                {section.title}
+              </h3>
+              
               <ul className="space-y-2">
-                {footerLinks.services.map((link) => (
-                  <li key={link.label}>
-                    <Link 
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
                       href={link.href}
-                      className="text-[#86868B] hover:text-white transition-colors text-sm"
+                      className="text-apple-gray-400 hover:text-white transition-colors text-sm"
                     >
                       {link.label}
                     </Link>
@@ -136,76 +133,95 @@ export function Footer() {
                 ))}
               </ul>
             </motion.div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h4 className="font-medium mb-4">{content.footer.sections.quickLinks}</h4>
-              <ul className="space-y-2">
-                {footerLinks.quickLinks.map((link) => (
-                  <li key={link.label}>
-                    <Link 
-                      href={link.href}
-                      className="text-[#86868B] hover:text-white transition-colors text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <h4 className="font-medium mb-4">{content.footer.sections.contact}</h4>
-              <ul className="space-y-2 text-sm text-[#86868B]">
-                <li>
-                  <a href={socialLinks.phone} className="hover:text-white transition-colors">
-                    {content.contact.details.phone}
-                  </a>
-                </li>
-                <li>
-                  <a href={socialLinks.email} className="hover:text-white transition-colors">
-                    {content.contact.details.email}
-                  </a>
-                </li>
-                <li>{content.contact.details.address}</li>
-              </ul>
-            </motion.div>
-          </div>
+          ))}
         </div>
-
-        {/* Bottom Bar */}
+        
+        {/* Newsletter Section */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="pt-8 border-t border-white/10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="border-t border-apple-gray-800 pt-12 mb-12"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-[#86868B] text-sm">
-              {content.footer.copyright.replace('{year}', currentYear.toString())}
-            </p>
-            <p className="text-[#86868B] text-sm">
-              {content.footer.developer}
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 className="text-xl font-semibold mb-2">
+                הישאר מעודכן
+              </h3>
+              <p className="text-apple-gray-400">
+                קבל עדכונים על פרויקטים חדשים וטיפים לפיתוח
+              </p>
+            </div>
+            
+            <form className="flex gap-3">
+              <input
+                type="email"
+                placeholder="כתובת אימייל"
+                className="flex-1 px-4 py-3 bg-apple-gray-800 rounded-xl border border-apple-gray-700 focus:border-apple-blue focus:outline-none focus:ring-2 focus:ring-apple-blue/20 transition-all"
+              />
+              <motion.button
+                type="submit"
+                className="px-6 py-3 bg-gradient-to-r from-apple-blue to-apple-blue-dark rounded-xl font-medium hover:shadow-lg transition-all"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                הרשם
+              </motion.button>
+            </form>
           </div>
         </motion.div>
+        
+        {/* Bottom Bar */}
+        <div className="border-t border-apple-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Copyright */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-apple-gray-400 text-sm flex items-center gap-1"
+          >
+            <span>© 2025 ITAYOST. כל הזכויות שמורות.</span>
+            <span className="text-red-500">
+              <Heart size={14} className="inline" />
+            </span>
+          </motion.div>
+          
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex items-center gap-4"
+          >
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-apple-gray-800 rounded-full flex items-center justify-center hover:bg-apple-gray-700 transition-colors"
+                aria-label={social.label}
+              >
+                <social.icon size={18} />
+              </a>
+            ))}
+          </motion.div>
+        </div>
       </div>
+      
+      {/* Scroll to Top Button */}
+      <motion.button
+        onClick={scrollToTop}
+        className="absolute bottom-8 left-8 w-12 h-12 bg-apple-blue rounded-full flex items-center justify-center shadow-lg hover:bg-apple-blue-dark transition-colors"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp size={20} />
+      </motion.button>
     </footer>
   )
 }
