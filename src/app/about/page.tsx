@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import AboutClientOptimized from './AboutClientOptimized'
+import AboutPage from './AboutPage'
 import { seoConfig } from '@/config/seo'
 
 export const metadata: Metadata = {
@@ -18,5 +18,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <AboutClientOptimized />
+  return <AboutPage />
 }

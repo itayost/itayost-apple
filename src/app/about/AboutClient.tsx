@@ -89,9 +89,8 @@ export default function AboutClient() {
                 <div className="bg-white rounded-3xl p-12">
                   <motion.div
                     className="text-8xl mb-6"
-                    initial={{ rotate: 0 }}
-                    whileHover={{ rotate: 10 }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ rotate: [0, 10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   >
                     🚀
                   </motion.div>
@@ -303,8 +302,13 @@ export default function AboutClient() {
                 >
                   <motion.div
                     className="text-5xl mb-4"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ 
+                      duration: 3, 
+                      delay: index * 0.2,
+                      repeat: Infinity,
+                      repeatDelay: 2
+                    }}
                   >
                     {value.icon}
                   </motion.div>
