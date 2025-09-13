@@ -1,176 +1,157 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { useEffect, useState, useRef, memo, useCallback } from 'react'
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { AppleReveal, AppleTextReveal, AppleStaggerChildren, AppleStaggerItem } from '@/components/ScrollAnimations/AppleAnimations'
 import { useMouseParallax } from '@/hooks/useAppleScrollEffects'
 import Link from 'next/link'
 import { ChevronDown, Sparkles, Code2, Palette, Zap } from 'lucide-react'
 
-const GradientMesh = () => {
-  const { ref, offset } = useMouseParallax(0.5)
+// Optimized gradient with CSS animations instead of JS
+const GradientMesh = memo(() => {
+  const shouldReduceMotion = useReducedMotion()
+  
+  if (shouldReduceMotion) {
+    return (
+      <div className="absolute inset-0 bg-gradient-to-br from-apple-blue/10 via-apple-purple/10 to-apple-pink/10" />
+    )
+  }
   
   return (
-    <div ref={ref as any} className="absolute inset-0 overflow-hidden">
-      {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full opacity-30"
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Use CSS animations for better performance */}
+      <div 
+        className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full opacity-30 animate-float-slow"
         style={{
           background: 'radial-gradient(circle, rgba(0,113,227,0.4) 0%, transparent 70%)',
           filter: 'blur(60px)',
-          x: offset.x,
-          y: offset.y
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 100, 0],
-          y: [0, -50, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
+          willChange: 'transform',
+          transform: 'translateZ(0)', // Force GPU acceleration
+          contain: 'layout style paint'
         }}
       />
       
-      <motion.div
-        className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full opacity-30"
+      <div 
+        className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full opacity-30 animate-float-medium"
         style={{
           background: 'radial-gradient(circle, rgba(191,90,242,0.4) 0%, transparent 70%)',
           filter: 'blur(60px)',
-          x: -offset.x,
-          y: -offset.y
-        }}
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, -100, 0],
-          y: [0, 50, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "linear"
+          willChange: 'transform',
+          transform: 'translateZ(0)',
+          contain: 'layout style paint'
         }}
       />
       
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-20"
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-20 animate-float-slower"
         style={{
           background: 'radial-gradient(circle, rgba(255,55,95,0.3) 0%, transparent 70%)',
           filter: 'blur(80px)',
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "linear"
+          willChange: 'transform',
+          transform: 'translateZ(0)',
+          contain: 'layout style paint'
         }}
       />
     </div>
   )
-}
+})
+GradientMesh.displayName = 'GradientMesh'
 
-const FloatingIcons = () => {
+// Remove floating icons or simplify them
+const FloatingIcons = memo(() => {
+  const shouldReduceMotion = useReducedMotion()
+  
+  if (shouldReduceMotion) return null
+  
   const icons = [
-    { Icon: Code2, delay: 0, x: '10%', y: '20%' },
-    { Icon: Palette, delay: 1, x: '80%', y: '30%' },
-    { Icon: Sparkles, delay: 2, x: '20%', y: '70%' },
-    { Icon: Zap, delay: 1.5, x: '70%', y: '60%' },
+    { Icon: Code2, x: '10%', y: '20%' },
+    { Icon: Palette, x: '80%', y: '30%' },
+    { Icon: Sparkles, x: '20%', y: '70%' },
+    { Icon: Zap, x: '70%', y: '60%' },
   ]
 
   return (
     <>
-      {icons.map(({ Icon, delay, x, y }, index) => (
-        <motion.div
+      {icons.map(({ Icon, x, y }, index) => (
+        <div
           key={index}
-          className="absolute opacity-20"
+          className="absolute opacity-10 animate-float-icon"
           style={{ left: x, top: y }}
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 360],
-          }}
-          transition={{
-            y: {
-              duration: 4,
-              delay,
-              repeat: Infinity,
-              ease: "easeInOut"
-            },
-            rotate: {
-              duration: 20,
-              delay,
-              repeat: Infinity,
-              ease: "linear"
-            }
-          }}
         >
           <Icon size={32} className="text-apple-blue" />
-        </motion.div>
+        </div>
       ))}
     </>
   )
-}
+})
+FloatingIcons.displayName = 'FloatingIcons'
 
-const TypewriterText = ({ text }: { text: string }) => {
+// Simplified typewriter without complex state management
+const TypewriterText = memo(({ text }: { text: string }) => {
   const [displayedText, setDisplayedText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!isDeleting && currentIndex < text.length) {
-        setDisplayedText(text.slice(0, currentIndex + 1))
-        setCurrentIndex(currentIndex + 1)
-      } else if (isDeleting && currentIndex > 0) {
-        setDisplayedText(text.slice(0, currentIndex - 1))
-        setCurrentIndex(currentIndex - 1)
-      } else if (currentIndex === text.length) {
-        setTimeout(() => setIsDeleting(true), 2000)
-      } else if (currentIndex === 0 && isDeleting) {
-        setIsDeleting(false)
-      }
-    }, isDeleting ? 50 : 100)
+    if (shouldReduceMotion) {
+      setDisplayedText(text)
+      return
+    }
 
-    return () => clearTimeout(timer)
-  }, [currentIndex, isDeleting, text])
+    let currentIndex = 0
+    const timer = setInterval(() => {
+      if (currentIndex <= text.length) {
+        setDisplayedText(text.slice(0, currentIndex))
+        currentIndex++
+      } else {
+        clearInterval(timer)
+      }
+    }, 100)
+
+    return () => clearInterval(timer)
+  }, [text, shouldReduceMotion])
 
   return (
     <span className="relative">
       {displayedText}
-      <motion.span
-        className="inline-block w-1 h-12 bg-apple-blue ml-1"
-        animate={{ opacity: [1, 0] }}
-        transition={{ duration: 0.5, repeat: Infinity }}
-      />
+      {!shouldReduceMotion && (
+        <span className="inline-block w-1 h-12 bg-apple-blue ml-1 animate-blink" />
+      )}
     </span>
   )
-}
+})
+TypewriterText.displayName = 'TypewriterText'
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  const shouldReduceMotion = useReducedMotion()
+  
+  useEffect(() => {
+    setMounted(true)
+    return () => setMounted(false)
+  }, [])
+  
+  // Only use scroll effects on desktop and when motion is not reduced
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   })
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1])
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100])
+  const scale = shouldReduceMotion ? 1 : useTransform(scrollYProgress, [0, 0.5], [1, 1.05])
+  const y = shouldReduceMotion ? 0 : useTransform(scrollYProgress, [0, 0.5], [0, 50])
 
   return (
     <section 
       ref={containerRef}
       className="relative min-h-[100vh] lg:min-h-[110vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white"
     >
-      {/* Background Effects */}
-      <GradientMesh />
-      <FloatingIcons />
+      {/* Background Effects - Only render after mount */}
+      {mounted && !shouldReduceMotion && <GradientMesh />}
+      {mounted && !shouldReduceMotion && <FloatingIcons />}
       
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5" />
+      {/* Grid Pattern - No animation for better performance */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5 pointer-events-none" />
       
       {/* Main Content */}
       <motion.div 
@@ -279,20 +260,10 @@ export default function Hero() {
           </AppleStaggerItem>
         </AppleStaggerChildren>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
+        {/* Scroll Indicator - CSS animation instead of JS */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow">
           <ChevronDown className="w-8 h-8 text-apple-gray-400" />
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   )
