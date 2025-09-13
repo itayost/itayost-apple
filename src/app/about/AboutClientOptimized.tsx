@@ -1,12 +1,14 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, MotionProps } from 'framer-motion'
 import { useRef } from 'react'
 import { SmoothReveal } from '@/components/ScrollAnimations/SmoothReveal'
 import { TextReveal } from '@/components/ScrollAnimations/TextReveal'
 import { AppleParallax } from '@/components/ScrollAnimations/AppleParallax'
 import { content } from '@/config/content'
 import Link from 'next/link'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 const timeline = [
   {
@@ -53,9 +55,22 @@ const skills = [
   { name: 'פיתוח מובייל', level: 78 },
 ]
 
-export default function AboutClient() {
+// Optimized motion wrapper that respects reduced motion
+function OptimizedMotion({ children, ...props }: { children: React.ReactNode } & MotionProps) {
+  const prefersReducedMotion = useReducedMotion()
+  
+  if (prefersReducedMotion) {
+    return <div>{children}</div>
+  }
+  
+  return <motion.div {...props}>{children}</motion.div>
+}
+
+export default function AboutClientOptimized() {
   const timelineRef = useRef(null)
   const isTimelineInView = useInView(timelineRef, { once: true, margin: "-100px" })
+  const prefersReducedMotion = useReducedMotion()
+  const isMobile = useIsMobile()
 
   return (
     <main className="overflow-hidden bg-white pt-20">
@@ -79,22 +94,39 @@ export default function AboutClient() {
         </div>
       </section>
 
-      {/* Story Section */}
+      {/* Story Section - Optimized for mobile */}
       <section className="py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <AppleParallax offset={50} speed={0.5}>
+          {/* Conditional parallax - disabled on mobile */}
+          {!isMobile ? (
+            <AppleParallax offset={50} speed={0.5}>
+              <div className="relative">
+                {/* Reduced blur intensity on mobile */}
+                <div className={`absolute inset-0 bg-gradient-to-br from-[#0071E3] to-[#BF5AF2] rounded-3xl opacity-10 ${isMobile ? 'blur-xl' : 'blur-3xl'}`} />
+                <div className="relative bg-gradient-to-br from-[#0071E3] to-[#BF5AF2] rounded-3xl p-1">
+                  <div className="bg-white rounded-3xl p-12">
+                    <OptimizedMotion
+                      className="text-8xl mb-6"
+                      initial={{ rotate: 0 }}
+                      whileHover={!prefersReducedMotion ? { rotate: 10 } : {}}
+                      transition={{ duration: 0.3 }}
+                    >
+                      🚀
+                    </OptimizedMotion>
+                    <h3 className="text-3xl font-semibold mb-4">{content.about.mission.title}</h3>
+                    <p className="text-[#86868B] leading-relaxed">
+                      {content.about.mission.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AppleParallax>
+          ) : (
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0071E3] to-[#BF5AF2] rounded-3xl opacity-10 blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0071E3] to-[#BF5AF2] rounded-3xl opacity-10 blur-xl" />
               <div className="relative bg-gradient-to-br from-[#0071E3] to-[#BF5AF2] rounded-3xl p-1">
                 <div className="bg-white rounded-3xl p-12">
-                  <motion.div
-                    className="text-8xl mb-6"
-                    initial={{ rotate: 0 }}
-                    whileHover={{ rotate: 10 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    🚀
-                  </motion.div>
+                  <div className="text-8xl mb-6">🚀</div>
                   <h3 className="text-3xl font-semibold mb-4">{content.about.mission.title}</h3>
                   <p className="text-[#86868B] leading-relaxed">
                     {content.about.mission.description}
@@ -102,7 +134,7 @@ export default function AboutClient() {
                 </div>
               </div>
             </div>
-          </AppleParallax>
+          )}
 
           <div className="space-y-8">
             <SmoothReveal direction="left">
@@ -125,29 +157,11 @@ export default function AboutClient() {
                 {content.about.story.paragraph2}
               </p>
             </SmoothReveal>
-
-            {/* Stats section - hidden for now as requested */}
-            {/* <SmoothReveal direction="left" delay={0.3}>
-              <div className="flex gap-12 pt-6">
-                <div>
-                  <h4 className="text-3xl font-bold text-[#0071E3]">50+</h4>
-                  <p className="text-sm text-[#86868B]">{content.about.stats.projects}</p>
-                </div>
-                <div>
-                  <h4 className="text-3xl font-bold text-[#BF5AF2]">20+</h4>
-                  <p className="text-sm text-[#86868B]">{content.about.stats.clients}</p>
-                </div>
-                <div>
-                  <h4 className="text-3xl font-bold text-[#FF375F]">5+</h4>
-                  <p className="text-sm text-[#86868B]">{content.about.stats.years}</p>
-                </div>
-              </div>
-            </SmoothReveal> */}
           </div>
         </div>
       </section>
 
-      {/* Timeline Section */}
+      {/* Timeline Section - Simplified animation on mobile */}
       <section className="py-32 px-6 bg-[#FBFBFD]" ref={timelineRef}>
         <div className="max-w-6xl mx-auto">
           <SmoothReveal direction="up" className="text-center mb-20">
@@ -162,41 +176,44 @@ export default function AboutClient() {
           </SmoothReveal>
 
           <div className="relative">
-            {/* Timeline Line */}
-            <motion.div
-              className="absolute right-1/2 transform translate-x-1/2 w-1 bg-gradient-to-b from-[#0071E3] to-[#BF5AF2]"
-              initial={{ height: 0 }}
-              animate={isTimelineInView ? { height: '100%' } : { height: 0 }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            />
-
-            {/* Timeline Items */}
-            {timeline.map((item, index) => (
+            {/* Timeline Line - Static on mobile */}
+            {!isMobile && !prefersReducedMotion ? (
               <motion.div
+                className="absolute right-1/2 transform translate-x-1/2 w-1 bg-gradient-to-b from-[#0071E3] to-[#BF5AF2]"
+                initial={{ height: 0 }}
+                animate={isTimelineInView ? { height: '100%' } : { height: 0 }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              />
+            ) : (
+              <div className="absolute right-1/2 transform translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#0071E3] to-[#BF5AF2]" />
+            )}
+
+            {/* Timeline Items - Simplified animations */}
+            {timeline.map((item, index) => (
+              <OptimizedMotion
                 key={item.year}
                 className={`relative flex items-center mb-16 ${
                   index % 2 === 0 ? 'justify-end' : 'justify-start'
                 }`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                initial={!isMobile ? { opacity: 0, x: index % 2 === 0 ? 50 : -50 } : { opacity: 1, x: 0 }}
                 animate={isTimelineInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ 
                   duration: 0.6, 
-                  delay: index * 0.2,
+                  delay: isMobile ? 0 : index * 0.2,
                   ease: [0.16, 1, 0.3, 1]
                 }}
               >
                 <div className={`w-5/12 ${index % 2 === 0 ? 'text-left pl-8' : 'text-right pr-8'}`}>
                   <div className={`inline-block ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
-                    <motion.div
+                    <div
                       className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-3 ${
                         item.milestone 
                           ? 'bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] text-white' 
                           : 'bg-white text-[#424245]'
                       }`}
-                      whileHover={{ scale: 1.05 }}
                     >
                       {item.year}
-                    </motion.div>
+                    </div>
                     <h3 className="text-2xl font-semibold mb-2 text-[#1D1D1F]">
                       {item.title}
                     </h3>
@@ -206,24 +223,17 @@ export default function AboutClient() {
                   </div>
                 </div>
 
-                {/* Center Dot */}
-                <motion.div
+                {/* Center Dot - No animation on mobile */}
+                <div
                   className="absolute right-1/2 transform translate-x-1/2 w-4 h-4 bg-white border-4 border-[#0071E3] rounded-full z-10"
-                  initial={{ scale: 0 }}
-                  animate={isTimelineInView ? { scale: 1 } : { scale: 0 }}
-                  transition={{ 
-                    duration: 0.4, 
-                    delay: index * 0.2 + 0.3,
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
                 />
-              </motion.div>
+              </OptimizedMotion>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills Section - Optimized animations */}
       <section className="py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <SmoothReveal direction="up" className="text-center mb-16">
@@ -239,13 +249,13 @@ export default function AboutClient() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {skills.map((skill, index) => (
-              <motion.div
+              <OptimizedMotion
                 key={skill.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ 
                   duration: 0.5, 
-                  delay: index * 0.1,
+                  delay: isMobile ? 0 : index * 0.1,
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 viewport={{ once: true }}
@@ -256,25 +266,25 @@ export default function AboutClient() {
                   <span className="text-sm font-medium text-[#86868B]">{skill.level}%</span>
                 </div>
                 <div className="relative h-3 bg-white rounded-full overflow-hidden">
-                  <motion.div
+                  <OptimizedMotion
                     className="absolute inset-y-0 right-0 bg-gradient-to-l from-[#0071E3] to-[#BF5AF2] rounded-full"
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     transition={{ 
-                      duration: 1, 
-                      delay: index * 0.1 + 0.3,
+                      duration: isMobile ? 0.5 : 1, 
+                      delay: isMobile ? 0 : index * 0.1 + 0.3,
                       ease: [0.16, 1, 0.3, 1]
                     }}
                     viewport={{ once: true }}
                   />
                 </div>
-              </motion.div>
+              </OptimizedMotion>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Values Section - No parallax on mobile */}
       <section className="py-32 px-6 bg-[#FBFBFD]">
         <div className="max-w-6xl mx-auto">
           <SmoothReveal direction="up" className="text-center mb-16">
@@ -290,32 +300,43 @@ export default function AboutClient() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {content.about.values.items.map((value, index) => (
-              <AppleParallax
-                key={value.title}
-                offset={20 + (index * 10)}
-                speed={0.3}
-                scale
-              >
-                <motion.div
-                  className="bg-white rounded-2xl p-8 text-center hover:shadow-xl transition-shadow duration-300"
-                  whileHover={{ y: -10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div
-                    className="text-5xl mb-4"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
+              <div key={value.title}>
+                {!isMobile ? (
+                  <AppleParallax
+                    offset={20}
+                    speed={0.3}
+                    scale={false}
                   >
-                    {value.icon}
-                  </motion.div>
-                  <h3 className="text-xl font-semibold mb-3 text-[#1D1D1F]">
-                    {value.title}
-                  </h3>
-                  <p className="text-[#86868B] text-sm">
-                    {value.description}
-                  </p>
-                </motion.div>
-              </AppleParallax>
+                    <OptimizedMotion
+                      className="bg-white rounded-2xl p-8 text-center hover:shadow-xl transition-shadow duration-300"
+                      whileHover={!prefersReducedMotion ? { y: -10 } : {}}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="text-5xl mb-4">
+                        {value.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold mb-3 text-[#1D1D1F]">
+                        {value.title}
+                      </h3>
+                      <p className="text-[#86868B] text-sm">
+                        {value.description}
+                      </p>
+                    </OptimizedMotion>
+                  </AppleParallax>
+                ) : (
+                  <div className="bg-white rounded-2xl p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                    <div className="text-5xl mb-4">
+                      {value.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-[#1D1D1F]">
+                      {value.title}
+                    </h3>
+                    <p className="text-[#86868B] text-sm">
+                      {value.description}
+                    </p>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -332,13 +353,13 @@ export default function AboutClient() {
               {content.about.cta.subtitle}
             </p>
             <Link href="/contact">
-              <motion.button
-                className="px-10 py-4 bg-white text-[#0071E3] rounded-full font-semibold text-lg hover:shadow-2xl transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <OptimizedMotion
+                className="inline-block px-10 py-4 bg-white text-[#0071E3] rounded-full font-semibold text-lg hover:shadow-2xl transition-all"
+                whileHover={!prefersReducedMotion ? { scale: 1.05 } : {}}
+                whileTap={!prefersReducedMotion ? { scale: 0.95 } : {}}
               >
                 {content.about.cta.button}
-              </motion.button>
+              </OptimizedMotion>
             </Link>
           </SmoothReveal>
         </div>
