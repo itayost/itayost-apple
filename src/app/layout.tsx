@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import './globals.css'
-import '@/styles/mobile-optimizations.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { WhatsAppButton } from '@/components/common/WhatsAppButton'
-import { PerformanceProvider } from '@/contexts/PerformanceContext'
 import { seoConfig } from '@/config/seo'
 
 // Import Google Fonts
@@ -165,12 +163,10 @@ export default function RootLayout({
       <body className="antialiased">
         <StructuredData />
         <GoogleAnalytics />
-        <PerformanceProvider>
-          <Navigation />
-          {children}
-          <Footer />
-          <WhatsAppButton />
-        </PerformanceProvider>
+        <Navigation />
+        {children}
+        <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   )
