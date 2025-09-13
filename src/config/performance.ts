@@ -124,24 +124,13 @@ export const getDeviceConfig = (isMobile: boolean, isTablet: boolean = false) =>
 
 // Helper function to check if animation should be enabled
 export const shouldEnableAnimation = (
-  animationType: string,
+  animationType: keyof typeof performanceConfig.animations,
   deviceType: 'mobile' | 'tablet' | 'desktop'
 ): boolean => {
-  const animations = performanceConfig.animations as any
-  
-  if (animationType === 'enableParallax') {
-    return animations.enableParallax[deviceType]
+  const animationConfig = performanceConfig.animations[animationType as keyof typeof performanceConfig.animations]
+  if (typeof animationConfig === 'object' && 'mobile' in animationConfig) {
+    return animationConfig[deviceType]
   }
-  if (animationType === 'enableBlurEffects') {
-    return animations.enableBlurEffects[deviceType]
-  }
-  if (animationType === 'enableComplexGradients') {
-    return animations.enableComplexGradients[deviceType]
-  }
-  if (animationType === 'enableMouseParallax') {
-    return animations.enableMouseParallax[deviceType]
-  }
-  
   return true
 }
 

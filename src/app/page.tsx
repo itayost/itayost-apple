@@ -8,15 +8,15 @@ const Hero = dynamic(() => import('@/components/sections/HeroOptimized'), {
   loading: () => <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 animate-pulse" />
 })
 
-const Services = dynamic(() => import('@/components/sections/ServicesOptimized'), {
+const Services = dynamic(() => import('@/components/sections/Services'), {
   loading: () => <div className="min-h-[600px] bg-white animate-pulse" />
 })
 
-const Portfolio = dynamic(() => import('@/components/sections/PortfolioOptimized'), {
-  loading: () => <div className="min-h-[600px] bg-gray-50 animate-pulse" />
+const Portfolio = dynamic(() => import('@/components/sections/Portfolio'), {
+  loading: () => <div className="min-h-[600px] bg-apple-gray-50 animate-pulse" />
 })
 
-const Contact = dynamic(() => import('@/components/sections/ContactOptimized'), {
+const Contact = dynamic(() => import('@/components/sections/Contact'), {
   loading: () => <div className="min-h-[600px] bg-white animate-pulse" />
 })
 
