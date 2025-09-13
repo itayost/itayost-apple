@@ -56,14 +56,14 @@ const skills = [
 ]
 
 // Optimized motion wrapper that respects reduced motion
-function OptimizedMotion({ children, ...props }: { children: React.ReactNode } & MotionProps) {
+function OptimizedMotion({ children, className, ...props }: { children: React.ReactNode; className?: string } & MotionProps) {
   const prefersReducedMotion = useReducedMotion()
   
   if (prefersReducedMotion) {
-    return <div>{children}</div>
+    return <div className={className}>{children}</div>
   }
   
-  return <motion.div {...props}>{children}</motion.div>
+  return <motion.div className={className} {...props}>{children}</motion.div>
 }
 
 export default function AboutClientOptimized() {
