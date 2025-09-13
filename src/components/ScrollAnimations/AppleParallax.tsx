@@ -1,112 +1,68 @@
-// src/components/ScrollAnimations/AppleParallax.tsx
 'use client'
 
-import { useRef, ReactNode, useEffect, useState } from 'react'
-import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion'
-import { isMobile, isLowEndDevice, getAnimationSettings, enableGPUAcceleration } from '@/utils/performance'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { useRef, ReactNode } from 'react'
 
 interface AppleParallaxProps {
   children: ReactNode
   offset?: number
   speed?: number
-  className?: string
   opacity?: boolean
   scale?: boolean
-  disabled?: boolean
+  className?: string
 }
 
 export function AppleParallax({
   children,
   offset = 50,
   speed = 0.5,
-  className = '',
   opacity = false,
   scale = false,
-  disabled = false
+  className = '',
 }: AppleParallaxProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [shouldAnimate, setShouldAnimate] = useState(true)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   })
 
-  // Check device capabilities on mount
-  useEffect(() => {
-    const checkDevice = () => {
-      const mobile = isMobile()
-      const lowEnd = isLowEndDevice()
-      setShouldAnimate(!mobile && !lowEnd && !disabled)
-    }
-
-    checkDevice()
-    
-    // Enable GPU acceleration for the element
-    if (ref.current) {
-      enableGPUAcceleration(ref.current)
-    }
-
-    // Re-check on resize
-    const handleResize = () => checkDevice()
-    window.addEventListener('resize', handleResize)
-    
-    return () => window.removeEventListener('resize', handleResize)
-  }, [disabled])
-
-  // Mobile-optimized parallax values
-  const mobileOffset = offset * 0.3 // Reduce parallax effect on mobile
-  const actualOffset = shouldAnimate ? offset : mobileOffset
-  const actualSpeed = shouldAnimate ? speed : speed * 0.5
-
-  // Use spring physics for smoother animations
-  const springConfig = {
-    stiffness: shouldAnimate ? 100 : 200,
-    damping: shouldAnimate ? 30 : 50,
-    restDelta: 0.001
-  }
-
-  // Transform values with conditional rendering
+  // Use spring for smooth animations
+  const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
+  
+  // Parallax Y movement
   const y = useSpring(
-    useTransform(scrollYProgress, [0, 1], [actualOffset, -actualOffset * actualSpeed]),
+    useTransform(scrollYProgress, [0, 1], [offset, -offset * speed]),
     springConfig
   )
 
+  // Optional opacity
   const opacityValue = useSpring(
-    useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.5]),
+    useTransform(
+      scrollYProgress,
+      opacity ? [0, 0.3, 0.7, 1] : [0, 1],
+      opacity ? [0, 1, 1, 0] : [1, 1]
+    ),
     springConfig
   )
 
+  // Optional scale
   const scaleValue = useSpring(
-    useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]),
+    useTransform(
+      scrollYProgress,
+      scale ? [0, 0.5, 1] : [0, 1],
+      scale ? [0.8, 1, 0.8] : [1, 1]
+    ),
     springConfig
   )
-
-  // Return static content for mobile/low-end devices if animations are disabled
-  if (!shouldAnimate) {
-    return (
-      <div 
-        ref={ref} 
-        className={className}
-        style={{
-          transform: 'translateZ(0)',
-          willChange: 'auto'
-        }}
-      >
-        {children}
-      </div>
-    )
-  }
-
-  const motionStyle: any = {
-    y,
-    ...(opacity && { opacity: opacityValue }),
-    ...(scale && { scale: scaleValue })
-  }
 
   return (
     <motion.div
       ref={ref}
-      style={motionStyle}
+      style={{
+        y,
+        opacity: opacityValue,
+        scale: scaleValue,
+      }}
       className={className}
     >
       {children}
