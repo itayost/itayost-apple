@@ -145,6 +145,7 @@ export default function Hero() {
     <section 
       ref={containerRef}
       className="relative min-h-[100vh] lg:min-h-[110vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white"
+      style={{ position: 'relative' }}
     >
       {/* Background Effects - Only render after mount */}
       {mounted && !shouldReduceMotion && <GradientMesh />}

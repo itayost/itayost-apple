@@ -4,6 +4,7 @@ import './globals.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { WhatsAppButton } from '@/components/common/WhatsAppButton'
+import ClientProvider from '@/components/providers/ClientProvider'
 import { seoConfig } from '@/config/seo'
 
 // Import Google Fonts
@@ -163,10 +164,12 @@ export default function RootLayout({
       <body className="antialiased">
         <StructuredData />
         <GoogleAnalytics />
-        <Navigation />
-        {children}
-        <Footer />
-        <WhatsAppButton />
+        <ClientProvider>
+          <Navigation />
+          {children}
+          <Footer />
+          <WhatsAppButton />
+        </ClientProvider>
       </body>
     </html>
   )
