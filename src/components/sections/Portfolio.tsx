@@ -1,209 +1,340 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { portfolioItems } from '@/data/portfolio'
-import { SmoothReveal } from '@/components/ScrollAnimations/SmoothReveal'
-import { content } from '@/config/content'
+import { useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { AppleReveal, AppleStaggerChildren, AppleStaggerItem } from '@/components/ScrollAnimations/AppleAnimations'
+import { useHorizontalScroll } from '@/hooks/useAppleScrollEffects'
+import Image from 'next/image'
+import Link from 'next/link'
+import { 
+  ExternalLink, 
+  Eye, 
+  Heart, 
+  ChevronLeft, 
+  ChevronRight,
+  Sparkles,
+  Globe,
+  Smartphone,
+  ShoppingBag,
+  Briefcase
+} from 'lucide-react'
 
-export function Portfolio() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const galleryRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" })
+const portfolioItems = [
+  {
+    id: 1,
+    title: 'פלטפורמת E-Commerce',
+    category: 'אתר מסחר',
+    description: 'חנות אונליין מתקדמת עם מערכת ניהול מלאה',
+    image: '/portfolio/ecommerce.jpg',
+    tags: ['Next.js', 'Stripe', 'PostgreSQL'],
+    icon: ShoppingBag,
+    gradient: 'from-blue-500 to-purple-500',
+    stats: { views: '50K+', likes: '2.3K' },
+    link: '/portfolio/ecommerce-platform'
+  },
+  {
+    id: 2,
+    title: 'אפליקציית פיננסים',
+    category: 'אפליקציה',
+    description: 'אפליקציה לניהול תקציב אישי עם ממשק אינטואיטיבי',
+    image: '/portfolio/finance-app.jpg',
+    tags: ['React Native', 'Firebase', 'Charts'],
+    icon: Smartphone,
+    gradient: 'from-green-500 to-teal-500',
+    stats: { views: '35K+', likes: '1.8K' },
+    link: '/portfolio/finance-app'
+  },
+  {
+    id: 3,
+    title: 'אתר תדמית לחברה',
+    category: 'אתר תדמית',
+    description: 'אתר תדמית מרשים עם אנימציות מתקדמות',
+    image: '/portfolio/corporate.jpg',
+    tags: ['Next.js', 'GSAP', 'Tailwind'],
+    icon: Briefcase,
+    gradient: 'from-orange-500 to-red-500',
+    stats: { views: '28K+', likes: '1.5K' },
+    link: '/portfolio/corporate-website'
+  },
+  {
+    id: 4,
+    title: 'פורטל חדשות',
+    category: 'אתר תוכן',
+    description: 'פורטל חדשות דינמי עם מערכת ניהול תוכן',
+    image: '/portfolio/news-portal.jpg',
+    tags: ['Next.js', 'CMS', 'MongoDB'],
+    icon: Globe,
+    gradient: 'from-purple-500 to-pink-500',
+    stats: { views: '75K+', likes: '3.2K' },
+    link: '/portfolio/news-portal'
+  },
+  {
+    id: 5,
+    title: 'אפליקציית כושר',
+    category: 'אפליקציה',
+    description: 'אפליקציה למעקב אימונים ותזונה',
+    image: '/portfolio/fitness-app.jpg',
+    tags: ['Flutter', 'Node.js', 'ML'],
+    icon: Smartphone,
+    gradient: 'from-pink-500 to-rose-500',
+    stats: { views: '42K+', likes: '2.1K' },
+    link: '/portfolio/fitness-app'
+  }
+]
 
-  useEffect(() => {
-    // Only run on client side and when elements are in view
-    if (!isInView || typeof window === 'undefined') return
+const categories = [
+  { name: 'הכל', value: 'all' },
+  { name: 'אתרים', value: 'website' },
+  { name: 'אפליקציות', value: 'app' },
+  { name: 'עיצוב', value: 'design' }
+]
 
-    const loadGSAP = async () => {
-      const { gsap } = await import('gsap')
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      
-      gsap.registerPlugin(ScrollTrigger)
-
-      if (galleryRef.current) {
-        const gallery = galleryRef.current
-        const galleryWidth = gallery.scrollWidth
-        const windowWidth = window.innerWidth
-
-        // Horizontal scroll animation
-        gsap.to(gallery, {
-          x: () => -(galleryWidth - windowWidth),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: () => `+=${galleryWidth - windowWidth}`,
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        })
-
-        // Cleanup on unmount
-        return () => {
-          ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-        }
-      }
-    }
-
-    loadGSAP()
-  }, [isInView])
+const PortfolioCard = ({ item, index }: { item: typeof portfolioItems[0], index: number }) => {
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <section 
-      ref={containerRef}
-      className="relative bg-white overflow-hidden"
-      id="portfolio"
-      style={{ minHeight: '100vh' }}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ y: -10 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-w-[320px] lg:min-w-[400px]"
     >
-      {/* Section Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 pt-32 pb-16 px-6 pointer-events-none">
-        <SmoothReveal direction="up" className="text-center">
-          <div className="text-sm font-medium text-[#86868B] uppercase tracking-wider mb-4">
-            {content.portfolio.sectionLabel}
-          </div>
-          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
-            <span className="bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent">
-              {content.portfolio.title}
-            </span>
-            {' '}
-            {content.portfolio.subtitle}
-          </h2>
-        </SmoothReveal>
-      </div>
-
-      {/* Horizontal Gallery Container */}
-      <div className="flex items-center min-h-screen">
+      {/* Image Container */}
+      <div className="relative h-64 lg:h-72 overflow-hidden bg-gradient-to-br from-apple-gray-100 to-apple-gray-200">
+        {/* Placeholder for actual image */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-20`} />
+        
+        {/* Floating Icon */}
         <motion.div
-          ref={galleryRef}
-          className="flex gap-8 px-8"
-          style={{ paddingTop: '200px' }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          animate={{
+            scale: isHovered ? 1.1 : 1,
+            rotate: isHovered ? 10 : 0
+          }}
         >
-          {portfolioItems.map((item, index) => (
+          <item.icon size={64} className="text-white/30" />
+        </motion.div>
+        
+        {/* Overlay on Hover */}
+        <AnimatePresence>
+          {isHovered && (
             <motion.div
-              key={item.id}
-              className="flex-shrink-0 w-[400px] h-[500px] relative rounded-[24px] overflow-hidden group cursor-pointer"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1,
-                ease: [0.16, 1, 0.3, 1]
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-end p-6"
             >
-              {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}`}>
-                <div className="absolute inset-0 bg-black/10" />
-              </div>
-
-              {/* Hover Effect Overlay */}
-              <motion.div
-                className="absolute inset-0 bg-white/20"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              />
-
-              {/* Featured Badge */}
-              {item.featured && (
-                <span className="absolute top-6 right-6 px-4 py-2 bg-white/90 backdrop-blur text-sm font-medium rounded-full z-10">
-                  {content.common.featured}
-                </span>
-              )}
-
-              {/* Content Overlay */}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/50 to-transparent text-white"
-                initial={{ y: '100%' }}
-                whileHover={{ y: 0 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="mb-3">
-                  <span className="text-xs font-medium uppercase tracking-wider opacity-80">
-                    {item.category}
+              <div className="text-white">
+                <div className="flex gap-4 text-sm">
+                  <span className="flex items-center gap-1">
+                    <Eye size={16} />
+                    {item.stats.views}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Heart size={16} />
+                    {item.stats.likes}
                   </span>
                 </div>
-                <h3 className="text-2xl font-semibold mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-sm opacity-90 mb-4">
-                  {item.description}
-                </p>
-                
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {item.technologies.slice(0, 4).map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-white/20 backdrop-blur text-xs font-medium rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* View Project Indicator */}
-              <motion.div
-                className="absolute top-6 left-6 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                whileHover={{ scale: 1.1, rotate: -45 }}
-                transition={{ duration: 0.2 }}
-              >
-                <span className="text-[#0071E3] text-lg">↖</span>
-              </motion.div>
+              </div>
             </motion.div>
-          ))}
-
-          {/* View All Card */}
+          )}
+        </AnimatePresence>
+        
+        {/* Category Badge */}
+        <div className="absolute top-4 right-4">
           <motion.div
-            className="flex-shrink-0 w-[400px] h-[500px] relative rounded-[24px] overflow-hidden bg-gradient-to-br from-[#0071E3] to-[#BF5AF2] flex items-center justify-center cursor-pointer group"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: portfolioItems.length * 0.1,
-              ease: [0.16, 1, 0.3, 1]
-            }}
+            className="px-3 py-1 bg-white/90 backdrop-blur-xl rounded-full text-xs font-medium text-apple-gray-700"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="text-center text-white p-8">
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="text-6xl mb-4"
-              >
-                ←
-              </motion.div>
-              <h3 className="text-2xl font-semibold mb-2">{content.portfolio.viewAll}</h3>
-              <p className="opacity-90">{content.portfolio.explore}</p>
-            </div>
+            {item.category}
           </motion.div>
-        </motion.div>
+        </div>
       </div>
+      
+      {/* Content */}
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-apple-gray-900 mb-2">
+          {item.title}
+        </h3>
+        
+        <p className="text-apple-gray-600 mb-4 text-sm leading-relaxed">
+          {item.description}
+        </p>
+        
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {item.tags.map((tag, idx) => (
+            <span
+              key={idx}
+              className="px-2 py-1 bg-apple-gray-100 rounded-md text-xs text-apple-gray-600"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        
+        {/* CTA */}
+        <Link href={item.link}>
+          <motion.div
+            className="inline-flex items-center gap-2 text-apple-blue font-medium"
+            whileHover={{ x: -5 }}
+          >
+            <span>צפייה בפרויקט</span>
+            <ExternalLink size={16} />
+          </motion.div>
+        </Link>
+      </div>
+    </motion.div>
+  )
+}
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 text-[#86868B] text-sm"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        <motion.span
-          animate={{ x: [0, -10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          →
-        </motion.span>
-        <span>{content.portfolio.scrollHint}</span>
-        <motion.span
-          animate={{ x: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          ←
-        </motion.span>
-      </motion.div>
+export default function Portfolio() {
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const { scrollRef, canScrollLeft, canScrollRight, scrollTo } = useHorizontalScroll()
+
+  return (
+    <section className="py-20 lg:py-32 bg-white overflow-hidden">
+      <div className="container">
+        <AppleStaggerChildren>
+          {/* Section Header */}
+          <AppleStaggerItem>
+            <div className="text-center mb-16">
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-apple-purple/10 backdrop-blur-xl rounded-full mb-6"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Sparkles className="w-4 h-4 text-apple-purple" />
+                <span className="text-sm font-medium text-apple-purple">
+                  תיק העבודות
+                </span>
+              </motion.div>
+              
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6">
+                פרויקטים <span className="bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">מובילים</span>
+              </h2>
+              
+              <p className="text-xl text-apple-gray-600 max-w-3xl mx-auto">
+                הצצה לפרויקטים האחרונים שלי - כל אחד מהם מספר סיפור של חדשנות וצמיחה
+              </p>
+            </div>
+          </AppleStaggerItem>
+
+          {/* Category Filter */}
+          <AppleStaggerItem>
+            <div className="flex justify-center mb-12">
+              <div className="inline-flex gap-2 p-1 bg-apple-gray-100 rounded-full">
+                {categories.map((category) => (
+                  <motion.button
+                    key={category.value}
+                    onClick={() => setSelectedCategory(category.value)}
+                    className={`px-6 py-2 rounded-full font-medium text-sm transition-all ${
+                      selectedCategory === category.value
+                        ? 'bg-white text-apple-blue shadow-lg'
+                        : 'text-apple-gray-600 hover:text-apple-gray-900'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {category.name}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </AppleStaggerItem>
+
+          {/* Portfolio Carousel */}
+          <AppleStaggerItem>
+            <div className="relative">
+              {/* Navigation Buttons */}
+              <AnimatePresence>
+                {canScrollLeft && (
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => scrollTo('left')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur-xl rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-all"
+                  >
+                    <ChevronRight size={20} />
+                  </motion.button>
+                )}
+              </AnimatePresence>
+              
+              <AnimatePresence>
+                {canScrollRight && (
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => scrollTo('right')}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur-xl rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-all"
+                  >
+                    <ChevronLeft size={20} />
+                  </motion.button>
+                )}
+              </AnimatePresence>
+              
+              {/* Scrollable Container */}
+              <div
+                ref={scrollRef}
+                className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {portfolioItems.map((item, index) => (
+                  <PortfolioCard key={item.id} item={item} index={index} />
+                ))}
+              </div>
+            </div>
+          </AppleStaggerItem>
+
+          {/* Statistics */}
+          <AppleStaggerItem>
+            <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { value: '50+', label: 'פרויקטים הושלמו' },
+                { value: '98%', label: 'לקוחות מרוצים' },
+                { value: '2M+', label: 'שורות קוד' },
+                { value: '5★', label: 'דירוג ממוצע' }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-apple-gray-500 mt-1">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </AppleStaggerItem>
+
+          {/* CTA */}
+          <AppleStaggerItem>
+            <div className="text-center mt-16">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href="/portfolio"
+                  className="inline-flex items-center justify-center px-8 py-4 text-white bg-gradient-to-r from-apple-purple to-apple-pink rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  צפייה בכל הפרויקטים
+                </Link>
+              </motion.div>
+            </div>
+          </AppleStaggerItem>
+        </AppleStaggerChildren>
+      </div>
     </section>
   )
 }
