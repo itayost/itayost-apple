@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
+import { Suspense, lazy } from 'react'
 
 // Optimized dynamic imports with better loading states
 const Hero = dynamic(() => import('@/components/sections/Hero'), {
