@@ -4,7 +4,6 @@ import './globals.css'
 import '../styles/mobile-first.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
-import MobileBottomNav from '@/components/layout/MobileBottomNav'
 import { WhatsAppButton } from '@/components/common/WhatsAppButton'
 import { seoConfig } from '@/config/seo'
 
@@ -168,7 +167,6 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Footer />
-        <MobileBottomNav />
         <WhatsAppButton />
       </body>
     </html>

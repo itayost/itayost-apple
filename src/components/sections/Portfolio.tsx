@@ -31,9 +31,8 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-w-[280px] sm:min-w-[320px] lg:min-w-[400px]"
