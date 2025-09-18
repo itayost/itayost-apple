@@ -12,12 +12,14 @@ import { seoConfig } from '@/config/seo'
 // Import Google Fonts
 import { Heebo } from 'next/font/google'
 
-// Configure Heebo font
+// Configure Heebo font with optimizations
 const heebo = Heebo({
   subsets: ['hebrew', 'latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700'], // Only load necessary weights
   variable: '--font-heebo',
-  display: 'swap',
+  display: 'swap', // Prevent font loading from blocking render
+  preload: true, // Preload font files
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Arial', 'sans-serif'],
 })
 
 export const metadata: Metadata = {

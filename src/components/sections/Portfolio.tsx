@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { AppleStaggerChildren, AppleStaggerItem } from '@/components/ScrollAnimations/AppleAnimations'
 import { useHorizontalScroll } from '@/hooks/useAppleScrollEffects'
 import Link from 'next/link'
+import Image from 'next/image'
 import { portfolioData } from '@/data/portfolio'
 import {
   ExternalLink,
@@ -44,13 +45,27 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
 
         {/* Image or Icon */}
         {item.image ? (
-          <img
-            src={item.image}
-            alt={`${item.title} - ${item.description} | פרויקט עבור ${item.client}`}
-            title={`${item.title} - ${item.client}`}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <picture>
+            <source
+              media="(max-width: 640px)"
+              srcSet={item.imageSizes?.mobile || item.image}
+            />
+            <source
+              media="(max-width: 1024px)"
+              srcSet={item.imageSizes?.display || item.image}
+            />
+            <Image
+              src={item.imageSizes?.desktop || item.image}
+              alt={`${item.title} - ${item.description} | פרויקט עבור ${item.client}`}
+              title={`${item.title} - ${item.client}`}
+              width={757}
+              height={519}
+              className="w-full h-full object-cover"
+              loading="lazy"
+              sizes="(max-width: 640px) 320px, (max-width: 1024px) 391px, 757px"
+              quality={85}
+            />
+          </picture>
         ) : (
           <motion.div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

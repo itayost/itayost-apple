@@ -87,24 +87,28 @@ FloatingIcons.displayName = 'FloatingIcons'
 
 // Simplified typewriter without complex state management
 const TypewriterText = memo(({ text }: { text: string }) => {
-  const [displayedText, setDisplayedText] = useState('')
+  const [displayedText, setDisplayedText] = useState(text) // Show text immediately for better LCP
   const shouldReduceMotion = useReducedMotion()
 
   useEffect(() => {
     if (shouldReduceMotion) {
-      setDisplayedText(text)
       return
     }
 
+    // Animate after LCP is captured
     let currentIndex = 0
-    const timer = setInterval(() => {
-      if (currentIndex <= text.length) {
-        setDisplayedText(text.slice(0, currentIndex))
-        currentIndex++
-      } else {
-        clearInterval(timer)
-      }
-    }, 100)
+    const timer = setTimeout(() => {
+      setDisplayedText('') // Reset after showing
+      const interval = setInterval(() => {
+        if (currentIndex <= text.length) {
+          setDisplayedText(text.slice(0, currentIndex))
+          currentIndex++
+        } else {
+          clearInterval(interval)
+        }
+      }, 50)
+      return () => clearInterval(interval)
+    }, 500) // Delay animation to not impact LCP
 
     return () => clearInterval(timer)
   }, [text, shouldReduceMotion])
@@ -157,7 +161,7 @@ export default function Hero() {
         className="container relative z-10 text-center px-4 sm:px-6 lg:px-8"
         style={{ opacity, scale, y }}
       >
-        <AppleStaggerChildren delay={0.2}>
+        <AppleStaggerChildren delay={0}>
           {/* Badge */}
           <AppleStaggerItem>
             <motion.div

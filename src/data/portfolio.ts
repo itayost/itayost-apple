@@ -7,7 +7,13 @@ export const portfolioData = [
     category: 'web',
     description: 'מערכת ניהול מלאי והזמנות אוכל - שמירת נתוני לקוחות כולל בעיות אלרגנים להתאמת הזמנות',
     longDescription: 'פיתחתי מערכת מקיפה לניהול מטבח מסחרי הכוללת ניהול מלאי חכם, מעקב אחר הזמנות, וניהול פרופילי לקוחות עם התחשבות באלרגנים ומגבלות תזונתיות. המערכת מאפשרת למסעדות לנהל את כל תהליכי המטבח בצורה יעילה ומדויקת.',
-    image: '/images/AmosKitchen.png',
+    image: '/images/AmosKitchen-display.webp',
+    imageSizes: {
+      desktop: '/images/AmosKitchen-desktop.webp',
+      display: '/images/AmosKitchen-display.webp',
+      mobile: '/images/AmosKitchen-mobile.webp',
+      thumbnail: '/images/AmosKitchen-thumbnail.webp'
+    },
     tags: ['React', 'Node.js', 'Supabase', 'PostgreSQL'],
     technologies: ['React', 'Node.js', 'Supabase'],
     gradient: 'from-orange-500 to-red-500',
@@ -48,7 +54,13 @@ export const portfolioData = [
     category: 'web',
     description: 'אתר תדמית מרשים למסעדה עם תפריט אינטראקטיבי וחוויית משתמש מעולה',
     longDescription: 'עיצוב ופיתוח אתר תדמית יוקרתי למסעדת Lola Martin. האתר כולל תפריט אינטראקטיבי, גלריית תמונות מרהיבה, מערכת הזמנת שולחנות, ואינטגרציה עם רשתות חברתיות. דגש מיוחד על חוויית משתמש מעולה במובייל.',
-    image: '/images/LolaMartin.png',
+    image: '/images/LolaMartin-display.webp',
+    imageSizes: {
+      desktop: '/images/LolaMartin-desktop.webp',
+      display: '/images/LolaMartin-display.webp',
+      mobile: '/images/LolaMartin-mobile.webp',
+      thumbnail: '/images/LolaMartin-thumbnail.webp'
+    },
     tags: ['Next.js', 'Vercel', 'Tailwind CSS', 'Framer Motion'],
     technologies: ['Vercel', 'Next.js'],
     gradient: 'from-purple-500 to-pink-500',
@@ -90,7 +102,13 @@ export const portfolioData = [
     category: 'web',
     description: 'אתר תדמית לאקדמיית ספרות עם מערכת CRM למעקב אחר לידים',
     longDescription: 'פיתוח פלטפורמה מקיפה לאקדמיית ספרות The Fader, הכוללת אתר תדמית מרשים, מערכת רישום לקורסים, ומערכת CRM מתקדמת למעקב אחר לידים ותלמידים. אינטגרציה מלאה עם Google APIs לניהול יומנים ואירועים.',
-    image: '/images/TheFader.png',
+    image: '/images/TheFader-display.webp',
+    imageSizes: {
+      desktop: '/images/TheFader-desktop.webp',
+      display: '/images/TheFader-display.webp',
+      mobile: '/images/TheFader-mobile.webp',
+      thumbnail: '/images/TheFader-thumbnail.webp'
+    },
     tags: ['Next.js', 'Google API', 'Python', 'CRM', 'PostgreSQL'],
     technologies: ['Next.js', 'GoogleAPI', 'Python'],
     gradient: 'from-indigo-500 to-purple-500',
@@ -132,7 +150,13 @@ export const portfolioData = [
     category: 'web',
     description: 'דף נחיתה מותאם אישית לסוכן נדל״ן עם מערכת ניהול לידים',
     longDescription: 'עיצוב ופיתוח דף נחיתה ממוקד המרות לסוכן נדל״ן מוביל. הדף כולל טפסי יצירת קשר חכמים, גלריית נכסים דינמית, מערכת ניהול לידים, ואינטגרציה עם מערכות שיווק. דגש על חוויית משתמש מעולה ושיעורי המרה גבוהים.',
-    image: '/images/TalNadlan.png',
+    image: '/images/TalNadlan-display.webp',
+    imageSizes: {
+      desktop: '/images/TalNadlan-desktop.webp',
+      display: '/images/TalNadlan-display.webp',
+      mobile: '/images/TalNadlan-mobile.webp',
+      thumbnail: '/images/TalNadlan-thumbnail.webp'
+    },
     tags: ['Next.js', 'Vercel', 'Lead Generation', 'Analytics'],
     technologies: ['Next.js', 'Vercel'],
     gradient: 'from-blue-500 to-cyan-500',
