@@ -2,70 +2,52 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.itayost.com'
-  
-  // Static pages
-  const staticPages = [
+  const currentDate = new Date()
+
+  // Main static pages
+  const pages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/portfolio`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
       priority: 0.8,
     },
   ]
 
-  // Portfolio items (dynamic)
-  const portfolioItems = [
-    'ecommerce-platform',
-    'banking-app',
-    'saas-dashboard',
-    'ai-content-generator',
-    'real-estate-platform',
-    'fitness-app',
-  ].map(slug => ({
-    url: `${baseUrl}/portfolio/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
+  // Add language alternates if multi-language support is added
+  // const pagesWithAlternates = pages.map(page => ({
+  //   ...page,
+  //   alternates: {
+  //     languages: {
+  //       'he-IL': page.url,
+  //       'en-US': page.url.replace(baseUrl, `${baseUrl}/en`),
+  //     },
+  //   },
+  // }))
 
-  // Service pages (if you have individual service pages)
-  const servicePages = [
-    'web-development',
-    'mobile-apps',
-    'ui-ux-design',
-    'api-development',
-    'performance',
-    'security',
-  ].map(slug => ({
-    url: `${baseUrl}/services/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-
-  return [...staticPages, ...portfolioItems, ...servicePages]
+  return pages
 }

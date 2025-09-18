@@ -109,8 +109,8 @@ function StructuredData() {
 
 // Google Analytics Component
 function GoogleAnalytics() {
-  const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'
-  
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-CSP6R559BD'
+
   return (
     <>
       <Script
@@ -151,8 +151,12 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="x-default" href="https://www.itayost.com" />
         
         {/* Verification Tags */}
-        <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
-        <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+        {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
+          <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION} />
+        )}
+        {process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION && (
+          <meta name="msvalidate.01" content={process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION} />
+        )}
         
         {/* Preconnect for Performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

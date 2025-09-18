@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect, useState, useRef, memo, useCallback } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { AppleReveal, AppleTextReveal, AppleStaggerChildren, AppleStaggerItem } from '@/components/ScrollAnimations/AppleAnimations'
-import { useMouseParallax } from '@/hooks/useAppleScrollEffects'
+import { useEffect, useState, useRef, memo } from 'react'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { AppleStaggerChildren, AppleStaggerItem } from '@/components/ScrollAnimations/AppleAnimations'
 import Link from 'next/link'
 import { ChevronDown, Sparkles, Code2, Palette, Zap } from 'lucide-react'
 

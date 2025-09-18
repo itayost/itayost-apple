@@ -16,6 +16,8 @@ interface OptimizedImageProps {
   placeholder?: 'blur' | 'empty'
   blurDataURL?: string
   onLoad?: () => void
+  title?: string
+  loading?: 'lazy' | 'eager'
 }
 
 export function OptimizedImage({
@@ -30,6 +32,8 @@ export function OptimizedImage({
   placeholder = 'blur',
   blurDataURL,
   onLoad,
+  title,
+  loading = 'lazy',
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true)
 
@@ -51,9 +55,11 @@ export function OptimizedImage({
       <Image
         src={src}
         alt={alt}
+        title={title || alt}
         width={width}
         height={height}
         priority={priority}
+        loading={priority ? 'eager' : loading}
         quality={quality}
         sizes={sizes}
         placeholder={placeholder}

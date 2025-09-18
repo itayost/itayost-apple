@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import AboutPage from './AboutPage'
 import { seoConfig } from '@/config/seo'
+import { JsonLd } from '@/components/common/JsonLd'
 
 export const metadata: Metadata = {
   title: seoConfig.pages.about.title,
@@ -18,5 +19,28 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <AboutPage />
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      seoConfig.structuredData.organization,
+      seoConfig.structuredData.breadcrumbs('/about'),
+      {
+        '@type': 'AboutPage',
+        '@id': 'https://www.itayost.com/about/#webpage',
+        name: seoConfig.pages.about.title,
+        description: seoConfig.pages.about.description,
+        url: seoConfig.pages.about.canonical,
+        isPartOf: {
+          '@id': 'https://www.itayost.com/#website',
+        },
+      },
+    ],
+  }
+
+  return (
+    <>
+      <JsonLd data={structuredData} />
+      <AboutPage />
+    </>
+  )
 }
