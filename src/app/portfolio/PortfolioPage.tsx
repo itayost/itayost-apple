@@ -89,23 +89,45 @@ export default function PortfolioPage() {
 
       {/* Category Filter */}
       <section className="py-8 sticky top-16 lg:top-20 bg-white z-30">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center">
-            <div className="inline-flex gap-2 p-1 bg-gray-100 rounded-full">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Desktop: Centered tabs */}
+          <div className="hidden sm:flex justify-center">
+            <div className="inline-flex gap-2 p-1 bg-apple-gray-100 rounded-full">
               {categories.map((category) => (
                 <motion.button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
                   className={`flex items-center gap-2 px-6 py-2 rounded-full font-medium text-sm transition-all whitespace-nowrap ${
                     selectedCategory === category.id
-                      ? 'bg-white text-blue-600 shadow-lg'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'bg-white text-apple-blue shadow-lg'
+                      : 'text-apple-gray-600 hover:text-apple-gray-900'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <category.icon size={16} />
-                  {category.label}
+                  <category.icon className="w-4 h-4 flex-shrink-0" />
+                  <span>{category.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile: Scrollable tabs */}
+          <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex gap-2 p-1 bg-apple-gray-100 rounded-full mx-4 pr-4" style={{ width: 'max-content' }}>
+              {categories.map((category) => (
+                <motion.button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`flex items-center gap-1.5 px-3 py-2 rounded-full font-medium text-sm transition-all whitespace-nowrap ${
+                    selectedCategory === category.id
+                      ? 'bg-white text-apple-blue shadow-lg'
+                      : 'text-apple-gray-600 hover:text-apple-gray-900'
+                  }`}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <category.icon className="w-4 h-4 flex-shrink-0" />
+                  <span>{category.label.split(' ')[0]}</span>
                 </motion.button>
               ))}
             </div>
