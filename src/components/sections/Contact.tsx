@@ -3,17 +3,18 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AppleStaggerChildren, AppleStaggerItem, AppleReveal } from '@/components/ScrollAnimations/AppleAnimations'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  CheckCircle, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
   AlertCircle,
   Clock,
   MessageCircle,
   Sparkles
 } from 'lucide-react'
+import { submitHomepageContactForm, type HomepageContactForm } from '@/services/crm'
 
 interface FormData {
   name: string
@@ -66,28 +67,52 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
     setIsSubmitting(true)
-    
-    // Simulate form submission
-    setTimeout(() => {
+    setErrorMessage('')
+
+    try {
+      // Convert FormData to HomepageContactForm format
+      const contactForm: HomepageContactForm = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message
+      }
+
+      // Submit to CRM
+      const result = await submitHomepageContactForm(contactForm)
+
+      if (result.success) {
+        setSubmitStatus('success')
+
+        // Reset form after success
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: ''
+          })
+          setSubmitStatus('idle')
+        }, 3000)
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(result.error || 'שגיאה בשליחת הטופס')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+      setErrorMessage('שגיאה בשליחת הטופס. אנא נסו שוב.')
+      console.error('Form submission error:', error)
+    } finally {
       setIsSubmitting(false)
-      setSubmitStatus('success')
-      
-      // Reset form after success
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        })
-        setSubmitStatus('idle')
-      }, 3000)
-    }, 2000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -95,6 +120,10 @@ export default function Contact() {
       ...prev,
       [e.target.name]: e.target.value
     }))
+    // Clear any previous error message when user starts typing
+    if (errorMessage) {
+      setErrorMessage('')
+    }
   }
 
   return (
@@ -172,7 +201,6 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('email')}
                       onBlur={() => setFocusedField(null)}
-                      required
                       className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
                       placeholder="example@email.com"
                       animate={{
@@ -184,7 +212,7 @@ export default function Contact() {
                   {/* Phone Field */}
                   <div>
                     <label className="block text-sm font-medium text-apple-gray-700 mb-2">
-                      טלפון
+                      טלפון *
                     </label>
                     <motion.input
                       type="tel"
@@ -193,6 +221,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('phone')}
                       onBlur={() => setFocusedField(null)}
+                      required
                       className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
                       placeholder="050-1234567"
                       animate={{
@@ -293,6 +322,20 @@ export default function Contact() {
                       )}
                     </AnimatePresence>
                   </motion.button>
+
+                  {/* Error Message */}
+                  {submitStatus === 'error' && errorMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-4 bg-red-50 border border-red-200 rounded-xl"
+                    >
+                      <p className="text-red-700 text-center flex items-center justify-center gap-2">
+                        <AlertCircle size={18} />
+                        {errorMessage}
+                      </p>
+                    </motion.div>
+                  )}
                 </form>
               </motion.div>
             </AppleStaggerItem>

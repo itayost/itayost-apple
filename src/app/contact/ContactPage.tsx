@@ -3,12 +3,12 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  CheckCircle, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
   Clock,
   MessageCircle,
   Calendar,
@@ -20,42 +20,22 @@ import {
   Github,
   AlertCircle
 } from 'lucide-react'
+import { submitHomepageContactForm, type HomepageContactForm } from '@/services/crm'
 
 interface FormData {
   name: string
   email: string
   phone: string
-  company: string
-  service: string
-  budget: string
-  timeline: string
+  subject: string
   message: string
 }
 
-const services = [
-  'אתר שעובד 24/7',
-  'מערכת ניהול לקוחות',
-  'אוטומציה של תהליכים',
-  'חנות אונליין',
-  'מערכת תורים',
-  'ייעוץ דיגיטלי',
-  'אחר'
-]
-
-const budgets = [
-  'עד ₪5,000',
-  '₪5,000 - ₪15,000',
-  '₪15,000 - ₪30,000',
-  '₪30,000 - ₪50,000',
-  'מעל ₪50,000'
-]
-
-const timelines = [
-  'דחוף (תוך שבוע)',
-  'תוך חודש',
-  '1-3 חודשים',
-  '3-6 חודשים',
-  'גמיש'
+const subjects = [
+  { value: 'website', label: 'אתר שעובד 24/7' },
+  { value: 'crm', label: 'מערכת ניהול לקוחות' },
+  { value: 'automation', label: 'אוטומציה וחיסכון זמן' },
+  { value: 'consulting', label: 'ייעוץ דיגיטלי' },
+  { value: 'other', label: 'אחר' }
 ]
 
 const contactMethods = [
@@ -96,67 +76,68 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
-    company: '',
-    service: '',
-    budget: '',
-    timeline: '',
+    subject: '',
     message: ''
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Partial<FormData>>({})
-
-  const validateForm = () => {
-    const newErrors: Partial<FormData> = {}
-    
-    if (!formData.name) newErrors.name = 'שם חובה'
-    if (!formData.email) newErrors.email = 'אימייל חובה'
-    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'אימייל לא תקין'
-    }
-    if (!formData.service) newErrors.service = 'בחר שירות'
-    if (!formData.message) newErrors.message = 'הודעה חובה'
-    
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    if (!validateForm()) return
-    
+
     setIsSubmitting(true)
-    
-    // Simulate form submission
-    setTimeout(() => {
+    setErrors({})
+    setErrorMessage('')
+
+    try {
+      // Convert FormData to HomepageContactForm format
+      const contactForm: HomepageContactForm = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message
+      }
+
+      // Submit to CRM
+      const result = await submitHomepageContactForm(contactForm)
+
+      if (result.success) {
+        setSubmitStatus('success')
+
+        // Reset form after success
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: ''
+          })
+          setSubmitStatus('idle')
+        }, 5000)
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(result.error || 'שגיאה בשליחת הטופס')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+      setErrorMessage('שגיאה בשליחת הטופס. אנא נסו שוב.')
+      console.error('Form submission error:', error)
+    } finally {
       setIsSubmitting(false)
-      setSubmitStatus('success')
-      
-      // Reset form after success
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          service: '',
-          budget: '',
-          timeline: '',
-          message: ''
-        })
-        setSubmitStatus('idle')
-      }, 5000)
-    }, 2000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
-    // Clear error when user starts typing
-    if (errors[name as keyof FormData]) {
-      setErrors(prev => ({ ...prev, [name]: '' }))
+    // Clear any previous error message when user starts typing
+    if (errorMessage) {
+      setErrorMessage('')
     }
   }
 
@@ -248,156 +229,86 @@ export default function ContactPage() {
                   </h2>
                   
                   <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-                    {/* Name & Email */}
-                    <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          שם מלא *
-                        </label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          className={`w-full px-4 py-3 sm:py-3.5 rounded-xl border ${
-                            errors.name ? 'border-red-500' : 'border-gray-300'
-                          } focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all`}
-                          placeholder="ישראל ישראלי"
-                        />
-                        {errors.name && (
-                          <p className="mt-1 text-sm text-red-500">{errors.name}</p>
-                        )}
-                      </div>
-                      
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          אימייל *
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className={`w-full px-4 py-3 sm:py-3.5 rounded-xl border ${
-                            errors.email ? 'border-red-500' : 'border-gray-300'
-                          } focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all`}
-                          placeholder="example@email.com"
-                        />
-                        {errors.email && (
-                          <p className="mt-1 text-sm text-red-500">{errors.email}</p>
-                        )}
-                      </div>
-                    </div>
-                    
-                    {/* Phone & Company */}
-                    <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          טלפון
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-base"
-                          placeholder="050-1234567"
-                        />
-                      </div>
-                      
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          שם החברה
-                        </label>
-                        <input
-                          type="text"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-base"
-                          placeholder="החברה שלי בע״מ"
-                        />
-                      </div>
-                    </div>
-                    
-                    {/* Service */}
+                    {/* Name Field */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        מה הבעיה שאתה רוצה לפתור? *
+                        שם מלא *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                        placeholder="ישראל ישראלי"
+                      />
+                    </div>
+
+                    {/* Email Field */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        אימייל
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                        placeholder="example@email.com"
+                      />
+                    </div>
+
+                    {/* Phone Field */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        טלפון *
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                        placeholder="050-1234567"
+                      />
+                    </div>
+
+                    {/* Subject Field */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        נושא *
                       </label>
                       <select
-                        name="service"
-                        value={formData.service}
+                        name="subject"
+                        value={formData.subject}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 rounded-xl border ${
-                          errors.service ? 'border-red-500' : 'border-gray-300'
-                        } focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all`}
+                        required
+                        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                       >
-                        <option value="">בחר שירות</option>
-                        {services.map(service => (
-                          <option key={service} value={service}>{service}</option>
+                        <option value="">בחר נושא</option>
+                        {subjects.map(subject => (
+                          <option key={subject.value} value={subject.value}>{subject.label}</option>
                         ))}
                       </select>
-                      {errors.service && (
-                        <p className="mt-1 text-sm text-red-500">{errors.service}</p>
-                      )}
                     </div>
-                    
-                    {/* Budget & Timeline */}
-                    <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          תקציב משוער
-                        </label>
-                        <select
-                          name="budget"
-                          value={formData.budget}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-base"
-                        >
-                          <option value="">בחר תקציב</option>
-                          {budgets.map(budget => (
-                            <option key={budget} value={budget}>{budget}</option>
-                          ))}
-                        </select>
-                      </div>
-                      
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          לוח זמנים
-                        </label>
-                        <select
-                          name="timeline"
-                          value={formData.timeline}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-base"
-                        >
-                          <option value="">בחר לוח זמנים</option>
-                          {timelines.map(timeline => (
-                            <option key={timeline} value={timeline}>{timeline}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                    
-                    {/* Message */}
+
+                    {/* Message Field */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        ספר לי על העסק שלך *
+                        הודעה *
                       </label>
                       <textarea
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        rows={6}
-                        className={`w-full px-4 py-3 rounded-xl border ${
-                          errors.message ? 'border-red-500' : 'border-gray-300'
-                        } focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-none`}
-                        placeholder="מה העסק שלך? מה מעיק עליך? איפה אתה מבזבז זמן ביותר?"
+                        required
+                        rows={5}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-none"
+                        placeholder="מה העסק שלך? מה מעיק עליך? איפה אתה מבזבז זמן?"
                       />
-                      {errors.message && (
-                        <p className="mt-1 text-sm text-red-500">{errors.message}</p>
-                      )}
                     </div>
                     
                     {/* Submit Button */}
@@ -433,6 +344,20 @@ export default function ContactPage() {
                       >
                         <p className="text-green-700 text-center">
                           תודה על הפנייה! אחזור אליך בהקדם האפשרי.
+                        </p>
+                      </motion.div>
+                    )}
+
+                    {/* Error Message */}
+                    {submitStatus === 'error' && errorMessage && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 bg-red-50 border border-red-200 rounded-xl"
+                      >
+                        <p className="text-red-700 text-center flex items-center justify-center gap-2">
+                          <AlertCircle size={18} />
+                          {errorMessage}
                         </p>
                       </motion.div>
                     )}
