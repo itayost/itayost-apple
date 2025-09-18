@@ -158,7 +158,7 @@ export default function PortfolioPage() {
                       {project.image ? (
                         <img 
                           src={project.image} 
-                          alt={project.title}
+                          alt={`${project.title} - ${project.description} | ${project.category === 'web' ? 'אתר' : project.category === 'mobile' ? 'אפליקציה' : 'מערכת'} עבור ${project.client}`}
                           className="w-full h-full object-cover"
                         />
                       ) : (
@@ -282,7 +282,7 @@ export default function PortfolioPage() {
                 <div className="mb-8 rounded-xl overflow-hidden bg-gray-100">
                   <img 
                     src={selectedProject.image} 
-                    alt={selectedProject.title}
+                    alt={`${selectedProject.title} - ${selectedProject.description} | פרויקט מפורט עבור ${selectedProject.client}`}
                     className="w-full h-auto"
                   />
                 </div>

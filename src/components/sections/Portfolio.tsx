@@ -46,8 +46,10 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
         {item.image ? (
           <img
             src={item.image}
-            alt={item.title}
+            alt={`${item.title} - ${item.description} | פרויקט עבור ${item.client}`}
+            title={`${item.title} - ${item.client}`}
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         ) : (
           <motion.div

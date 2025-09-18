@@ -5,6 +5,8 @@ import '../styles/mobile-first.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { WhatsAppButton } from '@/components/common/WhatsAppButton'
+import { WebVitals } from '@/components/common/WebVitals'
+import { SkipNavigation } from '@/components/common/SkipNavigation'
 import { seoConfig } from '@/config/seo'
 
 // Import Google Fonts
@@ -161,6 +163,19 @@ export default function RootLayout({
         {/* Preconnect for Performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+        {/* Preload critical fonts */}
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/heebo/v21/NGSpv5_NC0k9P_v6ZUCbLRAHxK1EiSycckOnz02SXQ.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         
         {/* Theme Color */}
         <meta name="theme-color" content="#0071E3" />
@@ -168,8 +183,10 @@ export default function RootLayout({
       <body className="antialiased">
         <StructuredData />
         <GoogleAnalytics />
+        <WebVitals />
+        <SkipNavigation />
         <Navigation />
-        {children}
+        <main id="main-content">{children}</main>
         <Footer />
         <WhatsAppButton />
       </body>

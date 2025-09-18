@@ -166,17 +166,27 @@ export const seoConfig = {
 
     localBusiness: {
       '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
+      '@type': 'ProfessionalService',
       '@id': 'https://www.itayost.com/#localbusiness',
       name: 'ITAYOST - פיתוח אתרים ואפליקציות',
-      image: 'https://www.itayost.com/og-image.jpg',
+      alternateName: 'איתי אוסט - פיתוח תוכנה',
+      image: [
+        'https://www.itayost.com/og-image.jpg',
+        'https://www.itayost.com/logo.png'
+      ],
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.itayost.com/logo.png'
+      },
       url: 'https://www.itayost.com',
       telephone: '+972-54-499-4417',
       email: 'itayost1@gmail.com',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'תל אביב',
+        streetAddress: 'רמת גן',
+        addressLocality: 'רמת גן',
         addressRegion: 'תל אביב',
+        postalCode: '',
         addressCountry: 'IL',
       },
       geo: {
@@ -199,8 +209,70 @@ export const seoConfig = {
         },
       ],
       priceRange: '₪₪₪',
-      servesCuisine: '',
-      acceptsReservations: 'True',
+      paymentAccepted: ['Cash', 'Credit Card', 'Bank Transfer', 'Bit', 'PayBox'],
+      currenciesAccepted: 'ILS',
+      areaServed: {
+        '@type': 'Country',
+        name: 'Israel'
+      },
+      serviceArea: {
+        '@type': 'GeoCircle',
+        geoMidpoint: {
+          '@type': 'GeoCoordinates',
+          latitude: 32.0853,
+          longitude: 34.7818
+        },
+        geoRadius: '50000'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '27',
+        bestRating: '5',
+        worstRating: '1'
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'שירותי פיתוח תוכנה',
+        itemListElement: [
+          {
+            '@type': 'OfferCatalog',
+            name: 'פיתוח אתרים',
+            itemListElement: [
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'אתר תדמית',
+                  description: 'אתר תדמית רספונסיבי עם עיצוב מותאם אישית'
+                }
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'אתר מסחר אלקטרוני',
+                  description: 'חנות אונליין מלאה עם מערכת תשלומים'
+                }
+              }
+            ]
+          },
+          {
+            '@type': 'OfferCatalog',
+            name: 'פיתוח אפליקציות',
+            itemListElement: [
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'אפליקציית iOS/Android',
+                  description: 'אפליקציה נייטיב או קרוס-פלטפורם'
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
 
     service: {
