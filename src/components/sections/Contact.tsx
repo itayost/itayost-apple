@@ -98,7 +98,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-b from-apple-gray-50 to-white overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-b from-apple-gray-50 to-white overflow-hidden">
       <div className="container">
         <AppleStaggerChildren>
           {/* Section Header */}
@@ -114,26 +114,26 @@ export default function Contact() {
                 </span>
               </motion.div>
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
                 יש לך <span className="bg-gradient-to-r from-apple-green to-apple-cyan bg-clip-text text-transparent">פרויקט בראש?</span>
               </h2>
               
-              <p className="text-xl text-apple-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
                 אשמח לשמוע על הרעיון שלך ולהפוך אותו למציאות דיגיטלית מרשימה
               </p>
             </div>
           </AppleStaggerItem>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 px-4 sm:px-0">
             {/* Contact Form */}
             <AppleStaggerItem>
               <motion.div
-                className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl"
+                className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h3 className="text-2xl font-bold text-apple-gray-900 mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
                   שלח הודעה
                 </h3>
                 
@@ -304,7 +304,7 @@ export default function Contact() {
                   <AppleReveal key={index} direction="right" delay={index * 0.1}>
                     <motion.a
                       href={info.href}
-                      className="block bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300"
                       whileHover={{ scale: 1.02, x: 10 }}
                     >
                       <div className="flex items-center gap-4">
@@ -322,7 +322,7 @@ export default function Contact() {
                 
                 {/* Quick Actions */}
                 <AppleReveal direction="right" delay={0.4}>
-                  <div className="bg-gradient-to-br from-apple-blue/5 to-apple-purple/5 rounded-2xl p-6">
+                  <div className="bg-gradient-to-br from-apple-blue/5 to-apple-purple/5 rounded-xl sm:rounded-2xl p-4 sm:p-6">
                     <h4 className="text-lg font-bold text-apple-gray-900 mb-4 flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-apple-blue" />
                       דרכים נוספות ליצור קשר

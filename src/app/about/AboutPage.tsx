@@ -5,20 +5,10 @@ import Link from 'next/link'
 import { 
   User,
   Code2,
-  Palette,
   Rocket,
   Target,
   Heart,
-  Coffee,
-  Award,
-  BookOpen,
   Users,
-  Sparkles,
-  CheckCircle,
-  TrendingUp,
-  Zap,
-  Globe,
-  Briefcase,
   Database,
   Smartphone
 } from 'lucide-react'

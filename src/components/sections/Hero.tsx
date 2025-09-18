@@ -144,7 +144,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100vh] lg:min-h-[110vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white"
+      className="relative min-h-[90vh] md:min-h-[100vh] lg:min-h-[110vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white pt-20 pb-20 md:pt-0 md:pb-0"
     >
       {/* Background Effects - Only render after mount */}
       {mounted && !shouldReduceMotion && <GradientMesh />}
@@ -175,7 +175,7 @@ export default function Hero() {
 
           {/* Main Headline */}
           <AppleStaggerItem>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold leading-tight mb-6">
               <span className="block text-apple-gray-900">הפתרונות</span>
               <span className="block mt-2">
                 <span className="bg-gradient-to-r from-apple-blue via-apple-purple to-apple-pink bg-clip-text text-transparent">
@@ -190,7 +190,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <AppleStaggerItem>
-            <p className="text-lg sm:text-xl md:text-2xl text-apple-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-apple-gray-600 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4 sm:px-0">
               מעצב ומפתח אתרים ואפליקציות ברמה הגבוהה ביותר.
               <br />
               טכנולוגיות מתקדמות, עיצוב מרהיב וחוויית משתמש מושלמת.
@@ -206,7 +206,7 @@ export default function Hero() {
               >
                 <Link
                   href="/contact"
-                  className="group relative inline-flex items-center justify-center px-8 py-4 text-white bg-gradient-to-r from-apple-blue to-apple-blue-dark rounded-full font-medium text-lg overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-white bg-gradient-to-r from-apple-blue to-apple-blue-dark rounded-full font-medium text-base sm:text-lg overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <span className="relative z-10">בואו נתחיל</span>
                   <motion.div
@@ -224,7 +224,7 @@ export default function Hero() {
               >
                 <Link
                   href="/portfolio"
-                  className="inline-flex items-center justify-center px-8 py-4 text-apple-blue bg-white/80 backdrop-blur-xl border border-apple-gray-200 rounded-full font-medium text-lg hover:bg-white transition-all duration-300"
+                  className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-apple-blue bg-white/80 backdrop-blur-xl border border-apple-gray-200 rounded-full font-medium text-base sm:text-lg hover:bg-white transition-all duration-300"
                 >
                   צפייה בעבודות
                 </Link>
@@ -234,7 +234,7 @@ export default function Hero() {
 
           {/* Stats */}
           <AppleStaggerItem>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 md:mt-20 max-w-4xl mx-auto px-4 sm:px-0">
               {[
                 { number: '50+', label: 'פרויקטים' },
                 { number: '100%', label: 'שביעות רצון' },

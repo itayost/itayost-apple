@@ -1,95 +1,32 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { AppleReveal, AppleStaggerChildren, AppleStaggerItem } from '@/components/ScrollAnimations/AppleAnimations'
+import { AppleStaggerChildren, AppleStaggerItem } from '@/components/ScrollAnimations/AppleAnimations'
 import { useHorizontalScroll } from '@/hooks/useAppleScrollEffects'
-import Image from 'next/image'
 import Link from 'next/link'
-import { 
-  ExternalLink, 
-  Eye, 
-  Heart, 
-  ChevronLeft, 
+import { portfolioData } from '@/data/portfolio'
+import {
+  ExternalLink,
+  Eye,
+  Users,
+  ChevronLeft,
   ChevronRight,
   Sparkles,
   Globe,
-  Smartphone,
-  ShoppingBag,
-  Briefcase
+  Code2,
+  TrendingUp,
+  Clock
 } from 'lucide-react'
-
-const portfolioItems = [
-  {
-    id: 1,
-    title: 'פלטפורמת E-Commerce',
-    category: 'אתר מסחר',
-    description: 'חנות אונליין מתקדמת עם מערכת ניהול מלאה',
-    image: '/portfolio/ecommerce.jpg',
-    tags: ['Next.js', 'Stripe', 'PostgreSQL'],
-    icon: ShoppingBag,
-    gradient: 'from-blue-500 to-purple-500',
-    stats: { views: '50K+', likes: '2.3K' },
-    link: '/portfolio/ecommerce-platform'
-  },
-  {
-    id: 2,
-    title: 'אפליקציית פיננסים',
-    category: 'אפליקציה',
-    description: 'אפליקציה לניהול תקציב אישי עם ממשק אינטואיטיבי',
-    image: '/portfolio/finance-app.jpg',
-    tags: ['React Native', 'Firebase', 'Charts'],
-    icon: Smartphone,
-    gradient: 'from-green-500 to-teal-500',
-    stats: { views: '35K+', likes: '1.8K' },
-    link: '/portfolio/finance-app'
-  },
-  {
-    id: 3,
-    title: 'אתר תדמית לחברה',
-    category: 'אתר תדמית',
-    description: 'אתר תדמית מרשים עם אנימציות מתקדמות',
-    image: '/portfolio/corporate.jpg',
-    tags: ['Next.js', 'GSAP', 'Tailwind'],
-    icon: Briefcase,
-    gradient: 'from-orange-500 to-red-500',
-    stats: { views: '28K+', likes: '1.5K' },
-    link: '/portfolio/corporate-website'
-  },
-  {
-    id: 4,
-    title: 'פורטל חדשות',
-    category: 'אתר תוכן',
-    description: 'פורטל חדשות דינמי עם מערכת ניהול תוכן',
-    image: '/portfolio/news-portal.jpg',
-    tags: ['Next.js', 'CMS', 'MongoDB'],
-    icon: Globe,
-    gradient: 'from-purple-500 to-pink-500',
-    stats: { views: '75K+', likes: '3.2K' },
-    link: '/portfolio/news-portal'
-  },
-  {
-    id: 5,
-    title: 'אפליקציית כושר',
-    category: 'אפליקציה',
-    description: 'אפליקציה למעקב אימונים ותזונה',
-    image: '/portfolio/fitness-app.jpg',
-    tags: ['Flutter', 'Node.js', 'ML'],
-    icon: Smartphone,
-    gradient: 'from-pink-500 to-rose-500',
-    stats: { views: '42K+', likes: '2.1K' },
-    link: '/portfolio/fitness-app'
-  }
-]
 
 const categories = [
   { name: 'הכל', value: 'all' },
-  { name: 'אתרים', value: 'website' },
-  { name: 'אפליקציות', value: 'app' },
-  { name: 'עיצוב', value: 'design' }
+  { name: 'אתרים', value: 'web' },
+  { name: 'אפליקציות', value: 'mobile' },
+  { name: 'מערכות', value: 'system' }
 ]
 
-const PortfolioCard = ({ item, index }: { item: typeof portfolioItems[0], index: number }) => {
+const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: number }) => {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -97,26 +34,33 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioItems[0], index:
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -10 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-w-[320px] lg:min-w-[400px]"
+      className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-w-[280px] sm:min-w-[320px] lg:min-w-[400px]"
     >
       {/* Image Container */}
-      <div className="relative h-64 lg:h-72 overflow-hidden bg-gradient-to-br from-apple-gray-100 to-apple-gray-200">
-        {/* Placeholder for actual image */}
+      <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden bg-gradient-to-br from-apple-gray-100 to-apple-gray-200">
+        {/* Background gradient */}
         <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-20`} />
-        
-        {/* Floating Icon */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          animate={{
-            scale: isHovered ? 1.1 : 1,
-            rotate: isHovered ? 10 : 0
-          }}
-        >
-          <item.icon size={64} className="text-white/30" />
-        </motion.div>
+
+        {/* Image or Icon */}
+        {item.image ? (
+          <img
+            src={item.image}
+            alt={item.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            animate={{
+              scale: isHovered ? 1.1 : 1,
+              rotate: isHovered ? 10 : 0
+            }}
+          >
+            <Globe size={64} className="text-white/30" />
+          </motion.div>
+        )}
         
         {/* Overlay on Hover */}
         <AnimatePresence>
@@ -129,34 +73,45 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioItems[0], index:
             >
               <div className="text-white">
                 <div className="flex gap-4 text-sm">
-                  <span className="flex items-center gap-1">
-                    <Eye size={16} />
-                    {item.stats.views}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Heart size={16} />
-                    {item.stats.likes}
-                  </span>
+                  {item.stats && Object.entries(item.stats).slice(0, 2).map(([key, value]) => (
+                    <span key={key} className="flex items-center gap-1">
+                      {key === 'efficiency' || key === 'conversion' || key === 'reservations' ? <TrendingUp size={16} /> :
+                       key === 'students' || key === 'users' || key === 'leads' ? <Users size={16} /> :
+                       key === 'time' || key === 'loadTime' ? <Clock size={16} /> :
+                       <Eye size={16} />}
+                      {value}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
         
-        {/* Category Badge */}
+        {/* Client Badge */}
         <div className="absolute top-4 right-4">
           <motion.div
             className="px-3 py-1 bg-white/90 backdrop-blur-xl rounded-full text-xs font-medium text-apple-gray-700"
             whileHover={{ scale: 1.05 }}
           >
-            {item.category}
+            {item.client}
           </motion.div>
         </div>
+
+        {/* Live Badge */}
+        {item.link && (
+          <div className="absolute top-4 left-4">
+            <span className="px-3 py-1 bg-green-500/90 backdrop-blur-xl text-white rounded-full text-xs font-medium flex items-center gap-1">
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+              Live
+            </span>
+          </div>
+        )}
       </div>
       
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-apple-gray-900 mb-2">
+      <div className="p-4 sm:p-5 md:p-6">
+        <h3 className="text-lg sm:text-xl font-bold text-apple-gray-900 mb-2">
           {item.title}
         </h3>
         
@@ -177,15 +132,24 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioItems[0], index:
         </div>
         
         {/* CTA */}
-        <Link href={item.link}>
+        {item.link ? (
+          <a href={item.link} target="_blank" rel="noopener noreferrer">
+            <motion.div
+              className="inline-flex items-center gap-2 text-apple-blue font-medium"
+              whileHover={{ x: -5 }}
+            >
+              <span>צפייה באתר</span>
+              <ExternalLink size={16} />
+            </motion.div>
+          </a>
+        ) : (
           <motion.div
-            className="inline-flex items-center gap-2 text-apple-blue font-medium"
-            whileHover={{ x: -5 }}
+            className="inline-flex items-center gap-2 text-apple-gray-500 font-medium"
           >
-            <span>צפייה בפרויקט</span>
-            <ExternalLink size={16} />
+            <span>פרטים נוספים</span>
+            <Code2 size={16} />
           </motion.div>
-        </Link>
+        )}
       </div>
     </motion.div>
   )
@@ -195,9 +159,13 @@ export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const { scrollRef, canScrollLeft, canScrollRight, scrollTo } = useHorizontalScroll()
 
+  const filteredItems = selectedCategory === 'all'
+    ? portfolioData
+    : portfolioData.filter(item => item.category === selectedCategory)
+
   return (
-    <section className="py-20 lg:py-32 bg-white overflow-hidden">
-      <div className="container">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-32 bg-white overflow-hidden">
+      <div className="container overflow-hidden">
         <AppleStaggerChildren>
           {/* Section Header */}
           <AppleStaggerItem>
@@ -212,11 +180,11 @@ export default function Portfolio() {
                 </span>
               </motion.div>
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
                 פרויקטים <span className="bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">מובילים</span>
               </h2>
               
-              <p className="text-xl text-apple-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
                 הצצה לפרויקטים האחרונים שלי - כל אחד מהם מספר סיפור של חדשנות וצמיחה
               </p>
             </div>
@@ -280,10 +248,10 @@ export default function Portfolio() {
               {/* Scrollable Container */}
               <div
                 ref={scrollRef}
-                className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
+                className="flex gap-3 sm:gap-4 md:gap-6 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth pb-4 px-4 sm:px-0"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
-                {portfolioItems.map((item, index) => (
+                {filteredItems.map((item, index) => (
                   <PortfolioCard key={item.id} item={item} index={index} />
                 ))}
               </div>
@@ -292,7 +260,7 @@ export default function Portfolio() {
 
           {/* Statistics */}
           <AppleStaggerItem>
-            <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="mt-12 sm:mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-4 sm:px-0">
               {[
                 { value: '50+', label: 'פרויקטים הושלמו' },
                 { value: '98%', label: 'לקוחות מרוצים' },

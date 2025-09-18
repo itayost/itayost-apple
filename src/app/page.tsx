@@ -1,9 +1,9 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { Suspense, lazy } from 'react'
+import { Suspense } from 'react'
 
-// Optimized dynamic imports with better loading states
+// Components - same for all screen sizes
 const Hero = dynamic(() => import('@/components/sections/Hero'), {
   loading: () => <div className="min-h-screen bg-gradient-to-b from-white to-apple-gray-50" />,
   ssr: true
@@ -27,18 +27,20 @@ const Contact = dynamic(() => import('@/components/sections/Contact'), {
 export default function HomePage() {
   return (
     <main className="overflow-hidden bg-white performance-container">
-      {/* Hero section loads immediately */}
+      {/* Hero section */}
       <Hero />
-      
-      {/* Other sections load with intersection observer */}
+
+      {/* Services section */}
       <Suspense fallback={<div className="min-h-[600px]" />}>
         <Services />
       </Suspense>
-      
+
+      {/* Portfolio section */}
       <Suspense fallback={<div className="min-h-[600px]" />}>
         <Portfolio />
       </Suspense>
-      
+
+      {/* Contact section */}
       <Suspense fallback={<div className="min-h-[600px]" />}>
         <Contact />
       </Suspense>

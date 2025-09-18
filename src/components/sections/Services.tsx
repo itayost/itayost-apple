@@ -61,7 +61,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
       className="relative group"
     >
       <Link href={service.href}>
-        <div className="relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden h-full">
+        <div className="relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden h-full">
           {/* Background Gradient */}
           <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
           
@@ -92,11 +92,11 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           </motion.div>
           
           {/* Content */}
-          <h3 className="text-2xl font-bold text-apple-gray-900 mb-3">
+          <h3 className="text-xl sm:text-2xl font-bold text-apple-gray-900 mb-3">
             {service.title}
           </h3>
           
-          <p className="text-apple-gray-600 mb-6 leading-relaxed">
+          <p className="text-sm sm:text-base text-apple-gray-600 mb-6 leading-relaxed">
             {service.description}
           </p>
           
@@ -176,7 +176,7 @@ export default function Services() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
-    <section ref={containerRef} className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white">
+    <section ref={containerRef} className="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <FloatingElement delay={0} />
@@ -205,11 +205,11 @@ export default function Services() {
                 </span>
               </motion.div>
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6">
                 פתרונות <span className="bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">מקצה לקצה</span>
               </h2>
               
-              <p className="text-xl text-apple-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
                 מהרעיון ועד ההשקה - אני מספק את כל השירותים הדרושים להצלחה הדיגיטלית שלך
               </p>
             </div>
@@ -217,7 +217,7 @@ export default function Services() {
 
           {/* Services Grid */}
           <AppleStaggerItem>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 px-4 sm:px-0">
               {services.map((service, index) => (
                 <ServiceCard key={index} service={service} index={index} />
               ))}
@@ -226,7 +226,7 @@ export default function Services() {
 
           {/* Additional Services */}
           <AppleStaggerItem>
-            <div className="mt-16 bg-white/80 backdrop-blur-xl rounded-3xl p-8 lg:p-12 shadow-xl">
+            <div className="mt-12 sm:mt-16 bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl mx-4 sm:mx-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h3 className="text-3xl font-bold text-apple-gray-900 mb-6">
