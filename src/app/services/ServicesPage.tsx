@@ -170,30 +170,39 @@ export default function ServicesPage() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5" />
         
         <div className="container relative z-10">
-          <AppleReveal>
-            <div className="text-center max-w-4xl mx-auto">
-              <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-apple-blue/10 backdrop-blur-xl rounded-full mb-6"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Zap className="w-4 h-4 text-apple-blue" />
-                <span className="text-sm font-medium text-apple-blue">
-                  השירותים שלנו
-                </span>
-              </motion.div>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6">
-                פתרונות דיגיטליים
-                <span className="block mt-2 bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">
-                  מקצה לקצה
-                </span>
-              </h1>
-              
-              <p className="text-xl text-apple-gray-600">
-                מהרעיון הראשוני ועד להשקה המוצלחת - אני מספק את כל השירותים הדרושים להצלחה הדיגיטלית שלך
-              </p>
-            </div>
-          </AppleReveal>
+          <div className="text-center max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-apple-blue/10 backdrop-blur-xl rounded-full mb-6"
+            >
+              <Zap className="w-4 h-4 text-apple-blue" />
+              <span className="text-sm font-medium text-apple-blue">
+                השירותים שלנו
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6"
+            >
+              פתרונות דיגיטליים
+              <span className="block mt-2 bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">
+                מקצה לקצה
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-apple-gray-600"
+            >
+              מהרעיון הראשוני ועד להשקה המוצלחת - אני מספק את כל השירותים הדרושים להצלחה הדיגיטלית שלך
+            </motion.p>
+          </div>
         </div>
       </section>
 

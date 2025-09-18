@@ -19,25 +19,25 @@ import Link from 'next/link'
 const services = [
   {
     icon: Code2,
-    title: 'פיתוח אתרים',
-    description: 'אתרים מותאמים אישית עם הטכנולוגיות המתקדמות ביותר - Next.js, React ועוד.',
-    features: ['ביצועים מהירים', 'SEO מתקדם', 'אבטחה מוגברת'],
+    title: 'אתרים ונוכחות דיגיטלית',
+    description: 'אתר שעובד בשבילך 24/7. אתר תדמית מרשים, דפי נחיתה ממירים, או חנות אונליין.',
+    features: ['עיצוב מותאם למותג', 'מהיר וממוקד בהמרות', 'כולל הדרכה מלאה'],
     gradient: 'from-blue-500 to-cyan-500',
     href: '/services#web-development'
   },
   {
     icon: Smartphone,
-    title: 'אפליקציות מובייל',
-    description: 'אפליקציות נייטיב ו-Cross Platform עם חוויית משתמש מושלמת.',
-    features: ['React Native', 'Flutter', 'עיצוב מותאם'],
+    title: 'מערכות ניהול חכמות',
+    description: 'תפסיק לנהל ידנית, תתחיל לנהל חכם. מערכות CRM, ניהול תורים, מעקב מלאי ועוד.',
+    features: ['ניהול לקוחות ולידים', 'מערכת תורים אוטומטית', 'דוחות וסטטיסטיקות'],
     gradient: 'from-purple-500 to-pink-500',
     href: '/services#mobile-apps'
   },
   {
     icon: Palette,
-    title: 'עיצוב UI/UX',
-    description: 'עיצוב ממשקים מרהיבים עם דגש על חוויית משתמש אינטואיטיבית.',
-    features: ['מחקר משתמשים', 'פרוטוטייפים', 'מערכות עיצוב'],
+    title: 'אוטומציה ואינטגרציות',
+    description: 'חבר את כל המערכות שלך. גרום למערכות השונות לדבר אחת עם השנייה.',
+    features: ['חיבור בין מערכות קיימות', 'אוטומציה של תהליכי עבודה', 'התראות וטריגרים חכמים'],
     gradient: 'from-orange-500 to-red-500',
     href: '/services#ui-ux'
   }
@@ -201,16 +201,16 @@ export default function Services() {
               >
                 <Layers className="w-4 h-4 text-apple-blue" />
                 <span className="text-sm font-medium text-apple-blue">
-                  השירותים שלנו
+                  איך אני יכול לעזור
                 </span>
               </motion.div>
               
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6">
-                פתרונות <span className="bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">מקצה לקצה</span>
+                איך אני יכול <span className="bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">לעזור לעסק שלך?</span>
               </h2>
-              
+
               <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-                מהרעיון ועד ההשקה - אני מספק את כל השירותים הדרושים להצלחה הדיגיטלית שלך
+                פתרונות דיגיטליים שמתאימים בדיוק לעסק שלך - ללא ז'רגון מסובך
               </p>
             </div>
           </AppleStaggerItem>
@@ -230,13 +230,13 @@ export default function Services() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h3 className="text-3xl font-bold text-apple-gray-900 mb-6">
-                    למה לבחור בנו?
+                    למה דווקא איתי?
                   </h3>
                   <div className="space-y-4">
                     {[
-                      { icon: Zap, text: 'ביצועים מהירים במיוחד' },
-                      { icon: Shield, text: 'אבטחה ברמה הגבוהה ביותר' },
-                      { icon: TrendingUp, text: 'תוצאות מדידות ומוכחות' },
+                      { icon: Zap, text: 'אני לא חברת תוכנה ענקית - אני בן אדם עם טלפון שעונה' },
+                      { icon: Shield, text: 'אני לא מוכר מוצר מדף - אני בונה בדיוק מה שאתה צריך' },
+                      { icon: TrendingUp, text: 'אני מדבר עברית פשוטה - בלי זרגון מסובך' },
                     ].map((item, index) => (
                       <motion.div
                         key={index}
@@ -264,16 +264,16 @@ export default function Services() {
                         className="bg-gradient-to-br from-apple-blue to-apple-blue-dark rounded-2xl p-6 text-white mb-4"
                         whileHover={{ scale: 1.05, rotate: -2 }}
                       >
-                        <div className="text-4xl font-bold mb-2">98%</div>
-                        <div className="text-white/80">שביעות רצון לקוחות</div>
+                        <div className="text-4xl font-bold mb-2">15</div>
+                        <div className="text-white/80">שעות נחסכות בשבוע</div>
                       </motion.div>
                       
                       <motion.div
                         className="bg-gradient-to-br from-apple-purple to-apple-pink rounded-2xl p-6 text-white"
                         whileHover={{ scale: 1.05, rotate: 2 }}
                       >
-                        <div className="text-4xl font-bold mb-2">2x</div>
-                        <div className="text-white/80">שיפור במהירות הטעינה</div>
+                        <div className="text-4xl font-bold mb-2">30%</div>
+                        <div className="text-white/80">הגדלת הכנסות</div>
                       </motion.div>
                     </div>
                   </AppleParallax>
@@ -293,7 +293,7 @@ export default function Services() {
                   href="/services"
                   className="inline-flex items-center justify-center px-8 py-4 text-white bg-gradient-to-r from-apple-blue to-apple-blue-dark rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  גלה את כל השירותים
+                  ראה את כל השירותים
                 </Link>
               </motion.div>
             </div>

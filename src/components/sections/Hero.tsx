@@ -161,14 +161,14 @@ export default function Hero() {
         <AppleStaggerChildren delay={0.2}>
           {/* Badge */}
           <AppleStaggerItem>
-            <motion.div 
+            <motion.div
               className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-xl rounded-full border border-apple-gray-200/50 mb-8"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Sparkles className="w-4 h-4 text-apple-blue" />
               <span className="text-sm font-medium text-apple-gray-700">
-                בניית חוויות דיגיטליות מרשימות
+                בואו נדבר על העסק שלך
               </span>
             </motion.div>
           </AppleStaggerItem>
@@ -176,14 +176,14 @@ export default function Hero() {
           {/* Main Headline */}
           <AppleStaggerItem>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold leading-tight mb-6">
-              <span className="block text-apple-gray-900">הפתרונות</span>
+              <span className="block text-apple-gray-900">הופכים טכנולוגיה</span>
               <span className="block mt-2">
                 <span className="bg-gradient-to-r from-apple-blue via-apple-purple to-apple-pink bg-clip-text text-transparent">
-                  הדיגיטליים
+                  מסובכת
                 </span>
               </span>
               <span className="block text-apple-gray-900 mt-2">
-                <TypewriterText text="שלך מתחילים כאן" />
+                <TypewriterText text="לפתרונות פשוטים" />
               </span>
             </h1>
           </AppleStaggerItem>
@@ -191,9 +191,9 @@ export default function Hero() {
           {/* Subtitle */}
           <AppleStaggerItem>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-apple-gray-600 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4 sm:px-0">
-              מעצב ומפתח אתרים ואפליקציות ברמה הגבוהה ביותר.
+              אני איתי, ואני עוזר לעסקים קטנים לחסוך זמן ולהרוויח יותר
               <br />
-              טכנולוגיות מתקדמות, עיצוב מרהיב וחוויית משתמש מושלמת.
+              עם פתרונות דיגיטליים שפשוט עובדים.
             </p>
           </AppleStaggerItem>
 
@@ -208,7 +208,7 @@ export default function Hero() {
                   href="/contact"
                   className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-white bg-gradient-to-r from-apple-blue to-apple-blue-dark rounded-full font-medium text-base sm:text-lg overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  <span className="relative z-10">בואו נתחיל</span>
+                  <span className="relative z-10">בואו נדבר על העסק שלך</span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-apple-purple to-apple-pink"
                     initial={{ x: '100%' }}
@@ -226,7 +226,7 @@ export default function Hero() {
                   href="/portfolio"
                   className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-apple-blue bg-white/80 backdrop-blur-xl border border-apple-gray-200 rounded-full font-medium text-base sm:text-lg hover:bg-white transition-all duration-300"
                 >
-                  צפייה בעבודות
+                  ראו איך עזרתי לאחרים
                 </Link>
               </motion.div>
             </div>
@@ -236,10 +236,10 @@ export default function Hero() {
           <AppleStaggerItem>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 md:mt-20 max-w-4xl mx-auto px-4 sm:px-0">
               {[
-                { number: '50+', label: 'פרויקטים' },
-                { number: '100%', label: 'שביעות רצון' },
-                { number: '5★', label: 'דירוג ממוצע' },
-                { number: '24/7', label: 'תמיכה' },
+                { number: '15', label: 'שעות שבועיות נחסכות' },
+                { number: '30%', label: 'עלייה בהכנסות' },
+                { number: '100%', label: 'לקוחות מרוצים' },
+                { number: '24/7', label: 'זמינות' },
               ].map((stat, index) => (
                 <motion.div
                   key={index}

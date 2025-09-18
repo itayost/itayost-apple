@@ -39,18 +39,18 @@ const contactInfo = [
     gradient: 'from-purple-500 to-pink-500'
   },
   {
-    icon: MapPin,
-    title: 'מיקום',
-    value: 'ישראל',
-    href: '#',
-    gradient: 'from-orange-500 to-red-500'
-  },
-  {
     icon: Clock,
     title: 'זמינות',
     value: 'א׳-ה׳ 9:00-18:00',
     href: '#',
     gradient: 'from-green-500 to-teal-500'
+  },
+  {
+    icon: MapPin,
+    title: 'מיקום',
+    value: 'רמת גן, ישראל',
+    href: '#',
+    gradient: 'from-orange-500 to-red-500'
   }
 ]
 
@@ -98,33 +98,34 @@ export default function Contact() {
   }
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-b from-apple-gray-50 to-white overflow-hidden">
-      <div className="container">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-apple-gray-50 to-white overflow-hidden">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AppleStaggerChildren>
           {/* Section Header */}
           <AppleStaggerItem>
-            <div className="text-center mb-16">
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
               <motion.div
                 className="inline-flex items-center gap-2 px-4 py-2 bg-apple-green/10 backdrop-blur-xl rounded-full mb-6"
                 whileHover={{ scale: 1.05 }}
               >
                 <MessageCircle className="w-4 h-4 text-apple-green" />
                 <span className="text-sm font-medium text-apple-green">
-                  בואו נדבר
+                  בואו נדבר על העסק שלך
                 </span>
               </motion.div>
               
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
-                יש לך <span className="bg-gradient-to-r from-apple-green to-apple-cyan bg-clip-text text-transparent">פרויקט בראש?</span>
+                מוכנים <span className="bg-gradient-to-r from-apple-green to-apple-cyan bg-clip-text text-transparent">להפסיק לבזבז זמן?</span>
               </h2>
-              
-              <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-                אשמח לשמוע על הרעיון שלך ולהפוך אותו למציאות דיגיטלית מרשימה
+
+              <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto">
+                בואו נדבר 15 דקות ונראה איך אני יכול לעזור לכם.
+                ללא עלות, ללא מחויבות - רק שיחה על האפשרויות.
               </p>
             </div>
           </AppleStaggerItem>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 px-4 sm:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
             {/* Contact Form */}
             <AppleStaggerItem>
               <motion.div
@@ -134,10 +135,10 @@ export default function Contact() {
                 transition={{ duration: 0.8 }}
               >
                 <h3 className="text-xl sm:text-2xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
-                  שלח הודעה
+                  ספר לי איך אני יכול לעזור
                 </h3>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 lg:space-y-6">
                   {/* Name Field */}
                   <div>
                     <label className="block text-sm font-medium text-apple-gray-700 mb-2">
@@ -151,7 +152,7 @@ export default function Contact() {
                       onFocus={() => setFocusedField('name')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
                       placeholder="ישראל ישראלי"
                       animate={{
                         scale: focusedField === 'name' ? 1.01 : 1
@@ -172,7 +173,7 @@ export default function Contact() {
                       onFocus={() => setFocusedField('email')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
                       placeholder="example@email.com"
                       animate={{
                         scale: focusedField === 'email' ? 1.01 : 1
@@ -192,7 +193,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('phone')}
                       onBlur={() => setFocusedField(null)}
-                      className="w-full px-4 py-3 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
                       placeholder="050-1234567"
                       animate={{
                         scale: focusedField === 'phone' ? 1.01 : 1
@@ -212,16 +213,16 @@ export default function Contact() {
                       onFocus={() => setFocusedField('subject')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
                       animate={{
                         scale: focusedField === 'subject' ? 1.01 : 1
                       }}
                     >
                       <option value="">בחר נושא</option>
-                      <option value="website">פיתוח אתר</option>
-                      <option value="app">פיתוח אפליקציה</option>
-                      <option value="design">עיצוב UI/UX</option>
-                      <option value="consulting">ייעוץ</option>
+                      <option value="website">אתר שעובד 24/7</option>
+                      <option value="crm">מערכת ניהול לקוחות</option>
+                      <option value="automation">אוטומציה וחיסכון זמן</option>
+                      <option value="consulting">ייעוץ דיגיטלי</option>
                       <option value="other">אחר</option>
                     </motion.select>
                   </div>
@@ -238,9 +239,9 @@ export default function Contact() {
                       onFocus={() => setFocusedField('message')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all resize-none"
-                      placeholder="ספר לי על הפרויקט שלך..."
+                      rows={5}
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all resize-none text-base"
+                      placeholder="מה העסק שלך? מה מעיק עליך? איפה אתה מבזבז זמן?"
                       animate={{
                         scale: focusedField === 'message' ? 1.01 : 1
                       }}
@@ -251,7 +252,7 @@ export default function Contact() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting || submitStatus === 'success'}
-                    className="w-full py-4 bg-gradient-to-r from-apple-blue to-apple-blue-dark text-white rounded-xl font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-apple-blue to-apple-blue-dark text-white rounded-xl font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -298,44 +299,52 @@ export default function Contact() {
 
             {/* Contact Information */}
             <AppleStaggerItem>
-              <div className="space-y-6">
-                {/* Info Cards */}
-                {contactInfo.map((info, index) => (
+              <div className="lg:space-y-6">
+                {/* Section Title - Mobile/Tablet only */}
+                <div className="lg:hidden mb-6">
+                  <h3 className="text-xl font-bold text-apple-gray-900 mb-2">פרטי התקשרות</h3>
+                  <p className="text-sm text-apple-gray-600">אני זמין דרך המגוון הרחב של ערוצי התקשורת</p>
+                </div>
+
+                {/* Info Cards Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-5">
+                  {contactInfo.map((info, index) => (
                   <AppleReveal key={index} direction="right" delay={index * 0.1}>
                     <motion.a
                       href={info.href}
-                      className="block bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="block bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300"
                       whileHover={{ scale: 1.02, x: 10 }}
                     >
                       <div className="flex items-center gap-4">
-                        <div className={`w-12 h-12 bg-gradient-to-br ${info.gradient} rounded-xl flex items-center justify-center text-white`}>
-                          <info.icon size={24} />
+                        <div className={`w-14 h-14 bg-gradient-to-br ${info.gradient} rounded-xl flex items-center justify-center text-white flex-shrink-0`}>
+                          <info.icon size={26} />
                         </div>
-                        <div>
-                          <div className="text-sm text-apple-gray-500">{info.title}</div>
-                          <div className="text-lg font-medium text-apple-gray-900">{info.value}</div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm text-apple-gray-500 mb-0.5">{info.title}</div>
+                          <div className="text-base font-semibold text-apple-gray-900 break-words">{info.value}</div>
                         </div>
                       </div>
                     </motion.a>
                   </AppleReveal>
-                ))}
-                
+                  ))}
+                </div>
+
                 {/* Quick Actions */}
                 <AppleReveal direction="right" delay={0.4}>
-                  <div className="bg-gradient-to-br from-apple-blue/5 to-apple-purple/5 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                  <div className="bg-gradient-to-br from-apple-blue/5 to-apple-purple/5 rounded-xl sm:rounded-2xl p-6 mt-4 lg:mt-6">
                     <h4 className="text-lg font-bold text-apple-gray-900 mb-4 flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-apple-blue" />
-                      דרכים נוספות ליצור קשר
+                      לא אוהבים טפסים?
                     </h4>
-                    <div className="space-y-3">
+                    <div className="flex flex-wrap gap-4">
                       <a
                         href="https://wa.me/972544994417"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 text-apple-gray-700 hover:text-apple-blue transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-all text-apple-gray-700 hover:text-apple-blue"
                       >
-                        <MessageCircle size={20} />
-                        <span>WhatsApp</span>
+                        <MessageCircle size={18} />
+                        <span className="font-medium">WhatsApp</span>
                       </a>
                     </div>
                   </div>

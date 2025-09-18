@@ -176,16 +176,16 @@ export default function Portfolio() {
               >
                 <Sparkles className="w-4 h-4 text-apple-purple" />
                 <span className="text-sm font-medium text-apple-purple">
-                  תיק העבודות
+                  סיפורי הצלחה
                 </span>
               </motion.div>
               
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
-                פרויקטים <span className="bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">מובילים</span>
+                סיפורי הצלחה <span className="bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">מהשטח</span>
               </h2>
-              
+
               <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-                הצצה לפרויקטים האחרונים שלי - כל אחד מהם מספר סיפור של חדשנות וצמיחה
+                עסקים אמיתיים שחסכו זמן, הגדילו הכנסות ושיפרו את החיים שלהם
               </p>
             </div>
           </AppleStaggerItem>
@@ -262,10 +262,10 @@ export default function Portfolio() {
           <AppleStaggerItem>
             <div className="mt-12 sm:mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-4 sm:px-0">
               {[
-                { value: '50+', label: 'פרויקטים הושלמו' },
-                { value: '98%', label: 'לקוחות מרוצים' },
-                { value: '2M+', label: 'שורות קוד' },
-                { value: '5★', label: 'דירוג ממוצע' }
+                { value: '500+', label: 'שעות נחסכו לעסקים' },
+                { value: '100%', label: 'לקוחות מרוצים' },
+                { value: '30%', label: 'גידול ממוצע בהכנסות' },
+                { value: '24/7', label: 'זמינות ותמיכה' }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
