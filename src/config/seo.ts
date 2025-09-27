@@ -231,13 +231,6 @@ export const seoConfig = {
         },
         geoRadius: '50000'
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '27',
-        bestRating: '5',
-        worstRating: '1'
-      },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'שירותי פיתוח תוכנה',
@@ -292,13 +285,6 @@ export const seoConfig = {
       areaServed: {
         '@type': 'Country',
         name: 'Israel',
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '27',
-        bestRating: '5',
-        worstRating: '1'
       },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
