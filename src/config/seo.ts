@@ -149,6 +149,13 @@ export const seoConfig = {
         minValue: 1,
         maxValue: 10,
       },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '27',
+        bestRating: '5',
+        worstRating: '1'
+      },
     },
 
     website: {
@@ -285,6 +292,13 @@ export const seoConfig = {
       areaServed: {
         '@type': 'Country',
         name: 'Israel',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '27',
+        bestRating: '5',
+        worstRating: '1'
       },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
