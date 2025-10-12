@@ -294,6 +294,83 @@ export const content = {
     message: 'מצטער, הדף שחיפשת לא קיים או הועבר.',
     button: 'חזרה לדף הבית',
   },
+
+  // Blog Page
+  blog: {
+    title: 'הבלוג',
+    subtitle: 'שלנו',
+    description: 'מאמרים, טיפים וטריקים בנושאי פיתוח תוכנה, עיצוב וטכנולוגיות חדשות',
+    sectionLabel: 'המאמרים שלנו',
+    readMore: 'קרא עוד',
+    categories: {
+      all: 'הכל',
+      webDev: 'פיתוח Web',
+      mobile: 'אפליקציות מובייל',
+      design: 'עיצוב UI/UX',
+      tech: 'טכנולוגיות חדשות',
+      tips: 'טיפים ותובנות',
+    },
+    comingSoon: {
+      title: 'בקרוב...',
+      message: 'אנחנו עובדים על תוכן איכותי עבורכם. בינתיים, צרו איתנו קשר לכל שאלה או ייעוץ.',
+      cta: 'צור קשר',
+    },
+  },
+
+  // Guides Page
+  guides: {
+    title: 'מדריכים',
+    subtitle: 'ותוכן לימודי',
+    description: 'מדריכים מפורטים ומעשיים ללימוד פיתוח אתרים ואפליקציות',
+    sectionLabel: 'המדריכים שלנו',
+    levels: {
+      beginner: 'מתחילים',
+      intermediate: 'בינוני',
+      advanced: 'מתקדמים',
+    },
+    topics: {
+      react: 'React',
+      nextjs: 'Next.js',
+      nodejs: 'Node.js',
+      typescript: 'TypeScript',
+      design: 'עיצוב',
+    },
+    comingSoon: {
+      title: 'מדריכים בפיתוח...',
+      message: 'אנחנו מכינים מדריכים מקיפים ומפורטים עבורכם. רוצים ללמוד נושא מסוים? ספרו לנו!',
+      cta: 'בקשו מדריך',
+    },
+  },
+
+  // FAQ Page
+  faq: {
+    title: 'שאלות',
+    subtitle: 'נפוצות',
+    description: 'תשובות לשאלות הנפוצות ביותר על שירותי הפיתוח שלנו',
+    sectionLabel: 'שאלות תשובות',
+    categories: {
+      general: 'כללי',
+      pricing: 'מחירים',
+      process: 'תהליך העבודה',
+      technical: 'טכני',
+      support: 'תמיכה',
+    },
+  },
+
+  // Terms Page
+  terms: {
+    title: 'תנאי שימוש',
+    subtitle: 'ומדיניות פרטיות',
+    description: 'כל המידע החשוב על תנאי השימוש, מדיניות הפרטיות וזכויות היוצרים שלנו',
+    sectionLabel: 'תנאים ומדיניות',
+    lastUpdated: 'עדכון אחרון',
+    sections: {
+      terms: 'תנאי שימוש',
+      privacy: 'מדיניות פרטיות',
+      cookies: 'מדיניות Cookies',
+      copyright: 'זכויות יוצרים',
+    },
+  },
 }
 
 // Type exports

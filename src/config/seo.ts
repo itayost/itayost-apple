@@ -102,6 +102,30 @@ export const seoConfig = {
       keywords: ['צור קשר', 'הצעת מחיר', 'ייעוץ חינם', 'פגישת היכרות'],
       canonical: 'https://www.itayost.com/contact',
     },
+    blog: {
+      title: 'בלוג | מאמרים וטיפים בפיתוח תוכנה',
+      description: 'מאמרים, טיפים וטריקים בנושאי פיתוח תוכנה, עיצוב UI/UX, טכנולוגיות חדשות ומגמות בעולם הדיגיטל. תוכן איכותי בעברית למפתחים ויזמים.',
+      keywords: ['בלוג פיתוח', 'מאמרים טכניים', 'טיפים לפיתוח', 'מדריכי תכנות', 'עדכוני טכנולוגיה'],
+      canonical: 'https://www.itayost.com/blog',
+    },
+    guides: {
+      title: 'מדריכים | מדריכי פיתוח ותכנות',
+      description: 'מדריכים מפורטים ומעשיים לפיתוח אתרים ואפליקציות. למדו React, Next.js, Node.js, TypeScript ועוד. מדריכים בעברית עם דוגמאות קוד.',
+      keywords: ['מדריכי תכנות', 'לימוד פיתוח', 'React tutorial', 'Next.js guide', 'מדריך עברית'],
+      canonical: 'https://www.itayost.com/guides',
+    },
+    faq: {
+      title: 'שאלות נפוצות | כל מה שרציתם לדעת',
+      description: 'תשובות לשאלות הנפוצות ביותר על שירותי הפיתוח, מחירים, לוחות זמנים, תהליך העבודה ותמיכה טכנית. קבלו תשובות ברורות לכל השאלות.',
+      keywords: ['שאלות נפוצות', 'FAQ', 'מחירון פיתוח', 'זמני פיתוח', 'תמיכה טכנית'],
+      canonical: 'https://www.itayost.com/faq',
+    },
+    terms: {
+      title: 'תנאי שימוש ומדיניות פרטיות',
+      description: 'תנאי השימוש, מדיניות הפרטיות וזכויות היוצרים של האתר. הגנת המידע האישי שלכם חשובה לנו.',
+      keywords: ['תנאי שימוש', 'מדיניות פרטיות', 'זכויות יוצרים', 'הגנת פרטיות'],
+      canonical: 'https://www.itayost.com/terms',
+    },
   },
 
   // Structured Data Schemas
@@ -336,6 +360,10 @@ export const seoConfig = {
           portfolio: 'תיק עבודות',
           about: 'אודות',
           contact: 'צור קשר',
+          blog: 'בלוג',
+          guides: 'מדריכים',
+          faq: 'שאלות נפוצות',
+          terms: 'תנאי שימוש',
         }[path] || path
 
         items.push({
