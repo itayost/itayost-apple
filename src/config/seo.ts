@@ -126,6 +126,12 @@ export const seoConfig = {
       keywords: ['תנאי שימוש', 'מדיניות פרטיות', 'זכויות יוצרים', 'הגנת פרטיות'],
       canonical: 'https://www.itayost.com/terms',
     },
+    clients: {
+      title: 'לקוחות ומלצות | סיפורי הצלחה',
+      description: 'הכירו את הלקוחות המרוצים שלנו, קראו המלצות אמיתיות וסיפורי הצלחה. למעלה מ-50 עסקים סומכים עלינו לפתרונות דיגיטליים.',
+      keywords: ['לקוחות', 'המלצות', 'ביקורות', 'סיפורי הצלחה', 'לקוחות מרוצים', 'תיקי עבודות'],
+      canonical: 'https://www.itayost.com/clients',
+    },
   },
 
   // Structured Data Schemas
@@ -364,6 +370,7 @@ export const seoConfig = {
           guides: 'מדריכים',
           faq: 'שאלות נפוצות',
           terms: 'תנאי שימוש',
+          clients: 'לקוחות',
         }[path] || path
 
         items.push({

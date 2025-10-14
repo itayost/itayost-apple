@@ -371,6 +371,47 @@ export const content = {
       copyright: 'זכויות יוצרים',
     },
   },
+
+  // Clients Page
+  clients: {
+    title: 'הלקוחות',
+    subtitle: 'שלנו',
+    description: 'סיפורי הצלחה, המלצות אמיתיות ולקוחות מרוצים שבחרו לעבוד איתנו',
+    sectionLabel: 'לקוחות מרוצים',
+    stats: {
+      clients: 'לקוחות מרוצים',
+      projects: 'פרויקטים הושלמו',
+      satisfaction: 'שביעות רצון',
+      years: 'שנות ניסיון',
+    },
+    testimonials: {
+      title: 'מה הלקוחות אומרים',
+      subtitle: 'המלצות אמיתיות מלקוחות מרוצים',
+    },
+    industries: {
+      title: 'התעשיות שלנו',
+      subtitle: 'אנחנו עובדים עם עסקים ממגוון תחומים',
+      all: 'הכל',
+      restaurants: 'מסעדות',
+      realEstate: 'נדל"ן',
+      ecommerce: 'מסחר אלקטרוני',
+      healthcare: 'בריאות',
+      education: 'חינוך',
+      technology: 'טכנולוגיה',
+      services: 'שירותים',
+      other: 'אחר',
+    },
+    caseStudies: {
+      title: 'סיפורי הצלחה',
+      subtitle: 'פרויקטים שהצליחנו להביא לתוצאות מדהימות',
+      viewMore: 'קרא עוד',
+    },
+    cta: {
+      title: 'רוצים להצטרף ללקוחות המרוצים שלנו?',
+      subtitle: 'בואו ניצור משהו מדהים ביחד',
+      button: 'התחילו פרויקט',
+    },
+  },
 }
 
 // Type exports

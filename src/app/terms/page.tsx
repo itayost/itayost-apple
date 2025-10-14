@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next'
 import TermsPage from './TermsPage'
 import { seoConfig } from '@/config/seo'
