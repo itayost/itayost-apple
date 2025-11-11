@@ -45,6 +45,20 @@ export const portfolioData = [
       text: 'המערכת שינתה לחלוטין את האופן שבו אנחנו מנהלים את המטבח. חסכנו המון זמן וכסף, והלקוחות שלנו מרוצים יותר מתמיד.',
       author: 'עמוס כהן',
       role: 'בעל מסעדה'
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'עמוס כהן'
+      },
+      reviewBody: 'המערכת שינתה לחלוטין את האופן שבו אנחנו מנהלים את המטבח. חסכנו המון זמן וכסף, והלקוחות שלנו מרוצים יותר מתמיד.',
+      datePublished: '2024-01-15'
     }
   },
   {
@@ -93,6 +107,20 @@ export const portfolioData = [
       text: 'האתר החדש הביא לנו פי 2 הזמנות אונליין. העיצוב מדהים והלקוחות מתלהבים!',
       author: 'מרטין לוי',
       role: 'בעל המסעדה'
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'מרטין לוי'
+      },
+      reviewBody: 'האתר החדש הביא לנו פי 2 הזמנות אונליין. העיצוב מדהים והלקוחות מתלהבים!',
+      datePublished: '2024-02-20'
     }
   },
   {
@@ -141,6 +169,20 @@ export const portfolioData = [
       text: 'המערכת חסכה לנו אינספור שעות עבודה ושיפרה משמעותית את חווית הלמידה של התלמידים.',
       author: 'ד״ר רחל פדר',
       role: 'מנהלת האקדמיה'
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'ד״ר רחל פדר'
+      },
+      reviewBody: 'המערכת חסכה לנו אינספור שעות עבודה ושיפרה משמעותית את חווית הלמידה של התלמידים.',
+      datePublished: '2024-03-10'
     }
   },
   {
@@ -189,6 +231,20 @@ export const portfolioData = [
       text: 'הדף נחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
       author: 'טל כהן',
       role: 'יועץ נדל״ן בכיר'
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'טל כהן'
+      },
+      reviewBody: 'הדף נחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
+      datePublished: '2024-04-05'
     }
   }
 ]

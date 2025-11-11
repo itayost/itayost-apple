@@ -36,7 +36,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/guides`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/faq`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/clients`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
   ]
+
+  // TODO: Add dynamic blog posts when blog is populated
+  // Example:
+  // const blogPosts = await getBlogPosts()
+  // const blogPages = blogPosts.map(post => ({
+  //   url: `${baseUrl}/blog/${post.slug}`,
+  //   lastModified: post.updatedAt,
+  //   changeFrequency: 'monthly' as const,
+  //   priority: 0.6,
+  // }))
+  // pages.push(...blogPages)
 
   // Add language alternates if multi-language support is added
   // const pagesWithAlternates = pages.map(page => ({
