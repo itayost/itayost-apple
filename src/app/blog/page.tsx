@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
-import BlogPage from './BlogPage'
+import BlogListingClient from './BlogListingClient'
 import { seoConfig } from '@/config/seo'
 import { JsonLd } from '@/components/common/JsonLd'
+import { getAllPosts } from '@/lib/blog'
 
 export const metadata: Metadata = {
   title: seoConfig.pages.blog.title,
@@ -18,11 +19,24 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Page() {
+export default async function Page() {
+  const posts = await getAllPosts()
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
-      seoConfig.structuredData.organization,
+      // Blog schema
+      {
+        '@type': 'Blog',
+        '@id': 'https://www.itayost.com/blog/#blog',
+        name: seoConfig.pages.blog.title,
+        description: seoConfig.pages.blog.description,
+        url: seoConfig.pages.blog.canonical,
+        publisher: {
+          '@id': 'https://www.itayost.com/#organization',
+        },
+        inLanguage: 'he-IL',
+      },
       seoConfig.structuredData.breadcrumbs('/blog'),
       {
         '@type': 'CollectionPage',
@@ -40,7 +54,7 @@ export default function Page() {
   return (
     <>
       <JsonLd data={structuredData} />
-      <BlogPage />
+      <BlogListingClient posts={posts} />
     </>
   )
 }

@@ -132,6 +132,38 @@ export const seoConfig = {
       keywords: ['לקוחות', 'המלצות', 'ביקורות', 'סיפורי הצלחה', 'לקוחות מרוצים', 'תיקי עבודות'],
       canonical: 'https://www.itayost.com/clients',
     },
+
+    // Service landing pages
+    'web-development': {
+      title: 'פיתוח אתרים | Next.js, React, אתרים מהירים ומאובטחים',
+      description: 'פיתוח אתרים מקצועיים עם Next.js 14 - אתרים מהירים פי 3 מוורדפרס, אבטחה מובנית, SEO מעולה. תמיכה מלאה בעברית RTL. קבל הצעת מחיר מותאמת.',
+      keywords: ['פיתוח אתרים', 'Next.js', 'React', 'פיתוח אתר לעסק', 'בניית אתר תדמית', 'אתר מהיר', 'אתר עברית'],
+      canonical: 'https://www.itayost.com/services/web-development',
+    },
+    'ecommerce': {
+      title: 'חנויות אונליין | מסחר אלקטרוני עם תשלומים ישראליים',
+      description: 'בניית חנויות אונליין מותאמות עם Bit, PayBox, Tranzila. ניהול מלאי, משלוחים, קופונים, דוחות. ללא עמלות חודשיות. קבל הצעת מחיר מותאמת.',
+      keywords: ['חנות אונליין', 'מסחר אלקטרוני', 'e-commerce', 'בניית חנות', 'Shopify', 'תשלומים ישראליים', 'Bit', 'PayBox'],
+      canonical: 'https://www.itayost.com/services/ecommerce',
+    },
+    'crm-systems': {
+      title: 'מערכות CRM | ניהול לקוחות ואוטומציה מותאמת',
+      description: 'פיתוח מערכות CRM מותאמות לניהול לקוחות, עסקאות, משימות ואוטומציה. שליטה מלאה, ללא עמלות. אינטגרציה עם דואר, לוח שנה, WhatsApp. קבל הצעת מחיר.',
+      keywords: ['מערכת CRM', 'ניהול לקוחות', 'CRM מותאם', 'אוטומציה שיווקית', 'ניהול עסקאות', 'מערכת ניהול'],
+      canonical: 'https://www.itayost.com/services/crm-systems',
+    },
+    'ui-ux-design': {
+      title: 'עיצוב UI/UX | עיצוב ממשקים שממירים',
+      description: 'עיצוב ממשקים ומסעות משתמש מבוסס מחקר, נתונים וCRO. עיצוב ב-Figma, בדיקות משתמשים, Design System מלא. נגישות WCAG 2.1. קבל הצעת מחיר.',
+      keywords: ['עיצוב UI/UX', 'עיצוב ממשק משתמש', 'Figma', 'User Experience', 'עיצוב אפליקציה', 'עיצוב אתר', 'CRO'],
+      canonical: 'https://www.itayost.com/services/ui-ux-design',
+    },
+    'landing-pages': {
+      title: 'דפי נחיתה | Landing Pages שמייצרים לידים',
+      description: 'דפי נחיתה ממירים לקמפיינים, השקות ומבצעים. בנייה מהירה תוך 3-7 ימים. A/B Testing, אנליטיקס, אופטימיזציה שוטפת. קבל הצעת מחיר.',
+      keywords: ['דף נחיתה', 'Landing Page', 'דף קמפיין', 'דף המרה', 'Google Ads', 'Facebook Ads', 'A/B Testing'],
+      canonical: 'https://www.itayost.com/services/landing-pages',
+    },
   },
 
   // Structured Data Schemas

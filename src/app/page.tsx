@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { seoConfig } from '@/config/seo'
 import { JsonLd } from '@/components/common/JsonLd'
+import { getAllPosts } from '@/lib/blog'
+import LatestBlogPosts from '@/components/common/LatestBlogPosts'
 
 // Components - same for all screen sizes
 const Hero = dynamic(() => import('@/components/sections/Hero'), {
@@ -48,7 +50,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Get latest blog posts
+  const posts = await getAllPosts()
+  const latestPosts = posts.slice(0, 3)
+
   // Structured data for homepage
   const structuredData = {
     '@context': 'https://schema.org',
@@ -76,6 +82,16 @@ export default function HomePage() {
         <Suspense fallback={<div className="min-h-[600px]" />}>
           <Portfolio />
         </Suspense>
+
+        {/* Latest blog posts */}
+        {latestPosts.length > 0 && (
+          <LatestBlogPosts
+            posts={latestPosts}
+            title="מהבלוג שלנו"
+            description="מאמרים, טיפים ומדריכים בנושאי פיתוח אתרים וטכנולוגיה"
+            showAll={true}
+          />
+        )}
 
         {/* Contact section */}
         <Suspense fallback={<div className="min-h-[600px]" />}>
