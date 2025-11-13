@@ -350,7 +350,6 @@ export const content = {
     sectionLabel: 'שאלות תשובות',
     categories: {
       general: 'כללי',
-      pricing: 'מחירים',
       process: 'תהליך העבודה',
       technical: 'טכני',
       support: 'תמיכה',
