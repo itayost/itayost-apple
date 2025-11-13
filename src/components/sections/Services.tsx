@@ -92,11 +92,11 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           </motion.div>
           
           {/* Content */}
-          <h3 className="text-xl sm:text-2xl font-bold text-brand-gray-900 mb-3">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy mb-4">
             {service.title}
           </h3>
-          
-          <p className="text-sm sm:text-base text-brand-gray-600 mb-6 leading-relaxed">
+
+          <p className="text-base sm:text-lg lg:text-xl text-brand-gray-700 mb-6 leading-relaxed">
             {service.description}
           </p>
           
@@ -108,9 +108,9 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="flex items-center text-sm text-brand-gray-500"
+                className="flex items-center text-base lg:text-lg text-brand-gray-600"
               >
-                <Sparkles className="w-4 h-4 text-brand-blue mr-2" />
+                <Sparkles className="w-5 h-5 text-brand-blue mr-2" />
                 {feature}
               </motion.li>
             ))}
@@ -118,7 +118,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           
           {/* CTA */}
           <motion.div
-            className="inline-flex items-center text-brand-blue font-medium group"
+            className="inline-flex items-center text-brand-blue font-semibold text-base lg:text-lg group"
             whileHover={{ x: 5 }}
           >
             <span>למידע נוסף</span>
@@ -199,17 +199,17 @@ export default function Services() {
                 className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 backdrop-blur-xl rounded-full mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <Layers className="w-4 h-4 text-brand-blue" />
-                <span className="text-sm font-medium text-brand-blue">
+                <Layers className="w-5 h-5 text-brand-blue" />
+                <span className="text-base font-medium text-brand-blue">
                   איך אני יכול לעזור
                 </span>
               </motion.div>
-              
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6">
-                איך אני יכול <span className="bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">לעזור לעסק שלך?</span>
+
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-brand-navy mb-6">
+                איך אני יכול <span className="bg-gradient-to-r from-brand-blue to-brand-orange bg-clip-text text-transparent">לעזור לעסק שלך?</span>
               </h2>
 
-              <p className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-brand-gray-700 max-w-3xl mx-auto px-4 sm:px-0">
                 פתרונות דיגיטליים שמתאימים בדיוק לעסק שלך - ללא ז'רגון מסובך
               </p>
             </div>
@@ -229,7 +229,7 @@ export default function Services() {
             <div className="mt-12 sm:mt-16 bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl mx-4 sm:mx-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h3 className="text-3xl font-bold text-brand-gray-900 mb-6">
+                  <h3 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
                     למה דווקא איתי?
                   </h3>
                   <div className="space-y-4">
@@ -248,7 +248,7 @@ export default function Services() {
                         <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-brand-blue to-brand-purple rounded-xl flex items-center justify-center text-white">
                           <item.icon size={20} />
                         </div>
-                        <p className="text-brand-gray-700 font-medium">
+                        <p className="text-brand-gray-800 font-medium text-base lg:text-lg">
                           {item.text}
                         </p>
                       </motion.div>
@@ -264,8 +264,8 @@ export default function Services() {
                         className="bg-gradient-to-br from-brand-blue to-brand-blue-dark rounded-2xl p-6 text-white mb-4"
                         whileHover={{ scale: 1.05, rotate: -2 }}
                       >
-                        <div className="text-4xl font-bold mb-2">15</div>
-                        <div className="text-white/80">שעות נחסכות בשבוע</div>
+                        <div className="text-5xl font-bold mb-2">15</div>
+                        <div className="text-white text-lg">שעות נחסכות בשבוע</div>
                       </motion.div>
                       
                       <motion.div

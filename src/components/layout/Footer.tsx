@@ -73,12 +73,12 @@ export function Footer() {
               transition={{ duration: 0.6 }}
             >
               <Link href="/" className="inline-block mb-6">
-                <div className="text-3xl font-bold bg-gradient-to-r from-brand-blue to-brand-navy bg-clip-text text-transparent">
+                <div className="text-4xl lg:text-5xl font-bold text-white">
                   ITAYOST
                 </div>
               </Link>
-              
-              <p className="text-brand-gray-400 mb-6 max-w-sm leading-relaxed">
+
+              <p className="text-brand-gray-200 text-base lg:text-lg mb-6 max-w-sm leading-relaxed">
                 מעצב ומפתח פתרונות דיגיטליים מתקדמים עם דגש על חדשנות, יצירתיות וחוויית משתמש מושלמת.
               </p>
               
@@ -86,22 +86,22 @@ export function Footer() {
               <div className="space-y-3">
                 <a
                   href="tel:0544994417"
-                  className="flex items-center gap-3 text-brand-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-3 text-brand-gray-200 hover:text-white transition-colors text-base lg:text-lg"
                 >
-                  <Phone size={18} />
+                  <Phone size={20} />
                   <span>054-499-4417</span>
                 </a>
-                
+
                 <a
                   href="mailto:itayost1@gmail.com"
-                  className="flex items-center gap-3 text-brand-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-3 text-brand-gray-200 hover:text-white transition-colors text-base lg:text-lg"
                 >
-                  <Mail size={18} />
+                  <Mail size={20} />
                   <span>itayost1@gmail.com</span>
                 </a>
-                
-                <div className="flex items-center gap-3 text-brand-gray-400">
-                  <MapPin size={18} />
+
+                <div className="flex items-center gap-3 text-brand-gray-200 text-base lg:text-lg">
+                  <MapPin size={20} />
                   <span>ישראל</span>
                 </div>
               </div>
@@ -116,16 +116,16 @@ export function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <h3 className="font-semibold text-white mb-4">
+              <h3 className="font-semibold text-white mb-4 text-lg lg:text-xl">
                 {section.title}
               </h3>
-              
-              <ul className="space-y-2">
+
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-brand-gray-400 hover:text-white transition-colors text-sm"
+                      className="text-brand-gray-200 hover:text-white transition-colors text-base lg:text-lg"
                     >
                       {link.label}
                     </Link>
@@ -145,10 +145,10 @@ export function Footer() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-xl font-semibold mb-2">
+              <h3 className="text-2xl lg:text-3xl font-semibold mb-2">
                 הישאר מעודכן
               </h3>
-              <p className="text-brand-gray-400">
+              <p className="text-brand-gray-200 text-base lg:text-lg">
                 קבל עדכונים על פרויקטים חדשים וטיפים לפיתוח
               </p>
             </div>
@@ -178,9 +178,9 @@ export function Footer() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-brand-gray-400 text-sm flex items-center gap-1"
+            className="text-brand-gray-200 flex items-center gap-1"
           >
-            <span>© 2025 ITAYOST. כל הזכויות שמורות.</span>
+            <span className="text-base lg:text-lg">© 2025 ITAYOST. כל הזכויות שמורות.</span>
             <span className="text-red-500">
               <Heart size={14} className="inline" />
             </span>

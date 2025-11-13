@@ -88,7 +88,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
               className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-end p-6"
             >
               <div className="text-white">
-                <div className="flex gap-4 text-sm">
+                <div className="flex gap-4 text-base lg:text-lg font-semibold">
                   {item.stats && Object.entries(item.stats).slice(0, 2).map(([key, value]) => (
                     <span key={key} className="flex items-center gap-1">
                       {key === 'efficiency' || key === 'conversion' || key === 'reservations' ? <TrendingUp size={16} /> :
@@ -107,7 +107,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
         {/* Client Badge */}
         <div className="absolute top-4 right-4">
           <motion.div
-            className="px-3 py-1 bg-white/90 backdrop-blur-xl rounded-full text-xs font-medium text-brand-gray-700"
+            className="px-3 py-1.5 bg-white/90 backdrop-blur-xl rounded-full text-sm font-semibold text-brand-navy"
             whileHover={{ scale: 1.05 }}
           >
             {item.client}
@@ -117,7 +117,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
         {/* Live Badge */}
         {item.link && (
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 bg-green-500/90 backdrop-blur-xl text-white rounded-full text-xs font-medium flex items-center gap-1">
+            <span className="px-3 py-1.5 bg-green-500/90 backdrop-blur-xl text-white rounded-full text-sm font-semibold flex items-center gap-1">
               <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
               Live
             </span>
@@ -127,11 +127,11 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
       
       {/* Content */}
       <div className="p-4 sm:p-5 md:p-6">
-        <h3 className="text-lg sm:text-xl font-bold text-brand-gray-900 mb-2">
+        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-navy mb-3">
           {item.title}
         </h3>
-        
-        <p className="text-brand-gray-600 mb-4 text-sm leading-relaxed">
+
+        <p className="text-brand-gray-700 mb-4 text-base lg:text-lg leading-relaxed">
           {item.description}
         </p>
         
@@ -140,7 +140,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
           {item.tags.map((tag, idx) => (
             <span
               key={idx}
-              className="px-2 py-1 bg-brand-gray-100 rounded-md text-xs text-brand-gray-600"
+              className="px-3 py-1.5 bg-brand-gray-100 rounded-md text-sm font-medium text-brand-gray-700"
             >
               {tag}
             </span>
@@ -151,19 +151,19 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
         {item.link ? (
           <a href={item.link} target="_blank" rel="noopener noreferrer">
             <motion.div
-              className="inline-flex items-center gap-2 text-brand-blue font-medium"
+              className="inline-flex items-center gap-2 text-brand-blue font-semibold text-base lg:text-lg"
               whileHover={{ x: -5 }}
             >
               <span>צפייה באתר</span>
-              <ExternalLink size={16} />
+              <ExternalLink size={20} />
             </motion.div>
           </a>
         ) : (
           <motion.div
-            className="inline-flex items-center gap-2 text-brand-gray-500 font-medium"
+            className="inline-flex items-center gap-2 text-brand-gray-700 font-semibold text-base lg:text-lg"
           >
             <span>פרטים נוספים</span>
-            <Code2 size={16} />
+            <Code2 size={20} />
           </motion.div>
         )}
       </div>
@@ -190,17 +190,17 @@ export default function Portfolio() {
                 className="inline-flex items-center gap-2 px-4 py-2 bg-brand-purple/10 backdrop-blur-xl rounded-full mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <Sparkles className="w-4 h-4 text-brand-purple" />
-                <span className="text-sm font-medium text-brand-purple">
+                <Sparkles className="w-5 h-5 text-brand-purple" />
+                <span className="text-base font-medium text-brand-purple">
                   סיפורי הצלחה
                 </span>
               </motion.div>
-              
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-4 sm:mb-6">
-                סיפורי הצלחה <span className="bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent">מהשטח</span>
+
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-brand-navy mb-4 sm:mb-6">
+                סיפורי הצלחה <span className="bg-gradient-to-r from-brand-orange to-brand-green bg-clip-text text-transparent">מהשטח</span>
               </h2>
 
-              <p className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-brand-gray-700 max-w-3xl mx-auto px-4 sm:px-0">
                 עסקים אמיתיים שחסכו זמן, הגדילו הכנסות ושיפרו את החיים שלהם
               </p>
             </div>
@@ -214,10 +214,10 @@ export default function Portfolio() {
                   <motion.button
                     key={category.value}
                     onClick={() => setSelectedCategory(category.value)}
-                    className={`px-6 py-2 rounded-full font-medium text-sm transition-all ${
+                    className={`px-6 py-2.5 rounded-full font-semibold text-base lg:text-lg transition-all ${
                       selectedCategory === category.value
                         ? 'bg-white text-brand-blue shadow-lg'
-                        : 'text-brand-gray-600 hover:text-brand-gray-900'
+                        : 'text-brand-gray-700 hover:text-brand-navy'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
