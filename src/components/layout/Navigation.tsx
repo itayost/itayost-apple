@@ -115,8 +115,8 @@ export function Navigation() {
                       href={item.href}
                       className={`text-sm font-medium transition-colors flex items-center gap-1 ${
                         pathname === item.href || pathname.startsWith('/services/')
-                          ? 'text-apple-blue'
-                          : 'text-apple-gray-700 hover:text-apple-blue'
+                          ? 'text-brand-blue'
+                          : 'text-brand-navy hover:text-brand-blue'
                       }`}
                     >
                       {item.label}
@@ -136,7 +136,7 @@ export function Navigation() {
                         <div className="px-4 py-2 border-b border-gray-100">
                           <Link
                             href="/services"
-                            className="block text-sm font-bold text-apple-gray-900 hover:text-apple-blue"
+                            className="block text-sm font-bold text-brand-navy hover:text-brand-blue"
                           >
                             כל השירותים
                           </Link>
@@ -165,8 +165,8 @@ export function Navigation() {
                     href={item.href}
                     className={`text-sm font-medium transition-colors ${
                       pathname === item.href
-                        ? 'text-apple-blue'
-                        : 'text-apple-gray-700 hover:text-apple-blue'
+                        ? 'text-brand-blue'
+                        : 'text-brand-navy hover:text-brand-blue'
                     }`}
                   >
                     {item.label}

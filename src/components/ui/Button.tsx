@@ -5,7 +5,7 @@ import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface ButtonProps extends HTMLMotionProps<"button"> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'danger'
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'orange' | 'navy'
   size?: 'sm' | 'md' | 'lg'
   children: ReactNode
   className?: string
@@ -24,9 +24,11 @@ export function Button({
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-full'
   
   const variants = {
-    primary: 'bg-apple-blue text-white hover:bg-apple-blue-dark hover:shadow-lg',
-    secondary: 'bg-white text-apple-blue border border-apple-gray-400 hover:bg-apple-gray-50',
-    ghost: 'bg-transparent text-apple-blue hover:bg-apple-blue/10',
+    primary: 'bg-brand-blue text-white hover:bg-brand-blue/90 shadow-md shadow-brand-blue/30 hover:shadow-lg hover:shadow-brand-blue/50',
+    orange: 'bg-gradient-to-r from-brand-orange to-brand-orange/90 text-white shadow-lg shadow-brand-orange/30 hover:shadow-xl hover:shadow-brand-orange/50',
+    navy: 'bg-brand-navy text-white hover:bg-brand-navy/90 shadow-md shadow-brand-navy/30 hover:shadow-lg hover:shadow-brand-navy/40',
+    secondary: 'bg-white text-brand-navy border-2 border-brand-blue/20 hover:border-brand-blue hover:bg-brand-blue/5',
+    ghost: 'bg-transparent text-brand-blue hover:bg-brand-blue/10',
     danger: 'bg-red-500 text-white hover:bg-red-600 hover:shadow-lg',
   }
   
