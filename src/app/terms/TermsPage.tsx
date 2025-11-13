@@ -7,9 +7,13 @@ import {
   FileText,
   Shield,
   Cookie,
-  Copyright
+  Copyright,
+  Sparkles
 } from 'lucide-react'
 import { content } from '@/config/content'
+
+// Bouncy easing for Mailchimp-style animations
+const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
 const sections = [
   {
@@ -171,28 +175,37 @@ export default function TermsPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-gray-800/10 backdrop-blur-xl rounded-full mb-6"
+              transition={{ duration: 0.6, ease: bouncyEasing }}
+              className="mb-6"
             >
-              <FileText className="w-4 h-4 text-brand-gray-800" />
-              <span className="text-sm font-medium text-brand-gray-800">
-                {content.terms.sectionLabel}
-              </span>
+              <motion.div
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-navy/10 rounded-full"
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+              >
+                <Sparkles className="w-5 h-5 text-brand-navy" />
+                <span className="text-base font-bold text-brand-navy">
+                  {content.terms.sectionLabel}
+                </span>
+              </motion.div>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
+              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
+              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
             >
               {content.terms.title}
-              <span className="block mt-2 bg-gradient-to-r from-brand-gray-700 to-brand-gray-900 bg-clip-text text-transparent">
+              <span className="block mt-2 text-brand-gray-700">
                 {content.terms.subtitle}
               </span>
             </motion.h1>
@@ -200,8 +213,8 @@ export default function TermsPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-brand-gray-600 max-w-3xl mx-auto mb-4"
+              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
+              className="text-xl sm:text-2xl text-brand-gray-600 max-w-3xl mx-auto mb-4"
             >
               {content.terms.description}
             </motion.p>
@@ -209,7 +222,7 @@ export default function TermsPage() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.3, duration: 0.6, ease: bouncyEasing }}
               className="text-sm text-brand-gray-500"
             >
               {content.terms.lastUpdated}: ינואר 2025
@@ -228,15 +241,23 @@ export default function TermsPage() {
                 <motion.button
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-xl font-medium transition-all ${
+                  className={`flex flex-col items-center gap-2 p-4 rounded-3xl font-semibold transition-all ${
                     activeSection === section.id
-                      ? 'bg-gradient-to-br from-brand-gray-800 to-brand-gray-900 text-white shadow-lg'
+                      ? 'bg-brand-navy text-white shadow-lg'
                       : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
                 >
-                  <Icon size={24} />
+                  <motion.div
+                    whileHover={{
+                      rotate: [0, -10, 10, -10, 0],
+                      transition: { duration: 0.5, ease: bouncyEasing }
+                    }}
+                  >
+                    <Icon size={24} />
+                  </motion.div>
                   <span className="text-sm">{section.title}</span>
                 </motion.button>
               )
@@ -246,22 +267,22 @@ export default function TermsPage() {
       </section>
 
       {/* Content Section */}
-      <section className="py-16 lg:py-24 bg-brand-gray-50">
+      <section className="py-16 lg:py-24 bg-section-light-blue">
         <div className="container mx-auto px-4">
           <motion.div
             key={activeSection}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: bouncyEasing }}
             className="max-w-4xl mx-auto bg-white rounded-3xl p-8 lg:p-12 shadow-lg"
           >
             <div className="flex items-center gap-4 mb-8">
               {activeContent && (
                 <>
-                  <div className="w-12 h-12 bg-gradient-to-br from-brand-gray-800 to-brand-gray-900 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-brand-navy rounded-2xl flex items-center justify-center">
                     <activeContent.icon size={24} className="text-white" />
                   </div>
-                  <h2 className="text-3xl font-bold text-brand-gray-900">
+                  <h2 className="text-3xl font-bold text-brand-navy">
                     {activeContent.title}
                   </h2>
                 </>
@@ -277,20 +298,38 @@ export default function TermsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-gray-800 to-brand-gray-900">
+      <section className="py-16 lg:py-24 bg-brand-navy">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            יש לכם שאלות?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            אם יש לכם שאלות לגבי תנאי השימוש או מדיניות הפרטיות, אנחנו כאן לעזור
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-gray-900 rounded-full font-medium hover:shadow-xl transition-all"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: bouncyEasing }}
           >
-            צרו קשר
-          </Link>
+            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
+              יש לכם שאלות?
+            </h2>
+            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+              אם יש לכם שאלות לגבי תנאי השימוש או מדיניות הפרטיות, אנחנו כאן לעזור
+            </p>
+            <motion.div
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.3, ease: bouncyEasing }
+              }}
+              whileTap={{
+                scale: 0.95,
+                transition: { duration: 0.3, ease: bouncyEasing }
+              }}
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-10 py-5 bg-white text-brand-navy rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
+              >
+                צרו קשר
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </main>
