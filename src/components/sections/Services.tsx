@@ -20,7 +20,7 @@ const services = [
     ],
     color: 'bg-brand-blue',
     iconColor: 'text-brand-blue',
-    href: '/services#web'
+    href: '/services/web-development'
   },
   {
     icon: Smartphone,
@@ -34,7 +34,7 @@ const services = [
     ],
     color: 'bg-brand-orange',
     iconColor: 'text-brand-orange',
-    href: '/services#systems'
+    href: '/services/crm-systems'
   },
   {
     icon: Zap,
@@ -48,7 +48,7 @@ const services = [
     ],
     color: 'bg-brand-green',
     iconColor: 'text-brand-green',
-    href: '/services#automation'
+    href: '/services/landing-pages'
   }
 ]
 

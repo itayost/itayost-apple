@@ -74,23 +74,38 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: bouncyEasing }}
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3, ease: bouncyEasing }}
-              >
-                <Link href="/" className="inline-flex items-center gap-4 mb-6">
-                  <Image
-                    src="/logo.png"
-                    alt="לוגו ITAYOST"
-                    width={80}
-                    height={80}
-                    className="w-16 h-16 lg:w-20 lg:h-20"
-                  />
-                  <div className="text-4xl lg:text-5xl font-bold text-white">
-                    ITAYOST
+              <div className="flex flex-col items-center">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3, ease: bouncyEasing }}
+                >
+                  <Link href="/" className="inline-flex items-center gap-4 mb-6">
+                    <Image
+                      src="/logo.png"
+                      alt="לוגו ITAYOST"
+                      width={80}
+                      height={80}
+                      className="w-16 h-16 lg:w-20 lg:h-20"
+                    />
+                    <div className="text-4xl lg:text-5xl font-bold text-white">
+                      ITAYOST
+                    </div>
+                  </Link>
+                </motion.div>
+
+                <motion.div
+                  className="flex items-center gap-3 text-brand-gray-200 text-base lg:text-lg"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: bouncyEasing }}
+                >
+                  <div className="w-10 h-10 bg-brand-green rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <MapPin size={18} />
                   </div>
-                </Link>
-              </motion.div>
+                  <span>ישראל</span>
+                </motion.div>
+              </div>
 
               <p className="text-brand-gray-200 text-base lg:text-lg mb-6 max-w-sm leading-relaxed">
                 מעצב ומפתח פתרונות דיגיטליים מתקדמים עם דגש על חדשנות, יצירתיות וחוויית משתמש מושלמת.
@@ -121,19 +136,6 @@ export function Footer() {
                   </div>
                   <span>itayost1@gmail.com</span>
                 </motion.a>
-
-                <motion.div
-                  className="flex items-center gap-3 text-brand-gray-200 text-base lg:text-lg"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2, ease: bouncyEasing }}
-                >
-                  <div className="w-10 h-10 bg-brand-green rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <MapPin size={18} />
-                  </div>
-                  <span>ישראל</span>
-                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -284,7 +286,7 @@ export function Footer() {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className="absolute bottom-8 start-8 w-14 h-14 bg-brand-orange rounded-2xl flex items-center justify-center shadow-2xl"
+        className="absolute bottom-8 end-8 w-14 h-14 bg-brand-orange rounded-2xl flex items-center justify-center shadow-2xl"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
