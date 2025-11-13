@@ -22,6 +22,7 @@ import {
   Sparkles
 } from 'lucide-react'
 import { submitHomepageContactForm, type HomepageContactForm } from '@/services/crm'
+import { trackFormStart, trackFormSubmit, trackConversion } from '@/lib/analytics'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
@@ -88,6 +89,7 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Partial<FormData>>({})
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const [formStartTracked, setFormStartTracked] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -112,6 +114,10 @@ export default function ContactPage() {
       if (result.success) {
         setSubmitStatus('success')
 
+        // Track successful form submission
+        trackFormSubmit('contact_form', true)
+        trackConversion('contact_form_submit', 1)
+
         // Reset form after success
         setTimeout(() => {
           setFormData({
@@ -122,14 +128,21 @@ export default function ContactPage() {
             message: ''
           })
           setSubmitStatus('idle')
+          setFormStartTracked(false)
         }, 5000)
       } else {
         setSubmitStatus('error')
         setErrorMessage(result.error || 'שגיאה בשליחת הטופס')
+
+        // Track failed submission
+        trackFormSubmit('contact_form', false, result.error)
       }
     } catch (error) {
       setSubmitStatus('error')
       setErrorMessage('שגיאה בשליחת הטופס. אנא נסו שוב.')
+
+      // Track error
+      trackFormSubmit('contact_form', false, 'שגיאה בשליחת הטופס')
     } finally {
       setIsSubmitting(false)
     }
@@ -140,6 +153,14 @@ export default function ContactPage() {
     setFormData(prev => ({ ...prev, [name]: value }))
     if (errorMessage) {
       setErrorMessage('')
+    }
+  }
+
+  const handleFieldFocus = () => {
+    // Track form start only once when user focuses on first field
+    if (!formStartTracked) {
+      trackFormStart('contact_form')
+      setFormStartTracked(true)
     }
   }
 
@@ -266,6 +287,7 @@ export default function ContactPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        onFocus={handleFieldFocus}
                         required
                         className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
                         placeholder="ישראל ישראלי"

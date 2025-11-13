@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
+import { trackWhatsAppClick } from '@/lib/analytics'
 
 export function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false)
@@ -22,6 +23,9 @@ export function WhatsAppButton() {
   }, [])
   
   const handleClick = () => {
+    // Track WhatsApp button click
+    trackWhatsAppClick(window.location.pathname, 'fab')
+
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
   }
