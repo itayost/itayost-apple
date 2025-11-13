@@ -51,6 +51,10 @@ export function WhatsAppButton() {
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.8, x: 20 }}
                 className="fixed bottom-20 start-4 z-40 bg-white rounded-2xl shadow-2xl p-4 max-w-xs"
+                style={{
+                  transform: 'translateZ(0)',
+                  bottom: 'calc(5rem + env(safe-area-inset-bottom))'
+                }}
               >
                 <button
                   onClick={() => setIsTooltipVisible(false)}
@@ -83,7 +87,12 @@ export function WhatsAppButton() {
             onClick={handleClick}
             onMouseEnter={() => setIsTooltipVisible(true)}
             onMouseLeave={() => setIsTooltipVisible(false)}
-            className="fixed bottom-6 start-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all group"
+            className="fixed bottom-6 start-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-colors transition-shadow group"
+            style={{
+              transform: 'translateZ(0)',
+              willChange: 'transform',
+              bottom: 'calc(1.5rem + env(safe-area-inset-bottom))'
+            }}
             aria-label="Contact on WhatsApp"
           >
             {/* Pulse effect */}
