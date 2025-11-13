@@ -49,16 +49,16 @@ export default function PortfolioPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-apple-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-apple-purple/10 backdrop-blur-xl rounded-full mb-6"
             >
-              <Briefcase className="w-4 h-4 text-purple-600" />
-              <span className="text-sm font-medium text-purple-600">
+              <Briefcase className="w-4 h-4 text-apple-purple" />
+              <span className="text-sm font-medium text-apple-purple">
                 תיק העבודות שלי
               </span>
             </motion.div>
@@ -67,10 +67,10 @@ export default function PortfolioPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6"
             >
               פרויקטים שיצרתי
-              <span className="block mt-2 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">
                 עם תשוקה וחדשנות
               </span>
             </motion.h1>
@@ -79,7 +79,7 @@ export default function PortfolioPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-gray-600"
+              className="text-xl text-apple-gray-600"
             >
               כל פרויקט מספר סיפור של אתגר שהפך להצלחה, רעיון שהפך למציאות
             </motion.p>
@@ -191,7 +191,7 @@ export default function PortfolioPage() {
                       {/* Live Badge */}
                       {project.link && (
                         <div className="absolute top-4 left-4">
-                          <span className="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-medium flex items-center gap-1">
+                          <span className="px-3 py-1 bg-apple-green text-white rounded-full text-xs font-medium flex items-center gap-1">
                             <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
                             Live
                           </span>
@@ -208,11 +208,11 @@ export default function PortfolioPage() {
                     
                     {/* Content */}
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                      <h3 className="text-xl font-bold text-apple-gray-900 mb-2 group-hover:text-apple-purple transition-colors">
                         {project.title}
                       </h3>
                       
-                      <p className="text-gray-600 mb-4 text-sm">
+                      <p className="text-apple-gray-600 mb-4 text-sm">
                         {project.description}
                       </p>
                       
@@ -221,13 +221,13 @@ export default function PortfolioPage() {
                         {project.tags.slice(0, 3).map((tag, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-1 bg-gray-100 rounded-md text-xs text-gray-600"
+                            className="px-2 py-1 bg-apple-gray-100 rounded-md text-xs text-apple-gray-600"
                           >
                             {tag}
                           </span>
                         ))}
                         {project.tags.length > 3 && (
-                          <span className="px-2 py-1 text-xs text-gray-500">
+                          <span className="px-2 py-1 text-xs text-apple-gray-500">
                             +{project.tags.length - 3}
                           </span>
                         )}
@@ -235,10 +235,10 @@ export default function PortfolioPage() {
                       
                       {/* CTA */}
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-apple-gray-500">
                           {project.duration} • {project.year}
                         </span>
-                        <ArrowUpRight size={20} className="text-purple-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        <ArrowUpRight size={20} className="text-apple-purple group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                       </div>
                     </div>
                   </div>
@@ -265,11 +265,11 @@ export default function PortfolioPage() {
             <div className="sticky top-0 bg-white border-b p-6 flex items-center justify-between rounded-t-3xl">
               <div>
                 <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
-                <p className="text-gray-600">{selectedProject.subtitle}</p>
+                <p className="text-apple-gray-600">{selectedProject.subtitle}</p>
               </div>
               <button
                 onClick={() => setSelectedProject(null)}
-                className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                className="w-10 h-10 rounded-full bg-apple-gray-100 flex items-center justify-center hover:bg-apple-gray-200 transition-colors"
               >
                 <X size={20} />
               </button>
@@ -279,7 +279,7 @@ export default function PortfolioPage() {
             <div className="p-6 lg:p-8">
               {/* Project Image */}
               {selectedProject.image && (
-                <div className="mb-8 rounded-xl overflow-hidden bg-gray-100">
+                <div className="mb-8 rounded-xl overflow-hidden bg-apple-gray-100">
                   <img 
                     src={selectedProject.image} 
                     alt={`${selectedProject.title} - ${selectedProject.description} | פרויקט מפורט עבור ${selectedProject.client}`}
@@ -293,7 +293,7 @@ export default function PortfolioPage() {
                 <div>
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold mb-2">אודות הפרויקט</h3>
-                    <p className="text-gray-600">{selectedProject.longDescription}</p>
+                    <p className="text-apple-gray-600">{selectedProject.longDescription}</p>
                   </div>
                   
                   <div className="mb-6">
@@ -301,8 +301,8 @@ export default function PortfolioPage() {
                     <ul className="space-y-2">
                       {selectedProject.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle className="text-green-500 mt-0.5" size={16} />
-                          <span className="text-gray-600">{feature}</span>
+                          <CheckCircle className="text-apple-green mt-0.5" size={16} />
+                          <span className="text-apple-gray-600">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -329,11 +329,11 @@ export default function PortfolioPage() {
                     <h3 className="text-lg font-semibold mb-3">תוצאות</h3>
                     <div className="grid grid-cols-2 gap-4">
                       {selectedProject.results.map((result, idx) => (
-                        <div key={idx} className="bg-gray-50 rounded-xl p-4">
-                          <div className="text-2xl font-bold text-purple-600">
+                        <div key={idx} className="bg-apple-gray-50 rounded-xl p-4">
+                          <div className="text-2xl font-bold text-apple-purple">
                             {result.value}
                           </div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-sm text-apple-gray-600">
                             {result.label}
                           </div>
                         </div>
@@ -344,11 +344,11 @@ export default function PortfolioPage() {
                   {selectedProject.testimonial && (
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold mb-3">המלצה</h3>
-                      <blockquote className="bg-purple-50 rounded-xl p-6">
-                        <p className="text-gray-700 italic mb-4">
+                      <blockquote className="bg-apple-purple/10 rounded-xl p-6">
+                        <p className="text-apple-gray-700 italic mb-4">
                           "{selectedProject.testimonial.text}"
                         </p>
-                        <cite className="text-sm text-gray-600 not-italic">
+                        <cite className="text-sm text-apple-gray-600 not-italic">
                           <strong>{selectedProject.testimonial.author}</strong>
                           <br />
                           {selectedProject.testimonial.role}
@@ -363,19 +363,19 @@ export default function PortfolioPage() {
                         href={selectedProject.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 py-3 bg-purple-600 text-white text-center rounded-xl font-medium hover:bg-purple-700 transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 py-3 bg-apple-purple text-white text-center rounded-xl font-medium hover:bg-apple-purple/90 transition-colors flex items-center justify-center gap-2"
                       >
                         צפייה באתר
                         <ExternalLink size={18} />
                       </a>
                     ) : (
-                      <div className="flex-1 py-3 bg-gray-200 text-gray-500 text-center rounded-xl font-medium cursor-not-allowed">
+                      <div className="flex-1 py-3 bg-apple-gray-200 text-apple-gray-500 text-center rounded-xl font-medium cursor-not-allowed">
                         פרויקט פרטי
                       </div>
                     )}
                     <Link
                       href="/contact"
-                      className="flex-1 py-3 bg-gray-100 text-gray-900 text-center rounded-xl font-medium hover:bg-gray-200 transition-colors"
+                      className="flex-1 py-3 bg-apple-gray-100 text-apple-gray-900 text-center rounded-xl font-medium hover:bg-apple-gray-200 transition-colors"
                     >
                       בואו נדבר
                     </Link>
@@ -388,13 +388,13 @@ export default function PortfolioPage() {
       )}
 
       {/* Statistics Section */}
-      <section className="py-16 lg:py-24 bg-gray-50">
+      <section className="py-16 lg:py-24 bg-apple-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-apple-gray-900 mb-4">
               המספרים מדברים
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-apple-gray-600">
               תוצאות מוכחות שמעידות על איכות העבודה
             </p>
           </div>
@@ -413,10 +413,10 @@ export default function PortfolioPage() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-600 mt-2">
+                <div className="text-sm text-apple-gray-600 mt-2">
                   {stat.label}
                 </div>
               </motion.div>
@@ -426,7 +426,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-purple-600 to-pink-600">
+      <section className="py-16 lg:py-24 bg-gradient-to-r from-apple-purple to-apple-pink">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             יש לך פרויקט בראש?
@@ -437,7 +437,7 @@ export default function PortfolioPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-8 py-4 bg-white text-purple-600 rounded-full font-medium hover:shadow-xl transition-all"
+              className="px-8 py-4 bg-white text-apple-purple rounded-full font-medium hover:shadow-xl transition-all"
             >
               בואו נתחיל
             </Link>

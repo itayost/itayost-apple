@@ -24,9 +24,9 @@ export function Button({
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-full'
   
   const variants = {
-    primary: 'bg-[#0071E3] text-white hover:bg-[#0077ED] hover:shadow-lg',
-    secondary: 'bg-white text-[#0071E3] border border-[#C7C7CC] hover:bg-[#F5F5F7]',
-    ghost: 'bg-transparent text-[#0071E3] hover:bg-[#0071E3]/10',
+    primary: 'bg-apple-blue text-white hover:bg-apple-blue-dark hover:shadow-lg',
+    secondary: 'bg-white text-apple-blue border border-apple-gray-400 hover:bg-apple-gray-50',
+    ghost: 'bg-transparent text-apple-blue hover:bg-apple-blue/10',
     danger: 'bg-red-500 text-white hover:bg-red-600 hover:shadow-lg',
   }
   
