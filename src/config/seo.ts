@@ -211,13 +211,6 @@ export const seoConfig = {
         minValue: 1,
         maxValue: 10,
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5.0',
-        reviewCount: '4',
-        bestRating: '5',
-        worstRating: '5'
-      },
     },
 
     website: {

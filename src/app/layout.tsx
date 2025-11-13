@@ -76,7 +76,6 @@ export const metadata: Metadata = {
     canonical: 'https://www.itayost.com',
     languages: {
       'he-IL': 'https://www.itayost.com',
-      'en-US': 'https://www.itayost.com/en',
     },
   },
 }
@@ -153,11 +152,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <link rel="manifest" href="/site.webmanifest" />
-        
-        {/* Canonical and Language */}
-        <link rel="canonical" href="https://www.itayost.com" />
-        <link rel="alternate" hrefLang="he-IL" href="https://www.itayost.com" />
-        <link rel="alternate" hrefLang="x-default" href="https://www.itayost.com" />
         
         {/* Verification Tags */}
         {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
