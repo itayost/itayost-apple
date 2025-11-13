@@ -126,7 +126,7 @@ export default function ContactPage() {
     } catch (error) {
       setSubmitStatus('error')
       setErrorMessage('שגיאה בשליחת הטופס. אנא נסו שוב.')
-      console.error('Form submission error:', error)
+      // Error already handled with user-friendly message
     } finally {
       setIsSubmitting(false)
     }

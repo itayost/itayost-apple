@@ -6,10 +6,10 @@ import { onCLS, onFCP, onLCP, onTTFB, onINP, Metric } from 'web-vitals'
 const vitalsUrl = '/api/vitals'
 
 function sendToAnalytics(metric: Metric) {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-CSP6R559BD'
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID
 
-  // Send to Google Analytics 4
-  if (typeof window !== 'undefined' && window.gtag && GA_MEASUREMENT_ID) {
+  // Send to Google Analytics 4 only if configured
+  if (GA_MEASUREMENT_ID && typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', metric.name, {
       value: Math.round(metric.name === 'CLS' ? metric.delta * 1000 : metric.delta),
       metric_id: metric.id,
@@ -44,7 +44,9 @@ function sendToAnalytics(metric: Metric) {
       headers: { 'Content-Type': 'application/json' },
       body,
       keepalive: true,
-    }).catch(console.error)
+    }).catch(() => {
+      // Silently fail - vitals reporting is non-critical
+    })
   }
 }
 

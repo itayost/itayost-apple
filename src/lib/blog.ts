@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 import remarkGfm from 'remark-gfm'
+import rehypeSanitize from 'rehype-sanitize'
 
 const postsDirectory = path.join(process.cwd(), 'content/blog')
 
@@ -28,7 +29,7 @@ export function getAllPostSlugs(): string[] {
       .filter(fileName => fileName.endsWith('.md') && !fileName.includes('metadata') && fileName !== 'README.md' && fileName !== 'DELIVERABLES-SUMMARY.md')
       .map(fileName => fileName.replace(/\.md$/, ''))
   } catch (error) {
-    console.error('Error reading posts directory:', error)
+    // Error reading posts directory - return empty array
     return []
   }
 }
@@ -44,10 +45,11 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
 
-    // Process markdown to HTML
+    // Process markdown to HTML with sanitization to prevent XSS attacks
     const processedContent = await remark()
       .use(remarkGfm)
-      .use(html, { sanitize: false })
+      .use(html)
+      .use(rehypeSanitize)
       .process(content)
 
     const contentHtml = processedContent.toString()
@@ -70,7 +72,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       excerpt: data.excerpt || excerpt
     }
   } catch (error) {
-    console.error(`Error reading post ${slug}:`, error)
+    // Error reading post - return null
     return null
   }
 }

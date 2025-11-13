@@ -130,8 +130,8 @@ export const usePerformanceMetrics = () => {
     const observer = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
         if (entry.name === 'first-contentful-paint') {
-          console.log('FCP:', entry.startTime)
-          // You can send this to analytics here
+          // Send to analytics service if configured
+          // Example: sendToAnalytics('FCP', entry.startTime)
         }
       }
     })
@@ -146,8 +146,8 @@ export const usePerformanceMetrics = () => {
     const lcpObserver = new PerformanceObserver((list) => {
       const entries = list.getEntries()
       const lastEntry = entries[entries.length - 1]
-      console.log('LCP:', lastEntry.startTime)
-      // Send to analytics
+      // Send to analytics service if configured
+      // Example: sendToAnalytics('LCP', lastEntry.startTime)
     })
 
     try {
@@ -160,7 +160,8 @@ export const usePerformanceMetrics = () => {
     if ('PerformanceLongTaskTiming' in window) {
       const ttiObserver = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          console.log('Long Task:', entry)
+          // Send to analytics service if configured
+          // Example: sendToAnalytics('LongTask', entry)
         }
       })
       

@@ -113,7 +113,12 @@ function StructuredData() {
 
 // Google Analytics Component
 function GoogleAnalytics() {
-  const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-CSP6R559BD'
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID
+
+  // Return null if GA_ID is not configured
+  if (!GA_ID) {
+    return null
+  }
 
   return (
     <>

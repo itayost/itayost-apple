@@ -50,18 +50,13 @@ export interface CRMResponse {
   error?: string
 }
 
-// CRM API endpoint
-const CRM_API_URL = 'https://crm-system-alpha-eight.vercel.app/api/public/leads'
-
 /**
- * Submit lead to CRM system
+ * Submit lead to CRM system via API route
+ * This now goes through our server-side API for security
  */
 export async function submitLead(lead: CRMLead): Promise<CRMResponse> {
   try {
-    // Debug: Log the data being sent
-    console.log('Sending lead data to CRM:', JSON.stringify(lead, null, 2))
-
-    const response = await fetch(CRM_API_URL, {
+    const response = await fetch('/api/leads', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,24 +64,20 @@ export async function submitLead(lead: CRMLead): Promise<CRMResponse> {
       body: JSON.stringify(lead)
     })
 
+    const data = await response.json()
+
     if (!response.ok) {
-      const errorText = await response.text()
-      console.error('CRM API Error Response:', errorText)
-      throw new Error(`HTTP ${response.status}: ${errorText}`)
+      return {
+        success: false,
+        error: data.error || 'שגיאה בשליחת הטופס'
+      }
     }
 
-    const data = await response.json()
-    console.log('CRM API Success Response:', data)
-    return {
-      success: true,
-      data,
-      message: 'Lead submitted successfully'
-    }
+    return data
   } catch (error) {
-    console.error('CRM API Error:', error)
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error occurred'
+      error: 'שגיאת רשת. אנא בדוק את החיבור שלך ונסה שוב'
     }
   }
 }

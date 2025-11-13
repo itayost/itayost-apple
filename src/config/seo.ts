@@ -628,12 +628,38 @@ Sitemap: https://www.itayost.com/sitemap-0.xml`,
 
   // Additional meta tags for security
   securityHeaders: {
-    'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;",
-    'X-Frame-Options': 'SAMEORIGIN',
+    'Content-Security-Policy': [
+      "default-src 'self'",
+      // Scripts: Allow Google Analytics/Tag Manager and inline scripts (required for GA initialization)
+      // Note: 'unsafe-inline' for scripts should be replaced with nonces in production
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+      // Styles: Allow inline styles (required for Tailwind/Framer Motion) and Google Fonts
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      // Fonts: Allow self and Google Fonts
+      "font-src 'self' https://fonts.gstatic.com",
+      // Images: Allow self, data URIs, and HTTPS images
+      "img-src 'self' data: https:",
+      // Connect: Allow API calls to self, Google Analytics, and CRM API
+      "connect-src 'self' https://www.google-analytics.com https://crm-system-alpha-eight.vercel.app",
+      // Frame: Prevent embedding (clickjacking protection)
+      "frame-ancestors 'none'",
+      // Base URI: Restrict base tag to same origin
+      "base-uri 'self'",
+      // Form actions: Only allow forms to submit to same origin
+      "form-action 'self'",
+      // Object: Block plugins (Flash, Java, etc.)
+      "object-src 'none'",
+      // Media: Allow self
+      "media-src 'self'",
+      // Upgrade insecure requests
+      "upgrade-insecure-requests"
+    ].join('; '),
+    'X-Frame-Options': 'DENY',
     'X-Content-Type-Options': 'nosniff',
     'X-XSS-Protection': '1; mode=block',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   },
 }
 
