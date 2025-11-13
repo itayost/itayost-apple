@@ -36,7 +36,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
       animate={{ opacity: 1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-w-[280px] sm:min-w-[320px] lg:min-w-[400px]"
+      className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-w-[260px] sm:min-w-[300px] lg:min-w-[360px] xl:min-w-[400px]"
     >
       {/* Image Container */}
       <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden bg-gradient-to-br from-apple-gray-100 to-apple-gray-200">

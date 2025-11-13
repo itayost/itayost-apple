@@ -18,34 +18,34 @@ const GradientMesh = memo(() => {
   
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Use CSS animations for better performance */}
-      <div 
-        className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full opacity-30 animate-float-slow"
+      {/* Use CSS animations for better performance - Responsive sizing */}
+      <div
+        className="absolute top-0 start-1/4 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full opacity-30 animate-float-slow"
         style={{
           background: 'radial-gradient(circle, rgba(0,113,227,0.4) 0%, transparent 70%)',
-          filter: 'blur(60px)',
+          filter: 'blur(40px)',
           willChange: 'transform',
           transform: 'translateZ(0)', // Force GPU acceleration
           contain: 'layout style paint'
         }}
       />
-      
-      <div 
-        className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full opacity-30 animate-float-medium"
+
+      <div
+        className="absolute bottom-0 end-1/4 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] rounded-full opacity-30 animate-float-medium"
         style={{
           background: 'radial-gradient(circle, rgba(191,90,242,0.4) 0%, transparent 70%)',
-          filter: 'blur(60px)',
+          filter: 'blur(40px)',
           willChange: 'transform',
           transform: 'translateZ(0)',
           contain: 'layout style paint'
         }}
       />
-      
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-20 animate-float-slower"
+
+      <div
+        className="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] rounded-full opacity-20 animate-float-slower"
         style={{
           background: 'radial-gradient(circle, rgba(255,55,95,0.3) 0%, transparent 70%)',
-          filter: 'blur(80px)',
+          filter: 'blur(60px)',
           willChange: 'transform',
           transform: 'translateZ(0)',
           contain: 'layout style paint'
@@ -145,9 +145,9 @@ export default function Hero() {
   const y = shouldReduceMotion ? 0 : useTransform(scrollYProgress, [0, 0.5], [0, 50])
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      className="relative min-h-[90vh] md:min-h-[100vh] lg:min-h-[110vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white pt-20 pb-20 md:pt-0 md:pb-0"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white pt-20 pb-16 md:pt-24 md:pb-20"
     >
       {/* Background Effects - Only render after mount */}
       {mounted && !shouldReduceMotion && <GradientMesh />}
@@ -178,7 +178,7 @@ export default function Hero() {
 
           {/* Main Headline */}
           <AppleStaggerItem>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight mb-6">
               <span className="block text-apple-gray-900">הופכים טכנולוגיה</span>
               <span className="block mt-2">
                 <span className="bg-gradient-to-r from-apple-blue via-apple-purple to-apple-pink bg-clip-text text-transparent">
@@ -263,8 +263,8 @@ export default function Hero() {
           </AppleStaggerItem>
         </AppleStaggerChildren>
 
-        {/* Scroll Indicator - CSS animation instead of JS */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow">
+        {/* Scroll Indicator - CSS animation instead of JS - RTL aware */}
+        <div className="absolute bottom-8 start-1/2 -translate-x-1/2 animate-bounce-slow">
           <ChevronDown className="w-8 h-8 text-apple-gray-400" />
         </div>
       </motion.div>

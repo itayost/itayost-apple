@@ -202,7 +202,7 @@ export const portfolioData = [
     tags: ['Next.js', 'Vercel', 'Lead Generation', 'Analytics'],
     technologies: ['Next.js', 'Vercel'],
     gradient: 'from-blue-500 to-cyan-500',
-    stats: { 
+    stats: {
       leads: '200+/חודש',
       conversion: '15%',
       pageSpeed: '95/100',
@@ -245,6 +245,133 @@ export const portfolioData = [
       },
       reviewBody: 'הדף נחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
       datePublished: '2024-04-05'
+    }
+  },
+  {
+    id: 5,
+    title: 'Shepes Group',
+    subtitle: 'אתר לחברת תיווך נדל״ן',
+    category: 'web',
+    description: 'אתר מקצועי לחברת תיווך נדל״ן בחיפה והצפון עם מערכת ניהול נכסים',
+    longDescription: 'פיתוח אתר מקיף לחברת Shepes Group, משרד תיווך נדל״ן מוביל בחיפה והצפון. האתר כולל תצוגת תיק עבודות, מערכת ניהול נכסים, אינטגרציה עם WhatsApp לתקשורת מיידית, וממשק ניהול לידים. דגש על SEO מקומי ואופטימיזציה להמרות.',
+    image: '/images/ShepesGroup-display.webp',
+    imageSizes: {
+      desktop: '/images/ShepesGroup-desktop.webp',
+      display: '/images/ShepesGroup-display.webp',
+      mobile: '/images/ShepesGroup-mobile.webp',
+      thumbnail: '/images/ShepesGroup-thumbnail.webp'
+    },
+    tags: ['Next.js', 'Tailwind CSS', 'RTL', 'SEO', 'WhatsApp'],
+    technologies: ['Next.js', 'Vercel', 'Tailwind'],
+    gradient: 'from-emerald-500 to-teal-500',
+    stats: {
+      properties: '150+',
+      leads: '+180%',
+      seo: '96/100',
+      uptime: '99.9%'
+    },
+    client: 'Shepes Group - תיווך נדל״ן',
+    year: '2024',
+    duration: '2 חודשים',
+    link: 'https://www.shepes-group.co.il',
+    linkType: 'live',
+    featured: true,
+    features: [
+      'אתר עברי RTL מלא',
+      'תצוגת נכסים דינמית',
+      'אינטגרציה עם WhatsApp',
+      'SEO מקומי לאזור חיפה',
+      'טפסי יצירת קשר חכמים',
+      'ממשק ניהול נכסים'
+    ],
+    results: [
+      { label: 'נכסים בניהול', value: '150+' },
+      { label: 'עלייה בלידים', value: '180%' },
+      { label: 'ציון SEO', value: '96/100' },
+      { label: 'זמינות', value: '99.9%' }
+    ],
+    testimonial: {
+      text: 'האתר הפך להיות כלי השיווק המרכזי שלנו. קיבלנו פי 2 יותר פניות מאשר בעבר!',
+      author: 'גלית ושחים שפס',
+      role: 'בעלי משרד התיווך'
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'גלית ושחים שפס'
+      },
+      reviewBody: 'האתר הפך להיות כלי השיווק המרכזי שלנו. קיבלנו פי 2 יותר פניות מאשר בעבר!',
+      datePublished: '2024-05-20'
+    }
+  },
+  {
+    id: 6,
+    title: 'נס התמר',
+    subtitle: 'אתר הוצאה לאור וקורסים',
+    category: 'web',
+    description: 'פלטפורמה דיגיטלית לספר הומאופתיה וקורסים מקוונים',
+    longDescription: 'פיתוח פלטפורמה מתקדמת לשיווק ספר "נס התמר" - ספר ייחודי המשלב תורה והומאופתיה. האתר כולל חנות מקוונת, אינטגרציה עם Headstart לגיוס המונים, מערכת רישום לקורסים, תוכן וידאו, ותמיכה בעברית ואנגלית. עיצוב פרימיום עם אלמנטים עיצוביים מותאמים אישית.',
+    image: '/images/NeshaTamar-display.webp',
+    imageSizes: {
+      desktop: '/images/NeshaTamar-desktop.webp',
+      display: '/images/NeshaTamar-display.webp',
+      mobile: '/images/NeshaTamar-mobile.webp',
+      thumbnail: '/images/NeshaTamar-thumbnail.webp'
+    },
+    tags: ['Next.js', 'E-commerce', 'Multilingual', 'Video', 'Crowdfunding'],
+    technologies: ['Next.js', 'Tailwind', 'Headstart'],
+    gradient: 'from-amber-500 to-orange-500',
+    stats: {
+      sales: '500+',
+      students: '120+',
+      languages: '2',
+      rating: '4.9★'
+    },
+    client: 'נס התמר - הוצאה לאור',
+    year: '2024',
+    duration: '2.5 חודשים',
+    link: 'https://www.neshatamar.com',
+    linkType: 'live',
+    featured: true,
+    features: [
+      'חנות מקוונת מלאה',
+      'אינטגרציה עם Headstart',
+      'מערכת רישום לקורסים',
+      'תמיכה דו-לשונית (עברית/אנגלית)',
+      'אינטגרציית וידאו YouTube',
+      'עיצוב פרימיום מותאם אישית',
+      'Structured data לספרים'
+    ],
+    results: [
+      { label: 'ספרים נמכרו', value: '500+' },
+      { label: 'תלמידים בקורס', value: '120+' },
+      { label: 'שפות', value: '2' },
+      { label: 'דירוג משתמשים', value: '4.9★' }
+    ],
+    testimonial: {
+      text: 'האתר מקצועי ויפהפה, ועזר לנו להגיע לקהל רחב בהרבה ממה שדמיינו. המערכת פשוטה לתפעול!',
+      author: 'תמר אשל',
+      role: 'מחברת ומורה להומאופתיה'
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'תמר אשל'
+      },
+      reviewBody: 'האתר מקצועי ויפהפה, ועזר לנו להגיע לקהל רחב בהרבה ממה שדמיינו. המערכת פשוטה לתפעול!',
+      datePublished: '2024-06-15'
     }
   }
 ]

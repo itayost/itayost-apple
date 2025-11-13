@@ -64,7 +64,7 @@ export function Footer() {
       
       <div className="container relative z-10 py-16 lg:py-20">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <motion.div
@@ -153,7 +153,7 @@ export function Footer() {
               </p>
             </div>
             
-            <form className="flex gap-3">
+            <form className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="כתובת אימייל"
@@ -212,7 +212,7 @@ export function Footer() {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className="absolute bottom-8 left-8 w-12 h-12 bg-apple-blue rounded-full flex items-center justify-center shadow-lg hover:bg-apple-blue-dark transition-colors"
+        className="absolute bottom-8 start-8 w-12 h-12 bg-apple-blue rounded-full flex items-center justify-center shadow-lg hover:bg-apple-blue-dark transition-colors"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         initial={{ opacity: 0 }}

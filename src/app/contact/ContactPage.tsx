@@ -144,7 +144,7 @@ export default function ContactPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
@@ -184,9 +184,9 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Methods */}
-      <section className="py-16 lg:py-20">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
             {contactMethods.map((method, index) => (
               <motion.a
                 key={method.title}
@@ -213,7 +213,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main Contact Form */}
-      <section className="py-16 lg:py-24">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
@@ -469,7 +469,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12 sm:py-16 lg:py-24 bg-gray-50">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-8 sm:mb-12">
