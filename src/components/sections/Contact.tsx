@@ -116,15 +116,15 @@ export default function Contact() {
                   y: -8,
                   transition: { duration: 0.3, ease: bouncyEasing }
                 }}
-                className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-shadow group"
+                className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow group flex flex-col items-center text-center"
               >
-                <div className={`inline-flex items-center justify-center w-14 h-14 ${method.color} rounded-2xl mb-6 group-hover:scale-110 transition-transform`}>
+                <div className={`flex items-center justify-center w-16 h-16 ${method.color} rounded-2xl mb-4 group-hover:scale-110 transition-transform`}>
                   <method.icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-brand-navy font-bold text-lg mb-4">
+                <h3 className="text-brand-navy font-bold text-lg mb-2">
                   {method.title}
                 </h3>
-                <p className="text-brand-gray-700 font-medium">
+                <p className="text-brand-gray-700 font-medium text-base">
                   {method.value}
                 </p>
               </motion.a>
