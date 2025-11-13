@@ -350,25 +350,24 @@
     }
   }
 
-  /* Mobile-First Buttons */
+  /* Chunky Mailchimp-Style Buttons */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.75rem;
     min-height: var(--touch-target);
-    min-width: var(--touch-target);
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 500;
-    font-size: var(--text-base);
+    padding: 1rem 2rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: var(--text-lg);
     letter-spacing: -0.01em;
-    transition: transform 0.2s, opacity 0.2s;
+    transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    position: relative;
-    overflow: hidden;
+    border: none;
   }
 
   .btn:active {
@@ -377,40 +376,55 @@
 
   @media (min-width: 768px) {
     .btn {
-      padding: 0.875rem 2rem;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 1.25rem 2.5rem;
+      font-size: var(--text-xl);
     }
 
     .btn:hover {
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
 
     .btn:active {
-      transform: scale(0.98);
+      transform: scale(0.95);
     }
   }
 
+  /* Primary CTA (Orange) */
   .btn-primary {
-    background: var(--blue);
+    background: var(--brand-orange);
     color: white;
   }
 
   @media (min-width: 768px) {
     .btn-primary:hover {
-      background: #0077ED;
-      box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
+      box-shadow: var(--shadow-orange);
     }
   }
 
+  /* Secondary CTA (Blue) */
   .btn-secondary {
-    background: white;
-    color: var(--black);
-    border: 1px solid var(--gray-300);
+    background: var(--brand-blue);
+    color: white;
   }
 
   @media (min-width: 768px) {
     .btn-secondary:hover {
-      background: var(--light-gray);
+      box-shadow: var(--shadow-blue);
+    }
+  }
+
+  /* Ghost Button (Outline) */
+  .btn-ghost {
+    background: transparent;
+    color: var(--brand-navy);
+    border: 3px solid var(--brand-navy);
+    transition: all 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .btn-ghost:hover {
+      background: var(--brand-navy);
+      color: white;
     }
   }
 
