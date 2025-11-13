@@ -248,7 +248,7 @@ export default function ClientsPage() {
 
                 {/* Testimonial Text */}
                 <p className="text-brand-gray-700 mb-6 leading-relaxed">
-                  "{testimonial.text}"
+                  &quot;{testimonial.text}&quot;
                 </p>
 
                 {/* Results Badge */}

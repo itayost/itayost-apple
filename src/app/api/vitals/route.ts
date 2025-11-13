@@ -23,9 +23,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const body = await request.json()
-    const { id, name, value, rating, navigationType } = body
-
     // Get GA Measurement ID from environment
     const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID
 
@@ -51,7 +48,7 @@ export async function POST(request: NextRequest) {
         }
       }
     )
-  } catch (error) {
+  } catch {
     // Don't log error details in production
     return NextResponse.json(
       { error: 'Failed to report web vital' },

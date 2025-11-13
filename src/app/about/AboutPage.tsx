@@ -134,7 +134,9 @@ export default function AboutPage() {
               transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
               className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto"
             >
-              מהנדס תוכנה עם תשוקה אמיתית לטכנולוגיה וחדשנות
+              מפתח אתרים ואפליקציות מותאמות אישית לעסקים ברמת גן והמרכז
+              <br />
+              מתמחה בפתרונות שחוסכים זמן ומגדילים רווחים
             </motion.p>
           </div>
         </div>
@@ -152,23 +154,30 @@ export default function AboutPage() {
               transition={{ duration: 0.6, ease: bouncyEasing }}
             >
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-navy mb-6">
-                למה עסקים בוחרים לעבוד איתי?
+                למה עסקים ברמת גן והמרכז בוחרים בי?
               </h2>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                אני לא עוד מתכנת. אני שותף שמבין שזמן שווה כסף.
-                המומחיות שלי? להפוך תהליכים מסורבלים לאוטומטיים,
-                לבנות מערכות שעובדות 24/7, ולתת לך להתמקד במה שחשוב - לגדל את העסק.
+                <strong>אני לא עוד מפתח אתרים.</strong> אני שותף עסקי שמבין שבעסקים קטנים ובינוניים,
+                כל שעה שנחסכת היא כסף, וכל תהליך שמשתפר הוא הזדמנות לגדול.
               </p>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                איך אני עושה את זה? פשוט מאוד:
-                מקשיב לבעיה שלך, מבין מה מכאיב, ובונה פתרון שפשוט עובד.
-                בלי ז'רגון, בלי סיבוכים, רק תוצאות.
+                <strong>המומחיות שלי?</strong> לקחת תהליכים ידניים ומסורבלים ולהפוך אותם לאוטומטיים.
+                לבנות מערכות שעובדות בשבילך 24/7 - גם כשאתה ישן. ליצור אתרים ואפליקציות שממירים
+                מבקרים ללקוחות משלמים.
+              </p>
+
+              <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
+                <strong>איך זה עובד?</strong> אני לא פשוט כותב קוד. אני מקשיב, מבין את הכאבים העסקיים שלך,
+                ובונה פתרון מדויק שעונה על הצורך. בלי ז&apos;רגון טכני מיותר, בלי פיצ&apos;רים מיותרים -
+                רק מה שבאמת עוזר לעסק שלך לצמוח.
               </p>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-8">
-                רמת גן, ישראל 🇮🇱 | זמין בטלפון, וואטסאפ ופגישות
+                📍 <strong>ממוקם ברמת גן</strong> | משרת עסקים בכל המרכז והארץ
+                <br />
+                📞 זמין בטלפון, WhatsApp, וידאו קונפרנס ופגישות אישיות
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -258,10 +267,10 @@ export default function AboutPage() {
                     >
                       <Code2 size={64} className="mb-4" />
                     </motion.div>
-                    <h3 className="text-2xl lg:text-3xl font-bold mb-2">הופכים בעיות לפתרונות</h3>
+                    <h3 className="text-2xl lg:text-3xl font-bold mb-2">מתמחה בפתרונות שמניבים תוצאות</h3>
                     <p className="text-white/90 text-center text-lg">
-                      פתרונות דיגיטליים שעובדים<br />
-                      בדיוק כמו שהעסק שלך צריך
+                      אתרים, מערכות CRM ואפליקציות מותאמות<br />
+                      שחוסכות זמן ומגדילות הכנסות
                     </p>
                     <div className="flex gap-6 mt-8">
                       <div className="text-center">
@@ -338,10 +347,10 @@ export default function AboutPage() {
               </span>
             </motion.div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-4">
-              טכנולוגיות וכלים
+              טכנולוגיות מתקדמות
             </h2>
             <p className="text-xl sm:text-2xl text-brand-gray-700">
-              שאני עובד איתם ביום יום
+              כלים מקצועיים לפתרונות מקצועיים - מעודכן תמיד עם הטכנולוגיות החדשות
             </p>
           </motion.div>
 
@@ -528,11 +537,11 @@ export default function AboutPage() {
             transition={{ duration: 0.6, ease: bouncyEasing }}
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              מוכנים להפסיק לבזבז זמן?
+              יש לכם פרויקט? בואו נדבר!
             </h2>
             <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              בואו נדבר 15 דקות ונראה איך אני יכול לעזור לעסק שלך
-              לעבוד חכם יותר, לא קשה יותר.
+              שיחת ייעוץ ראשונית חינם - נדבר על הצרכים של העסק שלכם
+              ואיך אוכל לעזור לכם לחסוך זמן, לגדול ולהצליח יותר.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div

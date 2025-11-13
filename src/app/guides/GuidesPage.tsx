@@ -13,7 +13,15 @@ import {
 import { content } from '@/config/content'
 
 // Sample guides - replace with real data later
-const guides: any[] = [
+const guides: Array<{
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  level: string;
+  topic: string;
+  rating: number;
+}> = [
   // Placeholder for future guides
 ]
 
@@ -74,28 +82,50 @@ export default function GuidesPage() {
 
       {/* Filters */}
       <section className="py-8 bg-white border-b border-brand-gray-200">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Level Filter */}
           <div className="mb-4">
             <h3 className="text-sm font-semibold text-brand-gray-700 mb-3 text-center">
               רמת קושי
             </h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {levels.map(({ key, label }) => (
-                <motion.button
-                  key={key}
-                  onClick={() => setSelectedLevel(key)}
-                  className={`px-6 py-2 rounded-full font-medium transition-all ${
-                    selectedLevel === key
-                      ? 'bg-brand-orange text-white shadow-lg'
-                      : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {label}
-                </motion.button>
-              ))}
+            {/* Desktop: Centered tabs */}
+            <div className="hidden sm:flex justify-center">
+              <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
+                {levels.map(({ key, label }) => (
+                  <motion.button
+                    key={key}
+                    onClick={() => setSelectedLevel(key)}
+                    className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
+                      selectedLevel === key
+                        ? 'bg-brand-orange text-white shadow-lg'
+                        : 'text-brand-gray-700 hover:text-brand-orange'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {label}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+            {/* Mobile: Scrollable tabs */}
+            <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
+                {levels.map(({ key, label }) => (
+                  <motion.button
+                    key={key}
+                    onClick={() => setSelectedLevel(key)}
+                    className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
+                      selectedLevel === key
+                        ? 'bg-brand-orange text-white shadow-lg'
+                        : 'text-brand-gray-700'
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {label}
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -104,22 +134,44 @@ export default function GuidesPage() {
             <h3 className="text-sm font-semibold text-brand-gray-700 mb-3 text-center">
               נושא
             </h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {topics.map(({ key, label }) => (
-                <motion.button
-                  key={key}
-                  onClick={() => setSelectedTopic(key)}
-                  className={`px-6 py-2 rounded-full font-medium transition-all ${
-                    selectedTopic === key
-                      ? 'bg-brand-blue text-white shadow-lg'
-                      : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {label}
-                </motion.button>
-              ))}
+            {/* Desktop: Centered tabs */}
+            <div className="hidden sm:flex justify-center">
+              <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
+                {topics.map(({ key, label }) => (
+                  <motion.button
+                    key={key}
+                    onClick={() => setSelectedTopic(key)}
+                    className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
+                      selectedTopic === key
+                        ? 'bg-brand-blue text-white shadow-lg'
+                        : 'text-brand-gray-700 hover:text-brand-blue'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {label}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+            {/* Mobile: Scrollable tabs */}
+            <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
+                {topics.map(({ key, label }) => (
+                  <motion.button
+                    key={key}
+                    onClick={() => setSelectedTopic(key)}
+                    className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
+                      selectedTopic === key
+                        ? 'bg-brand-blue text-white shadow-lg'
+                        : 'text-brand-gray-700'
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {label}
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -160,7 +212,7 @@ export default function GuidesPage() {
           ) : (
             // Guides Grid
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {guides.map((guide: any, index: number) => (
+              {guides.map((guide, index: number) => (
                 <motion.article
                   key={guide.id}
                   initial={{ opacity: 0, y: 20 }}

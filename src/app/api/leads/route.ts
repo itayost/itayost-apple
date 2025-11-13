@@ -92,10 +92,10 @@ export async function POST(request: NextRequest) {
         }
       }
     )
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Handle validation errors
-    if (error?.issues) {
-      const firstError = error.issues[0]
+    if (error && typeof error === 'object' && 'issues' in error && Array.isArray((error as { issues: unknown[] }).issues)) {
+      const firstError = (error as { issues: Array<{ message: string }> }).issues[0]
       return NextResponse.json(
         {
           success: false,

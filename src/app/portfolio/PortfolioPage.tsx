@@ -398,7 +398,7 @@ export default function PortfolioPage() {
                         <h3 className="text-xl font-bold text-brand-navy mb-4">המלצה</h3>
                         <blockquote className="bg-brand-orange/10 rounded-2xl p-6">
                           <p className="text-brand-gray-700 italic mb-4 leading-relaxed">
-                            "{selectedProject.testimonial.text}"
+                            &quot;{selectedProject.testimonial.text}&quot;
                           </p>
                           <cite className="text-sm text-brand-gray-600 not-italic">
                             <strong className="font-bold">{selectedProject.testimonial.author}</strong>

@@ -123,27 +123,54 @@ export default function FAQPage() {
 
       {/* Category Filter */}
       <section className="py-8 bg-white border-b border-brand-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="inline-flex flex-wrap gap-2 p-2 bg-brand-gray-100 rounded-full mx-auto justify-center">
-            {categories.map(({ key, label }) => (
-              <motion.button
-                key={key}
-                onClick={() => {
-                  setSelectedCategory(key)
-                  setOpenIndex(null)
-                }}
-                className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                  selectedCategory === key
-                    ? 'bg-brand-green text-white shadow-lg'
-                    : 'text-brand-gray-700 hover:text-brand-green'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2, ease: bouncyEasing }}
-              >
-                {label}
-              </motion.button>
-            ))}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Desktop: Centered tabs */}
+          <div className="hidden sm:flex justify-center">
+            <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
+              {categories.map(({ key, label }) => (
+                <motion.button
+                  key={key}
+                  onClick={() => {
+                    setSelectedCategory(key)
+                    setOpenIndex(null)
+                  }}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap ${
+                    selectedCategory === key
+                      ? 'bg-brand-green text-white shadow-lg'
+                      : 'text-brand-gray-700 hover:text-brand-green'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                >
+                  {label}
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile: Scrollable tabs */}
+          <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
+              {categories.map(({ key, label }) => (
+                <motion.button
+                  key={key}
+                  onClick={() => {
+                    setSelectedCategory(key)
+                    setOpenIndex(null)
+                  }}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap ${
+                    selectedCategory === key
+                      ? 'bg-brand-green text-white shadow-lg'
+                      : 'text-brand-gray-700'
+                  }`}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                >
+                  {label}
+                </motion.button>
+              ))}
+            </div>
           </div>
         </div>
       </section>

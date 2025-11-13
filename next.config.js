@@ -1,7 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  
+
+  // ESLint configuration
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: false, // Set to true to completely ignore ESLint during builds
+  },
+
+  // TypeScript configuration
+  typescript: {
+    // Ignore TypeScript errors during build (not recommended for production)
+    ignoreBuildErrors: false,
+  },
+
   // Image optimization
   images: {
     domains: ['localhost', 'itayost.com', 'www.itayost.com'],
