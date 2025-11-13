@@ -12,7 +12,7 @@ const GradientMesh = memo(() => {
   
   if (shouldReduceMotion) {
     return (
-      <div className="absolute inset-0 bg-gradient-to-br from-apple-blue/10 via-apple-purple/10 to-apple-pink/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/5 via-brand-blue/10 to-brand-orange/10" />
     )
   }
   
@@ -77,7 +77,7 @@ const FloatingIcons = memo(() => {
           className="absolute opacity-10 animate-float-icon"
           style={{ left: x, top: y }}
         >
-          <Icon size={32} className="text-apple-blue" />
+          <Icon size={32} className="text-brand-blue" />
         </div>
       ))}
     </>
@@ -117,7 +117,7 @@ const TypewriterText = memo(({ text }: { text: string }) => {
     <span className="relative">
       {displayedText}
       {!shouldReduceMotion && (
-        <span className="inline-block w-1 h-12 bg-apple-blue ml-1 animate-blink" />
+        <span className="inline-block w-1 h-12 bg-brand-blue ml-1 animate-blink" />
       )}
     </span>
   )
@@ -147,7 +147,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white pt-20 pb-16 md:pt-24 md:pb-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-brand-gray-50 to-white pt-20 pb-16 md:pt-24 md:pb-20"
     >
       {/* Background Effects - Only render after mount */}
       {mounted && !shouldReduceMotion && <GradientMesh />}
@@ -165,12 +165,12 @@ export default function Hero() {
           {/* Badge */}
           <AppleStaggerItem>
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-xl rounded-full border border-apple-gray-200/50 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-xl rounded-full border border-brand-gray-200/50 mb-8"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Sparkles className="w-4 h-4 text-apple-blue" />
-              <span className="text-sm font-medium text-apple-gray-700">
+              <Sparkles className="w-4 h-4 text-brand-blue" />
+              <span className="text-sm font-medium text-brand-gray-700">
                 בואו נדבר על העסק שלך
               </span>
             </motion.div>
@@ -178,14 +178,14 @@ export default function Hero() {
 
           {/* Main Headline */}
           <AppleStaggerItem>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight mb-6">
-              <span className="block text-apple-gray-900">הופכים טכנולוגיה</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-6">
+              <span className="block text-brand-navy">הופכים טכנולוגיה</span>
               <span className="block mt-2">
-                <span className="bg-gradient-to-r from-apple-blue via-apple-purple to-apple-pink bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-brand-blue via-brand-orange to-brand-green bg-clip-text text-transparent">
                   מסובכת
                 </span>
               </span>
-              <span className="block text-apple-gray-900 mt-2">
+              <span className="block text-brand-navy mt-2">
                 <TypewriterText text="לפתרונות פשוטים" />
               </span>
             </h1>
@@ -193,7 +193,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <AppleStaggerItem>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-apple-gray-600 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4 sm:px-0">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-brand-gray-600 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4 sm:px-0">
               אני איתי, ואני עוזר לעסקים קטנים לחסוך זמן ולהרוויח יותר
               <br />
               עם פתרונות דיגיטליים שפשוט עובדים.
@@ -209,11 +209,11 @@ export default function Hero() {
               >
                 <Link
                   href="/contact"
-                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-white bg-gradient-to-r from-apple-blue to-apple-blue-dark rounded-full font-medium text-base sm:text-lg overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="group relative inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 text-white bg-gradient-to-r from-brand-orange to-brand-orange/90 rounded-full font-semibold text-base sm:text-lg overflow-hidden transition-all duration-300 shadow-xl shadow-brand-orange/30 hover:shadow-2xl hover:shadow-brand-orange/50"
                 >
                   <span className="relative z-10">בואו נדבר על העסק שלך</span>
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-apple-purple to-apple-pink"
+                    className="absolute inset-0 bg-gradient-to-r from-brand-orange to-brand-orange/80"
                     initial={{ x: '100%' }}
                     whileHover={{ x: 0 }}
                     transition={{ duration: 0.3 }}
@@ -227,7 +227,7 @@ export default function Hero() {
               >
                 <Link
                   href="/portfolio"
-                  className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-apple-blue bg-white/80 backdrop-blur-xl border border-apple-gray-200 rounded-full font-medium text-base sm:text-lg hover:bg-white transition-all duration-300"
+                  className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 text-brand-navy bg-white/80 backdrop-blur-xl border-2 border-brand-blue/30 rounded-full font-semibold text-base sm:text-lg hover:bg-white hover:border-brand-blue transition-all duration-300"
                 >
                   ראו איך עזרתי לאחרים
                 </Link>
@@ -251,10 +251,10 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
                 >
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-brand-blue to-brand-orange bg-clip-text text-transparent">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-apple-gray-500 mt-1">
+                  <div className="text-sm text-brand-gray-500 mt-1">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -265,7 +265,7 @@ export default function Hero() {
 
         {/* Scroll Indicator - CSS animation instead of JS - RTL aware */}
         <div className="absolute bottom-8 start-1/2 -translate-x-1/2 animate-bounce-slow">
-          <ChevronDown className="w-8 h-8 text-apple-gray-400" />
+          <ChevronDown className="w-8 h-8 text-brand-gray-400" />
         </div>
       </motion.div>
     </section>
