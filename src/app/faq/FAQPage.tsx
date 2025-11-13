@@ -6,10 +6,14 @@ import Link from 'next/link'
 import {
   HelpCircle,
   ChevronDown,
-  MessageCircle
+  MessageCircle,
+  Sparkles
 } from 'lucide-react'
 import { content } from '@/config/content'
 import { seoConfig } from '@/config/seo'
+
+// Bouncy easing for Mailchimp-style animations
+const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
 // Extract FAQ items from SEO config
 const faqItems = seoConfig.structuredData.faqPage.mainEntity.map((item: any) => ({
@@ -70,28 +74,37 @@ export default function FAQPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 backdrop-blur-xl rounded-full mb-6"
+              transition={{ duration: 0.6, ease: bouncyEasing }}
+              className="mb-6"
             >
-              <HelpCircle className="w-4 h-4 text-brand-green" />
-              <span className="text-sm font-medium text-brand-green">
-                {content.faq.sectionLabel}
-              </span>
+              <motion.div
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-green/10 rounded-full"
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+              >
+                <Sparkles className="w-5 h-5 text-brand-green" />
+                <span className="text-base font-bold text-brand-green">
+                  {content.faq.sectionLabel}
+                </span>
+              </motion.div>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
+              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
+              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
             >
               {content.faq.title}
-              <span className="block mt-2 bg-gradient-to-r from-brand-green to-apple-cyan bg-clip-text text-transparent">
+              <span className="block mt-2 text-brand-green">
                 {content.faq.subtitle}
               </span>
             </motion.h1>
@@ -99,8 +112,8 @@ export default function FAQPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-brand-gray-600 max-w-3xl mx-auto"
+              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
+              className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto"
             >
               {content.faq.description}
             </motion.p>
@@ -111,7 +124,7 @@ export default function FAQPage() {
       {/* Category Filter */}
       <section className="py-8 bg-white border-b border-brand-gray-200">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="inline-flex flex-wrap gap-2 p-2 bg-brand-gray-100 rounded-full mx-auto justify-center">
             {categories.map(({ key, label }) => (
               <motion.button
                 key={key}
@@ -119,13 +132,14 @@ export default function FAQPage() {
                   setSelectedCategory(key)
                   setOpenIndex(null)
                 }}
-                className={`px-6 py-2 rounded-full font-medium transition-all ${
+                className={`px-6 py-3 rounded-full font-semibold transition-all ${
                   selectedCategory === key
-                    ? 'bg-gradient-to-r from-brand-green to-apple-cyan text-white shadow-lg'
-                    : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
+                    ? 'bg-brand-green text-white shadow-lg'
+                    : 'text-brand-gray-700 hover:text-brand-green'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, ease: bouncyEasing }}
               >
                 {label}
               </motion.button>
@@ -135,30 +149,42 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Items */}
-      <section className="py-16 lg:py-24 bg-brand-gray-50">
+      <section className="py-16 lg:py-24 bg-section-light-blue">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-4">
               {filteredFAQs.map((faq, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: index * 0.05,
+                    duration: 0.6,
+                    ease: bouncyEasing
+                  }}
+                  whileHover={{
+                    y: -4,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow"
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-brand-gray-50 transition-colors"
+                    className="w-full px-6 lg:px-8 py-5 lg:py-6 flex items-center justify-between text-right hover:bg-brand-gray-50 transition-colors"
                   >
-                    <span className="text-lg font-semibold text-brand-gray-900 flex-1">
+                    <span className="text-lg lg:text-xl font-bold text-brand-navy flex-1 pr-4">
                       {faq.question}
                     </span>
                     <motion.div
                       animate={{ rotate: openIndex === index ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.3, ease: bouncyEasing }}
+                      className="flex-shrink-0"
                     >
-                      <ChevronDown className="w-6 h-6 text-brand-gray-600" />
+                      <div className="w-10 h-10 bg-brand-green rounded-2xl flex items-center justify-center">
+                        <ChevronDown className="w-6 h-6 text-white" />
+                      </div>
                     </motion.div>
                   </button>
 
@@ -168,10 +194,10 @@ export default function FAQPage() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.3, ease: bouncyEasing }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-5 text-brand-gray-600 leading-relaxed">
+                        <div className="px-6 lg:px-8 pb-5 lg:pb-6 text-brand-gray-700 text-lg leading-relaxed">
                           {faq.answer}
                         </div>
                       </motion.div>
@@ -185,31 +211,72 @@ export default function FAQPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-green to-apple-cyan">
+      <section className="py-16 lg:py-24 bg-brand-green">
         <div className="container mx-auto px-4 text-center">
-          <MessageCircle size={64} className="text-white mx-auto mb-6" />
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            לא מצאתם את התשובה?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            אנחנו כאן לעזור! צרו איתנו קשר ונענה על כל שאלה
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-brand-green rounded-full font-medium hover:shadow-xl transition-all"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: bouncyEasing }}
+          >
+            <motion.div
+              className="mb-6"
+              animate={{
+                rotate: [0, -10, 10, -10, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             >
-              צרו קשר
-            </Link>
-            <a
-              href="https://wa.me/972544994417"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/20 backdrop-blur text-white border border-white/30 rounded-full font-medium hover:bg-white/30 transition-all"
-            >
-              WhatsApp
-            </a>
-          </div>
+              <MessageCircle size={64} className="text-white mx-auto" />
+            </motion.div>
+            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
+              לא מצאתם את התשובה?
+            </h2>
+            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+              אנחנו כאן לעזור! צרו איתנו קשר ונענה על כל שאלה
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+                whileTap={{
+                  scale: 0.95,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+              >
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white text-brand-green rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
+                >
+                  צרו קשר
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+                whileTap={{
+                  scale: 0.95,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+              >
+                <a
+                  href="https://wa.me/972544994417"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white/20 backdrop-blur text-white border-2 border-white/30 rounded-full font-semibold text-lg hover:bg-white/30 transition-all"
+                >
+                  WhatsApp
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </main>
