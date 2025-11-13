@@ -14,6 +14,9 @@ import {
 } from 'lucide-react'
 import { content } from '@/config/content'
 
+// Bouncy easing for Mailchimp-style animations
+const bouncyEasing = [0.34, 1.56, 0.64, 1]
+
 // Client testimonials - Replace with real data
 const testimonials = [
   {
@@ -186,26 +189,51 @@ export default function ClientsPage() {
 
       {/* Industries Filter */}
       <section className="py-8 bg-white border-y border-brand-gray-200">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="text-center text-sm font-semibold text-brand-gray-700 mb-4">
             {content.clients.industries.title}
           </h3>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {industries.map(({ key, label }) => (
-              <motion.button
-                key={key}
-                onClick={() => setSelectedIndustry(key)}
-                className={`px-6 py-2 rounded-full font-medium transition-all ${
-                  selectedIndustry === key
-                    ? 'bg-brand-orange text-white shadow-lg'
-                    : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {key !== 'all' && industryIcons[key]} {label}
-              </motion.button>
-            ))}
+          {/* Desktop: Centered tabs */}
+          <div className="hidden sm:flex justify-center">
+            <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
+              {industries.map(({ key, label }) => (
+                <motion.button
+                  key={key}
+                  onClick={() => setSelectedIndustry(key)}
+                  className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
+                    selectedIndustry === key
+                      ? 'bg-brand-orange text-white shadow-lg'
+                      : 'text-brand-gray-700 hover:text-brand-orange'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                >
+                  {key !== 'all' && industryIcons[key]} {label}
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile: Scrollable tabs */}
+          <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
+              {industries.map(({ key, label }) => (
+                <motion.button
+                  key={key}
+                  onClick={() => setSelectedIndustry(key)}
+                  className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
+                    selectedIndustry === key
+                      ? 'bg-brand-orange text-white shadow-lg'
+                      : 'text-brand-gray-700'
+                  }`}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                >
+                  {key !== 'all' && industryIcons[key]} {label}
+                </motion.button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
