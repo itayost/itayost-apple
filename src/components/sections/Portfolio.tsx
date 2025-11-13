@@ -172,25 +172,53 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1, ease: bouncyEasing }}
-          className="flex justify-center mb-16"
+          className="mb-16"
         >
-          <div className="inline-flex flex-wrap gap-3 p-2 bg-brand-gray-100 rounded-full">
-            {categories.map((category) => (
-              <motion.button
-                key={category.value}
-                onClick={() => setSelectedCategory(category.value)}
-                className={`px-6 py-3 rounded-full font-bold transition-all ${
-                  selectedCategory === category.value
-                    ? 'bg-brand-navy text-white shadow-lg'
-                    : 'text-brand-gray-700 hover:text-brand-navy'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2, ease: bouncyEasing }}
-              >
-                {category.name}
-              </motion.button>
-            ))}
+          {/* Desktop: Centered tabs */}
+          <div className="hidden sm:flex justify-center">
+            <div className="inline-flex gap-3 p-2 bg-brand-gray-100 rounded-full">
+              {categories.map((category) => (
+                <motion.button
+                  key={category.value}
+                  onClick={() => setSelectedCategory(category.value)}
+                  className={`px-6 py-3 rounded-full font-bold transition-all ${
+                    selectedCategory === category.value
+                      ? 'bg-brand-navy text-white shadow-lg'
+                      : 'text-brand-gray-700 hover:text-brand-navy'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                >
+                  {category.name}
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile: Scrollable tabs */}
+          <div
+            className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide flex justify-center"
+            style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex gap-3 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
+              {categories.map((category) => (
+                <motion.button
+                  key={category.value}
+                  onClick={() => setSelectedCategory(category.value)}
+                  className={`px-6 py-3 rounded-full font-bold transition-all ${
+                    selectedCategory === category.value
+                      ? 'bg-brand-navy text-white shadow-lg'
+                      : 'text-brand-gray-700 hover:text-brand-navy'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                >
+                  {category.name}
+                </motion.button>
+              ))}
+            </div>
           </div>
         </motion.div>
 
