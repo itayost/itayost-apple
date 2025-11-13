@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import {
   Mail,
@@ -77,7 +78,14 @@ export function Footer() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3, ease: bouncyEasing }}
               >
-                <Link href="/" className="inline-block mb-6">
+                <Link href="/" className="inline-flex items-center gap-4 mb-6">
+                  <Image
+                    src="/logo.png"
+                    alt="לוגו ITAYOST"
+                    width={80}
+                    height={80}
+                    className="w-16 h-16 lg:w-20 lg:h-20"
+                  />
                   <div className="text-4xl lg:text-5xl font-bold text-white">
                     ITAYOST
                   </div>

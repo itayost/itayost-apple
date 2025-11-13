@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { servicesData } from '@/data/services'
@@ -100,9 +101,17 @@ export function Navigation() {
             {/* Logo */}
             <Link
               href="/"
-              className="text-2xl font-bold text-brand-navy hover:text-brand-blue transition-colors"
+              className="flex items-center gap-3 text-2xl font-bold text-brand-navy hover:text-brand-blue transition-colors"
             >
-              ITAYOST
+              <Image
+                src="/logo.png"
+                alt="לוגו ITAYOST"
+                width={50}
+                height={50}
+                className="w-10 h-10 lg:w-12 lg:h-12"
+                priority
+              />
+              <span>ITAYOST</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -300,9 +309,18 @@ export function Navigation() {
             <div className="flex flex-col h-full p-6">
               {/* Menu Header */}
               <div className="flex items-center justify-between mb-8">
-                <span className="text-2xl font-bold text-brand-navy">
-                  ITAYOST
-                </span>
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/logo.png"
+                    alt="לוגו ITAYOST"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10"
+                  />
+                  <span className="text-2xl font-bold text-brand-navy">
+                    ITAYOST
+                  </span>
+                </div>
                 <motion.button
                   onClick={toggleMenu}
                   className="w-10 h-10 flex items-center justify-center"
