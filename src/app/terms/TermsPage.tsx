@@ -171,16 +171,16 @@ export default function TermsPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-apple-gray-50">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-apple-gray-800/10 backdrop-blur-xl rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-gray-800/10 backdrop-blur-xl rounded-full mb-6"
             >
-              <FileText className="w-4 h-4 text-apple-gray-800" />
-              <span className="text-sm font-medium text-apple-gray-800">
+              <FileText className="w-4 h-4 text-brand-gray-800" />
+              <span className="text-sm font-medium text-brand-gray-800">
                 {content.terms.sectionLabel}
               </span>
             </motion.div>
@@ -189,10 +189,10 @@ export default function TermsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
             >
               {content.terms.title}
-              <span className="block mt-2 bg-gradient-to-r from-apple-gray-700 to-apple-gray-900 bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-brand-gray-700 to-brand-gray-900 bg-clip-text text-transparent">
                 {content.terms.subtitle}
               </span>
             </motion.h1>
@@ -201,7 +201,7 @@ export default function TermsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-apple-gray-600 max-w-3xl mx-auto mb-4"
+              className="text-xl text-brand-gray-600 max-w-3xl mx-auto mb-4"
             >
               {content.terms.description}
             </motion.p>
@@ -210,7 +210,7 @@ export default function TermsPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-sm text-apple-gray-500"
+              className="text-sm text-brand-gray-500"
             >
               {content.terms.lastUpdated}: ינואר 2025
             </motion.p>
@@ -219,7 +219,7 @@ export default function TermsPage() {
       </section>
 
       {/* Section Tabs */}
-      <section className="py-8 bg-white border-b border-apple-gray-200">
+      <section className="py-8 bg-white border-b border-brand-gray-200">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {sections.map((section) => {
@@ -230,8 +230,8 @@ export default function TermsPage() {
                   onClick={() => setActiveSection(section.id)}
                   className={`flex flex-col items-center gap-2 p-4 rounded-xl font-medium transition-all ${
                     activeSection === section.id
-                      ? 'bg-gradient-to-br from-apple-gray-800 to-apple-gray-900 text-white shadow-lg'
-                      : 'bg-apple-gray-100 text-apple-gray-700 hover:bg-apple-gray-200'
+                      ? 'bg-gradient-to-br from-brand-gray-800 to-brand-gray-900 text-white shadow-lg'
+                      : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -246,7 +246,7 @@ export default function TermsPage() {
       </section>
 
       {/* Content Section */}
-      <section className="py-16 lg:py-24 bg-apple-gray-50">
+      <section className="py-16 lg:py-24 bg-brand-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             key={activeSection}
@@ -258,10 +258,10 @@ export default function TermsPage() {
             <div className="flex items-center gap-4 mb-8">
               {activeContent && (
                 <>
-                  <div className="w-12 h-12 bg-gradient-to-br from-apple-gray-800 to-apple-gray-900 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-brand-gray-800 to-brand-gray-900 rounded-xl flex items-center justify-center">
                     <activeContent.icon size={24} className="text-white" />
                   </div>
-                  <h2 className="text-3xl font-bold text-apple-gray-900">
+                  <h2 className="text-3xl font-bold text-brand-gray-900">
                     {activeContent.title}
                   </h2>
                 </>
@@ -269,7 +269,7 @@ export default function TermsPage() {
             </div>
 
             <div
-              className="prose prose-lg max-w-none text-apple-gray-700 leading-relaxed"
+              className="prose prose-lg max-w-none text-brand-gray-700 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: activeContent?.content || '' }}
             />
           </motion.div>
@@ -277,7 +277,7 @@ export default function TermsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-apple-gray-800 to-apple-gray-900">
+      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-gray-800 to-brand-gray-900">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             יש לכם שאלות?
@@ -287,7 +287,7 @@ export default function TermsPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-apple-gray-900 rounded-full font-medium hover:shadow-xl transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-gray-900 rounded-full font-medium hover:shadow-xl transition-all"
           >
             צרו קשר
           </Link>

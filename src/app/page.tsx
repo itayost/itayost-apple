@@ -8,7 +8,7 @@ import LatestBlogPosts from '@/components/common/LatestBlogPosts'
 
 // Components - same for all screen sizes
 const Hero = dynamic(() => import('@/components/sections/Hero'), {
-  loading: () => <div className="min-h-screen bg-gradient-to-b from-white to-apple-gray-50" />,
+  loading: () => <div className="min-h-screen bg-gradient-to-b from-white to-brand-gray-50" />,
   ssr: true
 })
 
@@ -18,7 +18,7 @@ const Services = dynamic(() => import('@/components/sections/Services'), {
 })
 
 const Portfolio = dynamic(() => import('@/components/sections/Portfolio'), {
-  loading: () => <div className="min-h-[600px] bg-apple-gray-50" />,
+  loading: () => <div className="min-h-[600px] bg-brand-gray-50" />,
   ssr: true
 })
 

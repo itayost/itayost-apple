@@ -92,11 +92,11 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           </motion.div>
           
           {/* Content */}
-          <h3 className="text-xl sm:text-2xl font-bold text-apple-gray-900 mb-3">
+          <h3 className="text-xl sm:text-2xl font-bold text-brand-gray-900 mb-3">
             {service.title}
           </h3>
           
-          <p className="text-sm sm:text-base text-apple-gray-600 mb-6 leading-relaxed">
+          <p className="text-sm sm:text-base text-brand-gray-600 mb-6 leading-relaxed">
             {service.description}
           </p>
           
@@ -108,9 +108,9 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="flex items-center text-sm text-apple-gray-500"
+                className="flex items-center text-sm text-brand-gray-500"
               >
-                <Sparkles className="w-4 h-4 text-apple-blue mr-2" />
+                <Sparkles className="w-4 h-4 text-brand-blue mr-2" />
                 {feature}
               </motion.li>
             ))}
@@ -118,7 +118,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           
           {/* CTA */}
           <motion.div
-            className="inline-flex items-center text-apple-blue font-medium group"
+            className="inline-flex items-center text-brand-blue font-medium group"
             whileHover={{ x: 5 }}
           >
             <span>למידע נוסף</span>
@@ -176,7 +176,7 @@ export default function Services() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
-    <section ref={containerRef} className="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-white via-apple-gray-50 to-white">
+    <section ref={containerRef} className="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-white via-brand-gray-50 to-white">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <FloatingElement delay={0} />
@@ -196,20 +196,20 @@ export default function Services() {
           <AppleStaggerItem>
             <div className="text-center mb-16">
               <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-apple-blue/10 backdrop-blur-xl rounded-full mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 backdrop-blur-xl rounded-full mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <Layers className="w-4 h-4 text-apple-blue" />
-                <span className="text-sm font-medium text-apple-blue">
+                <Layers className="w-4 h-4 text-brand-blue" />
+                <span className="text-sm font-medium text-brand-blue">
                   איך אני יכול לעזור
                 </span>
               </motion.div>
               
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6">
-                איך אני יכול <span className="bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">לעזור לעסק שלך?</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6">
+                איך אני יכול <span className="bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">לעזור לעסק שלך?</span>
               </h2>
 
-              <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
+              <p className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
                 פתרונות דיגיטליים שמתאימים בדיוק לעסק שלך - ללא ז'רגון מסובך
               </p>
             </div>
@@ -229,7 +229,7 @@ export default function Services() {
             <div className="mt-12 sm:mt-16 bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl mx-4 sm:mx-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h3 className="text-3xl font-bold text-apple-gray-900 mb-6">
+                  <h3 className="text-3xl font-bold text-brand-gray-900 mb-6">
                     למה דווקא איתי?
                   </h3>
                   <div className="space-y-4">
@@ -245,10 +245,10 @@ export default function Services() {
                         transition={{ delay: index * 0.1 }}
                         className="flex items-center gap-4"
                       >
-                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-apple-blue to-apple-purple rounded-xl flex items-center justify-center text-white">
+                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-brand-blue to-brand-purple rounded-xl flex items-center justify-center text-white">
                           <item.icon size={20} />
                         </div>
-                        <p className="text-apple-gray-700 font-medium">
+                        <p className="text-brand-gray-700 font-medium">
                           {item.text}
                         </p>
                       </motion.div>
@@ -261,7 +261,7 @@ export default function Services() {
                     <div className="relative">
                       {/* Stats Cards */}
                       <motion.div
-                        className="bg-gradient-to-br from-apple-blue to-apple-blue-dark rounded-2xl p-6 text-white mb-4"
+                        className="bg-gradient-to-br from-brand-blue to-brand-blue-dark rounded-2xl p-6 text-white mb-4"
                         whileHover={{ scale: 1.05, rotate: -2 }}
                       >
                         <div className="text-4xl font-bold mb-2">15</div>
@@ -269,7 +269,7 @@ export default function Services() {
                       </motion.div>
                       
                       <motion.div
-                        className="bg-gradient-to-br from-apple-purple to-apple-pink rounded-2xl p-6 text-white"
+                        className="bg-gradient-to-br from-brand-purple to-brand-pink rounded-2xl p-6 text-white"
                         whileHover={{ scale: 1.05, rotate: 2 }}
                       >
                         <div className="text-4xl font-bold mb-2">30%</div>
@@ -291,7 +291,7 @@ export default function Services() {
               >
                 <Link
                   href="/services"
-                  className="inline-flex items-center justify-center px-8 py-4 text-white bg-gradient-to-r from-apple-blue to-apple-blue-dark rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="inline-flex items-center justify-center px-8 py-4 text-white bg-gradient-to-r from-brand-blue to-brand-blue-dark rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   ראה את כל השירותים
                 </Link>

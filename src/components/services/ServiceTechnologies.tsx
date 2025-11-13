@@ -28,10 +28,10 @@ export default function ServiceTechnologies({ technologies, gradient }: ServiceT
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-4xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-apple-gray-900 sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold text-brand-gray-900 sm:text-4xl">
               טכנולוגיות שאנחנו משתמשים בהן
             </h2>
-            <p className="text-lg text-apple-gray-700">
+            <p className="text-lg text-brand-gray-700">
               כלים ופלטפורמות מודרניות ומוכחות
             </p>
           </div>
@@ -47,7 +47,7 @@ export default function ServiceTechnologies({ technologies, gradient }: ServiceT
               <motion.div
                 key={index}
                 variants={item}
-                className="group relative overflow-hidden rounded-xl border-2 border-apple-gray-200 bg-white px-6 py-3 shadow-sm transition-all hover:shadow-md"
+                className="group relative overflow-hidden rounded-xl border-2 border-brand-gray-200 bg-white px-6 py-3 shadow-sm transition-all hover:shadow-md"
               >
                 {/* Gradient background on hover */}
                 <div
@@ -55,7 +55,7 @@ export default function ServiceTechnologies({ technologies, gradient }: ServiceT
                   aria-hidden="true"
                 />
 
-                <span className="relative text-base font-semibold text-apple-gray-900 sm:text-lg">
+                <span className="relative text-base font-semibold text-brand-gray-900 sm:text-lg">
                   {tech}
                 </span>
               </motion.div>

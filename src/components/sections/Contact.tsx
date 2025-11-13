@@ -127,27 +127,27 @@ export default function Contact() {
   }
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-apple-gray-50 to-white overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-brand-gray-50 to-white overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AppleStaggerChildren>
           {/* Section Header */}
           <AppleStaggerItem>
             <div className="text-center mb-8 sm:mb-12 lg:mb-16">
               <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-apple-green/10 backdrop-blur-xl rounded-full mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 backdrop-blur-xl rounded-full mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <MessageCircle className="w-4 h-4 text-apple-green" />
-                <span className="text-sm font-medium text-apple-green">
+                <MessageCircle className="w-4 h-4 text-brand-green" />
+                <span className="text-sm font-medium text-brand-green">
                   בואו נדבר על העסק שלך
                 </span>
               </motion.div>
               
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
-                מוכנים <span className="bg-gradient-to-r from-apple-green to-apple-cyan bg-clip-text text-transparent">להפסיק לבזבז זמן?</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-navy mb-4 sm:mb-6">
+                מוכנים <span className="bg-gradient-to-r from-brand-orange to-brand-green bg-clip-text text-transparent">להפסיק לבזבז זמן?</span>
               </h2>
 
-              <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-3xl mx-auto">
                 בואו נדבר 15 דקות ונראה איך אני יכול לעזור לכם.
                 ללא עלות, ללא מחויבות - רק שיחה על האפשרויות.
               </p>
@@ -163,14 +163,14 @@ export default function Contact() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h3 className="text-xl sm:text-2xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-brand-gray-900 mb-4 sm:mb-6">
                   ספר לי איך אני יכול לעזור
                 </h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 lg:space-y-6">
                   {/* Name Field */}
                   <div>
-                    <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                       שם מלא
                     </label>
                     <motion.input
@@ -181,7 +181,7 @@ export default function Contact() {
                       onFocus={() => setFocusedField('name')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-base"
                       placeholder="ישראל ישראלי"
                       animate={{
                         scale: focusedField === 'name' ? 1.01 : 1
@@ -191,7 +191,7 @@ export default function Contact() {
                   
                   {/* Email Field */}
                   <div>
-                    <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                       אימייל
                     </label>
                     <motion.input
@@ -201,7 +201,7 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('email')}
                       onBlur={() => setFocusedField(null)}
-                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-base"
                       placeholder="example@email.com"
                       animate={{
                         scale: focusedField === 'email' ? 1.01 : 1
@@ -211,7 +211,7 @@ export default function Contact() {
                   
                   {/* Phone Field */}
                   <div>
-                    <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                       טלפון *
                     </label>
                     <motion.input
@@ -222,7 +222,7 @@ export default function Contact() {
                       onFocus={() => setFocusedField('phone')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-base"
                       placeholder="050-1234567"
                       animate={{
                         scale: focusedField === 'phone' ? 1.01 : 1
@@ -232,7 +232,7 @@ export default function Contact() {
                   
                   {/* Subject Field */}
                   <div>
-                    <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                       נושא
                     </label>
                     <motion.select
@@ -242,7 +242,7 @@ export default function Contact() {
                       onFocus={() => setFocusedField('subject')}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all text-base"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-base"
                       animate={{
                         scale: focusedField === 'subject' ? 1.01 : 1
                       }}
@@ -258,7 +258,7 @@ export default function Contact() {
                   
                   {/* Message Field */}
                   <div>
-                    <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                       הודעה
                     </label>
                     <motion.textarea
@@ -269,7 +269,7 @@ export default function Contact() {
                       onBlur={() => setFocusedField(null)}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all resize-none text-base"
+                      className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all resize-none text-base"
                       placeholder="מה העסק שלך? מה מעיק עליך? איפה אתה מבזבז זמן?"
                       animate={{
                         scale: focusedField === 'message' ? 1.01 : 1
@@ -281,7 +281,7 @@ export default function Contact() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting || submitStatus === 'success'}
-                    className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-apple-blue to-apple-blue-dark text-white rounded-xl font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-brand-orange to-brand-orange/90 text-white rounded-xl font-semibold text-base sm:text-lg shadow-xl shadow-brand-orange/30 hover:shadow-2xl hover:shadow-brand-orange/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -345,8 +345,8 @@ export default function Contact() {
               <div className="lg:space-y-6">
                 {/* Section Title - Mobile/Tablet only */}
                 <div className="lg:hidden mb-6">
-                  <h3 className="text-xl font-bold text-apple-gray-900 mb-2">פרטי התקשרות</h3>
-                  <p className="text-sm text-apple-gray-600">אני זמין דרך המגוון הרחב של ערוצי התקשורת</p>
+                  <h3 className="text-xl font-bold text-brand-gray-900 mb-2">פרטי התקשרות</h3>
+                  <p className="text-sm text-brand-gray-600">אני זמין דרך המגוון הרחב של ערוצי התקשורת</p>
                 </div>
 
                 {/* Info Cards Grid */}
@@ -363,8 +363,8 @@ export default function Contact() {
                           <info.icon size={26} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="text-sm text-apple-gray-500 mb-0.5">{info.title}</div>
-                          <div className="text-base font-semibold text-apple-gray-900 break-words">{info.value}</div>
+                          <div className="text-sm text-brand-gray-500 mb-0.5">{info.title}</div>
+                          <div className="text-base font-semibold text-brand-gray-900 break-words">{info.value}</div>
                         </div>
                       </div>
                     </motion.a>
@@ -374,9 +374,9 @@ export default function Contact() {
 
                 {/* Quick Actions */}
                 <AppleReveal direction="right" delay={0.4}>
-                  <div className="bg-gradient-to-br from-apple-blue/5 to-apple-purple/5 rounded-xl sm:rounded-2xl p-6 mt-4 lg:mt-6">
-                    <h4 className="text-lg font-bold text-apple-gray-900 mb-4 flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-apple-blue" />
+                  <div className="bg-gradient-to-br from-brand-blue/5 to-brand-purple/5 rounded-xl sm:rounded-2xl p-6 mt-4 lg:mt-6">
+                    <h4 className="text-lg font-bold text-brand-gray-900 mb-4 flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-brand-blue" />
                       לא אוהבים טפסים?
                     </h4>
                     <div className="flex flex-wrap gap-4">
@@ -384,7 +384,7 @@ export default function Contact() {
                         href="https://wa.me/972544994417"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-all text-apple-gray-700 hover:text-apple-blue"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-all text-brand-gray-700 hover:text-brand-blue"
                       >
                         <MessageCircle size={18} />
                         <span className="font-medium">WhatsApp</span>

@@ -34,16 +34,16 @@ export default function GuidesPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-apple-gray-50">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-apple-purple/10 backdrop-blur-xl rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-purple/10 backdrop-blur-xl rounded-full mb-6"
             >
-              <BookMarked className="w-4 h-4 text-apple-purple" />
-              <span className="text-sm font-medium text-apple-purple">
+              <BookMarked className="w-4 h-4 text-brand-purple" />
+              <span className="text-sm font-medium text-brand-purple">
                 {content.guides.sectionLabel}
               </span>
             </motion.div>
@@ -52,10 +52,10 @@ export default function GuidesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
             >
               {content.guides.title}
-              <span className="block mt-2 bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent">
                 {content.guides.subtitle}
               </span>
             </motion.h1>
@@ -64,7 +64,7 @@ export default function GuidesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-apple-gray-600 max-w-3xl mx-auto"
+              className="text-xl text-brand-gray-600 max-w-3xl mx-auto"
             >
               {content.guides.description}
             </motion.p>
@@ -73,11 +73,11 @@ export default function GuidesPage() {
       </section>
 
       {/* Filters */}
-      <section className="py-8 bg-white border-b border-apple-gray-200">
+      <section className="py-8 bg-white border-b border-brand-gray-200">
         <div className="container mx-auto px-4">
           {/* Level Filter */}
           <div className="mb-4">
-            <h3 className="text-sm font-semibold text-apple-gray-700 mb-3 text-center">
+            <h3 className="text-sm font-semibold text-brand-gray-700 mb-3 text-center">
               רמת קושי
             </h3>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -87,8 +87,8 @@ export default function GuidesPage() {
                   onClick={() => setSelectedLevel(key)}
                   className={`px-6 py-2 rounded-full font-medium transition-all ${
                     selectedLevel === key
-                      ? 'bg-gradient-to-r from-apple-purple to-apple-pink text-white shadow-lg'
-                      : 'bg-apple-gray-100 text-apple-gray-700 hover:bg-apple-gray-200'
+                      ? 'bg-gradient-to-r from-brand-purple to-brand-pink text-white shadow-lg'
+                      : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -101,7 +101,7 @@ export default function GuidesPage() {
 
           {/* Topic Filter */}
           <div>
-            <h3 className="text-sm font-semibold text-apple-gray-700 mb-3 text-center">
+            <h3 className="text-sm font-semibold text-brand-gray-700 mb-3 text-center">
               נושא
             </h3>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -111,8 +111,8 @@ export default function GuidesPage() {
                   onClick={() => setSelectedTopic(key)}
                   className={`px-6 py-2 rounded-full font-medium transition-all ${
                     selectedTopic === key
-                      ? 'bg-gradient-to-r from-apple-blue to-apple-cyan text-white shadow-lg'
-                      : 'bg-apple-gray-100 text-apple-gray-700 hover:bg-apple-gray-200'
+                      ? 'bg-gradient-to-r from-brand-blue to-apple-cyan text-white shadow-lg'
+                      : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -126,7 +126,7 @@ export default function GuidesPage() {
       </section>
 
       {/* Guides or Coming Soon */}
-      <section className="py-16 lg:py-24 bg-apple-gray-50">
+      <section className="py-16 lg:py-24 bg-brand-gray-50">
         <div className="container mx-auto px-4">
           {guides.length === 0 ? (
             // Coming Soon Message
@@ -136,21 +136,21 @@ export default function GuidesPage() {
               className="text-center max-w-2xl mx-auto"
             >
               <div className="bg-white rounded-3xl p-12 shadow-lg">
-                <div className="w-24 h-24 bg-gradient-to-br from-apple-purple to-apple-pink rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 bg-gradient-to-br from-brand-purple to-brand-pink rounded-full flex items-center justify-center mx-auto mb-6">
                   <GraduationCap size={48} className="text-white" />
                 </div>
 
-                <h2 className="text-3xl font-bold text-apple-gray-900 mb-4">
+                <h2 className="text-3xl font-bold text-brand-gray-900 mb-4">
                   {content.guides.comingSoon.title}
                 </h2>
 
-                <p className="text-xl text-apple-gray-600 mb-8">
+                <p className="text-xl text-brand-gray-600 mb-8">
                   {content.guides.comingSoon.message}
                 </p>
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-apple-purple to-apple-pink text-white rounded-full font-medium hover:shadow-xl transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-purple to-brand-pink text-white rounded-full font-medium hover:shadow-xl transition-all"
                 >
                   {content.guides.comingSoon.cta}
                   <ArrowLeft className="w-5 h-5" />
@@ -170,35 +170,35 @@ export default function GuidesPage() {
                   className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
                 >
                   <Link href={`/guides/${guide.slug}`}>
-                    <div className="relative h-48 bg-gradient-to-br from-apple-purple to-apple-pink p-6 flex items-center justify-center">
+                    <div className="relative h-48 bg-gradient-to-br from-brand-purple to-brand-pink p-6 flex items-center justify-center">
                       <Code2 size={64} className="text-white" />
                     </div>
 
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-3">
-                        <span className="px-3 py-1 bg-apple-purple/10 text-apple-purple text-xs font-medium rounded-full">
+                        <span className="px-3 py-1 bg-brand-purple/10 text-brand-purple text-xs font-medium rounded-full">
                           {guide.level}
                         </span>
-                        <span className="px-3 py-1 bg-apple-blue/10 text-apple-blue text-xs font-medium rounded-full">
+                        <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-xs font-medium rounded-full">
                           {guide.topic}
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-apple-gray-900 mb-2">
+                      <h3 className="text-xl font-bold text-brand-gray-900 mb-2">
                         {guide.title}
                       </h3>
 
-                      <p className="text-apple-gray-600 mb-4">
+                      <p className="text-brand-gray-600 mb-4">
                         {guide.description}
                       </p>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-apple-purple font-medium hover:underline">
+                        <span className="text-brand-purple font-medium hover:underline">
                           התחל ללמוד ←
                         </span>
                         <div className="flex items-center gap-1 text-yellow-500">
                           <Star size={16} fill="currentColor" />
-                          <span className="text-sm font-medium text-apple-gray-700">
+                          <span className="text-sm font-medium text-brand-gray-700">
                             {guide.rating}
                           </span>
                         </div>
@@ -213,7 +213,7 @@ export default function GuidesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-apple-purple to-apple-pink">
+      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-purple to-brand-pink">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             צריכים עזרה בלימוד?
@@ -223,7 +223,7 @@ export default function GuidesPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-apple-purple rounded-full font-medium hover:shadow-xl transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-purple rounded-full font-medium hover:shadow-xl transition-all"
           >
             קבעו שיחת ייעוץ
             <ArrowLeft className="w-5 h-5" />

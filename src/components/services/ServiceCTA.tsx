@@ -9,7 +9,7 @@ interface ServiceCTAProps {
 
 export default function ServiceCTA({ service }: ServiceCTAProps) {
   return (
-    <section className="relative overflow-hidden bg-apple-gray-900 py-20 lg:py-24" id="contact">
+    <section className="relative overflow-hidden bg-brand-gray-900 py-20 lg:py-24" id="contact">
       {/* Gradient background accent */}
       <div
         className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-10`}
@@ -75,7 +75,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mb-8 text-lg leading-relaxed text-apple-gray-300 sm:text-xl"
+            className="mb-8 text-lg leading-relaxed text-brand-gray-300 sm:text-xl"
           >
             בוא נדבר על הפרויקט שלך. פגישת ייעוץ ראשונה חינם וללא התחייבות.
             תקבל הצעת מחיר מפורטת תוך 24 שעות.
@@ -94,7 +94,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
               href="https://wa.me/972544994417?text=היי,%20אני%20מעוניין%20לשמוע%20עוד%20על%20"
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r ${service.gradient} px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-apple-gray-900 sm:text-lg`}
+              className={`inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r ${service.gradient} px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-gray-900 sm:text-lg`}
             >
               <span>שלח הודעת WhatsApp</span>
               <span className="text-xl">💬</span>
@@ -103,7 +103,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             {/* Email Button */}
             <a
               href="mailto:itayost1@gmail.com?subject=פנייה%20לגבי%20שירות"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white hover:text-apple-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-apple-gray-900 sm:text-lg"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white hover:text-brand-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-gray-900 sm:text-lg"
             >
               <span>שלח מייל</span>
               <span className="text-xl">✉️</span>
@@ -116,7 +116,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="mt-8 text-apple-gray-400"
+            className="mt-8 text-brand-gray-400"
           >
             <p className="text-sm">או התקשר: 054-499-4417</p>
           </motion.div>

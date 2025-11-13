@@ -166,7 +166,7 @@ export default function ServicesPage() {
   return (
     <main className="pt-20 lg:pt-24">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-b from-white to-apple-gray-50 overflow-hidden">
+      <section className="relative py-20 lg:py-32 bg-gradient-to-b from-white to-brand-gray-50 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5" />
         
         <div className="container relative z-10">
@@ -174,10 +174,10 @@ export default function ServicesPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-apple-blue/10 backdrop-blur-xl rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 backdrop-blur-xl rounded-full mb-6"
             >
-              <Zap className="w-4 h-4 text-apple-blue" />
-              <span className="text-sm font-medium text-apple-blue">
+              <Zap className="w-4 h-4 text-brand-blue" />
+              <span className="text-sm font-medium text-brand-blue">
                 השירותים שלנו
               </span>
             </motion.div>
@@ -186,10 +186,10 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
             >
               פתרונות דיגיטליים
-              <span className="block mt-2 bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">
                 מקצה לקצה
               </span>
             </motion.h1>
@@ -198,7 +198,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-apple-gray-600"
+              className="text-xl text-brand-gray-600"
             >
               מהרעיון הראשוני ועד להשקה המוצלחת - אני מספק את כל השירותים הדרושים להצלחה הדיגיטלית שלך
             </motion.p>
@@ -223,27 +223,27 @@ export default function ServicesPage() {
                       </div>
                       
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-apple-gray-900 mb-2">
+                        <h3 className="text-2xl font-bold text-brand-gray-900 mb-2">
                           {service.title}
                         </h3>
-                        <p className="text-apple-gray-600">
+                        <p className="text-brand-gray-600">
                           {service.description}
                         </p>
                       </div>
                     </div>
                     
-                    <p className="text-apple-gray-600 mb-6 leading-relaxed">
+                    <p className="text-brand-gray-600 mb-6 leading-relaxed">
                       {service.longDescription}
                     </p>
                     
                     <div className="mb-6">
-                      <h4 className="font-semibold text-apple-gray-900 mb-3">
+                      <h4 className="font-semibold text-brand-gray-900 mb-3">
                         מה כולל השירות:
                       </h4>
                       <ul className="space-y-2">
                         {service.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-apple-gray-600">
-                            <span className="text-apple-green mt-0.5">✓</span>
+                          <li key={idx} className="flex items-start gap-2 text-sm text-brand-gray-600">
+                            <span className="text-brand-green mt-0.5">✓</span>
                             {feature}
                           </li>
                         ))}
@@ -251,14 +251,14 @@ export default function ServicesPage() {
                     </div>
                     
                     <div className="mb-6">
-                      <h4 className="font-semibold text-apple-gray-900 mb-3">
+                      <h4 className="font-semibold text-brand-gray-900 mb-3">
                         טכנולוגיות:
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {service.technologies.map((tech, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 bg-apple-gray-100 rounded-lg text-xs font-medium text-apple-gray-700"
+                            className="px-3 py-1 bg-brand-gray-100 rounded-lg text-xs font-medium text-brand-gray-700"
                           >
                             {tech}
                           </span>
@@ -266,14 +266,14 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     
-                    <div className="flex items-center justify-between pt-6 border-t border-apple-gray-200">
-                      <span className="text-2xl font-bold bg-gradient-to-r from-apple-blue to-apple-purple bg-clip-text text-transparent">
+                    <div className="flex items-center justify-between pt-6 border-t border-brand-gray-200">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">
                         {service.price}
                       </span>
                       
                       <Link
                         href={`/contact?service=${service.id}`}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-apple-blue to-apple-blue-dark text-white rounded-full font-medium hover:shadow-lg transition-all"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-orange to-brand-orange/90 text-white rounded-full font-semibold shadow-lg shadow-brand-orange/30 hover:shadow-xl hover:shadow-brand-orange/50 transition-all"
                       >
                         קבל הצעה
                       </Link>
@@ -287,14 +287,14 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-b from-apple-gray-50 to-white">
+      <section className="py-20 lg:py-32 bg-gradient-to-b from-brand-gray-50 to-white">
         <div className="container">
           <AppleReveal>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-apple-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-gray-900 mb-6">
                 תהליך העבודה שלנו
               </h2>
-              <p className="text-xl text-apple-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-brand-gray-600 max-w-3xl mx-auto">
                 תהליך מסודר ושקוף מתחילת הפרויקט ועד להשקה
               </p>
             </div>
@@ -310,17 +310,17 @@ export default function ServicesPage() {
                   >
                     <div className="relative mb-6">
                       <div className="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto">
-                        <step.icon size={32} className="text-apple-blue" />
+                        <step.icon size={32} className="text-brand-blue" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-apple-blue text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-brand-blue text-white rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-apple-gray-900 mb-2">
+                    <h3 className="text-xl font-semibold text-brand-gray-900 mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-apple-gray-600">
+                    <p className="text-brand-gray-600">
                       {step.description}
                     </p>
                   </motion.div>
@@ -332,7 +332,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-r from-apple-blue to-apple-purple text-white">
+      <section className="py-20 lg:py-32 bg-gradient-to-r from-brand-blue to-brand-purple text-white">
         <div className="container">
           <AppleReveal>
             <div className="text-center max-w-3xl mx-auto">
@@ -347,7 +347,7 @@ export default function ServicesPage() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center px-8 py-4 bg-white text-apple-blue rounded-full font-medium text-lg hover:shadow-xl transition-all"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-white text-brand-blue rounded-full font-medium text-lg hover:shadow-xl transition-all"
                   >
                     קבל הצעת מחיר
                   </Link>

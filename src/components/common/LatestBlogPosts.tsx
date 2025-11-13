@@ -23,14 +23,14 @@ export default function LatestBlogPosts({
   }
 
   return (
-    <section className="bg-apple-gray-50 py-16 lg:py-20">
+    <section className="bg-brand-gray-50 py-16 lg:py-20">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-apple-gray-900 sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-brand-gray-900 sm:text-4xl">
             {title}
           </h2>
           {description && (
-            <p className="mx-auto max-w-2xl text-lg text-apple-gray-700">
+            <p className="mx-auto max-w-2xl text-lg text-brand-gray-700">
               {description}
             </p>
           )}
@@ -44,32 +44,32 @@ export default function LatestBlogPosts({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group overflow-hidden rounded-2xl border border-apple-gray-200 bg-white shadow-sm transition-all hover:shadow-xl"
+              className="group overflow-hidden rounded-2xl border border-brand-gray-200 bg-white shadow-sm transition-all hover:shadow-xl"
             >
               <Link href={`/blog/${post.slug}`}>
                 {/* Gradient placeholder - replace with actual images when available */}
-                <div className="relative h-48 bg-gradient-to-br from-apple-blue to-apple-purple">
+                <div className="relative h-48 bg-gradient-to-br from-brand-blue to-brand-purple">
                   <div className="absolute inset-0 bg-black/20 transition-all group-hover:bg-black/10"></div>
                 </div>
 
                 <div className="p-6">
                   {/* Category badge */}
-                  <span className="mb-3 inline-block rounded-full bg-apple-gray-100 px-3 py-1 text-xs font-semibold text-apple-gray-700">
+                  <span className="mb-3 inline-block rounded-full bg-brand-gray-100 px-3 py-1 text-xs font-semibold text-brand-gray-700">
                     {post.category}
                   </span>
 
                   {/* Title */}
-                  <h3 className="mb-2 line-clamp-2 text-xl font-bold text-apple-gray-900 transition-colors group-hover:text-apple-blue">
+                  <h3 className="mb-2 line-clamp-2 text-xl font-bold text-brand-gray-900 transition-colors group-hover:text-brand-blue">
                     {post.title}
                   </h3>
 
                   {/* Excerpt */}
-                  <p className="mb-4 line-clamp-3 text-apple-gray-600">
+                  <p className="mb-4 line-clamp-3 text-brand-gray-600">
                     {post.excerpt}
                   </p>
 
                   {/* Meta */}
-                  <div className="flex items-center gap-4 text-sm text-apple-gray-600">
+                  <div className="flex items-center gap-4 text-sm text-brand-gray-600">
                     <span className="flex items-center gap-1">
                       <Calendar size={14} />
                       {new Date(post.date).toLocaleDateString('he-IL', {
@@ -84,7 +84,7 @@ export default function LatestBlogPosts({
                   </div>
 
                   {/* Read more link */}
-                  <div className="mt-4 flex items-center gap-2 font-medium text-apple-blue transition-all group-hover:gap-3">
+                  <div className="mt-4 flex items-center gap-2 font-medium text-brand-blue transition-all group-hover:gap-3">
                     <span>קרא עוד</span>
                     <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
                   </div>
@@ -105,7 +105,7 @@ export default function LatestBlogPosts({
           >
             <Link
               href="/blog"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-apple-gray-300 bg-white px-8 py-4 text-base font-semibold text-apple-gray-900 transition-all hover:border-apple-gray-400 hover:bg-apple-gray-50"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-gray-300 bg-white px-8 py-4 text-base font-semibold text-brand-gray-900 transition-all hover:border-brand-gray-400 hover:bg-brand-gray-50"
             >
               <span>כל המאמרים</span>
               <ArrowLeft size={20} />

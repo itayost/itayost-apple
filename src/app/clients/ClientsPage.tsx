@@ -121,16 +121,16 @@ export default function ClientsPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-apple-gray-50">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-apple-orange/10 backdrop-blur-xl rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 backdrop-blur-xl rounded-full mb-6"
             >
-              <Users className="w-4 h-4 text-apple-orange" />
-              <span className="text-sm font-medium text-apple-orange">
+              <Users className="w-4 h-4 text-brand-orange" />
+              <span className="text-sm font-medium text-brand-orange">
                 {content.clients.sectionLabel}
               </span>
             </motion.div>
@@ -139,10 +139,10 @@ export default function ClientsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
             >
               {content.clients.title}
-              <span className="block mt-2 bg-gradient-to-r from-apple-orange to-apple-pink bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-brand-orange to-brand-pink bg-clip-text text-transparent">
                 {content.clients.subtitle}
               </span>
             </motion.h1>
@@ -151,7 +151,7 @@ export default function ClientsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-apple-gray-600 max-w-3xl mx-auto"
+              className="text-xl text-brand-gray-600 max-w-3xl mx-auto"
             >
               {content.clients.description}
             </motion.p>
@@ -172,10 +172,10 @@ export default function ClientsPage() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-apple-orange to-apple-pink bg-clip-text text-transparent mb-2">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-brand-orange to-brand-pink bg-clip-text text-transparent mb-2">
                   {stat.number}
                 </div>
-                <div className="text-sm md:text-base text-apple-gray-600">
+                <div className="text-sm md:text-base text-brand-gray-600">
                   {stat.label}
                 </div>
               </motion.div>
@@ -185,9 +185,9 @@ export default function ClientsPage() {
       </section>
 
       {/* Industries Filter */}
-      <section className="py-8 bg-white border-y border-apple-gray-200">
+      <section className="py-8 bg-white border-y border-brand-gray-200">
         <div className="container mx-auto px-4">
-          <h3 className="text-center text-sm font-semibold text-apple-gray-700 mb-4">
+          <h3 className="text-center text-sm font-semibold text-brand-gray-700 mb-4">
             {content.clients.industries.title}
           </h3>
           <div className="flex flex-wrap gap-3 justify-center">
@@ -197,8 +197,8 @@ export default function ClientsPage() {
                 onClick={() => setSelectedIndustry(key)}
                 className={`px-6 py-2 rounded-full font-medium transition-all ${
                   selectedIndustry === key
-                    ? 'bg-gradient-to-r from-apple-orange to-apple-pink text-white shadow-lg'
-                    : 'bg-apple-gray-100 text-apple-gray-700 hover:bg-apple-gray-200'
+                    ? 'bg-gradient-to-r from-brand-orange to-brand-pink text-white shadow-lg'
+                    : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -211,13 +211,13 @@ export default function ClientsPage() {
       </section>
 
       {/* Testimonials Grid */}
-      <section className="py-16 lg:py-24 bg-apple-gray-50">
+      <section className="py-16 lg:py-24 bg-brand-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-apple-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-gray-900 mb-4">
               {content.clients.testimonials.title}
             </h2>
-            <p className="text-xl text-apple-gray-600">
+            <p className="text-xl text-brand-gray-600">
               {content.clients.testimonials.subtitle}
             </p>
           </div>
@@ -244,33 +244,33 @@ export default function ClientsPage() {
                 </div>
 
                 {/* Quote Icon */}
-                <Quote className="w-10 h-10 text-apple-orange/20 mb-4" />
+                <Quote className="w-10 h-10 text-brand-orange/20 mb-4" />
 
                 {/* Testimonial Text */}
-                <p className="text-apple-gray-700 mb-6 leading-relaxed">
+                <p className="text-brand-gray-700 mb-6 leading-relaxed">
                   "{testimonial.text}"
                 </p>
 
                 {/* Results Badge */}
                 <div className="mb-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-apple-green/10 to-apple-cyan/10 rounded-full">
-                    <TrendingUp size={16} className="text-apple-green" />
-                    <span className="text-sm font-medium text-apple-green">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand-green/10 to-apple-cyan/10 rounded-full">
+                    <TrendingUp size={16} className="text-brand-green" />
+                    <span className="text-sm font-medium text-brand-green">
                       {testimonial.results}
                     </span>
                   </div>
                 </div>
 
                 {/* Client Info */}
-                <div className="flex items-center gap-4 pt-6 border-t border-apple-gray-200">
-                  <div className="w-12 h-12 bg-gradient-to-br from-apple-orange to-apple-pink rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="flex items-center gap-4 pt-6 border-t border-brand-gray-200">
+                  <div className="w-12 h-12 bg-gradient-to-br from-brand-orange to-brand-pink rounded-full flex items-center justify-center text-white font-bold text-lg">
                     {testimonial.name[0]}
                   </div>
                   <div>
-                    <div className="font-semibold text-apple-gray-900">
+                    <div className="font-semibold text-brand-gray-900">
                       {testimonial.name}
                     </div>
-                    <div className="text-sm text-apple-gray-600">
+                    <div className="text-sm text-brand-gray-600">
                       {testimonial.role}, {testimonial.company}
                     </div>
                   </div>
@@ -285,10 +285,10 @@ export default function ClientsPage() {
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-apple-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-gray-900 mb-4">
               למה לקוחות בוחרים בנו?
             </h2>
-            <p className="text-xl text-apple-gray-600">
+            <p className="text-xl text-brand-gray-600">
               הסיבות שגורמות ללקוחות לחזור אלינו שוב ושוב
             </p>
           </div>
@@ -319,13 +319,13 @@ export default function ClientsPage() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-apple-orange to-apple-pink rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-brand-orange to-brand-pink rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <item.icon size={32} className="text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-apple-gray-900 mb-2">
+                <h3 className="text-xl font-bold text-brand-gray-900 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-apple-gray-600">
+                <p className="text-brand-gray-600">
                   {item.description}
                 </p>
               </motion.div>
@@ -335,7 +335,7 @@ export default function ClientsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-apple-orange to-apple-pink">
+      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-orange to-brand-pink">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             {content.clients.cta.title}
@@ -346,7 +346,7 @@ export default function ClientsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-apple-orange rounded-full font-medium hover:shadow-xl transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-brand-orange rounded-full font-medium hover:shadow-xl transition-all"
             >
               {content.clients.cta.button}
               <ArrowLeft className="w-5 h-5" />

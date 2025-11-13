@@ -21,7 +21,7 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-apple-gray-50 to-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-gray-50 to-white px-4">
       <div className="max-w-md w-full text-center">
         {/* Error Icon */}
         <div className="mb-8 flex justify-center">
@@ -34,10 +34,10 @@ export default function Error({
         </div>
 
         {/* Error Message */}
-        <h1 className="text-3xl font-bold text-apple-gray-900 mb-4">
+        <h1 className="text-3xl font-bold text-brand-gray-900 mb-4">
           משהו השתבש
         </h1>
-        <p className="text-apple-gray-600 mb-8 leading-relaxed">
+        <p className="text-brand-gray-600 mb-8 leading-relaxed">
           מצטערים, נתקלנו בשגיאה בלתי צפויה. אנחנו עובדים על תיקון הבעיה.
         </p>
 
@@ -59,7 +59,7 @@ export default function Error({
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={reset}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-apple-blue text-white font-medium rounded-full hover:bg-apple-blue/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-blue text-white font-medium rounded-full hover:bg-brand-blue/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
           >
             <RefreshCw className="w-5 h-5" />
             נסה שוב
@@ -67,7 +67,7 @@ export default function Error({
 
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-apple-blue font-medium rounded-full border-2 border-apple-blue hover:bg-apple-blue/5 transition-all duration-200 hover:scale-105"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-brand-blue font-medium rounded-full border-2 border-brand-blue hover:bg-brand-blue/5 transition-all duration-200 hover:scale-105"
           >
             <Home className="w-5 h-5" />
             חזרה לדף הבית
@@ -75,11 +75,11 @@ export default function Error({
         </div>
 
         {/* Support Link */}
-        <p className="mt-8 text-sm text-apple-gray-500">
+        <p className="mt-8 text-sm text-brand-gray-500">
           אם הבעיה נמשכת,{' '}
           <Link
             href="/contact"
-            className="text-apple-blue hover:underline font-medium"
+            className="text-brand-blue hover:underline font-medium"
           >
             צור איתנו קשר
           </Link>

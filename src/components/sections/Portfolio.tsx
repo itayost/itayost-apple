@@ -39,7 +39,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
       className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-w-[260px] sm:min-w-[300px] lg:min-w-[360px] xl:min-w-[400px]"
     >
       {/* Image Container */}
-      <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden bg-gradient-to-br from-apple-gray-100 to-apple-gray-200">
+      <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden bg-gradient-to-br from-brand-gray-100 to-brand-gray-200">
         {/* Background gradient */}
         <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-20`} />
 
@@ -107,7 +107,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
         {/* Client Badge */}
         <div className="absolute top-4 right-4">
           <motion.div
-            className="px-3 py-1 bg-white/90 backdrop-blur-xl rounded-full text-xs font-medium text-apple-gray-700"
+            className="px-3 py-1 bg-white/90 backdrop-blur-xl rounded-full text-xs font-medium text-brand-gray-700"
             whileHover={{ scale: 1.05 }}
           >
             {item.client}
@@ -127,11 +127,11 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
       
       {/* Content */}
       <div className="p-4 sm:p-5 md:p-6">
-        <h3 className="text-lg sm:text-xl font-bold text-apple-gray-900 mb-2">
+        <h3 className="text-lg sm:text-xl font-bold text-brand-gray-900 mb-2">
           {item.title}
         </h3>
         
-        <p className="text-apple-gray-600 mb-4 text-sm leading-relaxed">
+        <p className="text-brand-gray-600 mb-4 text-sm leading-relaxed">
           {item.description}
         </p>
         
@@ -140,7 +140,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
           {item.tags.map((tag, idx) => (
             <span
               key={idx}
-              className="px-2 py-1 bg-apple-gray-100 rounded-md text-xs text-apple-gray-600"
+              className="px-2 py-1 bg-brand-gray-100 rounded-md text-xs text-brand-gray-600"
             >
               {tag}
             </span>
@@ -151,7 +151,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
         {item.link ? (
           <a href={item.link} target="_blank" rel="noopener noreferrer">
             <motion.div
-              className="inline-flex items-center gap-2 text-apple-blue font-medium"
+              className="inline-flex items-center gap-2 text-brand-blue font-medium"
               whileHover={{ x: -5 }}
             >
               <span>צפייה באתר</span>
@@ -160,7 +160,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
           </a>
         ) : (
           <motion.div
-            className="inline-flex items-center gap-2 text-apple-gray-500 font-medium"
+            className="inline-flex items-center gap-2 text-brand-gray-500 font-medium"
           >
             <span>פרטים נוספים</span>
             <Code2 size={16} />
@@ -187,20 +187,20 @@ export default function Portfolio() {
           <AppleStaggerItem>
             <div className="text-center mb-16">
               <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-apple-purple/10 backdrop-blur-xl rounded-full mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-purple/10 backdrop-blur-xl rounded-full mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <Sparkles className="w-4 h-4 text-apple-purple" />
-                <span className="text-sm font-medium text-apple-purple">
+                <Sparkles className="w-4 h-4 text-brand-purple" />
+                <span className="text-sm font-medium text-brand-purple">
                   סיפורי הצלחה
                 </span>
               </motion.div>
               
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-4 sm:mb-6">
-                סיפורי הצלחה <span className="bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">מהשטח</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-4 sm:mb-6">
+                סיפורי הצלחה <span className="bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent">מהשטח</span>
               </h2>
 
-              <p className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
+              <p className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
                 עסקים אמיתיים שחסכו זמן, הגדילו הכנסות ושיפרו את החיים שלהם
               </p>
             </div>
@@ -209,15 +209,15 @@ export default function Portfolio() {
           {/* Category Filter */}
           <AppleStaggerItem>
             <div className="flex justify-center mb-12">
-              <div className="inline-flex gap-2 p-1 bg-apple-gray-100 rounded-full">
+              <div className="inline-flex gap-2 p-1 bg-brand-gray-100 rounded-full">
                 {categories.map((category) => (
                   <motion.button
                     key={category.value}
                     onClick={() => setSelectedCategory(category.value)}
                     className={`px-6 py-2 rounded-full font-medium text-sm transition-all ${
                       selectedCategory === category.value
-                        ? 'bg-white text-apple-blue shadow-lg'
-                        : 'text-apple-gray-600 hover:text-apple-gray-900'
+                        ? 'bg-white text-brand-blue shadow-lg'
+                        : 'text-brand-gray-600 hover:text-brand-gray-900'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -290,10 +290,10 @@ export default function Portfolio() {
                   transition={{ delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-apple-purple to-apple-pink bg-clip-text text-transparent">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-apple-gray-500 mt-1">
+                  <div className="text-sm text-brand-gray-500 mt-1">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -310,7 +310,7 @@ export default function Portfolio() {
               >
                 <Link
                   href="/portfolio"
-                  className="inline-flex items-center justify-center px-8 py-4 text-white bg-gradient-to-r from-apple-purple to-apple-pink rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="inline-flex items-center justify-center px-8 py-4 text-white bg-gradient-to-r from-brand-purple to-brand-pink rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   צפייה בכל הפרויקטים
                 </Link>

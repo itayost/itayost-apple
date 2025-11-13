@@ -9,7 +9,7 @@ interface ServiceHeroProps {
 
 export default function ServiceHero({ service }: ServiceHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-apple-gray-50 py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-brand-gray-50 py-24 lg:py-32">
       {/* Gradient background accent */}
       <div
         className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}
@@ -38,7 +38,7 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-4 text-4xl font-bold tracking-tight text-apple-gray-900 sm:text-5xl lg:text-6xl"
+            className="mb-4 text-4xl font-bold tracking-tight text-brand-gray-900 sm:text-5xl lg:text-6xl"
           >
             {service.name}
           </motion.h1>
@@ -58,7 +58,7 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-8 text-lg leading-relaxed text-apple-gray-700 sm:text-xl"
+            className="mb-8 text-lg leading-relaxed text-brand-gray-700 sm:text-xl"
           >
             {service.description}
           </motion.p>
@@ -78,7 +78,7 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             </a>
             <a
               href="#portfolio"
-              className="inline-flex items-center justify-center rounded-full border-2 border-apple-gray-300 bg-white px-8 py-4 text-base font-semibold text-apple-gray-900 transition-all hover:border-apple-gray-400 hover:bg-apple-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-lg"
+              className="inline-flex items-center justify-center rounded-full border-2 border-brand-gray-300 bg-white px-8 py-4 text-base font-semibold text-brand-gray-900 transition-all hover:border-brand-gray-400 hover:bg-brand-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-lg"
             >
               {service.cta.secondary}
             </a>

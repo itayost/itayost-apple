@@ -54,13 +54,13 @@ export function WhatsAppButton() {
               >
                 <button
                   onClick={() => setIsTooltipVisible(false)}
-                  className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full hover:bg-apple-gray-100 transition-colors"
+                  className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full hover:bg-brand-gray-100 transition-colors"
                   aria-label="Close tooltip"
                 >
                   <X size={14} />
                 </button>
                 
-                <p className="text-sm text-apple-gray-700 pl-6">
+                <p className="text-sm text-brand-gray-700 pl-6">
                   💬 יש לך שאלה? דבר איתי ב-WhatsApp!
                 </p>
                 

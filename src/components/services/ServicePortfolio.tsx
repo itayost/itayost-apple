@@ -37,13 +37,13 @@ export default function ServicePortfolio({ portfolioIds, gradient }: ServicePort
   }
 
   return (
-    <section className="bg-apple-gray-50 py-20 lg:py-24" id="portfolio">
+    <section className="bg-brand-gray-50 py-20 lg:py-24" id="portfolio">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-apple-gray-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-4 text-3xl font-bold text-brand-gray-900 sm:text-4xl lg:text-5xl">
             עבודות קשורות
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-apple-gray-700">
+          <p className="mx-auto max-w-2xl text-lg text-brand-gray-700">
             פרויקטים שביצענו בתחום זה
           </p>
         </div>
@@ -62,10 +62,10 @@ export default function ServicePortfolio({ portfolioIds, gradient }: ServicePort
             >
               <Link
                 href={`/portfolio/${project.id}`}
-                className="group block overflow-hidden rounded-2xl border border-apple-gray-200 bg-white shadow-sm transition-all hover:shadow-xl"
+                className="group block overflow-hidden rounded-2xl border border-brand-gray-200 bg-white shadow-sm transition-all hover:shadow-xl"
               >
                 {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-apple-gray-100">
+                <div className="relative aspect-[16/10] overflow-hidden bg-brand-gray-100">
                   <Image
                     src={project.imageSizes?.thumbnail || project.image}
                     alt={project.title}
@@ -92,17 +92,17 @@ export default function ServicePortfolio({ portfolioIds, gradient }: ServicePort
                   </span>
 
                   {/* Title */}
-                  <h3 className="mb-2 text-xl font-bold text-apple-gray-900 transition-colors group-hover:text-apple-blue">
+                  <h3 className="mb-2 text-xl font-bold text-brand-gray-900 transition-colors group-hover:text-brand-blue">
                     {project.title}
                   </h3>
 
                   {/* Subtitle */}
-                  <p className="mb-4 text-sm text-apple-gray-600">
+                  <p className="mb-4 text-sm text-brand-gray-600">
                     {project.subtitle}
                   </p>
 
                   {/* Description */}
-                  <p className="mb-4 line-clamp-2 text-apple-gray-700">
+                  <p className="mb-4 line-clamp-2 text-brand-gray-700">
                     {project.description}
                   </p>
 
@@ -111,7 +111,7 @@ export default function ServicePortfolio({ portfolioIds, gradient }: ServicePort
                     {project.tags.slice(0, 3).map((tag, index) => (
                       <span
                         key={index}
-                        className="rounded-full bg-apple-gray-100 px-2 py-1 text-xs text-apple-gray-700"
+                        className="rounded-full bg-brand-gray-100 px-2 py-1 text-xs text-brand-gray-700"
                       >
                         {tag}
                       </span>
@@ -119,7 +119,7 @@ export default function ServicePortfolio({ portfolioIds, gradient }: ServicePort
                   </div>
 
                   {/* View more link */}
-                  <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-apple-blue transition-colors group-hover:text-apple-blue-dark">
+                  <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-brand-blue transition-colors group-hover:text-brand-blue-dark">
                     <span>צפה בפרויקט</span>
                     <span className="transition-transform group-hover:translate-x-1">←</span>
                   </div>
@@ -139,7 +139,7 @@ export default function ServicePortfolio({ portfolioIds, gradient }: ServicePort
         >
           <Link
             href="/portfolio"
-            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-apple-gray-300 bg-white px-8 py-4 text-base font-semibold text-apple-gray-900 transition-all hover:border-apple-gray-400 hover:bg-apple-gray-50"
+            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-gray-300 bg-white px-8 py-4 text-base font-semibold text-brand-gray-900 transition-all hover:border-brand-gray-400 hover:bg-brand-gray-50"
           >
             <span>צפה בכל העבודות</span>
             <span>→</span>

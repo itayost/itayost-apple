@@ -70,16 +70,16 @@ export default function FAQPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-apple-gray-50">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-apple-green/10 backdrop-blur-xl rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 backdrop-blur-xl rounded-full mb-6"
             >
-              <HelpCircle className="w-4 h-4 text-apple-green" />
-              <span className="text-sm font-medium text-apple-green">
+              <HelpCircle className="w-4 h-4 text-brand-green" />
+              <span className="text-sm font-medium text-brand-green">
                 {content.faq.sectionLabel}
               </span>
             </motion.div>
@@ -88,10 +88,10 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
             >
               {content.faq.title}
-              <span className="block mt-2 bg-gradient-to-r from-apple-green to-apple-cyan bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-brand-green to-apple-cyan bg-clip-text text-transparent">
                 {content.faq.subtitle}
               </span>
             </motion.h1>
@@ -100,7 +100,7 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-apple-gray-600 max-w-3xl mx-auto"
+              className="text-xl text-brand-gray-600 max-w-3xl mx-auto"
             >
               {content.faq.description}
             </motion.p>
@@ -109,7 +109,7 @@ export default function FAQPage() {
       </section>
 
       {/* Category Filter */}
-      <section className="py-8 bg-white border-b border-apple-gray-200">
+      <section className="py-8 bg-white border-b border-brand-gray-200">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap gap-3 justify-center">
             {categories.map(({ key, label }) => (
@@ -121,8 +121,8 @@ export default function FAQPage() {
                 }}
                 className={`px-6 py-2 rounded-full font-medium transition-all ${
                   selectedCategory === key
-                    ? 'bg-gradient-to-r from-apple-green to-apple-cyan text-white shadow-lg'
-                    : 'bg-apple-gray-100 text-apple-gray-700 hover:bg-apple-gray-200'
+                    ? 'bg-gradient-to-r from-brand-green to-apple-cyan text-white shadow-lg'
+                    : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -135,7 +135,7 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Items */}
-      <section className="py-16 lg:py-24 bg-apple-gray-50">
+      <section className="py-16 lg:py-24 bg-brand-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-4">
@@ -149,16 +149,16 @@ export default function FAQPage() {
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-apple-gray-50 transition-colors"
+                    className="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-brand-gray-50 transition-colors"
                   >
-                    <span className="text-lg font-semibold text-apple-gray-900 flex-1">
+                    <span className="text-lg font-semibold text-brand-gray-900 flex-1">
                       {faq.question}
                     </span>
                     <motion.div
                       animate={{ rotate: openIndex === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <ChevronDown className="w-6 h-6 text-apple-gray-600" />
+                      <ChevronDown className="w-6 h-6 text-brand-gray-600" />
                     </motion.div>
                   </button>
 
@@ -171,7 +171,7 @@ export default function FAQPage() {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-5 text-apple-gray-600 leading-relaxed">
+                        <div className="px-6 pb-5 text-brand-gray-600 leading-relaxed">
                           {faq.answer}
                         </div>
                       </motion.div>
@@ -185,7 +185,7 @@ export default function FAQPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-apple-green to-apple-cyan">
+      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-green to-apple-cyan">
         <div className="container mx-auto px-4 text-center">
           <MessageCircle size={64} className="text-white mx-auto mb-6" />
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
@@ -197,7 +197,7 @@ export default function FAQPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-apple-green rounded-full font-medium hover:shadow-xl transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-brand-green rounded-full font-medium hover:shadow-xl transition-all"
             >
               צרו קשר
             </Link>

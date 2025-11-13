@@ -26,7 +26,7 @@ export default function UIUXDesignPage() {
       <section className="bg-white py-16 lg:py-20">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <p className="text-lg leading-relaxed text-apple-gray-700 lg:text-xl">
+            <p className="text-lg leading-relaxed text-brand-gray-700 lg:text-xl">
               {service.longDescription}
             </p>
           </div>

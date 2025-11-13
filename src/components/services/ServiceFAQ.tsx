@@ -20,10 +20,10 @@ export default function ServiceFAQ({ faq, gradient }: ServiceFAQProps) {
     <section className="bg-white py-20 lg:py-24" id="faq">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-apple-gray-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-4 text-3xl font-bold text-brand-gray-900 sm:text-4xl lg:text-5xl">
             שאלות נפוצות
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-apple-gray-700">
+          <p className="mx-auto max-w-2xl text-lg text-brand-gray-700">
             תשובות לשאלות שאתה כנראה שואל את עצמך
           </p>
         </div>
@@ -37,15 +37,15 @@ export default function ServiceFAQ({ faq, gradient }: ServiceFAQProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="overflow-hidden rounded-2xl border border-apple-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                className="overflow-hidden rounded-2xl border border-brand-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
               >
                 {/* Question button */}
                 <button
                   onClick={() => toggleItem(index)}
-                  className="flex w-full items-start justify-between gap-4 p-6 text-right transition-colors hover:bg-apple-gray-50 sm:p-8"
+                  className="flex w-full items-start justify-between gap-4 p-6 text-right transition-colors hover:bg-brand-gray-50 sm:p-8"
                   aria-expanded={openIndex === index}
                 >
-                  <span className="text-lg font-bold text-apple-gray-900 sm:text-xl">
+                  <span className="text-lg font-bold text-brand-gray-900 sm:text-xl">
                     {item.question}
                   </span>
 
@@ -69,8 +69,8 @@ export default function ServiceFAQ({ faq, gradient }: ServiceFAQProps) {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="border-t border-apple-gray-100 px-6 pb-6 pt-4 sm:px-8 sm:pb-8">
-                        <p className="leading-relaxed text-apple-gray-700">
+                      <div className="border-t border-brand-gray-100 px-6 pb-6 pt-4 sm:px-8 sm:pb-8">
+                        <p className="leading-relaxed text-brand-gray-700">
                           {item.answer}
                         </p>
                       </div>

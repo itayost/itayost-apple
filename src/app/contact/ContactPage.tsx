@@ -61,7 +61,7 @@ const contactMethods = [
     value: 'שלח הודעה',
     href: 'https://wa.me/972544994417',
     description: 'מענה מהיר ונוח',
-    color: 'from-apple-green to-apple-cyan'
+    color: 'from-brand-green to-apple-cyan'
   }
 ]
 
@@ -150,10 +150,10 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-apple-green/10 backdrop-blur-xl rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 backdrop-blur-xl rounded-full mb-6"
             >
-              <MessageCircle className="w-4 h-4 text-apple-green" />
-              <span className="text-sm font-medium text-apple-green">
+              <MessageCircle className="w-4 h-4 text-brand-green" />
+              <span className="text-sm font-medium text-brand-green">
                 בואו נדבר על העסק שלך
               </span>
             </motion.div>
@@ -162,10 +162,10 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-apple-gray-900 mb-4 sm:mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-4 sm:mb-6"
             >
               יש לך פרויקט בראש?
-              <span className="block mt-2 bg-gradient-to-r from-apple-green to-apple-blue bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-brand-green to-brand-blue bg-clip-text text-transparent">
                 בואו נהפוך אותו למציאות
               </span>
             </motion.h1>
@@ -174,7 +174,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-apple-gray-600 max-w-2xl mx-auto"
+              className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-2xl mx-auto"
             >
               יש לך שאלה? רעיון? בעיה שצריך לפתור?
               אני כאן כדי לעזור.
@@ -202,9 +202,9 @@ export default function ContactPage() {
                   <div className={`w-14 h-14 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
                     <method.icon size={26} />
                   </div>
-                  <h3 className="font-semibold text-lg text-apple-gray-900 mb-1">{method.title}</h3>
-                  <p className="text-apple-blue font-medium mb-2">{method.value}</p>
-                  <p className="text-sm text-apple-gray-600">{method.description}</p>
+                  <h3 className="font-semibold text-lg text-brand-gray-900 mb-1">{method.title}</h3>
+                  <p className="text-brand-blue font-medium mb-2">{method.value}</p>
+                  <p className="text-sm text-brand-gray-600">{method.description}</p>
                 </div>
               </motion.a>
             ))}
@@ -224,14 +224,14 @@ export default function ContactPage() {
                   animate={{ opacity: 1, x: 0 }}
                   className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl"
                 >
-                  <h2 className="text-2xl sm:text-3xl font-bold text-apple-gray-900 mb-6 sm:mb-8">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-brand-gray-900 mb-6 sm:mb-8">
                     ספר לי איך אני יכול לעזור
                   </h2>
                   
                   <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                     {/* Name Field */}
                     <div>
-                      <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                         שם מלא *
                       </label>
                       <input
@@ -240,14 +240,14 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all"
+                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
                         placeholder="ישראל ישראלי"
                       />
                     </div>
 
                     {/* Email Field */}
                     <div>
-                      <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                         אימייל
                       </label>
                       <input
@@ -255,14 +255,14 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all"
+                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
                         placeholder="example@email.com"
                       />
                     </div>
 
                     {/* Phone Field */}
                     <div>
-                      <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                         טלפון *
                       </label>
                       <input
@@ -271,14 +271,14 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all"
+                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
                         placeholder="050-1234567"
                       />
                     </div>
 
                     {/* Subject Field */}
                     <div>
-                      <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                         נושא *
                       </label>
                       <select
@@ -286,7 +286,7 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
                       >
                         <option value="">בחר נושא</option>
                         {subjects.map(subject => (
@@ -297,7 +297,7 @@ export default function ContactPage() {
 
                     {/* Message Field */}
                     <div>
-                      <label className="block text-sm font-medium text-apple-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
                         הודעה *
                       </label>
                       <textarea
@@ -306,7 +306,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         rows={5}
-                        className="w-full px-4 py-3 rounded-xl border border-apple-gray-300 focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/20 transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all resize-none"
                         placeholder="מה העסק שלך? מה מעיק עליך? איפה אתה מבזבז זמן?"
                       />
                     </div>
@@ -340,9 +340,9 @@ export default function ContactPage() {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="p-4 bg-apple-green/10 border border-apple-green/30 rounded-xl"
+                        className="p-4 bg-brand-green/10 border border-brand-green/30 rounded-xl"
                       >
-                        <p className="text-apple-green text-center">
+                        <p className="text-brand-green text-center">
                           תודה על הפנייה! אחזור אליך בהקדם האפשרי.
                         </p>
                       </motion.div>
@@ -374,11 +374,11 @@ export default function ContactPage() {
                   transition={{ delay: 0.2 }}
                   className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-5 sm:p-6"
                 >
-                  <h3 className="font-semibold text-apple-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="font-semibold text-brand-gray-900 mb-4 flex items-center gap-2">
                     <Zap className="text-blue-600" size={20} />
                     מענה מהיר
                   </h3>
-                  <p className="text-apple-gray-600 text-sm mb-4">
+                  <p className="text-brand-gray-600 text-sm mb-4">
                     אני משתדל לענות על כל פנייה תוך 24 שעות. במקרים דחופים, 
                     מוזמנים לפנות ב-WhatsApp או בטלפון.
                   </p>
@@ -400,7 +400,7 @@ export default function ContactPage() {
                   transition={{ delay: 0.3 }}
                   className="bg-white rounded-2xl p-5 sm:p-6 shadow-lg"
                 >
-                  <h3 className="font-semibold text-apple-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="font-semibold text-brand-gray-900 mb-4 flex items-center gap-2">
                     <Clock className="text-purple-600" size={20} />
                     שעות פעילות
                   </h3>
