@@ -7,6 +7,9 @@ import { Footer } from '@/components/layout/Footer'
 import { WhatsAppButton } from '@/components/common/WhatsAppButton'
 import { WebVitals } from '@/components/common/WebVitals'
 import { SkipNavigation } from '@/components/common/SkipNavigation'
+import { MicrosoftClarity } from '@/components/common/MicrosoftClarity'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { seoConfig } from '@/config/seo'
 
 // Import Google Fonts
@@ -184,6 +187,9 @@ export default function RootLayout({
       <body className="antialiased">
         <StructuredData />
         <GoogleAnalytics />
+        <MicrosoftClarity />
+        <Analytics />
+        <SpeedInsights />
         <WebVitals />
         <SkipNavigation />
         <Navigation />

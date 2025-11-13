@@ -33,10 +33,12 @@ export const trackEvent = (
   }
 
   try {
-    window.gtag('event', eventName, {
-      ...params,
-      timestamp: Date.now(),
-    })
+    if (window.gtag) {
+      window.gtag('event', eventName, {
+        ...params,
+        timestamp: Date.now(),
+      })
+    }
   } catch (error) {
     console.error('[Analytics] Error tracking event:', error)
   }
@@ -120,7 +122,7 @@ export const trackConversion = (
   } as ConversionEventParams)
 
   // Also send as GA4 conversion event
-  if (isGAAvailable()) {
+  if (isGAAvailable() && window.gtag) {
     window.gtag('event', 'conversion', {
       send_to: 'AW-CONVERSION-ID', // Replace with actual conversion ID if using Google Ads
       value: value,
@@ -203,7 +205,7 @@ export const trackOutboundLink = (url: string, linkText?: string): void => {
 
 // Page view tracking (enhanced)
 export const trackPageView = (url: string, title?: string): void => {
-  if (!isGAAvailable()) return
+  if (!isGAAvailable() || !window.gtag) return
 
   window.gtag('config', process.env.NEXT_PUBLIC_GA_ID || '', {
     page_path: url,
