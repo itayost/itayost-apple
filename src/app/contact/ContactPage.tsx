@@ -18,9 +18,13 @@ import {
   Instagram,
   Facebook,
   Github,
-  AlertCircle
+  AlertCircle,
+  Sparkles
 } from 'lucide-react'
 import { submitHomepageContactForm, type HomepageContactForm } from '@/services/crm'
+
+// Bouncy easing for Mailchimp-style animations
+const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
 interface FormData {
   name: string
@@ -45,7 +49,7 @@ const contactMethods = [
     value: '054-499-4417',
     href: 'tel:0544994417',
     description: 'ניתן להתקשר בימים א׳-ה׳',
-    color: 'from-blue-500 to-cyan-500'
+    color: 'bg-brand-blue'
   },
   {
     icon: Mail,
@@ -53,7 +57,7 @@ const contactMethods = [
     value: 'itayost1@gmail.com',
     href: 'mailto:itayost1@gmail.com',
     description: 'מענה תוך 24 שעות',
-    color: 'from-purple-500 to-pink-500'
+    color: 'bg-brand-orange'
   },
   {
     icon: MessageCircle,
@@ -61,14 +65,14 @@ const contactMethods = [
     value: 'שלח הודעה',
     href: 'https://wa.me/972544994417',
     description: 'מענה מהיר ונוח',
-    color: 'from-brand-green to-apple-cyan'
+    color: 'bg-brand-green'
   }
 ]
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/itayost', label: 'GitHub' },
-  { icon: Facebook, href: 'https://www.facebook.com/itayost', label: 'Facebook' },
-  { icon: Instagram, href: 'https://instagram.com/itayost', label: 'Instagram' }
+  { icon: Github, href: 'https://github.com/itayost', label: 'GitHub', color: 'hover:bg-brand-navy' },
+  { icon: Facebook, href: 'https://www.facebook.com/itayost', label: 'Facebook', color: 'hover:bg-brand-blue' },
+  { icon: Instagram, href: 'https://instagram.com/itayost', label: 'Instagram', color: 'hover:bg-brand-orange' }
 ]
 
 export default function ContactPage() {
@@ -79,7 +83,7 @@ export default function ContactPage() {
     subject: '',
     message: ''
   })
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Partial<FormData>>({})
@@ -126,7 +130,6 @@ export default function ContactPage() {
     } catch (error) {
       setSubmitStatus('error')
       setErrorMessage('שגיאה בשליחת הטופס. אנא נסו שוב.')
-      // Error already handled with user-friendly message
     } finally {
       setIsSubmitting(false)
     }
@@ -135,7 +138,6 @@ export default function ContactPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
-    // Clear any previous error message when user starts typing
     if (errorMessage) {
       setErrorMessage('')
     }
@@ -144,37 +146,46 @@ export default function ContactPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 backdrop-blur-xl rounded-full mb-6"
+              transition={{ duration: 0.6, ease: bouncyEasing }}
+              className="mb-6"
             >
-              <MessageCircle className="w-4 h-4 text-brand-green" />
-              <span className="text-sm font-medium text-brand-green">
-                בואו נדבר על העסק שלך
-              </span>
+              <motion.div
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-green/10 rounded-full"
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+              >
+                <Sparkles className="w-5 h-5 text-brand-green" />
+                <span className="text-base font-bold text-brand-green">
+                  בואו נדבר על העסק שלך
+                </span>
+              </motion.div>
             </motion.div>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-4 sm:mb-6"
+              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
+              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
             >
               יש לך פרויקט בראש?
-              <span className="block mt-2 bg-gradient-to-r from-brand-green to-brand-blue bg-clip-text text-transparent">
+              <span className="block mt-2 text-brand-green">
                 בואו נהפוך אותו למציאות
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-2xl mx-auto"
+              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
+              className="text-xl sm:text-2xl text-brand-gray-700 max-w-2xl mx-auto"
             >
               יש לך שאלה? רעיון? בעיה שצריך לפתור?
               אני כאן כדי לעזור.
@@ -184,27 +195,42 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Methods */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="py-16 bg-section-light-blue">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {contactMethods.map((method, index) => (
               <motion.a
                 key={method.title}
                 href={method.href}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                transition={{
+                  delay: index * 0.1,
+                  duration: 0.6,
+                  ease: bouncyEasing
+                }}
+                whileHover={{
+                  y: -12,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+                className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow"
                 target={method.title === 'WhatsApp' ? '_blank' : undefined}
                 rel={method.title === 'WhatsApp' ? 'noopener noreferrer' : undefined}
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
-                    <method.icon size={26} />
-                  </div>
-                  <h3 className="font-semibold text-lg text-brand-gray-900 mb-1">{method.title}</h3>
-                  <p className="text-brand-blue font-medium mb-2">{method.value}</p>
-                  <p className="text-sm text-brand-gray-600">{method.description}</p>
+                  <motion.div
+                    className={`w-16 h-16 ${method.color} rounded-2xl flex items-center justify-center text-white mb-4`}
+                    whileHover={{
+                      rotate: [0, -10, 10, -10, 0],
+                      scale: 1.1,
+                      transition: { duration: 0.5, ease: bouncyEasing }
+                    }}
+                  >
+                    <method.icon size={28} />
+                  </motion.div>
+                  <h3 className="font-bold text-xl text-brand-navy mb-2">{method.title}</h3>
+                  <p className="text-brand-blue font-semibold mb-2">{method.value}</p>
+                  <p className="text-sm text-brand-gray-700">{method.description}</p>
                 </div>
               </motion.a>
             ))}
@@ -213,25 +239,26 @@ export default function ContactPage() {
       </section>
 
       {/* Main Contact Form */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
               {/* Form */}
               <div className="lg:col-span-2">
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl"
+                  transition={{ duration: 0.6, ease: bouncyEasing }}
+                  className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl"
                 >
-                  <h2 className="text-2xl sm:text-3xl font-bold text-brand-gray-900 mb-6 sm:mb-8">
+                  <h2 className="text-3xl sm:text-4xl font-bold text-brand-navy mb-8">
                     ספר לי איך אני יכול לעזור
                   </h2>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Name Field */}
                     <div>
-                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
+                      <label className="block text-base font-semibold text-brand-navy mb-2">
                         שם מלא *
                       </label>
                       <input
@@ -240,14 +267,14 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
                         placeholder="ישראל ישראלי"
                       />
                     </div>
 
                     {/* Email Field */}
                     <div>
-                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
+                      <label className="block text-base font-semibold text-brand-navy mb-2">
                         אימייל
                       </label>
                       <input
@@ -255,14 +282,14 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
                         placeholder="example@email.com"
                       />
                     </div>
 
                     {/* Phone Field */}
                     <div>
-                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
+                      <label className="block text-base font-semibold text-brand-navy mb-2">
                         טלפון *
                       </label>
                       <input
@@ -271,14 +298,14 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 sm:py-3.5 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
                         placeholder="050-1234567"
                       />
                     </div>
 
                     {/* Subject Field */}
                     <div>
-                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
+                      <label className="block text-base font-semibold text-brand-navy mb-2">
                         נושא *
                       </label>
                       <select
@@ -286,7 +313,7 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
                       >
                         <option value="">בחר נושא</option>
                         {subjects.map(subject => (
@@ -297,7 +324,7 @@ export default function ContactPage() {
 
                     {/* Message Field */}
                     <div>
-                      <label className="block text-sm font-medium text-brand-gray-700 mb-2">
+                      <label className="block text-base font-semibold text-brand-navy mb-2">
                         הודעה *
                       </label>
                       <textarea
@@ -305,17 +332,25 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        rows={5}
-                        className="w-full px-4 py-3 rounded-xl border border-brand-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all resize-none"
+                        rows={6}
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all resize-none text-lg"
                         placeholder="מה העסק שלך? מה מעיק עליך? איפה אתה מבזבז זמן?"
                       />
                     </div>
-                    
+
                     {/* Submit Button */}
-                    <button
+                    <motion.button
                       type="submit"
                       disabled={isSubmitting || submitStatus === 'success'}
-                      className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium text-base sm:text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-8 py-5 bg-brand-orange text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+                      whileHover={!isSubmitting && submitStatus !== 'success' ? {
+                        scale: 1.02,
+                        transition: { duration: 0.3, ease: bouncyEasing }
+                      } : {}}
+                      whileTap={!isSubmitting && submitStatus !== 'success' ? {
+                        scale: 0.98,
+                        transition: { duration: 0.3, ease: bouncyEasing }
+                      } : {}}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center gap-2">
@@ -333,16 +368,17 @@ export default function ContactPage() {
                           שלח הודעה
                         </span>
                       )}
-                    </button>
-                    
+                    </motion.button>
+
                     {/* Success Message */}
                     {submitStatus === 'success' && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="p-4 bg-brand-green/10 border border-brand-green/30 rounded-xl"
+                        transition={{ duration: 0.3, ease: bouncyEasing }}
+                        className="p-5 bg-brand-green/10 border-2 border-brand-green/30 rounded-2xl"
                       >
-                        <p className="text-brand-green text-center">
+                        <p className="text-brand-green text-center font-semibold">
                           תודה על הפנייה! אחזור אליך בהקדם האפשרי.
                         </p>
                       </motion.div>
@@ -353,9 +389,10 @@ export default function ContactPage() {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="p-4 bg-red-50 border border-red-200 rounded-xl"
+                        transition={{ duration: 0.3, ease: bouncyEasing }}
+                        className="p-5 bg-red-50 border-2 border-red-200 rounded-2xl"
                       >
-                        <p className="text-red-700 text-center flex items-center justify-center gap-2">
+                        <p className="text-red-700 text-center flex items-center justify-center gap-2 font-semibold">
                           <AlertCircle size={18} />
                           {errorMessage}
                         </p>
@@ -364,101 +401,146 @@ export default function ContactPage() {
                   </form>
                 </motion.div>
               </div>
-              
+
               {/* Sidebar */}
-              <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+              <div className="space-y-6">
                 {/* Quick Info */}
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-5 sm:p-6"
+                  transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
+                  whileHover={{
+                    y: -5,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  className="bg-brand-blue/10 rounded-3xl p-6 shadow-lg"
                 >
-                  <h3 className="font-semibold text-brand-gray-900 mb-4 flex items-center gap-2">
-                    <Zap className="text-blue-600" size={20} />
+                  <h3 className="font-bold text-brand-navy mb-4 flex items-center gap-2 text-lg">
+                    <Zap className="text-brand-blue" size={22} />
                     מענה מהיר
                   </h3>
-                  <p className="text-brand-gray-600 text-sm mb-4">
-                    אני משתדל לענות על כל פנייה תוך 24 שעות. במקרים דחופים, 
+                  <p className="text-brand-gray-700 mb-4 leading-relaxed">
+                    אני משתדל לענות על כל פנייה תוך 24 שעות. במקרים דחופים,
                     מוזמנים לפנות ב-WhatsApp או בטלפון.
                   </p>
-                  <a
+                  <motion.a
                     href="https://wa.me/972544994417"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700"
+                    className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-navy transition-colors"
+                    whileHover={{ x: -3 }}
+                    transition={{ duration: 0.2, ease: bouncyEasing }}
                   >
                     <MessageCircle size={18} />
                     שלח WhatsApp
-                  </a>
+                  </motion.a>
                 </motion.div>
-                
+
                 {/* Office Hours */}
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="bg-white rounded-2xl p-5 sm:p-6 shadow-lg"
+                  transition={{ delay: 0.3, duration: 0.6, ease: bouncyEasing }}
+                  whileHover={{
+                    y: -5,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  className="bg-white rounded-3xl p-6 shadow-lg"
                 >
-                  <h3 className="font-semibold text-brand-gray-900 mb-4 flex items-center gap-2">
-                    <Clock className="text-purple-600" size={20} />
+                  <h3 className="font-bold text-brand-navy mb-4 flex items-center gap-2 text-lg">
+                    <Clock className="text-brand-orange" size={22} />
                     שעות פעילות
                   </h3>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">ראשון - חמישי</span>
-                      <span className="font-medium">09:00 - 21:00</span>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-brand-gray-700">ראשון - חמישי</span>
+                      <span className="font-bold text-brand-navy">09:00 - 21:00</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">שישי</span>
-                      <span className="font-medium">09:00 - 13:00</span>
+                    <div className="flex justify-between items-center">
+                      <span className="text-brand-gray-700">שישי</span>
+                      <span className="font-bold text-brand-navy">09:00 - 13:00</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">שבת</span>
-                      <span className="font-medium">סגור</span>
+                    <div className="flex justify-between items-center">
+                      <span className="text-brand-gray-700">שבת</span>
+                      <span className="font-bold text-brand-navy">סגור</span>
                     </div>
                   </div>
                 </motion.div>
-                
+
                 {/* Social Links */}
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="bg-white rounded-2xl p-5 sm:p-6 shadow-lg"
+                  transition={{ delay: 0.4, duration: 0.6, ease: bouncyEasing }}
+                  whileHover={{
+                    y: -5,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  className="bg-white rounded-3xl p-6 shadow-lg"
                 >
-                  <h3 className="font-semibold text-gray-900 mb-4">
+                  <h3 className="font-bold text-brand-navy mb-4 text-lg">
                     עקבו אחריי
                   </h3>
                   <div className="flex gap-3">
-                    {socialLinks.map(social => (
-                      <a
+                    {socialLinks.map((social, index) => (
+                      <motion.a
                         key={social.label}
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                        className={`w-12 h-12 bg-brand-gray-100 rounded-2xl flex items-center justify-center ${social.color} transition-colors`}
                         aria-label={social.label}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{
+                          delay: 0.5 + index * 0.1,
+                          duration: 0.5,
+                          ease: bouncyEasing
+                        }}
+                        whileHover={{
+                          y: -5,
+                          scale: 1.1,
+                          transition: { duration: 0.3, ease: bouncyEasing }
+                        }}
+                        whileTap={{
+                          scale: 0.9,
+                          transition: { duration: 0.2, ease: bouncyEasing }
+                        }}
                       >
-                        <social.icon size={18} />
-                      </a>
+                        <social.icon size={20} />
+                      </motion.a>
                     ))}
                   </div>
                 </motion.div>
-                
+
                 {/* Coffee Meeting */}
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-5 sm:p-6"
+                  transition={{ delay: 0.5, duration: 0.6, ease: bouncyEasing }}
+                  whileHover={{
+                    y: -5,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  className="bg-brand-orange/10 rounded-3xl p-6 shadow-lg"
                 >
-                  <Coffee className="text-orange-600 mb-3" size={24} />
-                  <h3 className="font-semibold text-gray-900 mb-2">
+                  <motion.div
+                    animate={{
+                      rotate: [0, -10, 10, -10, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Coffee className="text-brand-orange mb-3" size={28} />
+                  </motion.div>
+                  <h3 className="font-bold text-brand-navy mb-2 text-lg">
                     נפגשים על קפה?
                   </h3>
-                  <p className="text-gray-600 text-sm">
-                    אני תמיד שמח לפגוש לקוחות פוטנציאליים פנים אל פנים. 
+                  <p className="text-brand-gray-700 leading-relaxed">
+                    אני תמיד שמח לפגוש לקוחות פוטנציאליים פנים אל פנים.
                     ניתן לתאם פגישה באזור תל אביב.
                   </p>
                 </motion.div>
@@ -469,14 +551,20 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50">
+      <section className="py-16 lg:py-24 bg-section-light-blue">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-8 sm:mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: bouncyEasing }}
+              className="text-4xl sm:text-5xl font-bold text-brand-navy text-center mb-12"
+            >
               שאלות נפוצות
-            </h2>
-            
-            <div className="space-y-4">
+            </motion.h2>
+
+            <div className="space-y-6">
               {[
                 {
                   q: 'כמה זמן לוקח לפתח אתר?',
@@ -499,11 +587,20 @@ export default function ContactPage() {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow"
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: index * 0.1,
+                    duration: 0.5,
+                    ease: bouncyEasing
+                  }}
+                  whileHover={{
+                    y: -5,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-shadow"
                 >
-                  <h3 className="font-semibold text-gray-900 mb-2 text-base sm:text-lg">{faq.q}</h3>
-                  <p className="text-gray-600 text-sm sm:text-base">{faq.a}</p>
+                  <h3 className="font-bold text-brand-navy mb-3 text-lg">{faq.q}</h3>
+                  <p className="text-brand-gray-700 leading-relaxed">{faq.a}</p>
                 </motion.div>
               ))}
             </div>

@@ -25,7 +25,9 @@ export interface Service {
   description: string
   longDescription: string
   icon: string
-  gradient: string
+  color: string // Solid brand color: brand-blue, brand-orange, brand-green, brand-navy
+  pattern: string // Background pattern: dots, circles, lines, waves, none
+  accentColor: string // For decorative elements
   features: ServiceFeature[]
   process: ServiceProcess[]
   technologies?: string[]
@@ -46,7 +48,9 @@ export const servicesData: Service[] = [
     description: 'בניית אתרים מקצועיים עם הטכנולוגיות המתקדמות ביותר - Next.js, React, TypeScript. אתרים שנטענים תוך שנייה, מדורגים גבוה בגוגל וממירים מבקרים ללקוחות.',
     longDescription: 'מתמחה בפיתוח אתרים מודרניים עם Next.js 14 - הפריימוורק המוביל מבית Vercel. בניגוד לוורדפרס המסורבל, Next.js מציע מהירות יוצאת דופן, אבטחה מובנית וSEO מעולה. כל אתר שאני בונה מותאם למובייל מלכתחילה (70% מהתנועה בישראל היא ממובייל), תומך בעברית RTL ברמה הגבוהה ביותר, ומאופטם למנועי חיפוש מהיום הראשון.',
     icon: '💻',
-    gradient: 'from-blue-500 to-cyan-500',
+    color: 'brand-blue',
+    pattern: 'dots',
+    accentColor: 'brand-orange',
     features: [
       {
         icon: '⚡',
@@ -151,7 +155,9 @@ export const servicesData: Service[] = [
     description: 'בניית חנויות אונליין מותאמות עם מערכות תשלום ישראליות (Bit, PayBox), משלוחים, ניהול מלאי ודוחות.',
     longDescription: 'חנויות אונליין שמתאימות בדיוק לעסק שלך. שליטה מלאה, אינטגרציה עם מערכות קיימות, תשלומים ישראליים, ללא עמלות חודשיות.',
     icon: '🛒',
-    gradient: 'from-green-500 to-emerald-500',
+    color: 'brand-green',
+    pattern: 'circles',
+    accentColor: 'brand-blue',
     features: [
       {
         icon: '💳',
@@ -256,7 +262,9 @@ export const servicesData: Service[] = [
     description: 'מערכות CRM מותאמות אישית לניהול לקוחות, עסקאות, משימות ואוטומציה. שליטה מלאה במסע הלקוח.',
     longDescription: 'מערכת CRM מותאמת אישית היא לב העסק. במקום להסתדר עם פתרונות גנריים כמו HubSpot או Salesforce (שעולים אלפי דולרים בשנה), אני בונה מערכות שמתאימות בדיוק לתהליכי העבודה שלך. ניהול לידים, מעקב אחר עסקאות, אוטומציות, תזכורות, דוחות - הכל במקום אחד. המערכת משתלבת עם הכלים הקיימים שלך (דואר, לוח שנה, WhatsApp Business) ונגישה מכל מכשיר.',
     icon: '📊',
-    gradient: 'from-purple-500 to-pink-500',
+    color: 'brand-navy',
+    pattern: 'lines',
+    accentColor: 'brand-orange',
     features: [
       {
         icon: '👥',
@@ -369,7 +377,9 @@ export const servicesData: Service[] = [
     description: 'עיצוב ממשקים ומסעות משתמש עם דגש על המרה. מבוסס על מחקר, נתונים ועקרונות פסיכולוגיה.',
     longDescription: 'עיצוב טוב הוא לא רק יפה - הוא עובד. הגישה שלי מבוססת על מחקר משתמשים, ניתוח נתונים ועקרונות פסיכולוגיה של המרה. כל החלטת עיצוב מוסברת ומבוססת על סיבה. אני עובד עם Figma ומתמחה בעיצוב ממשקים מורכבים - אתרים, חנויות, מערכות ניהול, אפליקציות. כל עיצוב עובר בדיקות משתמשים ומותאם לקהל היעד הספציפי שלך.',
     icon: '🎨',
-    gradient: 'from-pink-500 to-rose-500',
+    color: 'brand-orange',
+    pattern: 'waves',
+    accentColor: 'brand-blue',
     features: [
       {
         icon: '🔍',
@@ -482,7 +492,9 @@ export const servicesData: Service[] = [
     description: 'דפי נחיתה ממירים לקמפיינים, השקות מוצרים ומבצעים. עיצוב + פיתוח מהיר תוך 3-7 ימים.',
     longDescription: 'דף נחיתה טוב הוא מכונת המרה. בניגוד לאתר מלא, דף נחיתה ממוקד במטרה אחת: להביא לפעולה (רכישה, רישום, הורדה). אני בונה דפי נחיתה מהירים (נטענים תוך שנייה), ממירים (עיצוב מבוסס CRO) ומאופטמים למודעות (Google Ads, Facebook Ads). כל דף כולל A/B Testing, אנליטיקס מתקדם ואופטימיזציה שוטפת. תוצאות אמיתיות תוך ימים, לא חודשים.',
     icon: '🎯',
-    gradient: 'from-orange-500 to-red-500',
+    color: 'brand-orange',
+    pattern: 'none',
+    accentColor: 'brand-green',
     features: [
       {
         icon: '⚡',

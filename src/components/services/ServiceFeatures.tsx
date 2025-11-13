@@ -5,7 +5,8 @@ import { ServiceFeature } from '@/data/services'
 
 interface ServiceFeaturesProps {
   features: ServiceFeature[]
-  gradient: string
+  color: string
+  accentColor: string
 }
 
 const container = {
@@ -23,7 +24,7 @@ const item = {
   show: { opacity: 1, y: 0 }
 }
 
-export default function ServiceFeatures({ features, gradient }: ServiceFeaturesProps) {
+export default function ServiceFeatures({ features, color, accentColor }: ServiceFeaturesProps) {
   return (
     <section className="bg-white py-20 lg:py-24">
       <div className="container mx-auto px-4">
@@ -49,9 +50,9 @@ export default function ServiceFeatures({ features, gradient }: ServiceFeaturesP
               variants={item}
               className="group relative overflow-hidden rounded-2xl border border-brand-gray-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl"
             >
-              {/* Gradient accent on hover */}
+              {/* Solid color accent on hover */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity group-hover:opacity-5`}
+                className={`absolute inset-0 bg-${color} opacity-0 transition-opacity group-hover:opacity-5`}
                 aria-hidden="true"
               />
 

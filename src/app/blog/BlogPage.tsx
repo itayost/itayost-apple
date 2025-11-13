@@ -7,9 +7,13 @@ import {
   BookOpen,
   Calendar,
   Clock,
-  ArrowLeft
+  ArrowLeft,
+  Sparkles
 } from 'lucide-react'
 import { content } from '@/config/content'
+
+// Bouncy easing for Mailchimp-style animations
+const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
 // Sample blog posts - replace with real data later
 const blogPosts: any[] = [
@@ -24,28 +28,37 @@ export default function BlogPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 backdrop-blur-xl rounded-full mb-6"
+              transition={{ duration: 0.6, ease: bouncyEasing }}
+              className="mb-6"
             >
-              <BookOpen className="w-4 h-4 text-brand-blue" />
-              <span className="text-sm font-medium text-brand-blue">
-                {content.blog.sectionLabel}
-              </span>
+              <motion.div
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue/10 rounded-full"
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+              >
+                <Sparkles className="w-5 h-5 text-brand-blue" />
+                <span className="text-base font-bold text-brand-blue">
+                  {content.blog.sectionLabel}
+                </span>
+              </motion.div>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
+              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
+              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
             >
               {content.blog.title}
-              <span className="block mt-2 bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">
+              <span className="block mt-2 text-brand-blue">
                 {content.blog.subtitle}
               </span>
             </motion.h1>
@@ -53,8 +66,8 @@ export default function BlogPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-brand-gray-600 max-w-3xl mx-auto"
+              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
+              className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto"
             >
               {content.blog.description}
             </motion.p>
@@ -65,18 +78,19 @@ export default function BlogPage() {
       {/* Category Filter */}
       <section className="py-8 bg-white border-b border-brand-gray-200">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="inline-flex flex-wrap gap-2 p-2 bg-brand-gray-100 rounded-full mx-auto justify-center">
             {categories.map(([key, label]) => (
               <motion.button
                 key={key}
                 onClick={() => setSelectedCategory(key)}
-                className={`px-6 py-2 rounded-full font-medium transition-all ${
+                className={`px-6 py-3 rounded-full font-semibold transition-all ${
                   selectedCategory === key
-                    ? 'bg-gradient-to-r from-brand-blue to-brand-purple text-white shadow-lg'
-                    : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
+                    ? 'bg-brand-navy text-white shadow-lg'
+                    : 'text-brand-gray-700 hover:text-brand-navy'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, ease: bouncyEasing }}
               >
                 {label}
               </motion.button>
@@ -86,36 +100,64 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Posts or Coming Soon */}
-      <section className="py-16 lg:py-24 bg-brand-gray-50">
+      <section className="py-16 lg:py-24 bg-section-light-blue">
         <div className="container mx-auto px-4">
           {blogPosts.length === 0 ? (
             // Coming Soon Message
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: bouncyEasing }}
               className="text-center max-w-2xl mx-auto"
             >
-              <div className="bg-white rounded-3xl p-12 shadow-lg">
-                <div className="w-24 h-24 bg-gradient-to-br from-brand-blue to-brand-purple rounded-full flex items-center justify-center mx-auto mb-6">
+              <motion.div
+                className="bg-white rounded-3xl p-12 shadow-lg"
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+              >
+                <motion.div
+                  className="w-24 h-24 bg-brand-blue rounded-2xl flex items-center justify-center mx-auto mb-6"
+                  animate={{
+                    rotate: [0, 10, -10, 0],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
                   <BookOpen size={48} className="text-white" />
-                </div>
+                </motion.div>
 
-                <h2 className="text-3xl font-bold text-brand-gray-900 mb-4">
+                <h2 className="text-3xl font-bold text-brand-navy mb-4">
                   {content.blog.comingSoon.title}
                 </h2>
 
-                <p className="text-xl text-brand-gray-600 mb-8">
+                <p className="text-xl text-brand-gray-700 mb-8 leading-relaxed">
                   {content.blog.comingSoon.message}
                 </p>
 
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-blue to-brand-purple text-white rounded-full font-medium hover:shadow-xl transition-all"
+                <motion.div
+                  whileHover={{
+                    scale: 1.05,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
                 >
-                  {content.blog.comingSoon.cta}
-                  <ArrowLeft className="w-5 h-5" />
-                </Link>
-              </div>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"
+                  >
+                    {content.blog.comingSoon.cta}
+                    <ArrowLeft className="w-5 h-5" />
+                  </Link>
+                </motion.div>
+              </motion.div>
             </motion.div>
           ) : (
             // Blog Posts Grid
@@ -123,14 +165,22 @@ export default function BlogPage() {
               {blogPosts.map((post: any, index: number) => (
                 <motion.article
                   key={post.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
+                  transition={{
+                    delay: index * 0.1,
+                    duration: 0.6,
+                    ease: bouncyEasing
+                  }}
+                  whileHover={{
+                    y: -12,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
                 >
                   <Link href={`/blog/${post.slug}`}>
-                    <div className="relative h-48 bg-gradient-to-br from-brand-blue to-brand-purple">
+                    <div className="relative h-48 bg-brand-blue">
                       {/* Blog post image placeholder */}
                     </div>
 
@@ -146,17 +196,22 @@ export default function BlogPage() {
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-brand-gray-900 mb-2">
+                      <h3 className="text-xl font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors">
                         {post.title}
                       </h3>
 
-                      <p className="text-brand-gray-600 mb-4">
+                      <p className="text-brand-gray-700 mb-4 leading-relaxed">
                         {post.excerpt}
                       </p>
 
-                      <span className="text-brand-blue font-medium hover:underline">
-                        {content.blog.readMore} ←
-                      </span>
+                      <motion.span
+                        className="inline-flex items-center gap-1 text-brand-blue font-semibold"
+                        whileHover={{ x: -3 }}
+                        transition={{ duration: 0.2, ease: bouncyEasing }}
+                      >
+                        {content.blog.readMore}
+                        <ArrowLeft size={16} />
+                      </motion.span>
                     </div>
                   </Link>
                 </motion.article>
@@ -167,21 +222,39 @@ export default function BlogPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-blue to-brand-purple">
+      <section className="py-16 lg:py-24 bg-brand-blue">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            רוצים תוכן בנושא מסוים?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            ספרו לנו איזה נושאים מעניינים אתכם ונכין עבורכם תוכן איכותי
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-blue rounded-full font-medium hover:shadow-xl transition-all"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: bouncyEasing }}
           >
-            שלחו הצעה
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+              רוצים תוכן בנושא מסוים?
+            </h2>
+            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+              ספרו לנו איזה נושאים מעניינים אתכם ונכין עבורכם תוכן איכותי
+            </p>
+            <motion.div
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.3, ease: bouncyEasing }
+              }}
+              whileTap={{
+                scale: 0.95,
+                transition: { duration: 0.3, ease: bouncyEasing }
+              }}
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-10 py-5 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
+              >
+                שלחו הצעה
+                <ArrowLeft className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </main>

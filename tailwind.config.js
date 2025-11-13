@@ -28,6 +28,14 @@ module.exports = {
             900: '#111827',
           },
         },
+        // Mailchimp-style section backgrounds
+        'section': {
+          cream: '#FAF7F5',
+          'light-blue': '#EFF6FF',
+          'light-yellow': '#FFFBEB',
+          'light-orange': '#FFF7ED',
+          'light-green': '#F0FDF4',
+        },
         // Legacy apple colors (mapped to new brand colors for compatibility)
         'apple-blue': '#3b82f6',
         'apple-blue-dark': '#2563eb',
@@ -63,10 +71,14 @@ module.exports = {
           'sans-serif',
         ],
       },
+      borderWidth: {
+        '3': '3px',
+      },
       animation: {
         'fade-up': 'fadeUp 0.6s ease-out forwards',
         'fade-in': 'fadeIn 0.5s ease-out',
         'float': 'float 20s ease-in-out infinite',
+        'bounce-in': 'bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
       keyframes: {
         fadeUp: {
@@ -81,6 +93,13 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-20px)' },
         },
+        bounceIn: {
+          '0%': { opacity: '0', transform: 'scale(0.8)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+      },
+      transitionTimingFunction: {
+        'bounce': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
     },
   },

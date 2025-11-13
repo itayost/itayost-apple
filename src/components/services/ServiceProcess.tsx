@@ -5,7 +5,8 @@ import { ServiceProcess as ProcessStep } from '@/data/services'
 
 interface ServiceProcessProps {
   process: ProcessStep[]
-  gradient: string
+  color: string
+  accentColor: string
 }
 
 const item = {
@@ -13,7 +14,7 @@ const item = {
   show: { opacity: 1, x: 0 }
 }
 
-export default function ServiceProcess({ process, gradient }: ServiceProcessProps) {
+export default function ServiceProcess({ process, color, accentColor }: ServiceProcessProps) {
   return (
     <section className="bg-brand-gray-50 py-20 lg:py-24">
       <div className="container mx-auto px-4">
@@ -48,7 +49,7 @@ export default function ServiceProcess({ process, gradient }: ServiceProcessProp
                 >
                   {/* Step number circle */}
                   <div
-                    className={`absolute right-0 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br ${gradient} text-2xl font-bold text-white shadow-lg sm:right-4`}
+                    className={`absolute right-0 flex h-16 w-16 items-center justify-center rounded-full bg-${color} text-2xl font-bold text-white shadow-lg sm:right-4`}
                   >
                     {step.step}
                   </div>

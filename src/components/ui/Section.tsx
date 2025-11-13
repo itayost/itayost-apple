@@ -8,7 +8,7 @@ interface SectionProps {
   className?: string
   id?: string
   fullHeight?: boolean
-  gradient?: boolean
+  background?: 'white' | 'gray' | 'blue' | 'orange' | 'navy'
   pattern?: boolean
 }
 
@@ -17,21 +17,27 @@ export function Section({
   className = '',
   id,
   fullHeight = false,
-  gradient = false,
+  background = 'white',
   pattern = false,
 }: SectionProps) {
+  const backgroundColors = {
+    white: 'bg-white',
+    gray: 'bg-brand-gray-50',
+    blue: 'bg-brand-blue/5',
+    orange: 'bg-brand-orange/5',
+    navy: 'bg-brand-navy/5',
+  }
+
   return (
     <section
       id={id}
       className={cn(
         'relative',
         fullHeight ? 'min-h-screen' : 'py-20 lg:py-32',
+        backgroundColors[background],
         className
       )}
     >
-      {gradient && (
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 opacity-50" />
-      )}
       {pattern && (
         <div
           className="absolute inset-0 opacity-[0.03]"

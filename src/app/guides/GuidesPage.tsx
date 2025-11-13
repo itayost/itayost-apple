@@ -34,7 +34,7 @@ export default function GuidesPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
@@ -55,7 +55,7 @@ export default function GuidesPage() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
             >
               {content.guides.title}
-              <span className="block mt-2 bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent">
+              <span className="block mt-2 text-brand-orange font-bold">
                 {content.guides.subtitle}
               </span>
             </motion.h1>
@@ -87,7 +87,7 @@ export default function GuidesPage() {
                   onClick={() => setSelectedLevel(key)}
                   className={`px-6 py-2 rounded-full font-medium transition-all ${
                     selectedLevel === key
-                      ? 'bg-gradient-to-r from-brand-purple to-brand-pink text-white shadow-lg'
+                      ? 'bg-brand-orange text-white shadow-lg'
                       : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                   }`}
                   whileHover={{ scale: 1.05 }}
@@ -111,7 +111,7 @@ export default function GuidesPage() {
                   onClick={() => setSelectedTopic(key)}
                   className={`px-6 py-2 rounded-full font-medium transition-all ${
                     selectedTopic === key
-                      ? 'bg-gradient-to-r from-brand-blue to-apple-cyan text-white shadow-lg'
+                      ? 'bg-brand-blue text-white shadow-lg'
                       : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                   }`}
                   whileHover={{ scale: 1.05 }}
@@ -136,7 +136,7 @@ export default function GuidesPage() {
               className="text-center max-w-2xl mx-auto"
             >
               <div className="bg-white rounded-3xl p-12 shadow-lg">
-                <div className="w-24 h-24 bg-gradient-to-br from-brand-purple to-brand-pink rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
                   <GraduationCap size={48} className="text-white" />
                 </div>
 
@@ -150,7 +150,7 @@ export default function GuidesPage() {
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-purple to-brand-pink text-white rounded-full font-medium hover:shadow-xl transition-all"
+                  className="btn btn-primary inline-flex items-center gap-2"
                 >
                   {content.guides.comingSoon.cta}
                   <ArrowLeft className="w-5 h-5" />
@@ -170,7 +170,7 @@ export default function GuidesPage() {
                   className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
                 >
                   <Link href={`/guides/${guide.slug}`}>
-                    <div className="relative h-48 bg-gradient-to-br from-brand-purple to-brand-pink p-6 flex items-center justify-center">
+                    <div className="relative h-48 bg-brand-orange p-6 flex items-center justify-center">
                       <Code2 size={64} className="text-white" />
                     </div>
 
@@ -213,7 +213,7 @@ export default function GuidesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-purple to-brand-pink">
+      <section className="py-16 lg:py-24 bg-brand-orange">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             צריכים עזרה בלימוד?

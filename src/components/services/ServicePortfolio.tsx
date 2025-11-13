@@ -7,7 +7,8 @@ import { portfolioData } from '@/data/portfolio'
 
 interface ServicePortfolioProps {
   portfolioIds: string[]
-  gradient: string
+  color: string
+  accentColor: string
 }
 
 const container = {
@@ -25,7 +26,7 @@ const item = {
   show: { opacity: 1, y: 0 }
 }
 
-export default function ServicePortfolio({ portfolioIds, gradient }: ServicePortfolioProps) {
+export default function ServicePortfolio({ portfolioIds, color, accentColor }: ServicePortfolioProps) {
   // Filter portfolio items based on IDs
   const relevantProjects = portfolioData.filter(project =>
     portfolioIds.includes(project.id.toString())
@@ -74,9 +75,9 @@ export default function ServicePortfolio({ portfolioIds, gradient }: ServicePort
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
 
-                  {/* Gradient overlay on hover */}
+                  {/* Solid color overlay on hover */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity group-hover:opacity-20`}
+                    className={`absolute inset-0 bg-${color} opacity-0 transition-opacity group-hover:opacity-20`}
                     aria-hidden="true"
                   />
                 </div>
@@ -84,7 +85,7 @@ export default function ServicePortfolio({ portfolioIds, gradient }: ServicePort
                 {/* Content */}
                 <div className="p-6">
                   {/* Category badge */}
-                  <span className={`mb-3 inline-block rounded-full bg-gradient-to-r ${gradient} px-3 py-1 text-xs font-semibold text-white`}>
+                  <span className={`mb-3 inline-block rounded-full bg-${color} px-3 py-1 text-xs font-semibold text-white`}>
                     {project.category === 'web' ? 'אתר' :
                      project.category === 'system' ? 'מערכת' :
                      project.category === 'app' ? 'אפליקציה' :

@@ -46,26 +46,23 @@ export function LoadingPage() {
       >
         {/* Animated Logo */}
         <motion.div
-          className="text-6xl font-bold bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent mb-8"
+          className="text-6xl font-bold text-brand-blue mb-8"
           animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+            scale: [1, 1.05, 1],
           }}
           transition={{
-            duration: 3,
+            duration: 2,
             repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{
-            backgroundSize: '200% 200%',
+            ease: "easeInOut"
           }}
         >
           ITAYOST
         </motion.div>
 
         {/* Loading Bar */}
-        <div className="w-48 h-1 bg-[#E8E8ED] rounded-full overflow-hidden mx-auto">
+        <div className="w-48 h-1 bg-brand-gray-200 rounded-full overflow-hidden mx-auto">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#0071E3] to-[#BF5AF2]"
+            className="h-full bg-brand-orange"
             animate={{
               x: ['-100%', '100%'],
             }}

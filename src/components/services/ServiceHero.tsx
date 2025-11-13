@@ -9,10 +9,10 @@ interface ServiceHeroProps {
 
 export default function ServiceHero({ service }: ServiceHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-brand-gray-50 py-24 lg:py-32">
-      {/* Gradient background accent */}
+    <section className="relative overflow-hidden bg-white py-24 lg:py-32">
+      {/* Solid color background accent */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}
+        className={`absolute inset-0 bg-${service.color} opacity-5`}
         aria-hidden="true"
       />
 
@@ -48,7 +48,7 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className={`mb-6 text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r ${service.gradient} sm:text-2xl lg:text-3xl`}
+            className={`mb-6 text-xl font-bold text-${service.color} sm:text-2xl lg:text-3xl`}
           >
             {service.tagline}
           </motion.p>
@@ -72,13 +72,13 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
           >
             <a
               href="#contact"
-              className={`inline-flex items-center justify-center rounded-full bg-gradient-to-r ${service.gradient} px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-lg`}
+              className={`btn btn-primary bg-${service.color}`}
             >
               {service.cta.primary}
             </a>
             <a
               href="#portfolio"
-              className="inline-flex items-center justify-center rounded-full border-2 border-brand-gray-300 bg-white px-8 py-4 text-base font-semibold text-brand-gray-900 transition-all hover:border-brand-gray-400 hover:bg-brand-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-lg"
+              className="btn btn-ghost"
             >
               {service.cta.secondary}
             </a>

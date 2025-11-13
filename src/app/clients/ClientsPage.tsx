@@ -121,7 +121,7 @@ export default function ClientsPage() {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-brand-gray-50">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
@@ -142,7 +142,7 @@ export default function ClientsPage() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
             >
               {content.clients.title}
-              <span className="block mt-2 bg-gradient-to-r from-brand-orange to-brand-pink bg-clip-text text-transparent">
+              <span className="block mt-2 text-brand-orange font-bold">
                 {content.clients.subtitle}
               </span>
             </motion.h1>
@@ -172,7 +172,7 @@ export default function ClientsPage() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-brand-orange to-brand-pink bg-clip-text text-transparent mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-brand-orange mb-2">
                   {stat.number}
                 </div>
                 <div className="text-sm md:text-base text-brand-gray-600">
@@ -197,7 +197,7 @@ export default function ClientsPage() {
                 onClick={() => setSelectedIndustry(key)}
                 className={`px-6 py-2 rounded-full font-medium transition-all ${
                   selectedIndustry === key
-                    ? 'bg-gradient-to-r from-brand-orange to-brand-pink text-white shadow-lg'
+                    ? 'bg-brand-orange text-white shadow-lg'
                     : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
                 }`}
                 whileHover={{ scale: 1.05 }}
@@ -253,7 +253,7 @@ export default function ClientsPage() {
 
                 {/* Results Badge */}
                 <div className="mb-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand-green/10 to-apple-cyan/10 rounded-full">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 rounded-full">
                     <TrendingUp size={16} className="text-brand-green" />
                     <span className="text-sm font-medium text-brand-green">
                       {testimonial.results}
@@ -263,7 +263,7 @@ export default function ClientsPage() {
 
                 {/* Client Info */}
                 <div className="flex items-center gap-4 pt-6 border-t border-brand-gray-200">
-                  <div className="w-12 h-12 bg-gradient-to-br from-brand-orange to-brand-pink rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  <div className="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center text-white font-bold text-lg">
                     {testimonial.name[0]}
                   </div>
                   <div>
@@ -319,7 +319,7 @@ export default function ClientsPage() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-brand-orange to-brand-pink rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-brand-orange rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <item.icon size={32} className="text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-brand-gray-900 mb-2">
@@ -335,7 +335,7 @@ export default function ClientsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-orange to-brand-pink">
+      <section className="py-16 lg:py-24 bg-brand-orange">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             {content.clients.cta.title}

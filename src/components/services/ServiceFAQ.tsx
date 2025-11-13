@@ -6,10 +6,11 @@ import { ServiceFAQ as FAQItem } from '@/data/services'
 
 interface ServiceFAQProps {
   faq: FAQItem[]
-  gradient: string
+  color: string
+  accentColor: string
 }
 
-export default function ServiceFAQ({ faq, gradient }: ServiceFAQProps) {
+export default function ServiceFAQ({ faq, color, accentColor }: ServiceFAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0) // First item open by default
 
   const toggleItem = (index: number) => {
@@ -53,7 +54,7 @@ export default function ServiceFAQ({ faq, gradient }: ServiceFAQProps) {
                   <motion.div
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`shrink-0 text-2xl text-transparent bg-clip-text bg-gradient-to-r ${gradient}`}
+                    className={`shrink-0 text-2xl text-${color}`}
                   >
                     ▼
                   </motion.div>

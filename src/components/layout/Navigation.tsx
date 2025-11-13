@@ -3,7 +3,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 import { servicesData } from '@/data/services'
+
+// Bouncy easing for Mailchimp-style animations
+const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
 const navItems = [
   { href: '/', label: 'בית' },
@@ -27,13 +31,13 @@ export function Navigation() {
 
     const updateNavbar = () => {
       scrollY = window.scrollY
-      
+
       if (scrollY > 20) {
         setNavClass('nav-scrolled')
       } else {
         setNavClass('nav-default')
       }
-      
+
       ticking = false
     }
 
@@ -46,7 +50,7 @@ export function Navigation() {
 
     // Simple throttled scroll handler
     window.addEventListener('scroll', requestTick, { passive: true })
-    
+
     return () => {
       window.removeEventListener('scroll', requestTick)
     }
@@ -68,7 +72,7 @@ export function Navigation() {
       document.body.style.position = ''
       document.body.style.width = ''
     }
-    
+
     return () => {
       document.body.style.overflow = ''
       document.body.style.position = ''
@@ -83,10 +87,10 @@ export function Navigation() {
   return (
     <>
       {/* Main Navigation */}
-      <header 
+      <header
         className={`fixed top-0 left-0 right-0 h-16 lg:h-20 z-50 transition-all duration-200 ${
-          navClass === 'nav-scrolled' 
-            ? 'bg-white/95 backdrop-blur-md shadow-sm' 
+          navClass === 'nav-scrolled'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm'
             : 'bg-white/80 backdrop-blur-sm'
         }`}
         style={{ transform: 'translateZ(0)' }}
@@ -94,9 +98,9 @@ export function Navigation() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex items-center justify-between h-full">
             {/* Logo */}
-            <Link 
-              href="/" 
-              className="text-2xl font-bold bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent"
+            <Link
+              href="/"
+              className="text-2xl font-bold text-brand-navy hover:text-brand-blue transition-colors"
             >
               ITAYOST
             </Link>
@@ -111,215 +115,356 @@ export function Navigation() {
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
+                    <motion.div
+                      whileHover={{ y: -2 }}
+                      transition={{ duration: 0.2, ease: bouncyEasing }}
+                    >
+                      <Link
+                        href={item.href}
+                        className={`text-base lg:text-lg font-medium transition-colors flex items-center gap-1 ${
+                          pathname === item.href || pathname.startsWith('/services/')
+                            ? 'text-brand-blue'
+                            : 'text-brand-navy hover:text-brand-blue'
+                        }`}
+                      >
+                        {item.label}
+                        <motion.svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          animate={{ rotate: isServicesOpen ? 180 : 0 }}
+                          transition={{ duration: 0.3, ease: bouncyEasing }}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </motion.svg>
+                      </Link>
+                    </motion.div>
+
+                    {/* Dropdown Menu */}
+                    <AnimatePresence>
+                      {isServicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.2, ease: bouncyEasing }}
+                          className="absolute top-full right-0 mt-2 w-72 bg-white rounded-3xl shadow-2xl border border-gray-100 py-2 z-50"
+                        >
+                          <div className="px-4 py-2 border-b border-gray-100">
+                            <motion.div
+                              whileHover={{ x: -3 }}
+                              transition={{ duration: 0.2, ease: bouncyEasing }}
+                            >
+                              <Link
+                                href="/services"
+                                className="block text-base font-bold text-brand-navy hover:text-brand-blue transition-colors"
+                              >
+                                כל השירותים
+                              </Link>
+                            </motion.div>
+                          </div>
+                          {servicesData.map((service, index) => (
+                            <motion.div
+                              key={service.id}
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{
+                                delay: index * 0.05,
+                                duration: 0.3,
+                                ease: bouncyEasing
+                              }}
+                            >
+                              <Link
+                                href={`/services/${service.slug}`}
+                                className="block px-4 py-3 hover:bg-brand-blue/5 transition-colors rounded-2xl mx-2"
+                              >
+                                <motion.div
+                                  className="flex items-start gap-3"
+                                  whileHover={{ x: -3 }}
+                                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                                >
+                                  <span className="text-2xl flex-shrink-0">{service.icon}</span>
+                                  <div>
+                                    <div className="font-semibold text-gray-900 text-base">{service.name}</div>
+                                    <div className="text-sm text-gray-600 line-clamp-1">{service.tagline}</div>
+                                  </div>
+                                </motion.div>
+                              </Link>
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <motion.div
+                    key={item.href}
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.2, ease: bouncyEasing }}
+                  >
                     <Link
                       href={item.href}
-                      className={`text-base lg:text-lg font-medium transition-colors flex items-center gap-1 ${
-                        pathname === item.href || pathname.startsWith('/services/')
+                      className={`text-base lg:text-lg font-medium transition-colors ${
+                        pathname === item.href
                           ? 'text-brand-blue'
                           : 'text-brand-navy hover:text-brand-blue'
                       }`}
                     >
                       {item.label}
-                      <svg
-                        className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
                     </Link>
-
-                    {/* Dropdown Menu */}
-                    {isServicesOpen && (
-                      <div className="absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
-                        <div className="px-4 py-2 border-b border-gray-100">
-                          <Link
-                            href="/services"
-                            className="block text-base font-bold text-brand-navy hover:text-brand-blue"
-                          >
-                            כל השירותים
-                          </Link>
-                        </div>
-                        {servicesData.map((service) => (
-                          <Link
-                            key={service.id}
-                            href={`/services/${service.slug}`}
-                            className="block px-4 py-3 hover:bg-gray-50 transition-colors"
-                          >
-                            <div className="flex items-start gap-3">
-                              <span className="text-2xl flex-shrink-0">{service.icon}</span>
-                              <div>
-                                <div className="font-semibold text-gray-900 text-base">{service.name}</div>
-                                <div className="text-sm text-gray-600 line-clamp-1">{service.tagline}</div>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`text-base lg:text-lg font-medium transition-colors ${
-                      pathname === item.href
-                        ? 'text-brand-blue'
-                        : 'text-brand-navy hover:text-brand-blue'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
+                  </motion.div>
                 )
               ))}
 
-              <Link
-                href="/contact"
-                className="px-7 py-3 bg-brand-orange hover:bg-brand-orange/90 text-white rounded-full font-semibold text-base lg:text-lg shadow-lg shadow-brand-orange/30 hover:shadow-xl transition-all"
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+                whileTap={{
+                  scale: 0.95,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
               >
-                התחל פרויקט
-              </Link>
+                <Link
+                  href="/contact"
+                  className="px-7 py-3 bg-brand-orange text-white rounded-full font-semibold text-base lg:text-lg shadow-lg hover:shadow-xl transition-shadow"
+                >
+                  התחל פרויקט
+                </Link>
+              </motion.div>
             </nav>
 
             {/* Mobile Menu Toggle */}
-            <button
+            <motion.button
               onClick={toggleMenu}
               className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
               aria-label="תפריט"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.2, ease: bouncyEasing }}
             >
-              <span className={`block w-6 h-0.5 bg-gray-900 transition-transform ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block w-6 h-0.5 bg-gray-900 transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-6 h-0.5 bg-gray-900 transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-            </button>
+              <motion.span
+                className="block w-6 h-0.5 bg-brand-navy"
+                animate={{
+                  rotate: isMenuOpen ? 45 : 0,
+                  y: isMenuOpen ? 4 : 0
+                }}
+                transition={{ duration: 0.3, ease: bouncyEasing }}
+              />
+              <motion.span
+                className="block w-6 h-0.5 bg-brand-navy"
+                animate={{
+                  opacity: isMenuOpen ? 0 : 1
+                }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.span
+                className="block w-6 h-0.5 bg-brand-navy"
+                animate={{
+                  rotate: isMenuOpen ? -45 : 0,
+                  y: isMenuOpen ? -4 : 0
+                }}
+                transition={{ duration: 0.3, ease: bouncyEasing }}
+              />
+            </motion.button>
           </div>
         </div>
       </header>
 
       {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black/20 z-40 lg:hidden"
-          onClick={toggleMenu}
-        />
-      )}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+            onClick={toggleMenu}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Mobile Menu */}
-      <aside
-        className={`fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-white z-50 lg:hidden transition-transform duration-300 ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{ transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)' }}
-      >
-        <div className="flex flex-col h-full p-6">
-          {/* Menu Header */}
-          <div className="flex items-center justify-between mb-8">
-            <span className="text-2xl font-bold bg-gradient-to-r from-[#0071E3] to-[#BF5AF2] bg-clip-text text-transparent">
-              ITAYOST
-            </span>
-            <button
-              onClick={toggleMenu}
-              className="w-10 h-10 flex items-center justify-center"
-              aria-label="סגור תפריט"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.aside
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.3, ease: bouncyEasing }}
+            className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-white z-50 lg:hidden"
+          >
+            <div className="flex flex-col h-full p-6">
+              {/* Menu Header */}
+              <div className="flex items-center justify-between mb-8">
+                <span className="text-2xl font-bold text-brand-navy">
+                  ITAYOST
+                </span>
+                <motion.button
+                  onClick={toggleMenu}
+                  className="w-10 h-10 flex items-center justify-center"
+                  aria-label="סגור תפריט"
+                  whileHover={{
+                    rotate: 90,
+                    scale: 1.1
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.3, ease: bouncyEasing }}
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </motion.button>
+              </div>
 
-          {/* Menu Items */}
-          <nav className="flex-1 overflow-y-auto">
-            <ul className="space-y-2">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  {item.hasDropdown ? (
-                    <div>
-                      <button
-                        onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium transition-colors ${
-                          pathname.startsWith('/services')
-                            ? 'bg-brand-blue text-white'
-                            : 'hover:bg-gray-100'
-                        }`}
-                      >
-                        <span>{item.label}</span>
-                        <svg
-                          className={`w-5 h-5 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-
-                      {/* Mobile Services Submenu */}
-                      {isMobileServicesOpen && (
-                        <ul className="mt-2 mr-4 space-y-1">
-                          <li>
-                            <Link
-                              href="/services"
-                              onClick={toggleMenu}
-                              className="block px-4 py-2 text-sm rounded-lg hover:bg-gray-100 font-semibold"
-                            >
-                              כל השירותים
-                            </Link>
-                          </li>
-                          {servicesData.map((service) => (
-                            <li key={service.id}>
-                              <Link
-                                href={`/services/${service.slug}`}
-                                onClick={toggleMenu}
-                                className={`block px-4 py-2 text-sm rounded-lg hover:bg-gray-100 ${
-                                  pathname === `/services/${service.slug}` ? 'bg-gray-100' : ''
-                                }`}
-                              >
-                                <div className="flex items-center gap-2">
-                                  <span className="text-lg">{service.icon}</span>
-                                  <span>{service.name}</span>
-                                </div>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      onClick={toggleMenu}
-                      className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
-                        pathname === item.href
-                          ? 'bg-brand-blue text-white'
-                          : 'hover:bg-gray-100'
-                      }`}
+              {/* Menu Items */}
+              <nav className="flex-1 overflow-y-auto">
+                <ul className="space-y-2">
+                  {navItems.map((item, index) => (
+                    <motion.li
+                      key={item.href}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: index * 0.05,
+                        duration: 0.3,
+                        ease: bouncyEasing
+                      }}
                     >
-                      {item.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
+                      {item.hasDropdown ? (
+                        <div>
+                          <motion.button
+                            onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-medium transition-colors ${
+                              pathname.startsWith('/services')
+                                ? 'bg-brand-blue text-white'
+                                : 'hover:bg-brand-blue/5'
+                            }`}
+                            whileTap={{ scale: 0.98 }}
+                            transition={{ duration: 0.2, ease: bouncyEasing }}
+                          >
+                            <span>{item.label}</span>
+                            <motion.svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              animate={{ rotate: isMobileServicesOpen ? 180 : 0 }}
+                              transition={{ duration: 0.3, ease: bouncyEasing }}
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </motion.svg>
+                          </motion.button>
 
-          {/* Menu Footer */}
-          <div className="pt-6 mt-6 border-t">
-            <Link
-              href="/contact"
-              onClick={toggleMenu}
-              className="block w-full py-4 bg-brand-orange text-white text-center rounded-xl font-semibold text-lg shadow-lg shadow-brand-orange/30"
-            >
-              התחל פרויקט
-            </Link>
-            
-            <div className="mt-6 space-y-2 text-base text-gray-700">
-              <a href="tel:0544994417" className="block font-medium">054-499-4417</a>
-              <a href="mailto:itayost1@gmail.com" className="block font-medium">itayost1@gmail.com</a>
+                          {/* Mobile Services Submenu */}
+                          <AnimatePresence>
+                            {isMobileServicesOpen && (
+                              <motion.ul
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3, ease: bouncyEasing }}
+                                className="mt-2 mr-4 space-y-1 overflow-hidden"
+                              >
+                                <li>
+                                  <Link
+                                    href="/services"
+                                    onClick={toggleMenu}
+                                    className="block px-4 py-2 text-sm rounded-lg hover:bg-brand-blue/5 font-semibold transition-colors"
+                                  >
+                                    כל השירותים
+                                  </Link>
+                                </li>
+                                {servicesData.map((service) => (
+                                  <li key={service.id}>
+                                    <Link
+                                      href={`/services/${service.slug}`}
+                                      onClick={toggleMenu}
+                                      className={`block px-4 py-2 text-sm rounded-lg hover:bg-brand-blue/5 transition-colors ${
+                                        pathname === `/services/${service.slug}` ? 'bg-brand-blue/5' : ''
+                                      }`}
+                                    >
+                                      <div className="flex items-center gap-2">
+                                        <span className="text-lg">{service.icon}</span>
+                                        <span>{service.name}</span>
+                                      </div>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </motion.ul>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <motion.div
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ duration: 0.2, ease: bouncyEasing }}
+                        >
+                          <Link
+                            href={item.href}
+                            onClick={toggleMenu}
+                            className={`block px-4 py-3 rounded-2xl font-medium transition-colors ${
+                              pathname === item.href
+                                ? 'bg-brand-blue text-white'
+                                : 'hover:bg-brand-blue/5'
+                            }`}
+                          >
+                            {item.label}
+                          </Link>
+                        </motion.div>
+                      )}
+                    </motion.li>
+                  ))}
+                </ul>
+              </nav>
+
+              {/* Menu Footer */}
+              <motion.div
+                className="pt-6 mt-6 border-t"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.3, ease: bouncyEasing }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                >
+                  <Link
+                    href="/contact"
+                    onClick={toggleMenu}
+                    className="block w-full py-4 bg-brand-orange text-white text-center rounded-2xl font-semibold text-lg shadow-lg"
+                  >
+                    התחל פרויקט
+                  </Link>
+                </motion.div>
+
+                <div className="mt-6 space-y-2 text-base text-gray-700">
+                  <motion.a
+                    href="tel:0544994417"
+                    className="block font-medium hover:text-brand-blue transition-colors"
+                    whileHover={{ x: -3 }}
+                    transition={{ duration: 0.2, ease: bouncyEasing }}
+                  >
+                    054-499-4417
+                  </motion.a>
+                  <motion.a
+                    href="mailto:itayost1@gmail.com"
+                    className="block font-medium hover:text-brand-blue transition-colors"
+                    whileHover={{ x: -3 }}
+                    transition={{ duration: 0.2, ease: bouncyEasing }}
+                  >
+                    itayost1@gmail.com
+                  </motion.a>
+                </div>
+              </motion.div>
             </div>
-          </div>
-        </div>
-      </aside>
+          </motion.aside>
+        )}
+      </AnimatePresence>
     </>
   )
 }

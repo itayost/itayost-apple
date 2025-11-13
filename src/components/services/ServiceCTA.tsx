@@ -9,13 +9,7 @@ interface ServiceCTAProps {
 
 export default function ServiceCTA({ service }: ServiceCTAProps) {
   return (
-    <section className="relative overflow-hidden bg-brand-gray-900 py-20 lg:py-24" id="contact">
-      {/* Gradient background accent */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-10`}
-        aria-hidden="true"
-      />
-
+    <section className={`relative overflow-hidden bg-${service.color} py-20 lg:py-24`} id="contact">
       {/* Animated background circles */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <motion.div
@@ -28,7 +22,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className={`absolute -right-40 -top-40 h-96 w-96 rounded-full bg-gradient-to-br ${service.gradient} blur-3xl`}
+          className={`absolute -right-40 -top-40 h-96 w-96 rounded-full bg-${service.accentColor} blur-3xl`}
         />
         <motion.div
           animate={{
@@ -41,7 +35,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             ease: "easeInOut",
             delay: 1
           }}
-          className={`absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-gradient-to-br ${service.gradient} blur-3xl`}
+          className={`absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-white blur-3xl`}
         />
       </div>
 
@@ -94,7 +88,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
               href="https://wa.me/972544994417?text=היי,%20אני%20מעוניין%20לשמוע%20עוד%20על%20"
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r ${service.gradient} px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-gray-900 sm:text-lg`}
+              className={`btn bg-white text-${service.color}`}
             >
               <span>שלח הודעת WhatsApp</span>
               <span className="text-xl">💬</span>
@@ -103,7 +97,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             {/* Email Button */}
             <a
               href="mailto:itayost1@gmail.com?subject=פנייה%20לגבי%20שירות"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white hover:text-brand-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-gray-900 sm:text-lg"
+              className={`btn bg-${service.accentColor} text-white`}
             >
               <span>שלח מייל</span>
               <span className="text-xl">✉️</span>

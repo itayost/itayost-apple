@@ -45,7 +45,7 @@ export function OptimizedImage({
       {/* Loading skeleton */}
       {isLoading && (
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-[#F5F5F7] via-[#E8E8ED] to-[#F5F5F7] animate-pulse"
+          className="absolute inset-0 bg-brand-gray-100 animate-pulse"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}

@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 
 interface ServiceTechnologiesProps {
   technologies: string[]
-  gradient: string
+  color: string
+  accentColor: string
 }
 
 const container = {
@@ -22,7 +23,7 @@ const item = {
   show: { opacity: 1, scale: 1 }
 }
 
-export default function ServiceTechnologies({ technologies, gradient }: ServiceTechnologiesProps) {
+export default function ServiceTechnologies({ technologies, color, accentColor }: ServiceTechnologiesProps) {
   return (
     <section className="bg-white py-20 lg:py-24">
       <div className="container mx-auto px-4">
@@ -49,9 +50,9 @@ export default function ServiceTechnologies({ technologies, gradient }: ServiceT
                 variants={item}
                 className="group relative overflow-hidden rounded-xl border-2 border-brand-gray-200 bg-white px-6 py-3 shadow-sm transition-all hover:shadow-md"
               >
-                {/* Gradient background on hover */}
+                {/* Solid color background on hover */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity group-hover:opacity-10`}
+                  className={`absolute inset-0 bg-${color} opacity-0 transition-opacity group-hover:opacity-10`}
                   aria-hidden="true"
                 />
 

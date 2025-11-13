@@ -43,12 +43,20 @@ export default function LatestBlogPosts({
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group overflow-hidden rounded-2xl border border-brand-gray-200 bg-white shadow-sm transition-all hover:shadow-xl"
+              transition={{
+                delay: index * 0.1,
+                duration: 0.5,
+                ease: [0.34, 1.56, 0.64, 1] // Bouncy easing
+              }}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }
+              }}
+              className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-shadow hover:shadow-2xl"
             >
               <Link href={`/blog/${post.slug}`}>
-                {/* Gradient placeholder - replace with actual images when available */}
-                <div className="relative h-48 bg-gradient-to-br from-brand-blue to-brand-purple">
+                {/* Color placeholder - replace with actual images when available */}
+                <div className="relative h-48 bg-brand-blue">
                   <div className="absolute inset-0 bg-black/20 transition-all group-hover:bg-black/10"></div>
                 </div>
 
@@ -100,16 +108,25 @@ export default function LatestBlogPosts({
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            transition={{
+              delay: 0.3,
+              duration: 0.5,
+              ease: [0.34, 1.56, 0.64, 1]
+            }}
             className="mt-12 text-center"
           >
-            <Link
-              href="/blog"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-gray-300 bg-white px-8 py-4 text-base font-semibold text-brand-gray-900 transition-all hover:border-brand-gray-400 hover:bg-brand-gray-50"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span>כל המאמרים</span>
-              <ArrowLeft size={20} />
-            </Link>
+              <Link
+                href="/blog"
+                className="btn btn-secondary inline-flex items-center gap-2"
+              >
+                <span>כל המאמרים</span>
+                <ArrowLeft size={20} />
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </div>

@@ -33,13 +33,13 @@ export default function EcommercePage() {
         </div>
       </section>
 
-      <ServiceFeatures features={service.features} gradient={service.gradient} />
-      <ServiceProcess process={service.process} gradient={service.gradient} />
+      <ServiceFeatures features={service.features} color={service.color} accentColor={service.accentColor} />
+      <ServiceProcess process={service.process} color={service.color} accentColor={service.accentColor} />
       {service.technologies && (
-        <ServiceTechnologies technologies={service.technologies} gradient={service.gradient} />
+        <ServiceTechnologies technologies={service.technologies} color={service.color} accentColor={service.accentColor} />
       )}
-      <ServicePortfolio portfolioIds={service.portfolio} gradient={service.gradient} />
-      <ServiceFAQ faq={service.faq} gradient={service.gradient} />
+      <ServicePortfolio portfolioIds={service.portfolio} color={service.color} accentColor={service.accentColor} />
+      <ServiceFAQ faq={service.faq} color={service.color} accentColor={service.accentColor} />
       <ServiceCTA service={service} />
     </main>
   )

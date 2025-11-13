@@ -8,7 +8,7 @@ import LatestBlogPosts from '@/components/common/LatestBlogPosts'
 
 // Components - same for all screen sizes
 const Hero = dynamic(() => import('@/components/sections/Hero'), {
-  loading: () => <div className="min-h-screen bg-gradient-to-b from-white to-brand-gray-50" />,
+  loading: () => <div className="min-h-screen bg-white" />,
   ssr: true
 })
 
