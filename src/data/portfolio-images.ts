@@ -67,6 +67,40 @@ export const portfolioImages = {
       mobile: { width: 320, height: 220 },
       thumbnail: { width: 200, height: 137 }
     }
+  },
+  ShepesGroup: {
+    src: '/images/ShepesGroup',
+    original: '/images/shepes-group.png',
+    webp: '/images/ShepesGroup.webp',
+    sizes: {
+      desktop: '/images/ShepesGroup-desktop.webp',
+      display: '/images/ShepesGroup-display.webp',
+      mobile: '/images/ShepesGroup-mobile.webp',
+      thumbnail: '/images/ShepesGroup-thumbnail.webp'
+    },
+    dimensions: {
+      desktop: { width: 1920, height: 844 },
+      display: { width: 1200, height: 528 },
+      mobile: { width: 768, height: 338 },
+      thumbnail: { width: 400, height: 176 }
+    }
+  },
+  NeshaTamar: {
+    src: '/images/NeshaTamar',
+    original: '/images/nes-hatamar.png',
+    webp: '/images/NeshaTamar.webp',
+    sizes: {
+      desktop: '/images/NeshaTamar-desktop.webp',
+      display: '/images/NeshaTamar-display.webp',
+      mobile: '/images/NeshaTamar-mobile.webp',
+      thumbnail: '/images/NeshaTamar-thumbnail.webp'
+    },
+    dimensions: {
+      desktop: { width: 1920, height: 844 },
+      display: { width: 1200, height: 528 },
+      mobile: { width: 768, height: 338 },
+      thumbnail: { width: 400, height: 176 }
+    }
   }
 }
 
