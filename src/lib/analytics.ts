@@ -3,7 +3,6 @@
 
 import type {
   AnalyticsEventName,
-  BaseEventParams,
   WhatsAppClickParams,
   FormEventParams,
   FormFieldEventParams,

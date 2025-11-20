@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { portfolioData } from '@/data/portfolio'
 import {
   ExternalLink,
@@ -18,7 +18,6 @@ import {
   TrendingUp,
   Clock,
   Users,
-  X,
   Sparkles
 } from 'lucide-react'
 
@@ -44,7 +43,6 @@ const getIcon = (category: string) => {
 
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const [selectedProject, setSelectedProject] = useState<typeof portfolioData[0] | null>(null)
 
   const filteredProjects = selectedCategory === 'all'
     ? portfolioData
@@ -157,22 +155,21 @@ export default function PortfolioPage() {
             {filteredProjects.map((project, index) => {
               const Icon = getIcon(project.category)
               return (
-                <motion.article
-                  key={project.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: index * 0.1,
-                    duration: 0.6,
-                    ease: bouncyEasing
-                  }}
-                  whileHover={{
-                    y: -12,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  className="group cursor-pointer"
-                  onClick={() => setSelectedProject(project)}
-                >
+                <Link key={project.id} href={`/portfolio/${project.slug}`} className="block">
+                  <motion.article
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: index * 0.1,
+                      duration: 0.6,
+                      ease: bouncyEasing
+                    }}
+                    whileHover={{
+                      y: -12,
+                      transition: { duration: 0.3, ease: bouncyEasing }
+                    }}
+                    className="group"
+                  >
                   <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
                     {/* Image/Preview */}
                     <div className="relative h-64 bg-brand-gray-100 overflow-hidden">
@@ -278,191 +275,13 @@ export default function PortfolioPage() {
                       </div>
                     </div>
                   </div>
-                </motion.article>
+                  </motion.article>
+                </Link>
               )
             })}
           </div>
         </div>
       </section>
-
-      {/* Project Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <div
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto"
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3, ease: bouncyEasing }}
-              className="bg-white rounded-3xl max-w-5xl w-full my-8"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Modal Header */}
-              <div className="sticky top-0 bg-white border-b p-6 flex items-center justify-between rounded-t-3xl z-10">
-                <div>
-                  <h2 className="text-2xl font-bold text-brand-navy">{selectedProject.title}</h2>
-                  <p className="text-brand-gray-600">{selectedProject.subtitle}</p>
-                </div>
-                <motion.button
-                  onClick={() => setSelectedProject(null)}
-                  className="w-12 h-12 rounded-2xl bg-brand-gray-100 flex items-center justify-center hover:bg-brand-gray-200 transition-colors"
-                  whileHover={{
-                    scale: 1.1,
-                    rotate: 90,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <X size={20} />
-                </motion.button>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6 lg:p-8">
-                {/* Project Image */}
-                {selectedProject.image && (
-                  <div className="mb-8 rounded-2xl overflow-hidden bg-brand-gray-100 shadow-lg">
-                    <img
-                      src={selectedProject.image}
-                      alt={`${selectedProject.title} - ${selectedProject.description} | פרויקט מפורט עבור ${selectedProject.client}`}
-                      className="w-full h-auto"
-                    />
-                  </div>
-                )}
-
-                <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Left Column */}
-                  <div>
-                    <div className="mb-6">
-                      <h3 className="text-xl font-bold text-brand-navy mb-3">אודות הפרויקט</h3>
-                      <p className="text-brand-gray-700 leading-relaxed">{selectedProject.longDescription}</p>
-                    </div>
-
-                    <div className="mb-6">
-                      <h3 className="text-xl font-bold text-brand-navy mb-4">תכונות עיקריות</h3>
-                      <ul className="space-y-3">
-                        {selectedProject.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
-                            <CheckCircle className="text-brand-green mt-0.5 flex-shrink-0" size={20} />
-                            <span className="text-brand-gray-700">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mb-6">
-                      <h3 className="text-xl font-bold text-brand-navy mb-4">טכנולוגיות</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedProject.tags.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="px-4 py-2 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-semibold"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Column */}
-                  <div>
-                    <div className="mb-6">
-                      <h3 className="text-xl font-bold text-brand-navy mb-4">תוצאות</h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        {selectedProject.results.map((result, idx) => (
-                          <motion.div
-                            key={idx}
-                            className="bg-brand-blue rounded-2xl p-6 text-white text-center"
-                            whileHover={{
-                              y: -5,
-                              transition: { duration: 0.3, ease: bouncyEasing }
-                            }}
-                          >
-                            <div className="text-3xl font-bold mb-1">
-                              {result.value}
-                            </div>
-                            <div className="text-sm opacity-90">
-                              {result.label}
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {selectedProject.testimonial && (
-                      <div className="mb-6">
-                        <h3 className="text-xl font-bold text-brand-navy mb-4">המלצה</h3>
-                        <blockquote className="bg-brand-orange/10 rounded-2xl p-6">
-                          <p className="text-brand-gray-700 italic mb-4 leading-relaxed">
-                            &quot;{selectedProject.testimonial.text}&quot;
-                          </p>
-                          <cite className="text-sm text-brand-gray-600 not-italic">
-                            <strong className="font-bold">{selectedProject.testimonial.author}</strong>
-                            <br />
-                            {selectedProject.testimonial.role}
-                          </cite>
-                        </blockquote>
-                      </div>
-                    )}
-
-                    <div className="flex gap-4">
-                      {selectedProject.link ? (
-                        <motion.div
-                          className="flex-1"
-                          whileHover={{
-                            scale: 1.02,
-                            transition: { duration: 0.3, ease: bouncyEasing }
-                          }}
-                          whileTap={{
-                            scale: 0.98,
-                            transition: { duration: 0.3, ease: bouncyEasing }
-                          }}
-                        >
-                          <a
-                            href={selectedProject.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block py-4 bg-brand-orange text-white text-center rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center gap-2"
-                          >
-                            צפייה באתר
-                            <ExternalLink size={18} />
-                          </a>
-                        </motion.div>
-                      ) : (
-                        <div className="flex-1 py-4 bg-brand-gray-200 text-brand-gray-500 text-center rounded-2xl font-semibold cursor-not-allowed">
-                          פרויקט פרטי
-                        </div>
-                      )}
-                      <motion.div
-                        className="flex-1"
-                        whileHover={{
-                          scale: 1.02,
-                          transition: { duration: 0.3, ease: bouncyEasing }
-                        }}
-                        whileTap={{
-                          scale: 0.98,
-                          transition: { duration: 0.3, ease: bouncyEasing }
-                        }}
-                      >
-                        <Link
-                          href="/contact"
-                          className="block py-4 bg-brand-navy text-white text-center rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-shadow"
-                        >
-                          בואו נדבר
-                        </Link>
-                      </motion.div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* Statistics Section */}
       <section className="py-16 lg:py-24 bg-white">

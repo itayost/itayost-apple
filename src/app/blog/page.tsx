@@ -48,6 +48,33 @@ export default async function Page() {
           '@id': 'https://www.itayost.com/#website',
         },
       },
+      // ItemList schema for blog posts
+      {
+        '@type': 'ItemList',
+        '@id': 'https://www.itayost.com/blog/#itemlist',
+        name: 'רשימת מאמרים בבלוג',
+        description: 'מאמרים, טיפים וטריקים בנושאי פיתוח תוכנה וטכנולוגיה',
+        numberOfItems: posts.length,
+        itemListElement: posts.map((post, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: {
+            '@type': 'BlogPosting',
+            '@id': `https://www.itayost.com/blog/${post.slug}`,
+            url: `https://www.itayost.com/blog/${post.slug}`,
+            name: post.title,
+            headline: post.title,
+            description: post.description,
+            datePublished: post.date,
+            author: {
+              '@type': 'Person',
+              name: post.author,
+            },
+            keywords: post.tags.join(', '),
+            articleSection: post.category,
+          },
+        })),
+      },
     ],
   }
 

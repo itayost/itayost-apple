@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next'
+import { getAllPostSlugs } from '@/lib/blog'
+import { portfolioData } from '@/data/portfolio'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.itayost.com'
@@ -97,29 +99,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
   ]
 
-  // TODO: Add dynamic blog posts when blog is populated
-  // Example:
-  // const blogPosts = await getBlogPosts()
-  // const blogPages = blogPosts.map(post => ({
-  //   url: `${baseUrl}/blog/${post.slug}`,
-  //   lastModified: post.updatedAt,
-  //   changeFrequency: 'monthly' as const,
-  //   priority: 0.6,
-  // }))
-  // pages.push(...blogPages)
+  // Add dynamic blog posts
+  const blogSlugs = getAllPostSlugs()
+  const blogPages: MetadataRoute.Sitemap = blogSlugs.map(slug => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+  pages.push(...blogPages)
 
-  // Add language alternates if multi-language support is added
-  // const pagesWithAlternates = pages.map(page => ({
-  //   ...page,
-  //   alternates: {
-  //     languages: {
-  //       'he-IL': page.url,
-  //       'en-US': page.url.replace(baseUrl, `${baseUrl}/en`),
-  //     },
-  //   },
-  // }))
+  // Add portfolio project pages
+  const portfolioPages: MetadataRoute.Sitemap = portfolioData.map(project => ({
+    url: `${baseUrl}/portfolio/${project.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+  pages.push(...portfolioPages)
 
   return pages
 }

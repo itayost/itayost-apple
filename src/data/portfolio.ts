@@ -2,6 +2,7 @@
 export const portfolioData = [
   {
     id: 1,
+    slug: 'kitchen-optimizer',
     title: 'Kitchen Optimizer',
     subtitle: 'מערכת לניהול הזמנות אוכל וניהול מלאי',
     category: 'system',
@@ -65,6 +66,7 @@ export const portfolioData = [
   },
   {
     id: 2,
+    slug: 'lola-martin',
     title: 'Lola Martin',
     subtitle: 'אתר תדמית למסעדה',
     category: 'web',
@@ -129,6 +131,7 @@ export const portfolioData = [
   },
   {
     id: 3,
+    slug: 'the-fader-academy',
     title: 'The Fader Academy',
     subtitle: 'אתר תדמית לאקדמיית ספרות',
     category: 'web',
@@ -193,6 +196,7 @@ export const portfolioData = [
   },
   {
     id: 4,
+    slug: 'tal-real-estate',
     title: 'טל נדל״ן',
     subtitle: 'דף נחיתה לסוכן נדל״ן',
     category: 'web',
@@ -257,6 +261,7 @@ export const portfolioData = [
   },
   {
     id: 5,
+    slug: 'shepes-group',
     title: 'Shepes Group',
     subtitle: 'אתר לחברת תיווך נדל״ן',
     category: 'web',
@@ -322,6 +327,7 @@ export const portfolioData = [
   },
   {
     id: 6,
+    slug: 'neshatamar',
     title: 'נס התמר',
     subtitle: 'אתר הוצאה לאור וקורסים',
     category: 'web',

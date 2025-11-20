@@ -371,6 +371,24 @@ export const content = {
     },
   },
 
+  // Privacy Policy Page
+  privacyPolicy: {
+    title: 'מדיניות פרטיות',
+    subtitle: 'הגנה על המידע שלכם',
+    description: 'מדיניות הפרטיות המלאה שלנו - כיצד אנו אוספים, משתמשים ומגנים על המידע האישי שלכם',
+    sectionLabel: 'הגנת פרטיות',
+    lastUpdated: 'עדכון אחרון',
+    sections: {
+      collection: 'איסוף מידע',
+      usage: 'שימוש במידע',
+      sharing: 'שיתוף מידע',
+      security: 'אבטחת מידע',
+      rights: 'זכויותיכם',
+      cookies: 'Cookies ועוגיות',
+      contact: 'יצירת קשר',
+    },
+  },
+
   // Clients Page
   clients: {
     title: 'הלקוחות',

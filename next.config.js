@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // Enforce no trailing slashes for consistent URLs
+  trailingSlash: false,
+
   // ESLint configuration
   eslint: {
     // Warning: This allows production builds to successfully complete even if
@@ -93,9 +96,28 @@ const nextConfig = {
   // Redirects
   async redirects() {
     return [
+      // Legacy home page redirect
       {
         source: '/home',
         destination: '/',
+        permanent: true,
+      },
+      // Force www subdomain - redirect non-www to www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'itayost.com',
+          },
+        ],
+        destination: 'https://www.itayost.com/:path*',
+        permanent: true,
+      },
+      // Blog post URL corrections
+      {
+        source: '/blog/mobile-first-design-2025',
+        destination: '/blog/mobile-first-design-importance-2025',
         permanent: true,
       },
     ]
