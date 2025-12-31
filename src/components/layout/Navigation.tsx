@@ -202,6 +202,22 @@ export function Navigation() {
                               </Link>
                             </motion.div>
                           ))}
+
+                          {/* Quick Quote CTA */}
+                          <div className="px-4 py-3 mt-2 border-t border-gray-100">
+                            <motion.div
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              transition={{ duration: 0.2, ease: bouncyEasing }}
+                            >
+                              <Link
+                                href="/contact"
+                                className="block w-full py-3 bg-brand-orange text-white text-center rounded-2xl font-semibold text-sm shadow-md hover:shadow-lg transition-shadow"
+                              >
+                                קבלו הצעת מחיר מהירה
+                              </Link>
+                            </motion.div>
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>

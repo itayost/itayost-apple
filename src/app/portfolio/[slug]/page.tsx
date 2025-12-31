@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { portfolioData } from '@/data/portfolio'
 import { JsonLd } from '@/components/common/JsonLd'
+import { PortfolioBreadcrumbs } from '@/components/common/Breadcrumbs'
 import { ArrowRight, ExternalLink, Calendar, Clock, Tag, CheckCircle2, Quote } from 'lucide-react'
 
 interface PageProps {
@@ -128,17 +129,7 @@ export default async function PortfolioItemPage({ params }: PageProps) {
         {/* Breadcrumbs */}
         <section className="py-6 bg-section-light-blue">
           <div className="container mx-auto px-4">
-            <nav className="flex items-center gap-2 text-sm">
-              <Link href="/" className="text-brand-gray-600 hover:text-brand-navy transition-colors">
-                דף הבית
-              </Link>
-              <ArrowRight className="w-4 h-4 text-brand-gray-400 rotate-180" />
-              <Link href="/portfolio" className="text-brand-gray-600 hover:text-brand-navy transition-colors">
-                תיק עבודות
-              </Link>
-              <ArrowRight className="w-4 h-4 text-brand-gray-400 rotate-180" />
-              <span className="text-brand-navy font-semibold">{project.title}</span>
-            </nav>
+            <PortfolioBreadcrumbs projectTitle={project.title} />
           </div>
         </section>
 

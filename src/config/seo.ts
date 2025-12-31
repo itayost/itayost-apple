@@ -2,25 +2,25 @@
 export const seoConfig = {
   // Default SEO
   default: {
-    title: 'ITAYOST - חוויות דיגיטליות | פיתוח אתרים ואפליקציות',
+    title: 'ITAYOST | מערכות, אוטומציות ובניית אתרים לעסקים',
     titleTemplate: '%s | ITAYOST',
-    description: 'פיתוח אתרים ואפליקציות מותאמים אישית לעסקים. מומחים ב-React, Next.js, Node.js. צרו איתנו קשר לקבלת הצעת מחיר.',
+    description: 'מערכות ניהול, אוטומציות ואתרים שעוזרים לעסקים לעבוד חכם יותר. חוסכים לכם שעות עבודה בשבוע ומביאים יותר לקוחות.',
     keywords: [
-      'פיתוח אתרים',
+      'מערכות ניהול',
+      'אוטומציות לעסקים',
       'בניית אתרים',
-      'עיצוב אתרים',
-      'פיתוח אפליקציות',
-      'אפליקציות מובייל',
-      'עיצוב UI/UX',
+      'מערכת CRM',
+      'אוטומציה עסקית',
+      'פיתוח אתרים',
+      'מערכות מותאמות',
       'React',
       'Next.js',
       'Node.js',
       'TypeScript',
       'פיתוח Full Stack',
-      'חברת פיתוח',
-      'סטארטאפ',
-      'טרנספורמציה דיגיטלית',
-      'תל אביב',
+      'ניהול עסק חכם',
+      'דיגיטציה לעסקים',
+      'רמת גן',
     ],
     openGraph: {
       type: 'website',
@@ -32,7 +32,7 @@ export const seoConfig = {
           url: 'https://www.itayost.com/og-image.jpg',
           width: 1200,
           height: 630,
-          alt: 'ITAYOST - פיתוח אתרים ואפליקציות',
+          alt: 'ITAYOST - מערכות, אוטומציות ואתרים לעסקים',
           type: 'image/jpeg',
         },
       ],
@@ -73,15 +73,15 @@ export const seoConfig = {
   // Page-specific SEO
   pages: {
     home: {
-      title: 'ITAYOST - פיתוח אתרים ואפליקציות | חברת פיתוח מובילה',
-      description: 'חברת ITAYOST מתמחה בפיתוח אתרים ואפליקציות מתקדמות. פתרונות דיגיטליים מותאמים אישית לעסקים עם טכנולוגיות React, Next.js, Node.js. קבלו הצעת מחיר היום.',
-      keywords: ['פיתוח אתרים תל אביב', 'חברת פיתוח תוכנה', 'בניית אתר לעסק', 'פיתוח אפליקציה'],
+      title: 'ITAYOST | מערכות, אוטומציות ואתרים לעסקים',
+      description: 'עוזר לעסקים לנהל את העסק חכם יותר עם מערכות CRM, אוטומציות ואתרים. חוסכים שעות עבודה בשבוע ומביאים יותר לקוחות. קבלו הצעה תוך 24 שעות.',
+      keywords: ['מערכות לעסקים', 'אוטומציה עסקית', 'בניית אתר לעסק', 'מערכת CRM', 'ניהול עסק חכם'],
       canonical: 'https://www.itayost.com',
     },
     services: {
-      title: 'שירותים | פיתוח אתרים, אפליקציות ועיצוב UI/UX',
-      description: 'שירותי פיתוח מקצה לקצה: אתרי אינטרנט רספונסיביים, אפליקציות מובייל, עיצוב UI/UX, פיתוח API ומערכות ניהול. מחירים תחרותיים ואיכות ללא פשרות.',
-      keywords: ['שירותי פיתוח', 'מחירון פיתוח אתרים', 'עלות פיתוח אפליקציה', 'פיתוח מערכות'],
+      title: 'שירותים | מערכות, אוטומציות ובניית אתרים',
+      description: 'מערכות CRM מותאמות, אוטומציות שחוסכות זמן, ואתרים שמביאים לקוחות. פתרונות מקצה לקצה לעסקים קטנים ובינוניים.',
+      keywords: ['מערכות ניהול', 'אוטומציה לעסקים', 'בניית אתרים', 'מערכת CRM מותאמת'],
       canonical: 'https://www.itayost.com/services',
     },
     portfolio: {
@@ -170,6 +170,18 @@ export const seoConfig = {
       keywords: ['דף נחיתה', 'Landing Page', 'דף קמפיין', 'דף המרה', 'Google Ads', 'Facebook Ads', 'A/B Testing'],
       canonical: 'https://www.itayost.com/services/landing-pages',
     },
+    'automations': {
+      title: 'אוטומציות | חיבור מערכות וחיסכון בזמן',
+      description: 'אוטומציה של תהליכים עסקיים, חיבור בין מערכות קיימות (Gmail, Sheets, CRM, WhatsApp). חוסכים שעות עבודה בשבוע. Make, Zapier, n8n. קבל הצעת מחיר.',
+      keywords: ['אוטומציה עסקית', 'חיבור מערכות', 'Zapier', 'Make', 'Integromat', 'אוטומציה לעסקים', 'n8n', 'workflow automation'],
+      canonical: 'https://www.itayost.com/services/automations',
+    },
+    'mobile-apps': {
+      title: 'אפליקציות מובייל | React Native לiOS ו-Android',
+      description: 'פיתוח אפליקציות מובייל Cross-Platform עם React Native. אפליקציה אחת ל-iOS ו-Android. Push notifications, מיקום, מצלמה. קבל הצעת מחיר.',
+      keywords: ['אפליקציות מובייל', 'React Native', 'פיתוח אפליקציה', 'iOS', 'Android', 'Expo', 'אפליקציה לעסק'],
+      canonical: 'https://www.itayost.com/services/mobile-apps',
+    },
   },
 
   // Structured Data Schemas
@@ -225,7 +237,7 @@ export const seoConfig = {
       '@id': 'https://www.itayost.com/#website',
       url: 'https://www.itayost.com',
       name: 'ITAYOST',
-      description: 'פיתוח אתרים ואפליקציות מותאמים אישית לעסקים',
+      description: 'מערכות, אוטומציות ואתרים שעוזרים לעסקים לעבוד חכם יותר',
       publisher: {
         '@id': 'https://www.itayost.com/#organization',
       },
@@ -236,8 +248,8 @@ export const seoConfig = {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
       '@id': 'https://www.itayost.com/#localbusiness',
-      name: 'ITAYOST - פיתוח אתרים ואפליקציות',
-      alternateName: 'איתי אוסט - פיתוח תוכנה',
+      name: 'ITAYOST - מערכות, אוטומציות ואתרים לעסקים',
+      alternateName: 'איתי אוסט - מערכות ואוטומציות',
       image: [
         'https://www.itayost.com/og-image.jpg',
         'https://www.itayost.com/logo.png'

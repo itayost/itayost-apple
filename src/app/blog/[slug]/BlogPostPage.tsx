@@ -4,6 +4,7 @@ import { BlogPost } from '@/lib/blog'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Calendar, Clock, User, Tag, ArrowLeft } from 'lucide-react'
+import { BlogBreadcrumbs } from '@/components/common/Breadcrumbs'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
@@ -19,21 +20,7 @@ export default function BlogPostPage({ post, relatedPosts }: BlogPostPageProps) 
       {/* Breadcrumbs */}
       <section className="border-b border-brand-gray-200 bg-brand-gray-50 py-4">
         <div className="container mx-auto px-4">
-          <nav className="flex items-center gap-2 text-sm">
-            <motion.div whileHover={{ x: 3, transition: { duration: 0.2, ease: bouncyEasing } }}>
-              <Link href="/" className="text-brand-gray-600 hover:text-brand-blue transition-colors">
-                בית
-              </Link>
-            </motion.div>
-            <span className="text-brand-gray-400">→</span>
-            <motion.div whileHover={{ x: 3, transition: { duration: 0.2, ease: bouncyEasing } }}>
-              <Link href="/blog" className="text-brand-gray-600 hover:text-brand-blue transition-colors">
-                בלוג
-              </Link>
-            </motion.div>
-            <span className="text-brand-gray-400">→</span>
-            <span className="text-brand-gray-900 font-medium">{post.title}</span>
-          </nav>
+          <BlogBreadcrumbs postTitle={post.title} />
         </div>
       </section>
 

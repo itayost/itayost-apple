@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { portfolioData } from '@/data/portfolio'
+import { getPortfolioByIds } from '@/data/portfolio'
 
 interface ServicePortfolioProps {
   portfolioIds: string[]
@@ -27,10 +27,8 @@ const item = {
 }
 
 export default function ServicePortfolio({ portfolioIds, color, accentColor }: ServicePortfolioProps) {
-  // Filter portfolio items based on IDs
-  const relevantProjects = portfolioData.filter(project =>
-    portfolioIds.includes(project.id.toString())
-  )
+  // Filter portfolio items based on IDs using centralized helper
+  const relevantProjects = getPortfolioByIds(portfolioIds)
 
   // If no relevant projects, don't render the section
   if (relevantProjects.length === 0) {
@@ -62,7 +60,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
               variants={item}
             >
               <Link
-                href={`/portfolio/${project.id}`}
+                href={`/portfolio/${project.slug}`}
                 className="group block overflow-hidden rounded-2xl border border-brand-gray-200 bg-white shadow-sm transition-all hover:shadow-xl"
               >
                 {/* Image */}
@@ -88,7 +86,8 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
                   <span className={`mb-3 inline-block rounded-full bg-${color} px-3 py-1 text-xs font-semibold text-white`}>
                     {project.category === 'web' ? 'אתר' :
                      project.category === 'system' ? 'מערכת' :
-                     project.category === 'app' ? 'אפליקציה' :
+                     project.category === 'mobile' ? 'אפליקציה' :
+                     project.category === 'ecommerce' ? 'חנות' :
                      'פרויקט'}
                   </span>
 

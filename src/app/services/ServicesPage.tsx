@@ -5,133 +5,35 @@ import {
   Code2,
   Smartphone,
   Palette,
-  Globe,
-  Database,
-  Shield,
   Zap,
   Settings,
-  Users,
-  TrendingUp,
+  Shield,
   HeartHandshake,
+  TrendingUp,
   Sparkles,
   CheckCircle,
-  ArrowLeft
+  ArrowLeft,
+  BarChart3,
+  ShoppingCart,
+  Target,
+  LucideIcon
 } from 'lucide-react'
 import Link from 'next/link'
+import { getAllServicesSorted } from '@/data/services'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
-const services = [
-  {
-    id: 'web-development',
-    icon: Code2,
-    title: 'פיתוח אתרים',
-    description: 'אתרים מותאמים אישית עם הטכנולוגיות המתקדמות ביותר',
-    longDescription: 'אני מפתח אתרים מודרניים ומהירים עם React, Next.js ו-TypeScript. כל אתר מותאם במדויק לצרכים העסקיים שלך עם דגש על ביצועים, אבטחה וחוויית משתמש.',
-    features: [
-      'אתרים רספונסיביים לכל המכשירים',
-      'ביצועים מהירים במיוחד',
-      'SEO מתקדם לדירוג גבוה בגוגל',
-      'אבטחה ברמה הגבוהה ביותר',
-      'ממשק ניהול נוח ופשוט',
-      'אינטגרציות עם מערכות חיצוניות'
-    ],
-    technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'MongoDB'],
-    color: 'bg-brand-blue',
-    price: 'נקבע לפי פרויקט'
-  },
-  {
-    id: 'mobile-apps',
-    icon: Smartphone,
-    title: 'אפליקציות מובייל',
-    description: 'אפליקציות נייטיב ו-Cross Platform עם חוויית משתמש מושלמת',
-    longDescription: 'פיתוח אפליקציות מובייל מתקדמות עם React Native ו-Flutter. אפליקציות שעובדות בצורה מושלמת גם ב-iOS וגם ב-Android עם ביצועים נייטיביים.',
-    features: [
-      'תמיכה ב-iOS ו-Android',
-      'ביצועים נייטיביים',
-      'עיצוב מותאם למובייל',
-      'התראות Push',
-      'עבודה אופליין',
-      'אינטגרציה עם חומרת המכשיר'
-    ],
-    technologies: ['React Native', 'Flutter', 'Firebase', 'Redux', 'GraphQL'],
-    color: 'bg-brand-navy',
-    price: 'נקבע לפי פרויקט'
-  },
-  {
-    id: 'ui-ux',
-    icon: Palette,
-    title: 'עיצוב UI/UX',
-    description: 'עיצוב ממשקים מרהיבים עם דגש על חוויית משתמש',
-    longDescription: 'עיצוב ממשקי משתמש מודרניים ואינטואיטיביים. מחקר משתמשים, פרוטוטייפים ומערכות עיצוב שיגרמו למוצר שלך להיראות ולהרגיש מדהים.',
-    features: [
-      'מחקר משתמשים מעמיק',
-      'פרוטוטייפים אינטראקטיביים',
-      'מערכות עיצוב (Design Systems)',
-      'עיצוב רספונסיבי',
-      'אנימציות ומיקרו-אינטראקציות',
-      'בדיקות משתמשים'
-    ],
-    technologies: ['Figma', 'Adobe XD', 'Sketch', 'Principle', 'Framer'],
-    color: 'bg-brand-orange',
-    price: 'נקבע לפי פרויקט'
-  },
-  {
-    id: 'ecommerce',
-    icon: Globe,
-    title: 'מסחר אלקטרוני',
-    description: 'חנויות אונליין מתקדמות עם מערכת ניהול מלאה',
-    longDescription: 'פיתוח חנויות אונליין מקצה לקצה עם מערכות תשלום מאובטחות, ניהול מלאי, ומערכת משלוחים. הכל מותאם לצרכים הספציפיים של העסק שלך.',
-    features: [
-      'מערכת תשלומים מאובטחת',
-      'ניהול מלאי אוטומטי',
-      'מערכת משלוחים',
-      'קופונים ומבצעים',
-      'דוחות מכירות',
-      'אינטגרציה עם מערכות CRM'
-    ],
-    technologies: ['Shopify', 'WooCommerce', 'Stripe', 'PayPal', 'Next.js'],
-    color: 'bg-brand-green',
-    price: 'נקבע לפי פרויקט'
-  },
-  {
-    id: 'backend',
-    icon: Database,
-    title: 'פיתוח Backend',
-    description: 'מערכות צד שרת חזקות ומאובטחות',
-    longDescription: 'פיתוח APIs ומערכות Backend מתקדמות עם Node.js, Python או PHP. בסיסי נתונים מהירים ומאובטחים עם MongoDB או PostgreSQL.',
-    features: [
-      'RESTful APIs',
-      'GraphQL',
-      'אימות והרשאות',
-      'בסיסי נתונים NoSQL/SQL',
-      'Microservices',
-      'Real-time communication'
-    ],
-    technologies: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Redis'],
-    color: 'bg-brand-navy',
-    price: 'נקבע לפי פרויקט'
-  },
-  {
-    id: 'consulting',
-    icon: Users,
-    title: 'ייעוץ טכנולוגי',
-    description: 'ליווי וייעוץ בבחירת הטכנולוגיות הנכונות',
-    longDescription: 'ייעוץ מקצועי לעסקים בבחירת הטכנולוגיות והאסטרטגיה הדיגיטלית הנכונה. ליווי צמוד מהרעיון ועד ההשקה.',
-    features: [
-      'ניתוח צרכים טכנולוגיים',
-      'בחירת טכנולוגיות',
-      'תכנון ארכיטקטורה',
-      'הערכת עלויות וזמנים',
-      'ליווי צוותי פיתוח',
-      'ביקורות קוד'
-    ],
-    technologies: ['All Technologies'],
-    color: 'bg-brand-gray-600',
-    price: 'לפי שעה או פרויקט'
-  }
-]
+// Icon mapping from lucideIcon string to actual component
+const iconMap: Record<string, LucideIcon> = {
+  'Code2': Code2,
+  'Smartphone': Smartphone,
+  'Zap': Zap,
+  'BarChart3': BarChart3,
+  'ShoppingCart': ShoppingCart,
+  'Palette': Palette,
+  'Target': Target,
+}
 
 const process = [
   {
@@ -173,6 +75,8 @@ const process = [
 ]
 
 export default function ServicesPage() {
+  const services = getAllServicesSorted()
+
   return (
     <main className="pt-20 lg:pt-24 min-h-screen">
       {/* Hero Section */}
@@ -207,9 +111,9 @@ export default function ServicesPage() {
               transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
               className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
             >
-              פתרונות דיגיטליים
+              מערכות, אוטומציות
               <span className="block mt-2 text-brand-blue">
-                מקצה לקצה
+                ואתרים לעסקים
               </span>
             </motion.h1>
 
@@ -229,116 +133,126 @@ export default function ServicesPage() {
       <section className="py-16 lg:py-24 bg-section-light-blue">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.1,
-                  duration: 0.6,
-                  ease: bouncyEasing
-                }}
-                whileHover={{
-                  y: -12,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                className="bg-white rounded-3xl p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-shadow"
-              >
-                <div className="flex items-start gap-6 mb-6">
-                  <motion.div
-                    className={`w-20 h-20 ${service.color} rounded-2xl flex items-center justify-center text-white flex-shrink-0`}
-                    whileHover={{
-                      rotate: [0, -10, 10, -10, 0],
-                      scale: 1.1,
-                      transition: { duration: 0.5, ease: bouncyEasing }
-                    }}
-                  >
-                    <service.icon size={36} />
-                  </motion.div>
+            {services.map((service, index) => {
+              const IconComponent = iconMap[service.lucideIcon] || Code2
 
-                  <div className="flex-1">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-brand-navy mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-brand-gray-700 text-lg">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-
-                <p className="text-brand-gray-700 mb-6 leading-relaxed text-lg">
-                  {service.longDescription}
-                </p>
-
-                <div className="mb-6">
-                  <h4 className="font-bold text-brand-navy mb-4 text-lg">
-                    מה כולל השירות:
-                  </h4>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          delay: 0.3 + idx * 0.05,
-                          duration: 0.5,
-                          ease: bouncyEasing
-                        }}
-                        className="flex items-start gap-3 text-brand-gray-700"
-                      >
-                        <CheckCircle className="w-5 h-5 text-brand-green flex-shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mb-6">
-                  <h4 className="font-bold text-brand-navy mb-4 text-lg">
-                    טכנולוגיות:
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {service.technologies.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-4 py-2 bg-brand-gray-100 rounded-full text-sm font-medium text-brand-gray-700"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-6 border-t border-brand-gray-200">
-                  <span className="text-2xl font-bold text-brand-blue">
-                    {service.price}
-                  </span>
-
-                  <motion.div
-                    whileHover={{
-                      scale: 1.05,
-                      transition: { duration: 0.3, ease: bouncyEasing }
-                    }}
-                    whileTap={{
-                      scale: 0.95,
-                      transition: { duration: 0.3, ease: bouncyEasing }
-                    }}
-                  >
-                    <Link
-                      href={`/contact?service=${service.id}`}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
+              return (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: index * 0.1,
+                    duration: 0.6,
+                    ease: bouncyEasing
+                  }}
+                  whileHover={{
+                    y: -12,
+                    transition: { duration: 0.3, ease: bouncyEasing }
+                  }}
+                  className="bg-white rounded-3xl p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-shadow"
+                >
+                  <div className="flex items-start gap-6 mb-6">
+                    <motion.div
+                      className={`w-20 h-20 bg-${service.color} rounded-2xl flex items-center justify-center text-white flex-shrink-0`}
+                      style={{ backgroundColor: `var(--color-${service.color.replace('brand-', '')})` }}
+                      whileHover={{
+                        rotate: [0, -10, 10, -10, 0],
+                        scale: 1.1,
+                        transition: { duration: 0.5, ease: bouncyEasing }
+                      }}
                     >
-                      <span>קבל הצעה</span>
-                      <ArrowLeft className="w-5 h-5" />
+                      <IconComponent size={36} />
+                    </motion.div>
+
+                    <div className="flex-1">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-brand-navy mb-2">
+                        {service.name}
+                      </h3>
+                      <p className="text-brand-gray-700 text-lg">
+                        {service.tagline}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-brand-gray-700 mb-6 leading-relaxed text-lg">
+                    {service.description}
+                  </p>
+
+                  <div className="mb-6">
+                    <h4 className="font-bold text-brand-navy mb-4 text-lg">
+                      מה כולל השירות:
+                    </h4>
+                    <ul className="space-y-3">
+                      {service.features.slice(0, 6).map((feature, idx) => (
+                        <motion.li
+                          key={idx}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            delay: 0.3 + idx * 0.05,
+                            duration: 0.5,
+                            ease: bouncyEasing
+                          }}
+                          className="flex items-start gap-3 text-brand-gray-700"
+                        >
+                          <CheckCircle className="w-5 h-5 text-brand-green flex-shrink-0 mt-0.5" />
+                          <span>{feature.title}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {service.technologies && service.technologies.length > 0 && (
+                    <div className="mb-6">
+                      <h4 className="font-bold text-brand-navy mb-4 text-lg">
+                        טכנולוגיות:
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {service.technologies.map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className="px-4 py-2 bg-brand-gray-100 rounded-full text-sm font-medium text-brand-gray-700"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between pt-6 border-t border-brand-gray-200">
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="text-brand-blue font-bold hover:underline"
+                    >
+                      למידע נוסף
                     </Link>
-                  </motion.div>
-                </div>
-              </motion.div>
-            ))}
+
+                    <motion.div
+                      whileHover={{
+                        scale: 1.05,
+                        transition: { duration: 0.3, ease: bouncyEasing }
+                      }}
+                      whileTap={{
+                        scale: 0.95,
+                        transition: { duration: 0.3, ease: bouncyEasing }
+                      }}
+                    >
+                      <Link
+                        href={`/contact?service=${service.slug}`}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
+                      >
+                        <span>קבל הצעה</span>
+                        <ArrowLeft className="w-5 h-5" />
+                      </Link>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>

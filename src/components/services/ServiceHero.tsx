@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Service } from '@/data/services'
+import { ServiceBreadcrumbs } from '@/components/common/Breadcrumbs'
 
 interface ServiceHeroProps {
   service: Service
@@ -9,7 +10,7 @@ interface ServiceHeroProps {
 
 export default function ServiceHero({ service }: ServiceHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-white py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-white pt-8 pb-24 lg:pt-12 lg:pb-32">
       {/* Solid color background accent */}
       <div
         className={`absolute inset-0 bg-${service.color} opacity-5`}
@@ -17,6 +18,16 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
       />
 
       <div className="container relative mx-auto px-4">
+        {/* Breadcrumbs */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mb-8"
+        >
+          <ServiceBreadcrumbs serviceName={service.name} />
+        </motion.div>
+
         <div className="mx-auto max-w-4xl text-center">
           {/* Icon */}
           <motion.div

@@ -3,9 +3,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { BookOpen, Calendar, Clock, ArrowLeft, Sparkles } from 'lucide-react'
 import { content } from '@/config/content'
 import { BlogPost } from '@/lib/blog'
+import { blogCategories } from '@/lib/blog-constants'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
@@ -17,7 +19,7 @@ interface BlogListingClientProps {
 export default function BlogListingClient({ posts }: BlogListingClientProps) {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
-  const categories = Object.entries(content.blog.categories)
+  // Use centralized blog categories from lib/blog.ts
 
   // Filter posts by category
   const filteredPosts =
@@ -81,12 +83,12 @@ export default function BlogListingClient({ posts }: BlogListingClientProps) {
           {/* Desktop: Centered tabs */}
           <div className="hidden sm:flex justify-center">
             <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
-              {categories.map(([key, label]) => (
+              {blogCategories.map((category) => (
                 <motion.button
-                  key={key}
-                  onClick={() => setSelectedCategory(key)}
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
                   className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                    selectedCategory === key
+                    selectedCategory === category.id
                       ? 'bg-brand-navy text-white shadow-lg'
                       : 'text-brand-gray-700 hover:text-brand-navy'
                   }`}
@@ -94,7 +96,7 @@ export default function BlogListingClient({ posts }: BlogListingClientProps) {
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.2, ease: bouncyEasing }}
                 >
-                  {label}
+                  {category.label}
                 </motion.button>
               ))}
             </div>
@@ -106,12 +108,12 @@ export default function BlogListingClient({ posts }: BlogListingClientProps) {
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
-              {categories.map(([key, label]) => (
+              {blogCategories.map((category) => (
                 <motion.button
-                  key={key}
-                  onClick={() => setSelectedCategory(key)}
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
                   className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                    selectedCategory === key
+                    selectedCategory === category.id
                       ? 'bg-brand-navy text-white shadow-lg'
                       : 'text-brand-gray-700 hover:text-brand-navy'
                   }`}
@@ -119,7 +121,7 @@ export default function BlogListingClient({ posts }: BlogListingClientProps) {
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.2, ease: bouncyEasing }}
                 >
-                  {label}
+                  {category.label}
                 </motion.button>
               ))}
             </div>
@@ -205,7 +207,19 @@ export default function BlogListingClient({ posts }: BlogListingClientProps) {
                   className="overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-shadow"
                 >
                   <Link href={`/blog/${post.slug}`}>
-                    <div className="relative h-48 bg-brand-blue"></div>
+                    {post.image ? (
+                      <div className="relative h-48">
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative h-48 bg-brand-blue" />
+                    )}
 
                     <div className="p-6">
                       <div className="mb-3 flex items-center gap-4 text-sm text-brand-gray-600">

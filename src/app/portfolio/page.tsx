@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import PortfolioPage from './PortfolioPage'
 import { seoConfig } from '@/config/seo'
 import { JsonLd } from '@/components/common/JsonLd'
+import { getAllPortfolioSorted } from '@/data/portfolio'
 
 export const metadata: Metadata = {
   title: seoConfig.pages.portfolio.title,
@@ -19,6 +20,8 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
+  const portfolioItems = getAllPortfolioSorted()
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -34,45 +37,14 @@ export default function Page() {
         },
         mainEntity: {
           '@type': 'ItemList',
-          numberOfItems: 6,
-          itemListElement: [
-            {
-              '@type': 'CreativeWork',
-              position: 1,
-              name: 'פלטפורמת E-Commerce',
-              description: 'מערכת מסחר אלקטרוני מתקדמת עם ניהול מלאי ותשלומים',
-            },
-            {
-              '@type': 'CreativeWork',
-              position: 2,
-              name: 'אפליקציית בנקאות',
-              description: 'אפליקציית מובייל לניהול חשבון בנק עם אבטחה מקסימלית',
-            },
-            {
-              '@type': 'CreativeWork',
-              position: 3,
-              name: 'מערכת ניהול SaaS',
-              description: 'דאשבורד מתקדם לניהול עסקים וצוותים',
-            },
-            {
-              '@type': 'CreativeWork',
-              position: 4,
-              name: 'מחולל תוכן AI',
-              description: 'פלטפורמה ליצירת תוכן אוטומטית בעזרת בינה מלאכותית',
-            },
-            {
-              '@type': 'CreativeWork',
-              position: 5,
-              name: 'פלטפורמת נדל"ן',
-              description: 'אתר נדל"ן עם חיפוש מתקדם ותצוגה אינטראקטיבית',
-            },
-            {
-              '@type': 'CreativeWork',
-              position: 6,
-              name: 'אפליקציית כושר',
-              description: 'אפליקציית אימונים אישית עם מעקב התקדמות',
-            },
-          ],
+          numberOfItems: portfolioItems.length,
+          itemListElement: portfolioItems.map((item, index) => ({
+            '@type': 'CreativeWork',
+            position: index + 1,
+            name: item.title,
+            description: item.description,
+            url: `https://www.itayost.com/portfolio/${item.slug}`,
+          })),
         },
       },
     ],

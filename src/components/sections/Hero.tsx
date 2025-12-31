@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Sparkles, ArrowLeft, Star, Zap, Heart, Rocket } from 'lucide-react'
+import { Sparkles, ArrowLeft, Clock, Flame } from 'lucide-react'
+import { content } from '@/config/content'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
@@ -55,11 +56,36 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="container relative z-10 text-center px-4">
-        {/* Badge */}
+        {/* Urgency Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: bouncyEasing }}
+          className="mb-6"
+        >
+          <motion.div
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-500 rounded-full shadow-lg"
+            animate={{
+              scale: [1, 1.02, 1],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Flame className="w-4 h-4 text-white" />
+            <span className="text-sm font-bold text-white">
+              {content.hero.urgency}
+            </span>
+          </motion.div>
+        </motion.div>
+
+        {/* Category Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.05, ease: bouncyEasing }}
           className="mb-8"
         >
           <motion.div
@@ -76,7 +102,7 @@ export default function Hero() {
           >
             <Sparkles className="w-5 h-5 text-white" />
             <span className="text-base font-bold text-white">
-              פיתוח אתרים ואפליקציות
+              מערכות, אוטומציות ואתרים
             </span>
           </motion.div>
         </motion.div>
@@ -89,21 +115,21 @@ export default function Hero() {
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8"
         >
           <span className="block text-brand-navy">
-            בואו נבנה משהו
+            {content.hero.title.line1}
           </span>
-          <span className="block text-brand-orange mt-2">
-            מדהים ביחד!
+          <span className="block text-brand-orange">
+            {content.hero.title.line2}
           </span>
         </motion.h1>
 
-        {/* Subtitle */}
+        {/* Subtitle - Benefit Focused */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: bouncyEasing }}
           className="text-xl sm:text-2xl md:text-3xl text-brand-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed"
         >
-          אתרים מהירים, אפליקציות חכמות, ומערכות שפשוט עובדות.
+          {content.hero.subtitle}
           <br />
           <span className="text-brand-blue font-bold">אין יותר כאבי ראש טכנולוגיים</span>
         </motion.p>
@@ -129,7 +155,8 @@ export default function Hero() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-brand-orange text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
             >
-              <span>בואו נדבר</span>
+              <Clock className="w-5 h-5" />
+              <span>{content.hero.cta.primary}</span>
               <ArrowLeft className="w-5 h-5" />
             </Link>
           </motion.div>
@@ -148,7 +175,7 @@ export default function Hero() {
               href="/portfolio"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white border-3 border-brand-navy text-brand-navy rounded-full font-bold text-lg hover:bg-brand-navy hover:text-white transition-colors"
             >
-              <span>ראו את העבודות</span>
+              <span>{content.hero.cta.secondary}</span>
             </Link>
           </motion.div>
         </motion.div>

@@ -4,18 +4,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { portfolioData } from '@/data/portfolio'
+import { portfolioData, portfolioCategories } from '@/data/portfolio'
 import { ExternalLink, Sparkles, ArrowLeft } from 'lucide-react'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
-
-const categories = [
-  { name: 'הכל', value: 'all' },
-  { name: 'אתרים', value: 'web' },
-  { name: 'אפליקציות', value: 'mobile' },
-  { name: 'מערכות', value: 'system' }
-]
 
 const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: number }) => {
   return (
@@ -177,7 +170,7 @@ export default function Portfolio() {
           {/* Desktop: Centered tabs */}
           <div className="hidden sm:flex justify-center">
             <div className="inline-flex gap-3 p-2 bg-brand-gray-100 rounded-full">
-              {categories.map((category) => (
+              {portfolioCategories.map((category) => (
                 <motion.button
                   key={category.value}
                   onClick={() => setSelectedCategory(category.value)}
@@ -190,7 +183,7 @@ export default function Portfolio() {
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.2, ease: bouncyEasing }}
                 >
-                  {category.name}
+                  {category.label}
                 </motion.button>
               ))}
             </div>
@@ -202,7 +195,7 @@ export default function Portfolio() {
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <div className="flex gap-3 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
-              {categories.map((category) => (
+              {portfolioCategories.map((category) => (
                 <motion.button
                   key={category.value}
                   onClick={() => setSelectedCategory(category.value)}
@@ -215,7 +208,7 @@ export default function Portfolio() {
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.2, ease: bouncyEasing }}
                 >
-                  {category.name}
+                  {category.label}
                 </motion.button>
               ))}
             </div>

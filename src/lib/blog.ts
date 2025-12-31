@@ -9,6 +9,9 @@ import rehypeStringify from 'rehype-stringify'
 
 const postsDirectory = path.join(process.cwd(), 'content/blog')
 
+// Re-export blog constants for server-side usage
+export { blogCategories, type BlogCategory } from './blog-constants'
+
 export interface BlogPost {
   slug: string
   title: string
@@ -21,6 +24,7 @@ export interface BlogPost {
   image?: string
   content: string
   excerpt: string
+  featured?: boolean
 }
 
 export function getAllPostSlugs(): string[] {
@@ -94,7 +98,8 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       readTime: data.readTime || calculateReadTime(content),
       image: data.image || null,
       content: contentHtml,
-      excerpt: data.excerpt || excerpt
+      excerpt: data.excerpt || excerpt,
+      featured: data.featured || false
     }
   } catch (error) {
     // Error reading post - return null
@@ -163,4 +168,11 @@ export async function getRelatedPosts(post: BlogPost, limit: number = 3): Promis
     .map(item => item.post)
 
   return related
+}
+
+// Get featured posts for homepage or highlights
+export async function getFeaturedPosts(limit?: number): Promise<BlogPost[]> {
+  const allPosts = await getAllPosts()
+  const featured = allPosts.filter(post => post.featured)
+  return limit ? featured.slice(0, limit) : featured
 }

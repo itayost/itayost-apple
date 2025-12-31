@@ -2,57 +2,34 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Code2, Smartphone, Zap, Sparkles, ArrowLeft, CheckCircle } from 'lucide-react'
+import { Code2, Smartphone, Zap, Sparkles, ArrowLeft, CheckCircle, BarChart3, ShoppingCart, Palette, Target, LucideIcon } from 'lucide-react'
+import { getFeaturedServices } from '@/data/services'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
-const services = [
-  {
-    icon: Code2,
-    title: 'אתרים ונוכחות דיגיטלית',
-    description: 'אתר שעובד בשבילך 24/7 - מרשים, מהיר וממיר',
-    features: [
-      'עיצוב מותאם למותג שלך',
-      'אתר מהיר וידידותי למובייל',
-      'אופטימיזציה למנועי חיפוש',
-      'אינטגרציה עם כלי שיווק'
-    ],
-    color: 'bg-brand-blue',
-    iconColor: 'text-brand-blue',
-    href: '/services/web-development'
-  },
-  {
-    icon: Smartphone,
-    title: 'מערכות ניהול חכמות',
-    description: 'תפסיקו לנהל ידנית, תתחילו לנהל חכם',
-    features: [
-      'CRM וניהול לקוחות',
-      'מערכת תורים אוטומטית',
-      'ניהול מלאי ומוצרים',
-      'דוחות וסטטיסטיקות'
-    ],
-    color: 'bg-brand-orange',
-    iconColor: 'text-brand-orange',
-    href: '/services/crm-systems'
-  },
-  {
-    icon: Zap,
-    title: 'אוטומציה ואינטגרציות',
-    description: 'חברו את כל המערכות - חסכו זמן ומאמץ',
-    features: [
-      'חיבור בין מערכות קיימות',
-      'אוטומציה של תהליכים',
-      'התראות וטריגרים חכמים',
-      'סנכרון נתונים אוטומטי'
-    ],
-    color: 'bg-brand-green',
-    iconColor: 'text-brand-green',
-    href: '/services/landing-pages'
-  }
-]
+// Icon mapping from lucideIcon string to actual component
+const iconMap: Record<string, LucideIcon> = {
+  'Code2': Code2,
+  'Smartphone': Smartphone,
+  'Zap': Zap,
+  'BarChart3': BarChart3,
+  'ShoppingCart': ShoppingCart,
+  'Palette': Palette,
+  'Target': Target,
+}
+
+// Color mapping from brand color names to Tailwind classes
+const colorMap: Record<string, { bg: string; text: string }> = {
+  'brand-blue': { bg: 'bg-brand-blue', text: 'text-brand-blue' },
+  'brand-orange': { bg: 'bg-brand-orange', text: 'text-brand-orange' },
+  'brand-green': { bg: 'bg-brand-green', text: 'text-brand-green' },
+  'brand-navy': { bg: 'bg-brand-navy', text: 'text-brand-navy' },
+}
 
 export default function Services() {
+  const featuredServices = getFeaturedServices()
+
   return (
     <section className="py-20 lg:py-32 bg-section-light-blue">
       <div className="container px-4">
@@ -82,88 +59,93 @@ export default function Services() {
           </h2>
 
           <p className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto">
-            פתרונות דיגיטליים שמתאימים בדיוק לעסק שלכם
+            מערכות, אוטומציות ואתרים שחוסכים לכם זמן ומביאים יותר לקוחות
           </p>
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: bouncyEasing
-              }}
-              whileHover={{
-                y: -12,
-                transition: { duration: 0.3, ease: bouncyEasing }
-              }}
-            >
-              <Link href={service.href}>
-                <div className="bg-white rounded-3xl p-8 h-full shadow-lg hover:shadow-2xl transition-shadow">
-                  {/* Icon */}
-                  <motion.div
-                    className={`inline-flex items-center justify-center w-16 h-16 ${service.color} rounded-2xl mb-6`}
-                    whileHover={{
-                      rotate: [0, -10, 10, -10, 0],
-                      scale: 1.1,
-                      transition: { duration: 0.5, ease: bouncyEasing }
-                    }}
-                  >
-                    <service.icon className="w-8 h-8 text-white" />
-                  </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {featuredServices.map((service, index) => {
+            const IconComponent = iconMap[service.lucideIcon] || Code2
+            const colors = colorMap[service.color] || colorMap['brand-blue']
 
-                  {/* Title */}
-                  <h3 className="text-2xl sm:text-3xl font-bold text-brand-navy mb-4">
-                    {service.title}
-                  </h3>
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: bouncyEasing
+                }}
+                whileHover={{
+                  y: -12,
+                  transition: { duration: 0.3, ease: bouncyEasing }
+                }}
+              >
+                <Link href={`/services/${service.slug}`}>
+                  <div className="bg-white rounded-3xl p-8 h-full shadow-lg hover:shadow-2xl transition-shadow">
+                    {/* Icon */}
+                    <motion.div
+                      className={`inline-flex items-center justify-center w-16 h-16 ${colors.bg} rounded-2xl mb-6`}
+                      whileHover={{
+                        rotate: [0, -10, 10, -10, 0],
+                        scale: 1.1,
+                        transition: { duration: 0.5, ease: bouncyEasing }
+                      }}
+                    >
+                      <IconComponent className="w-8 h-8 text-white" />
+                    </motion.div>
 
-                  {/* Description */}
-                  <p className="text-lg text-brand-gray-700 mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
+                    {/* Title */}
+                    <h3 className="text-2xl sm:text-3xl font-bold text-brand-navy mb-4">
+                      {service.name}
+                    </h3>
 
-                  {/* Features */}
-                  <ul className="space-y-3 mb-6">
-                    {service.features.map((feature, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          delay: 0.3 + idx * 0.1,
-                          duration: 0.5,
-                          ease: bouncyEasing
-                        }}
-                        className="flex items-start gap-3"
-                      >
-                        <CheckCircle className={`w-5 h-5 ${service.iconColor} flex-shrink-0 mt-0.5`} />
-                        <span className="text-brand-gray-700">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                    {/* Description */}
+                    <p className="text-lg text-brand-gray-700 mb-6 leading-relaxed">
+                      {service.tagline}
+                    </p>
 
-                  {/* CTA */}
-                  <motion.div
-                    className={`inline-flex items-center gap-2 font-bold ${service.iconColor}`}
-                    whileHover={{
-                      x: -5,
-                      transition: { duration: 0.3, ease: bouncyEasing }
-                    }}
-                  >
-                    <span>למידע נוסף</span>
-                    <ArrowLeft className="w-5 h-5" />
-                  </motion.div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                    {/* Features - Show first 4 */}
+                    <ul className="space-y-3 mb-6">
+                      {service.features.slice(0, 4).map((feature, idx) => (
+                        <motion.li
+                          key={idx}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            delay: 0.3 + idx * 0.1,
+                            duration: 0.5,
+                            ease: bouncyEasing
+                          }}
+                          className="flex items-start gap-3"
+                        >
+                          <CheckCircle className={`w-5 h-5 ${colors.text} flex-shrink-0 mt-0.5`} />
+                          <span className="text-brand-gray-700">{feature.title}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <motion.div
+                      className={`inline-flex items-center gap-2 font-bold ${colors.text}`}
+                      whileHover={{
+                        x: -5,
+                        transition: { duration: 0.3, ease: bouncyEasing }
+                      }}
+                    >
+                      <span>למידע נוסף</span>
+                      <ArrowLeft className="w-5 h-5" />
+                    </motion.div>
+                  </div>
+                </Link>
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* Why Choose Us Section */}

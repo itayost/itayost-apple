@@ -1,5 +1,64 @@
+// TypeScript interface for Portfolio items
+export interface PortfolioItem {
+  id: number
+  slug: string
+  title: string
+  subtitle: string
+  category: 'web' | 'system' | 'mobile' | 'ecommerce'
+  description: string
+  longDescription: string
+  image: string
+  imageSizes: {
+    desktop: string
+    display: string
+    mobile: string
+    thumbnail: string
+  }
+  tags: string[]
+  technologies: string[]
+  color: string
+  pattern: string
+  accentColor: string
+  stats: Record<string, string>
+  client: string
+  year: string
+  duration: string
+  link: string | null
+  linkType?: string
+  featured: boolean
+  features: string[]
+  results: Array<{ label: string; value: string }>
+  testimonial: {
+    text: string
+    author: string
+    role: string
+  }
+  review: {
+    '@type': string
+    reviewRating: {
+      '@type': string
+      ratingValue: string
+      bestRating: string
+    }
+    author: {
+      '@type': string
+      name: string
+    }
+    reviewBody: string
+    datePublished: string
+  }
+}
+
+// Centralized categories for portfolio filtering
+export const portfolioCategories = [
+  { id: 'all', label: 'הכל', value: 'all' },
+  { id: 'web', label: 'אתרים', value: 'web' },
+  { id: 'system', label: 'מערכות', value: 'system' },
+  { id: 'mobile', label: 'אפליקציות', value: 'mobile' },
+] as const
+
 // Portfolio data with real projects
-export const portfolioData = [
+export const portfolioData: PortfolioItem[] = [
   {
     id: 1,
     slug: 'kitchen-optimizer',
@@ -394,8 +453,32 @@ export const portfolioData = [
   }
 ]
 
-// For compatibility with old imports
-export const portfolioItems = portfolioData
-export const categories = ['הכל', 'אתרים', 'אפליקציות', 'עיצוב']
+// Helper functions for portfolio data
+
+// Get featured projects (for homepage)
+export const getFeaturedPortfolio = (): PortfolioItem[] => {
+  return portfolioData.filter(p => p.featured)
+}
+
+// Get all projects sorted by ID
+export const getAllPortfolioSorted = (): PortfolioItem[] => {
+  return [...portfolioData].sort((a, b) => a.id - b.id)
+}
+
+// Get projects by category
+export const getPortfolioByCategory = (category: string): PortfolioItem[] => {
+  if (category === 'all') return portfolioData
+  return portfolioData.filter(p => p.category === category)
+}
+
+// Get projects by IDs (for service pages)
+export const getPortfolioByIds = (ids: string[]): PortfolioItem[] => {
+  return portfolioData.filter(p => ids.includes(p.id.toString()))
+}
+
+// Get single project by slug
+export const getPortfolioBySlug = (slug: string): PortfolioItem | undefined => {
+  return portfolioData.find(p => p.slug === slug)
+}
 
 export default portfolioData

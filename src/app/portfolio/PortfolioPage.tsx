@@ -3,34 +3,33 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { portfolioData } from '@/data/portfolio'
+import { portfolioData, portfolioCategories } from '@/data/portfolio'
 import {
-  ExternalLink,
   Eye,
   Globe,
   Smartphone,
   ShoppingBag,
-  Briefcase,
   Code2,
   Filter,
   ArrowLeft,
-  CheckCircle,
   TrendingUp,
   Clock,
   Users,
-  Sparkles
+  Sparkles,
+  LucideIcon
 } from 'lucide-react'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
-const categories = [
-  { id: 'all', label: 'הכל', icon: Filter },
-  { id: 'web', label: 'אתרים', icon: Globe },
-  { id: 'mobile', label: 'אפליקציות', icon: Smartphone },
-  { id: 'ecommerce', label: 'מסחר', icon: ShoppingBag },
-  { id: 'system', label: 'מערכות', icon: Code2 }
-]
+// Icon mapping for categories (extends centralized categories with icons)
+const categoryIcons: Record<string, LucideIcon> = {
+  all: Filter,
+  web: Globe,
+  mobile: Smartphone,
+  ecommerce: ShoppingBag,
+  system: Code2,
+}
 
 const getIcon = (category: string) => {
   switch(category) {
@@ -104,45 +103,51 @@ export default function PortfolioPage() {
           {/* Desktop: Centered tabs */}
           <div className="hidden sm:flex justify-center">
             <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
-              {categories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-base transition-all whitespace-nowrap ${
-                    selectedCategory === category.id
-                      ? 'bg-brand-navy text-white shadow-lg'
-                      : 'text-brand-gray-700 hover:text-brand-navy'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                >
-                  <category.icon className="w-5 h-5 flex-shrink-0" />
-                  <span>{category.label}</span>
-                </motion.button>
-              ))}
+              {portfolioCategories.map((category) => {
+                const Icon = categoryIcons[category.id] || Filter
+                return (
+                  <motion.button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-base transition-all whitespace-nowrap ${
+                      selectedCategory === category.id
+                        ? 'bg-brand-navy text-white shadow-lg'
+                        : 'text-brand-gray-700 hover:text-brand-navy'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: bouncyEasing }}
+                  >
+                    <Icon className="w-5 h-5 flex-shrink-0" />
+                    <span>{category.label}</span>
+                  </motion.button>
+                )
+              })}
             </div>
           </div>
 
           {/* Mobile: Scrollable tabs */}
           <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
-              {categories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap ${
-                    selectedCategory === category.id
-                      ? 'bg-brand-navy text-white shadow-lg'
-                      : 'text-brand-gray-700'
-                  }`}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                >
-                  <category.icon className="w-4 h-4 flex-shrink-0" />
-                  <span>{category.label}</span>
-                </motion.button>
-              ))}
+              {portfolioCategories.map((category) => {
+                const Icon = categoryIcons[category.id] || Filter
+                return (
+                  <motion.button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap ${
+                      selectedCategory === category.id
+                        ? 'bg-brand-navy text-white shadow-lg'
+                        : 'text-brand-gray-700'
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: bouncyEasing }}
+                  >
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    <span>{category.label}</span>
+                  </motion.button>
+                )
+              })}
             </div>
           </div>
         </div>

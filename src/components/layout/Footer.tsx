@@ -1,8 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Mail,
   Phone,
@@ -11,21 +12,23 @@ import {
   Instagram,
   Facebook,
   Heart,
-  ArrowUp
+  ArrowUp,
+  CheckCircle,
+  AlertCircle,
+  Loader2
 } from 'lucide-react'
+import { getServiceLinks } from '@/data/services'
 
 // Bouncy easing for Mailchimp-style animations
 const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
+// Get service links from centralized data
+const serviceLinks = getServiceLinks()
+
 const footerLinks = {
   services: {
     title: 'שירותים',
-    links: [
-      { label: 'פיתוח אתרים', href: '/services#web-development' },
-      { label: 'אפליקציות מובייל', href: '/services#mobile-apps' },
-      { label: 'עיצוב UI/UX', href: '/services#ui-ux' },
-      { label: 'ייעוץ טכנולוגי', href: '/services#consulting' }
-    ]
+    links: serviceLinks
   },
   company: {
     title: 'החברה',
@@ -54,8 +57,64 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    // Validate email
+    if (!email.trim()) {
+      setStatus('error')
+      setErrorMessage('נא להזין כתובת אימייל')
+      return
+    }
+
+    if (!validateEmail(email)) {
+      setStatus('error')
+      setErrorMessage('כתובת אימייל לא תקינה')
+      return
+    }
+
+    setStatus('loading')
+    setErrorMessage('')
+
+    try {
+      // Submit to API
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Newsletter Subscriber',
+          email,
+          phone: '',
+          subject: 'newsletter',
+          message: 'הרשמה לניוזלטר מהפוטר'
+        })
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        setEmail('')
+        // Reset after 5 seconds
+        setTimeout(() => setStatus('idle'), 5000)
+      } else {
+        throw new Error('Failed to subscribe')
+      }
+    } catch {
+      setStatus('error')
+      setErrorMessage('שגיאה בהרשמה. נסה שוב.')
+      setTimeout(() => setStatus('idle'), 3000)
+    }
   }
 
   return (
@@ -108,7 +167,7 @@ export function Footer() {
               </motion.div>
 
               <p className="text-brand-gray-200 text-base lg:text-lg mb-8 max-w-sm leading-relaxed">
-                מעצב ומפתח פתרונות דיגיטליים מתקדמים עם דגש על חדשנות, יצירתיות וחוויית משתמש מושלמת.
+                עוזר לעסקים לנהל את העסק חכם יותר עם מערכות, אוטומציות ואתרים שחוסכים זמן ומביאים לקוחות.
               </p>
 
               {/* Contact Info */}
@@ -192,27 +251,77 @@ export function Footer() {
               </p>
             </div>
 
-            <form className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="כתובת אימייל"
-                className="flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border-2 border-white/20 text-white placeholder:text-white/60 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20 transition-all"
-              />
-              <motion.button
-                type="submit"
-                className="px-8 py-3 bg-brand-orange text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-shadow"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                הרשם
-              </motion.button>
-            </form>
+            <AnimatePresence mode="wait">
+              {status === 'success' ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="flex items-center gap-3 text-brand-green"
+                >
+                  <CheckCircle size={24} />
+                  <span className="text-lg font-medium">תודה! נרשמת בהצלחה לניוזלטר</span>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onSubmit={handleNewsletterSubmit}
+                  className="flex flex-col gap-3"
+                >
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      type="email"
+                      placeholder="כתובת אימייל"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value)
+                        if (status === 'error') setStatus('idle')
+                      }}
+                      disabled={status === 'loading'}
+                      className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border-2 text-white placeholder:text-white/60 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20 transition-all disabled:opacity-50 ${
+                        status === 'error' ? 'border-red-400' : 'border-white/20'
+                      }`}
+                    />
+                    <motion.button
+                      type="submit"
+                      disabled={status === 'loading'}
+                      className="px-8 py-3 bg-brand-orange text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50 flex items-center justify-center gap-2"
+                      whileHover={status !== 'loading' ? {
+                        scale: 1.05,
+                        transition: { duration: 0.3, ease: bouncyEasing }
+                      } : {}}
+                      whileTap={status !== 'loading' ? {
+                        scale: 0.95,
+                        transition: { duration: 0.3, ease: bouncyEasing }
+                      } : {}}
+                    >
+                      {status === 'loading' ? (
+                        <>
+                          <Loader2 size={18} className="animate-spin" />
+                          <span>שולח...</span>
+                        </>
+                      ) : (
+                        'קבלו טיפים חינם'
+                      )}
+                    </motion.button>
+                  </div>
+                  {status === 'error' && errorMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 text-red-400 text-sm"
+                    >
+                      <AlertCircle size={16} />
+                      <span>{errorMessage}</span>
+                    </motion.div>
+                  )}
+                </motion.form>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
 

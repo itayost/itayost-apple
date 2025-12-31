@@ -10,9 +10,3 @@ export { default as Contact } from './sections/Contact'
 
 // Common Components
 export { WhatsAppButton } from './common/WhatsAppButton'
-
-// Animation Components
-export * from './ScrollAnimations/AppleAnimations'
-
-// UI Components
-export * from './ui'
