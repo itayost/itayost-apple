@@ -166,6 +166,17 @@ NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=
 NEXT_PUBLIC_BING_SITE_VERIFICATION=
 ```
 
+Google Reviews integration (optional - uses fallback data if not configured):
+```
+GOOGLE_PLACES_API_KEY=your-google-places-api-key
+GOOGLE_PLACE_ID=your-google-place-id
+```
+
+To get these values:
+1. Enable the Places API in Google Cloud Console
+2. Create an API key with Places API access
+3. Find your Place ID at: https://developers.google.com/maps/documentation/places/web-service/place-id
+
 ## Working with This Codebase
 
 ### Adding New Pages
