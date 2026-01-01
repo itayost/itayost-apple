@@ -5,12 +5,7 @@ import { seoConfig } from '@/config/seo'
 import { JsonLd } from '@/components/common/JsonLd'
 import { getAllPosts } from '@/lib/blog'
 import LatestBlogPosts from '@/components/common/LatestBlogPosts'
-
-// Components - same for all screen sizes
-const Hero = dynamic(() => import('@/components/sections/Hero'), {
-  loading: () => <div className="min-h-screen bg-white" />,
-  ssr: true
-})
+import Hero from '@/components/sections/Hero'
 
 const Services = dynamic(() => import('@/components/sections/Services'), {
   loading: () => <div className="min-h-[600px] bg-white" />,

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { portfolioData, portfolioCategories } from '@/data/portfolio'
 import {
@@ -179,10 +180,13 @@ export default function PortfolioPage() {
                     {/* Image/Preview */}
                     <div className="relative h-64 bg-brand-gray-100 overflow-hidden">
                       {project.image ? (
-                        <img
+                        <Image
                           src={project.image}
                           alt={`${project.title} - ${project.description} | ${project.category === 'web' ? 'אתר' : project.category === 'mobile' ? 'אפליקציה' : 'מערכת'} עבור ${project.client}`}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover"
+                          priority={index < 3}
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center bg-brand-blue/10">

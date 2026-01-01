@@ -36,7 +36,8 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
             width={757}
             height={519}
             className="w-full h-full object-cover"
-            loading="lazy"
+            priority={index < 2}
+            loading={index < 2 ? undefined : 'lazy'}
           />
         ) : (
           <div className={`w-full h-full bg-${item.color}/10 flex items-center justify-center`}>
