@@ -8,7 +8,8 @@ import {
   ServiceTechnologies,
   ServicePortfolio,
   ServiceFAQ,
-  ServiceCTA
+  ServiceCTA,
+  RelatedServices
 } from '@/components/services'
 
 export default function LandingPagesPage() {
@@ -40,6 +41,7 @@ export default function LandingPagesPage() {
       )}
       <ServicePortfolio portfolioIds={service.portfolio} color={service.color} accentColor={service.accentColor} />
       <ServiceFAQ faq={service.faq} color={service.color} accentColor={service.accentColor} />
+      <RelatedServices currentServiceId={service.id} />
       <ServiceCTA service={service} />
     </main>
   )

@@ -40,6 +40,7 @@ export interface Service {
     primary: string
     secondary: string
   }
+  relatedServices?: string[] // IDs of related services for internal linking
 }
 
 export const servicesData: Service[] = [
@@ -150,7 +151,8 @@ export const servicesData: Service[] = [
     cta: {
       primary: 'קבל הצעת מחיר מותאמת',
       secondary: 'צפה בעבודות'
-    }
+    },
+    relatedServices: ['ui-ux-design', 'landing-pages', 'ecommerce']
   },
 
   {
@@ -260,7 +262,8 @@ export const servicesData: Service[] = [
     cta: {
       primary: 'בוא נדבר על החנות שלך',
       secondary: 'קרא מדריך מלא'
-    }
+    },
+    relatedServices: ['web-development', 'automations', 'crm-systems']
   },
 
   {
@@ -378,7 +381,8 @@ export const servicesData: Service[] = [
     cta: {
       primary: 'בוא נדבר על המערכת שלך',
       secondary: 'למד עוד על CRM'
-    }
+    },
+    relatedServices: ['automations', 'web-development', 'mobile-apps']
   },
 
   {
@@ -496,7 +500,8 @@ export const servicesData: Service[] = [
     cta: {
       primary: 'בוא נעצב משהו מדהים',
       secondary: 'צפה בעיצובים שלי'
-    }
+    },
+    relatedServices: ['web-development', 'landing-pages', 'mobile-apps']
   },
 
   {
@@ -614,7 +619,8 @@ export const servicesData: Service[] = [
     cta: {
       primary: 'בוא נבנה דף שממיר',
       secondary: 'ראה דוגמאות'
-    }
+    },
+    relatedServices: ['ui-ux-design', 'web-development', 'automations']
   },
 
   {
@@ -732,7 +738,8 @@ export const servicesData: Service[] = [
     cta: {
       primary: 'בוא נחסוך לך זמן',
       secondary: 'ראה דוגמאות'
-    }
+    },
+    relatedServices: ['crm-systems', 'ecommerce', 'web-development']
   },
 
   {
@@ -850,7 +857,8 @@ export const servicesData: Service[] = [
     cta: {
       primary: 'בוא נבנה אפליקציה',
       secondary: 'ראה דוגמאות'
-    }
+    },
+    relatedServices: ['ui-ux-design', 'crm-systems', 'automations']
   }
 ]
 
@@ -890,6 +898,16 @@ export const getServiceLinks = (): { label: string; href: string; slug: string }
     href: `/services/${s.slug}`,
     slug: s.slug
   }))
+}
+
+// Get related services for a given service
+export const getRelatedServices = (serviceId: string): Service[] => {
+  const service = servicesData.find(s => s.id === serviceId)
+  if (!service?.relatedServices) return []
+
+  return service.relatedServices
+    .map(id => servicesData.find(s => s.id === id))
+    .filter((s): s is Service => s !== undefined)
 }
 
 export default servicesData

@@ -1,2 +1,5 @@
 export { ShareButtons, ShareButtonsMobile } from './ShareButtons'
 export { SidebarCTA } from './SidebarCTA'
+export { default as ArticleCallout, ArticleCalloutCompact } from './ArticleCallout'
+export { default as InlineServiceCTA } from './InlineServiceCTA'
+export { default as AuthorBio } from './AuthorBio'

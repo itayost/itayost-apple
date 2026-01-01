@@ -73,9 +73,21 @@ export const seoConfig = {
   // Page-specific SEO
   pages: {
     home: {
-      title: 'ITAYOST | מערכות, אוטומציות ואתרים לעסקים',
-      description: 'עוזר לעסקים לנהל את העסק חכם יותר עם מערכות CRM, אוטומציות ואתרים. חוסכים שעות עבודה בשבוע ומביאים יותר לקוחות. קבלו הצעה תוך 24 שעות.',
-      keywords: ['מערכות לעסקים', 'אוטומציה עסקית', 'בניית אתר לעסק', 'מערכת CRM', 'ניהול עסק חכם'],
+      title: 'ITAYOST | פיתוח אתרים, CRM, אוטומציות ואפליקציות לעסקים',
+      description: 'פיתוח אתרים Next.js, מערכות CRM, אוטומציות, חנויות אונליין, אפליקציות מובייל, דפי נחיתה ועיצוב UI/UX. שירות אישי ברמת גן. הצעת מחיר תוך 24 שעות.',
+      keywords: [
+        'פיתוח אתרים',
+        'מערכת CRM',
+        'אוטומציות לעסקים',
+        'חנויות אונליין',
+        'אפליקציות מובייל',
+        'דפי נחיתה',
+        'עיצוב UI/UX',
+        'Next.js',
+        'React Native',
+        'רמת גן',
+        'תל אביב',
+      ],
       canonical: 'https://www.itayost.com',
     },
     services: {
@@ -266,7 +278,7 @@ export const seoConfig = {
         streetAddress: 'רמת גן',
         addressLocality: 'רמת גן',
         addressRegion: 'תל אביב',
-        postalCode: '',
+        postalCode: '5244110',
         addressCountry: 'IL',
       },
       geo: {
