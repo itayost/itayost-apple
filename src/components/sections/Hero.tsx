@@ -107,20 +107,15 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Main Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: bouncyEasing }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8"
-        >
+        {/* Main Headline - No opacity animation to avoid LCP delay */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
           <span className="block text-brand-navy">
             {content.hero.title.line1}
           </span>
           <span className="block text-brand-orange">
             {content.hero.title.line2}
           </span>
-        </motion.h1>
+        </h1>
 
         {/* Subtitle - Benefit Focused */}
         <motion.p
