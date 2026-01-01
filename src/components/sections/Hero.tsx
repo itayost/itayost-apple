@@ -117,17 +117,12 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Subtitle - Benefit Focused */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: bouncyEasing }}
-          className="text-xl sm:text-2xl md:text-3xl text-brand-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed"
-        >
+        {/* Subtitle - Benefit Focused - No opacity animation for LCP */}
+        <p className="text-xl sm:text-2xl md:text-3xl text-brand-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
           {content.hero.subtitle}
           <br />
           <span className="text-brand-blue font-bold">אין יותר כאבי ראש טכנולוגיים</span>
-        </motion.p>
+        </p>
 
         {/* CTA Buttons */}
         <motion.div
