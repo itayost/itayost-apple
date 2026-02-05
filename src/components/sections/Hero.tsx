@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Sparkles, ArrowLeft, Clock, Flame } from 'lucide-react'
+import { Sparkles, ArrowLeft, Clock } from 'lucide-react'
 import { content } from '@/config/content'
 
 // Bouncy easing for Mailchimp-style animations
@@ -56,31 +56,6 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="container relative z-10 text-center px-4">
-        {/* Urgency Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: bouncyEasing }}
-          className="mb-6"
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-500 rounded-full shadow-lg"
-            animate={{
-              scale: [1, 1.02, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <Flame className="w-4 h-4 text-white" />
-            <span className="text-sm font-bold text-white">
-              {content.hero.urgency}
-            </span>
-          </motion.div>
-        </motion.div>
-
         {/* Category Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
