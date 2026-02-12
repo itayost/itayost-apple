@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { getServiceColors } from '@/lib/colors'
 
 interface ServiceTechnologiesProps {
   technologies: string[]
@@ -24,6 +25,8 @@ const item = {
 }
 
 export default function ServiceTechnologies({ technologies, color, accentColor }: ServiceTechnologiesProps) {
+  const colors = getServiceColors(color)
+
   return (
     <section className="bg-white py-20 lg:py-24">
       <div className="container mx-auto px-4">
@@ -52,7 +55,7 @@ export default function ServiceTechnologies({ technologies, color, accentColor }
               >
                 {/* Solid color background on hover */}
                 <div
-                  className={`absolute inset-0 bg-${color} opacity-0 transition-opacity group-hover:opacity-10`}
+                  className={`absolute inset-0 ${colors.bgLight} opacity-0 transition-opacity group-hover:opacity-100`}
                   aria-hidden="true"
                 />
 

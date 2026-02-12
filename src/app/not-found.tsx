@@ -84,7 +84,7 @@ export default function NotFound() {
 
         {/* Animated background elements - simple floating shapes */}
         <motion.div
-          className="absolute top-20 right-20 w-32 h-32 bg-brand-blue/10 rounded-full blur-2xl"
+          className="absolute top-20 end-20 w-32 h-32 bg-brand-blue/10 rounded-full blur-2xl"
           animate={{
             x: [0, 50, 0],
             y: [0, -50, 0],
@@ -96,7 +96,7 @@ export default function NotFound() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 left-20 w-40 h-40 bg-brand-orange/10 rounded-full blur-2xl"
+          className="absolute bottom-20 start-20 w-40 h-40 bg-brand-orange/10 rounded-full blur-2xl"
           animate={{
             x: [0, -50, 0],
             y: [0, 50, 0],

@@ -18,7 +18,7 @@ interface BreadcrumbsProps {
 export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label="ניווט פירורי לחם"
       className={`flex items-center gap-2 text-sm ${className}`}
     >
       {/* Home Link */}

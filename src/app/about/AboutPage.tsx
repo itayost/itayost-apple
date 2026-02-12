@@ -288,7 +288,7 @@ export default function AboutPage() {
 
                   {/* Floating elements */}
                   <motion.div
-                    className="absolute -top-6 -right-6 w-24 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center"
+                    className="absolute -top-6 -end-6 w-24 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center"
                     animate={{
                       y: [0, -10, 0],
                     }}
@@ -302,7 +302,7 @@ export default function AboutPage() {
                   </motion.div>
 
                   <motion.div
-                    className="absolute -bottom-6 -left-6 w-24 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center"
+                    className="absolute -bottom-6 -start-6 w-24 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center"
                     animate={{
                       y: [0, 10, 0],
                     }}
@@ -516,7 +516,7 @@ export default function AboutPage() {
                 <div className="text-4xl md:text-5xl font-bold mb-3">
                   {achievement.number}
                 </div>
-                <div className="text-sm md:text-base opacity-90 font-medium">
+                <div className="text-sm md:text-base font-medium">
                   {achievement.label}
                 </div>
               </motion.div>

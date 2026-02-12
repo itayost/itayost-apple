@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Blue circle */}
         <motion.div
-          className="absolute top-20 right-[10%] w-32 h-32 rounded-full bg-brand-blue/10"
+          className="absolute top-20 end-[10%] w-32 h-32 rounded-full bg-brand-blue/10"
           animate={{
             y: [0, -20, 0],
             rotate: [0, 180, 360],
@@ -26,7 +26,7 @@ export default function Hero() {
         />
         {/* Orange circle */}
         <motion.div
-          className="absolute bottom-32 left-[15%] w-24 h-24 rounded-full bg-brand-orange/10"
+          className="absolute bottom-32 start-[15%] w-24 h-24 rounded-full bg-brand-orange/10"
           animate={{
             y: [0, 20, 0],
             rotate: [0, -180, -360],
@@ -39,7 +39,7 @@ export default function Hero() {
         />
         {/* Navy blob */}
         <motion.div
-          className="absolute top-1/3 left-[5%] w-16 h-16 bg-brand-navy/5"
+          className="absolute top-1/3 start-[5%] w-16 h-16 bg-brand-navy/5"
           style={{ borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%' }}
           animate={{
             rotate: [0, 360],

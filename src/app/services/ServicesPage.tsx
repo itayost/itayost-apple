@@ -21,6 +21,7 @@ import {
 import Link from 'next/link'
 import { getAllServicesSorted } from '@/data/services'
 import { bouncyEasing } from '@/constants/animations'
+import { getServiceColors } from '@/lib/colors'
 
 // Icon mapping from lucideIcon string to actual component
 const iconMap: Record<string, LucideIcon> = {
@@ -133,6 +134,7 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {services.map((service, index) => {
               const IconComponent = iconMap[service.lucideIcon] || Code2
+              const serviceColors = getServiceColors(service.color)
 
               return (
                 <motion.div
@@ -153,8 +155,7 @@ export default function ServicesPage() {
                 >
                   <div className="flex items-start gap-6 mb-6">
                     <motion.div
-                      className={`w-20 h-20 bg-${service.color} rounded-2xl flex items-center justify-center text-white flex-shrink-0`}
-                      style={{ backgroundColor: `var(--color-${service.color.replace('brand-', '')})` }}
+                      className={`w-20 h-20 ${serviceColors.bg} rounded-2xl flex items-center justify-center text-white flex-shrink-0`}
                       whileHover={{
                         rotate: [0, -10, 10, -10, 0],
                         scale: 1.1,
@@ -301,7 +302,7 @@ export default function ServicesPage() {
                   >
                     <step.icon size={36} />
                   </motion.div>
-                  <div className="absolute -top-2 -left-2 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg">
+                  <div className="absolute -top-2 -start-2 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg">
                     {index + 1}
                   </div>
                 </div>

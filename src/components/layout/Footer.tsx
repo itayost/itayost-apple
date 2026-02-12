@@ -283,7 +283,7 @@ export function Footer() {
                       }}
                       disabled={status === 'loading'}
                       autoComplete="email"
-                      className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border-2 text-white placeholder:text-white/60 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20 transition-all disabled:opacity-50 ${
+                      className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border-2 text-white placeholder:text-white/70 focus-visible:border-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all disabled:opacity-50 ${
                         status === 'error' ? 'border-red-400' : 'border-white/20'
                       }`}
                     />
@@ -337,7 +337,7 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.4, ease: bouncyEasing }}
             className="text-brand-gray-200 flex items-center gap-2"
           >
-            <span className="text-base lg:text-lg">© 2025 ITAYOST. כל הזכויות שמורות.</span>
+            <span className="text-base lg:text-lg">© {new Date().getFullYear()} ITAYOST. כל הזכויות שמורות.</span>
             <motion.span
               animate={{
                 scale: [1, 1.2, 1],
@@ -411,7 +411,7 @@ export function Footer() {
           scale: 0.9,
           transition: { duration: 0.2, ease: bouncyEasing }
         }}
-        aria-label="Scroll to top"
+        aria-label="גלול למעלה"
       >
         <ArrowUp size={22} />
       </motion.button>

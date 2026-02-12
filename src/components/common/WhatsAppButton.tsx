@@ -49,7 +49,7 @@ export function WhatsAppButton() {
             willChange: 'transform',
             bottom: 'calc(1.5rem + env(safe-area-inset-bottom))'
           }}
-          aria-label="Contact on WhatsApp"
+          aria-label="צור קשר בוואטסאפ"
         >
             {/* Pulse effect */}
             <motion.div

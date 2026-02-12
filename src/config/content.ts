@@ -269,6 +269,14 @@ export const content = {
     developer: 'עוצב ופותח על ידי איתי אוסטרייך',
   },
 
+  // Shared statistics used across Services, Portfolio, and About pages
+  stats: {
+    clients: { value: '50+', label: 'לקוחות מרוצים' },
+    projects: { value: '100+', label: 'פרויקטים' },
+    hoursSaved: { value: '15', label: 'שעות נחסכות בשבוע' },
+    revenueGrowth: { value: '30%', label: 'הגדלת הכנסות' },
+  },
+
   // Common
   common: {
     loading: 'טוען...',

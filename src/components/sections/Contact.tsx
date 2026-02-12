@@ -31,7 +31,7 @@ export default function Contact() {
               </span>
             </motion.div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
               מוכנים להתחיל?
             </h2>
 
@@ -94,8 +94,8 @@ export default function Contact() {
               {
                 icon: Mail,
                 title: 'אימייל',
-                value: 'itayost@gmail.com',
-                href: 'mailto:itayost@gmail.com',
+                value: 'itayost1@gmail.com',
+                href: 'mailto:itayost1@gmail.com',
                 color: 'bg-brand-navy'
               },
             ].map((method, index) => (

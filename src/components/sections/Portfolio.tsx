@@ -38,7 +38,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
             loading={index < 2 ? undefined : 'lazy'}
           />
         ) : (
-          <div className={`w-full h-full bg-${item.color}/10 flex items-center justify-center`}>
+          <div className="w-full h-full bg-brand-gray-100 flex items-center justify-center">
             <div className="text-brand-gray-400 text-6xl font-bold">
               {item.title.slice(0, 2)}
             </div>
@@ -47,7 +47,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
 
         {/* Live Badge */}
         {item.link && (
-          <div className="absolute top-4 left-4">
+          <div className="absolute top-4 start-4">
             <span className="px-4 py-2 bg-brand-green text-white rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
               <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
               Live
@@ -149,7 +149,7 @@ export default function Portfolio() {
             </span>
           </motion.div>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-brand-navy mb-4 sm:mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-4 sm:mb-6">
             סיפורי הצלחה <span className="text-brand-orange">מהשטח</span>
           </h2>
 
@@ -255,7 +255,7 @@ export default function Portfolio() {
               <div className="text-4xl md:text-5xl font-bold mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm opacity-90">
+              <div className="text-sm">
                 {stat.label}
               </div>
             </motion.div>

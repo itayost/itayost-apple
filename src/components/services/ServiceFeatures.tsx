@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ServiceFeature } from '@/data/services'
+import { getServiceColors } from '@/lib/colors'
 
 interface ServiceFeaturesProps {
   features: ServiceFeature[]
@@ -25,6 +26,8 @@ const item = {
 }
 
 export default function ServiceFeatures({ features, color, accentColor }: ServiceFeaturesProps) {
+  const colors = getServiceColors(color)
+
   return (
     <section className="bg-white py-20 lg:py-24">
       <div className="container mx-auto px-4">
@@ -52,7 +55,7 @@ export default function ServiceFeatures({ features, color, accentColor }: Servic
             >
               {/* Solid color accent on hover */}
               <div
-                className={`absolute inset-0 bg-${color} opacity-0 transition-opacity group-hover:opacity-5`}
+                className={`absolute inset-0 ${colors.bgLight} opacity-0 transition-opacity group-hover:opacity-100`}
                 aria-hidden="true"
               />
 

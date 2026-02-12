@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getPortfolioByIds } from '@/data/portfolio'
+import { getServiceColors } from '@/lib/colors'
 
 interface ServicePortfolioProps {
   portfolioIds: string[]
@@ -27,6 +28,8 @@ const item = {
 }
 
 export default function ServicePortfolio({ portfolioIds, color, accentColor }: ServicePortfolioProps) {
+  const colors = getServiceColors(color)
+
   // Filter portfolio items based on IDs using centralized helper
   const relevantProjects = getPortfolioByIds(portfolioIds)
 
@@ -75,7 +78,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
 
                   {/* Solid color overlay on hover */}
                   <div
-                    className={`absolute inset-0 bg-${color} opacity-0 transition-opacity group-hover:opacity-20`}
+                    className={`absolute inset-0 ${colors.bgLight} opacity-0 transition-opacity group-hover:opacity-100`}
                     aria-hidden="true"
                   />
                 </div>
@@ -83,7 +86,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
                 {/* Content */}
                 <div className="p-6">
                   {/* Category badge */}
-                  <span className={`mb-3 inline-block rounded-full bg-${color} px-3 py-1 text-xs font-semibold text-white`}>
+                  <span className={`mb-3 inline-block rounded-full ${colors.bg} px-3 py-1 text-xs font-semibold text-white`}>
                     {project.category === 'web' ? 'אתר' :
                      project.category === 'system' ? 'מערכת' :
                      project.category === 'mobile' ? 'אפליקציה' :

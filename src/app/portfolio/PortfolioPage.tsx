@@ -214,7 +214,7 @@ export default function PortfolioPage() {
 
                       {/* Live Badge */}
                       {project.link && (
-                        <div className="absolute top-4 left-4">
+                        <div className="absolute top-4 start-4">
                           <motion.span
                             className="px-4 py-2 bg-brand-green text-white rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg"
                             animate={{
@@ -233,7 +233,7 @@ export default function PortfolioPage() {
                       )}
 
                       {/* Category Badge */}
-                      <div className="absolute top-4 right-4">
+                      <div className="absolute top-4 end-4">
                         <span className="px-4 py-2 bg-white rounded-full text-sm font-semibold shadow-lg">
                           {project.client}
                         </span>

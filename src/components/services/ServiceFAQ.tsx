@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ServiceFAQ as FAQItem } from '@/data/services'
+import { getServiceColors } from '@/lib/colors'
 
 interface ServiceFAQProps {
   faq: FAQItem[]
@@ -11,6 +12,7 @@ interface ServiceFAQProps {
 }
 
 export default function ServiceFAQ({ faq, color, accentColor }: ServiceFAQProps) {
+  const colors = getServiceColors(color)
   const [openIndex, setOpenIndex] = useState<number | null>(0) // First item open by default
 
   const toggleItem = (index: number) => {
@@ -54,7 +56,7 @@ export default function ServiceFAQ({ faq, color, accentColor }: ServiceFAQProps)
                   <motion.div
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`shrink-0 text-2xl text-${color}`}
+                    className={`shrink-0 text-2xl ${colors.text}`}
                   >
                     ▼
                   </motion.div>

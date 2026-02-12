@@ -2,14 +2,18 @@
 
 import { motion } from 'framer-motion'
 import { Service } from '@/data/services'
+import { getServiceColors } from '@/lib/colors'
 
 interface ServiceCTAProps {
   service: Service
 }
 
 export default function ServiceCTA({ service }: ServiceCTAProps) {
+  const colors = getServiceColors(service.color)
+  const accentColors = getServiceColors(service.accentColor)
+
   return (
-    <section className={`relative overflow-hidden bg-${service.color} py-20 lg:py-24`} id="contact">
+    <section className={`relative overflow-hidden ${colors.bg} py-20 lg:py-24`} id="contact">
       {/* Animated background circles */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <motion.div
@@ -22,7 +26,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className={`absolute -right-40 -top-40 h-96 w-96 rounded-full bg-${service.accentColor} blur-3xl`}
+          className={`absolute -right-40 -top-40 h-96 w-96 rounded-full ${accentColors.bg} blur-3xl`}
         />
         <motion.div
           animate={{
@@ -88,7 +92,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
               href="https://wa.me/972544994417?text=היי,%20אני%20מעוניין%20לשמוע%20עוד%20על%20"
               target="_blank"
               rel="noopener noreferrer"
-              className={`btn bg-white text-${service.color}`}
+              className={`btn bg-white ${colors.text}`}
             >
               <span>שלח הודעת WhatsApp</span>
               <span className="text-xl">💬</span>
@@ -97,7 +101,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             {/* Email Button */}
             <a
               href="mailto:itayost1@gmail.com?subject=פנייה%20לגבי%20שירות"
-              className={`btn bg-${service.accentColor} text-white`}
+              className={`btn ${accentColors.bg} text-white`}
             >
               <span>שלח מייל</span>
               <span className="text-xl">✉️</span>

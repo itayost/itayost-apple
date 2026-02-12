@@ -52,7 +52,7 @@ export default function Services() {
             </span>
           </motion.div>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-brand-navy mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-6">
             מה אנחנו עושים?
           </h2>
 
@@ -229,7 +229,7 @@ export default function Services() {
                   className={`${stat.color} rounded-3xl p-6 text-white shadow-lg hover:shadow-2xl transition-shadow`}
                 >
                   <div className="text-4xl font-bold mb-2">{stat.number}</div>
-                  <div className="text-sm opacity-90">{stat.label}</div>
+                  <div className="text-sm">{stat.label}</div>
                 </motion.div>
               ))}
             </div>

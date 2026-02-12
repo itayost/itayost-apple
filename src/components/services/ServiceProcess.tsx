@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ServiceProcess as ProcessStep } from '@/data/services'
+import { getServiceColors } from '@/lib/colors'
 
 interface ServiceProcessProps {
   process: ProcessStep[]
@@ -15,6 +16,8 @@ const item = {
 }
 
 export default function ServiceProcess({ process, color, accentColor }: ServiceProcessProps) {
+  const colors = getServiceColors(color)
+
   return (
     <section className="bg-brand-gray-50 py-20 lg:py-24">
       <div className="container mx-auto px-4">
@@ -49,7 +52,7 @@ export default function ServiceProcess({ process, color, accentColor }: ServiceP
                 >
                   {/* Step number circle */}
                   <div
-                    className={`absolute right-0 flex h-16 w-16 items-center justify-center rounded-full bg-${color} text-2xl font-bold text-white shadow-lg sm:right-4`}
+                    className={`absolute right-0 flex h-16 w-16 items-center justify-center rounded-full ${colors.bg} text-2xl font-bold text-white shadow-lg sm:right-4`}
                   >
                     {step.step}
                   </div>

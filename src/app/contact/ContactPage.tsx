@@ -50,8 +50,39 @@ export default function ContactPage() {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [formStartTracked, setFormStartTracked] = useState(false)
 
+  const validateForm = (): boolean => {
+    const newErrors: Partial<FormData> = {}
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'נא להזין שם מלא'
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'נא להזין מספר טלפון'
+    } else if (!/^0\d{1,2}[-\s]?\d{7}$/.test(formData.phone.replace(/\s/g, ''))) {
+      newErrors.phone = 'מספר טלפון לא תקין'
+    }
+
+    if (!formData.subject) {
+      newErrors.subject = 'נא לבחור נושא'
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'נא להזין הודעה'
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'ההודעה קצרה מדי (מינימום 10 תווים)'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
 
     setIsSubmitting(true)
     setErrors({})
@@ -110,6 +141,9 @@ export default function ContactPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    if (errors[name as keyof FormData]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }))
+    }
     if (errorMessage) {
       setErrorMessage('')
     }
@@ -250,9 +284,15 @@ export default function ContactPage() {
                         onFocus={handleFieldFocus}
                         required
                         autoComplete="name"
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
+                        className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.name ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg`}
                         placeholder="ישראל ישראלי"
                       />
+                      {errors.name && (
+                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                          <AlertCircle size={14} />
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
 
                     {/* Email Field */}
@@ -267,7 +307,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         autoComplete="email"
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg"
                         placeholder="example@email.com"
                       />
                     </div>
@@ -285,9 +325,15 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         autoComplete="tel"
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
+                        className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.phone ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg`}
                         placeholder="050-1234567"
                       />
+                      {errors.phone && (
+                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                          <AlertCircle size={14} />
+                          {errors.phone}
+                        </p>
+                      )}
                     </div>
 
                     {/* Subject Field */}
@@ -301,13 +347,19 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
+                        className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.subject ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg`}
                       >
                         <option value="">בחר נושא</option>
                         {subjects.map(subject => (
                           <option key={subject.value} value={subject.value}>{subject.label}</option>
                         ))}
                       </select>
+                      {errors.subject && (
+                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                          <AlertCircle size={14} />
+                          {errors.subject}
+                        </p>
+                      )}
                     </div>
 
                     {/* Message Field */}
@@ -322,9 +374,15 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         rows={6}
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all resize-none text-lg"
+                        className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.message ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all resize-none text-lg`}
                         placeholder="מה העסק שלך? מה מעיק עליך? איפה אתה מבזבז זמן?"
                       />
+                      {errors.message && (
+                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                          <AlertCircle size={14} />
+                          {errors.message}
+                        </p>
+                      )}
                     </div>
 
                     {/* Submit Button */}

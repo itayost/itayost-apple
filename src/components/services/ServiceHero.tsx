@@ -3,17 +3,20 @@
 import { motion } from 'framer-motion'
 import { Service } from '@/data/services'
 import { ServiceBreadcrumbs } from '@/components/common/Breadcrumbs'
+import { getServiceColors } from '@/lib/colors'
 
 interface ServiceHeroProps {
   service: Service
 }
 
 export default function ServiceHero({ service }: ServiceHeroProps) {
+  const colors = getServiceColors(service.color)
+
   return (
     <section className="relative overflow-hidden bg-white pt-8 pb-24 lg:pt-12 lg:pb-32">
       {/* Solid color background accent */}
       <div
-        className={`absolute inset-0 bg-${service.color} opacity-5`}
+        className={`absolute inset-0 ${colors.bgLight}`}
         aria-hidden="true"
       />
 
@@ -59,7 +62,7 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className={`mb-6 text-xl font-bold text-${service.color} sm:text-2xl lg:text-3xl`}
+            className={`mb-6 text-xl font-bold ${colors.text} sm:text-2xl lg:text-3xl`}
           >
             {service.tagline}
           </motion.p>
@@ -83,7 +86,7 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
           >
             <a
               href="#contact"
-              className={`btn btn-primary bg-${service.color}`}
+              className={`btn btn-primary ${colors.bg}`}
             >
               {service.cta.primary}
             </a>

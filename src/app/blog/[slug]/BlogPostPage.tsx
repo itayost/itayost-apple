@@ -280,7 +280,7 @@ export default function BlogPostPage({ post, relatedPosts }: BlogPostPageProps) 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
                       {/* Category badge */}
-                      <span className="absolute bottom-3 right-3 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-brand-navy">
+                      <span className="absolute bottom-3 end-3 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-brand-navy">
                         {relatedPost.category}
                       </span>
                     </div>
