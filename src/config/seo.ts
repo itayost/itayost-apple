@@ -664,3 +664,4 @@ Sitemap: https://www.itayost.com/sitemap-0.xml`,
 }
 
 export type SEOConfig = typeof seoConfig
+export type PageSlug = keyof typeof seoConfig.pages

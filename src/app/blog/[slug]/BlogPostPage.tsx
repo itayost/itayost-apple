@@ -8,8 +8,7 @@ import Image from 'next/image'
 import { Calendar, Clock, User, Tag, ArrowLeft } from 'lucide-react'
 import { BlogBreadcrumbs } from '@/components/common/Breadcrumbs'
 import { ShareButtons, ShareButtonsMobile, SidebarCTA, InlineServiceCTA, AuthorBio } from '@/components/blog'
-
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 interface BlogPostPageProps {
   post: BlogPost

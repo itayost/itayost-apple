@@ -11,12 +11,10 @@ import {
 } from 'lucide-react'
 import { content } from '@/config/content'
 import { seoConfig } from '@/config/seo'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 // Extract FAQ items from SEO config
-const faqItems = seoConfig.structuredData.faqPage.mainEntity.map((item: any) => ({
+const faqItems = seoConfig.structuredData.faqPage.mainEntity.map((item: { name: string; acceptedAnswer: { text: string } }) => ({
   question: item.name,
   answer: item.acceptedAnswer.text,
   category: 'general'

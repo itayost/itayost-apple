@@ -6,9 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { portfolioData, portfolioCategories } from '@/data/portfolio'
 import { ExternalLink, Sparkles, ArrowLeft } from 'lucide-react'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: number }) => {
   return (

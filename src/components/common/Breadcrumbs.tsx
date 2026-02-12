@@ -3,8 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ChevronLeft, Home } from 'lucide-react'
-
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 export interface BreadcrumbItem {
   label: string

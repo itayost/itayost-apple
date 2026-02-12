@@ -18,9 +18,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { getServiceLinks } from '@/data/services'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 // Get service links from centralized data
 const serviceLinks = getServiceLinks()
@@ -273,7 +271,9 @@ export function Footer() {
                   className="flex flex-col gap-3"
                 >
                   <div className="flex flex-col sm:flex-row gap-3">
+                    <label htmlFor="newsletter-email" className="sr-only">כתובת אימייל לניוזלטר</label>
                     <input
+                      id="newsletter-email"
                       type="email"
                       placeholder="כתובת אימייל"
                       value={email}
@@ -282,6 +282,7 @@ export function Footer() {
                         if (status === 'error') setStatus('idle')
                       }}
                       disabled={status === 'loading'}
+                      autoComplete="email"
                       className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border-2 text-white placeholder:text-white/60 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20 transition-all disabled:opacity-50 ${
                         status === 'error' ? 'border-red-400' : 'border-white/20'
                       }`}
@@ -311,6 +312,7 @@ export function Footer() {
                   </div>
                   {status === 'error' && errorMessage && (
                     <motion.div
+                      role="alert"
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="flex items-center gap-2 text-red-400 text-sm"

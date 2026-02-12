@@ -4,8 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { MessageCircle, ArrowLeft, Sparkles, Code, ShoppingBag, Palette, Zap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 // Category-specific content
 const categoryContent: Record<string, { icon: LucideIcon; title: string; description: string; cta: string }> = {

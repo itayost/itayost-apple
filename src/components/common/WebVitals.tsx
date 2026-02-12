@@ -69,7 +69,7 @@ declare global {
     gtag?: (
       command: string,
       target: string,
-      params?: Record<string, any>
+      params?: Record<string, string | number | boolean | undefined | Record<string, string>>
     ) => void
   }
 }

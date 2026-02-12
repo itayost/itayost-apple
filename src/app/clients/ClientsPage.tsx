@@ -13,9 +13,7 @@ import {
   CheckCircle2
 } from 'lucide-react'
 import { content } from '@/config/content'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 // Client testimonials - Replace with real data
 const testimonials = [

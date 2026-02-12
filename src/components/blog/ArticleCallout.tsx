@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Lightbulb, AlertTriangle, Info, Quote } from 'lucide-react'
+import { bouncyEasing } from '@/constants/animations'
 
 type CalloutType = 'tip' | 'warning' | 'info' | 'quote'
 
@@ -49,8 +50,6 @@ const calloutConfig = {
     titleColorClass: 'text-brand-navy',
   },
 }
-
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
 export default function ArticleCallout({ type, title, children }: ArticleCalloutProps) {
   const config = calloutConfig[type]

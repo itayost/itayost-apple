@@ -3,12 +3,11 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { MessageCircle, Mail, Briefcase, ArrowLeft } from 'lucide-react'
+import { bouncyEasing } from '@/constants/animations'
 
 interface AuthorBioProps {
   author?: string
 }
-
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
 export default function AuthorBio({ author = 'איתי אוסטרייך' }: AuthorBioProps) {
   const whatsappLink = 'https://wa.me/972544994417?text=' + encodeURIComponent('היי, קראתי את המאמר שלך ורציתי לשאול...')

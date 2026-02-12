@@ -8,9 +8,7 @@ import { BookOpen, Calendar, Clock, ArrowLeft, Sparkles } from 'lucide-react'
 import { content } from '@/config/content'
 import { BlogPost } from '@/lib/blog'
 import { blogCategories } from '@/lib/blog-constants'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 interface BlogListingClientProps {
   posts: BlogPost[]

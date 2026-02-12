@@ -1,18 +1,7 @@
 // Central analytics utility for tracking events
 // Supports Google Analytics 4 and can be extended for other platforms
 
-import type {
-  AnalyticsEventName,
-  WhatsAppClickParams,
-  FormEventParams,
-  FormFieldEventParams,
-  FormSubmitParams,
-  ConversionEventParams,
-  ScrollDepthParams,
-  ServiceViewParams,
-  PortfolioClickParams,
-  NavigationClickParams,
-} from '@/types/analytics'
+import type { AnalyticsEventName } from '@/types/analytics'
 
 // Check if Google Analytics is available
 const isGAAvailable = (): boolean => {
@@ -22,7 +11,7 @@ const isGAAvailable = (): boolean => {
 // Base function to track any event
 export const trackEvent = (
   eventName: AnalyticsEventName,
-  params: Record<string, any> = {}
+  params: Record<string, string | number | boolean | undefined> = {}
 ): void => {
   if (!isGAAvailable()) {
     if (process.env.NODE_ENV === 'development') {
@@ -53,7 +42,7 @@ export const trackWhatsAppClick = (
     button_location: buttonLocation,
     page_path: window.location.pathname,
     page_title: document.title,
-  } as WhatsAppClickParams)
+  })
 }
 
 // Track form interactions
@@ -61,14 +50,14 @@ export const trackFormStart = (formName: string): void => {
   trackEvent('form_start', {
     form_name: formName,
     page_path: window.location.pathname,
-  } as FormEventParams)
+  })
 }
 
 export const trackFormFieldFocus = (formName: string, fieldName: string): void => {
   trackEvent('form_field_focus', {
     form_name: formName,
     field_name: fieldName,
-  } as FormFieldEventParams)
+  })
 }
 
 export const trackFormFieldBlur = (
@@ -80,7 +69,7 @@ export const trackFormFieldBlur = (
     form_name: formName,
     field_name: fieldName,
     field_value: hasValue ? 'filled' : 'empty',
-  } as FormFieldEventParams)
+  })
 }
 
 export const trackFormFieldError = (
@@ -92,7 +81,7 @@ export const trackFormFieldError = (
     form_name: formName,
     field_name: fieldName,
     error_message: errorMessage,
-  } as FormFieldEventParams)
+  })
 }
 
 export const trackFormSubmit = (
@@ -104,7 +93,7 @@ export const trackFormSubmit = (
     form_name: formName,
     success,
     error_message: errorMessage,
-  } as FormSubmitParams)
+  })
 }
 
 // Track conversions (e.g., lead submissions)
@@ -118,7 +107,7 @@ export const trackConversion = (
     conversion_value: value,
     currency,
     page_path: window.location.pathname,
-  } as ConversionEventParams)
+  })
 
   // Also send as GA4 conversion event
   if (isGAAvailable() && window.gtag) {
@@ -147,7 +136,7 @@ export const trackScrollDepth = (): void => {
       trackEvent('scroll_depth', {
         scroll_percentage: milestone,
         page_path: window.location.pathname,
-      } as ScrollDepthParams)
+      })
     }
   })
 }
@@ -163,7 +152,7 @@ export const trackServiceView = (serviceName: string, serviceSlug: string): void
     service_name: serviceName,
     service_slug: serviceSlug,
     page_path: window.location.pathname,
-  } as ServiceViewParams)
+  })
 }
 
 // Track portfolio item clicks
@@ -175,7 +164,7 @@ export const trackPortfolioClick = (
     portfolio_item: portfolioItem,
     portfolio_category: category,
     page_path: window.location.pathname,
-  } as PortfolioClickParams)
+  })
 }
 
 // Track navigation clicks
@@ -189,7 +178,7 @@ export const trackNavigationClick = (
     link_url: linkUrl,
     link_type: isExternal ? 'external' : 'internal',
     page_path: window.location.pathname,
-  } as NavigationClickParams)
+  })
 }
 
 // Track outbound links
@@ -199,7 +188,7 @@ export const trackOutboundLink = (url: string, linkText?: string): void => {
     link_text: linkText || url,
     link_type: 'external',
     page_path: window.location.pathname,
-  } as NavigationClickParams)
+  })
 }
 
 // Page view tracking (enhanced)

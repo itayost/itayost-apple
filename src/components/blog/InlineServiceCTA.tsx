@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { MessageCircle, ArrowLeft, Sparkles } from 'lucide-react'
+import { bouncyEasing } from '@/constants/animations'
 
 // Category to service mapping
 const categoryServiceMap: Record<string, { serviceId: string; serviceName: string; ctaMessage: string }> = {
@@ -52,8 +53,6 @@ const defaultService = {
 interface InlineServiceCTAProps {
   category: string
 }
-
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
 
 export default function InlineServiceCTA({ category }: InlineServiceCTAProps) {
   const service = categoryServiceMap[category] || defaultService

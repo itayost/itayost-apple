@@ -46,7 +46,7 @@ export type HomepageContactForm = z.infer<typeof HomepageContactFormSchema>
 export interface CRMResponse {
   success: boolean
   message?: string
-  data?: any
+  data?: Record<string, unknown>
   error?: string
 }
 
@@ -102,56 +102,35 @@ function convertBudgetToNumber(budget: string): number | undefined {
  * Convert Contact Page form data to CRM lead format
  */
 export function mapContactPageToCRM(formData: ContactPageForm): CRMLead {
-  const lead: any = {
+  return {
     name: formData.name,
-    phone: formData.phone, // Required field
+    phone: formData.phone,
     notes: [
       formData.timeline && `לוח זמנים: ${formData.timeline}`,
       `הודעה: ${formData.message}`
     ].filter(Boolean).join('\n\n'),
-    source: 'WEBSITE'
+    source: 'WEBSITE',
+    ...(formData.email?.trim() && { email: formData.email.trim() }),
+    ...(formData.company?.trim() && { company: formData.company.trim() }),
+    ...(formData.service?.trim() && { projectType: formData.service.trim() }),
+    ...(formData.budget?.trim() && {
+      estimatedBudget: convertBudgetToNumber(formData.budget)
+    }),
   }
-
-  // Optional fields - only include if they have values
-  if (formData.email && formData.email.trim() !== '') {
-    lead.email = formData.email.trim()
-  }
-  if (formData.company && formData.company.trim() !== '') {
-    lead.company = formData.company.trim()
-  }
-  if (formData.service && formData.service.trim() !== '') {
-    lead.projectType = formData.service.trim()
-  }
-  if (formData.budget && formData.budget.trim() !== '') {
-    const budgetNumber = convertBudgetToNumber(formData.budget)
-    if (budgetNumber) {
-      lead.estimatedBudget = budgetNumber
-    }
-  }
-
-  return lead
 }
 
 /**
  * Convert Homepage Contact form data to CRM lead format
  */
 export function mapHomepageContactToCRM(formData: HomepageContactForm): CRMLead {
-  const lead: any = {
+  return {
     name: formData.name,
-    phone: formData.phone, // Required field
+    phone: formData.phone,
     notes: formData.message,
-    source: 'WEBSITE'
+    source: 'WEBSITE',
+    ...(formData.email?.trim() && { email: formData.email.trim() }),
+    ...(formData.subject?.trim() && { projectType: formData.subject.trim() }),
   }
-
-  // Optional fields - only include if they have values
-  if (formData.email && formData.email.trim() !== '') {
-    lead.email = formData.email.trim()
-  }
-  if (formData.subject && formData.subject.trim() !== '') {
-    lead.projectType = formData.subject.trim()
-  }
-
-  return lead
 }
 
 /**

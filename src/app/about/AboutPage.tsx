@@ -14,9 +14,7 @@ import {
   Smartphone,
   Sparkles
 } from 'lucide-react'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 const skills = [
   { name: 'React / Next.js', level: 95, color: 'bg-brand-blue', priority: 1 },

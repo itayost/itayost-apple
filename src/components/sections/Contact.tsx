@@ -3,9 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Mail, Phone, MessageCircle, ArrowLeft, Sparkles } from 'lucide-react'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 export default function Contact() {
   return (

@@ -4,28 +4,20 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
-  Mail,
-  Phone,
-  MapPin,
   Send,
   CheckCircle,
   Clock,
   MessageCircle,
-  Calendar,
   Zap,
   Coffee,
   Loader2,
-  Instagram,
-  Facebook,
-  Github,
   AlertCircle,
   Sparkles
 } from 'lucide-react'
 import { submitHomepageContactForm, type HomepageContactForm } from '@/services/crm'
 import { trackFormStart, trackFormSubmit, trackConversion } from '@/lib/analytics'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { socialLinks, contactMethods } from '@/config/socialLinks'
+import { bouncyEasing } from '@/constants/animations'
 
 interface FormData {
   name: string
@@ -41,39 +33,6 @@ const subjects = [
   { value: 'automation', label: 'אוטומציה וחיסכון זמן' },
   { value: 'consulting', label: 'ייעוץ דיגיטלי' },
   { value: 'other', label: 'אחר' }
-]
-
-const contactMethods = [
-  {
-    icon: Phone,
-    title: 'טלפון',
-    value: '054-499-4417',
-    href: 'tel:0544994417',
-    description: 'ניתן להתקשר בימים א׳-ה׳',
-    color: 'bg-brand-blue'
-  },
-  {
-    icon: Mail,
-    title: 'אימייל',
-    value: 'itayost1@gmail.com',
-    href: 'mailto:itayost1@gmail.com',
-    description: 'מענה תוך 24 שעות',
-    color: 'bg-brand-orange'
-  },
-  {
-    icon: MessageCircle,
-    title: 'WhatsApp',
-    value: 'שלח הודעה',
-    href: 'https://wa.me/972544994417',
-    description: 'מענה מהיר ונוח',
-    color: 'bg-brand-green'
-  }
-]
-
-const socialLinks = [
-  { icon: Github, href: 'https://github.com/itayost', label: 'GitHub', color: 'hover:bg-brand-navy' },
-  { icon: Facebook, href: 'https://www.facebook.com/itayost', label: 'Facebook', color: 'hover:bg-brand-blue' },
-  { icon: Instagram, href: 'https://instagram.com/itayost', label: 'Instagram', color: 'hover:bg-brand-orange' }
 ]
 
 export default function ContactPage() {
@@ -279,16 +238,18 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Name Field */}
                     <div>
-                      <label className="block text-base font-semibold text-brand-navy mb-2">
+                      <label htmlFor="contact-name" className="block text-base font-semibold text-brand-navy mb-2">
                         שם מלא *
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         onFocus={handleFieldFocus}
                         required
+                        autoComplete="name"
                         className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
                         placeholder="ישראל ישראלי"
                       />
@@ -296,14 +257,16 @@ export default function ContactPage() {
 
                     {/* Email Field */}
                     <div>
-                      <label className="block text-base font-semibold text-brand-navy mb-2">
+                      <label htmlFor="contact-email" className="block text-base font-semibold text-brand-navy mb-2">
                         אימייל
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
+                        autoComplete="email"
                         className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
                         placeholder="example@email.com"
                       />
@@ -311,15 +274,17 @@ export default function ContactPage() {
 
                     {/* Phone Field */}
                     <div>
-                      <label className="block text-base font-semibold text-brand-navy mb-2">
+                      <label htmlFor="contact-phone" className="block text-base font-semibold text-brand-navy mb-2">
                         טלפון *
                       </label>
                       <input
+                        id="contact-phone"
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
                         required
+                        autoComplete="tel"
                         className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-lg"
                         placeholder="050-1234567"
                       />
@@ -327,10 +292,11 @@ export default function ContactPage() {
 
                     {/* Subject Field */}
                     <div>
-                      <label className="block text-base font-semibold text-brand-navy mb-2">
+                      <label htmlFor="contact-subject" className="block text-base font-semibold text-brand-navy mb-2">
                         נושא *
                       </label>
                       <select
+                        id="contact-subject"
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
@@ -346,10 +312,11 @@ export default function ContactPage() {
 
                     {/* Message Field */}
                     <div>
-                      <label className="block text-base font-semibold text-brand-navy mb-2">
+                      <label htmlFor="contact-message" className="block text-base font-semibold text-brand-navy mb-2">
                         הודעה *
                       </label>
                       <textarea
+                        id="contact-message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
@@ -395,6 +362,7 @@ export default function ContactPage() {
                     {/* Success Message */}
                     {submitStatus === 'success' && (
                       <motion.div
+                        role="alert"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, ease: bouncyEasing }}
@@ -409,6 +377,7 @@ export default function ContactPage() {
                     {/* Error Message */}
                     {submitStatus === 'error' && errorMessage && (
                       <motion.div
+                        role="alert"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, ease: bouncyEasing }}

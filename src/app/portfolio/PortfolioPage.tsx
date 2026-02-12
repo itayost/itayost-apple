@@ -19,9 +19,7 @@ import {
   Sparkles,
   LucideIcon
 } from 'lucide-react'
-
-// Bouncy easing for Mailchimp-style animations
-const bouncyEasing = [0.34, 1.56, 0.64, 1]
+import { bouncyEasing } from '@/constants/animations'
 
 // Icon mapping for categories (extends centralized categories with icons)
 const categoryIcons: Record<string, LucideIcon> = {

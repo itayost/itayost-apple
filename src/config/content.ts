@@ -435,12 +435,13 @@ export const content = {
 export type Content = typeof content
 
 // Helper functions
-export const getContent = (path: string): any => {
+export const getContent = (path: string): string | Record<string, unknown> => {
   const keys = path.split('.')
-  let value: any = content
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let value: Record<string, any> = content
   for (const key of keys) {
     value = value[key]
     if (value === undefined) return ''
   }
-  return value
+  return value as string | Record<string, unknown>
 }
