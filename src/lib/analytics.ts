@@ -109,10 +109,11 @@ export const trackConversion = (
     page_path: window.location.pathname,
   })
 
-  // Also send as GA4 conversion event
-  if (isGAAvailable() && window.gtag) {
+  // Send as Google Ads conversion event if configured
+  const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID
+  if (conversionId && isGAAvailable() && window.gtag) {
     window.gtag('event', 'conversion', {
-      send_to: 'AW-CONVERSION-ID', // Replace with actual conversion ID if using Google Ads
+      send_to: conversionId,
       value: value,
       currency: currency,
     })

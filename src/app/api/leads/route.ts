@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
   try {
     // Rate limiting based on IP address (stricter for leads - 5 per minute)
     const forwarded = request.headers.get('x-forwarded-for')
-    const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown'
+    const ip = forwarded ? forwarded.split(',')[0]?.trim() ?? 'unknown' : 'unknown'
     const rateLimitResult = vitalsRateLimiter.check(ip)
 
     if (!rateLimitResult.success) {
@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: firstError.message || 'שגיאה בנתונים שהוזנו'
+          error: firstError?.message ?? 'שגיאה בנתונים שהוזנו'
         },
         { status: 400 }
       )

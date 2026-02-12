@@ -18,6 +18,8 @@ const iconMap: Record<string, LucideIcon> = {
 }
 
 // Color mapping from brand color names to Tailwind classes
+const defaultColors = { bg: 'bg-brand-blue', text: 'text-brand-blue' } as const
+
 const colorMap: Record<string, { bg: string; text: string }> = {
   'brand-blue': { bg: 'bg-brand-blue', text: 'text-brand-blue' },
   'brand-orange': { bg: 'bg-brand-orange', text: 'text-brand-orange' },
@@ -65,7 +67,7 @@ export default function Services() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {featuredServices.map((service, index) => {
             const IconComponent = iconMap[service.lucideIcon] || Code2
-            const colors = colorMap[service.color] || colorMap['brand-blue']
+            const colors = colorMap[service.color] ?? defaultColors
 
             return (
               <motion.div

@@ -289,8 +289,9 @@ export const useTextSplitAnimation = (text: string, delay: number = 50) => {
     let currentIndex = 0
 
     const interval = setInterval(() => {
-      if (currentIndex < words.length) {
-        setDisplayedText(prev => [...prev, words[currentIndex]])
+      const word = words[currentIndex]
+      if (currentIndex < words.length && word !== undefined) {
+        setDisplayedText(prev => [...prev, word])
         currentIndex++
       } else {
         setIsComplete(true)

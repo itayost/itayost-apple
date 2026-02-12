@@ -31,7 +31,11 @@ const serviceColorMap: Record<string, ServiceColors> = {
   },
 }
 
-const fallback: ServiceColors = serviceColorMap['brand-blue']
+const fallback: ServiceColors = {
+  bg: 'bg-brand-blue',
+  text: 'text-brand-blue',
+  bgLight: 'bg-brand-blue/5',
+}
 
 export function getServiceColors(colorKey: string): ServiceColors {
   return serviceColorMap[colorKey] || fallback

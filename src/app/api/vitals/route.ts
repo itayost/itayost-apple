@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     // Rate limiting based on IP address
     const forwarded = request.headers.get('x-forwarded-for')
-    const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown'
+    const ip = forwarded ? forwarded.split(',')[0]?.trim() ?? 'unknown' : 'unknown'
     const rateLimitResult = vitalsRateLimiter.check(ip)
 
     if (!rateLimitResult.success) {

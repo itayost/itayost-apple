@@ -154,7 +154,7 @@ export async function submitContactPageForm(formData: ContactPageForm): Promise<
       const firstError = error.issues[0]
       return {
         success: false,
-        error: firstError.message
+        error: firstError?.message ?? 'שגיאה בעיבוד הטופס'
       }
     }
     return {
@@ -185,7 +185,7 @@ export async function submitHomepageContactForm(formData: HomepageContactForm): 
       const firstError = error.issues[0]
       return {
         success: false,
-        error: firstError.message
+        error: firstError?.message ?? 'שגיאה בעיבוד הטופס'
       }
     }
     return {
