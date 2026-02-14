@@ -20,6 +20,7 @@ import {
   LucideIcon
 } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
+import { trackPortfolioClick, trackCtaClick } from '@/lib/analytics'
 
 // Icon mapping for categories (extends centralized categories with icons)
 const categoryIcons: Record<string, LucideIcon> = {
@@ -159,7 +160,12 @@ export default function PortfolioPage() {
             {filteredProjects.map((project, index) => {
               const Icon = getIcon(project.category)
               return (
-                <Link key={project.id} href={`/portfolio/${project.slug}`} className="block">
+                <Link
+                  key={project.id}
+                  href={`/portfolio/${project.slug}`}
+                  className="block"
+                  onClick={() => trackPortfolioClick(project.title, project.category)}
+                >
                   <motion.article
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -373,6 +379,7 @@ export default function PortfolioPage() {
                 <Link
                   href="/contact"
                   className="inline-block px-10 py-5 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
+                  onClick={() => trackCtaClick('בואו נתחיל', 'portfolio', '/contact')}
                 >
                   בואו נתחיל
                 </Link>
@@ -390,6 +397,7 @@ export default function PortfolioPage() {
                 <Link
                   href="/services"
                   className="inline-block px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
+                  onClick={() => trackCtaClick('השירותים שלי', 'portfolio', '/services')}
                 >
                   השירותים שלי
                 </Link>

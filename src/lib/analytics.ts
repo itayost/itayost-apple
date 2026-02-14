@@ -1,5 +1,5 @@
-// Central analytics utility for tracking events
-// Supports Google Analytics 4 and can be extended for other platforms
+// Central analytics utility for GA4 event tracking
+// 7 focused events that answer real business questions
 
 import type { AnalyticsEventName } from '@/types/analytics'
 
@@ -32,6 +32,18 @@ export const trackEvent = (
   }
 }
 
+// Track lead generation (GA4 recommended event)
+// Fires when: contact form submitted, newsletter signup, WhatsApp contact initiated
+export const trackGenerateLead = (
+  method: 'form' | 'whatsapp' | 'phone' | 'newsletter',
+  sourcePage: string
+): void => {
+  trackEvent('generate_lead', {
+    method,
+    source_page: sourcePage,
+  })
+}
+
 // Track WhatsApp button clicks
 export const trackWhatsAppClick = (
   sourcePage: string,
@@ -40,183 +52,64 @@ export const trackWhatsAppClick = (
   trackEvent('whatsapp_click', {
     source_page: sourcePage,
     button_location: buttonLocation,
-    page_path: window.location.pathname,
-    page_title: document.title,
   })
 }
 
-// Track form interactions
-export const trackFormStart = (formName: string): void => {
-  trackEvent('form_start', {
-    form_name: formName,
-    page_path: window.location.pathname,
-  })
-}
-
-export const trackFormFieldFocus = (formName: string, fieldName: string): void => {
-  trackEvent('form_field_focus', {
-    form_name: formName,
-    field_name: fieldName,
-  })
-}
-
-export const trackFormFieldBlur = (
-  formName: string,
-  fieldName: string,
-  hasValue: boolean
+// Track contact link clicks (phone, email, whatsapp)
+export const trackContactClick = (
+  contactMethod: 'phone' | 'email' | 'whatsapp',
+  sourceComponent: string
 ): void => {
-  trackEvent('form_field_blur', {
-    form_name: formName,
-    field_name: fieldName,
-    field_value: hasValue ? 'filled' : 'empty',
+  trackEvent('contact_click', {
+    contact_method: contactMethod,
+    source_component: sourceComponent,
   })
 }
 
-export const trackFormFieldError = (
-  formName: string,
-  fieldName: string,
-  errorMessage: string
+// Track CTA button clicks
+export const trackCtaClick = (
+  ctaText: string,
+  ctaLocation: string,
+  ctaDestination: string
 ): void => {
-  trackEvent('form_field_error', {
-    form_name: formName,
-    field_name: fieldName,
-    error_message: errorMessage,
+  trackEvent('cta_click', {
+    cta_text: ctaText,
+    cta_location: ctaLocation,
+    cta_destination: ctaDestination,
   })
-}
-
-export const trackFormSubmit = (
-  formName: string,
-  success: boolean,
-  errorMessage?: string
-): void => {
-  trackEvent('form_submit', {
-    form_name: formName,
-    success,
-    error_message: errorMessage,
-  })
-}
-
-// Track conversions (e.g., lead submissions)
-export const trackConversion = (
-  conversionName: string,
-  value?: number,
-  currency: string = 'ILS'
-): void => {
-  trackEvent('lead_submit', {
-    conversion_name: conversionName,
-    conversion_value: value,
-    currency,
-    page_path: window.location.pathname,
-  })
-
-  // Send as Google Ads conversion event if configured
-  const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID
-  if (conversionId && isGAAvailable() && window.gtag) {
-    window.gtag('event', 'conversion', {
-      send_to: conversionId,
-      value: value,
-      currency: currency,
-    })
-  }
-}
-
-// Track scroll depth
-let scrollDepthTracked = new Set<number>()
-
-export const trackScrollDepth = (): void => {
-  if (typeof window === 'undefined') return
-
-  const scrollPercentage = Math.round(
-    (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-  )
-
-  const milestones = [25, 50, 75, 100]
-  milestones.forEach((milestone) => {
-    if (scrollPercentage >= milestone && !scrollDepthTracked.has(milestone)) {
-      scrollDepthTracked.add(milestone)
-      trackEvent('scroll_depth', {
-        scroll_percentage: milestone,
-        page_path: window.location.pathname,
-      })
-    }
-  })
-}
-
-// Reset scroll tracking when page changes
-export const resetScrollTracking = (): void => {
-  scrollDepthTracked = new Set<number>()
 }
 
 // Track service page views
-export const trackServiceView = (serviceName: string, serviceSlug: string): void => {
+export const trackServiceView = (
+  serviceName: string,
+  serviceSlug: string
+): void => {
   trackEvent('service_view', {
     service_name: serviceName,
     service_slug: serviceSlug,
-    page_path: window.location.pathname,
   })
 }
 
 // Track portfolio item clicks
 export const trackPortfolioClick = (
-  portfolioItem: string,
+  itemName: string,
   category: string
 ): void => {
   trackEvent('portfolio_click', {
-    portfolio_item: portfolioItem,
-    portfolio_category: category,
-    page_path: window.location.pathname,
+    item_name: itemName,
+    category,
   })
 }
 
-// Track navigation clicks
-export const trackNavigationClick = (
-  linkText: string,
+// Track outbound/external link clicks
+export const trackOutboundClick = (
   linkUrl: string,
-  isExternal: boolean = false
+  linkText: string,
+  sourceComponent: string
 ): void => {
-  trackEvent('navigation_click', {
-    link_text: linkText,
+  trackEvent('outbound_click', {
     link_url: linkUrl,
-    link_type: isExternal ? 'external' : 'internal',
-    page_path: window.location.pathname,
+    link_text: linkText,
+    source_component: sourceComponent,
   })
-}
-
-// Track outbound links
-export const trackOutboundLink = (url: string, linkText?: string): void => {
-  trackEvent('outbound_link_click', {
-    link_url: url,
-    link_text: linkText || url,
-    link_type: 'external',
-    page_path: window.location.pathname,
-  })
-}
-
-// Page view tracking (enhanced)
-export const trackPageView = (url: string, title?: string): void => {
-  if (!isGAAvailable() || !window.gtag) return
-
-  window.gtag('config', process.env.NEXT_PUBLIC_GA_ID || '', {
-    page_path: url,
-    page_title: title || document.title,
-  })
-
-  // Reset scroll tracking for new page
-  resetScrollTracking()
-}
-
-// Setup scroll depth tracking on mount
-export const setupScrollTracking = (): (() => void) => {
-  if (typeof window === 'undefined') return () => {}
-
-  const handleScroll = () => {
-    trackScrollDepth()
-  }
-
-  // Use passive listener for better performance
-  window.addEventListener('scroll', handleScroll, { passive: true })
-
-  return () => {
-    window.removeEventListener('scroll', handleScroll)
-  }
 }

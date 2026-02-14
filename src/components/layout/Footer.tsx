@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { getServiceLinks } from '@/data/services'
 import { bouncyEasing } from '@/constants/animations'
+import { trackContactClick, trackOutboundClick, trackGenerateLead } from '@/lib/analytics'
 
 // Get service links from centralized data
 const serviceLinks = getServiceLinks()
@@ -103,6 +104,7 @@ export function Footer() {
       if (response.ok) {
         setStatus('success')
         setEmail('')
+        trackGenerateLead('newsletter', 'footer')
         // Reset after 5 seconds
         setTimeout(() => setStatus('idle'), 5000)
       } else {
@@ -175,6 +177,7 @@ export function Footer() {
                   className="flex items-center gap-3 text-brand-gray-200 hover:text-white transition-colors text-base lg:text-lg"
                   whileHover={{ x: -5 }}
                   transition={{ duration: 0.2, ease: bouncyEasing }}
+                  onClick={() => trackContactClick('phone', 'footer')}
                 >
                   <div className="w-10 h-10 bg-brand-blue rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Phone size={18} />
@@ -187,6 +190,7 @@ export function Footer() {
                   className="flex items-center gap-3 text-brand-gray-200 hover:text-white transition-colors text-base lg:text-lg"
                   whileHover={{ x: -5 }}
                   transition={{ duration: 0.2, ease: bouncyEasing }}
+                  onClick={() => trackContactClick('email', 'footer')}
                 >
                   <div className="w-10 h-10 bg-brand-orange rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Mail size={18} />
@@ -386,6 +390,7 @@ export function Footer() {
                   scale: 0.9,
                   transition: { duration: 0.2, ease: bouncyEasing }
                 }}
+                onClick={() => trackOutboundClick(social.href, social.label, 'footer')}
               >
                 <social.icon size={20} />
               </motion.a>

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Mail, Phone, MessageCircle, ArrowLeft, Sparkles } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
+import { trackContactClick, trackCtaClick } from '@/lib/analytics'
 
 export default function Contact() {
   return (
@@ -61,6 +62,7 @@ export default function Contact() {
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-12 py-6 bg-brand-orange text-white rounded-full font-bold text-xl shadow-2xl hover:shadow-3xl transition-shadow"
+                onClick={() => trackCtaClick('שלחו לנו הודעה', 'contact_section', '/contact')}
               >
                 <span>שלחו לנו הודעה</span>
                 <ArrowLeft className="w-6 h-6" />
@@ -115,6 +117,10 @@ export default function Contact() {
                   transition: { duration: 0.3, ease: bouncyEasing }
                 }}
                 className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow group flex flex-col items-center text-center"
+                onClick={() => trackContactClick(
+                  method.title === 'WhatsApp' ? 'whatsapp' : method.title === 'טלפון' ? 'phone' : 'email',
+                  'contact_section'
+                )}
               >
                 <div className={`flex items-center justify-center w-16 h-16 ${method.color} rounded-2xl mb-4 group-hover:scale-110 transition-transform`}>
                   <method.icon className="w-7 h-7 text-white" />

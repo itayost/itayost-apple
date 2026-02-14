@@ -1,9 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Service } from '@/data/services'
 import { ServiceBreadcrumbs } from '@/components/common/Breadcrumbs'
 import { getServiceColors } from '@/lib/colors'
+import { trackServiceView } from '@/lib/analytics'
 
 interface ServiceHeroProps {
   service: Service
@@ -11,6 +13,10 @@ interface ServiceHeroProps {
 
 export default function ServiceHero({ service }: ServiceHeroProps) {
   const colors = getServiceColors(service.color)
+
+  useEffect(() => {
+    trackServiceView(service.name, service.slug)
+  }, [service.name, service.slug])
 
   return (
     <section className="relative overflow-hidden bg-white pt-8 pb-24 lg:pt-12 lg:pb-32">

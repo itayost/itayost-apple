@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { servicesData } from '@/data/services'
 import { bouncyEasing } from '@/constants/animations'
+import { trackCtaClick, trackContactClick } from '@/lib/analytics'
 
 const navItems = [
   { href: '/', label: 'בית' },
@@ -219,6 +220,7 @@ export function Navigation() {
                               <Link
                                 href="/contact"
                                 className="block w-full py-3 bg-brand-orange text-white text-center rounded-2xl font-semibold text-sm shadow-md hover:shadow-lg transition-shadow"
+                                onClick={() => trackCtaClick('קבלו הצעת מחיר מהירה', 'nav_dropdown', '/contact')}
                               >
                                 קבלו הצעת מחיר מהירה
                               </Link>
@@ -261,6 +263,7 @@ export function Navigation() {
                 <Link
                   href="/contact"
                   className="px-7 py-3 bg-brand-orange text-white rounded-full font-semibold text-base lg:text-lg shadow-lg hover:shadow-xl transition-shadow"
+                  onClick={() => trackCtaClick('התחל פרויקט', 'nav', '/contact')}
                 >
                   התחל פרויקט
                 </Link>
@@ -475,7 +478,10 @@ export function Navigation() {
                 >
                   <Link
                     href="/contact"
-                    onClick={toggleMenu}
+                    onClick={() => {
+                      trackCtaClick('התחל פרויקט', 'mobile_nav', '/contact')
+                      toggleMenu()
+                    }}
                     className="block w-full py-4 bg-brand-orange text-white text-center rounded-2xl font-semibold text-lg shadow-lg"
                   >
                     התחל פרויקט
@@ -488,6 +494,7 @@ export function Navigation() {
                     className="block font-medium hover:text-brand-blue transition-colors"
                     whileHover={{ x: -3 }}
                     transition={{ duration: 0.2, ease: bouncyEasing }}
+                    onClick={() => trackContactClick('phone', 'nav')}
                   >
                     054-499-4417
                   </motion.a>
@@ -496,6 +503,7 @@ export function Navigation() {
                     className="block font-medium hover:text-brand-blue transition-colors"
                     whileHover={{ x: -3 }}
                     transition={{ duration: 0.2, ease: bouncyEasing }}
+                    onClick={() => trackContactClick('email', 'nav')}
                   >
                     itayost1@gmail.com
                   </motion.a>

@@ -15,7 +15,7 @@ import {
   Sparkles
 } from 'lucide-react'
 import { submitHomepageContactForm, type HomepageContactForm } from '@/services/crm'
-import { trackFormStart, trackFormSubmit, trackConversion } from '@/lib/analytics'
+import { trackGenerateLead, trackContactClick } from '@/lib/analytics'
 import { socialLinks, contactMethods } from '@/config/socialLinks'
 import { bouncyEasing } from '@/constants/animations'
 
@@ -48,8 +48,6 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Partial<FormData>>({})
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const [formStartTracked, setFormStartTracked] = useState(false)
-
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {}
 
@@ -104,9 +102,7 @@ export default function ContactPage() {
       if (result.success) {
         setSubmitStatus('success')
 
-        // Track successful form submission
-        trackFormSubmit('contact_form', true)
-        trackConversion('contact_form_submit', 1)
+        trackGenerateLead('form', 'contact_page')
 
         // Reset form after success
         setTimeout(() => {
@@ -118,21 +114,14 @@ export default function ContactPage() {
             message: ''
           })
           setSubmitStatus('idle')
-          setFormStartTracked(false)
         }, 5000)
       } else {
         setSubmitStatus('error')
         setErrorMessage(result.error || 'שגיאה בשליחת הטופס')
-
-        // Track failed submission
-        trackFormSubmit('contact_form', false, result.error)
       }
     } catch (error) {
       setSubmitStatus('error')
       setErrorMessage('שגיאה בשליחת הטופס. אנא נסו שוב.')
-
-      // Track error
-      trackFormSubmit('contact_form', false, 'שגיאה בשליחת הטופס')
     } finally {
       setIsSubmitting(false)
     }
@@ -146,14 +135,6 @@ export default function ContactPage() {
     }
     if (errorMessage) {
       setErrorMessage('')
-    }
-  }
-
-  const handleFieldFocus = () => {
-    // Track form start only once when user focuses on first field
-    if (!formStartTracked) {
-      trackFormStart('contact_form')
-      setFormStartTracked(true)
     }
   }
 
@@ -230,6 +211,10 @@ export default function ContactPage() {
                 className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow"
                 target={method.title === 'WhatsApp' ? '_blank' : undefined}
                 rel={method.title === 'WhatsApp' ? 'noopener noreferrer' : undefined}
+                onClick={() => trackContactClick(
+                  method.title === 'WhatsApp' ? 'whatsapp' : method.title === 'טלפון' ? 'phone' : 'email',
+                  'contact_section'
+                )}
               >
                 <div className="flex flex-col items-center text-center">
                   <motion.div
@@ -281,7 +266,6 @@ export default function ContactPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        onFocus={handleFieldFocus}
                         required
                         autoComplete="name"
                         className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.name ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg`}

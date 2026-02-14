@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { portfolioData, portfolioCategories } from '@/data/portfolio'
 import { ExternalLink, Sparkles, ArrowLeft } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
+import { trackPortfolioClick, trackOutboundClick, trackCtaClick } from '@/lib/analytics'
 
 const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: number }) => {
   return (
@@ -24,6 +25,7 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
         transition: { duration: 0.3, ease: bouncyEasing }
       }}
       className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
+      onClick={() => trackPortfolioClick(item.title, item.category)}
     >
       {/* Image Container */}
       <div className="relative h-64 bg-brand-gray-100 overflow-hidden">
@@ -89,7 +91,12 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
 
         {/* CTA */}
         {item.link ? (
-          <a href={item.link} target="_blank" rel="noopener noreferrer">
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackOutboundClick(item.link!, item.title, 'portfolio')}
+          >
             <motion.div
               className="inline-flex items-center gap-2 text-brand-blue font-bold"
               whileHover={{
@@ -283,6 +290,7 @@ export default function Portfolio() {
             <Link
               href="/portfolio"
               className="inline-flex items-center gap-2 px-10 py-5 bg-brand-orange text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
+              onClick={() => trackCtaClick('צפייה בכל הפרויקטים', 'portfolio', '/portfolio')}
             >
               <span>צפייה בכל הפרויקטים</span>
               <ArrowLeft className="w-5 h-5" />

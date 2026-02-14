@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Code2, Smartphone, Zap, Sparkles, ArrowLeft, CheckCircle, BarChart3, ShoppingCart, Palette, Target, LucideIcon } from 'lucide-react'
 import { getFeaturedServices } from '@/data/services'
 import { bouncyEasing } from '@/constants/animations'
+import { trackCtaClick } from '@/lib/analytics'
 
 // Icon mapping from lucideIcon string to actual component
 const iconMap: Record<string, LucideIcon> = {
@@ -259,6 +260,7 @@ export default function Services() {
             <Link
               href="/services"
               className="inline-flex items-center gap-2 px-10 py-5 bg-brand-orange text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
+              onClick={() => trackCtaClick('ראו את כל השירותים', 'services', '/services')}
             >
               <span>ראו את כל השירותים</span>
               <ArrowLeft className="w-5 h-5" />

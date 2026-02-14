@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Service } from '@/data/services'
 import { getServiceColors } from '@/lib/colors'
+import { trackContactClick } from '@/lib/analytics'
 
 interface ServiceCTAProps {
   service: Service
@@ -93,6 +94,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={`btn bg-white ${colors.text}`}
+              onClick={() => trackContactClick('whatsapp', 'service_cta')}
             >
               <span>שלח הודעת WhatsApp</span>
               <span className="text-xl">💬</span>
@@ -102,6 +104,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             <a
               href="mailto:itayost1@gmail.com?subject=פנייה%20לגבי%20שירות"
               className={`btn ${accentColors.bg} text-white`}
+              onClick={() => trackContactClick('email', 'service_cta')}
             >
               <span>שלח מייל</span>
               <span className="text-xl">✉️</span>
