@@ -57,18 +57,16 @@ export default function ContactPage() {
 
     if (!formData.phone.trim()) {
       newErrors.phone = 'נא להזין מספר טלפון'
-    } else if (!/^0\d{1,2}[-\s]?\d{7}$/.test(formData.phone.replace(/\s/g, ''))) {
-      newErrors.phone = 'מספר טלפון לא תקין'
+    } else {
+      const cleanPhone = formData.phone.replace(/[-\s()+]/g, '')
+      const normalizedPhone = cleanPhone.replace(/^972/, '0')
+      if (!/^0\d{8,9}$/.test(normalizedPhone)) {
+        newErrors.phone = 'מספר טלפון לא תקין'
+      }
     }
 
     if (!formData.subject) {
       newErrors.subject = 'נא לבחור נושא'
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'נא להזין הודעה'
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'ההודעה קצרה מדי (מינימום 10 תווים)'
     }
 
     setErrors(newErrors)
@@ -90,11 +88,14 @@ export default function ContactPage() {
     trackGenerateLead('form', 'contact_page')
 
     try {
+      // Normalize phone: strip formatting, convert +972/972 to 0-prefix
+      const normalizedPhone = formData.phone.replace(/[-\s()+]/g, '').replace(/^972/, '0')
+
       // Convert FormData to HomepageContactForm format
       const contactForm: HomepageContactForm = {
         name: formData.name,
         email: formData.email,
-        phone: formData.phone,
+        phone: normalizedPhone,
         subject: formData.subject,
         message: formData.message
       }
@@ -350,24 +351,17 @@ export default function ContactPage() {
                     {/* Message Field */}
                     <div>
                       <label htmlFor="contact-message" className="block text-base font-semibold text-brand-navy mb-2">
-                        הודעה *
+                        הודעה
                       </label>
                       <textarea
                         id="contact-message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        required
-                        rows={6}
-                        className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.message ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all resize-none text-lg`}
-                        placeholder="מה העסק שלך? מה מעיק עליך? איפה אתה מבזבז זמן?"
+                        rows={4}
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all resize-none text-lg"
+                        placeholder="ספר לי בקצרה על מה שאתה צריך (אופציונלי)"
                       />
-                      {errors.message && (
-                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                          <AlertCircle size={14} />
-                          {errors.message}
-                        </p>
-                      )}
                     </div>
 
                     {/* Submit Button */}

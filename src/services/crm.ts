@@ -37,7 +37,7 @@ export const HomepageContactFormSchema = z.object({
   email: z.string().email('אימייל לא תקין').optional(),
   phone: z.string().min(1, 'טלפון חובה'),
   subject: z.string().min(1, 'בחר נושא'),
-  message: z.string().min(1, 'הודעה חובה')
+  message: z.string().optional()
 })
 
 export type HomepageContactForm = z.infer<typeof HomepageContactFormSchema>
@@ -126,8 +126,8 @@ export function mapHomepageContactToCRM(formData: HomepageContactForm): CRMLead 
   return {
     name: formData.name,
     phone: formData.phone,
-    notes: formData.message,
     source: 'WEBSITE',
+    ...(formData.message?.trim() && { notes: formData.message.trim() }),
     ...(formData.email?.trim() && { email: formData.email.trim() }),
     ...(formData.subject?.trim() && { projectType: formData.subject.trim() }),
   }
