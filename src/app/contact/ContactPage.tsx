@@ -86,6 +86,9 @@ export default function ContactPage() {
     setErrors({})
     setErrorMessage('')
 
+    // Track lead attempt after validation passes (before API call)
+    trackGenerateLead('form', 'contact_page')
+
     try {
       // Convert FormData to HomepageContactForm format
       const contactForm: HomepageContactForm = {
@@ -101,8 +104,6 @@ export default function ContactPage() {
 
       if (result.success) {
         setSubmitStatus('success')
-
-        trackGenerateLead('form', 'contact_page')
 
         // Reset form after success
         setTimeout(() => {
