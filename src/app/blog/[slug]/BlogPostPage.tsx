@@ -5,7 +5,7 @@ import { BlogPost } from '@/lib/blog'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Clock, User, Tag, ArrowLeft } from 'lucide-react'
+import { Calendar, Clock, User, Tag, ArrowLeft, RefreshCw } from 'lucide-react'
 import { BlogBreadcrumbs } from '@/components/common/Breadcrumbs'
 import { ShareButtons, ShareButtonsMobile, SidebarCTA, InlineServiceCTA, AuthorBio } from '@/components/blog'
 import { bouncyEasing } from '@/constants/animations'
@@ -112,6 +112,16 @@ export default function BlogPostPage({ post, relatedPosts }: BlogPostPageProps) 
                   day: 'numeric'
                 })}
               </span>
+              {post.lastUpdated && (
+                <span className="flex items-center gap-1.5 text-brand-blue font-medium">
+                  <RefreshCw size={14} />
+                  עודכן: {new Date(post.lastUpdated).toLocaleDateString('he-IL', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                  })}
+                </span>
+              )}
               <span className="flex items-center gap-1.5">
                 <Clock size={14} />
                 {post.readTime}

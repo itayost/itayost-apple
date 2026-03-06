@@ -59,6 +59,21 @@ export default async function Page({ params }: PageProps) {
 
   const relatedPosts = await getRelatedPosts(post, 3)
 
+  // HowTo schema for step-by-step guide posts
+  const howToSchema = post.schemaType === 'howto' ? {
+    '@type': 'HowTo',
+    name: post.title,
+    description: post.description || post.excerpt,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+      url: 'https://www.itayost.com/about'
+    },
+    datePublished: post.date,
+    dateModified: post.lastUpdated || post.date,
+    inLanguage: 'he-IL',
+  } : null
+
   // Structured data for blog post
   const structuredData = {
     '@context': 'https://schema.org',
@@ -71,7 +86,7 @@ export default async function Page({ params }: PageProps) {
         description: post.description || post.excerpt,
         image: post.image || 'https://www.itayost.com/og-image.png',
         datePublished: post.date,
-        dateModified: post.date,
+        dateModified: post.lastUpdated || post.date,
         author: {
           '@type': 'Person',
           name: post.author,
@@ -105,9 +120,11 @@ export default async function Page({ params }: PageProps) {
           url: post.image || 'https://www.itayost.com/og-image.png'
         },
         datePublished: post.date,
-        dateModified: post.date,
+        dateModified: post.lastUpdated || post.date,
         inLanguage: 'he-IL',
-      }
+      },
+      // HowTo schema (conditionally included for guide posts)
+      ...(howToSchema ? [howToSchema] : [])
     ]
   }
 

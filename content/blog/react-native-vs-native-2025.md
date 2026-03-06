@@ -5,6 +5,7 @@ metaDescription: "השוואה מקיפה בין React Native לפיתוח Nativ
 slug: "react-native-vs-native-2025"
 author: "איתי אוסטרייך"
 date: "2025-01-01"
+lastUpdated: "2026-03-06"
 category: "פיתוח אפליקציות"
 tags: ["React Native", "פיתוח Native", "Swift", "Kotlin", "Cross-platform", "פיתוח אפליקציות"]
 featured: true

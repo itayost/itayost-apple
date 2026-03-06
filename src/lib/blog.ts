@@ -17,6 +17,7 @@ export interface BlogPost {
   title: string
   description: string
   date: string
+  lastUpdated?: string
   author: string
   category: string
   tags: string[]
@@ -25,6 +26,7 @@ export interface BlogPost {
   content: string
   excerpt: string
   featured?: boolean
+  schemaType?: 'howto'
 }
 
 export function getAllPostSlugs(): string[] {
@@ -92,6 +94,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       title: data.title || '',
       description: data.description || '',
       date: data.date || new Date().toISOString().split('T')[0],
+      lastUpdated: data.lastUpdated || undefined,
       author: data.author || 'איתי אוסטרייך',
       category: data.category || 'כללי',
       tags: data.tags || [],
@@ -99,7 +102,8 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       image: data.image || null,
       content: contentHtml,
       excerpt: data.excerpt || excerpt,
-      featured: data.featured || false
+      featured: data.featured || false,
+      schemaType: data.schemaType === 'howto' ? 'howto' : undefined
     }
   } catch (error) {
     // Error reading post - return null
