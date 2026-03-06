@@ -87,7 +87,7 @@ export default function Services() {
                 }}
               >
                 <Link href={`/services/${service.slug}`}>
-                  <div className="bg-white rounded-3xl p-8 h-full shadow-lg hover:shadow-2xl transition-shadow">
+                  <div className="bg-white rounded-3xl p-8 h-full shadow-lg hover:shadow-2xl transition-shadow flex flex-col">
                     {/* Icon */}
                     <motion.div
                       className={`inline-flex items-center justify-center w-16 h-16 ${colors.bg} rounded-2xl mb-6`}
@@ -111,7 +111,7 @@ export default function Services() {
                     </p>
 
                     {/* Features - Show first 4 */}
-                    <ul className="space-y-3 mb-6">
+                    <ul className="space-y-3 mb-6 flex-1">
                       {service.features.slice(0, 4).map((feature, idx) => (
                         <motion.li
                           key={idx}
@@ -133,7 +133,7 @@ export default function Services() {
 
                     {/* CTA */}
                     <motion.div
-                      className={`inline-flex items-center gap-2 font-bold ${colors.text}`}
+                      className={`inline-flex items-center gap-2 font-bold ${colors.text} mt-auto`}
                       whileHover={{
                         x: -5,
                         transition: { duration: 0.3, ease: bouncyEasing }

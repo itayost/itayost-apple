@@ -151,7 +151,7 @@ export default function ServicesPage() {
                     y: -12,
                     transition: { duration: 0.3, ease: bouncyEasing }
                   }}
-                  className="bg-white rounded-3xl p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-shadow"
+                  className="bg-white rounded-3xl p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-shadow h-full flex flex-col"
                 >
                   <div className="flex items-start gap-6 mb-6">
                     <motion.div
@@ -205,7 +205,7 @@ export default function ServicesPage() {
                   </div>
 
                   {service.technologies && service.technologies.length > 0 && (
-                    <div className="mb-6">
+                    <div className="mb-6 flex-1">
                       <h4 className="font-bold text-brand-navy mb-4 text-lg">
                         טכנולוגיות:
                       </h4>
@@ -222,7 +222,7 @@ export default function ServicesPage() {
                     </div>
                   )}
 
-                  <div className="flex items-center justify-between pt-6 border-t border-brand-gray-200">
+                  <div className="flex items-center justify-between pt-6 border-t border-brand-gray-200 mt-auto">
                     <Link
                       href={`/services/${service.slug}`}
                       className="text-brand-blue font-bold hover:underline"
