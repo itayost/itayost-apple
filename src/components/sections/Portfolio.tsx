@@ -89,6 +89,15 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
           ))}
         </div>
 
+        {/* Result Highlight */}
+        {item.results.length > 0 && item.results[0] && (
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 rounded-full mb-6">
+            <span className="text-sm font-bold text-brand-green">
+              {item.results[0].label}: {item.results[0].value}
+            </span>
+          </div>
+        )}
+
         {/* CTA */}
         {item.link ? (
           <a
@@ -237,10 +246,10 @@ export default function Portfolio() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
         >
           {[
-            { value: '500+', label: 'שעות נחסכו לעסקים', color: 'bg-brand-blue' },
-            { value: '100%', label: 'לקוחות מרוצים', color: 'bg-brand-orange' },
-            { value: '30%', label: 'גידול ממוצע בהכנסות', color: 'bg-brand-green' },
-            { value: '24/7', label: 'זמינות ותמיכה', color: 'bg-yellow-400' }
+            { value: '50+', label: 'לקוחות מרוצים', color: 'bg-brand-blue' },
+            { value: '100+', label: 'פרויקטים', color: 'bg-brand-orange' },
+            { value: '15', label: 'שעות נחסכות בשבוע', color: 'bg-brand-green' },
+            { value: '30%', label: 'הגדלת הכנסות', color: 'bg-yellow-400' }
           ].map((stat, index) => (
             <motion.div
               key={index}

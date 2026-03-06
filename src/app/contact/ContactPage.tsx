@@ -281,23 +281,6 @@ export default function ContactPage() {
                       )}
                     </div>
 
-                    {/* Email Field */}
-                    <div>
-                      <label htmlFor="contact-email" className="block text-base font-semibold text-brand-navy mb-2">
-                        אימייל
-                      </label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        autoComplete="email"
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg"
-                        placeholder="example@email.com"
-                      />
-                    </div>
-
                     {/* Phone Field */}
                     <div>
                       <label htmlFor="contact-phone" className="block text-base font-semibold text-brand-navy mb-2">
@@ -448,8 +431,7 @@ export default function ContactPage() {
                     מענה מהיר
                   </h3>
                   <p className="text-brand-gray-700 mb-4 leading-relaxed">
-                    אני משתדל לענות על כל פנייה תוך 24 שעות. במקרים דחופים,
-                    מוזמנים לפנות ב-WhatsApp או בטלפון.
+                    חוזר אליכם תוך שעה בימי עבודה. עובד על 2-3 פרויקטים במקביל — הזמינות הקרובה: אפריל 2026.
                   </p>
                   <motion.a
                     href="https://wa.me/972544994417"

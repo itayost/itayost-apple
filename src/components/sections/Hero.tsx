@@ -94,7 +94,7 @@ export default function Hero() {
         <p className="text-xl sm:text-2xl md:text-3xl text-brand-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
           {content.hero.subtitle}
           <br />
-          <span className="text-brand-blue font-bold">אין יותר כאבי ראש טכנולוגיים</span>
+          <span className="text-brand-blue font-bold">תפסיקו לעבוד קשה — תתחילו לעבוד חכם</span>
         </p>
 
         {/* CTA Buttons */}
@@ -141,6 +141,18 @@ export default function Hero() {
               <span>{content.hero.cta.secondary}</span>
             </Link>
           </motion.div>
+        </motion.div>
+
+        {/* Availability Signal */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5, ease: bouncyEasing }}
+          className="text-center"
+        >
+          <p className="text-brand-gray-500 text-base">
+            עובד על 2-3 פרויקטים במקביל | חוזר אליכם תוך שעה
+          </p>
         </motion.div>
       </div>
     </section>
