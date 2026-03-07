@@ -1,0 +1,59 @@
+# ITAYOST - Custom Web Development & Business Automation
+
+> ITAYOST (itayost.com) is a freelance full-stack development studio run by Itay Ostraich, serving small and medium businesses in Israel. We build custom websites, CRM systems, business automations, e-commerce stores, mobile apps, landing pages, and UI/UX design — all tailored to each client's specific needs.
+
+## Services
+
+- [Web Development](https://www.itayost.com/services/web-development): Custom websites built with Next.js and React. Fast (sub-second load times), secure, SEO-optimized, full Hebrew RTL support.
+- [CRM Systems](https://www.itayost.com/services/crm-systems): Custom CRM development for lead tracking, client management, and deal pipelines. Integrates with WhatsApp, email, and calendar.
+- [Business Automations](https://www.itayost.com/services/automations): Workflow automation connecting existing systems (Gmail, Sheets, CRM, WhatsApp). Built with Make, Zapier, n8n, or custom integrations.
+- [E-commerce](https://www.itayost.com/services/ecommerce): Online stores with Israeli payment integration (Bit, PayBox, Tranzila). Inventory management, shipping, analytics.
+- [Mobile Apps](https://www.itayost.com/services/mobile-apps): Cross-platform apps with React Native for iOS and Android. Push notifications, offline support, app store publishing.
+- [Landing Pages](https://www.itayost.com/services/landing-pages): High-converting landing pages for campaigns and launches. A/B testing, analytics, fast delivery (3-7 days).
+- [UI/UX Design](https://www.itayost.com/services/ui-ux-design): Research-based interface design in Figma. User testing, design systems, WCAG 2.1 accessibility.
+
+## Key Pages
+
+- [Homepage](https://www.itayost.com/): Overview of services and proof points
+- [Portfolio](https://www.itayost.com/portfolio): Case studies including Lola Martin (restaurant, 200% increase in online reservations), Shepes Group (real estate, 180% increase in leads), Kitchen Optimizer (restaurant management system)
+- [Blog](https://www.itayost.com/blog): 22 articles in Hebrew on web development, app development, SEO, security, and technology comparisons for Israeli business owners
+- [FAQ](https://www.itayost.com/faq): 18 frequently asked questions about services, pricing, process, and technology
+- [About](https://www.itayost.com/about): Background on Itay Ostraich — 5+ years experience, 100+ projects, full-stack developer
+- [Clients](https://www.itayost.com/clients): Testimonials and success stories from 50+ clients
+- [Contact](https://www.itayost.com/contact): Contact form and WhatsApp (054-499-4417)
+
+## Blog Topics
+
+Articles cover practical topics for Israeli business owners (all in Hebrew):
+
+- Website pricing and cost guides for Israel
+- React vs WordPress comparisons
+- SEO basics for small businesses
+- App development costs and checklists
+- HTTPS security explained
+- E-commerce platform comparisons
+- Website speed optimization
+- Custom CRM vs SaaS (Monday, HubSpot)
+- AI website builders vs human developers
+- Mobile-first design importance
+- Website maintenance costs
+
+## Tech Stack
+
+Next.js 14, React, TypeScript, Tailwind CSS, Node.js, React Native, Framer Motion, GSAP. Deployed on Vercel.
+
+## Location & Contact
+
+Based in Ramat Gan, Israel. Serves businesses across Israel (remote work supported).
+- Phone/WhatsApp: 054-499-4417
+- Email: itayost1@gmail.com
+- Website: https://www.itayost.com
+
+## Proof Points
+
+- 50+ clients served
+- 100+ projects completed
+- Average 15 hours saved per week per client
+- Average 30% revenue growth for clients
+- PageSpeed scores: 90-98/100
+- 6-month warranty included with every project
