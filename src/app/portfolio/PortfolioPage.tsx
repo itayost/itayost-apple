@@ -316,7 +316,7 @@ export default function PortfolioPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { value: '50+', label: 'פרויקטים הושלמו', color: 'bg-brand-blue' },
+              { value: 'מעל 50', label: 'פרויקטים הושלמו', color: 'bg-brand-blue' },
               { value: '100%', label: 'לקוחות מרוצים', color: 'bg-brand-orange' },
               { value: '200%', label: 'ROI ממוצע', color: 'bg-brand-green' },
               { value: '5★', label: 'דירוג ממוצע', color: 'bg-yellow-400' }

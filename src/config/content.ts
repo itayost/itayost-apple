@@ -23,7 +23,7 @@ export const content = {
       line2: 'בלי הבלגן',
       line3: '',
     },
-    subtitle: 'אני איתי — בונה לבעלי עסקים מערכות, אוטומציות ואתרים שחוסכים 15+ שעות בשבוע ומביאים יותר לקוחות.',
+    subtitle: 'אני איתי — בונה לבעלי עסקים מערכות, אוטומציות ואתרים שחוסכים מעל 15 שעות בשבוע ומביאים יותר לקוחות.',
     cta: {
       primary: 'בואו נדבר — חוזר תוך שעה',
       secondary: 'צפו בתוצאות',
@@ -107,7 +107,7 @@ export const content = {
     },
     story: {
       title: 'קצת עליי',
-      paragraph1: 'אני איתי, מפתח עצמאי מרמת גן. ב-5 השנים האחרונות בניתי 100+ מערכות ואתרים ל-50+ עסקים — מסעדות, נדל"ן, חנויות, אקדמיות, ועוד.',
+      paragraph1: 'אני איתי, מפתח עצמאי מרמת גן. ב-5 השנים האחרונות בניתי מעל 100 מערכות ואתרים למעל 50 עסקים — מסעדות, נדל"ן, חנויות, אקדמיות, ועוד.',
       paragraph2: 'אני בן אדם אחד, לא סוכנות. אתם מדברים ישירות עם מי שבונה את המערכת שלכם — בוואטסאפ, לא דרך מוקד שירות. בלי ז\'רגון, בלי הפתעות בחשבון, ובלי להיעלם אחרי ההשקה.',
     },
     // Hidden stats for now - will be displayed when ready
@@ -161,7 +161,7 @@ export const content = {
         {
           icon: '💎',
           title: 'תוצאות, לא סיסמאות',
-          description: '95+ ב-PageSpeed, 15+ שעות נחסכות בשבוע. מספרים, לא מילים.',
+          description: 'מעל 95 ב-PageSpeed, מעל 15 שעות נחסכות בשבוע. מספרים, לא מילים.',
         },
         {
           icon: '⚡',
@@ -271,8 +271,8 @@ export const content = {
 
   // Shared statistics used across Services, Portfolio, and About pages
   stats: {
-    clients: { value: '50+', label: 'לקוחות מרוצים' },
-    projects: { value: '100+', label: 'פרויקטים' },
+    clients: { value: 'מעל 50', label: 'לקוחות מרוצים' },
+    projects: { value: 'מעל 100', label: 'פרויקטים' },
     hoursSaved: { value: '15', label: 'שעות נחסכות בשבוע' },
     revenueGrowth: { value: '30%', label: 'הגדלת הכנסות' },
   },

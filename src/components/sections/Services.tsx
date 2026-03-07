@@ -167,7 +167,7 @@ export default function Services() {
                 {[
                   {
                     title: 'מדברים עם מי שבונה',
-                    description: 'לא פרויקט-מנג\'ר ולא מוקד — ישירות עם המפתח, בוואטסאפ'
+                    description: 'לא פרויקט מנג\'ר ולא מוקד — ישירות עם המפתח, בוואטסאפ'
                   },
                   {
                     title: 'בנוי בדיוק לכם',
@@ -209,8 +209,8 @@ export default function Services() {
             {/* Stats Cards */}
             <div className="grid grid-cols-2 gap-6">
               {[
-                { number: '50+', label: 'לקוחות מרוצים', color: 'bg-brand-blue' },
-                { number: '100+', label: 'פרויקטים', color: 'bg-brand-orange' },
+                { number: 'מעל 50', label: 'לקוחות מרוצים', color: 'bg-brand-blue' },
+                { number: 'מעל 100', label: 'פרויקטים', color: 'bg-brand-orange' },
                 { number: '15', label: 'שעות נחסכות בשבוע', color: 'bg-brand-green' },
                 { number: '30%', label: 'הגדלת הכנסות', color: 'bg-yellow-400' },
               ].map((stat, index) => (

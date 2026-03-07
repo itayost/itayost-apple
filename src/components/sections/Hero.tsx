@@ -94,7 +94,7 @@ export default function Hero() {
         <p className="text-xl sm:text-2xl md:text-3xl text-brand-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
           {content.hero.subtitle}
           <br />
-          <span className="text-brand-blue font-bold">50+ בעלי עסקים כבר עובדים חכם יותר</span>
+          <span className="text-brand-blue font-bold">מעל 50 בעלי עסקים כבר עובדים חכם יותר</span>
         </p>
 
         {/* CTA Buttons */}

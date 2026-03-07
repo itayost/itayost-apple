@@ -62,7 +62,7 @@ export default function AuthorBio({ author = 'איתי אוסטרייך' }: Auth
               transition={{ delay: 0.3, duration: 0.5, ease: bouncyEasing }}
               className="text-brand-gray-700 leading-relaxed mb-6"
             >
-              מפתח Full-Stack עם למעלה מ-5 שנות ניסיון ו-100+ פרויקטים מוצלחים.
+              מפתח Full-Stack עם למעלה מ-5 שנות ניסיון ומעל 100 פרויקטים מוצלחים.
               מתמחה בבניית אתרים, מערכות CRM, אוטומציות ואפליקציות מובייל לעסקים קטנים ובינוניים בישראל.
               עובד עם Next.js, React, TypeScript ו-React Native.
             </motion.p>

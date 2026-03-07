@@ -46,7 +46,7 @@ const values = [
   {
     icon: Target,
     title: 'תוצאות, לא סיסמאות',
-    description: '95+ ב-PageSpeed, 15+ שעות נחסכות בשבוע. מספרים, לא מילים.',
+    description: 'מעל 95 ב-PageSpeed, מעל 15 שעות נחסכות בשבוע. מספרים, לא מילים.',
     color: 'bg-brand-orange'
   },
   {
@@ -64,7 +64,7 @@ const values = [
 ]
 
 const achievements = [
-  { number: '50+', label: 'עסקים ששדרגו', color: 'bg-brand-blue' },
+  { number: 'מעל 50', label: 'עסקים ששדרגו', color: 'bg-brand-blue' },
   { number: '100%', label: 'שביעות רצון', color: 'bg-brand-orange' },
   { number: '15', label: 'שעות נחסכות בממוצע', color: 'bg-brand-green' },
   { number: '30%', label: 'גידול בהכנסות', color: 'bg-yellow-400' }
@@ -156,8 +156,8 @@ export default function AboutPage() {
               </h2>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                <strong>אני איתי, מפתח עצמאי מרמת גן.</strong> ב-5 השנים האחרונות בניתי 100+
-                מערכות ואתרים ל-50+ עסקים — מסעדות, נדל&quot;ן, חנויות, אקדמיות, ועוד.
+                <strong>אני איתי, מפתח עצמאי מרמת גן.</strong> ב-5 השנים האחרונות בניתי מעל 100
+                מערכות ואתרים למעל 50 עסקים — מסעדות, נדל&quot;ן, חנויות, אקדמיות, ועוד.
               </p>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">

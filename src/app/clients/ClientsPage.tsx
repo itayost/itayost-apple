@@ -87,10 +87,10 @@ const testimonials = [
 
 // Stats data
 const stats = [
-  { number: '50+', label: content.clients.stats.clients },
-  { number: '100+', label: content.clients.stats.projects },
+  { number: 'מעל 50', label: content.clients.stats.clients },
+  { number: 'מעל 100', label: content.clients.stats.projects },
   { number: '100%', label: content.clients.stats.satisfaction },
-  { number: '5+', label: content.clients.stats.years }
+  { number: 'מעל 5', label: content.clients.stats.years }
 ]
 
 // Industry icons mapping

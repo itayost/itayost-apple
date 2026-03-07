@@ -246,8 +246,8 @@ export default function Portfolio() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
         >
           {[
-            { value: '50+', label: 'לקוחות מרוצים', color: 'bg-brand-blue' },
-            { value: '100+', label: 'פרויקטים', color: 'bg-brand-orange' },
+            { value: 'מעל 50', label: 'לקוחות מרוצים', color: 'bg-brand-blue' },
+            { value: 'מעל 100', label: 'פרויקטים', color: 'bg-brand-orange' },
             { value: '15', label: 'שעות נחסכות בשבוע', color: 'bg-brand-green' },
             { value: '30%', label: 'הגדלת הכנסות', color: 'bg-yellow-400' }
           ].map((stat, index) => (
