@@ -5,6 +5,7 @@ import {
   type CRMLead,
   type CRMResponse
 } from '@/services/crm'
+import { getPostHogServer } from '@/lib/posthog-server'
 
 // CRM API endpoint - keep this server-side only
 const CRM_API_URL = process.env.CRM_API_URL || 'https://crm-system-alpha-eight.vercel.app/api/public/leads'
@@ -74,6 +75,20 @@ export async function POST(request: NextRequest) {
 
     // Submit to CRM
     const result = await submitLeadToCRM(validatedLead)
+
+    // Track lead submission in PostHog (server-side)
+    const posthog = getPostHogServer()
+    if (posthog) {
+      posthog.capture({
+        distinctId: ip,
+        event: 'lead_submitted',
+        properties: {
+          success: result.success,
+          projectType: validatedLead.projectType,
+          source: 'contact_form',
+        },
+      })
+    }
 
     if (!result.success) {
       return NextResponse.json(

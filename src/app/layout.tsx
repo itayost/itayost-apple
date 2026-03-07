@@ -171,6 +171,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://eu.i.posthog.com" />
+        <link rel="dns-prefetch" href="https://eu.i.posthog.com" />
 
         {/* Theme Color */}
         <meta name="theme-color" content="#0071E3" />
