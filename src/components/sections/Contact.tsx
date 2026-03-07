@@ -33,11 +33,11 @@ export default function Contact() {
             </motion.div>
 
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-              מוכנים להתחיל?
+              יש לכם שאלה? רעיון? אתגר?
             </h2>
 
             <p className="text-xl sm:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              ספרו לנו על הפרויקט שלכם ובואו נראה איך אנחנו יכולים לעזור
+              אני אשמח לשמוע. שיחה קצרה בלי התחייבות — ואני אגיד לכם אם ואיך אפשר לעזור.
             </p>
           </motion.div>
 
@@ -64,7 +64,7 @@ export default function Contact() {
                 className="inline-flex items-center gap-2 px-12 py-6 bg-brand-orange text-white rounded-full font-bold text-xl shadow-2xl hover:shadow-3xl transition-shadow"
                 onClick={() => trackCtaClick('שלחו לנו הודעה', 'contact_section', '/contact')}
               >
-                <span>שלחו לנו הודעה</span>
+                <span>שלחו הודעה — אחזור תוך שעה</span>
                 <ArrowLeft className="w-6 h-6" />
               </Link>
             </motion.div>

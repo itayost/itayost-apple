@@ -39,26 +39,26 @@ const technologies = [
 const values = [
   {
     icon: Heart,
-    title: 'מחויבות לתוצאות',
-    description: 'לא נרגע עד שהעסק שלך חוסך זמן ומרוויח יותר',
+    title: 'תמיד זמין',
+    description: 'עונה בוואטסאפ — בדרך כלל תוך שעה. נסו את זה עם סוכנות.',
     color: 'bg-red-500'
   },
   {
     icon: Target,
-    title: 'פתרונות מדויקים',
-    description: 'בדיוק מה שהעסק צריך, לא יותר ולא פחות',
+    title: 'תוצאות, לא סיסמאות',
+    description: '95+ ב-PageSpeed, 15+ שעות נחסכות בשבוע. מספרים, לא מילים.',
     color: 'bg-brand-orange'
   },
   {
     icon: Users,
-    title: 'שפה פשוטה',
-    description: 'בלי ז\'רגון טכני - מדברים עסקים',
+    title: 'עומד במילה',
+    description: 'לוח זמנים ומחיר סגורים מראש. אם יש שינוי — תדעו לפני.',
     color: 'bg-brand-blue'
   },
   {
     icon: Rocket,
-    title: 'תמיכה מלאה',
-    description: 'לא נעלם אחרי המסירה - איתך לכל השאלות',
+    title: 'בלי הפתעות בחשבון',
+    description: 'מחיר שמתאים לעסק שלכם, ללא תוספות מפתיעות.',
     color: 'bg-brand-green'
   }
 ]
@@ -122,7 +122,7 @@ export default function AboutPage() {
             >
               איתי אוסטרייך
               <span className="block mt-2 text-brand-blue">
-                Full-Stack Developer
+                בונה מערכות ואתרים לעסקים
               </span>
             </motion.h1>
 
@@ -132,9 +132,9 @@ export default function AboutPage() {
               transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
               className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto"
             >
-              מפתח אתרים ואפליקציות מותאמות אישית לעסקים ברמת גן והמרכז
+              עוזר לבעלי עסקים להפסיק לבזבז שעות על ניהול ידני
               <br />
-              מתמחה בפתרונות שחוסכים זמן ומגדילים רווחים
+              ולהתחיל להביא יותר לקוחות
             </motion.p>
           </div>
         </div>
@@ -156,26 +156,25 @@ export default function AboutPage() {
               </h2>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                <strong>אני לא עוד מפתח אתרים.</strong> אני שותף עסקי שמבין שבעסקים קטנים ובינוניים,
-                כל שעה שנחסכת היא כסף, וכל תהליך שמשתפר הוא הזדמנות לגדול.
+                <strong>אני איתי, מפתח עצמאי מרמת גן.</strong> ב-5 השנים האחרונות בניתי 100+
+                מערכות ואתרים ל-50+ עסקים — מסעדות, נדל&quot;ן, חנויות, אקדמיות, ועוד.
               </p>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                <strong>המומחיות שלי?</strong> לקחת תהליכים ידניים ומסורבלים ולהפוך אותם לאוטומטיים.
-                לבנות מערכות שעובדות בשבילך 24/7 - גם כשאתה ישן. ליצור אתרים ואפליקציות שממירים
-                מבקרים ללקוחות משלמים.
+                <strong>אני בן אדם אחד, לא סוכנות.</strong> אתם מדברים ישירות עם מי שבונה את
+                המערכת שלכם — בוואטסאפ, לא דרך מוקד שירות. יותר מהיר, יותר אישי, יותר הגיוני.
               </p>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                <strong>איך זה עובד?</strong> אני לא פשוט כותב קוד. אני מקשיב, מבין את הכאבים העסקיים שלך,
-                ובונה פתרון מדויק שעונה על הצורך. בלי ז&apos;רגון טכני מיותר, בלי פיצ&apos;רים מיותרים -
-                רק מה שבאמת עוזר לעסק שלך לצמוח.
+                <strong>אני מאמין שטכנולוגיה צריכה לעבוד בשבילכם, לא להפך.</strong> בלי ז&apos;רגון,
+                בלי הפתעות בחשבון, ובלי להיעלם אחרי ההשקה. רק פתרונות שעובדים ושירות אישי
+                של מישהו שמכיר את העסק שלכם.
               </p>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-8">
-                📍 <strong>ממוקם ברמת גן</strong> | משרת עסקים בכל המרכז והארץ
+                📍 <strong>ממוקם ברמת גן</strong> | עובד עם עסקים בכל הארץ
                 <br />
-                📞 זמין בטלפון, WhatsApp, וידאו קונפרנס ופגישות אישיות
+                📞 זמין בוואטסאפ, טלפון, וידאו ופגישות אישיות
               </p>
 
               <div className="flex flex-wrap gap-4">

@@ -37,38 +37,38 @@ const iconMap: Record<string, LucideIcon> = {
 const process = [
   {
     icon: HeartHandshake,
-    title: 'פגישת היכרות',
-    description: 'הבנת הצרכים והיעדים העסקיים',
+    title: 'שיחה קצרה',
+    description: 'מספרים לי מה צריך — אני אומר אם ואיך אפשר לעזור',
     color: 'bg-red-500'
   },
   {
     icon: Settings,
-    title: 'תכנון ועיצוב',
-    description: 'יצירת פרוטוטייפ ועיצוב הממשק',
+    title: 'תוכנית ברורה',
+    description: 'תדעו בדיוק מה נבנה, כמה זה עולה, ומתי זה מוכן',
     color: 'bg-brand-blue'
   },
   {
     icon: Code2,
-    title: 'פיתוח',
-    description: 'כתיבת הקוד ובניית המוצר',
+    title: 'בנייה עם עדכונים',
+    description: 'תראו התקדמות כל שבוע — לא הפתעות',
     color: 'bg-brand-orange'
   },
   {
     icon: Shield,
     title: 'בדיקות',
-    description: 'בדיקות איכות ותיקון באגים',
+    description: 'בדיקות על כל מכשיר ודפדפן לפני ההשקה',
     color: 'bg-brand-green'
   },
   {
     icon: Zap,
     title: 'השקה',
-    description: 'העלאה לאוויר וליווי ראשוני',
+    description: 'עולים לאוויר ביחד עם הדרכה מלאה',
     color: 'bg-yellow-400'
   },
   {
     icon: TrendingUp,
-    title: 'תמיכה ושדרוג',
-    description: 'תחזוקה שוטפת ושיפורים',
+    title: 'תמיכה + אחריות',
+    description: '6 חודשי אחריות כלולים, ותמיכה שוטפת',
     color: 'bg-brand-navy'
   }
 ]
@@ -110,9 +110,9 @@ export default function ServicesPage() {
               transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
               className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
             >
-              מערכות, אוטומציות
+              כל עסק צריך
               <span className="block mt-2 text-brand-blue">
-                ואתרים לעסקים
+                משהו אחר
               </span>
             </motion.h1>
 
@@ -122,7 +122,7 @@ export default function ServicesPage() {
               transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
               className="text-xl sm:text-2xl text-brand-gray-700"
             >
-              מהרעיון הראשוני ועד להשקה המוצלחת - אני מספק את כל השירותים הדרושים להצלחה הדיגיטלית שלך
+              אולי אתם צריכים אתר שמביא לקוחות. אולי מערכת שעושה סדר. אולי אוטומציה שחוסכת שעות. בואו נבין יחד.
             </motion.p>
           </div>
         </div>

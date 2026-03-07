@@ -51,16 +51,16 @@ export default function Services() {
           >
             <Sparkles className="w-5 h-5 text-brand-blue" />
             <span className="text-base font-bold text-brand-blue">
-              איך אנחנו עוזרים
+              איך אני עוזר
             </span>
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-6">
-            מה אנחנו עושים?
+            מה צריך העסק שלכם?
           </h2>
 
           <p className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto">
-            מערכות, אוטומציות ואתרים שחוסכים לכם זמן ומביאים יותר לקוחות
+            כל עסק שונה. אני מתאים את הפתרון בדיוק למה שאתם צריכים — לא תבנית, לא מוצר מדף.
           </p>
         </motion.div>
 
@@ -166,16 +166,16 @@ export default function Services() {
               <div className="space-y-6">
                 {[
                   {
-                    title: 'שירות אישי',
-                    description: 'לא חברה ענקית - אתם מדברים ישירות איתי'
+                    title: 'מדברים עם מי שבונה',
+                    description: 'לא פרויקט-מנג\'ר ולא מוקד — ישירות עם המפתח, בוואטסאפ'
                   },
                   {
-                    title: 'פתרונות מותאמים',
-                    description: 'לא מוצר מדף - בונים בדיוק מה שאתם צריכים'
+                    title: 'בנוי בדיוק לכם',
+                    description: 'לא תבנית של Wix — מערכת שמותאמת לאיך שהעסק שלכם עובד'
                   },
                   {
-                    title: 'תמיכה מתמשכת',
-                    description: 'גם אחרי ההשקה - אנחנו כאן בשבילכם'
+                    title: 'לא נעלם אחרי ההשקה',
+                    description: '6 חודשי אחריות ותמיכה שוטפת — אני כאן לטווח ארוך'
                   },
                 ].map((item, index) => (
                   <motion.div

@@ -161,7 +161,7 @@ export default function ContactPage() {
               >
                 <Sparkles className="w-5 h-5 text-brand-green" />
                 <span className="text-base font-bold text-brand-green">
-                  בואו נדבר על העסק שלך
+                  בואו נדבר
                 </span>
               </motion.div>
             </motion.div>
@@ -172,9 +172,9 @@ export default function ContactPage() {
               transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
               className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
             >
-              יש לך פרויקט בראש?
+              בואו נדבר
               <span className="block mt-2 text-brand-green">
-                בואו נהפוך אותו למציאות
+                על העסק שלכם
               </span>
             </motion.h1>
 
@@ -184,8 +184,7 @@ export default function ContactPage() {
               transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
               className="text-xl sm:text-2xl text-brand-gray-700 max-w-2xl mx-auto"
             >
-              יש לך שאלה? רעיון? בעיה שצריך לפתור?
-              אני כאן כדי לעזור.
+              ספרו לי על העסק ומה הייתם רוצים לשפר — אני אחזור אליכם תוך שעה עם רעיונות.
             </motion.p>
           </div>
         </div>
@@ -253,7 +252,7 @@ export default function ContactPage() {
                   className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl"
                 >
                   <h2 className="text-3xl sm:text-4xl font-bold text-brand-navy mb-8">
-                    ספר לי איך אני יכול לעזור
+                    ספרו לי איך אני יכול לעזור
                   </h2>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
