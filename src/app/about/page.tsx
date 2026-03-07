@@ -3,6 +3,7 @@ import AboutPage from './AboutPage'
 import { seoConfig } from '@/config/seo'
 import { JsonLd } from '@/components/common/JsonLd'
 
+
 export const metadata: Metadata = {
   title: seoConfig.pages.about.title,
   description: seoConfig.pages.about.description,
@@ -23,6 +24,7 @@ export default function Page() {
     '@context': 'https://schema.org',
     '@graph': [
       seoConfig.structuredData.organization,
+      seoConfig.structuredData.author,
       seoConfig.structuredData.breadcrumbs('/about'),
       {
         '@type': 'AboutPage',
