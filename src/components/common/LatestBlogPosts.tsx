@@ -14,7 +14,7 @@ interface LatestBlogPostsProps {
 
 export default function LatestBlogPosts({
   posts,
-  title = 'מהבלוג שלנו',
+  title = 'מהבלוג שלי',
   description = 'מאמרים, טיפים ומדריכים בנושאי פיתוח אתרים',
   showAll = true
 }: LatestBlogPostsProps) {

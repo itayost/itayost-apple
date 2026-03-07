@@ -118,7 +118,7 @@ export const content = {
     },
     timeline: {
       title: 'המסע שלי',
-      subtitle: 'איך הכל התחיל ולאן אנחנו הולכים',
+      subtitle: 'איך הכל התחיל ולאן אני הולך',
     },
     expertise: {
       title: 'המומחיות שלי',
@@ -306,9 +306,9 @@ export const content = {
   // Blog Page
   blog: {
     title: 'הבלוג',
-    subtitle: 'שלנו',
+    subtitle: 'שלי',
     description: 'מאמרים, טיפים וטריקים בנושאי פיתוח תוכנה, עיצוב וטכנולוגיות חדשות',
-    sectionLabel: 'המאמרים שלנו',
+    sectionLabel: 'המאמרים שלי',
     readMore: 'קרא עוד',
     categories: {
       all: 'הכל',
@@ -320,7 +320,7 @@ export const content = {
     },
     comingSoon: {
       title: 'בקרוב...',
-      message: 'אנחנו עובדים על תוכן איכותי עבורכם. בינתיים, צרו איתנו קשר לכל שאלה או ייעוץ.',
+      message: 'אני עובד על תוכן איכותי עבורכם. בינתיים, צרו איתי קשר לכל שאלה או ייעוץ.',
       cta: 'צור קשר',
     },
   },
@@ -330,7 +330,7 @@ export const content = {
     title: 'מדריכים',
     subtitle: 'ותוכן לימודי',
     description: 'מדריכים מפורטים ומעשיים ללימוד פיתוח אתרים ואפליקציות',
-    sectionLabel: 'המדריכים שלנו',
+    sectionLabel: 'המדריכים שלי',
     levels: {
       beginner: 'מתחילים',
       intermediate: 'בינוני',
@@ -345,7 +345,7 @@ export const content = {
     },
     comingSoon: {
       title: 'מדריכים בפיתוח...',
-      message: 'אנחנו מכינים מדריכים מקיפים ומפורטים עבורכם. רוצים ללמוד נושא מסוים? ספרו לנו!',
+      message: 'אני מכין מדריכים מקיפים ומפורטים עבורכם. רוצים ללמוד נושא מסוים? ספרו לי!',
       cta: 'בקשו מדריך',
     },
   },
@@ -354,7 +354,7 @@ export const content = {
   faq: {
     title: 'שאלות',
     subtitle: 'נפוצות',
-    description: 'תשובות לשאלות הנפוצות ביותר על שירותי הפיתוח שלנו',
+    description: 'תשובות לשאלות הנפוצות ביותר על שירותי הפיתוח שלי',
     sectionLabel: 'שאלות תשובות',
     categories: {
       general: 'כללי',
@@ -400,8 +400,8 @@ export const content = {
   // Clients Page
   clients: {
     title: 'הלקוחות',
-    subtitle: 'שלנו',
-    description: 'סיפורי הצלחה, המלצות אמיתיות ולקוחות מרוצים שבחרו לעבוד איתנו',
+    subtitle: 'שלי',
+    description: 'סיפורי הצלחה, המלצות אמיתיות ולקוחות מרוצים שבחרו לעבוד איתי',
     sectionLabel: 'לקוחות מרוצים',
     stats: {
       clients: 'לקוחות מרוצים',
@@ -414,8 +414,8 @@ export const content = {
       subtitle: 'המלצות אמיתיות מלקוחות מרוצים',
     },
     industries: {
-      title: 'התעשיות שלנו',
-      subtitle: 'אנחנו עובדים עם עסקים ממגוון תחומים',
+      title: 'התעשיות שאני עובד איתן',
+      subtitle: 'עובד עם עסקים ממגוון תחומים',
       all: 'הכל',
       restaurants: 'מסעדות',
       realEstate: 'נדל"ן',
@@ -432,7 +432,7 @@ export const content = {
       viewMore: 'קרא עוד',
     },
     cta: {
-      title: 'רוצים להצטרף ללקוחות המרוצים שלנו?',
+      title: 'רוצים להצטרף ללקוחות המרוצים שלי?',
       subtitle: 'בואו ניצור משהו מדהים ביחד',
       button: 'התחילו פרויקט',
     },

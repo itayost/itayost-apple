@@ -92,7 +92,7 @@ export default async function HomePage() {
         {latestPosts.length > 0 && (
           <LatestBlogPosts
             posts={latestPosts}
-            title="מהבלוג שלנו"
+            title="מהבלוג שלי"
             description="מאמרים, טיפים ומדריכים בנושאי פיתוח אתרים וטכנולוגיה"
             showAll={true}
           />

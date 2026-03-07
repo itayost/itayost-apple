@@ -547,7 +547,7 @@ export const servicesData: Service[] = [
       {
         icon: '📱',
         title: 'מותאם למובייל',
-        description: '80% מהמודעות נפתחות במובייל. אנחנו מוכנים'
+        description: '80% מהמודעות נפתחות במובייל. הדף שלכם מוכן'
       },
       {
         icon: '🔗',

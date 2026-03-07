@@ -271,7 +271,7 @@ export default function GuidesPage() {
             צריכים עזרה בלימוד?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            אנחנו כאן לעזור! צרו קשר לייעוץ אישי והדרכה מותאמת
+            אני כאן לעזור! צרו קשר לייעוץ אישי והדרכה מותאמת
           </p>
           <Link
             href="/contact"

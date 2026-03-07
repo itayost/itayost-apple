@@ -33,7 +33,7 @@ export default function ServiceTechnologies({ technologies, color, accentColor }
         <div className="mx-auto max-w-4xl">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-brand-gray-900 sm:text-4xl">
-              טכנולוגיות שאנחנו משתמשים בהן
+              טכנולוגיות שאני עובד איתן
             </h2>
             <p className="text-lg text-brand-gray-700">
               כלים ופלטפורמות מודרניות ומוכחות

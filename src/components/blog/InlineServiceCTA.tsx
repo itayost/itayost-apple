@@ -56,7 +56,7 @@ interface InlineServiceCTAProps {
 
 export default function InlineServiceCTA({ category }: InlineServiceCTAProps) {
   const service = categoryServiceMap[category] || defaultService
-  const whatsappMessage = encodeURIComponent(`היי, קראתי את המאמר שלכם בבלוג ומעוניין לשמוע עוד על ${service.serviceName}`)
+  const whatsappMessage = encodeURIComponent(`היי, קראתי את המאמר שלך בבלוג ומעוניין לשמוע עוד על ${service.serviceName}`)
   const whatsappLink = `https://wa.me/972544994417?text=${whatsappMessage}`
 
   return (
@@ -82,7 +82,7 @@ export default function InlineServiceCTA({ category }: InlineServiceCTAProps) {
             className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/20 backdrop-blur-sm"
           >
             <Sparkles className="w-4 h-4 text-white" />
-            <span className="text-sm font-semibold text-white">אנחנו יכולים לעזור</span>
+            <span className="text-sm font-semibold text-white">אני יכול לעזור</span>
           </motion.div>
 
           {/* Heading */}
@@ -104,7 +104,7 @@ export default function InlineServiceCTA({ category }: InlineServiceCTAProps) {
             transition={{ delay: 0.3, duration: 0.5, ease: bouncyEasing }}
             className="text-lg text-white/90 mb-8 max-w-xl"
           >
-            אנחנו מתמחים ב{service.serviceName} ונשמח לעזור לכם להפוך את הרעיונות שלכם למציאות.
+            אני מתמחה ב{service.serviceName} ואשמח לעזור לכם להפוך את הרעיונות שלכם למציאות.
             צרו קשר לייעוץ ראשוני בחינם.
           </motion.p>
 

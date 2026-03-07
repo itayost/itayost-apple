@@ -99,7 +99,7 @@ export default function ServicesPage() {
               >
                 <Sparkles className="w-5 h-5 text-brand-blue" />
                 <span className="text-base font-bold text-brand-blue">
-                  השירותים שלנו
+                  השירותים שלי
                 </span>
               </motion.div>
             </motion.div>
@@ -267,7 +267,7 @@ export default function ServicesPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-4">
-              תהליך העבודה שלנו
+              איך עובדים יחד
             </h2>
             <p className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto">
               תהליך מסודר ושקוף מתחילת הפרויקט ועד להשקה
@@ -369,7 +369,7 @@ export default function ServicesPage() {
                   href="/portfolio"
                   className="inline-flex items-center justify-center px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
                 >
-                  צפה בעבודות שלנו
+                  צפו בעבודות שלי
                 </Link>
               </motion.div>
             </div>
