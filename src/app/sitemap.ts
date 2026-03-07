@@ -1,10 +1,12 @@
 import { MetadataRoute } from 'next'
-import { getAllPostSlugs } from '@/lib/blog'
+import { getAllPosts } from '@/lib/blog'
 import { portfolioData } from '@/data/portfolio'
+import { getAllServices } from '@/data/services'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.itayost.com'
   const currentDate = new Date()
+  const services = getAllServices()
 
   // Main static pages
   const pages: MetadataRoute.Sitemap = [
@@ -20,49 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
-    // Service landing pages
-    {
-      url: `${baseUrl}/services/web-development`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
+    // Service landing pages (with real lastUpdated dates)
+    ...services.map(service => ({
+      url: `${baseUrl}/services/${service.slug}`,
+      lastModified: service.lastUpdated ? new Date(service.lastUpdated) : currentDate,
+      changeFrequency: 'monthly' as const,
       priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/services/ecommerce`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/services/crm-systems`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/services/ui-ux-design`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/services/landing-pages`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/services/automations`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/services/mobile-apps`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
+    })),
     {
       url: `${baseUrl}/portfolio`,
       lastModified: currentDate,
@@ -119,11 +85,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Add dynamic blog posts
-  const blogSlugs = getAllPostSlugs()
-  const blogPages: MetadataRoute.Sitemap = blogSlugs.map(slug => ({
-    url: `${baseUrl}/blog/${slug}`,
-    lastModified: currentDate,
+  // Add dynamic blog posts with real dates
+  const posts = await getAllPosts()
+  const blogPages: MetadataRoute.Sitemap = posts.map(post => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.lastUpdated || post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))

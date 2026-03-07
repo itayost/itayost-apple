@@ -316,6 +316,13 @@ export const seoConfig = {
         },
         geoRadius: '50000'
       },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5.0',
+        reviewCount: '10',
+        bestRating: '5',
+        worstRating: '1',
+      },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'שירותי פיתוח תוכנה',
@@ -358,6 +365,35 @@ export const seoConfig = {
           }
         ]
       }
+    },
+
+    author: {
+      '@type': 'Person',
+      '@id': 'https://www.itayost.com/#author',
+      name: 'איתי אוסטרייך',
+      jobTitle: 'מפתח Full-Stack ומומחה מערכות דיגיטליות',
+      description: 'מפתח Full-Stack עם למעלה מ-5 שנות ניסיון. מתמחה בבניית אתרים, מערכות CRM, אוטומציות ואפליקציות מובייל לעסקים קטנים ובינוניים בישראל.',
+      url: 'https://www.itayost.com/about',
+      worksFor: {
+        '@id': 'https://www.itayost.com/#organization',
+      },
+      sameAs: [
+        'https://www.linkedin.com/in/itayost/',
+        'https://www.instagram.com/itayost/',
+        'https://www.facebook.com/itayost/',
+      ],
+      knowsAbout: [
+        'Next.js',
+        'React',
+        'TypeScript',
+        'Node.js',
+        'React Native',
+        'CRM Development',
+        'Business Automation',
+        'UI/UX Design',
+        'SEO',
+        'Web Performance',
+      ],
     },
 
     service: {

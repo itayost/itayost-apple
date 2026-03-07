@@ -55,6 +55,7 @@ export function ServicePageWithJsonLd({
           '@type': 'Country',
           name: 'Israel',
         },
+        ...(service.lastUpdated ? { dateModified: service.lastUpdated } : {}),
       },
       seoConfig.structuredData.breadcrumbs(`/services/${slug}`),
       {
@@ -77,7 +78,20 @@ export function ServicePageWithJsonLd({
         isPartOf: {
           '@id': 'https://www.itayost.com/#website',
         },
+        ...(service.lastUpdated ? { dateModified: service.lastUpdated } : {}),
       },
+      // HowTo schema from service process steps
+      ...(service.process.length > 0 ? [{
+        '@type': 'HowTo',
+        name: `איך עובד תהליך ${service.name}`,
+        description: service.description,
+        step: service.process.map((p) => ({
+          '@type': 'HowToStep',
+          position: p.step,
+          name: p.title,
+          text: p.description,
+        })),
+      }] : []),
     ],
   }
 

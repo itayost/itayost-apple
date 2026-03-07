@@ -40,8 +40,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `https://www.itayost.com/blog/${slug}`,
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.lastUpdated || post.date,
       authors: [post.author],
       tags: post.tags,
+      images: post.image ? [{ url: post.image }] : undefined,
     },
     alternates: {
       canonical: `https://www.itayost.com/blog/${slug}`,
@@ -59,16 +61,40 @@ export default async function Page({ params }: PageProps) {
 
   const relatedPosts = await getRelatedPosts(post, 3)
 
+  const wordCount = post.content.split(/\s+/).length
+
+  // ItemList schema for comparison posts (detected by "vs" or "השוואת" in title/tags)
+  const isComparison = post.title.toLowerCase().includes(' vs ') ||
+    post.title.includes('השוואה') ||
+    post.title.includes(' או ') ||
+    post.tags.some(t => t.includes('השוואת'))
+
+  const comparisonItemNames = isComparison
+    ? post.tags.filter(t =>
+      !t.includes('השוואת') && !t.includes('בניית') && !t.includes('בחירת') &&
+      !t.includes('פיתוח אתרים') && !t.includes('ניהול עסק') &&
+      !t.includes('אתר מותאם') && !t.includes('מערכת מותאמת')
+    ).slice(0, 5)
+    : []
+
+  const itemListSchema = isComparison && comparisonItemNames.length >= 2 ? {
+    '@type': 'ItemList',
+    name: post.title,
+    description: post.description || post.excerpt,
+    numberOfItems: comparisonItemNames.length,
+    itemListElement: comparisonItemNames.map((name, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name,
+    })),
+  } : null
+
   // HowTo schema for step-by-step guide posts
   const howToSchema = post.schemaType === 'howto' ? {
     '@type': 'HowTo',
     name: post.title,
     description: post.description || post.excerpt,
-    author: {
-      '@type': 'Person',
-      name: post.author,
-      url: 'https://www.itayost.com/about'
-    },
+    author: { '@id': 'https://www.itayost.com/#author' },
     datePublished: post.date,
     dateModified: post.lastUpdated || post.date,
     inLanguage: 'he-IL',
@@ -78,6 +104,8 @@ export default async function Page({ params }: PageProps) {
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
+      // Author
+      seoConfig.structuredData.author,
       // BlogPosting schema
       {
         '@type': 'BlogPosting',
@@ -87,17 +115,18 @@ export default async function Page({ params }: PageProps) {
         image: post.image || 'https://www.itayost.com/og-image.png',
         datePublished: post.date,
         dateModified: post.lastUpdated || post.date,
-        author: {
-          '@type': 'Person',
-          name: post.author,
-          url: 'https://www.itayost.com/about'
-        },
+        wordCount,
+        author: { '@id': 'https://www.itayost.com/#author' },
         publisher: {
           '@id': 'https://www.itayost.com/#organization'
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
           '@id': `https://www.itayost.com/blog/${slug}/#webpage`
+        },
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['h1', '.post-description', '.post-content h2'],
         },
         keywords: post.tags.join(', '),
         articleSection: post.category,
@@ -124,7 +153,9 @@ export default async function Page({ params }: PageProps) {
         inLanguage: 'he-IL',
       },
       // HowTo schema (conditionally included for guide posts)
-      ...(howToSchema ? [howToSchema] : [])
+      ...(howToSchema ? [howToSchema] : []),
+      // ItemList schema (conditionally included for comparison posts)
+      ...(itemListSchema ? [itemListSchema] : [])
     ]
   }
 

@@ -145,6 +145,23 @@ Tailwind extended with Apple design colors:
 
 Use these color names in Tailwind classes for consistency with the design language.
 
+### Analytics
+
+**GA4**: 7 custom events defined in `src/lib/analytics.ts`, typed in `src/types/analytics.ts`:
+- `generate_lead`, `whatsapp_click`, `contact_click`, `cta_click`, `service_view`, `portfolio_click`, `outbound_click`
+- Loaded in `src/app/layout.tsx` via `GoogleAnalytics` component. `window.gtag` must be assigned to `window` (not declared as local function) for cross-module access.
+
+**PostHog** (product analytics with autocapture):
+- Initialized via `instrumentation-client.ts` at project root (Next.js 15.3+ pattern)
+- Autocapture handles pageviews, clicks, form interactions automatically
+- Server-side lead tracking in `/api/leads` via `posthog-node` (`src/lib/posthog-server.ts`)
+- EU region: `https://eu.i.posthog.com`
+- Client-side access: `import posthog from 'posthog-js'`
+
+**Also active**: Vercel Analytics, Vercel Speed Insights, Microsoft Clarity.
+
+Contact form (`src/app/contact/ContactPage.tsx`) submits to `/api/leads` which proxies to external CRM. Track analytics before API calls, not after success callbacks.
+
 ### WhatsApp Integration
 
 Floating WhatsApp button component (`WhatsAppButton`) is globally rendered in root layout. Contact info is centralized in config. The button uses:
@@ -158,6 +175,8 @@ Required for production:
 ```
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 NEXT_PUBLIC_SITE_URL=https://www.itayost.com
+NEXT_PUBLIC_POSTHOG_KEY=phc_xxx
+NEXT_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
 ```
 
 Optional:
@@ -213,7 +232,11 @@ For scroll animations, use existing ScrollAnimations components or create new on
 
 ## Build & Deployment
 
-The site is optimized for Vercel deployment. Build process:
+The site is optimized for Vercel deployment. Auto-deploys on push to `main`.
+- Vercel Project: `prj_RMH49pnUO6ezRZfJ5xk1nS3AMlXH`
+- Vercel Team: `team_L6vq0d4dnBw36bBjG5EagW7H`
+
+Build process:
 1. Type checking (`tsc --noEmit`)
 2. Next.js build with optimizations
 3. Static asset optimization

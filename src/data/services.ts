@@ -41,6 +41,7 @@ export interface Service {
     secondary: string
   }
   relatedServices?: string[] // IDs of related services for internal linking
+  lastUpdated?: string // ISO date string for schema freshness signals
 }
 
 export const servicesData: Service[] = [
@@ -50,7 +51,7 @@ export const servicesData: Service[] = [
     name: 'פיתוח אתרים',
     tagline: 'אתרים מהירים, מאובטחים וממירים עם Next.js',
     description: 'בניית אתרים מקצועיים עם הטכנולוגיות המתקדמות ביותר - Next.js, React, TypeScript. אתרים שנטענים תוך שנייה, מדורגים גבוה בגוגל וממירים מבקרים ללקוחות.',
-    longDescription: 'מתמחה בפיתוח אתרים מודרניים עם Next.js 14 - הפריימוורק המוביל מבית Vercel. בניגוד לוורדפרס המסורבל, Next.js מציע מהירות יוצאת דופן, אבטחה מובנית וSEO מעולה. כל אתר שאני בונה מותאם למובייל מלכתחילה (70% מהתנועה בישראל היא ממובייל), תומך בעברית RTL ברמה הגבוהה ביותר, ומאופטם למנועי חיפוש מהיום הראשון.',
+    longDescription: 'מתמחה בפיתוח אתרים מודרניים עם Next.js 14 - הפריימוורק המוביל מבית Vercel. בניגוד לוורדפרס (שבו נמצאו 11,334 פרצות אבטחה ב-2025 לפי Patchstack), Next.js מציע מהירות יוצאת דופן, אבטחה מובנית וSEO מעולה. לפי מחקר של Google ו-Deloitte, שיפור של 0.1 שנייה במהירות האתר מגדיל המרות ב-8.4%. כל אתר שאני בונה מותאם למובייל מלכתחילה (63% מתעבורת האינטרנט מגיעה ממובייל לפי StatCounter 2025), תומך בעברית RTL ברמה הגבוהה ביותר, ומאופטם למנועי חיפוש מהיום הראשון.',
     icon: '💻',
     lucideIcon: 'Code2',
     color: 'brand-blue',
@@ -152,7 +153,8 @@ export const servicesData: Service[] = [
       primary: 'קבל הצעת מחיר מותאמת',
       secondary: 'צפה בעבודות'
     },
-    relatedServices: ['ui-ux-design', 'landing-pages', 'ecommerce']
+    relatedServices: ['ui-ux-design', 'landing-pages', 'ecommerce'],
+    lastUpdated: '2026-03-06'
   },
 
   {
@@ -161,7 +163,7 @@ export const servicesData: Service[] = [
     name: 'חנויות אונליין',
     tagline: 'מסחר אלקטרוני מלא עם תשלומים ישראליים',
     description: 'בניית חנויות אונליין מותאמות עם מערכות תשלום ישראליות (Bit, PayBox), משלוחים, ניהול מלאי ודוחות.',
-    longDescription: 'חנויות אונליין שמתאימות בדיוק לעסק שלך. שליטה מלאה, אינטגרציה עם מערכות קיימות, תשלומים ישראליים, ללא עמלות חודשיות.',
+    longDescription: 'שוק המסחר האלקטרוני בישראל הגיע ל-$9.5 מיליארד ב-2024 (eCommerceDB) וצומח 8.1% בשנה. 59% מהקניות מתבצעות ממובייל (Statista, 2025) ושיעור נטישת עגלה ממוצע הוא 70.19% (Baymard Institute) - לכן חנות מותאמת עם UX מצוין היא קריטית. אני בונה חנויות עם שליטה מלאה, תשלומים ישראליים (Bit, PayBox), ללא עמלות חודשיות.',
     icon: '🛒',
     lucideIcon: 'ShoppingCart',
     color: 'brand-green',
@@ -263,7 +265,8 @@ export const servicesData: Service[] = [
       primary: 'בוא נדבר על החנות שלך',
       secondary: 'קרא מדריך מלא'
     },
-    relatedServices: ['web-development', 'automations', 'crm-systems']
+    relatedServices: ['web-development', 'automations', 'crm-systems'],
+    lastUpdated: '2026-03-06'
   },
 
   {
@@ -272,7 +275,7 @@ export const servicesData: Service[] = [
     name: 'מערכות CRM',
     tagline: 'ניהול לקוחות חכם ואוטומציה מלאה',
     description: 'מערכות CRM מותאמות אישית לניהול לקוחות, עסקאות, משימות ואוטומציה. שליטה מלאה במסע הלקוח.',
-    longDescription: 'מערכת CRM מותאמת אישית היא לב העסק. במקום להסתדר עם פתרונות גנריים כמו HubSpot או Salesforce (שעולים אלפי דולרים בשנה), אני בונה מערכות שמתאימות בדיוק לתהליכי העבודה שלך. ניהול לידים, מעקב אחר עסקאות, אוטומציות, תזכורות, דוחות - הכל במקום אחד. המערכת משתלבת עם הכלים הקיימים שלך (דואר, לוח שנה, WhatsApp Business) ונגישה מכל מכשיר.',
+    longDescription: 'מערכת CRM מותאמת אישית היא לב העסק. לפי Nucleus Research, CRM מחזיר $8.71 על כל דולר שמושקע. עסקים עם CRM רואים עלייה של 29% במכירות ו-34% בפרודוקטיביות (Salesforce, 2024). במקום להסתדר עם פתרונות גנריים כמו HubSpot או Salesforce (47-55% מהטמעות CRM נכשלות לפי Forrester, בעיקר בגלל חוסר התאמה), אני בונה מערכות שמתאימות בדיוק לתהליכי העבודה שלך. ניהול לידים, מעקב אחר עסקאות, אוטומציות, תזכורות, דוחות - הכל במקום אחד. המערכת משתלבת עם הכלים הקיימים שלך (דואר, לוח שנה, WhatsApp Business) ונגישה מכל מכשיר.',
     icon: '📊',
     lucideIcon: 'BarChart3',
     color: 'brand-navy',
@@ -382,7 +385,8 @@ export const servicesData: Service[] = [
       primary: 'בוא נדבר על המערכת שלך',
       secondary: 'למד עוד על CRM'
     },
-    relatedServices: ['automations', 'web-development', 'mobile-apps']
+    relatedServices: ['automations', 'web-development', 'mobile-apps'],
+    lastUpdated: '2026-03-06'
   },
 
   {
@@ -391,7 +395,7 @@ export const servicesData: Service[] = [
     name: 'עיצוב UI/UX',
     tagline: 'עיצוב שממיר מבקרים ללקוחות',
     description: 'עיצוב ממשקים ומסעות משתמש עם דגש על המרה. מבוסס על מחקר, נתונים ועקרונות פסיכולוגיה.',
-    longDescription: 'עיצוב טוב הוא לא רק יפה - הוא עובד. הגישה שלי מבוססת על מחקר משתמשים, ניתוח נתונים ועקרונות פסיכולוגיה של המרה. כל החלטת עיצוב מוסברת ומבוססת על סיבה. אני עובד עם Figma ומתמחה בעיצוב ממשקים מורכבים - אתרים, חנויות, מערכות ניהול, אפליקציות. כל עיצוב עובר בדיקות משתמשים ומותאם לקהל היעד הספציפי שלך.',
+    longDescription: 'עיצוב טוב הוא לא רק יפה - הוא עובד. לפי Forrester Research, כל $1 שמושקע ב-UX מחזיר $100. משתמשים מגבשים דעה על אתר תוך 50 מילישניות בלבד (Carleton University, 2006), ו-75% מהצרכנים שופטים אמינות עסק לפי עיצוב האתר (Stanford University). חברות מובלות עיצוב הכו את מדד S&P 500 ב-211% לאורך 10 שנים (Design Management Institute). הגישה שלי מבוססת על מחקר, נתונים ופסיכולוגיה של המרה. אני עובד עם Figma ומתמחה בעיצוב ממשקים מורכבים. כל עיצוב עובר בדיקות עם 5 משתמשים - מספיק לגלות 85% מבעיות השימושיות (Nielsen Norman Group).',
     icon: '🎨',
     lucideIcon: 'Palette',
     color: 'brand-orange',
@@ -501,7 +505,8 @@ export const servicesData: Service[] = [
       primary: 'בוא נעצב משהו מדהים',
       secondary: 'צפה בעיצובים שלי'
     },
-    relatedServices: ['web-development', 'landing-pages', 'mobile-apps']
+    relatedServices: ['web-development', 'landing-pages', 'mobile-apps'],
+    lastUpdated: '2026-03-06'
   },
 
   {
@@ -510,7 +515,7 @@ export const servicesData: Service[] = [
     name: 'דפי נחיתה',
     tagline: 'דפי נחיתה שמייצרים לידים',
     description: 'דפי נחיתה ממירים לקמפיינים, השקות מוצרים ומבצעים. עיצוב + פיתוח מהיר תוך 3-7 ימים.',
-    longDescription: 'דף נחיתה טוב הוא מכונת המרה. בניגוד לאתר מלא, דף נחיתה ממוקד במטרה אחת: להביא לפעולה (רכישה, רישום, הורדה). אני בונה דפי נחיתה מהירים (נטענים תוך שנייה), ממירים (עיצוב מבוסס CRO) ומאופטמים למודעות (Google Ads, Facebook Ads). כל דף כולל A/B Testing, אנליטיקס מתקדם ואופטימיזציה שוטפת. תוצאות אמיתיות תוך ימים, לא חודשים.',
+    longDescription: 'דף נחיתה טוב הוא מכונת המרה. שיעור ההמרה החציוני בדפי נחיתה הוא 6.6% (Unbounce, 2024 - 41,000 דפים, 464 מיליון מבקרים), ודפים בשפה פשוטה ממירים 11.1% לעומת 5.3% בשפה מורכבת. בניגוד לאתר מלא, דף נחיתה ממוקד במטרה אחת: להביא לפעולה. אני בונה דפי נחיתה מהירים (נטענים תוך שנייה - כי 53% מהמבקרים עוזבים אחרי 3 שניות, Google), ממירים (עיצוב CRO) ומאופטמים למודעות. כל דף כולל A/B Testing (שיפור של עד 30% בהמרות לפי VWO), אנליטיקס מתקדם ואופטימיזציה שוטפת.',
     icon: '🎯',
     lucideIcon: 'Target',
     color: 'brand-orange',
@@ -620,7 +625,8 @@ export const servicesData: Service[] = [
       primary: 'בוא נבנה דף שממיר',
       secondary: 'ראה דוגמאות'
     },
-    relatedServices: ['ui-ux-design', 'web-development', 'automations']
+    relatedServices: ['ui-ux-design', 'web-development', 'automations'],
+    lastUpdated: '2026-03-06'
   },
 
   {
@@ -629,7 +635,7 @@ export const servicesData: Service[] = [
     name: 'אוטומציות',
     tagline: 'חיבור מערכות וחיסכון בזמן',
     description: 'אוטומציה של תהליכים עסקיים, חיבור בין מערכות קיימות, והפחתת עבודה ידנית חוזרת.',
-    longDescription: 'תפסיקו לעשות ידנית מה שמחשב יכול לעשות בשבילכם. אוטומציות חוסכות שעות עבודה בשבוע - שליחת מיילים אוטומטית, עדכון מערכות, יצירת דוחות, תזכורות ללקוחות. אני מחבר בין הכלים שאתם כבר משתמשים בהם (Gmail, Google Sheets, WhatsApp, CRM) ויוצר תהליכים שעובדים בלי מגע יד אדם.',
+    longDescription: 'תפסיקו לעשות ידנית מה שמחשב יכול לעשות בשבילכם. לפי Zapier, אוטומציה יכולה לחסוך 240 שעות בשנה לעובד. 60% מהארגונים משיגים ROI תוך 12 חודשים מהטמעת אוטומציה (Kissflow, 2025). הזנת נתונים ידנית כוללת שיעור שגיאות של 1-4%, לעומת 0.01-0.04% במערכות אוטומטיות (Quality Magazine, 2024). אני מחבר בין הכלים שאתם כבר משתמשים בהם (Gmail, Google Sheets, WhatsApp, CRM) ויוצר תהליכים שעובדים בלי מגע יד אדם.',
     icon: '⚡',
     lucideIcon: 'Zap',
     color: 'brand-green',
@@ -739,7 +745,8 @@ export const servicesData: Service[] = [
       primary: 'בוא נחסוך לך זמן',
       secondary: 'ראה דוגמאות'
     },
-    relatedServices: ['crm-systems', 'ecommerce', 'web-development']
+    relatedServices: ['crm-systems', 'ecommerce', 'web-development'],
+    lastUpdated: '2026-03-06'
   },
 
   {
@@ -748,7 +755,7 @@ export const servicesData: Service[] = [
     name: 'אפליקציות מובייל',
     tagline: 'אפליקציות iOS ו-Android עם חוויה נייטיבית',
     description: 'פיתוח אפליקציות מובייל Cross-Platform עם React Native. אפליקציה אחת שעובדת על כל המכשירים.',
-    longDescription: 'אפליקציות מובייל שנראות ומרגישות נייטיביות - גם ב-iOS וגם ב-Android. אני משתמש ב-React Native ו-Expo כדי לפתח אפליקציה אחת שעובדת על כל המכשירים, עם ביצועים מעולים וחוויית משתמש חלקה. מהרעיון הראשוני ועד ההעלאה ל-App Store ו-Google Play.',
+    longDescription: 'אפליקציות מובייל שנראות ומרגישות נייטיביות - גם ב-iOS וגם ב-Android. React Native חוסך 30-40% בעלויות ו-40% בזמן פיתוח לעומת Native (HashStudioz/Binmile, 2025), ומחזיק 35% מנתח שוק הפריימוורקים חוצי-פלטפורמות (Stack Overflow Developer Survey, 2024). אני משתמש ב-React Native ו-Expo כדי לפתח אפליקציה אחת שעובדת על כל המכשירים. טיפ: משתמשים שמקבלים Push Notifications ב-90 הימים הראשונים נשמרים פי 3 יותר (Airship, 2025).',
     icon: '📱',
     lucideIcon: 'Smartphone',
     color: 'brand-navy',
@@ -858,7 +865,8 @@ export const servicesData: Service[] = [
       primary: 'בוא נבנה אפליקציה',
       secondary: 'ראה דוגמאות'
     },
-    relatedServices: ['ui-ux-design', 'crm-systems', 'automations']
+    relatedServices: ['ui-ux-design', 'crm-systems', 'automations'],
+    lastUpdated: '2026-03-06'
   }
 ]
 

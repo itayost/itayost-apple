@@ -78,10 +78,25 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-8 text-lg leading-relaxed text-brand-gray-700 sm:text-xl"
+            className="mb-4 text-lg leading-relaxed text-brand-gray-700 sm:text-xl"
           >
             {service.description}
           </motion.p>
+
+          {/* Last Updated */}
+          {service.lastUpdated && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.45 }}
+              className="mb-8 text-sm text-brand-gray-500 flex items-center justify-center gap-1.5"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+              <span>
+                {`עודכן לאחרונה: ${new Date(service.lastUpdated).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}`}
+              </span>
+            </motion.p>
+          )}
 
           {/* CTA Buttons */}
           <motion.div
