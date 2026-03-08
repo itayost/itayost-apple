@@ -56,11 +56,11 @@ export default function Services() {
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-6">
-            מה צריך העסק שלכם?
+            למה העסק שלכם זקוק?
           </h2>
 
           <p className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto">
-            כל עסק שונה. אני מתאים את הפתרון בדיוק למה שאתם צריכים — לא תבנית, לא מוצר מדף.
+            כל עסק הוא ייחודי. אנו נתאים עבורכם פתרון מדויק ללא שימוש בתבניות מוכנות מראש.
           </p>
         </motion.div>
 
@@ -167,15 +167,15 @@ export default function Services() {
                 {[
                   {
                     title: 'מדברים עם מי שבונה',
-                    description: 'לא פרויקט מנג\'ר ולא מוקד — ישירות עם המפתח, בוואטסאפ'
+                    description: 'לא פרויקט מנג\'ר ולא מוקד, ישירות מול המפתח בוואטסאפ'
                   },
                   {
                     title: 'בנוי בדיוק לכם',
-                    description: 'לא תבנית של Wix — מערכת שמותאמת לאיך שהעסק שלכם עובד'
+                    description: 'לא תבנית של Wix, אלא מערכת שמותאמת לאיך שהעסק שלכם עובד'
                   },
                   {
                     title: 'לא נעלם אחרי ההשקה',
-                    description: '6 חודשי אחריות ותמיכה שוטפת — אני כאן לטווח ארוך'
+                    description: '6 חודשי אחריות ותמיכה שוטפת, אני כאן לטווח ארוך'
                   },
                 ].map((item, index) => (
                   <motion.div

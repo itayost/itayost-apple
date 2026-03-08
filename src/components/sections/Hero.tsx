@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Sparkles, ArrowLeft, Clock } from 'lucide-react'
+import { ArrowLeft, Clock, Users } from 'lucide-react'
 import { content } from '@/config/content'
 import { bouncyEasing } from '@/constants/animations'
 
@@ -54,34 +54,8 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="container relative z-10 text-center px-4">
-        {/* Category Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.05, ease: bouncyEasing }}
-          className="mb-8"
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue rounded-full shadow-lg"
-            whileHover={{
-              scale: 1.05,
-              rotate: 2,
-              transition: { duration: 0.3, ease: bouncyEasing }
-            }}
-            whileTap={{
-              scale: 0.95,
-              transition: { duration: 0.3, ease: bouncyEasing }
-            }}
-          >
-            <Sparkles className="w-5 h-5 text-white" />
-            <span className="text-base font-bold text-white">
-              מערכות, אוטומציות ואתרים
-            </span>
-          </motion.div>
-        </motion.div>
-
         {/* Main Headline - No opacity animation to avoid LCP delay */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
           <span className="block text-brand-navy">
             {content.hero.title.line1}
           </span>
@@ -90,11 +64,9 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Subtitle - Benefit Focused - No opacity animation for LCP */}
-        <p className="text-xl sm:text-2xl md:text-3xl text-brand-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
+        {/* Subtitle - Short tagline */}
+        <p className="text-xl sm:text-2xl md:text-3xl text-brand-gray-700 max-w-2xl mx-auto mb-10">
           {content.hero.subtitle}
-          <br />
-          <span className="text-brand-blue font-bold">מעל 50 בעלי עסקים כבר עובדים חכם יותר</span>
         </p>
 
         {/* CTA Buttons */}
@@ -143,16 +115,15 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Availability Signal */}
+        {/* Social Proof Badge */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5, ease: bouncyEasing }}
-          className="text-center"
+          className="inline-flex items-center gap-2 text-brand-gray-500 text-sm"
         >
-          <p className="text-brand-gray-500 text-base">
-            עובד על 2-3 פרויקטים במקביל | חוזר אליכם תוך שעה
-          </p>
+          <Users className="w-4 h-4" />
+          <span>למעלה מ-50 עסקים כבר סומכים עלינו</span>
         </motion.div>
       </div>
     </section>

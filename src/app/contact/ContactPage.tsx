@@ -184,7 +184,7 @@ export default function ContactPage() {
               transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
               className="text-xl sm:text-2xl text-brand-gray-700 max-w-2xl mx-auto"
             >
-              ספרו לי על העסק ומה הייתם רוצים לשפר — אני אחזור אליכם תוך שעה עם רעיונות.
+              ספרו לי על העסק ומה הייתם רוצים לשפר, ואני אחזור אליכם תוך שעה עם רעיונות.
             </motion.p>
           </div>
         </div>
@@ -430,7 +430,7 @@ export default function ContactPage() {
                     מענה מהיר
                   </h3>
                   <p className="text-brand-gray-700 mb-4 leading-relaxed">
-                    חוזר אליכם תוך שעה בימי עבודה. עובד על 2-3 פרויקטים במקביל — הזמינות הקרובה: אפריל 2026.
+                    חוזר אליכם תוך שעה בימי עבודה. הזמינות הקרובה לפרויקטים: אפריל 2026.
                   </p>
                   <motion.a
                     href="https://wa.me/972544994417"

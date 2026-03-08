@@ -2,8 +2,8 @@ import { z } from 'zod'
 
 // CRM API Schema based on the actual CRM endpoint
 export const CRMLeadSchema = z.object({
-  name: z.string().min(1, 'שם חובה'),
-  phone: z.string().min(1, 'טלפון חובה').transform(val => val.replace(/[-\s]/g, '')).refine(
+  name: z.string().min(1, 'נא להזין שם'),
+  phone: z.string().min(1, 'נא להזין מספר טלפון').transform(val => val.replace(/[-\s]/g, '')).refine(
     val => /^[0-9]{9,10}$/.test(val),
     'מספר טלפון חייב להיות 9-10 ספרות'
   ),
@@ -19,24 +19,24 @@ export type CRMLead = z.infer<typeof CRMLeadSchema>
 
 // Contact Page Form Schema
 export const ContactPageFormSchema = z.object({
-  name: z.string().min(1, 'שם חובה'),
+  name: z.string().min(1, 'נא להזין שם'),
   email: z.string().email('אימייל לא תקין').optional(),
-  phone: z.string().min(1, 'טלפון חובה'),
+  phone: z.string().min(1, 'נא להזין מספר טלפון'),
   company: z.string().optional(),
-  service: z.string().min(1, 'בחר שירות'),
+  service: z.string().min(1, 'נא לבחור שירות'),
   budget: z.string().optional(),
   timeline: z.string().optional(),
-  message: z.string().min(1, 'הודעה חובה')
+  message: z.string().min(1, 'נא להזין הודעה')
 })
 
 export type ContactPageForm = z.infer<typeof ContactPageFormSchema>
 
 // Homepage Contact Section Form Schema
 export const HomepageContactFormSchema = z.object({
-  name: z.string().min(1, 'שם חובה'),
+  name: z.string().min(1, 'נא להזין שם'),
   email: z.string().email('אימייל לא תקין').optional(),
-  phone: z.string().min(1, 'טלפון חובה'),
-  subject: z.string().min(1, 'בחר נושא'),
+  phone: z.string().min(1, 'נא להזין מספר טלפון'),
+  subject: z.string().min(1, 'נא לבחור נושא'),
   message: z.string().optional()
 })
 

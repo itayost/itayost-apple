@@ -65,8 +65,8 @@ export const portfolioData: PortfolioItem[] = [
     title: 'Kitchen Optimizer',
     subtitle: 'מערכת לניהול הזמנות אוכל וניהול מלאי',
     category: 'system',
-    description: 'מערכת ניהול מלאי והזמנות אוכל - שמירת נתוני לקוחות כולל בעיות אלרגנים להתאמת הזמנות',
-    longDescription: 'פיתחתי מערכת מקיפה לניהול מטבח מסחרי הכוללת ניהול מלאי חכם, מעקב אחר הזמנות, וניהול פרופילי לקוחות עם התחשבות באלרגנים ומגבלות תזונתיות. המערכת מאפשרת למסעדות לנהל את כל תהליכי המטבח בצורה יעילה ומדויקת.',
+    description: 'מערכת ניהול מלאי והזמנות אוכל - שמירת נתוני לקוחות כולל רגישויות ואלרגיות להתאמת הזמנות',
+    longDescription: 'פיתחתי מערכת מקיפה לניהול מטבח מסחרי הכוללת ניהול מלאי חכם, מעקב אחר הזמנות, וניהול פרופילי לקוחות עם התחשבות באלרגיות ומגבלות תזונתיות. המערכת מאפשרת למסעדות לנהל את כל תהליכי המטבח בצורה יעילה ומדויקת.',
     image: '/images/AmosKitchen-display.webp',
     imageSizes: {
       desktop: '/images/AmosKitchen-desktop.webp',
@@ -79,7 +79,7 @@ export const portfolioData: PortfolioItem[] = [
     color: 'brand-orange',
     pattern: 'dots',
     accentColor: 'brand-blue',
-    stats: { 
+    stats: {
       efficiency: '+40%',
       orders: '1000+/חודש',
       accuracy: '99.9%',
@@ -92,7 +92,7 @@ export const portfolioData: PortfolioItem[] = [
     featured: true,
     features: [
       'ניהול מלאי בזמן אמת',
-      'מעקב אלרגנים והעדפות תזונתיות',
+      'מעקב רגישויות והעדפות תזונתיות',
       'ניהול הזמנות אוטומטי',
       'דוחות וניתוחים מתקדמים',
       'ממשק ידידותי למשתמש'
@@ -143,7 +143,7 @@ export const portfolioData: PortfolioItem[] = [
     color: 'brand-blue',
     pattern: 'circles',
     accentColor: 'brand-orange',
-    stats: { 
+    stats: {
       views: '50K+/חודש',
       reservations: '+200%',
       loadTime: '0.8s',
@@ -208,7 +208,7 @@ export const portfolioData: PortfolioItem[] = [
     color: 'brand-navy',
     pattern: 'lines',
     accentColor: 'brand-green',
-    stats: { 
+    stats: {
       students: '500+',
       conversion: '35%',
       automation: '80%',
@@ -299,7 +299,7 @@ export const portfolioData: PortfolioItem[] = [
       { label: 'החזר השקעה', value: '450%' }
     ],
     testimonial: {
-      text: 'הדף נחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
+      text: 'דף הנחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
       author: 'טל כהן',
       role: 'יועץ נדל״ן בכיר'
     },
@@ -314,7 +314,7 @@ export const portfolioData: PortfolioItem[] = [
         '@type': 'Person',
         name: 'טל כהן'
       },
-      reviewBody: 'הדף נחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
+      reviewBody: 'דף הנחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
       datePublished: '2024-04-05'
     }
   },

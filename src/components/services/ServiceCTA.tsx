@@ -65,7 +65,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             transition={{ delay: 0.1 }}
             className="mb-6 text-3xl font-bold text-white sm:text-4xl lg:text-5xl"
           >
-            מוכן להתחיל?
+            מוכנים להתחיל?
           </motion.h2>
 
           {/* Description */}
@@ -76,8 +76,8 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
             transition={{ delay: 0.2 }}
             className="mb-8 text-lg leading-relaxed text-brand-gray-300 sm:text-xl"
           >
-            בוא נדבר על הפרויקט שלך. פגישת ייעוץ ראשונה חינם וללא התחייבות.
-            תקבל הצעת מחיר מפורטת תוך 24 שעות.
+            בואו נדבר על הפרויקט שלכם. פגישת ייעוץ ראשונה חינם וללא התחייבות.
+            תקבלו הצעת מחיר מפורטת תוך 24 שעות.
           </motion.p>
 
           {/* CTA Buttons */}

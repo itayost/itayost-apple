@@ -37,7 +37,7 @@ export default function Contact() {
             </h2>
 
             <p className="text-xl sm:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              אני אשמח לשמוע. שיחה קצרה בלי התחייבות — ואני אגיד לכם אם ואיך אפשר לעזור.
+              אני אשמח לשמוע. שיחה קצרה בלי התחייבות, ואני אגיד לכם אם ואיך אפשר לעזור.
             </p>
           </motion.div>
 
@@ -64,7 +64,7 @@ export default function Contact() {
                 className="inline-flex items-center gap-2 px-12 py-6 bg-brand-orange text-white rounded-full font-bold text-xl shadow-2xl hover:shadow-3xl transition-shadow"
                 onClick={() => trackCtaClick('שלחו לנו הודעה', 'contact_section', '/contact')}
               >
-                <span>שלחו הודעה — אחזור תוך שעה</span>
+                <span>שלחו הודעה ואחזור תוך שעה</span>
                 <ArrowLeft className="w-6 h-6" />
               </Link>
             </motion.div>
@@ -144,7 +144,7 @@ export default function Contact() {
             className="mt-12"
           >
             <p className="text-white/80 text-lg">
-              💡 בדרך כלל עונים תוך שעה בימי עסקים
+              💡 משתדלים לחזור אליכם תוך שעה בשעות הפעילות
             </p>
           </motion.div>
         </div>

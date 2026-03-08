@@ -40,7 +40,7 @@ const values = [
   {
     icon: Heart,
     title: 'תמיד זמין',
-    description: 'עונה בוואטסאפ — בדרך כלל תוך שעה. נסו את זה עם סוכנות.',
+    description: 'עונה בוואטסאפ, בדרך כלל תוך שעה. נסו את זה עם סוכנות.',
     color: 'bg-red-500'
   },
   {
@@ -52,7 +52,7 @@ const values = [
   {
     icon: Users,
     title: 'עומד במילה',
-    description: 'לוח זמנים ומחיר סגורים מראש. אם יש שינוי — תדעו לפני.',
+    description: 'לוח זמנים ומחיר סגורים מראש. אם יהיה שינוי תדעו על כך מראש.',
     color: 'bg-brand-blue'
   },
   {
@@ -157,12 +157,12 @@ export default function AboutPage() {
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
                 <strong>אני איתי, מפתח עצמאי מרמת גן.</strong> ב-5 השנים האחרונות בניתי מעל 100
-                מערכות ואתרים למעל 50 עסקים — מסעדות, נדל&quot;ן, חנויות, אקדמיות, ועוד.
+                מערכות ואתרים למעל 50 עסקים: מסעדות, נדל&quot;ן, חנויות, אקדמיות, ועוד.
               </p>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
                 <strong>אני בן אדם אחד, לא סוכנות.</strong> אתם מדברים ישירות עם מי שבונה את
-                המערכת שלכם — בוואטסאפ, לא דרך מוקד שירות. יותר מהיר, יותר אישי, יותר הגיוני.
+                המערכת שלכם בוואטסאפ, מפתח מול לקוח. יותר מהיר, יותר אישי, יותר הגיוני.
               </p>
 
               <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">

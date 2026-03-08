@@ -136,7 +136,7 @@ export const statistics: Statistic[] = [
   {
     id: 'wp-pagespeed-vs-nextjs',
     claim: 'אתר וורדפרס קיבל ציון 51% ב-PageSpeed מובייל לעומת 86% לאתר Next.js זהה - שיפור של 35 נקודות',
-    claimEn: 'WordPress scored 51% on mobile PageSpeed while equivalent Next.js site scored 86% — a 35-point improvement',
+    claimEn: 'WordPress scored 51% on mobile PageSpeed while equivalent Next.js site scored 86% - a 35-point improvement',
     value: '35',
     source: 'Digital Polygon',
     year: 2024,
@@ -350,7 +350,7 @@ export const statistics: Statistic[] = [
   {
     id: 'lp-simple-language',
     claim: 'דפי נחיתה בשפה פשוטה ממירים 11.1% לעומת 5.3% בשפה אקדמית - פשטות מכפילה המרות',
-    claimEn: 'Landing pages with simple language convert at 11.1% vs 5.3% for academic language — simplicity doubles conversion',
+    claimEn: 'Landing pages with simple language convert at 11.1% vs 5.3% for academic language - simplicity doubles conversion',
     value: '2x',
     source: 'Unbounce',
     year: 2024,
@@ -404,7 +404,7 @@ export const statistics: Statistic[] = [
   {
     id: 'ux-roi-forrester',
     claim: 'כל $1 שמושקע ב-UX מחזיר $100 - ROI של 9,900%',
-    claimEn: 'Every $1 invested in UX yields $100 return — ROI of 9,900%',
+    claimEn: 'Every $1 invested in UX yields $100 return - ROI of 9,900%',
     value: '$100',
     source: 'Forrester Research',
     year: 2016,

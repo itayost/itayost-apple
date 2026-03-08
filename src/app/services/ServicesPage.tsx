@@ -38,7 +38,7 @@ const process = [
   {
     icon: HeartHandshake,
     title: 'שיחה קצרה',
-    description: 'מספרים לי מה צריך — אני אומר אם ואיך אפשר לעזור',
+    description: 'שתפו אותי בצרכים שלכם ואשמח להתאים לכם פתרון',
     color: 'bg-red-500'
   },
   {
@@ -50,7 +50,7 @@ const process = [
   {
     icon: Code2,
     title: 'בנייה עם עדכונים',
-    description: 'תראו התקדמות כל שבוע — לא הפתעות',
+    description: 'תראו התקדמות כל שבוע, בלי הפתעות',
     color: 'bg-brand-orange'
   },
   {
@@ -110,9 +110,9 @@ export default function ServicesPage() {
               transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
               className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
             >
-              כל עסק צריך
+              לכל עסק
               <span className="block mt-2 text-brand-blue">
-                משהו אחר
+                צרכים אחרים
               </span>
             </motion.h1>
 
@@ -122,7 +122,7 @@ export default function ServicesPage() {
               transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
               className="text-xl sm:text-2xl text-brand-gray-700"
             >
-              אולי אתם צריכים אתר שמביא לקוחות. אולי מערכת שעושה סדר. אולי אוטומציה שחוסכת שעות. בואו נבין יחד.
+              בין אם אתם זקוקים לאתר שמביא לקוחות. אולי מערכת שעושה סדר. אולי אוטומציה שחוסכת שעות. בואו נבין יחד.
             </motion.p>
           </div>
         </div>
