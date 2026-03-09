@@ -22,6 +22,11 @@ const Testimonials = dynamic(() => import('@/components/sections/Testimonials'),
   ssr: true
 })
 
+const HowItWorks = dynamic(() => import('@/components/sections/HowItWorks'), {
+  loading: () => <div className="min-h-[400px] bg-section-cream" />,
+  ssr: true
+})
+
 const Contact = dynamic(() => import('@/components/sections/Contact'), {
   loading: () => <div className="min-h-[600px] bg-white" />,
   ssr: true
@@ -76,6 +81,11 @@ export default async function HomePage() {
         {/* Services section */}
         <Suspense fallback={<div className="min-h-[600px]" />}>
           <Services />
+        </Suspense>
+
+        {/* How It Works section */}
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <HowItWorks />
         </Suspense>
 
         {/* Portfolio section */}

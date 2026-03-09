@@ -62,6 +62,11 @@ export default function Hero() {
           <span className="block text-brand-orange">
             {content.hero.title.line2}
           </span>
+          {content.hero.title.line3 && (
+            <span className="block text-brand-navy">
+              {content.hero.title.line3}
+            </span>
+          )}
         </h1>
 
         {/* Subtitle - Short tagline */}
@@ -107,7 +112,7 @@ export default function Hero() {
             }}
           >
             <Link
-              href="/portfolio"
+              href="/services"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white border-3 border-brand-navy text-brand-navy rounded-full font-bold text-lg hover:bg-brand-navy hover:text-white transition-colors"
             >
               <span>{content.hero.cta.secondary}</span>

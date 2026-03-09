@@ -23,16 +23,28 @@ interface FormData {
   name: string
   email: string
   phone: string
+  businessName: string
+  businessType: string
   subject: string
   message: string
 }
 
 const subjects = [
-  { value: 'website', label: 'אתר שעובד 24/7' },
-  { value: 'crm', label: 'מערכת ניהול לקוחות' },
-  { value: 'automation', label: 'אוטומציה וחיסכון זמן' },
+  { value: 'seo', label: 'קידום אורגני (SEO)' },
+  { value: 'content-social', label: 'תוכן וסושיאל מדיה' },
+  { value: 'paid-ads', label: 'פרסום ממומן (Google/Meta)' },
+  { value: 'lead-generation', label: 'ייצור לידים' },
+  { value: 'website', label: 'בניית אתר' },
   { value: 'consulting', label: 'ייעוץ דיגיטלי' },
   { value: 'other', label: 'אחר' }
+]
+
+const businessTypes = [
+  { value: 'retail', label: 'קמעונאות' },
+  { value: 'services', label: 'שירותים' },
+  { value: 'hospitality', label: 'אירוח' },
+  { value: 'freelance', label: 'מקצועות חופשיים' },
+  { value: 'other', label: 'אחר' },
 ]
 
 export default function ContactPage() {
@@ -40,6 +52,8 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
+    businessName: '',
+    businessType: '',
     subject: '',
     message: ''
   })
@@ -112,6 +126,8 @@ export default function ContactPage() {
             name: '',
             email: '',
             phone: '',
+            businessName: '',
+            businessType: '',
             subject: '',
             message: ''
           })
@@ -304,6 +320,42 @@ export default function ContactPage() {
                       )}
                     </div>
 
+                    {/* Business Name Field */}
+                    <div>
+                      <label htmlFor="contact-business-name" className="block text-base font-semibold text-brand-navy mb-2">
+                        שם העסק
+                      </label>
+                      <input
+                        id="contact-business-name"
+                        type="text"
+                        name="businessName"
+                        value={formData.businessName}
+                        onChange={handleChange}
+                        autoComplete="organization"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg"
+                        placeholder="שם העסק שלך (אופציונלי)"
+                      />
+                    </div>
+
+                    {/* Business Type Field */}
+                    <div>
+                      <label htmlFor="contact-business-type" className="block text-base font-semibold text-brand-navy mb-2">
+                        תחום פעילות
+                      </label>
+                      <select
+                        id="contact-business-type"
+                        name="businessType"
+                        value={formData.businessType}
+                        onChange={handleChange}
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg"
+                      >
+                        <option value="">בחר תחום (אופציונלי)</option>
+                        {businessTypes.map(bt => (
+                          <option key={bt.value} value={bt.value}>{bt.label}</option>
+                        ))}
+                      </select>
+                    </div>
+
                     {/* Subject Field */}
                     <div>
                       <label htmlFor="contact-subject" className="block text-base font-semibold text-brand-navy mb-2">
@@ -388,7 +440,7 @@ export default function ContactPage() {
                         className="p-5 bg-brand-green/10 border-2 border-brand-green/30 rounded-2xl"
                       >
                         <p className="text-brand-green text-center font-semibold">
-                          תודה על הפנייה! אחזור אליך בהקדם האפשרי.
+                          תודה! נחזור אליך תוך יום עסקים.
                         </p>
                       </motion.div>
                     )}
