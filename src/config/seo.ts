@@ -194,32 +194,6 @@ export const seoConfig = {
       keywords: ['אפליקציות מובייל', 'React Native', 'פיתוח אפליקציה', 'iOS', 'Android', 'Expo', 'אפליקציה לעסק'],
       canonical: 'https://www.itayost.com/services/mobile-apps',
     },
-
-    // Digital marketing service landing pages
-    'seo': {
-      title: 'קידום אורגני SEO | הגיעו לראש תוצאות גוגל',
-      description: 'שירותי SEO לעסקים קטנים בישראל — מחקר מילות מפתח בעברית, אופטימיזציה טכנית, בניית קישורים. עלייה של 200% בתנועה אורגנית תוך 6 חודשים.',
-      keywords: ['קידום אורגני', 'SEO', 'קידום אתרים', 'Google', 'מילות מפתח', 'SEO לעסקים קטנים', 'קידום בגוגל'],
-      canonical: 'https://www.itayost.com/services/seo',
-    },
-    'content-social': {
-      title: 'ניהול סושיאל מדיה | תוכן בעברית שמביא לקוחות',
-      description: 'ניהול מקצועי של פייסבוק, אינסטגרם ולינקדאין לעסקים ישראליים. תוכן בעברית, עיצוב גרפי, ניהול קהילה ודיווח חודשי. צרו קשר לפרטים.',
-      keywords: ['ניהול סושיאל', 'שיווק ברשתות חברתיות', 'פייסבוק', 'אינסטגרם', 'תוכן בעברית', 'ניהול דפי עסק'],
-      canonical: 'https://www.itayost.com/services/content-social',
-    },
-    'paid-ads': {
-      title: 'פרסום ממומן | Google Ads ו-Meta Ads לעסקים קטנים',
-      description: 'ניהול קמפיינים ממומנים ב-Google Ads ו-Meta Ads עם ROI מוכח. מביאים לידים איכותיים בתקציב שמתאים לעסקים קטנים בישראל.',
-      keywords: ['פרסום ממומן', 'Google Ads', 'Meta Ads', 'Facebook Ads', 'קמפיין פרסום', 'PPC', 'פרסום לעסקים קטנים'],
-      canonical: 'https://www.itayost.com/services/paid-ads',
-    },
-    'lead-generation': {
-      title: 'ייצור לידים | מערכת שמביאה לקוחות חדשים כל יום',
-      description: 'מערכת שלמה לייצור לידים: עמודי נחיתה ממירים, WhatsApp Business, רצפי מעקב אוטומטיים. לקוחותינו מקבלים 20-50 לידים בחודש.',
-      keywords: ['ייצור לידים', 'עמוד נחיתה', 'lead generation', 'לידים לעסק', 'המרות', 'WhatsApp Business', 'אוטומציה שיווקית'],
-      canonical: 'https://www.itayost.com/services/lead-generation',
-    },
   },
 
   // Structured Data Schemas

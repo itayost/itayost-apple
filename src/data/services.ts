@@ -57,8 +57,8 @@ export const servicesData: Service[] = [
     color: 'brand-blue',
     pattern: 'dots',
     accentColor: 'brand-orange',
-    featured: false,
-    displayOrder: 7,
+    featured: true,
+    displayOrder: 3,
     features: [
       {
         icon: '⚡',
@@ -281,8 +281,8 @@ export const servicesData: Service[] = [
     color: 'brand-navy',
     pattern: 'lines',
     accentColor: 'brand-orange',
-    featured: false,
-    displayOrder: 5,
+    featured: true,
+    displayOrder: 1,
     features: [
       {
         icon: '👥',
@@ -641,8 +641,8 @@ export const servicesData: Service[] = [
     color: 'brand-green',
     pattern: 'waves',
     accentColor: 'brand-blue',
-    featured: false,
-    displayOrder: 6,
+    featured: true,
+    displayOrder: 2,
     features: [
       {
         icon: '🔗',
@@ -761,8 +761,8 @@ export const servicesData: Service[] = [
     color: 'brand-navy',
     pattern: 'dots',
     accentColor: 'brand-orange',
-    featured: false,
-    displayOrder: 8,
+    featured: true,
+    displayOrder: 4,
     features: [
       {
         icon: '🍎',
@@ -867,382 +867,6 @@ export const servicesData: Service[] = [
     },
     relatedServices: ['ui-ux-design', 'crm-systems', 'automations'],
     lastUpdated: '2026-03-06'
-  },
-  {
-    id: 'seo',
-    slug: 'seo',
-    name: 'קידום אורגני (SEO)',
-    tagline: 'הגיעו לראש תוצאות גוגל ומשכו לקוחות שמחפשים בדיוק מה שאתם מציעים',
-    description: 'אסטרטגיית SEO מקצועית לעסקים קטנים בישראל — מחקר מילות מפתח, אופטימיזציה טכנית, בניית קישורים ותוכן שמדורג גבוה ומביא לקוחות.',
-    longDescription: 'קידום אורגני הוא ההשקעה החכמה ביותר לטווח ארוך. בעוד שפרסום ממומן נעצר ברגע שמפסיקים לשלם, SEO טוב ממשיך להביא לקוחות חינם לשנים קדימה. לפי מחקרי BrightEdge, מעל 53% מכל התנועה לאתרים מגיעה מחיפוש אורגני. בישראל, 95% מהמשתמשים לא עוברים לדף השני בגוגל — אם אתם לא בדף הראשון, אתם לא קיימים. אנחנו בונים אסטרטגיית SEO מלאה: מחקר מילות מפתח בעברית ובאנגלית, אופטימיזציה טכנית של האתר, יצירת תוכן שמדורג גבוה, ובניית רשת קישורים איכותיים. תוצאות ממוצעות ללקוחותינו: עלייה של 200% בתנועה אורגנית תוך 6 חודשים.',
-    icon: '🔍',
-    lucideIcon: 'Target',
-    color: 'brand-blue',
-    pattern: 'dots',
-    accentColor: 'brand-orange',
-    featured: true,
-    displayOrder: 1,
-    features: [
-      {
-        icon: '🔑',
-        title: 'מחקר מילות מפתח',
-        description: 'מחקר מעמיק של מה הלקוחות שלכם מחפשים בגוגל — בעברית ובאנגלית'
-      },
-      {
-        icon: '⚙️',
-        title: 'אופטימיזציה טכנית',
-        description: 'מהירות אתר, מבנה URL, schema markup, sitemap — הכל מתוקן ומאופטם'
-      },
-      {
-        icon: '✍️',
-        title: 'תוכן שמדורג',
-        description: 'כתיבת עמודים ומאמרים שגוגל אוהב ושהלקוחות שלכם מחפשים'
-      },
-      {
-        icon: '🔗',
-        title: 'בניית קישורים',
-        description: 'רשת קישורים איכותיים שמחזקים את הסמכות של האתר שלכם'
-      },
-      {
-        icon: '📊',
-        title: 'מעקב ודיווח',
-        description: 'דשבורד שבועי עם דירוגים, תנועה והמרות — תמיד תדעו מה קורה'
-      },
-      {
-        icon: '🌐',
-        title: 'SEO מקומי',
-        description: 'אופטימיזציה ל-Google Business Profile וחיפושים מקומיים בישראל'
-      }
-    ],
-    process: [
-      {
-        step: 1,
-        title: 'אבחון ומחקר',
-        description: 'ניתוח המצב הנוכחי של האתר, המתחרים ומילות המפתח הרלוונטיות',
-        duration: 'שבוע 1'
-      },
-      {
-        step: 2,
-        title: 'תכנית SEO',
-        description: 'בניית אסטרטגיה מותאמת לעסק שלכם עם יעדים מדידים',
-        duration: 'שבוע 2'
-      },
-      {
-        step: 3,
-        title: 'אופטימיזציה',
-        description: 'יישום כל השינויים הטכניים ויצירת התוכן',
-        duration: 'חודשים 1-3'
-      },
-      {
-        step: 4,
-        title: 'בניית קישורים',
-        description: 'הגברת הסמכות של האתר עם קישורים איכותיים',
-        duration: 'חודשים 2-6'
-      }
-    ],
-    portfolio: [],
-    faq: [
-      {
-        question: 'כמה זמן עד שרואים תוצאות SEO?',
-        answer: 'SEO הוא תהליך לטווח ארוך. בדרך כלל רואים שיפורים ראשוניים תוך 3 חודשים, ותוצאות משמעותיות תוך 6 חודשים.'
-      },
-      {
-        question: 'מה ההבדל בין SEO לפרסום ממומן?',
-        answer: 'פרסום ממומן נותן תוצאות מיידיות אבל עולה כסף כל חודש. SEO לוקח יותר זמן אבל ממשיך להביא לקוחות גם אחרי שמפסיקים לשלם.'
-      },
-      {
-        question: 'כמה עולה שירות SEO חודשי?',
-        answer: 'המחיר תלוי בתחרותיות הנישה ובהיקף העבודה. צרו קשר לקבלת הצעת מחיר מותאמת לעסק שלכם.'
-      }
-    ],
-    cta: {
-      primary: 'שוחח איתנו על קידום אורגני',
-      secondary: 'ראה תוצאות'
-    },
-    relatedServices: ['content-social', 'paid-ads', 'lead-generation'],
-    lastUpdated: '2026-03-09'
-  },
-  {
-    id: 'content-social',
-    slug: 'content-social',
-    name: 'תוכן וסושיאל מדיה',
-    tagline: 'בנו קהל עוקבים נאמן שהופך ללקוחות — בפייסבוק, אינסטגרם ולינקדאין',
-    description: 'ניהול מקצועי של הרשתות החברתיות שלכם — אסטרטגיה, תוכן בעברית, עיצוב גרפי ואינטראקציה עם הקהל. שיווק שמביא לקוחות אמיתיים.',
-    longDescription: 'רשתות חברתיות הן המקום שבו הלקוחות שלכם מבלים כל יום. נוכחות חזקה בפייסבוק, אינסטגרם ולינקדאין בונה אמון, מגדילה מודעות ומביאה לידים. אבל לא כל תוכן עובד — צריך לדעת מה לאמר, מתי לפרסם, ואיך לדבר אל הלקוח הישראלי. אנחנו יוצרים תוכן בעברית שמדבר לקהל שלכם: מאמרים מקצועיים, סיפורי לקוחות, טיפים מעשיים ותוכן שמניע לפעולה. כולל עיצוב ויזואל מקצועי לכל הפלטפורמות.',
-    icon: '📱',
-    lucideIcon: 'Smartphone',
-    color: 'brand-orange',
-    pattern: 'circles',
-    accentColor: 'brand-blue',
-    featured: true,
-    displayOrder: 2,
-    features: [
-      {
-        icon: '📅',
-        title: 'תכנון תוכן חודשי',
-        description: 'לוח תוכן מסודר עם כל הפוסטים מתוכננים מראש לפי אסטרטגיה'
-      },
-      {
-        icon: '✍️',
-        title: 'כתיבה בעברית',
-        description: 'תוכן איכותי בעברית שמדבר ישירות אל הלקוח הישראלי'
-      },
-      {
-        icon: '🎨',
-        title: 'עיצוב גרפי',
-        description: 'תמונות, גרפיקות ווידאו קצר מותאמים לכל רשת חברתית'
-      },
-      {
-        icon: '💬',
-        title: 'ניהול קהילה',
-        description: 'מענה לתגובות ומסרים, בניית קשר עם העוקבים'
-      },
-      {
-        icon: '📊',
-        title: 'ניתוח ביצועים',
-        description: 'דו"ח חודשי עם נתוני הגעה, מעורבות והמרות'
-      },
-      {
-        icon: '🚀',
-        title: 'קמפיינים ממוקדים',
-        description: 'קמפיינים ממומנים קטנים לחיזוז פוסטים מצליחים'
-      }
-    ],
-    process: [
-      {
-        step: 1,
-        title: 'הכרת המותג',
-        description: 'הבנת הקול, הערכים והקהל של העסק שלכם',
-        duration: 'שבוע 1'
-      },
-      {
-        step: 2,
-        title: 'אסטרטגיה',
-        description: 'בחירת פלטפורמות, תדירות פרסום ונושאי תוכן',
-        duration: 'שבוע 2'
-      },
-      {
-        step: 3,
-        title: 'יצירת תוכן',
-        description: 'כתיבה, עיצוב ולוח פרסום חודשי מאושר מראש',
-        duration: 'שוטף'
-      },
-      {
-        step: 4,
-        title: 'ניתוח ואופטימיזציה',
-        description: 'ניתוח חודשי ושיפור מתמיד לפי הנתונים',
-        duration: 'שוטף'
-      }
-    ],
-    portfolio: [],
-    faq: [
-      {
-        question: 'כמה פוסטים בשבוע?',
-        answer: 'תלוי בחבילה. בדרך כלל 3-5 פוסטים בשבוע לפייסבוק ואינסטגרם, עם תוכן מותאם לכל פלטפורמה.'
-      },
-      {
-        question: 'האם אני מאשר את התוכן לפני פרסום?',
-        answer: 'כן! כל התוכן נשלח לאישורכם מראש. אתם שולטים על מה שמתפרסם בשמכם.'
-      },
-      {
-        question: 'איזה רשתות חברתיות אתם מנהלים?',
-        answer: 'פייסבוק, אינסטגרם, לינקדאין. TikTok ו-X זמינים בחבילות מורחבות.'
-      }
-    ],
-    cta: {
-      primary: 'שוחח איתנו על ניהול סושיאל',
-      secondary: 'ראה דוגמאות'
-    },
-    relatedServices: ['seo', 'paid-ads', 'lead-generation'],
-    lastUpdated: '2026-03-09'
-  },
-  {
-    id: 'paid-ads',
-    slug: 'paid-ads',
-    name: 'פרסום ממומן',
-    tagline: 'הגיעו לקוחות רלוונטיים ברגע שהם מחפשים — Google Ads ו-Meta Ads עם ROI מוכח',
-    description: 'ניהול קמפיינים ממומנים ב-Google Ads ו-Meta Ads עם מעקב מדויק על כל שקל. מביאים לידים איכותיים בתקציב שמתאים לעסקים קטנים.',
-    longDescription: 'פרסום ממומן הוא הדרך המהירה ביותר להביא לקוחות חדשים לעסק. בעוד שSEO לוקח חודשים, Google Ads ו-Meta Ads יכולים להתחיל להביא לידים תוך ימים. הסוד הוא בניהול נכון — ה-74% מהמפרסמים מבזבזים כסף על קמפיינים לא מאופטמים. אנחנו מנהלים קמפיינים עם מיקוד מדויק: הקהל הנכון, המסר הנכון, בזמן הנכון. כל שקל ניתן למעקב. כל קמפיין מאופטם שבועית. דו"ח שקוף ומלא מדי חודש.',
-    icon: '📢',
-    lucideIcon: 'Target',
-    color: 'brand-navy',
-    pattern: 'lines',
-    accentColor: 'brand-orange',
-    featured: true,
-    displayOrder: 3,
-    features: [
-      {
-        icon: '🎯',
-        title: 'מיקוד מדויק',
-        description: 'פרסום לקהל הנכון — גיל, מיקום, תחומי עניין, כוונת קנייה'
-      },
-      {
-        icon: '🔍',
-        title: 'Google Ads',
-        description: 'קמפיינים בחיפוש, תצוגה ו-YouTube למי שמחפש את השירות שלכם'
-      },
-      {
-        icon: '📸',
-        title: 'Meta Ads',
-        description: 'קמפיינים בפייסבוק ואינסטגרם עם קריאייטיב מנצח'
-      },
-      {
-        icon: '📊',
-        title: 'מעקב המרות',
-        description: 'כל שקל ניתן למעקב — יודעים בדיוק כמה עולה להביא לקוח חדש'
-      },
-      {
-        icon: '🔄',
-        title: 'אופטימיזציה שוטפת',
-        description: 'שיפור שבועי של הקמפיינים לפי נתוני ביצועים בזמן אמת'
-      },
-      {
-        icon: '📝',
-        title: 'דיווח שקוף',
-        description: 'דו"ח חודשי מפורט — הכסף שנכנס, הלידים שהגיעו, הROI שהושג'
-      }
-    ],
-    process: [
-      {
-        step: 1,
-        title: 'הגדרת יעדים',
-        description: 'מה רוצים להשיג? כמה לידים? מה עלות לקוח מקסימלית?',
-        duration: 'שבוע 1'
-      },
-      {
-        step: 2,
-        title: 'בניית קמפיין',
-        description: 'מחקר מילות מפתח, יצירת קריאייטיב, הגדרת קהלים',
-        duration: 'שבוע 2'
-      },
-      {
-        step: 3,
-        title: 'השקה ומעקב',
-        description: 'הפעלת הקמפיין ומעקב צמוד על הביצועים',
-        duration: 'שוטף'
-      },
-      {
-        step: 4,
-        title: 'אופטימיזציה',
-        description: 'שיפור שבועי על סמך הנתונים',
-        duration: 'שוטף'
-      }
-    ],
-    portfolio: [],
-    faq: [
-      {
-        question: 'מה תקציב מינימלי לקמפיין?',
-        answer: 'ב-Google Ads מינימום 1,500 ש"ח לחודש. ב-Meta Ads אפשר להתחיל מ-500 ש"ח לחודש. דמי הניהול נפרדים.'
-      },
-      {
-        question: 'כמה זמן עד שרואים תוצאות?',
-        answer: 'בדרך כלל 7-14 ימים מהשקת הקמפיין. תוצאות מיטביות מגיעות אחרי 4-6 שבועות של אופטימיזציה.'
-      },
-      {
-        question: 'האם אתם עובדים עם תקציב קטן?',
-        answer: 'כן! אנחנו מתמחים בעסקים קטנים. מנהלים קמפיינים יעילים גם עם תקציבים של 2,000-5,000 ש"ח לחודש.'
-      }
-    ],
-    cta: {
-      primary: 'שוחח איתנו על פרסום ממומן',
-      secondary: 'ראה תוצאות'
-    },
-    relatedServices: ['seo', 'content-social', 'lead-generation'],
-    lastUpdated: '2026-03-09'
-  },
-  {
-    id: 'lead-generation',
-    slug: 'lead-generation',
-    name: 'ייצור לידים',
-    tagline: 'בנו מערכת שמביאה לקוחות חדשים באופן קבוע — עמודי נחיתה, טפסים ורצפי המרה',
-    description: 'מערכת שלמה לייצור לידים: עמודי נחיתה ממירים, טפסי לכידה, אינטגרציה לWhatsApp Business, ורצפי מעקב אוטומטיים שסוגרים עסקאות.',
-    longDescription: 'ייצור לידים הוא הלב של כל עסק שגדל. לא מספיק לפרסם — צריך מערכת שלוכדת את המתעניינים, מתקשרת אוטומטית ומביאה אותם לידי סגירה. אנחנו בונים מערכות ייצור לידים end-to-end: עמוד נחיתה ממיר שמסביר את הערך בבירור, טופס לכידה מהיר וקל, חיבור לWhatsApp Business לתגובה מיידית, ורצפי מייל ומסרון שמחממים את הליד עד לסגירה. לקוחותינו רואים ירידה ממוצעת של 60% בעלות לליד.',
-    icon: '🎯',
-    lucideIcon: 'Target',
-    color: 'brand-green',
-    pattern: 'waves',
-    accentColor: 'brand-navy',
-    featured: true,
-    displayOrder: 4,
-    features: [
-      {
-        icon: '🏠',
-        title: 'עמודי נחיתה',
-        description: 'עמודים ממירים שמסבירים את הערך ומניעים לפעולה — A/B tested'
-      },
-      {
-        icon: '📋',
-        title: 'טפסי לכידה',
-        description: 'טפסים קצרים ומהירים שמגדילים את שיעור ההמרה'
-      },
-      {
-        icon: '💬',
-        title: 'WhatsApp Business',
-        description: 'כל ליד מקבל הודעה אוטומטית תוך שניות — לפני שהמתחרים מתקשרים'
-      },
-      {
-        icon: '📧',
-        title: 'רצפי מעקב',
-        description: 'סדרת מיילים ומסרונים שמחממים את הליד עד לסגירה'
-      },
-      {
-        icon: '🔗',
-        title: 'חיבור ל-CRM',
-        description: 'כל ליד נכנס אוטומטית למערכת הניהול שלכם'
-      },
-      {
-        icon: '📊',
-        title: 'ניתוח המרות',
-        description: 'מעקב מלא מהקלקול על הפרסום עד לסגירת העסקה'
-      }
-    ],
-    process: [
-      {
-        step: 1,
-        title: 'מיפוי הפאנל',
-        description: 'הבנת תהליך המכירה הנוכחי וזיהוי נקודות הנטישה',
-        duration: 'שבוע 1'
-      },
-      {
-        step: 2,
-        title: 'בניית מערכת',
-        description: 'עמוד נחיתה, טפסים, אינטגרציות ורצפי אוטומציה',
-        duration: 'שבועות 2-3'
-      },
-      {
-        step: 3,
-        title: 'בדיקות והשקה',
-        description: 'בדיקת כל הרצפים, אופטימיזציה ראשונית',
-        duration: 'שבוע 4'
-      },
-      {
-        step: 4,
-        title: 'שיפור מתמיד',
-        description: 'A/B testing ואופטימיזציה שוטפת לשיפור שיעור ההמרה',
-        duration: 'שוטף'
-      }
-    ],
-    portfolio: [],
-    faq: [
-      {
-        question: 'כמה לידים אפשר לצפות לקבל?',
-        answer: 'תלוי בתחרותיות הנישה ובתקציב הפרסום. ממוצע ללקוחותינו: 20-50 לידים בחודש עם תקציב פרסום של 2,000-5,000 ש"ח.'
-      },
-      {
-        question: 'האם זה עובד ללא CRM?',
-        answer: 'כן! אפשר להתחיל עם גיליון Excel פשוט. נמליץ על CRM כשהנפח מצדיק זאת.'
-      },
-      {
-        question: 'כמה זמן לוקח להקים את המערכת?',
-        answer: 'בדרך כלל 3-4 שבועות מהפגישה הראשונה עד לעמוד נחיתה מוכן ורצים.'
-      }
-    ],
-    cta: {
-      primary: 'שוחח איתנו על ייצור לידים',
-      secondary: 'ראה מקרי בוחן'
-    },
-    relatedServices: ['seo', 'content-social', 'paid-ads'],
-    lastUpdated: '2026-03-09'
   }
 ]
 
