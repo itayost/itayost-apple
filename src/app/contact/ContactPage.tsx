@@ -21,27 +21,13 @@ import { bouncyEasing } from '@/constants/animations'
 
 interface FormData {
   name: string
-  email: string
   phone: string
-  subject: string
-  message: string
 }
-
-const subjects = [
-  { value: 'website', label: 'אתר שעובד 24/7' },
-  { value: 'crm', label: 'מערכת ניהול לקוחות' },
-  { value: 'automation', label: 'אוטומציה וחיסכון זמן' },
-  { value: 'consulting', label: 'ייעוץ דיגיטלי' },
-  { value: 'other', label: 'אחר' }
-]
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    phone: ''
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -63,10 +49,6 @@ export default function ContactPage() {
       if (!/^0\d{8,9}$/.test(normalizedPhone)) {
         newErrors.phone = 'מספר טלפון לא תקין'
       }
-    }
-
-    if (!formData.subject) {
-      newErrors.subject = 'נא לבחור נושא'
     }
 
     setErrors(newErrors)
@@ -94,10 +76,7 @@ export default function ContactPage() {
       // Convert FormData to HomepageContactForm format
       const contactForm: HomepageContactForm = {
         name: formData.name,
-        email: formData.email,
         phone: normalizedPhone,
-        subject: formData.subject,
-        message: formData.message
       }
 
       // Submit to CRM
@@ -110,10 +89,7 @@ export default function ContactPage() {
         setTimeout(() => {
           setFormData({
             name: '',
-            email: '',
-            phone: '',
-            subject: '',
-            message: ''
+            phone: ''
           })
           setSubmitStatus('idle')
         }, 5000)
@@ -129,7 +105,7 @@ export default function ContactPage() {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
     if (errors[name as keyof FormData]) {
@@ -302,48 +278,6 @@ export default function ContactPage() {
                           {errors.phone}
                         </p>
                       )}
-                    </div>
-
-                    {/* Subject Field */}
-                    <div>
-                      <label htmlFor="contact-subject" className="block text-base font-semibold text-brand-navy mb-2">
-                        נושא *
-                      </label>
-                      <select
-                        id="contact-subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.subject ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg`}
-                      >
-                        <option value="">בחר נושא</option>
-                        {subjects.map(subject => (
-                          <option key={subject.value} value={subject.value}>{subject.label}</option>
-                        ))}
-                      </select>
-                      {errors.subject && (
-                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                          <AlertCircle size={14} />
-                          {errors.subject}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Message Field */}
-                    <div>
-                      <label htmlFor="contact-message" className="block text-base font-semibold text-brand-navy mb-2">
-                        הודעה
-                      </label>
-                      <textarea
-                        id="contact-message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={4}
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-brand-gray-200 focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all resize-none text-lg"
-                        placeholder="ספר לי בקצרה על מה שאתה צריך (אופציונלי)"
-                      />
                     </div>
 
                     {/* Submit Button */}

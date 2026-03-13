@@ -34,9 +34,9 @@ export type ContactPageForm = z.infer<typeof ContactPageFormSchema>
 // Homepage Contact Section Form Schema
 export const HomepageContactFormSchema = z.object({
   name: z.string().min(1, 'נא להזין שם'),
-  email: z.string().email('אימייל לא תקין').optional(),
   phone: z.string().min(1, 'נא להזין מספר טלפון'),
-  subject: z.string().min(1, 'נא לבחור נושא'),
+  email: z.string().email('אימייל לא תקין').optional(),
+  subject: z.string().optional(),
   message: z.string().optional()
 })
 
