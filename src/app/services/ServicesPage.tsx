@@ -241,7 +241,7 @@ export default function ServicesPage() {
                       }}
                     >
                       <Link
-                        href={`/contact?service=${service.slug}`}
+                        href="/contact"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
                       >
                         <span>קבל הצעה</span>

@@ -130,6 +130,27 @@ const nextConfig = {
         destination: '/blog/mobile-first-design-importance-2025',
         permanent: true,
       },
+      // Old blog slugs found by GSC — redirect to current versions
+      {
+        source: '/blog/ecommerce-seo-israel',
+        destination: '/blog/ecommerce-platform-comparison-israel-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/nextjs-website-guide',
+        destination: '/blog/nextjs-vs-wordpress-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/web-vitals-optimization',
+        destination: '/blog/website-speed-optimization-guide',
+        permanent: true,
+      },
+      {
+        source: encodeURI('/blog/בניית-חנות-אונליין-בישראל-מדריך-שלם'),
+        destination: '/blog/building-online-store-israel-complete-guide',
+        permanent: true,
+      },
     ]
   },
   
