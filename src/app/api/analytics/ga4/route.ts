@@ -27,6 +27,7 @@ type ReportType =
   | 'conversions'
   | 'user-journey'
   | 'devices'
+  | 'sources'
 
 export async function GET(request: NextRequest) {
   const authError = authenticateAnalyticsRequest(request)
@@ -77,6 +78,9 @@ export async function GET(request: NextRequest) {
         break
       case 'devices':
         data = await getDevices(analyticsData, propertyId, dateRange)
+        break
+      case 'sources':
+        data = await getSources(analyticsData, propertyId, dateRange)
         break
       default:
         return NextResponse.json(
@@ -152,7 +156,6 @@ async function getPagePerformance(
         { name: 'averageSessionDuration' },
         { name: 'engagementRate' },
         { name: 'conversions' },
-        { name: 'engagementRate' },
         { name: 'userEngagementDuration' },
       ],
       orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
@@ -311,6 +314,37 @@ async function getDevices(
         { name: 'screenPageViews' },
       ],
       orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+    },
+  })
+
+  return formatTableReport(response.data)
+}
+
+async function getSources(
+  client: AnalyticsClient,
+  propertyId: string,
+  dateRange: { startDate: string; endDate: string }
+) {
+  const response = await client.properties.runReport({
+    property: propertyId,
+    requestBody: {
+      dateRanges: [dateRange],
+      dimensions: [
+        { name: 'sessionDefaultChannelGroup' },
+        { name: 'sessionSource' },
+        { name: 'sessionMedium' },
+      ],
+      metrics: [
+        { name: 'sessions' },
+        { name: 'totalUsers' },
+        { name: 'newUsers' },
+        { name: 'bounceRate' },
+        { name: 'averageSessionDuration' },
+        { name: 'engagementRate' },
+        { name: 'conversions' },
+      ],
+      orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+      limit: '50',
     },
   })
 

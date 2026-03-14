@@ -17,7 +17,7 @@ import { authenticateAnalyticsRequest } from '@/lib/analytics-auth'
 
 export const dynamic = 'force-dynamic'
 
-type ReportType = 'queries' | 'pages' | 'devices' | 'countries' | 'query-pages'
+type ReportType = 'overview' | 'queries' | 'pages' | 'devices' | 'countries' | 'query-pages'
 
 export async function GET(request: NextRequest) {
   const authError = authenticateAnalyticsRequest(request)
@@ -58,6 +58,64 @@ export async function GET(request: NextRequest) {
     const previousDateRange = {
       startDate: formatDate(prevStartDate),
       endDate: formatDate(prevEndDate),
+    }
+
+    // Overview report: aggregate totals without dimensions
+    if (report === 'overview') {
+      const [currentData, previousData] = await Promise.all([
+        searchconsole.searchanalytics.query({
+          siteUrl,
+          requestBody: {
+            startDate: dateRange.startDate,
+            endDate: dateRange.endDate,
+            dataState: 'final',
+          },
+        }),
+        searchconsole.searchanalytics.query({
+          siteUrl,
+          requestBody: {
+            startDate: previousDateRange.startDate,
+            endDate: previousDateRange.endDate,
+            dataState: 'final',
+          },
+        }),
+      ])
+
+      const currentRow = currentData.data?.rows?.[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 }
+      const previousRow = previousData.data?.rows?.[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 }
+
+      const calcChange = (curr: number, prev: number) =>
+        prev > 0 ? Math.round(((curr - prev) / prev) * 1000) / 10 : 0
+
+      return NextResponse.json({
+        report,
+        period,
+        dateRange,
+        previousDateRange,
+        data: {
+          totalClicks: {
+            current: currentRow.clicks || 0,
+            previous: previousRow.clicks || 0,
+            change: calcChange(currentRow.clicks || 0, previousRow.clicks || 0),
+          },
+          totalImpressions: {
+            current: currentRow.impressions || 0,
+            previous: previousRow.impressions || 0,
+            change: calcChange(currentRow.impressions || 0, previousRow.impressions || 0),
+          },
+          averageCTR: {
+            current: Math.round((currentRow.ctr || 0) * 10000) / 100,
+            previous: Math.round((previousRow.ctr || 0) * 10000) / 100,
+            change: calcChange(currentRow.ctr || 0, previousRow.ctr || 0),
+          },
+          averagePosition: {
+            current: Math.round((currentRow.position || 0) * 10) / 10,
+            previous: Math.round((previousRow.position || 0) * 10) / 10,
+            change: Math.round(((previousRow.position || 0) - (currentRow.position || 0)) * 10) / 10,
+          },
+        },
+        generatedAt: new Date().toISOString(),
+      })
     }
 
     let dimensions: string[]
