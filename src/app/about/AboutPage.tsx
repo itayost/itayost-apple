@@ -569,7 +569,7 @@ export default function AboutPage() {
                 }}
               >
                 <a
-                  href="https://wa.me/972544994417"
+                  href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, קראתי עליך ואשמח לשמוע עוד')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"

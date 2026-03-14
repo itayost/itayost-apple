@@ -367,7 +367,7 @@ export default function ContactPage() {
                     חוזר אליכם תוך שעה בימי עבודה. הזמינות הקרובה לפרויקטים: אפריל 2026.
                   </p>
                   <motion.a
-                    href="https://wa.me/972544994417"
+                    href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, אשמח לתאם שיחה על פרויקט')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-navy transition-colors"

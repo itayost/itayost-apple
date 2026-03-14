@@ -95,7 +95,7 @@ export function SidebarCTA({ className = '', category }: SidebarCTAProps) {
 
         {/* WhatsApp link */}
         <a
-          href="https://wa.me/972544994417"
+          href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, קראתי את המאמר שלך ורציתי לשאול...')}`}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 bg-white/10 backdrop-blur-sm text-white rounded-xl text-sm font-medium hover:bg-white/20 transition-colors"

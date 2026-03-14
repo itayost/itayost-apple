@@ -5,11 +5,38 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import { trackWhatsAppClick } from '@/lib/analytics'
 
+// Page-specific WhatsApp messages for better lead context
+const PAGE_MESSAGES: Record<string, string> = {
+  '/': 'היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים',
+  '/services': 'היי, ראיתי את השירותים שלך ומעוניין לשמוע עוד',
+  '/services/crm-systems': 'היי, אני מעוניין במערכת CRM מותאמת אישית',
+  '/services/automations': 'היי, אני מעוניין באוטומציות לעסק שלי',
+  '/services/web-development': 'היי, אני מעוניין בפיתוח אתר',
+  '/services/mobile-apps': 'היי, אני מעוניין בפיתוח אפליקציה',
+  '/services/ecommerce': 'היי, אני מעוניין בהקמת חנות אונליין',
+  '/services/ui-ux-design': 'היי, אני מעוניין בעיצוב UI/UX',
+  '/services/landing-pages': 'היי, אני מעוניין בדף נחיתה',
+  '/contact': 'היי, אשמח לתאם שיחה על פרויקט',
+  '/about': 'היי, קראתי עליך ואשמח לשמוע עוד',
+  '/portfolio': 'היי, ראיתי את תיק העבודות שלך ומעוניין בפרויקט דומה',
+  '/faq': 'היי, יש לי שאלה שלא מצאתי תשובה אליה',
+}
+
+function getWhatsAppMessage(pathname: string): string {
+  // Exact match first
+  if (PAGE_MESSAGES[pathname]) return PAGE_MESSAGES[pathname]
+  // Blog pages
+  if (pathname.startsWith('/blog')) return 'היי, קראתי את המאמר שלך ורציתי לשאול...'
+  // Service sub-pages fallback
+  if (pathname.startsWith('/services')) return 'היי, ראיתי את השירותים שלך ומעוניין לשמוע עוד'
+  // Default
+  return 'היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים'
+}
+
 export function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false)
 
   const phoneNumber = '972544994417'
-  const message = 'שלום! אשמח לקבל מידע נוסף על השירותים שלך'
 
   useEffect(() => {
     // Show button after a delay
@@ -21,11 +48,13 @@ export function WhatsAppButton() {
       clearTimeout(timer)
     }
   }, [])
-  
-  const handleClick = () => {
-    // Track WhatsApp button click
-    trackWhatsAppClick(window.location.pathname, 'fab')
 
+  const handleClick = () => {
+    const pathname = window.location.pathname
+    // Track WhatsApp button click
+    trackWhatsAppClick(pathname, 'fab')
+
+    const message = getWhatsAppMessage(pathname)
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
   }

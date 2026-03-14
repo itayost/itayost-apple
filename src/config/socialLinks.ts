@@ -44,7 +44,7 @@ export const contactMethods: ContactMethod[] = [
     icon: MessageCircle,
     title: 'WhatsApp',
     value: 'שלח הודעה',
-    href: 'https://wa.me/972544994417',
+    href: `https://wa.me/972544994417?text=${encodeURIComponent('היי, אשמח לתאם שיחה על פרויקט')}`,
     description: 'מענה מהיר ונוח',
     color: 'bg-brand-green',
   },

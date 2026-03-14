@@ -287,7 +287,7 @@ export default function FAQPage() {
                 }}
               >
                 <a
-                  href="https://wa.me/972544994417"
+                  href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, יש לי שאלה שלא מצאתי תשובה אליה באתר')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white/20 backdrop-blur text-white border-2 border-white/30 rounded-full font-semibold text-lg hover:bg-white/30 transition-all"

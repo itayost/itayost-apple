@@ -90,7 +90,7 @@ export default function Contact() {
                 icon: MessageCircle,
                 title: 'WhatsApp',
                 value: 'שלחו הודעה',
-                href: 'https://wa.me/972544994417',
+                href: `https://wa.me/972544994417?text=${encodeURIComponent('היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים')}`,
                 color: 'bg-brand-green'
               },
               {

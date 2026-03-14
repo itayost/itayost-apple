@@ -90,7 +90,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
           >
             {/* WhatsApp Button */}
             <a
-              href="https://wa.me/972544994417?text=היי,%20אני%20מעוניין%20לשמוע%20עוד%20על%20"
+              href={`https://wa.me/972544994417?text=${encodeURIComponent(`היי, אני מעוניין לשמוע עוד על ${service.name}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className={`btn bg-white ${colors.text}`}
