@@ -15,6 +15,7 @@ export { blogCategories, type BlogCategory } from './blog-constants'
 export interface BlogPost {
   slug: string
   title: string
+  metaTitle?: string
   description: string
   date: string
   lastUpdated?: string
@@ -92,6 +93,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     return {
       slug,
       title: data.title || '',
+      metaTitle: data.metaTitle || undefined,
       description: data.description || '',
       date: data.date || new Date().toISOString().split('T')[0],
       lastUpdated: data.lastUpdated || undefined,

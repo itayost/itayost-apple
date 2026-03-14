@@ -29,13 +29,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
+  const seoTitle = post.metaTitle || post.title
+
   return {
-    title: `${post.title} | בלוג ITAYOST`,
+    title: `${seoTitle} | בלוג ITAYOST`,
     description: post.description || post.excerpt,
     keywords: post.tags,
     authors: [{ name: post.author }],
     openGraph: {
-      title: post.title,
+      title: seoTitle,
       description: post.description || post.excerpt,
       url: `https://www.itayost.com/blog/${slug}`,
       type: 'article',

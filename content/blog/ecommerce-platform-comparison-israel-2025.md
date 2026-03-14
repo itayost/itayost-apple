@@ -1,6 +1,7 @@
 ---
 title: "השוואת פלטפורמות סחר - Shopify vs WooCommerce vs React (2026)"
-description: "מדריך מקיף להשוואת פלטפורמות לחנות אונליין בישראל ב-2026. Shopify, WooCommerce או פיתוח מותאם? מחירים, יתרונות, חסרונות, ואיזו פלטפורמה מתאימה לעסק שלך."
+metaTitle: "Shopify vs WooCommerce 2026 — השוואה מלאה לחנות אונליין בישראל"
+description: "Shopify או WooCommerce? השוואה מקיפה: מחירים, עמלות, תמיכה בעברית, מהירות ו-SEO. + מתי לבחור בפיתוח React מותאם לחנות שלך."
 date: "2025-12-09"
 lastUpdated: "2026-03-06"
 author: "איתי אוסטרייך"
