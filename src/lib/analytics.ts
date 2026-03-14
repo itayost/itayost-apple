@@ -1,6 +1,7 @@
-// Central analytics utility for GA4 event tracking
+// Central analytics utility — sends events to BOTH GA4 and PostHog
 // 7 focused events that answer real business questions
 
+import posthog from 'posthog-js'
 import type { AnalyticsEventName } from '@/types/analytics'
 
 // Check if Google Analytics is available
@@ -8,27 +9,45 @@ const isGAAvailable = (): boolean => {
   return typeof window !== 'undefined' && typeof window.gtag !== 'undefined'
 }
 
-// Base function to track any event
+// Check if PostHog is available
+const isPostHogAvailable = (): boolean => {
+  return typeof window !== 'undefined' && posthog.__loaded === true
+}
+
+// Base function to track any event — sends to both GA4 and PostHog
 export const trackEvent = (
   eventName: AnalyticsEventName,
   params: Record<string, string | number | boolean | undefined> = {}
 ): void => {
-  if (!isGAAvailable()) {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[Analytics]', eventName, params)
+  // Send to GA4
+  if (isGAAvailable()) {
+    try {
+      if (window.gtag) {
+        window.gtag('event', eventName, {
+          ...params,
+          timestamp: Date.now(),
+        })
+      }
+    } catch (error) {
+      console.error('[Analytics] GA4 error:', error)
     }
-    return
   }
 
-  try {
-    if (window.gtag) {
-      window.gtag('event', eventName, {
+  // Send to PostHog
+  if (isPostHogAvailable()) {
+    try {
+      posthog.capture(eventName, {
         ...params,
-        timestamp: Date.now(),
+        $current_url: window.location.href,
       })
+    } catch (error) {
+      console.error('[Analytics] PostHog error:', error)
     }
-  } catch (error) {
-    console.error('[Analytics] Error tracking event:', error)
+  }
+
+  // Dev logging
+  if (process.env.NODE_ENV === 'development' && !isGAAvailable() && !isPostHogAvailable()) {
+    console.log('[Analytics]', eventName, params)
   }
 }
 
