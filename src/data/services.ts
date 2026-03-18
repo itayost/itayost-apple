@@ -242,7 +242,7 @@ export const servicesData: Service[] = [
       }
     ],
     technologies: ['Next.js', 'React', 'Stripe', 'Tranzila API', 'Bit API', 'PostgreSQL'],
-    portfolio: ['1', '8'], // Kitchen Optimizer, FutureKids
+    portfolio: ['6', '8'], // נס התמר, FutureKids
     faq: [
       {
         question: 'איזו פלטפורמה הכי טובה?',
@@ -354,7 +354,7 @@ export const servicesData: Service[] = [
       }
     ],
     technologies: ['Next.js', 'React', 'PostgreSQL', 'Prisma ORM', 'NextAuth.js', 'Resend API'],
-    portfolio: ['7', '9', '10'], // Garden of Eden, Amit EyeBrows, TA CRM
+    portfolio: ['1', '7', '9', '10'], // Kitchen Optimizer, Garden of Eden, Amit EyeBrows, TA CRM
     faq: [
       {
         question: 'מה ההבדל בין CRM מותאם לבין מערכת מוכנה?',
