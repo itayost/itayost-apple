@@ -55,6 +55,7 @@ export const portfolioCategories = [
   { id: 'web', label: 'אתרים', value: 'web' },
   { id: 'system', label: 'מערכות', value: 'system' },
   { id: 'mobile', label: 'אפליקציות', value: 'mobile' },
+  { id: 'ecommerce', label: 'חנויות', value: 'ecommerce' },
 ] as const
 
 // Portfolio data with real projects
@@ -89,7 +90,7 @@ export const portfolioData: PortfolioItem[] = [
     year: '2024',
     duration: '4 חודשים',
     link: null,
-    featured: true,
+    featured: false,
     features: [
       'ניהול מלאי בזמן אמת',
       'מעקב רגישויות והעדפות תזונתיות',
@@ -349,7 +350,7 @@ export const portfolioData: PortfolioItem[] = [
     duration: '2 חודשים',
     link: 'https://www.shepes-group.co.il',
     linkType: 'live',
-    featured: true,
+    featured: false,
     features: [
       'אתר עברי RTL מלא',
       'תצוגת נכסים דינמית',
@@ -415,7 +416,7 @@ export const portfolioData: PortfolioItem[] = [
     duration: '2.5 חודשים',
     link: 'https://www.neshatamar.com',
     linkType: 'live',
-    featured: true,
+    featured: false,
     features: [
       'חנות מקוונת מלאה',
       'אינטגרציה עם Headstart',
