@@ -15,7 +15,7 @@ import {
   Sparkles
 } from 'lucide-react'
 import { submitHomepageContactForm, type HomepageContactForm } from '@/services/crm'
-import { trackGenerateLead, trackContactClick } from '@/lib/analytics'
+import { trackGenerateLead, trackContactClick, trackWhatsAppClick } from '@/lib/analytics'
 import { socialLinks, contactMethods } from '@/config/socialLinks'
 import { bouncyEasing } from '@/constants/animations'
 
@@ -373,6 +373,7 @@ export default function ContactPage() {
                     className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-navy transition-colors"
                     whileHover={{ x: -3 }}
                     transition={{ duration: 0.2, ease: bouncyEasing }}
+                    onClick={() => trackWhatsAppClick('/contact', 'sidebar')}
                   >
                     <MessageCircle size={18} />
                     שלח WhatsApp

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { Service } from '@/data/services'
 import { ServiceBreadcrumbs } from '@/components/common/Breadcrumbs'
 import { getServiceColors } from '@/lib/colors'
-import { trackServiceView } from '@/lib/analytics'
+import { trackServiceView, trackCtaClick } from '@/lib/analytics'
 
 interface ServiceHeroProps {
   service: Service
@@ -108,12 +108,14 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             <a
               href="#contact"
               className={`btn btn-primary ${colors.bg}`}
+              onClick={() => trackCtaClick(service.cta.primary, 'service_hero', '#contact')}
             >
               {service.cta.primary}
             </a>
             <a
               href="#portfolio"
               className="btn btn-ghost"
+              onClick={() => trackCtaClick(service.cta.secondary, 'service_hero', '#portfolio')}
             >
               {service.cta.secondary}
             </a>
