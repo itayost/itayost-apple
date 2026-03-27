@@ -5,6 +5,7 @@ import '../styles/mobile-first.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { WhatsAppButton } from '@/components/common/WhatsAppButton'
+import { MobileWhatsAppBar } from '@/components/common/MobileWhatsAppBar'
 import { WebVitals } from '@/components/common/WebVitals'
 import { SkipNavigation } from '@/components/common/SkipNavigation'
 import { MicrosoftClarity } from '@/components/common/MicrosoftClarity'
@@ -189,6 +190,7 @@ export default function RootLayout({
         <main id="main-content">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <MobileWhatsAppBar />
       </body>
     </html>
   )

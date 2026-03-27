@@ -72,7 +72,7 @@ export function WhatsAppButton() {
             damping: 20
           }}
           onClick={handleClick}
-          className="fixed bottom-6 start-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-colors transition-shadow group"
+          className="fixed bottom-6 start-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full hidden sm:flex items-center justify-center shadow-lg hover:shadow-xl transition-colors transition-shadow group"
           style={{
             transform: 'translateZ(0)',
             willChange: 'transform',

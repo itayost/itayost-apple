@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { portfolioData, portfolioCategories } from '@/data/portfolio'
@@ -187,6 +187,7 @@ export default function Portfolio() {
             <div className="inline-flex gap-3 p-2 bg-brand-gray-100 rounded-full">
               {portfolioCategories.map((category) => (
                 <motion.button
+                  type="button"
                   key={category.value}
                   onClick={() => setSelectedCategory(category.value)}
                   className={`px-6 py-3 rounded-full font-bold transition-all ${
@@ -204,38 +205,44 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Mobile: Scrollable tabs */}
-          <div
-            className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide flex justify-center"
-            style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            <div className="flex gap-3 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
+          {/* Mobile: Wrapped flex buttons (no scroll container to avoid dead clicks) */}
+          <div className="sm:hidden flex justify-center">
+            <div className="flex flex-wrap justify-center gap-2 p-2">
               {portfolioCategories.map((category) => (
-                <motion.button
+                <button
+                  type="button"
                   key={category.value}
                   onClick={() => setSelectedCategory(category.value)}
-                  className={`px-6 py-3 rounded-full font-bold transition-all ${
+                  className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all active:scale-95 ${
                     selectedCategory === category.value
                       ? 'bg-brand-navy text-white shadow-lg'
-                      : 'text-brand-gray-700 hover:text-brand-navy'
+                      : 'bg-brand-gray-100 text-brand-gray-700 active:bg-brand-gray-200'
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
                 >
                   {category.label}
-                </motion.button>
+                </button>
               ))}
             </div>
           </div>
         </motion.div>
 
         {/* Portfolio Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {filteredItems.map((item, index) => (
-            <PortfolioCard key={item.id} item={item} index={index} />
-          ))}
-        </div>
+        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <AnimatePresence mode="popLayout">
+            {filteredItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3, ease: bouncyEasing }}
+              >
+                <PortfolioCard item={item} index={index} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Statistics */}
         <motion.div
