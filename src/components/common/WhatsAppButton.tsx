@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
-import { trackWhatsAppClick } from '@/lib/analytics'
+import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
 
 // Page-specific WhatsApp messages for better lead context
 const PAGE_MESSAGES: Record<string, string> = {
@@ -51,8 +51,9 @@ export function WhatsAppButton() {
 
   const handleClick = () => {
     const pathname = window.location.pathname
-    // Track WhatsApp button click
+    // Track WhatsApp button click + lead generation
     trackWhatsAppClick(pathname, 'fab')
+    trackGenerateLead('whatsapp', pathname)
 
     const message = getWhatsAppMessage(pathname)
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`

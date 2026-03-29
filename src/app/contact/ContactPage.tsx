@@ -188,10 +188,14 @@ export default function ContactPage() {
                 className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow"
                 target={method.title === 'WhatsApp' ? '_blank' : undefined}
                 rel={method.title === 'WhatsApp' ? 'noopener noreferrer' : undefined}
-                onClick={() => trackContactClick(
-                  method.title === 'WhatsApp' ? 'whatsapp' : method.title === 'טלפון' ? 'phone' : 'email',
-                  'contact_section'
-                )}
+                onClick={() => {
+                  const contactMethod = method.title === 'WhatsApp' ? 'whatsapp' : method.title === 'טלפון' ? 'phone' : 'email'
+                  trackContactClick(contactMethod, 'contact_section')
+                  if (contactMethod === 'whatsapp') {
+                    trackWhatsAppClick('/contact', 'contact_card')
+                    trackGenerateLead('whatsapp', '/contact')
+                  }
+                }}
               >
                 <div className="flex flex-col items-center text-center">
                   <motion.div
@@ -373,7 +377,10 @@ export default function ContactPage() {
                     className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-navy transition-colors"
                     whileHover={{ x: -3 }}
                     transition={{ duration: 0.2, ease: bouncyEasing }}
-                    onClick={() => trackWhatsAppClick('/contact', 'sidebar')}
+                    onClick={() => {
+                      trackWhatsAppClick('/contact', 'sidebar')
+                      trackGenerateLead('whatsapp', '/contact')
+                    }}
                   >
                     <MessageCircle size={18} />
                     שלח WhatsApp

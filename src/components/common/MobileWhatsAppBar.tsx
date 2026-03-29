@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, Phone } from 'lucide-react'
-import { trackWhatsAppClick, trackCtaClick } from '@/lib/analytics'
+import { trackWhatsAppClick, trackCtaClick, trackGenerateLead } from '@/lib/analytics'
 
 const PAGE_MESSAGES: Record<string, string> = {
   '/': 'היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים',
@@ -60,6 +60,7 @@ export function MobileWhatsAppBar() {
   const handleWhatsAppClick = () => {
     const pathname = window.location.pathname
     trackWhatsAppClick(pathname, 'mobile_bar')
+    trackGenerateLead('whatsapp', pathname)
     trackCtaClick('whatsapp_mobile_bar', 'mobile_cta', pathname)
 
     const message = getWhatsAppMessage(pathname)
