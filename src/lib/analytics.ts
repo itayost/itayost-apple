@@ -53,13 +53,29 @@ export const trackEvent = (
 
 // Track lead generation (GA4 recommended event)
 // Fires when: contact form submitted, newsletter signup, WhatsApp contact initiated
+//
+// `value` and `currency` are GA4 recommended parameters for `generate_lead`.
+// Attaching a sensible estimated lead value per method lets GA4 surface a
+// total conversion value in reports once the event is marked as a key event
+// in Admin → Events. Values below are conservative ILS estimates of an
+// average qualified lead and can be tuned as real pipeline data comes in.
+const DEFAULT_LEAD_VALUE_ILS: Record<'form' | 'whatsapp' | 'phone' | 'newsletter', number> = {
+  form: 250,
+  whatsapp: 200,
+  phone: 200,
+  newsletter: 25,
+}
+
 export const trackGenerateLead = (
   method: 'form' | 'whatsapp' | 'phone' | 'newsletter',
-  sourcePage: string
+  sourcePage: string,
+  options?: { value?: number; currency?: string }
 ): void => {
   trackEvent('generate_lead', {
     method,
     source_page: sourcePage,
+    value: options?.value ?? DEFAULT_LEAD_VALUE_ILS[method],
+    currency: options?.currency ?? 'ILS',
   })
 }
 

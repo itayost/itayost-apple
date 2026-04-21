@@ -2,12 +2,15 @@
 
 import { motion } from 'framer-motion'
 import { ServiceFeature } from '@/data/services'
-import { getServiceColors } from '@/lib/colors'
 
 interface ServiceFeaturesProps {
   features: ServiceFeature[]
-  color: string
-  accentColor: string
+  // Kept for API compatibility with other service-page sections even though
+  // the feature cards themselves no longer render colored hover affordances
+  // (removing them eliminated dead clicks from users treating the cards as
+  // buttons). See weekly CRO report 2026-04-19 for context.
+  color?: string
+  accentColor?: string
 }
 
 const container = {
@@ -25,9 +28,7 @@ const item = {
   show: { opacity: 1, y: 0 }
 }
 
-export default function ServiceFeatures({ features, color, accentColor }: ServiceFeaturesProps) {
-  const colors = getServiceColors(color)
-
+export default function ServiceFeatures({ features }: ServiceFeaturesProps) {
   return (
     <section className="bg-white py-20 lg:py-24">
       <div className="container mx-auto px-4">
@@ -51,17 +52,11 @@ export default function ServiceFeatures({ features, color, accentColor }: Servic
             <motion.div
               key={index}
               variants={item}
-              className="group relative overflow-hidden rounded-2xl border border-brand-gray-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl"
+              className="relative cursor-default rounded-2xl border border-brand-gray-200 bg-white p-8 shadow-sm"
             >
-              {/* Solid color accent on hover */}
-              <div
-                className={`absolute inset-0 ${colors.bgLight} opacity-0 transition-opacity group-hover:opacity-100`}
-                aria-hidden="true"
-              />
-
               <div className="relative">
                 {/* Icon */}
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-brand-gray-50 text-3xl transition-transform group-hover:scale-110">
+                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-brand-gray-50 text-3xl">
                   {feature.icon}
                 </div>
 

@@ -263,7 +263,7 @@ export const servicesData: Service[] = [
     ],
     cta: {
       primary: 'בוא נדבר על החנות שלך',
-      secondary: 'קרא מדריך מלא'
+      secondary: 'ראה דוגמאות'
     },
     relatedServices: ['web-development', 'automations', 'crm-systems'],
     lastUpdated: '2026-03-06'
@@ -383,7 +383,7 @@ export const servicesData: Service[] = [
     ],
     cta: {
       primary: 'בוא נדבר על המערכת שלך',
-      secondary: 'למד עוד על CRM'
+      secondary: 'ראה דוגמאות'
     },
     relatedServices: ['automations', 'web-development', 'mobile-apps'],
     lastUpdated: '2026-03-06'
