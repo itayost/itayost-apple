@@ -1,7 +1,7 @@
 ---
 title: "השוואת פלטפורמות סחר - Shopify vs WooCommerce vs React (2026)"
-metaTitle: "Shopify vs WooCommerce 2026 — השוואה מלאה לחנות אונליין בישראל"
-description: "Shopify או WooCommerce? השוואה מקיפה: מחירים, עמלות, תמיכה בעברית, מהירות ו-SEO. + מתי לבחור בפיתוח React מותאם לחנות שלך."
+metaTitle: "Shopify vs WooCommerce 2026 — מחירים, Bit ותמיכה בעברית"
+description: "Shopify 5,000-20,000 ₪/שנה, WooCommerce 8,000-25,000 ₪. השוואה מלאה: עמלות, מהירות, SEO, תמיכה ב-Bit ומתי כדאי React מותאם."
 date: "2025-12-09"
 lastUpdated: "2026-03-06"
 author: "איתי אוסטרייך"
