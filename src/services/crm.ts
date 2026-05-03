@@ -50,6 +50,25 @@ export interface CRMResponse {
   error?: string
 }
 
+// Generic Hebrew error to display when the API misbehaves. Never show raw
+// upstream errors (HTML 404 pages, etc.) — they're unreadable and make the
+// form look broken.
+const FRIENDLY_FALLBACK_ERROR = 'שגיאה בשליחת הטופס. אנא נסו שוב או פנו אליי בוואטסאפ'
+
+/**
+ * Defensively pull a Hebrew-safe error string out of an API response body.
+ * Refuses to return anything that looks like HTML/markup or raw stack traces.
+ */
+function safeErrorMessage(input: unknown): string {
+  if (typeof input !== 'string') return FRIENDLY_FALLBACK_ERROR
+  const trimmed = input.trim()
+  if (!trimmed) return FRIENDLY_FALLBACK_ERROR
+  // Reject anything that looks like HTML or a long technical dump
+  if (trimmed.startsWith('<') || /<\/?[a-z][\s\S]*?>/i.test(trimmed)) return FRIENDLY_FALLBACK_ERROR
+  if (trimmed.length > 200) return FRIENDLY_FALLBACK_ERROR
+  return trimmed
+}
+
 /**
  * Submit lead to CRM system via API route
  * This now goes through our server-side API for security
@@ -64,16 +83,27 @@ export async function submitLead(lead: CRMLead): Promise<CRMResponse> {
       body: JSON.stringify(lead)
     })
 
-    const data = await response.json()
+    // The API should always return JSON, but defend against an upstream
+    // proxy/CDN returning an HTML error page.
+    const data = await response.json().catch(() => null)
 
     if (!response.ok) {
       return {
         success: false,
-        error: data.error || 'שגיאה בשליחת הטופס'
+        error: safeErrorMessage(data?.error)
       }
     }
 
-    return data
+    if (!data || typeof data !== 'object') {
+      return { success: false, error: FRIENDLY_FALLBACK_ERROR }
+    }
+
+    // Sanitize any error field before bubbling up.
+    if (data && typeof data === 'object' && 'error' in data && typeof (data as { error?: unknown }).error === 'string') {
+      return { ...(data as CRMResponse), error: safeErrorMessage((data as { error?: unknown }).error) }
+    }
+
+    return data as CRMResponse
   } catch (error) {
     return {
       success: false,

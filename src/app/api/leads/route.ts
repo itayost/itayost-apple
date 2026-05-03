@@ -10,10 +10,24 @@ import { getPostHogServer } from '@/lib/posthog-server'
 // CRM API endpoint - keep this server-side only
 const CRM_API_URL = process.env.CRM_API_URL || 'https://crm-system-alpha-eight.vercel.app/api/public/leads'
 
+// Generic Hebrew error returned to clients. Detailed errors stay in server logs only.
+const GENERIC_ERROR_MESSAGE = 'שגיאה בשליחת הטופס. אנא נסו שוב או פנו אליי בוואטסאפ'
+
 /**
- * Submit lead to CRM system (server-side only)
+ * Truncate a string for safe logging (avoid blowing up logs with HTML payloads).
  */
-async function submitLeadToCRM(lead: CRMLead): Promise<CRMResponse> {
+function truncate(value: string, max = 500): string {
+  if (value.length <= max) return value
+  return `${value.slice(0, max)}… [truncated, original length ${value.length}]`
+}
+
+/**
+ * Submit lead to CRM system (server-side only).
+ * Returns a structured result. The internal `error` field is for server-side
+ * logs and should NEVER be surfaced verbatim to the client — upstream CRM 404
+ * pages can be HTML and would render unreadably in the form's error alert.
+ */
+async function submitLeadToCRM(lead: CRMLead): Promise<CRMResponse & { internalError?: string }> {
   try {
     const response = await fetch(CRM_API_URL, {
       method: 'POST',
@@ -25,8 +39,20 @@ async function submitLeadToCRM(lead: CRMLead): Promise<CRMResponse> {
     })
 
     if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`HTTP ${response.status}: ${errorText}`)
+      const errorText = await response.text().catch(() => '<no body>')
+      const contentType = response.headers.get('content-type') ?? 'unknown'
+      const internalError = `Upstream CRM returned ${response.status} (${contentType}): ${truncate(errorText)}`
+      console.error('[/api/leads] CRM upstream error', {
+        status: response.status,
+        contentType,
+        url: CRM_API_URL,
+        bodyPreview: truncate(errorText, 200),
+      })
+      return {
+        success: false,
+        error: GENERIC_ERROR_MESSAGE,
+        internalError,
+      }
     }
 
     const data = await response.json()
@@ -36,9 +62,12 @@ async function submitLeadToCRM(lead: CRMLead): Promise<CRMResponse> {
       message: 'Lead submitted successfully'
     }
   } catch (error) {
+    const internalError = error instanceof Error ? `${error.name}: ${error.message}` : 'Unknown error'
+    console.error('[/api/leads] CRM request failed', { url: CRM_API_URL, error: internalError })
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error occurred'
+      error: GENERIC_ERROR_MESSAGE,
+      internalError,
     }
   }
 }
@@ -76,7 +105,9 @@ export async function POST(request: NextRequest) {
     // Submit to CRM
     const result = await submitLeadToCRM(validatedLead)
 
-    // Track lead submission in PostHog (server-side)
+    // Track lead submission in PostHog (server-side). On failure also include
+    // the internal error so that broken CRM deploys are immediately visible
+    // in the PostHog event stream without the user ever seeing the raw error.
     const posthog = getPostHogServer()
     if (posthog) {
       posthog.capture({
@@ -86,19 +117,23 @@ export async function POST(request: NextRequest) {
           success: result.success,
           projectType: validatedLead.projectType,
           source: 'contact_form',
+          ...(result.success ? {} : { internal_error: result.internalError }),
         },
       })
     }
 
-    if (!result.success) {
+    // Strip internalError before responding to the client.
+    const { internalError: _internalError, ...clientResult } = result
+
+    if (!clientResult.success) {
       return NextResponse.json(
-        result,
-        { status: 500 }
+        clientResult,
+        { status: 502 } // upstream failure
       )
     }
 
     return NextResponse.json(
-      result,
+      clientResult,
       {
         headers: {
           'X-RateLimit-Limit': rateLimitResult.limit.toString(),
@@ -120,6 +155,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    console.error('[/api/leads] Unhandled error', error)
     return NextResponse.json(
       {
         success: false,
