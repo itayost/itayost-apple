@@ -4,9 +4,11 @@
 import posthog from 'posthog-js'
 import type { AnalyticsEventName } from '@/types/analytics'
 
-// Check if Google Analytics is available
+// Check if Google Analytics is available — gtag is a function, not just `defined`.
+// (When the GA snippet is blocked or hasn't loaded yet, `window.gtag` may be
+// `undefined`. We treat anything that isn't a callable function as unavailable.)
 const isGAAvailable = (): boolean => {
-  return typeof window !== 'undefined' && typeof window.gtag !== 'undefined'
+  return typeof window !== 'undefined' && typeof window.gtag === 'function'
 }
 
 // Check if PostHog is available
@@ -14,15 +16,22 @@ const isPostHogAvailable = (): boolean => {
   return typeof window !== 'undefined' && posthog.__loaded === true
 }
 
+// Track which sinks have already warned so we don't spam the console with
+// the same warning on every event.
+let warnedGAUnavailable = false
+
 // Base function to track any event — sends to both GA4 and PostHog
 export const trackEvent = (
   eventName: AnalyticsEventName,
   params: Record<string, string | number | boolean | undefined> = {}
 ): void => {
+  const gaAvailable = isGAAvailable()
+  const phAvailable = isPostHogAvailable()
+
   // Send to GA4
-  if (isGAAvailable()) {
+  if (gaAvailable) {
     try {
-      if (window.gtag) {
+      if (typeof window.gtag === 'function') {
         window.gtag('event', eventName, {
           ...params,
           timestamp: Date.now(),
@@ -31,10 +40,16 @@ export const trackEvent = (
     } catch (error) {
       console.error('[Analytics] GA4 error:', error)
     }
+  } else if (!warnedGAUnavailable && typeof window !== 'undefined') {
+    // One-time warning — surfaces silent GA4 misconfiguration (missing
+    // NEXT_PUBLIC_GA_ID, ad-blocker, script blocked) which causes the
+    // GA4-vs-PostHog conversion gap.
+    warnedGAUnavailable = true
+    console.warn('[Analytics] GA4 not available — events will go to PostHog only.')
   }
 
   // Send to PostHog
-  if (isPostHogAvailable()) {
+  if (phAvailable) {
     try {
       posthog.capture(eventName, {
         ...params,
@@ -46,7 +61,7 @@ export const trackEvent = (
   }
 
   // Dev logging
-  if (process.env.NODE_ENV === 'development' && !isGAAvailable() && !isPostHogAvailable()) {
+  if (process.env.NODE_ENV === 'development' && !gaAvailable && !phAvailable) {
     console.log('[Analytics]', eventName, params)
   }
 }

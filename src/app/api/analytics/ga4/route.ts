@@ -131,7 +131,16 @@ async function getOverview(
   const response = await client.properties.runReport({
     property: propertyId,
     requestBody: {
-      dateRanges: [dateRange, previousDateRange],
+      // Tag each date range with `name` so the response rows are
+      // unambiguously matched in formatOverview (positional indexing
+      // into rows[0]/rows[1] is fragile when GA4 reorders or merges).
+      dateRanges: [
+        { ...dateRange, name: 'current' },
+        { ...previousDateRange, name: 'previous' },
+      ],
+      // Adding `dateRange` as a dimension forces GA4 to return one row per
+      // range with the range's `name` as the dimension value.
+      dimensions: [{ name: 'dateRange' }],
       metrics: [
         { name: 'totalUsers' },
         { name: 'newUsers' },
@@ -368,8 +377,25 @@ async function getSources(
 function formatOverview(data: any) {
   if (!data?.rows || data.rows.length === 0) return null
 
-  const current = data.rows[0]?.metricValues || []
-  const previous = data.rows[1]?.metricValues || []
+  // Match rows by the `dateRange` dimension value so we don't depend on
+  // GA4's row ordering. The named ranges in getOverview are 'current' and
+  // 'previous'.
+  type Row = {
+    dimensionValues?: { value: string }[]
+    metricValues?: { value: string }[]
+  }
+
+  const findRow = (name: string): Row | undefined =>
+    data.rows.find((row: Row) => row.dimensionValues?.[0]?.value === name)
+
+  // Fallback to positional indexing if for any reason the named lookup
+  // doesn't return a row (e.g. legacy callers that didn't supply the
+  // dateRange dimension yet).
+  const currentRow: Row = findRow('current') ?? data.rows[0] ?? {}
+  const previousRow: Row = findRow('previous') ?? data.rows[1] ?? {}
+
+  const current = currentRow.metricValues || []
+  const previous = previousRow.metricValues || []
 
   const metricNames = [
     'totalUsers',
