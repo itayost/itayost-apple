@@ -50,3 +50,12 @@ firebase-debug.log
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+
+# local working artifacts (CRO / content / analysis outputs)
+.playwright-mcp/
+SKILL.md
+cro-dashboard.html
+brand-voice-guide.md
+content-bank-posts.md
+campaign-plan-*.md
+weekly-cro-report-*.md
