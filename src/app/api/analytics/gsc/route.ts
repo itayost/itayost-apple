@@ -4,11 +4,16 @@
  * Pulls search performance data for SEO/CRO analysis.
  *
  * Usage:
- *   GET /api/analytics/gsc?report=queries&period=30
- *   GET /api/analytics/gsc?report=pages&period=30
- *   GET /api/analytics/gsc?report=devices&period=30
- *   GET /api/analytics/gsc?report=countries&period=30
- *   GET /api/analytics/gsc?report=query-pages&period=30
+ *   GET /api/analytics/gsc?report=queries&days=7
+ *   GET /api/analytics/gsc?report=pages&days=30
+ *   GET /api/analytics/gsc?report=devices&days=30
+ *   GET /api/analytics/gsc?report=countries&days=30
+ *   GET /api/analytics/gsc?report=query-pages&days=30
+ *
+ * Window length:
+ *   - `days` (preferred — matches PostHog route and scheduled tasks)
+ *   - `period` (legacy alias, still accepted)
+ *   - Defaults to 30, clamped to the range [1, 365].
  */
 
 import { NextRequest, NextResponse } from 'next/server'
@@ -25,7 +30,13 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url)
   const report = (searchParams.get('report') || 'queries') as ReportType
-  const period = parseInt(searchParams.get('period') || '30', 10)
+  // Accept both `days` (preferred, matches PostHog + scheduled tasks)
+  // and `period` (legacy alias). Default 30, clamp to [1, 365].
+  const rawWindow = searchParams.get('days') ?? searchParams.get('period') ?? '30'
+  const parsedWindow = parseInt(rawWindow, 10)
+  const period = Number.isFinite(parsedWindow)
+    ? Math.min(365, Math.max(1, parsedWindow))
+    : 30
   const limit = parseInt(searchParams.get('limit') || '100', 10)
 
   try {

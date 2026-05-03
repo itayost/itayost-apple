@@ -5,12 +5,17 @@
  * Supports multiple report types via query parameters.
  *
  * Usage:
- *   GET /api/analytics/ga4?report=overview&period=30
- *   GET /api/analytics/ga4?report=pages&period=30
- *   GET /api/analytics/ga4?report=events&period=30
- *   GET /api/analytics/ga4?report=conversions&period=30
- *   GET /api/analytics/ga4?report=user-journey&period=30
- *   GET /api/analytics/ga4?report=devices&period=30
+ *   GET /api/analytics/ga4?report=overview&days=7
+ *   GET /api/analytics/ga4?report=pages&days=30
+ *   GET /api/analytics/ga4?report=events&days=30
+ *   GET /api/analytics/ga4?report=conversions&days=30
+ *   GET /api/analytics/ga4?report=user-journey&days=30
+ *   GET /api/analytics/ga4?report=devices&days=30
+ *
+ * Window length:
+ *   - `days` (preferred — matches PostHog route and scheduled tasks)
+ *   - `period` (legacy alias, still accepted)
+ *   - Defaults to 30, clamped to the range [1, 365].
  */
 
 import { NextRequest, NextResponse } from 'next/server'
@@ -35,7 +40,13 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url)
   const report = (searchParams.get('report') || 'overview') as ReportType
-  const period = parseInt(searchParams.get('period') || '30', 10)
+  // Accept both `days` (preferred, matches PostHog + scheduled tasks)
+  // and `period` (legacy alias). Default 30, clamp to [1, 365].
+  const rawWindow = searchParams.get('days') ?? searchParams.get('period') ?? '30'
+  const parsedWindow = parseInt(rawWindow, 10)
+  const period = Number.isFinite(parsedWindow)
+    ? Math.min(365, Math.max(1, parsedWindow))
+    : 30
 
   try {
     const auth = getGoogleAuth()
