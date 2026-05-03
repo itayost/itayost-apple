@@ -18,6 +18,29 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
     trackServiceView(service.name, service.slug)
   }, [service.name, service.slug])
 
+  // Smooth-scroll handler that guarantees a visible page change on every click.
+  // This avoids relying solely on the native hash jump (which can feel like a
+  // "dead click" if the target is far below the viewport and no motion is
+  // perceived during the jump).
+  const handleAnchorClick = (
+    targetId: string,
+    label: string,
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => {
+    trackCtaClick(label, 'service_hero', `#${targetId}`)
+    const el = typeof document !== 'undefined' ? document.getElementById(targetId) : null
+    if (el) {
+      event.preventDefault()
+      const navOffset = 96 // ≈ fixed nav height incl. some breathing room
+      const top = el.getBoundingClientRect().top + window.scrollY - navOffset
+      window.scrollTo({ top, behavior: 'smooth' })
+      // Keep the URL hash in sync so back-button / reload works as expected.
+      if (typeof window.history?.replaceState === 'function') {
+        window.history.replaceState(null, '', `#${targetId}`)
+      }
+    }
+  }
+
   return (
     <section className="relative overflow-hidden bg-white pt-8 pb-24 lg:pt-12 lg:pb-32">
       {/* Solid color background accent */}
@@ -98,28 +121,24 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             </motion.p>
           )}
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-          >
+          {/* CTA Buttons - keep them static so they're always clickable,
+              even during hydration or if Framer Motion is slow to mount. */}
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#contact"
               className={`btn btn-primary ${colors.bg}`}
-              onClick={() => trackCtaClick(service.cta.primary, 'service_hero', '#contact')}
+              onClick={(e) => handleAnchorClick('contact', service.cta.primary, e)}
             >
               {service.cta.primary}
             </a>
             <a
               href="#portfolio"
               className="btn btn-ghost"
-              onClick={() => trackCtaClick(service.cta.secondary, 'service_hero', '#portfolio')}
+              onClick={(e) => handleAnchorClick('portfolio', service.cta.secondary, e)}
             >
               {service.cta.secondary}
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

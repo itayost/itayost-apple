@@ -178,59 +178,26 @@ export default function AboutPage() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
+                <Link
+                  href="/contact"
+                  className="inline-block px-8 py-4 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
                 >
-                  <Link
-                    href="/contact"
-                    className="inline-block px-8 py-4 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"
-                  >
-                    בואו נדבר
-                  </Link>
-                </motion.div>
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
+                  בואו נדבר
+                </Link>
+                <Link
+                  href="/portfolio"
+                  className="inline-block px-8 py-4 bg-white border-3 border-brand-navy text-brand-navy rounded-full font-semibold text-lg hover:bg-brand-navy hover:text-white transition-all duration-300 hover:scale-105 active:scale-95"
                 >
-                  <Link
-                    href="/portfolio"
-                    className="inline-block px-8 py-4 bg-white border-3 border-brand-navy text-brand-navy rounded-full font-semibold text-lg hover:bg-brand-navy hover:text-white transition-colors"
-                  >
-                    צפייה בעבודות
-                  </Link>
-                </motion.div>
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
+                  צפייה בעבודות
+                </Link>
+                <a
+                  href="https://github.com/itayost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-4 bg-brand-navy text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
                 >
-                  <a
-                    href="https://github.com/itayost"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-8 py-4 bg-brand-navy text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"
-                  >
-                    GitHub
-                  </a>
-                </motion.div>
+                  GitHub
+                </a>
               </div>
             </motion.div>
 
@@ -541,42 +508,20 @@ export default function AboutPage() {
               ואיך אוכל לעזור לכם לחסוך זמן, לגדול ולהצליח יותר.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
+              <Link
+                href="/contact"
+                className="inline-block px-10 py-5 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                <Link
-                  href="/contact"
-                  className="inline-block px-10 py-5 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-                >
-                  צור קשר
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
+                צור קשר
+              </Link>
+              <a
+                href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, קראתי עליך ואשמח לשמוע עוד')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                <a
-                  href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, קראתי עליך ואשמח לשמוע עוד')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-                >
-                  WhatsApp
-                </a>
-              </motion.div>
+                WhatsApp
+              </a>
             </div>
           </motion.div>
         </div>

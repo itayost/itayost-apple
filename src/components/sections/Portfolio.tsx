@@ -25,7 +25,6 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
         transition: { duration: 0.3, ease: bouncyEasing }
       }}
       className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
-      onClick={() => trackPortfolioClick(item.title, item.category)}
     >
       {/* Image Container */}
       <div className="relative h-64 bg-brand-gray-100 overflow-hidden">
@@ -100,34 +99,29 @@ const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: 
 
         {/* CTA */}
         {item.link ? (
-          <a
+          <motion.a
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackOutboundClick(item.link!, item.title, 'portfolio')}
-          >
-            <motion.div
-              className="inline-flex items-center gap-2 text-brand-blue font-bold"
-              whileHover={{
-                x: -5,
-                transition: { duration: 0.3, ease: bouncyEasing }
-              }}
-            >
-              <span>צפייה באתר</span>
-              <ExternalLink className="w-5 h-5" />
-            </motion.div>
-          </a>
-        ) : (
-          <motion.div
-            className="inline-flex items-center gap-2 text-brand-gray-600 font-bold"
+            onClick={() => {
+              trackPortfolioClick(item.title, item.category)
+              trackOutboundClick(item.link!, item.title, 'portfolio')
+            }}
+            className="inline-flex items-center gap-2 -mx-3 px-3 py-2 rounded-xl text-brand-blue font-bold hover:bg-brand-blue/5 transition-colors"
             whileHover={{
               x: -5,
               transition: { duration: 0.3, ease: bouncyEasing }
             }}
+            whileTap={{ scale: 0.97 }}
           >
+            <span>צפייה באתר</span>
+            <ExternalLink className="w-5 h-5" />
+          </motion.a>
+        ) : (
+          <div className="inline-flex items-center gap-2 px-3 py-2 text-brand-gray-600 font-bold">
             <span>פרטים נוספים</span>
             <ArrowLeft className="w-5 h-5" />
-          </motion.div>
+          </div>
         )}
       </div>
     </motion.div>

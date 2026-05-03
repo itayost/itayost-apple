@@ -231,43 +231,27 @@ export function Navigation() {
                     </AnimatePresence>
                   </div>
                 ) : (
-                  <motion.div
+                  <Link
                     key={item.href}
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.2, ease: bouncyEasing }}
+                    href={item.href}
+                    className={`text-base lg:text-lg font-medium transition-all duration-200 hover:-translate-y-0.5 inline-block ${
+                      pathname === item.href
+                        ? 'text-brand-blue'
+                        : 'text-brand-navy hover:text-brand-blue'
+                    }`}
                   >
-                    <Link
-                      href={item.href}
-                      className={`text-base lg:text-lg font-medium transition-colors ${
-                        pathname === item.href
-                          ? 'text-brand-blue'
-                          : 'text-brand-navy hover:text-brand-blue'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
+                    {item.label}
+                  </Link>
                 )
               ))}
 
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
+              <Link
+                href="/contact"
+                className="px-7 py-3 bg-brand-orange text-white rounded-full font-semibold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+                onClick={() => trackCtaClick('התחל פרויקט', 'nav', '/contact')}
               >
-                <Link
-                  href="/contact"
-                  className="px-7 py-3 bg-brand-orange text-white rounded-full font-semibold text-base lg:text-lg shadow-lg hover:shadow-xl transition-shadow"
-                  onClick={() => trackCtaClick('התחל פרויקט', 'nav', '/contact')}
-                >
-                  התחל פרויקט
-                </Link>
-              </motion.div>
+                התחל פרויקט
+              </Link>
             </nav>
 
             {/* Mobile Menu Toggle */}
