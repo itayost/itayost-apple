@@ -229,6 +229,9 @@ export const seoConfig = {
         'https://www.linkedin.com/in/itayost/',
         'https://www.instagram.com/itayost/',
         'https://www.facebook.com/itayost/',
+        'https://github.com/itayost',
+        'https://x.com/itayost',
+        'https://maps.app.goo.gl/DD87gXnMGiwCd5oC6',
       ],
       address: {
         '@type': 'PostalAddress',
@@ -287,6 +290,11 @@ export const seoConfig = {
       url: 'https://www.itayost.com',
       telephone: '+972-54-499-4417',
       email: 'itayost1@gmail.com',
+      // Cross-reference the Google Business Profile so AI/search engines
+      // merge the on-site LocalBusiness node with the GBP entity.
+      sameAs: [
+        'https://maps.app.goo.gl/DD87gXnMGiwCd5oC6',
+      ],
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'רמת גן',
@@ -295,10 +303,11 @@ export const seoConfig = {
         postalCode: '5244110',
         addressCountry: 'IL',
       },
+      // Coordinates kept in sync with the Google Business Profile listing.
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: 32.0853,
-        longitude: 34.7818,
+        latitude: 32.0787216,
+        longitude: 34.849708,
       },
       openingHoursSpecification: [
         {
@@ -325,8 +334,8 @@ export const seoConfig = {
         '@type': 'GeoCircle',
         geoMidpoint: {
           '@type': 'GeoCoordinates',
-          latitude: 32.0853,
-          longitude: 34.7818
+          latitude: 32.0787216,
+          longitude: 34.849708
         },
         geoRadius: '50000'
       },
@@ -395,6 +404,8 @@ export const seoConfig = {
         'https://www.linkedin.com/in/itayost/',
         'https://www.instagram.com/itayost/',
         'https://www.facebook.com/itayost/',
+        'https://github.com/itayost',
+        'https://x.com/itayost',
       ],
       knowsAbout: [
         'Next.js',
