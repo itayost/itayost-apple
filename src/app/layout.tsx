@@ -81,6 +81,9 @@ export const metadata: Metadata = {
     languages: {
       'he-IL': 'https://www.itayost.com',
     },
+    types: {
+      'application/rss+xml': 'https://www.itayost.com/rss.xml',
+    },
   },
 }
 
@@ -99,17 +102,20 @@ function StructuredData() {
       seoConfig.structuredData.organization,
       seoConfig.structuredData.website,
       seoConfig.structuredData.localBusiness,
+      seoConfig.structuredData.author,
     ],
   }
 
+  // Plain <script> so the JSON-LD lands in the initial HTML and is visible
+  // to non-JS crawlers (most AI bots). next/script's "afterInteractive"
+  // streams it via the React payload and only injects it after hydration.
+  // Escape "<" to < so a stray "</script>" in future schema content
+  // cannot break out of the script tag.
+  const json = JSON.stringify(structuredData).replace(/</g, '\\u003c')
   return (
-    <Script
-      id="structured-data"
+    <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData),
-      }}
-      strategy="afterInteractive"
+      dangerouslySetInnerHTML={{ __html: json }}
     />
   )
 }

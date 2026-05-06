@@ -83,6 +83,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    // Machine-readable surfaces — listed so crawlers see them via sitemap too.
+    {
+      url: `${baseUrl}/rss.xml`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.1,
+    },
+    {
+      url: `${baseUrl}/llms.txt`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.1,
+    },
+    {
+      url: `${baseUrl}/llms-full.txt`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.1,
+    },
   ]
 
   // Add dynamic blog posts with real dates
