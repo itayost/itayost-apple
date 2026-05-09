@@ -55,12 +55,13 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          className="flex md:grid gap-4 md:gap-8 md:grid-cols-2 lg:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0"
         >
           {relevantProjects.map((project) => (
             <motion.div
               key={project.id}
               variants={item}
+              className="flex-shrink-0 basis-[85%] snap-start md:basis-auto"
             >
               <Link
                 href={`/portfolio/${project.slug}`}
