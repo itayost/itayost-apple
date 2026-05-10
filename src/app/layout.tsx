@@ -9,6 +9,7 @@ import { MobileWhatsAppBar } from '@/components/common/MobileWhatsAppBar'
 import { WebVitals } from '@/components/common/WebVitals'
 import { SkipNavigation } from '@/components/common/SkipNavigation'
 import { MicrosoftClarity } from '@/components/common/MicrosoftClarity'
+import { MotionProvider } from '@/components/common/MotionProvider'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { seoConfig } from '@/config/seo'
@@ -192,11 +193,13 @@ export default function RootLayout({
         <SpeedInsights />
         <WebVitals />
         <SkipNavigation />
-        <Navigation />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <WhatsAppButton />
-        <MobileWhatsAppBar />
+        <MotionProvider>
+          <Navigation />
+          <main id="main-content">{children}</main>
+          <Footer />
+          <WhatsAppButton />
+          <MobileWhatsAppBar />
+        </MotionProvider>
       </body>
     </html>
   )

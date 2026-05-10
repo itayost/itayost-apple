@@ -1012,9 +1012,9 @@
     .animate-float-slow,
     .animate-float-medium,
     .animate-float-slower {
-      animation-duration: 30s !important;
+      animation-duration: 45s !important;
     }
-    
+
     .animate-float-icon {
       display: none;
     }
