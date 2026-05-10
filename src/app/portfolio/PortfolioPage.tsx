@@ -22,9 +22,9 @@ import {
 import { bouncyEasing } from '@/constants/animations'
 import { trackPortfolioClick, trackCtaClick } from '@/lib/analytics'
 import {
-  PortfolioCarousel,
-  portfolioCarouselItemClass,
-} from '@/components/portfolio/PortfolioCarousel'
+  CardCarousel,
+  cardCarouselItemClass,
+} from '@/components/common/CardCarousel'
 
 // Icon mapping for categories (extends centralized categories with icons)
 const categoryIcons: Record<string, LucideIcon> = {
@@ -160,14 +160,14 @@ export default function PortfolioPage() {
       {/* Projects Grid */}
       <section className="py-16 lg:py-24 bg-section-light-blue">
         <div className="container mx-auto px-4">
-          <PortfolioCarousel>
+          <CardCarousel>
             {filteredProjects.map((project, index) => {
               const Icon = getIcon(project.category)
               return (
                 <Link
                   key={project.id}
                   href={`/portfolio/${project.slug}`}
-                  className={`block ${portfolioCarouselItemClass}`}
+                  className={`block ${cardCarouselItemClass}`}
                   onClick={() => trackPortfolioClick(project.title, project.category)}
                 >
                   <motion.article
@@ -296,7 +296,7 @@ export default function PortfolioPage() {
                 </Link>
               )
             })}
-          </PortfolioCarousel>
+          </CardCarousel>
         </div>
       </section>
 

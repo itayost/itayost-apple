@@ -9,7 +9,7 @@ import {
 } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-interface PortfolioCarouselProps {
+interface CardCarouselProps {
   children: ReactNode
   className?: string
   prevLabel?: string
@@ -17,7 +17,7 @@ interface PortfolioCarouselProps {
 }
 
 /**
- * Tailwind classes for each direct child of <PortfolioCarousel>. Apply this
+ * Tailwind classes for each direct child of <CardCarousel>. Apply this
  * to the element whose width should snap (motion.div, Link, etc.).
  *
  * Widths give a peek of the next card at every breakpoint:
@@ -25,15 +25,19 @@ interface PortfolioCarouselProps {
  *   - md (>=768px): 2-up at 47%
  *   - lg (>=1024px): 3-up at 31%
  */
-export const portfolioCarouselItemClass =
+export const cardCarouselItemClass =
   'flex-shrink-0 basis-[85%] md:basis-[47%] lg:basis-[31%] snap-start'
 
-export function PortfolioCarousel({
+/** 4-up density at lg+. Use when the original grid was 4-col. */
+export const cardCarouselItemClass4Up =
+  'flex-shrink-0 basis-[85%] md:basis-[47%] lg:basis-[23%] snap-start'
+
+export function CardCarousel({
   children,
   className = '',
   prevLabel = 'הקודם',
   nextLabel = 'הבא',
-}: PortfolioCarouselProps) {
+}: CardCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollPrev, setCanScrollPrev] = useState(false)
   const [canScrollNext, setCanScrollNext] = useState(false)
@@ -44,8 +48,10 @@ export function PortfolioCarousel({
     const max = el.scrollWidth - el.clientWidth
     // RTL browsers report negative scrollLeft when scrolled toward end; LTR positive.
     const scrolled = Math.abs(el.scrollLeft)
-    setCanScrollPrev(scrolled > 1)
-    setCanScrollNext(max > 1 && scrolled < max - 1)
+    const nextPrev = scrolled > 1
+    const nextNext = max > 1 && scrolled < max - 1
+    setCanScrollPrev((cur) => (cur === nextPrev ? cur : nextPrev))
+    setCanScrollNext((cur) => (cur === nextNext ? cur : nextNext))
   }, [])
 
   useEffect(() => {
@@ -88,27 +94,45 @@ export function PortfolioCarousel({
         {children}
       </div>
 
-      {/* Prev — physical right edge in RTL (the "earlier" side) */}
-      <button
-        type="button"
-        onClick={() => scrollByCard('prev')}
+      {/* Prev sits on the physical right in RTL (the "earlier" side). */}
+      <ArrowButton
+        side="right"
         disabled={!canScrollPrev}
-        aria-label={prevLabel}
-        className="hidden md:flex absolute top-1/2 -translate-y-1/2 right-2 lg:right-3 z-10 h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 hover:bg-white"
-      >
-        <ChevronRight className="h-5 w-5 text-brand-navy" aria-hidden="true" />
-      </button>
-
-      {/* Next — physical left edge in RTL (the "later" side) */}
-      <button
-        type="button"
-        onClick={() => scrollByCard('next')}
+        onClick={() => scrollByCard('prev')}
+        label={prevLabel}
+      />
+      <ArrowButton
+        side="left"
         disabled={!canScrollNext}
-        aria-label={nextLabel}
-        className="hidden md:flex absolute top-1/2 -translate-y-1/2 left-2 lg:left-3 z-10 h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 hover:bg-white"
-      >
-        <ChevronLeft className="h-5 w-5 text-brand-navy" aria-hidden="true" />
-      </button>
+        onClick={() => scrollByCard('next')}
+        label={nextLabel}
+      />
     </div>
+  )
+}
+
+function ArrowButton({
+  side,
+  disabled,
+  onClick,
+  label,
+}: {
+  side: 'left' | 'right'
+  disabled: boolean
+  onClick: () => void
+  label: string
+}) {
+  const Icon = side === 'right' ? ChevronRight : ChevronLeft
+  const position = side === 'right' ? 'right-2 lg:right-3' : 'left-2 lg:left-3'
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      className={`hidden md:flex absolute top-1/2 -translate-y-1/2 ${position} z-10 h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 hover:bg-white`}
+    >
+      <Icon className="h-5 w-5 text-brand-navy" aria-hidden="true" />
+    </button>
   )
 }

@@ -6,6 +6,7 @@ import { Code2, Smartphone, Zap, Sparkles, ArrowLeft, CheckCircle, BarChart3, Sh
 import { getFeaturedServices } from '@/data/services'
 import { bouncyEasing } from '@/constants/animations'
 import { trackCtaClick } from '@/lib/analytics'
+import { CardCarousel, cardCarouselItemClass4Up } from '@/components/common/CardCarousel'
 
 // Icon mapping from lucideIcon string to actual component
 const iconMap: Record<string, LucideIcon> = {
@@ -64,8 +65,8 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        {/* Services Carousel */}
+        <CardCarousel className="mb-16">
           {featuredServices.map((service, index) => {
             const IconComponent = iconMap[service.lucideIcon] || Code2
             const colors = colorMap[service.color] ?? defaultColors
@@ -85,6 +86,7 @@ export default function Services() {
                   y: -12,
                   transition: { duration: 0.3, ease: bouncyEasing }
                 }}
+                className={cardCarouselItemClass4Up}
               >
                 <Link href={`/services/${service.slug}`}>
                   <div className="bg-white rounded-3xl p-8 h-full shadow-lg hover:shadow-2xl transition-shadow flex flex-col">
@@ -147,7 +149,7 @@ export default function Services() {
               </motion.div>
             )
           })}
-        </div>
+        </CardCarousel>
 
         {/* Why Choose Us Section */}
         <motion.div

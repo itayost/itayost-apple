@@ -9,9 +9,9 @@ import { ExternalLink, Sparkles, ArrowLeft } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
 import { trackPortfolioClick, trackOutboundClick, trackCtaClick } from '@/lib/analytics'
 import {
-  PortfolioCarousel,
-  portfolioCarouselItemClass,
-} from '@/components/portfolio/PortfolioCarousel'
+  CardCarousel,
+  cardCarouselItemClass,
+} from '@/components/common/CardCarousel'
 
 const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: number }) => {
   return (
@@ -225,7 +225,7 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Portfolio Carousel */}
-        <PortfolioCarousel className="mb-16">
+        <CardCarousel className="mb-16">
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, index) => (
               <motion.div
@@ -235,13 +235,13 @@ export default function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3, ease: bouncyEasing }}
-                className={portfolioCarouselItemClass}
+                className={cardCarouselItemClass}
               >
                 <PortfolioCard item={item} index={index} />
               </motion.div>
             ))}
           </AnimatePresence>
-        </PortfolioCarousel>
+        </CardCarousel>
 
         {/* Statistics */}
         <motion.div

@@ -6,9 +6,9 @@ import Link from 'next/link'
 import { getPortfolioByIds } from '@/data/portfolio'
 import { getServiceColors } from '@/lib/colors'
 import {
-  PortfolioCarousel,
-  portfolioCarouselItemClass,
-} from '@/components/portfolio/PortfolioCarousel'
+  CardCarousel,
+  cardCarouselItemClass,
+} from '@/components/common/CardCarousel'
 
 interface ServicePortfolioProps {
   portfolioIds: string[]
@@ -39,7 +39,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
           </p>
         </div>
 
-        <PortfolioCarousel>
+        <CardCarousel>
           {relevantProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -47,7 +47,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: index * 0.15, duration: 0.4 }}
-              className={portfolioCarouselItemClass}
+              className={cardCarouselItemClass}
             >
               <Link
                 href={`/portfolio/${project.slug}`}
@@ -117,7 +117,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
               </Link>
             </motion.div>
           ))}
-        </PortfolioCarousel>
+        </CardCarousel>
 
         {/* View all portfolio link */}
         <motion.div
