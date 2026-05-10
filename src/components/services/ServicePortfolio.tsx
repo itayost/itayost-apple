@@ -5,26 +5,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getPortfolioByIds } from '@/data/portfolio'
 import { getServiceColors } from '@/lib/colors'
+import {
+  PortfolioCarousel,
+  portfolioCarouselItemClass,
+} from '@/components/portfolio/PortfolioCarousel'
 
 interface ServicePortfolioProps {
   portfolioIds: string[]
   color: string
   accentColor: string
-}
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
-}
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 }
 }
 
 export default function ServicePortfolio({ portfolioIds, color, accentColor }: ServicePortfolioProps) {
@@ -50,18 +39,15 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
           </p>
         </div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="flex md:grid gap-4 md:gap-8 md:grid-cols-2 lg:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0"
-        >
-          {relevantProjects.map((project) => (
+        <PortfolioCarousel>
+          {relevantProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              variants={item}
-              className="flex-shrink-0 basis-[85%] snap-start md:basis-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: index * 0.15, duration: 0.4 }}
+              className={portfolioCarouselItemClass}
             >
               <Link
                 href={`/portfolio/${project.slug}`}
@@ -131,7 +117,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
               </Link>
             </motion.div>
           ))}
-        </motion.div>
+        </PortfolioCarousel>
 
         {/* View all portfolio link */}
         <motion.div

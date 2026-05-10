@@ -8,6 +8,10 @@ import { portfolioData, portfolioCategories } from '@/data/portfolio'
 import { ExternalLink, Sparkles, ArrowLeft } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
 import { trackPortfolioClick, trackOutboundClick, trackCtaClick } from '@/lib/analytics'
+import {
+  PortfolioCarousel,
+  portfolioCarouselItemClass,
+} from '@/components/portfolio/PortfolioCarousel'
 
 const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: number }) => {
   return (
@@ -220,11 +224,8 @@ export default function Portfolio() {
           </div>
         </motion.div>
 
-        {/* Portfolio Grid */}
-        <motion.div
-          layout
-          className="flex md:grid gap-4 md:gap-8 md:grid-cols-2 lg:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0 mb-16"
-        >
+        {/* Portfolio Carousel */}
+        <PortfolioCarousel className="mb-16">
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, index) => (
               <motion.div
@@ -234,13 +235,13 @@ export default function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3, ease: bouncyEasing }}
-                className="flex-shrink-0 basis-[85%] snap-start md:basis-auto"
+                className={portfolioCarouselItemClass}
               >
                 <PortfolioCard item={item} index={index} />
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </PortfolioCarousel>
 
         {/* Statistics */}
         <motion.div

@@ -21,6 +21,10 @@ import {
 } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
 import { trackPortfolioClick, trackCtaClick } from '@/lib/analytics'
+import {
+  PortfolioCarousel,
+  portfolioCarouselItemClass,
+} from '@/components/portfolio/PortfolioCarousel'
 
 // Icon mapping for categories (extends centralized categories with icons)
 const categoryIcons: Record<string, LucideIcon> = {
@@ -156,14 +160,14 @@ export default function PortfolioPage() {
       {/* Projects Grid */}
       <section className="py-16 lg:py-24 bg-section-light-blue">
         <div className="container mx-auto px-4">
-          <div className="flex md:grid gap-4 md:gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
+          <PortfolioCarousel>
             {filteredProjects.map((project, index) => {
               const Icon = getIcon(project.category)
               return (
                 <Link
                   key={project.id}
                   href={`/portfolio/${project.slug}`}
-                  className="block flex-shrink-0 basis-[85%] snap-start md:basis-auto"
+                  className={`block ${portfolioCarouselItemClass}`}
                   onClick={() => trackPortfolioClick(project.title, project.category)}
                 >
                   <motion.article
@@ -292,7 +296,7 @@ export default function PortfolioPage() {
                 </Link>
               )
             })}
-          </div>
+          </PortfolioCarousel>
         </div>
       </section>
 
