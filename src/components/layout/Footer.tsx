@@ -179,8 +179,8 @@ export function Footer() {
                   transition={{ duration: 0.2, ease: bouncyEasing }}
                   onClick={() => trackContactClick('phone', 'footer')}
                 >
-                  <div className="w-10 h-10 bg-brand-blue rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <Phone size={18} />
+                  <div className="w-12 h-12 bg-brand-blue rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <Phone size={20} />
                   </div>
                   <span>054-499-4417</span>
                 </motion.a>
@@ -192,8 +192,8 @@ export function Footer() {
                   transition={{ duration: 0.2, ease: bouncyEasing }}
                   onClick={() => trackContactClick('email', 'footer')}
                 >
-                  <div className="w-10 h-10 bg-brand-orange rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <Mail size={18} />
+                  <div className="w-12 h-12 bg-brand-orange rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <Mail size={20} />
                   </div>
                   <span>itayost1@gmail.com</span>
                 </motion.a>

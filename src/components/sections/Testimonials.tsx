@@ -18,7 +18,7 @@ const testimonials = portfolioData
 
 export default function Testimonials() {
   return (
-    <section className="py-20 lg:py-32 bg-section-light-blue">
+    <section className="py-12 sm:py-16 lg:py-32 bg-section-light-blue">
       <div className="container px-4">
         {/* Section Header */}
         <motion.div

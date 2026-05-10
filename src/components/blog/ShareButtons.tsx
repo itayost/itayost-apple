@@ -64,7 +64,7 @@ export function ShareButtons({ url, title, className = '' }: ShareButtonsProps) 
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-10 h-10 rounded-xl ${link.bgColor} ${link.textColor} flex items-center justify-center ${link.color} hover:text-white transition-colors`}
+            className={`w-12 h-12 rounded-xl ${link.bgColor} ${link.textColor} flex items-center justify-center ${link.color} hover:text-white transition-colors`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: index * 0.1, duration: 0.3, ease: bouncyEasing }}
@@ -78,7 +78,7 @@ export function ShareButtons({ url, title, className = '' }: ShareButtonsProps) 
 
         <motion.button
           onClick={copyToClipboard}
-          className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+          className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
             copied
               ? 'bg-green-500 text-white'
               : 'bg-brand-gray-100 text-brand-gray-600 hover:bg-brand-blue hover:text-white'
@@ -164,7 +164,7 @@ export function ShareButtonsMobile({ url, title }: ShareButtonsProps) {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`w-10 h-10 rounded-full ${link.bgColor} text-white flex items-center justify-center`}
+          className={`w-12 h-12 rounded-full ${link.bgColor} text-white flex items-center justify-center`}
           aria-label={`שתף ב-${link.label}`}
         >
           <link.icon size={18} />
@@ -172,7 +172,7 @@ export function ShareButtonsMobile({ url, title }: ShareButtonsProps) {
       ))}
       <button
         onClick={copyToClipboard}
-        className={`w-10 h-10 rounded-full flex items-center justify-center ${
+        className={`w-12 h-12 rounded-full flex items-center justify-center ${
           copied ? 'bg-green-500 text-white' : 'bg-brand-gray-200 text-brand-gray-700'
         }`}
         aria-label="העתק קישור"

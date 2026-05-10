@@ -26,7 +26,7 @@ const sections = [
       <p class="mb-4">
         אנו אוספים מידע שאתם מספקים לנו בצורה פעילה, כולל:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>פרטים אישיים:</strong> שם מלא, כתובת אימייל, מספר טלפון</li>
         <li><strong>פרטי פרויקט:</strong> תיאור הפרויקט, דרישות טכניות, תקציב משוער</li>
         <li><strong>פרטי חברה:</strong> שם החברה, תחום העיסוק, אתר אינטרנט</li>
@@ -34,7 +34,7 @@ const sections = [
       </ul>
 
       <h3 class="text-xl font-bold mb-4 mt-6">2. כיצד אנו אוספים מידע?</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>טפסי יצירת קשר ובקשות הצעת מחיר באתר</li>
         <li>תקשורת בדואר אלקטרוני, WhatsApp או טלפון</li>
         <li>Google Analytics לצורך ניתוח תעבורת האתר</li>
@@ -45,7 +45,7 @@ const sections = [
       <p class="mb-4">
         אנו <strong>לא</strong> אוספים:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>פרטי כרטיסי אשראי או מידע פיננסי רגיש</li>
         <li>מספרי תעודת זהות או דרכון</li>
         <li>מידע רפואי או מידע רגיש אחר</li>
@@ -62,7 +62,7 @@ const sections = [
       <p class="mb-4">
         אנו משתמשים במידע שנאסף כדי:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>לספק את השירותים המבוקשים (פיתוח, עיצוב, ייעוץ)</li>
         <li>לתקשר איתכם בנוגע לפרויקטים ושאלות טכניות</li>
         <li>לשלוח הצעות מחיר ומסמכי עבודה</li>
@@ -70,7 +70,7 @@ const sections = [
       </ul>
 
       <h3 class="text-xl font-bold mb-4 mt-6">2. שיפור השירות וחווית המשתמש</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>ניתוח נתוני שימוש באתר להבנת צרכי המשתמשים</li>
         <li>אופטימיזציה של ביצועי האתר ותפקודו</li>
         <li>זיהוי ותיקון תקלות טכניות</li>
@@ -78,7 +78,7 @@ const sections = [
       </ul>
 
       <h3 class="text-xl font-bold mb-4 mt-6">3. תקשורת שיווקית (באישורכם בלבד)</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>עדכונים על שירותים חדשים ומבצעים מיוחדים</li>
         <li>טיפים ומאמרים בנושאי פיתוח וטכנולוגיה</li>
         <li>הזמנות לאירועים ווורקשופים</li>
@@ -113,7 +113,7 @@ const sections = [
       <p class="mb-4">
         אנו עשויים לשתף מידע רק במקרים הבאים:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>ספקי שירות:</strong> אחסון ענן (Vercel, AWS), כלי אנליטיקס (Google Analytics),
         מערכות דואר אלקטרוני - כל הספקים חתומים על הסכמי סודיות</li>
         <li><strong>דרישות חוקיות:</strong> כאשר נדרש על פי חוק, צו שיפוטי או רשות ממשלתית</li>
@@ -125,7 +125,7 @@ const sections = [
       <p class="mb-4">
         הספקים איתם אנו עובדים:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>Vercel:</strong> אחסון ו-hosting של האתר (תקני אבטחה SOC 2)</li>
         <li><strong>Google Analytics:</strong> ניתוח תעבורה אנונימי (עומד בתקני GDPR)</li>
         <li><strong>Google Workspace:</strong> דואר אלקטרוני ושירותי ענן</li>
@@ -144,7 +144,7 @@ const sections = [
     title: content.privacyPolicy.sections.security,
     content: `
       <h3 class="text-xl font-bold mb-4">1. אמצעי אבטחה טכניים</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>הצפנת SSL/TLS:</strong> כל התקשורת עם האתר מוצפנת (HTTPS)</li>
         <li><strong>הצפנת נתונים:</strong> מסדי נתונים מוצפנים במנוחה ובתנועה</li>
         <li><strong>גישה מוגבלת:</strong> רק צוות מורשה יכול לגשת למידע רגיש</li>
@@ -153,7 +153,7 @@ const sections = [
       </ul>
 
       <h3 class="text-xl font-bold mb-4 mt-6">2. אמצעי אבטחה ארגוניים</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>הדרכות אבטחה:</strong> הצוות עובר הדרכות אבטחת מידע שוטפות</li>
         <li><strong>הסכמי סודיות:</strong> כל הצוות חתום על NDA</li>
         <li><strong>מדיניות סיסמאות חזקות:</strong> דרישות סיסמה מחמירות</li>
@@ -161,7 +161,7 @@ const sections = [
       </ul>
 
       <h3 class="text-xl font-bold mb-4 mt-6">3. גיבויים ושחזור</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>גיבוי אוטומטי יומי של כל הנתונים</li>
         <li>גיבויים מוצפנים ומאוחסנים במקומות מרובים</li>
         <li>תוכנית שחזור אסון (Disaster Recovery Plan)</li>
@@ -173,7 +173,7 @@ const sections = [
         למרות שאנו נוקטים באמצעי אבטחה מתקדמים, <strong>אין אבטחה מושלמת באינטרנט</strong>.
         אנו ממליצים גם לכם לנקוט באמצעי זהירות:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>השתמשו בסיסמאות חזקות וייחודיות</li>
         <li>אל תשתפו פרטי התחברות עם אחרים</li>
         <li>התנתקו מחשבונות לאחר השימוש במחשבים ציבוריים</li>
@@ -184,7 +184,7 @@ const sections = [
       <p class="mb-4">
         במקרה של חשש לפריצת אבטחה או פרצת מידע, אנו מתחייבים:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>לחקור את האירוע באופן מיידי</li>
         <li>להודיע למשתמשים המושפעים תוך 72 שעות</li>
         <li>לנקוט בצעדים מתקנים לסגירת הפרצה</li>
@@ -220,7 +220,7 @@ const sections = [
       </p>
 
       <h3 class="text-xl font-bold mb-4 mt-6">4. זכות להתנגד</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>אתם יכולים להתנגד לשימוש במידע שלכם למטרות שיווקיות בכל עת</li>
         <li>אתם יכולים לבטל את ההסכמה לקבלת ניוזלטר ועדכונים</li>
         <li>אתם יכולים לחסום Cookies דרך הדפדפן שלכם</li>
@@ -242,7 +242,7 @@ const sections = [
       <p class="mb-4">
         כדי להפעיל כל אחת מהזכויות לעיל, פנו אלינו באחת מהדרכים הבאות:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>אימייל:</strong> itayost1@gmail.com</li>
         <li><strong>טלפון:</strong> 054-499-4417</li>
         <li><strong>WhatsApp:</strong> 054-499-4417</li>
@@ -270,7 +270,7 @@ const sections = [
       <p class="mb-4">
         נדרשים לתפקוד בסיסי של האתר. אי אפשר להשבית אותם מבלי לפגוע בחוויית השימוש.
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>זכירת העדפות שפה ונגישות</li>
         <li>שמירה על אבטחת הגלישה</li>
         <li>זיהוי משתמשים מחוברים</li>
@@ -280,7 +280,7 @@ const sections = [
       <p class="mb-4">
         עוזרים לנו להבין איך משתמשים באתר ומאפשרים לנו לשפר אותו.
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>מספר מבקרים ודפי צפייה</li>
         <li>זמן שהייה ודפדוף באתר</li>
         <li>מקור התנועה (גוגל, פייסבוק, ישיר)</li>
@@ -288,7 +288,7 @@ const sections = [
       </ul>
 
       <h4 class="text-lg font-bold mb-3 mt-4">Cookies פונקציונליים</h4>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>זכירת העדפות עיצוב (למשל: מצב כהה/בהיר)</li>
         <li>מילוי טפסים אוטומטי</li>
         <li>שמירת פריטים בעגלת קניות</li>
@@ -298,7 +298,7 @@ const sections = [
       <p class="mb-4">
         אנו משתמשים בשירותים חיצוניים שעשויים להציב Cookies משלהם:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>Google Analytics:</strong> ניתוח תעבורה ושיפור האתר</li>
         <li><strong>Google Fonts:</strong> טעינת גופנים (לא אוסף נתונים אישיים)</li>
       </ul>
@@ -307,7 +307,7 @@ const sections = [
       <p class="mb-4">
         אתם יכולים לשלוט ב-Cookies דרך הדפדפן שלכם:
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>Chrome:</strong> הגדרות → פרטיות ואבטחה → Cookies ונתוני אתרים אחרים</li>
         <li><strong>Firefox:</strong> אפשרויות → פרטיות ואבטחה → Cookies ונתוני אתרים</li>
         <li><strong>Safari:</strong> העדפות → פרטיות → ניהול נתוני אתרים</li>
@@ -319,7 +319,7 @@ const sections = [
       </p>
 
       <h3 class="text-xl font-bold mb-4 mt-6">5. משך זמן שמירת Cookies</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li><strong>Cookies session:</strong> נמחקים בסגירת הדפדפן</li>
         <li><strong>Cookies קבועים:</strong> נשמרים עד 2 שנים (תלוי בסוג)</li>
       </ul>
@@ -364,7 +364,7 @@ const sections = [
       </div>
 
       <h3 class="text-xl font-bold mb-4 mt-6">3. זמני תגובה</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
+      <ul class="list-disc list-inside mb-4 ms-4">
         <li>פניות רגילות - תגובה תוך 2 ימי עסקים</li>
         <li>בקשות למימוש זכויות (מחיקה, גישה, תיקון) - תגובה תוך 7 ימי עסקים</li>
         <li>תקלות אבטחה - טיפול מיידי תוך 24 שעות</li>

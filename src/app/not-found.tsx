@@ -37,7 +37,7 @@ export default function NotFound() {
 
           {/* 404 Text */}
           <motion.h1
-            className="text-8xl md:text-9xl font-bold text-brand-navy mb-4"
+            className="text-6xl sm:text-8xl md:text-9xl font-bold text-brand-navy mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}

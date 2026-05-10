@@ -55,7 +55,7 @@ export default function Hero() {
       {/* Main Content */}
       <div className="container relative z-10 text-center px-4">
         {/* Main Headline - No opacity animation to avoid LCP delay */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
           <span className="block text-brand-navy">
             {content.hero.title.line1}
           </span>
@@ -88,7 +88,7 @@ export default function Hero() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-brand-orange text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:px-10 sm:py-5 bg-brand-orange text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
             >
               <Clock className="w-5 h-5" />
               <span>{content.hero.cta.primary}</span>
@@ -108,7 +108,7 @@ export default function Hero() {
           >
             <Link
               href="/portfolio"
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white border-3 border-brand-navy text-brand-navy rounded-full font-bold text-lg hover:bg-brand-navy hover:text-white transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:px-10 sm:py-5 bg-white border-3 border-brand-navy text-brand-navy rounded-full font-bold text-lg hover:bg-brand-navy hover:text-white transition-colors"
             >
               <span>{content.hero.cta.secondary}</span>
             </Link>

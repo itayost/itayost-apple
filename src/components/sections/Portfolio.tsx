@@ -140,7 +140,7 @@ export default function Portfolio() {
     : portfolioData.filter(item => item.category === selectedCategory)
 
   return (
-    <section className="py-20 lg:py-32 bg-white">
+    <section className="py-12 sm:py-16 lg:py-32 bg-white">
       <div className="container px-4">
         {/* Section Header */}
         <motion.div

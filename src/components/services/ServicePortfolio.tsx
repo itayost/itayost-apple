@@ -28,7 +28,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
   }
 
   return (
-    <section className="bg-brand-gray-50 py-20 lg:py-24" id="portfolio">
+    <section className="bg-brand-gray-50 py-12 sm:py-16 lg:py-24" id="portfolio">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-brand-gray-900 sm:text-4xl lg:text-5xl">

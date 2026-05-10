@@ -257,7 +257,7 @@ export function Navigation() {
             {/* Mobile Menu Toggle */}
             <motion.button
               onClick={toggleMenu}
-              className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+              className="lg:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5"
               aria-label="תפריט"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -332,7 +332,7 @@ export function Navigation() {
                 </div>
                 <motion.button
                   onClick={toggleMenu}
-                  className="w-10 h-10 flex items-center justify-center"
+                  className="w-12 h-12 flex items-center justify-center"
                   aria-label="סגור תפריט"
                   whileHover={{
                     rotate: 90,

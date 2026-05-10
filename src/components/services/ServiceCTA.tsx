@@ -14,7 +14,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
   const accentColors = getServiceColors(service.accentColor)
 
   return (
-    <section className={`relative overflow-hidden ${colors.bg} py-20 lg:py-24`} id="contact">
+    <section className={`relative overflow-hidden ${colors.bg} py-12 sm:py-16 lg:py-24`} id="contact">
       {/* Animated background circles */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <motion.div

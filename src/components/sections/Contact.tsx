@@ -8,7 +8,7 @@ import { trackContactClick, trackCtaClick } from '@/lib/analytics'
 
 export default function Contact() {
   return (
-    <section className="py-20 lg:py-32 bg-brand-blue">
+    <section className="py-12 sm:py-16 lg:py-32 bg-brand-blue">
       <div className="container px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Header */}
