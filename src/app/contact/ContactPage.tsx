@@ -185,6 +185,7 @@ export default function ContactPage() {
                   y: -12,
                   transition: { duration: 0.3, ease: bouncyEasing }
                 }}
+                whileTap={{ scale: 0.97 }}
                 className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow"
                 target={method.title === 'WhatsApp' ? '_blank' : undefined}
                 rel={method.title === 'WhatsApp' ? 'noopener noreferrer' : undefined}
@@ -376,6 +377,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-navy transition-colors"
                     whileHover={{ x: -3 }}
+                    whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2, ease: bouncyEasing }}
                     onClick={() => {
                       trackWhatsAppClick('/contact', 'sidebar')

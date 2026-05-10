@@ -88,6 +88,16 @@ export function Navigation() {
     }
   }, [isMenuOpen])
 
+  // Close menu on Escape key
+  useEffect(() => {
+    if (!isMenuOpen) return
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMenuOpen(false)
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [isMenuOpen])
+
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev)
   }, [])

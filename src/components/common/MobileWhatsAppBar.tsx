@@ -88,7 +88,7 @@ export function MobileWhatsAppBar() {
           {/* Subtle gradient backdrop - pointer-events-none so it never eats clicks */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white to-white/90 backdrop-blur-sm" />
 
-          <div className="relative flex items-center gap-2 px-4 py-3">
+          <div className="relative flex items-center gap-2 px-4 py-2">
             {/* WhatsApp button — primary CTA (native anchor for reliable iOS behavior) */}
             <a
               href={whatsappHref}
@@ -106,7 +106,7 @@ export function MobileWhatsAppBar() {
             <a
               href="tel:+972544994417"
               onClick={handleCallClick}
-              className="flex items-center justify-center w-14 h-14 bg-brand-navy hover:bg-brand-navy/90 active:bg-brand-navy/80 text-white rounded-2xl shadow-lg transition-colors no-underline"
+              className="flex items-center justify-center w-12 h-12 bg-brand-navy hover:bg-brand-navy/90 active:bg-brand-navy/80 text-white rounded-2xl shadow-lg transition-colors no-underline"
               aria-label="התקשרו אלינו"
             >
               <Phone size={22} />

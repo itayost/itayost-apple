@@ -202,45 +202,45 @@ export default function BlogListingClient({ posts }: BlogListingClientProps) {
                     y: -12,
                     transition: { duration: 0.3, ease: bouncyEasing }
                   }}
-                  className="overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-shadow"
+                  className="overflow-hidden rounded-2xl md:rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-shadow"
                 >
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/blog/${post.slug}`} className="flex md:block">
                     {post.image ? (
-                      <div className="relative h-48">
+                      <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-full md:h-48 flex-shrink-0">
                         <Image
                           src={post.image}
                           alt={post.title}
                           fill
                           className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          sizes="(max-width: 768px) 128px, (max-width: 1024px) 50vw, 33vw"
                         />
                       </div>
                     ) : (
-                      <div className="relative h-48 bg-brand-blue" />
+                      <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-full md:h-48 flex-shrink-0 bg-brand-blue" />
                     )}
 
-                    <div className="p-6">
-                      <div className="mb-3 flex items-center gap-4 text-sm text-brand-gray-600">
+                    <div className="flex-1 p-4 md:p-6 flex flex-col justify-center md:block min-w-0">
+                      <div className="mb-1 md:mb-3 flex items-center gap-3 md:gap-4 text-xs md:text-sm text-brand-gray-600">
                         <span className="flex items-center gap-1">
-                          <Calendar size={16} />
+                          <Calendar size={14} />
                           {new Date(post.date).toLocaleDateString('he-IL')}
                         </span>
                         <span className="flex items-center gap-1">
-                          <Clock size={16} />
+                          <Clock size={14} />
                           {post.readTime}
                         </span>
                       </div>
 
-                      <h3 className="mb-2 text-xl font-bold text-brand-navy line-clamp-2">
+                      <h3 className="mb-1 md:mb-2 text-base md:text-xl font-bold text-brand-navy line-clamp-2">
                         {post.title}
                       </h3>
 
-                      <p className="mb-4 text-brand-gray-700 line-clamp-3">
+                      <p className="mb-0 md:mb-4 text-sm md:text-base text-brand-gray-700 line-clamp-2 md:line-clamp-3">
                         {post.excerpt}
                       </p>
 
                       <motion.span
-                        className="inline-flex items-center gap-1 font-semibold text-brand-blue"
+                        className="hidden md:inline-flex items-center gap-1 font-semibold text-brand-blue"
                         whileHover={{ x: -3 }}
                         transition={{ duration: 0.2, ease: bouncyEasing }}
                       >

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BlogPost } from '@/lib/blog'
 import { Calendar, Clock, ArrowLeft } from 'lucide-react'
+import { CardCarousel, cardCarouselItemClass } from '@/components/common/CardCarousel'
 
 interface LatestBlogPostsProps {
   posts: BlogPost[]
@@ -36,7 +37,7 @@ export default function LatestBlogPosts({
           )}
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <CardCarousel>
           {posts.slice(0, 3).map((post, index) => (
             <motion.article
               key={post.slug}
@@ -52,7 +53,7 @@ export default function LatestBlogPosts({
                 y: -8,
                 transition: { duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }
               }}
-              className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-shadow hover:shadow-2xl"
+              className={`group overflow-hidden rounded-2xl bg-white shadow-lg transition-shadow hover:shadow-2xl ${cardCarouselItemClass}`}
             >
               <Link href={`/blog/${post.slug}`}>
                 {/* Color placeholder - replace with actual images when available */}
@@ -100,7 +101,7 @@ export default function LatestBlogPosts({
               </Link>
             </motion.article>
           ))}
-        </div>
+        </CardCarousel>
 
         {/* View all blog link */}
         {showAll && posts.length > 3 && (

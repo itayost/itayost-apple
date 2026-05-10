@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Quote, Sparkles, Star } from 'lucide-react'
 import { portfolioData } from '@/data/portfolio'
 import { bouncyEasing } from '@/constants/animations'
+import { CardCarousel, cardCarouselItemClass } from '@/components/common/CardCarousel'
 
 const testimonials = portfolioData
   .filter(p => p.testimonial.text && p.results.length > 0)
@@ -50,8 +51,8 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* Testimonials Carousel */}
+        <CardCarousel className="max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -67,7 +68,7 @@ export default function Testimonials() {
                 y: -8,
                 transition: { duration: 0.3, ease: bouncyEasing }
               }}
-              className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow"
+              className={`bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow ${cardCarouselItemClass}`}
             >
               {/* Quote Icon */}
               <Quote className="w-10 h-10 text-brand-blue/20 mb-4" />
@@ -101,7 +102,7 @@ export default function Testimonials() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </CardCarousel>
       </div>
     </section>
   )
