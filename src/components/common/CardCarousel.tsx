@@ -89,7 +89,7 @@ export function CardCarousel({
     <div className={`group relative ${className}`}>
       <div
         ref={scrollRef}
-        className="flex gap-4 md:gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0"
+        className="flex gap-4 md:gap-6 lg:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 py-4"
       >
         {children}
       </div>
