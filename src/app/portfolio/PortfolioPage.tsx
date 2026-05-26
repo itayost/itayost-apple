@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -46,10 +46,30 @@ const getIcon = (category: string) => {
 
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [hasInteracted, setHasInteracted] = useState(false)
+  const gridRef = useRef<HTMLElement | null>(null)
+
+  // Only show chips for categories that actually have projects.
+  // Keeps "all" first, drops any chip whose category has zero items.
+  const availableCategories = useMemo(() => {
+    return portfolioCategories.filter(
+      c => c.id === 'all' || portfolioData.some(p => p.category === c.id)
+    )
+  }, [])
 
   const filteredProjects = selectedCategory === 'all'
     ? portfolioData
     : portfolioData.filter(p => p.category === selectedCategory)
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId)
+    if (!hasInteracted) setHasInteracted(true)
+    // Bring the grid into view so users on mobile (where the chip bar is sticky
+    // and the grid sits below the fold) get immediate visible feedback.
+    requestAnimationFrame(() => {
+      gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }
 
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
@@ -106,15 +126,22 @@ export default function PortfolioPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop: Centered tabs */}
           <div className="hidden sm:flex justify-center">
-            <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
-              {portfolioCategories.map((category) => {
+            <div
+              role="tablist"
+              aria-label="סינון פרויקטים לפי קטגוריה"
+              className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full"
+            >
+              {availableCategories.map((category) => {
                 const Icon = categoryIcons[category.id] || Filter
+                const isActive = selectedCategory === category.id
                 return (
                   <motion.button
                     key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => handleCategoryChange(category.id)}
                     className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-base transition-all whitespace-nowrap ${
-                      selectedCategory === category.id
+                      isActive
                         ? 'bg-brand-navy text-white shadow-lg'
                         : 'text-brand-gray-700 hover:text-brand-navy'
                     }`}
@@ -132,15 +159,23 @@ export default function PortfolioPage() {
 
           {/* Mobile: Scrollable tabs */}
           <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
-              {portfolioCategories.map((category) => {
+            <div
+              role="tablist"
+              aria-label="סינון פרויקטים לפי קטגוריה"
+              className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4"
+              style={{ width: 'max-content' }}
+            >
+              {availableCategories.map((category) => {
                 const Icon = categoryIcons[category.id] || Filter
+                const isActive = selectedCategory === category.id
                 return (
                   <motion.button
                     key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => handleCategoryChange(category.id)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap ${
-                      selectedCategory === category.id
+                      isActive
                         ? 'bg-brand-navy text-white shadow-lg'
                         : 'text-brand-gray-700'
                     }`}
@@ -154,15 +189,53 @@ export default function PortfolioPage() {
               })}
             </div>
           </div>
+
+          {/* Result count: immediate visual feedback after filter change */}
+          <div
+            className="mt-3 text-center text-sm text-brand-gray-700"
+            aria-live="polite"
+          >
+            {filteredProjects.length === 1
+              ? 'פרויקט אחד'
+              : `${filteredProjects.length} פרויקטים`}
+          </div>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16 lg:py-24 bg-section-light-blue">
+      <section
+        ref={gridRef}
+        className="py-16 lg:py-24 bg-section-light-blue scroll-mt-32 lg:scroll-mt-40"
+      >
         <div className="container mx-auto px-4">
-          <CardCarousel>
+          {filteredProjects.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-xl text-brand-gray-700 mb-6">
+                אין כרגע פרויקטים בקטגוריה זו
+              </p>
+              <button
+                type="button"
+                onClick={() => handleCategoryChange('all')}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-navy text-white rounded-full font-semibold hover:bg-brand-blue transition-colors"
+              >
+                הצג את כל הפרויקטים
+              </button>
+            </div>
+          ) : (
+          <CardCarousel key={selectedCategory}>
             {filteredProjects.map((project, index) => {
               const Icon = getIcon(project.category)
+              // After the first chip interaction we skip the staggered entry
+              // animation. Re-rendering with opacity:0 + per-card delays made
+              // filtered results appear "dead" for up to a second (PostHog
+              // dead-click signal). Only the initial mount stays animated.
+              const animateProps = hasInteracted
+                ? { initial: false as const, animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
+                : {
+                    initial: { opacity: 0, y: 40 },
+                    animate: { opacity: 1, y: 0 },
+                    transition: { delay: index * 0.1, duration: 0.6, ease: bouncyEasing },
+                  }
               return (
                 <Link
                   key={project.id}
@@ -171,13 +244,7 @@ export default function PortfolioPage() {
                   onClick={() => trackPortfolioClick(project.title, project.category)}
                 >
                   <motion.article
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: index * 0.1,
-                      duration: 0.6,
-                      ease: bouncyEasing
-                    }}
+                    {...animateProps}
                     whileHover={{
                       y: -12,
                       transition: { duration: 0.3, ease: bouncyEasing }
@@ -297,6 +364,7 @@ export default function PortfolioPage() {
               )
             })}
           </CardCarousel>
+          )}
         </div>
       </section>
 
