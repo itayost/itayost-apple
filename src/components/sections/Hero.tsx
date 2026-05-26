@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, Clock, Users } from 'lucide-react'
 import { content } from '@/config/content'
 import { bouncyEasing } from '@/constants/animations'
+import { trackCtaClick } from '@/lib/analytics'
 
 export default function Hero() {
   return (
@@ -88,6 +89,7 @@ export default function Hero() {
           >
             <Link
               href="/contact"
+              onClick={() => trackCtaClick(content.hero.cta.primary, 'hero', '/contact')}
               className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:px-10 sm:py-5 bg-brand-orange text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
             >
               <Clock className="w-5 h-5" />
@@ -108,6 +110,7 @@ export default function Hero() {
           >
             <Link
               href="/portfolio"
+              onClick={() => trackCtaClick(content.hero.cta.secondary, 'hero', '/portfolio')}
               className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:px-10 sm:py-5 bg-white border-3 border-brand-navy text-brand-navy rounded-full font-bold text-lg hover:bg-brand-navy hover:text-white transition-colors"
             >
               <span>{content.hero.cta.secondary}</span>
