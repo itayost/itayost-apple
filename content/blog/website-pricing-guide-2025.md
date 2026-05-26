@@ -820,7 +820,7 @@ featured: true
 
 - 🌐 [פיתוח אתרים מותאמים אישית](/services/web-development) — Next.js, מהיר, מאובטח
 - 🛒 [חנויות אונליין](/services/ecommerce) — עם תשלומים ישראליים (Bit, PayBox, Tranzila)
-- 💼 [מערכות CRM מותאמות אישית](/services/crm-systems) — ללא דמי שימוש חודשיים
+- 💼 [מערכות CRM מותאמות אישית](/services/crm-systems) — הקוד בבעלותך, ללא נעילה לספק
 - 💬 [צרו קשר להצעת מחיר](/contact) — תוך 24 שעות
 
 ---
