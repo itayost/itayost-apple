@@ -165,8 +165,8 @@ export const seoConfig = {
       canonical: 'https://www.itayost.com/services/ecommerce',
     },
     'crm-systems': {
-      title: 'בניית מערכת CRM מותאמת אישית בעברית | 2026',
-      description: 'בניית מערכת CRM מותאמת אישית לעסק שלך — ניהול לקוחות, עסקאות, אוטומציות וחיבור ל-WhatsApp, Gmail ומערכות חשבוניות בישראליות. עברית מלאה ו-RTL מובנה. הצעת מחיר תוך 24 שעות.',
+      title: 'בניית מערכת CRM מותאמת אישית | ללא דמי שימוש חודשיים',
+      description: 'מערכת CRM שבנויה לעסק שלך, לא תבנית גנרית. ללא דמי שימוש חודשיים, הקוד בבעלותך. חיבור ל-WhatsApp, Gmail וחשבוניות ישראליות. עברית RTL מלאה. הצעת מחיר חינם תוך 24 שעות.',
       keywords: [
         'מערכת CRM',
         'בניית מערכת CRM',
@@ -191,9 +191,9 @@ export const seoConfig = {
       canonical: 'https://www.itayost.com/services/ui-ux-design',
     },
     'landing-pages': {
-      title: 'דפי נחיתה | Landing Pages שמייצרים לידים',
-      description: 'דפי נחיתה ממירים לקמפיינים, השקות ומבצעים. בנייה מהירה תוך 3-7 ימים. A/B Testing, אנליטיקס, אופטימיזציה שוטפת. קבל הצעת מחיר.',
-      keywords: ['דף נחיתה', 'Landing Page', 'דף קמפיין', 'דף המרה', 'Google Ads', 'Facebook Ads', 'A/B Testing'],
+      title: 'דף נחיתה מקצועי תוך 5 ימים | בנייה, A/B Testing וניתוח',
+      description: 'דף נחיתה מקצועי מוכן תוך 5 ימים — עיצוב, פיתוח, A/B Testing ואנליטיקס בכלולים. מותאם לעברית RTL, טוען ב-1 שניה, ממיר פי 3 יותר מתבניות גנריות. הצעת מחיר חינם.',
+      keywords: ['דף נחיתה', 'בניית דפי נחיתה', 'דף נחיתה מקצועי', 'דף נחיתה לעסקים', 'יצירת דף נחיתה', 'Landing Page', 'דף קמפיין', 'דף המרה', 'Google Ads', 'Facebook Ads', 'A/B Testing'],
       canonical: 'https://www.itayost.com/services/landing-pages',
     },
     'automations': {
