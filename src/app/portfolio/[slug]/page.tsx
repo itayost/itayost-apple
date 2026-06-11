@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { portfolioData } from '@/data/portfolio'
 import { JsonLd } from '@/components/common/JsonLd'
 import { PortfolioBreadcrumbs } from '@/components/common/Breadcrumbs'
-import { ArrowRight, ExternalLink, Calendar, Clock, Tag, CheckCircle2, Quote } from 'lucide-react'
+import { ArrowRight, Calendar, Clock, Tag, CheckCircle2, Quote } from 'lucide-react'
+import { ProjectHeroCta } from './ProjectHeroCta'
 
 interface PageProps {
   params: Promise<{
@@ -175,18 +176,8 @@ export default async function PortfolioItemPage({ params }: PageProps) {
                 )}
               </div>
 
-              {/* CTA Button */}
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-brand-navy text-white rounded-full font-semibold hover:bg-brand-navy/90 transition-colors"
-                >
-                  <ExternalLink className="w-5 h-5" />
-                  <span>צפה באתר החי</span>
-                </a>
-              )}
+              {/* CTA Button — live link when available, contact CTA otherwise */}
+              <ProjectHeroCta link={project.link} title={project.title} />
             </div>
           </div>
         </section>

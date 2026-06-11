@@ -1,143 +1,146 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { portfolioData, portfolioCategories } from '@/data/portfolio'
-import { ExternalLink, Sparkles, ArrowLeft } from 'lucide-react'
+import { Sparkles, ArrowLeft } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
-import { trackPortfolioClick, trackOutboundClick, trackCtaClick } from '@/lib/analytics'
+import { trackPortfolioClick, trackCtaClick } from '@/lib/analytics'
 import {
   CardCarousel,
   cardCarouselItemClass,
 } from '@/components/common/CardCarousel'
 
-const PortfolioCard = ({ item, index }: { item: typeof portfolioData[0], index: number }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: bouncyEasing
-      }}
-      whileHover={{
-        y: -12,
-        transition: { duration: 0.3, ease: bouncyEasing }
-      }}
-      className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
-    >
-      {/* Image Container */}
-      <div className="relative h-64 bg-brand-gray-100 overflow-hidden">
-        {item.image ? (
-          <Image
-            src={item.image}
-            alt={item.title}
-            width={757}
-            height={519}
-            className="w-full h-full object-cover"
-            priority={index < 2}
-            loading={index < 2 ? undefined : 'lazy'}
-          />
-        ) : (
-          <div className="w-full h-full bg-brand-gray-100 flex items-center justify-center">
-            <div className="text-brand-gray-400 text-6xl font-bold">
-              {item.title.slice(0, 2)}
-            </div>
-          </div>
-        )}
+const PortfolioCard = ({
+  item,
+  index,
+  hasInteracted,
+}: {
+  item: typeof portfolioData[0]
+  index: number
+  hasInteracted: boolean
+}) => {
+  // After the first filter interaction we skip the staggered entry animation so
+  // filtered results appear instantly. Re-animating from opacity:0 on every
+  // filter made cards read as "dead" for a beat (PostHog dead-click signal).
+  const animateProps = hasInteracted
+    ? { initial: false as const, animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
+    : {
+        initial: { opacity: 0, y: 40 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.6, delay: index * 0.1, ease: bouncyEasing },
+      }
 
-        {/* Live Badge */}
-        {item.link && (
-          <div className="absolute top-4 start-4">
-            <span className="px-4 py-2 bg-brand-green text-white rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
-              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-              Live
+  return (
+    // The whole card is the link to the project detail page. Previously only the
+    // bottom CTA was interactive, and for items without a live link it was a
+    // non-interactive <div> — the recurring dead-click hotspot from the CRO report.
+    <Link
+      href={`/portfolio/${item.slug}`}
+      onClick={() => trackPortfolioClick(item.title, item.category)}
+      className={`group block ${cardCarouselItemClass}`}
+    >
+      <motion.div
+        {...animateProps}
+        whileHover={{ y: -12, transition: { duration: 0.3, ease: bouncyEasing } }}
+        className="h-full bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
+      >
+        {/* Image Container */}
+        <div className="relative h-64 bg-brand-gray-100 overflow-hidden">
+          {item.image ? (
+            <Image
+              src={item.image}
+              alt={item.title}
+              width={757}
+              height={519}
+              className="w-full h-full object-cover"
+              priority={index < 2}
+              loading={index < 2 ? undefined : 'lazy'}
+            />
+          ) : (
+            <div className="w-full h-full bg-brand-gray-100 flex items-center justify-center">
+              <div className="text-brand-gray-400 text-6xl font-bold">
+                {item.title.slice(0, 2)}
+              </div>
+            </div>
+          )}
+
+          {/* Live Badge */}
+          {item.link && (
+            <div className="absolute top-4 start-4">
+              <span className="px-4 py-2 bg-brand-green text-white rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+                <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                Live
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="p-8">
+          {/* Client */}
+          <div className="mb-3">
+            <span className="inline-block px-4 py-2 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-bold">
+              {item.client}
             </span>
           </div>
-        )}
-      </div>
 
-      {/* Content */}
-      <div className="p-8">
-        {/* Client */}
-        <div className="mb-3">
-          <span className="inline-block px-4 py-2 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-bold">
-            {item.client}
+          {/* Title */}
+          <h3 className="text-2xl sm:text-3xl font-bold text-brand-navy mb-3 group-hover:text-brand-blue transition-colors">
+            {item.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-brand-gray-700 mb-4 leading-relaxed">
+            {item.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {item.tags.slice(0, 3).map((tag, idx) => (
+              <span
+                key={idx}
+                className="px-3 py-1.5 bg-brand-gray-100 rounded-full text-sm font-medium text-brand-gray-700"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Result Highlight */}
+          {item.results.length > 0 && item.results[0] && (
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 rounded-full mb-6">
+              <span className="text-sm font-bold text-brand-green">
+                {item.results[0].label}: {item.results[0].value}
+              </span>
+            </div>
+          )}
+
+          {/* CTA cue — non-interactive; the entire card is the link */}
+          <span className="inline-flex items-center gap-2 text-brand-blue font-bold group-hover:gap-3 transition-all">
+            <span>{item.link ? 'צפייה בפרויקט' : 'פרטים נוספים'}</span>
+            <ArrowLeft className="w-5 h-5" />
           </span>
         </div>
-
-        {/* Title */}
-        <h3 className="text-2xl sm:text-3xl font-bold text-brand-navy mb-3">
-          {item.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-brand-gray-700 mb-4 leading-relaxed">
-          {item.description}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {item.tags.slice(0, 3).map((tag, idx) => (
-            <span
-              key={idx}
-              className="px-3 py-1.5 bg-brand-gray-100 rounded-full text-sm font-medium text-brand-gray-700"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Result Highlight */}
-        {item.results.length > 0 && item.results[0] && (
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-green/10 rounded-full mb-6">
-            <span className="text-sm font-bold text-brand-green">
-              {item.results[0].label}: {item.results[0].value}
-            </span>
-          </div>
-        )}
-
-        {/* CTA */}
-        {item.link ? (
-          <motion.a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => {
-              trackPortfolioClick(item.title, item.category)
-              trackOutboundClick(item.link!, item.title, 'portfolio')
-            }}
-            className="inline-flex items-center gap-2 -mx-3 px-3 py-2 rounded-xl text-brand-blue font-bold hover:bg-brand-blue/5 transition-colors"
-            whileHover={{
-              x: -5,
-              transition: { duration: 0.3, ease: bouncyEasing }
-            }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <span>צפייה באתר</span>
-            <ExternalLink className="w-5 h-5" />
-          </motion.a>
-        ) : (
-          <div className="inline-flex items-center gap-2 px-3 py-2 text-brand-gray-600 font-bold">
-            <span>פרטים נוספים</span>
-            <ArrowLeft className="w-5 h-5" />
-          </div>
-        )}
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   )
 }
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [hasInteracted, setHasInteracted] = useState(false)
 
   const filteredItems = selectedCategory === 'all'
     ? portfolioData
     : portfolioData.filter(item => item.category === selectedCategory)
+
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value)
+    if (!hasInteracted) setHasInteracted(true)
+  }
 
   return (
     <section className="py-12 sm:py-16 lg:py-32 bg-white">
@@ -187,7 +190,7 @@ export default function Portfolio() {
                 <motion.button
                   type="button"
                   key={category.value}
-                  onClick={() => setSelectedCategory(category.value)}
+                  onClick={() => handleCategoryChange(category.value)}
                   className={`px-6 py-3 rounded-full font-bold transition-all ${
                     selectedCategory === category.value
                       ? 'bg-brand-navy text-white shadow-lg'
@@ -210,7 +213,7 @@ export default function Portfolio() {
                 <button
                   type="button"
                   key={category.value}
-                  onClick={() => setSelectedCategory(category.value)}
+                  onClick={() => handleCategoryChange(category.value)}
                   className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all active:scale-95 ${
                     selectedCategory === category.value
                       ? 'bg-brand-navy text-white shadow-lg'
@@ -222,26 +225,39 @@ export default function Portfolio() {
               ))}
             </div>
           </div>
+
+          {/* Result count: immediate visual feedback after a filter change */}
+          <div className="mt-6 text-center text-sm text-brand-gray-700" aria-live="polite">
+            {filteredItems.length === 1 ? 'פרויקט אחד' : `${filteredItems.length} פרויקטים`}
+          </div>
         </motion.div>
 
         {/* Portfolio Carousel */}
-        <CardCarousel className="mb-16">
-          <AnimatePresence mode="popLayout">
+        {filteredItems.length === 0 ? (
+          <div className="text-center py-16 mb-16">
+            <p className="text-xl text-brand-gray-700 mb-6">
+              אין כרגע פרויקטים בקטגוריה זו
+            </p>
+            <button
+              type="button"
+              onClick={() => handleCategoryChange('all')}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-brand-navy text-white rounded-full font-semibold hover:bg-brand-blue transition-colors"
+            >
+              הצג את כל הפרויקטים
+            </button>
+          </div>
+        ) : (
+          <CardCarousel className="mb-16" key={selectedCategory}>
             {filteredItems.map((item, index) => (
-              <motion.div
+              <PortfolioCard
                 key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3, ease: bouncyEasing }}
-                className={cardCarouselItemClass}
-              >
-                <PortfolioCard item={item} index={index} />
-              </motion.div>
+                item={item}
+                index={index}
+                hasInteracted={hasInteracted}
+              />
             ))}
-          </AnimatePresence>
-        </CardCarousel>
+          </CardCarousel>
+        )}
 
         {/* Statistics */}
         <motion.div

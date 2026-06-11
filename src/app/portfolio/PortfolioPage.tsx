@@ -269,8 +269,8 @@ export default function PortfolioPage() {
                         </div>
                       )}
 
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-brand-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      {/* Hover Overlay — pointer-events-none so it never intercepts a card tap */}
+                      <div className="pointer-events-none absolute inset-0 bg-brand-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div className="text-white text-center p-6">
                           <p className="text-lg font-semibold mb-2">לחץ לפרטים מלאים</p>
                           {project.stats && (
