@@ -91,8 +91,10 @@ export default async function Page({ params }: PageProps) {
     })),
   } : null
 
-  // HowTo schema for step-by-step guide posts
-  const howToSchema = post.schemaType === 'howto' ? {
+  // HowTo schema for step-by-step guide posts. Only emitted when the post
+  // provides structured `steps` — a HowTo without a step array is invalid and
+  // gets ignored by search/AI engines.
+  const howToSchema = post.schemaType === 'howto' && post.steps && post.steps.length > 0 ? {
     '@type': 'HowTo',
     name: post.title,
     description: post.description || post.excerpt,
@@ -100,6 +102,25 @@ export default async function Page({ params }: PageProps) {
     datePublished: post.date,
     dateModified: post.lastUpdated || post.date,
     inLanguage: 'he-IL',
+    step: post.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  } : null
+
+  // FAQPage schema from structured frontmatter (same source as the on-page FAQ).
+  const faqPageSchema = post.faq && post.faq.length > 0 ? {
+    '@type': 'FAQPage',
+    mainEntity: post.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
   } : null
 
   // Structured data for blog post
@@ -156,6 +177,8 @@ export default async function Page({ params }: PageProps) {
       },
       // HowTo schema (conditionally included for guide posts)
       ...(howToSchema ? [howToSchema] : []),
+      // FAQPage schema (conditionally included when the post has structured FAQ)
+      ...(faqPageSchema ? [faqPageSchema] : []),
       // ItemList schema (conditionally included for comparison posts)
       ...(itemListSchema ? [itemListSchema] : [])
     ]

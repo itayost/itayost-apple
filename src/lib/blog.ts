@@ -28,6 +28,12 @@ export interface BlogPost {
   excerpt: string
   featured?: boolean
   schemaType?: 'howto'
+  // Optional structured frontmatter that powers both the on-page UI and the
+  // JSON-LD (single source of truth) so posts are more AI-citable.
+  tldr?: string[]
+  faq?: { question: string; answer: string }[]
+  steps?: { name: string; text: string }[]
+  sources?: { title: string; url: string }[]
 }
 
 export function getAllPostSlugs(): string[] {
@@ -105,7 +111,11 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       content: contentHtml,
       excerpt: data.excerpt || excerpt,
       featured: data.featured || false,
-      schemaType: data.schemaType === 'howto' ? 'howto' : undefined
+      schemaType: data.schemaType === 'howto' ? 'howto' : undefined,
+      tldr: Array.isArray(data.tldr) ? data.tldr : undefined,
+      faq: Array.isArray(data.faq) ? data.faq : undefined,
+      steps: Array.isArray(data.steps) ? data.steps : undefined,
+      sources: Array.isArray(data.sources) ? data.sources : undefined,
     }
   } catch (error) {
     // Error reading post - return null
