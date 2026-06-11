@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, Phone } from 'lucide-react'
-import { trackWhatsAppClick, trackCtaClick, trackGenerateLead } from '@/lib/analytics'
+import { trackWhatsAppClick, trackCtaClick, trackGenerateLead, trackContactClick } from '@/lib/analytics'
 
 const PAGE_MESSAGES: Record<string, string> = {
   '/': 'היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים',
@@ -71,7 +71,12 @@ export function MobileWhatsAppBar() {
   }
 
   const handleCallClick = () => {
+    // Count the call tap as a real lead so mobile phone conversions are visible
+    // in the funnel — previously only cta_click fired, leaving phone leads
+    // invisible despite mobile driving most conversions (per the CRO report).
     trackCtaClick('phone_mobile_bar', 'mobile_cta', pathname)
+    trackContactClick('phone', 'mobile_bar')
+    trackGenerateLead('phone', pathname)
   }
 
   return (
