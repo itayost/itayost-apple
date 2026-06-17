@@ -2,7 +2,9 @@
 
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { Service } from '@/data/services'
+import { getPortfolioByIds } from '@/data/portfolio'
 import { ServiceBreadcrumbs } from '@/components/common/Breadcrumbs'
 import { getServiceColors } from '@/lib/colors'
 import { trackServiceView, trackCtaClick } from '@/lib/analytics'
@@ -13,6 +15,12 @@ interface ServiceHeroProps {
 
 export default function ServiceHero({ service }: ServiceHeroProps) {
   const colors = getServiceColors(service.color)
+
+  // ServicePortfolio renders nothing when a service has no resolvable items, so
+  // the in-page #portfolio anchor only exists when there are projects to show.
+  // Without this guard the secondary CTA scrolls to a missing target — a dead
+  // click (e.g. /services/mobile-apps, which has an empty portfolio array).
+  const hasPortfolioSection = getPortfolioByIds(service.portfolio).length > 0
 
   useEffect(() => {
     trackServiceView(service.name, service.slug)
@@ -131,13 +139,23 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
             >
               {service.cta.primary}
             </a>
-            <a
-              href="#portfolio"
-              className="btn btn-ghost"
-              onClick={(e) => handleAnchorClick('portfolio', service.cta.secondary, e)}
-            >
-              {service.cta.secondary}
-            </a>
+            {hasPortfolioSection ? (
+              <a
+                href="#portfolio"
+                className="btn btn-ghost"
+                onClick={(e) => handleAnchorClick('portfolio', service.cta.secondary, e)}
+              >
+                {service.cta.secondary}
+              </a>
+            ) : (
+              <Link
+                href="/portfolio"
+                className="btn btn-ghost"
+                onClick={() => trackCtaClick(service.cta.secondary, 'service_hero', '/portfolio')}
+              >
+                {service.cta.secondary}
+              </Link>
+            )}
           </div>
         </div>
       </div>

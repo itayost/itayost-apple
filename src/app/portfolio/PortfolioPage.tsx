@@ -403,12 +403,7 @@ export default function PortfolioPage() {
                   duration: 0.5,
                   ease: bouncyEasing
                 }}
-                whileHover={{
-                  y: -8,
-                  rotate: index % 2 === 0 ? 2 : -2,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                className={`${stat.color} rounded-3xl p-8 text-center text-white shadow-lg hover:shadow-2xl transition-shadow`}
+                className={`${stat.color} rounded-3xl p-8 text-center text-white shadow-lg`}
               >
                 <div className="text-4xl md:text-5xl font-bold mb-2">
                   {stat.value}
