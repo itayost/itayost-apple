@@ -165,8 +165,8 @@ export const seoConfig = {
       canonical: 'https://www.itayost.com/services/ecommerce',
     },
     'crm-systems': {
-      title: 'בניית מערכת CRM מותאמת אישית | הקוד בבעלותך',
-      description: 'מערכת CRM שבנויה לעסק שלך, לא תבנית גנרית. הקוד בבעלותך, ללא נעילה לספק. חיבור ל-WhatsApp, Gmail וחשבוניות ישראליות. עברית RTL מלאה. הצעת מחיר חינם תוך 24 שעות.',
+      title: 'בניית מערכת CRM לפי הזמנה | הקוד בבעלותך',
+      description: 'בניית מערכת CRM לפי הזמנה — בנויה לעסק שלך, לא תבנית גנרית. הקוד בבעלותך, בלי נעילה לספק. חיבור ל-WhatsApp, Gmail וחשבוניות ישראליות. הצעת מחיר תוך 24 שעות.',
       keywords: [
         'מערכת CRM',
         'בניית מערכת CRM',
