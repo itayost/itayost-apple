@@ -1,9 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { Service } from '@/data/services'
 import { getServiceColors } from '@/lib/colors'
-import { trackContactClick } from '@/lib/analytics'
+import {
+  trackContactClick,
+  trackWhatsAppClick,
+  trackGenerateLead,
+} from '@/lib/analytics'
 
 interface ServiceCTAProps {
   service: Service
@@ -12,6 +17,18 @@ interface ServiceCTAProps {
 export default function ServiceCTA({ service }: ServiceCTAProps) {
   const colors = getServiceColors(service.color)
   const accentColors = getServiceColors(service.accentColor)
+  const pathname = usePathname() ?? `/services/${service.slug}`
+
+  // The WhatsApp CTA is a real lead action, so it must fire the same events as
+  // every other WhatsApp entry point: whatsapp_click (so the metric reflects
+  // service-page taps) and generate_lead (so it counts as a contactable lead).
+  // Previously this button only fired contact_click, which is why service-page
+  // WhatsApp engagement was invisible in the whatsapp_click / lead numbers.
+  const handleWhatsAppClick = () => {
+    trackContactClick('whatsapp', 'service_cta')
+    trackWhatsAppClick(pathname, 'service_cta')
+    trackGenerateLead('whatsapp', pathname)
+  }
 
   return (
     <section className={`relative overflow-hidden ${colors.bg} py-12 sm:py-16 lg:py-24`} id="contact">
@@ -94,7 +111,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={`btn bg-white ${colors.text}`}
-              onClick={() => trackContactClick('whatsapp', 'service_cta')}
+              onClick={handleWhatsAppClick}
             >
               <span>שלח הודעת WhatsApp</span>
               <span className="text-xl">💬</span>

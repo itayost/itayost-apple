@@ -7,6 +7,7 @@ import { JsonLd } from '@/components/common/JsonLd'
 import { PortfolioBreadcrumbs } from '@/components/common/Breadcrumbs'
 import { ArrowRight, Calendar, Clock, Tag, CheckCircle2, Quote } from 'lucide-react'
 import { ProjectHeroCta } from './ProjectHeroCta'
+import { ProjectContactCta } from './ProjectContactCta'
 
 interface PageProps {
   params: Promise<{
@@ -293,21 +294,8 @@ export default async function PortfolioItemPage({ params }: PageProps) {
                   </div>
                 )}
 
-                {/* CTA */}
-                <div className="bg-section-light-blue rounded-3xl p-6 text-center">
-                  <h3 className="text-xl font-bold text-brand-navy mb-3">
-                    רוצים פרויקט דומה?
-                  </h3>
-                  <p className="text-brand-gray-600 mb-4">
-                    בואו נדבר על הפרויקט שלכם
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-block w-full px-6 py-3 bg-brand-navy text-white rounded-full font-semibold hover:bg-brand-navy/90 transition-colors"
-                  >
-                    צור קשר
-                  </Link>
-                </div>
+                {/* CTA — tracked WhatsApp + contact, see ProjectContactCta */}
+                <ProjectContactCta title={project.title} slug={project.slug} />
               </div>
             </div>
           </div>
