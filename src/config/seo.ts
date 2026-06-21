@@ -204,7 +204,7 @@ export const seoConfig = {
     },
     'mobile-apps': {
       title: 'אפליקציות מובייל | React Native לiOS ו-Android',
-      description: 'פיתוח אפליקציות מובייל Cross-Platform עם React Native. אפליקציה אחת ל-iOS ו-Android. Push notifications, מיקום, מצלמה. קבל הצעת מחיר.',
+      description: 'פיתוח אפליקציות מובייל ב-React Native — אפליקציה אחת ל-iOS ולאנדרואיד. כמה עולה לפתח אפליקציה? טווחי מחירים אמיתיים, לוחות זמנים והצעת מחיר חינם תוך 24 שעות.',
       keywords: ['אפליקציות מובייל', 'React Native', 'פיתוח אפליקציה', 'iOS', 'Android', 'Expo', 'אפליקציה לעסק'],
       canonical: 'https://www.itayost.com/services/mobile-apps',
     },

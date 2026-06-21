@@ -100,7 +100,11 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       slug,
       title: data.title || '',
       metaTitle: data.metaTitle || undefined,
-      description: data.description || '',
+      // Accept either `description` or `metaDescription` from frontmatter.
+      // Several posts only set `metaDescription`, which previously fell through
+      // to the auto-excerpt and shipped a raw article intro as the meta tag —
+      // the root cause of the zero-click CTR on the cost/pricing guides.
+      description: data.description || data.metaDescription || '',
       date: data.date || new Date().toISOString().split('T')[0],
       lastUpdated: data.lastUpdated || undefined,
       author: data.author || 'איתי אוסטרייך',
