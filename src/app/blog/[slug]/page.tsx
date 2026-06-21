@@ -32,7 +32,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoTitle = post.metaTitle || post.title
 
   return {
-    title: `${seoTitle} | בלוג ITAYOST`,
+    // `absolute` bypasses the root layout's `%s | ITAYOST` template. Without it
+    // the blog title was double-branded (`… | בלוג ITAYOST | ITAYOST`), pushing
+    // titles past ~60 chars and truncating them in the SERP.
+    title: { absolute: `${seoTitle} | בלוג ITAYOST` },
     description: post.description || post.excerpt,
     keywords: post.tags,
     authors: [{ name: post.author }],
