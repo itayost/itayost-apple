@@ -34,7 +34,7 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Partial<FormData>>({})
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const validateForm = (): boolean => {
+  const validateForm = (): Partial<FormData> => {
     const newErrors: Partial<FormData> = {}
 
     if (!formData.name.trim()) {
@@ -52,13 +52,20 @@ export default function ContactPage() {
     }
 
     setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
+    return newErrors
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!validateForm()) {
+    const validationErrors = validateForm()
+    if (Object.keys(validationErrors).length > 0) {
+      // Move focus to the first invalid field. With noValidate we no longer get
+      // the browser's native announce-and-focus, so we replicate it: focusing an
+      // input that carries aria-invalid + aria-describedby makes screen readers
+      // announce the field and its inline error.
+      const firstInvalidId = validationErrors.name ? 'contact-name' : 'contact-phone'
+      document.getElementById(firstInvalidId)?.focus()
       return
     }
 
@@ -236,7 +243,14 @@ export default function ContactPage() {
                     ספרו לי איך אני יכול לעזור
                   </h2>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* noValidate: drive empty-field feedback through our own
+                      validateForm() so users get the styled inline Hebrew
+                      errors (a real DOM change) instead of the browser's native
+                      required-bubble. The native bubble is browser chrome, not a
+                      DOM mutation, so PostHog logged empty-field submit clicks as
+                      "dead clicks" on שלח הודעה — a false positive flagged in the
+                      weekly CRO report. `required` stays for a11y semantics. */}
+                  <form onSubmit={handleSubmit} noValidate className="space-y-6">
                     {/* Name Field */}
                     <div>
                       <label htmlFor="contact-name" className="block text-base font-semibold text-brand-navy mb-2">
@@ -250,11 +264,13 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         autoComplete="name"
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? 'contact-name-error' : undefined}
                         className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.name ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg`}
                         placeholder="ישראל ישראלי"
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                        <p id="contact-name-error" role="alert" className="text-red-500 text-sm mt-1 flex items-center gap-1">
                           <AlertCircle size={14} />
                           {errors.name}
                         </p>
@@ -274,11 +290,13 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         autoComplete="tel"
+                        aria-invalid={!!errors.phone}
+                        aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
                         className={`w-full px-5 py-4 rounded-2xl border-2 ${errors.phone ? 'border-red-400' : 'border-brand-gray-200'} focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/20 transition-all text-lg`}
                         placeholder="050-1234567"
                       />
                       {errors.phone && (
-                        <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                        <p id="contact-phone-error" role="alert" className="text-red-500 text-sm mt-1 flex items-center gap-1">
                           <AlertCircle size={14} />
                           {errors.phone}
                         </p>
