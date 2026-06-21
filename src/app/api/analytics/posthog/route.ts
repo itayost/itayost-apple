@@ -129,32 +129,57 @@ async function getSessionAnalysis(apiKey: string, projectId: string, days: numbe
   return hogqlQuery(apiKey, projectId, query)
 }
 
+// ChatGPT AI-assistant referrals are excluded from the funnel: they arrive at
+// ~100% bounce with 0 conversions and only inflate the visitors denominator,
+// dragging the engaged rate down without representing real audience (per the
+// weekly CRO report). Other AI referrers (claude.ai etc.) are kept — they
+// engage. Matches the exclusion on the saved PostHog "CRO Funnel" insight.
+const EXCLUDED_FUNNEL_REFERRER = 'chatgpt.com'
+
 // 5. Conversion funnel: pageview → custom event → lead
 async function getConversionFunnel(apiKey: string, projectId: string, days: number) {
+  // Exclude visitors acquired via ChatGPT (person-level initial referrer).
+  // coalesce guards NULL initial-referrer rows from being dropped by SQL's
+  // NULL-comparison semantics (NULL != 'x' is NULL, i.e. falsy in WHERE).
+  const notChatGPT = `coalesce(person.properties.$initial_referring_domain, '') != '${EXCLUDED_FUNNEL_REFERRER}'`
+
   // Get counts at each funnel stage
   const stages = await Promise.all([
     hogqlQuery(apiKey, projectId, `
       SELECT uniq(distinct_id) as users
       FROM events
       WHERE event = '$pageview'
+        AND ${notChatGPT}
         AND timestamp >= now() - interval ${days} day
     `),
     hogqlQuery(apiKey, projectId, `
       SELECT uniq(distinct_id) as users
       FROM events
       WHERE event NOT LIKE '$%'
+        AND ${notChatGPT}
         AND timestamp >= now() - interval ${days} day
     `),
     hogqlQuery(apiKey, projectId, `
       SELECT uniq(distinct_id) as users
       FROM events
       WHERE event IN ('cta_click', 'contact_click', 'service_view', 'portfolio_click')
+        AND ${notChatGPT}
         AND timestamp >= now() - interval ${days} day
     `),
     hogqlQuery(apiKey, projectId, `
       SELECT uniq(distinct_id) as users
       FROM events
       WHERE event IN ('generate_lead', 'whatsapp_click', 'contact_click')
+        AND ${notChatGPT}
+        AND timestamp >= now() - interval ${days} day
+    `),
+    // Excluded ChatGPT visitors — surfaced so the report states the exclusion
+    // transparently instead of silently dropping them.
+    hogqlQuery(apiKey, projectId, `
+      SELECT uniq(distinct_id) as users
+      FROM events
+      WHERE event = '$pageview'
+        AND coalesce(person.properties.$initial_referring_domain, '') = '${EXCLUDED_FUNNEL_REFERRER}'
         AND timestamp >= now() - interval ${days} day
     `),
   ])
@@ -164,6 +189,8 @@ async function getConversionFunnel(apiKey: string, projectId: string, days: numb
     engaged: stages[1]?.[0]?.[0] ?? 0,
     interacted: stages[2]?.[0]?.[0] ?? 0,
     converted: stages[3]?.[0]?.[0] ?? 0,
+    excludedChatgptVisitors: stages[4]?.[0]?.[0] ?? 0,
+    excludesReferrer: EXCLUDED_FUNNEL_REFERRER,
   }
 }
 
