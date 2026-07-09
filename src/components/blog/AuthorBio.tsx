@@ -4,13 +4,15 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { MessageCircle, Mail, Briefcase, ArrowLeft } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
+import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 interface AuthorBioProps {
   author?: string
 }
 
 export default function AuthorBio({ author = 'איתי אוסטרייך' }: AuthorBioProps) {
-  const whatsappLink = 'https://wa.me/972544994417?text=' + encodeURIComponent('היי, קראתי את המאמר שלך ורציתי לשאול...')
+  const whatsappLink = buildWhatsAppUrl('היי, קראתי את המאמר שלך ורציתי לשאול...')
 
   return (
     <motion.div
@@ -79,6 +81,10 @@ export default function AuthorBio({ author = 'איתי אוסטרייך' }: Auth
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  trackWhatsAppClick(window.location.pathname, 'author_bio')
+                  trackGenerateLead('whatsapp', window.location.pathname)
+                }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#25D366] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-shadow"

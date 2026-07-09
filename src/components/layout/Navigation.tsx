@@ -7,7 +7,8 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { servicesData } from '@/data/services'
 import { bouncyEasing } from '@/constants/animations'
-import { trackCtaClick, trackContactClick } from '@/lib/analytics'
+import { trackCtaClick, trackContactClick, trackPhoneClick } from '@/lib/analytics'
+import { PHONE_TEL_HREF } from '@/lib/whatsapp'
 
 const navItems = [
   { href: '/', label: 'בית' },
@@ -484,11 +485,14 @@ export function Navigation() {
 
                 <div className="mt-6 space-y-2 text-base text-gray-700">
                   <motion.a
-                    href="tel:0544994417"
+                    href={PHONE_TEL_HREF}
                     className="block font-medium hover:text-brand-blue transition-colors"
                     whileHover={{ x: -3 }}
                     transition={{ duration: 0.2, ease: bouncyEasing }}
-                    onClick={() => trackContactClick('phone', 'nav')}
+                    onClick={() => {
+                      trackContactClick('phone', 'nav')
+                      trackPhoneClick(window.location.pathname, 'nav')
+                    }}
                   >
                     054-499-4417
                   </motion.a>

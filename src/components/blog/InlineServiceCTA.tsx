@@ -10,6 +10,7 @@ import {
   trackGenerateLead,
   trackCtaClick,
 } from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 // Category to service mapping
 const categoryServiceMap: Record<string, { serviceId: string; serviceName: string; ctaMessage: string }> = {
@@ -99,8 +100,7 @@ interface InlineServiceCTAProps {
 export default function InlineServiceCTA({ category, variant = 'full' }: InlineServiceCTAProps) {
   const pathname = usePathname() ?? ''
   const service = categoryServiceMap[category] || defaultService
-  const whatsappMessage = encodeURIComponent(`היי, קראתי את המאמר שלך בבלוג ומעוניין לשמוע עוד על ${service.serviceName}`)
-  const whatsappLink = `https://wa.me/972544994417?text=${whatsappMessage}`
+  const whatsappLink = buildWhatsAppUrl(`היי, קראתי את המאמר שלך בבלוג ומעוניין לשמוע עוד על ${service.serviceName}`)
   const isCompact = variant === 'compact'
 
   const handleWhatsAppClick = () => {

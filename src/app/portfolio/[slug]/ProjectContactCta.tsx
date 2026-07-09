@@ -7,6 +7,7 @@ import {
   trackGenerateLead,
   trackCtaClick,
 } from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 interface ProjectContactCtaProps {
   title: string
@@ -20,10 +21,9 @@ interface ProjectContactCtaProps {
 // page body (per the weekly CRO report), alongside the existing contact link.
 export function ProjectContactCta({ title, slug }: ProjectContactCtaProps) {
   const sourcePage = `/portfolio/${slug}`
-  const whatsappMessage = encodeURIComponent(
+  const whatsappLink = buildWhatsAppUrl(
     `היי, ראיתי את הפרויקט "${title}" בתיק העבודות ואשמח לשמוע על פרויקט דומה`
   )
-  const whatsappLink = `https://wa.me/972544994417?text=${whatsappMessage}`
 
   const handleWhatsAppClick = () => {
     trackWhatsAppClick(sourcePage, 'portfolio_detail')

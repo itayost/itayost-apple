@@ -4,7 +4,14 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Mail, Phone, MessageCircle, ArrowLeft, Sparkles } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
-import { trackContactClick, trackCtaClick } from '@/lib/analytics'
+import {
+  trackContactClick,
+  trackCtaClick,
+  trackWhatsAppClick,
+  trackPhoneClick,
+  trackGenerateLead,
+} from '@/lib/analytics'
+import { buildWhatsAppUrl, PHONE_TEL_HREF } from '@/lib/whatsapp'
 
 export default function Contact() {
   return (
@@ -83,14 +90,14 @@ export default function Contact() {
                 icon: Phone,
                 title: 'טלפון',
                 value: '054-499-4417',
-                href: 'tel:0544994417',
+                href: PHONE_TEL_HREF,
                 color: 'bg-brand-orange'
               },
               {
                 icon: MessageCircle,
                 title: 'WhatsApp',
                 value: 'שלחו הודעה',
-                href: `https://wa.me/972544994417?text=${encodeURIComponent('היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים')}`,
+                href: buildWhatsAppUrl('היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים'),
                 color: 'bg-brand-green'
               },
               {
@@ -117,10 +124,17 @@ export default function Contact() {
                   transition: { duration: 0.3, ease: bouncyEasing }
                 }}
                 className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow group flex flex-col items-center text-center"
-                onClick={() => trackContactClick(
-                  method.title === 'WhatsApp' ? 'whatsapp' : method.title === 'טלפון' ? 'phone' : 'email',
-                  'contact_section'
-                )}
+                onClick={() => {
+                  const contactMethod =
+                    method.title === 'WhatsApp' ? 'whatsapp' : method.title === 'טלפון' ? 'phone' : 'email'
+                  trackContactClick(contactMethod, 'contact_section')
+                  if (contactMethod === 'whatsapp') {
+                    trackWhatsAppClick(window.location.pathname, 'contact_section')
+                    trackGenerateLead('whatsapp', window.location.pathname)
+                  } else if (contactMethod === 'phone') {
+                    trackPhoneClick(window.location.pathname, 'contact_section')
+                  }
+                }}
               >
                 <div className={`flex items-center justify-center w-16 h-16 ${method.color} rounded-2xl mb-4 group-hover:scale-110 transition-transform`}>
                   <method.icon className="w-7 h-7 text-white" />

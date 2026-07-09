@@ -8,3 +8,6 @@ export type AnalyticsEventName =
   | 'service_view'
   | 'portfolio_click'
   | 'outbound_click'
+  | 'phone_click'
+  | 'form_start'
+  | 'form_submit'

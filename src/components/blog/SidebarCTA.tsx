@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import { MessageCircle, ArrowLeft, Sparkles, Code, ShoppingBag, Palette, Zap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
+import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 // Category-specific content
 const categoryContent: Record<string, { icon: LucideIcon; title: string; description: string; cta: string }> = {
@@ -95,9 +97,13 @@ export function SidebarCTA({ className = '', category }: SidebarCTAProps) {
 
         {/* WhatsApp link */}
         <a
-          href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, קראתי את המאמר שלך ורציתי לשאול...')}`}
+          href={buildWhatsAppUrl('היי, קראתי את המאמר שלך ורציתי לשאול...')}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => {
+            trackWhatsAppClick(window.location.pathname, 'blog_sidebar')
+            trackGenerateLead('whatsapp', window.location.pathname)
+          }}
           className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 bg-white/10 backdrop-blur-sm text-white rounded-xl text-sm font-medium hover:bg-white/20 transition-colors"
         >
           <MessageCircle size={16} />

@@ -1,5 +1,6 @@
 import { Github, Instagram, Facebook, Phone, Mail, MessageCircle } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { buildWhatsAppUrl, PHONE_TEL_HREF } from '@/lib/whatsapp'
 
 export interface SocialLink {
   icon: LucideIcon
@@ -28,7 +29,7 @@ export const contactMethods: ContactMethod[] = [
     icon: Phone,
     title: 'טלפון',
     value: '054-499-4417',
-    href: 'tel:0544994417',
+    href: PHONE_TEL_HREF,
     description: 'ניתן להתקשר בימים א׳-ה׳',
     color: 'bg-brand-blue',
   },
@@ -44,7 +45,7 @@ export const contactMethods: ContactMethod[] = [
     icon: MessageCircle,
     title: 'WhatsApp',
     value: 'שלח הודעה',
-    href: `https://wa.me/972544994417?text=${encodeURIComponent('היי, אשמח לתאם שיחה על פרויקט')}`,
+    href: buildWhatsAppUrl('היי, אשמח לתאם שיחה על פרויקט'),
     description: 'מענה מהיר ונוח',
     color: 'bg-brand-green',
   },

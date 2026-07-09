@@ -15,6 +15,8 @@ import {
   Sparkles
 } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
+import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 const skills = [
   { name: 'React / Next.js', level: 95, color: 'bg-brand-blue', priority: 1 },
@@ -515,9 +517,13 @@ export default function AboutPage() {
                 צור קשר
               </Link>
               <a
-                href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, קראתי עליך ואשמח לשמוע עוד')}`}
+                href={buildWhatsAppUrl('היי, קראתי עליך ואשמח לשמוע עוד')}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  trackWhatsAppClick('/about', 'about')
+                  trackGenerateLead('whatsapp', '/about')
+                }}
                 className="inline-block px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 WhatsApp

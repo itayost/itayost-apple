@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import { content } from '@/config/content'
 import { bouncyEasing } from '@/constants/animations'
+import { buildWhatsAppUrl, PHONE_TEL_HREF } from '@/lib/whatsapp'
 
 const sections = [
   {
@@ -346,13 +347,13 @@ const sections = [
           </li>
           <li class="flex items-start gap-3">
             <span class="font-bold text-brand-navy min-w-[80px]">טלפון:</span>
-            <a href="tel:+972544994417" class="text-brand-blue hover:underline">
+            <a href="${PHONE_TEL_HREF}" class="text-brand-blue hover:underline">
               054-499-4417
             </a>
           </li>
           <li class="flex items-start gap-3">
             <span class="font-bold text-brand-navy min-w-[80px]">WhatsApp:</span>
-            <a href="https://wa.me/972544994417" class="text-brand-blue hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="${buildWhatsAppUrl()}" class="text-brand-blue hover:underline" target="_blank" rel="noopener noreferrer">
               054-499-4417
             </a>
           </li>

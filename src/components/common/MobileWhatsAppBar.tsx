@@ -4,7 +4,8 @@ import { useState, useEffect, useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, Phone } from 'lucide-react'
-import { trackWhatsAppClick, trackCtaClick, trackGenerateLead, trackContactClick } from '@/lib/analytics'
+import { trackWhatsAppClick, trackCtaClick, trackGenerateLead, trackContactClick, trackPhoneClick } from '@/lib/analytics'
+import { buildWhatsAppUrl, PHONE_TEL_HREF } from '@/lib/whatsapp'
 
 const PAGE_MESSAGES: Record<string, string> = {
   '/': 'היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים',
@@ -21,8 +22,6 @@ function getWhatsAppMessage(pathname: string): string {
   return 'היי, הגעתי מהאתר שלך ואשמח לשמוע על השירותים'
 }
 
-const PHONE_NUMBER = '972544994417'
-
 export function MobileWhatsAppBar() {
   const [isVisible, setIsVisible] = useState(false)
   const pathname = usePathname() ?? '/'
@@ -31,8 +30,7 @@ export function MobileWhatsAppBar() {
   // Native <a href="wa.me/..." target="_blank"> clicks are NOT blocked by iOS Safari's popup
   // blocker, unlike `window.open()` calls that happen after tracking side-effects.
   const whatsappHref = useMemo(() => {
-    const message = getWhatsAppMessage(pathname)
-    return `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`
+    return buildWhatsAppUrl(getWhatsAppMessage(pathname))
   }, [pathname])
 
   useEffect(() => {
@@ -77,6 +75,7 @@ export function MobileWhatsAppBar() {
     trackCtaClick('phone_mobile_bar', 'mobile_cta', pathname)
     trackContactClick('phone', 'mobile_bar')
     trackGenerateLead('phone', pathname)
+    trackPhoneClick(pathname, 'mobile_bar')
   }
 
   return (
@@ -109,7 +108,7 @@ export function MobileWhatsAppBar() {
 
             {/* Call button — secondary CTA */}
             <a
-              href="tel:+972544994417"
+              href={PHONE_TEL_HREF}
               onClick={handleCallClick}
               className="flex items-center justify-center w-12 h-12 bg-brand-navy hover:bg-brand-navy/90 active:bg-brand-navy/80 text-white rounded-2xl shadow-lg transition-colors no-underline"
               aria-label="התקשרו אלינו"

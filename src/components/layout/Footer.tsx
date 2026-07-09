@@ -19,7 +19,8 @@ import {
 } from 'lucide-react'
 import { getServiceLinks } from '@/data/services'
 import { bouncyEasing } from '@/constants/animations'
-import { trackContactClick, trackOutboundClick, trackGenerateLead } from '@/lib/analytics'
+import { trackContactClick, trackOutboundClick, trackGenerateLead, trackPhoneClick } from '@/lib/analytics'
+import { PHONE_TEL_HREF } from '@/lib/whatsapp'
 
 // Get service links from centralized data
 const serviceLinks = getServiceLinks()
@@ -173,11 +174,14 @@ export function Footer() {
               {/* Contact Info */}
               <div className="space-y-4">
                 <motion.a
-                  href="tel:0544994417"
+                  href={PHONE_TEL_HREF}
                   className="flex items-center gap-3 text-brand-gray-200 hover:text-white transition-colors text-base lg:text-lg"
                   whileHover={{ x: -5 }}
                   transition={{ duration: 0.2, ease: bouncyEasing }}
-                  onClick={() => trackContactClick('phone', 'footer')}
+                  onClick={() => {
+                    trackContactClick('phone', 'footer')
+                    trackPhoneClick(window.location.pathname, 'footer')
+                  }}
                 >
                   <div className="w-12 h-12 bg-brand-blue rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Phone size={20} />

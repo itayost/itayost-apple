@@ -9,6 +9,7 @@ import {
   trackWhatsAppClick,
   trackGenerateLead,
 } from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 interface ServiceCTAProps {
   service: Service
@@ -107,7 +108,7 @@ export default function ServiceCTA({ service }: ServiceCTAProps) {
           >
             {/* WhatsApp Button */}
             <a
-              href={`https://wa.me/972544994417?text=${encodeURIComponent(`היי, אני מעוניין לשמוע עוד על ${service.name}`)}`}
+              href={buildWhatsAppUrl(`היי, אני מעוניין לשמוע עוד על ${service.name}`)}
               target="_blank"
               rel="noopener noreferrer"
               className={`btn bg-white ${colors.text}`}

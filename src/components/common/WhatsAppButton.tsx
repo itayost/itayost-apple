@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 // Page-specific WhatsApp messages for better lead context
 const PAGE_MESSAGES: Record<string, string> = {
@@ -36,8 +37,6 @@ function getWhatsAppMessage(pathname: string): string {
 export function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false)
 
-  const phoneNumber = '972544994417'
-
   useEffect(() => {
     // Show button after a delay
     const timer = setTimeout(() => {
@@ -55,8 +54,7 @@ export function WhatsAppButton() {
     trackWhatsAppClick(pathname, 'fab')
     trackGenerateLead('whatsapp', pathname)
 
-    const message = getWhatsAppMessage(pathname)
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+    const url = buildWhatsAppUrl(getWhatsAppMessage(pathname))
     window.open(url, '_blank')
   }
   

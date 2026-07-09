@@ -12,6 +12,8 @@ import {
 import { content } from '@/config/content'
 import { seoConfig } from '@/config/seo'
 import { bouncyEasing } from '@/constants/animations'
+import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 // Extract FAQ items from SEO config
 const faqItems = seoConfig.structuredData.faqPage.mainEntity.map((item: { name: string; acceptedAnswer: { text: string } }) => ({
@@ -287,9 +289,13 @@ export default function FAQPage() {
                 }}
               >
                 <a
-                  href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, יש לי שאלה שלא מצאתי תשובה אליה באתר')}`}
+                  href={buildWhatsAppUrl('היי, יש לי שאלה שלא מצאתי תשובה אליה באתר')}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    trackWhatsAppClick('/faq', 'faq')
+                    trackGenerateLead('whatsapp', '/faq')
+                  }}
                   className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white/20 backdrop-blur text-white border-2 border-white/30 rounded-full font-semibold text-lg hover:bg-white/30 transition-all"
                 >
                   WhatsApp

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
@@ -15,7 +15,15 @@ import {
   Sparkles
 } from 'lucide-react'
 import { submitHomepageContactForm, type HomepageContactForm } from '@/services/crm'
-import { trackGenerateLead, trackContactClick, trackWhatsAppClick } from '@/lib/analytics'
+import {
+  trackGenerateLead,
+  trackContactClick,
+  trackWhatsAppClick,
+  trackPhoneClick,
+  trackFormStart,
+  trackFormSubmit,
+} from '@/lib/analytics'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import { socialLinks, contactMethods } from '@/config/socialLinks'
 import { bouncyEasing } from '@/constants/animations'
 
@@ -34,6 +42,16 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Partial<FormData>>({})
   const [errorMessage, setErrorMessage] = useState<string>('')
+
+  // form_start fires once per mount, on first focus of any field — the
+  // funnel step that makes form abandonment measurable.
+  const hasStartedForm = useRef(false)
+  const handleFormStart = () => {
+    if (hasStartedForm.current) return
+    hasStartedForm.current = true
+    trackFormStart('contact', '/contact')
+  }
+
   const validateForm = (): Partial<FormData> => {
     const newErrors: Partial<FormData> = {}
 
@@ -90,6 +108,7 @@ export default function ContactPage() {
       const result = await submitHomepageContactForm(contactForm)
 
       if (result.success) {
+        trackFormSubmit('contact', true, '/contact')
         setSubmitStatus('success')
 
         // Reset form after success
@@ -101,10 +120,12 @@ export default function ContactPage() {
           setSubmitStatus('idle')
         }, 5000)
       } else {
+        trackFormSubmit('contact', false, '/contact')
         setSubmitStatus('error')
         setErrorMessage(result.error || 'שגיאה בשליחת הטופס')
       }
     } catch (error) {
+      trackFormSubmit('contact', false, '/contact')
       setSubmitStatus('error')
       setErrorMessage('שגיאה בשליחת הטופס. אנא נסו שוב.')
     } finally {
@@ -202,6 +223,8 @@ export default function ContactPage() {
                   if (contactMethod === 'whatsapp') {
                     trackWhatsAppClick('/contact', 'contact_card')
                     trackGenerateLead('whatsapp', '/contact')
+                  } else if (contactMethod === 'phone') {
+                    trackPhoneClick('/contact', 'contact_card')
                   }
                 }}
               >
@@ -262,6 +285,7 @@ export default function ContactPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        onFocus={handleFormStart}
                         required
                         autoComplete="name"
                         aria-invalid={!!errors.name}
@@ -288,6 +312,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        onFocus={handleFormStart}
                         required
                         autoComplete="tel"
                         aria-invalid={!!errors.phone}
@@ -390,7 +415,7 @@ export default function ContactPage() {
                     חוזר אליכם תוך שעה בימי עבודה. הזמינות הקרובה לפרויקטים: אפריל 2026.
                   </p>
                   <motion.a
-                    href={`https://wa.me/972544994417?text=${encodeURIComponent('היי, אשמח לתאם שיחה על פרויקט')}`}
+                    href={buildWhatsAppUrl('היי, אשמח לתאם שיחה על פרויקט')}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-navy transition-colors"

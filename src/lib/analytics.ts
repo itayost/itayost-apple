@@ -1,5 +1,5 @@
 // Central analytics utility — sends events to BOTH GA4 and PostHog
-// 7 focused events that answer real business questions
+// 10 focused events that answer real business questions
 
 import posthog from 'posthog-js'
 import type { AnalyticsEventName } from '@/types/analytics'
@@ -113,6 +113,43 @@ export const trackContactClick = (
   trackEvent('contact_click', {
     contact_method: contactMethod,
     source_component: sourceComponent,
+  })
+}
+
+// Track phone (tel:) link clicks — additive to contact_click, gives the
+// funnel an explicit phone conversion event
+export const trackPhoneClick = (
+  sourcePage: string,
+  buttonLocation: string
+): void => {
+  trackEvent('phone_click', {
+    source_page: sourcePage,
+    button_location: buttonLocation,
+  })
+}
+
+// Track first interaction with a form — funnel step for measuring abandonment
+export const trackFormStart = (
+  formId: string,
+  sourcePage: string
+): void => {
+  trackEvent('form_start', {
+    form_id: formId,
+    source_page: sourcePage,
+  })
+}
+
+// Track form submission outcome (success and failure both fire, distinguished
+// by the `success` property)
+export const trackFormSubmit = (
+  formId: string,
+  success: boolean,
+  sourcePage: string
+): void => {
+  trackEvent('form_submit', {
+    form_id: formId,
+    success,
+    source_page: sourcePage,
   })
 }
 
