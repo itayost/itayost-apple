@@ -5,10 +5,39 @@ metaDescription: "השוואה מקיפה בין React Native לפיתוח Nativ
 slug: "react-native-vs-native-2025"
 author: "איתי אוסטרייך"
 date: "2025-01-01"
-lastUpdated: "2026-03-06"
+lastUpdated: "2026-07-11"
 category: "פיתוח אפליקציות"
 tags: ["React Native", "פיתוח Native", "Swift", "Kotlin", "Cross-platform", "פיתוח אפליקציות"]
 featured: true
+tldr:
+  - "React Native חוסך 30-40% בעלויות פיתוח (HashStudioz, 2025) ועד 40% בזמן פיתוח (Binmile, 2025), ומספק כ-95% מביצועי Native."
+  - "עלות MVP לשתי הפלטפורמות: כ-73,000 ₪ ב-React Native מול כ-130,000 ₪ ב-Native; תחזוקה שנתית: 35,000 ₪ מול 60,000 ₪."
+  - "זמן פיתוח MVP: 3-4 חודשים ב-React Native לעומת 5-7 חודשים ב-Native."
+  - "Native נדרש בעיקר למשחקים, AR/VR, עריכת מדיה ושימוש כבד בחומרה; לכ-85% מהאפליקציות העסקיות React Native מספיק."
+faq:
+  - question: "כמה עולה לפתח אפליקציה ב-React Native לעומת Native?"
+    answer: "אפליקציית MVP לשתי הפלטפורמות עולה כ-73,000 ₪ ב-React Native (עיצוב, פיתוח ובדיקות) לעומת כ-130,000 ₪ בפיתוח Native נפרד ל-iOS ו-Android. אפליקציה מלאה: כ-170,000 ₪ מול כ-305,000 ₪. תחזוקה שנתית: כ-35,000 ₪ מול כ-60,000 ₪."
+  - question: "מתי חייבים לבחור בפיתוח Native?"
+    answer: "כשנדרשים ביצועים מקסימליים כמו משחקים ואנימציות 60fps, שימוש כבד בחומרה (מצלמה מתקדמת, Bluetooth, AR/VR, חיישנים), אינטגרציה עמוקה עם מערכת ההפעלה כמו Widgets ו-Apple Watch, או עריכת וידאו ותמונה כבדה. באפליקציות עסקיות רגילות ההבדל בביצועים כמעט לא מורגש."
+  - question: "האם React Native איטי מ-Native?"
+    answer: "ההפרש הוא כ-2-5% ולרוב אינו מורגש. עם Hermes Engine והארכיטקטורה החדשה (Fabric ו-TurboModules) אפליקציות רגילות פועלות בביצועים קרובים ל-Native. הבדל מורגש רק ברשימות של אלפי פריטים, אנימציות מורכבות מאוד או עיבוד תמונה ווידאו כבד."
+  - question: "מה ההבדל בין React Native ל-Flutter?"
+    answer: "לפי Stack Overflow Developer Survey 2024, Flutter מחזיק 46% מנתח השוק ו-React Native 35%. React Native משתמש ב-JavaScript וברכיבי Native אמיתיים, בעוד Flutter כתוב ב-Dart עם רכיבים מותאמים. בישראל זמינות מפתחי JavaScript גבוהה יותר, מה שמקל על גיוס לפרויקטי React Native."
+  - question: "כמה זמן לוקח לפתח אפליקציה ב-React Native?"
+    answer: "MVP לוקח 3-4 חודשים ב-React Native לעומת 5-7 חודשים בפיתוח Native לשתי הפלטפורמות, חיסכון של עד 40% בזמן (Binmile, 2025). הסיבה: קוד אחד משרת גם iOS וגם Android, ו-Hot Reload מזרז את מחזור הפיתוח. עדכונים לאחר ההשקה אפשריים דרך CodePush בלי אישור חנויות."
+sources:
+  - title: "HashStudioz — React Native חוסך 30-40% בעלויות פיתוח (2025)"
+    url: "https://www.hashstudioz.com/"
+  - title: "Binmile Technologies — חיסכון של עד 40% בזמן פיתוח (2025)"
+    url: "https://binmile.com/"
+  - title: "Stack Overflow Developer Survey 2024 — נתח שוק Flutter 46% מול React Native 35%"
+    url: "https://survey.stackoverflow.co/2024/"
+  - title: "Persistence Market Research — שוק ה-Cross-platform צפוי להגיע ל-$546.7 מיליארד עד 2033"
+    url: "https://www.persistencemarketresearch.com/"
+  - title: "Airship — Push Notifications ב-90 הימים הראשונים משפרים שימור פי 3 (2025)"
+    url: "https://www.airship.com/"
+  - title: "Pushwoosh — שיעור שימור Day 30 ממוצע של 5% (2025)"
+    url: "https://www.pushwoosh.com/"
 ---
 
 **React Native מתאים ל-85% מהאפליקציות העסקיות, חוסך 30-40% בעלויות (מקור: HashStudioz, 2025) ומספק 95% מביצועי Native.** בחרו Native רק למשחקים, AR/VR, או אפליקציות שדורשות גישה כבדה לחומרה. לרוב העסקים בישראל, React Native היא הבחירה הנכונה ב-2026.
