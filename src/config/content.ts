@@ -327,27 +327,10 @@ export const content = {
 
   // Guides Page
   guides: {
-    title: 'מדריכים',
-    subtitle: 'ותוכן לימודי',
-    description: 'מדריכים מפורטים ומעשיים ללימוד פיתוח אתרים ואפליקציות',
-    sectionLabel: 'המדריכים שלי',
-    levels: {
-      beginner: 'מתחילים',
-      intermediate: 'בינוני',
-      advanced: 'מתקדמים',
-    },
-    topics: {
-      react: 'React',
-      nextjs: 'Next.js',
-      nodejs: 'Node.js',
-      typescript: 'TypeScript',
-      design: 'עיצוב',
-    },
-    comingSoon: {
-      title: 'מדריכים בפיתוח...',
-      message: 'אני מכין מדריכים מקיפים ומפורטים עבורכם. רוצים ללמוד נושא מסוים? ספרו לי!',
-      cta: 'בקשו מדריך',
-    },
+    title: 'המדריכים',
+    subtitle: 'המלאים',
+    description: 'מדריכי עומק לבעלי עסקים: מחירים אמיתיים, השוואות והחלטות. כל מדריך מרכז את כל מה שכתבתי על הנושא, עם מסלול קריאה מסודר',
+    sectionLabel: 'מדריכים מלאים לבעלי עסקים',
   },
 
   // FAQ Page

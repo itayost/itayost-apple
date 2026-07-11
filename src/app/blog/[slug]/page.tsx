@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import BlogPostPage from './BlogPostPage'
 import { getPostBySlug, getAllPostSlugs, getRelatedPosts } from '@/lib/blog'
+import { getGuideBySlug } from '@/lib/guides'
+import { getClustersForPost } from '@/config/clusters'
 import { JsonLd } from '@/components/common/JsonLd'
 import { seoConfig } from '@/config/seo'
 
@@ -66,6 +68,17 @@ export default async function Page({ params }: PageProps) {
 
   const relatedPosts = await getRelatedPosts(post, 3)
 
+  // Pillar guides this post belongs to (two-way cluster linking). Null-safe:
+  // a config typo or missing guide file must not break the post page.
+  const clusterPillars = (
+    await Promise.all(
+      getClustersForPost(slug).map(async cluster => {
+        const guide = await getGuideBySlug(cluster.pillarSlug)
+        return guide ? { title: guide.title, href: `/guides/${guide.slug}` } : null
+      })
+    )
+  ).filter((p): p is { title: string; href: string } => p !== null)
+
   const wordCount = post.content.split(/\s+/).length
 
   // ItemList schema for comparison posts (detected by "vs" or "השוואת" in title/tags)
@@ -126,12 +139,11 @@ export default async function Page({ params }: PageProps) {
     })),
   } : null
 
-  // Structured data for blog post
+  // Structured data for blog post. The Person (#author) node comes from the
+  // root layout on every page; BlogPosting references it by @id.
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
-      // Author
-      seoConfig.structuredData.author,
       // BlogPosting schema
       {
         '@type': 'BlogPosting',
@@ -190,7 +202,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <>
       <JsonLd data={structuredData} />
-      <BlogPostPage post={post} relatedPosts={relatedPosts} />
+      <BlogPostPage post={post} relatedPosts={relatedPosts} clusterPillars={clusterPillars} />
     </>
   )
 }

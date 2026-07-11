@@ -1,78 +1,61 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import {
-  BookMarked,
-  GraduationCap,
-  Code2,
-  ArrowLeft,
-  Star
-} from 'lucide-react'
+import { motion } from 'framer-motion'
+import { BookOpen, Clock, RefreshCw, ArrowLeft, Sparkles, ListOrdered } from 'lucide-react'
 import { content } from '@/config/content'
+import { bouncyEasing } from '@/constants/animations'
 
-// Sample guides - replace with real data later
-const guides: Array<{
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  level: string;
-  topic: string;
-  rating: number;
-}> = [
-  // Placeholder for future guides
-]
+export interface GuideCard {
+  slug: string
+  title: string
+  description: string
+  readTime: string
+  lastUpdated: string
+  memberCount: number
+  clusterLabel: string
+}
 
-export default function GuidesPage() {
-  const [selectedLevel, setSelectedLevel] = useState('all')
-  const [selectedTopic, setSelectedTopic] = useState('all')
+interface GuidesPageProps {
+  guides: GuideCard[]
+}
 
-  const levels = [
-    { key: 'all', label: 'הכל' },
-    ...Object.entries(content.guides.levels).map(([key, label]) => ({ key, label }))
-  ]
-
-  const topics = [
-    { key: 'all', label: 'הכל' },
-    ...Object.entries(content.guides.topics).map(([key, label]) => ({ key, label }))
-  ]
-
+export default function GuidesPage({ guides }: GuidesPageProps) {
   return (
     <main className="pt-20 lg:pt-24 min-h-screen bg-white">
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-purple/10 backdrop-blur-xl rounded-full mb-6"
+              transition={{ duration: 0.6, ease: bouncyEasing }}
+              className="mb-6"
             >
-              <BookMarked className="w-4 h-4 text-brand-purple" />
-              <span className="text-sm font-medium text-brand-purple">
-                {content.guides.sectionLabel}
+              <span className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue/10 rounded-full">
+                <Sparkles className="w-5 h-5 text-brand-blue" />
+                <span className="text-base font-bold text-brand-blue">
+                  {content.guides.sectionLabel}
+                </span>
               </span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-gray-900 mb-6"
+              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-navy mb-6"
             >
               {content.guides.title}
-              <span className="block mt-2 text-brand-orange font-bold">
-                {content.guides.subtitle}
-              </span>
+              <span className="block mt-2 text-brand-blue">{content.guides.subtitle}</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-brand-gray-600 max-w-3xl mx-auto"
+              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
+              className="text-xl sm:text-2xl text-brand-gray-700 max-w-2xl mx-auto"
             >
               {content.guides.description}
             </motion.p>
@@ -80,206 +63,90 @@ export default function GuidesPage() {
         </div>
       </section>
 
-      {/* Filters */}
-      <section className="py-8 bg-white border-b border-brand-gray-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Level Filter */}
-          <div className="mb-4">
-            <h3 className="text-sm font-semibold text-brand-gray-700 mb-3 text-center">
-              רמת קושי
-            </h3>
-            {/* Desktop: Centered tabs */}
-            <div className="hidden sm:flex justify-center">
-              <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
-                {levels.map(({ key, label }) => (
-                  <motion.button
-                    key={key}
-                    onClick={() => setSelectedLevel(key)}
-                    className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
-                      selectedLevel === key
-                        ? 'bg-brand-orange text-white shadow-lg'
-                        : 'text-brand-gray-700 hover:text-brand-orange'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {label}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-            {/* Mobile: Scrollable tabs */}
-            <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
-                {levels.map(({ key, label }) => (
-                  <motion.button
-                    key={key}
-                    onClick={() => setSelectedLevel(key)}
-                    className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
-                      selectedLevel === key
-                        ? 'bg-brand-orange text-white shadow-lg'
-                        : 'text-brand-gray-700'
-                    }`}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {label}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Topic Filter */}
-          <div>
-            <h3 className="text-sm font-semibold text-brand-gray-700 mb-3 text-center">
-              נושא
-            </h3>
-            {/* Desktop: Centered tabs */}
-            <div className="hidden sm:flex justify-center">
-              <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
-                {topics.map(({ key, label }) => (
-                  <motion.button
-                    key={key}
-                    onClick={() => setSelectedTopic(key)}
-                    className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
-                      selectedTopic === key
-                        ? 'bg-brand-blue text-white shadow-lg'
-                        : 'text-brand-gray-700 hover:text-brand-blue'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {label}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-            {/* Mobile: Scrollable tabs */}
-            <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
-                {topics.map(({ key, label }) => (
-                  <motion.button
-                    key={key}
-                    onClick={() => setSelectedTopic(key)}
-                    className={`px-6 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
-                      selectedTopic === key
-                        ? 'bg-brand-blue text-white shadow-lg'
-                        : 'text-brand-gray-700'
-                    }`}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {label}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Guides or Coming Soon */}
-      <section className="py-16 lg:py-24 bg-brand-gray-50">
+      {/* Guide Cards */}
+      <section className="py-12 lg:py-16 bg-section-light-blue">
         <div className="container mx-auto px-4">
-          {guides.length === 0 ? (
-            // Coming Soon Message
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center max-w-2xl mx-auto"
-            >
-              <div className="bg-white rounded-3xl p-12 shadow-lg">
-                <div className="w-24 h-24 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
-                  <GraduationCap size={48} className="text-white" />
-                </div>
-
-                <h2 className="text-3xl font-bold text-brand-gray-900 mb-4">
-                  {content.guides.comingSoon.title}
-                </h2>
-
-                <p className="text-xl text-brand-gray-600 mb-8">
-                  {content.guides.comingSoon.message}
-                </p>
-
-                <Link
-                  href="/contact"
-                  className="btn btn-primary inline-flex items-center gap-2"
-                >
-                  {content.guides.comingSoon.cta}
-                  <ArrowLeft className="w-5 h-5" />
+          <div className="mx-auto grid max-w-5xl gap-8">
+            {guides.map((guide, index) => (
+              <motion.article
+                key={guide.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5, ease: bouncyEasing }}
+                whileHover={{ y: -6, transition: { duration: 0.25, ease: bouncyEasing } }}
+                className="group overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-shadow"
+              >
+                <Link href={`/guides/${guide.slug}`} className="flex flex-col sm:flex-row">
+                  <div className="flex items-center justify-center bg-gradient-to-br from-brand-blue to-brand-purple p-8 sm:w-44 flex-shrink-0">
+                    <BookOpen className="h-14 w-14 text-white" />
+                  </div>
+                  <div className="flex-1 p-6 lg:p-8">
+                    <span className="mb-3 inline-block rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-semibold text-brand-blue">
+                      {guide.clusterLabel}
+                    </span>
+                    <h2 className="mb-3 text-xl lg:text-2xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors">
+                      {guide.title}
+                    </h2>
+                    <p className="mb-5 text-brand-gray-700 leading-relaxed line-clamp-2">
+                      {guide.description}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-brand-gray-500">
+                      <span className="flex items-center gap-1.5">
+                        <ListOrdered size={14} />
+                        {guide.memberCount} מאמרי המשך
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock size={14} />
+                        {guide.readTime}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <RefreshCw size={14} />
+                        עודכן: {new Date(guide.lastUpdated).toLocaleDateString('he-IL', { year: 'numeric', month: 'short' })}
+                      </span>
+                      <span className="mr-auto flex items-center gap-1 font-semibold text-brand-blue">
+                        למדריך המלא
+                        <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
+                      </span>
+                    </div>
+                  </div>
                 </Link>
-              </div>
-            </motion.div>
-          ) : (
-            // Guides Grid
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {guides.map((guide, index: number) => (
-                <motion.article
-                  key={guide.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
-                >
-                  <Link href={`/guides/${guide.slug}`}>
-                    <div className="relative h-48 bg-brand-orange p-6 flex items-center justify-center">
-                      <Code2 size={64} className="text-white" />
-                    </div>
-
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="px-3 py-1 bg-brand-purple/10 text-brand-purple text-xs font-medium rounded-full">
-                          {guide.level}
-                        </span>
-                        <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue text-xs font-medium rounded-full">
-                          {guide.topic}
-                        </span>
-                      </div>
-
-                      <h3 className="text-xl font-bold text-brand-gray-900 mb-2">
-                        {guide.title}
-                      </h3>
-
-                      <p className="text-brand-gray-600 mb-4">
-                        {guide.description}
-                      </p>
-
-                      <div className="flex items-center justify-between">
-                        <span className="text-brand-purple font-medium hover:underline">
-                          התחל ללמוד ←
-                        </span>
-                        <div className="flex items-center gap-1 text-yellow-500">
-                          <Star size={16} fill="currentColor" />
-                          <span className="text-sm font-medium text-brand-gray-700">
-                            {guide.rating}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.article>
-              ))}
-            </div>
-          )}
+              </motion.article>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-brand-orange">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            צריכים עזרה בלימוד?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            אני כאן לעזור! צרו קשר לייעוץ אישי והדרכה מותאמת
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-purple rounded-full font-medium hover:shadow-xl transition-all"
+      {/* CTA */}
+      <section className="py-16 lg:py-20 bg-white text-center">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: bouncyEasing }}
           >
-            קבעו שיחת ייעוץ
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
+            <h2 className="mb-4 text-2xl lg:text-3xl font-bold text-brand-navy">
+              לא מצאתם תשובה לשאלה שלכם?
+            </h2>
+            <p className="mx-auto mb-8 max-w-xl text-lg text-brand-gray-700">
+              שלחו לי את השאלה ואחזור אליכם עם תשובה ישירה, בלי התחייבות
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: bouncyEasing }}
+              className="inline-block"
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-blue px-8 py-4 font-semibold text-white shadow-xl hover:shadow-2xl transition-shadow"
+              >
+                דברו איתי
+                <ArrowLeft size={18} />
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </main>

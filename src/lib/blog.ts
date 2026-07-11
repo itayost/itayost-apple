@@ -1,11 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import remarkGfm from 'remark-gfm'
-import remarkRehype from 'remark-rehype'
-import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
-import rehypeStringify from 'rehype-stringify'
+import { markdownToHtml } from './markdown'
 
 const postsDirectory = path.join(process.cwd(), 'content/blog')
 
@@ -59,38 +55,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
 
-    // Process markdown to HTML with sanitization to prevent XSS attacks
-    // Configure custom schema to allow necessary HTML elements for blog content
-    const customSchema = {
-      ...defaultSchema,
-      attributes: {
-        ...defaultSchema.attributes,
-        '*': ['className', 'class', 'id'],
-        a: ['href', 'title', 'target', 'rel'],
-        img: ['src', 'alt', 'title', 'width', 'height'],
-        code: ['className', 'class'],
-      },
-      tagNames: [
-        ...(defaultSchema.tagNames || []),
-        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-        'p', 'div', 'span', 'br', 'hr',
-        'ul', 'ol', 'li',
-        'a', 'strong', 'em', 'b', 'i', 'u', 's',
-        'code', 'pre',
-        'blockquote',
-        'img',
-        'table', 'thead', 'tbody', 'tr', 'th', 'td',
-      ],
-    }
-
-    const processedContent = await remark()
-      .use(remarkGfm)
-      .use(remarkRehype)
-      .use(rehypeSanitize, customSchema)
-      .use(rehypeStringify)
-      .process(content)
-
-    const contentHtml = processedContent.toString()
+    const contentHtml = await markdownToHtml(content)
 
     // Generate excerpt (first 200 characters)
     const plainText = content.replace(/[#*`\[\]]/g, '').trim()

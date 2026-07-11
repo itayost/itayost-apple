@@ -5,7 +5,7 @@ description: "אתר איטי מפסיד 53% מהמבקרים. מדריך מלא
 date: "2025-12-06"
 lastUpdated: "2026-07-11"
 author: "איתי אוסטרייך"
-category: "ביצועים וטכנולוגיה"
+category: "טכנולוגיה"
 tags: ["מהירות אתר", "אופטימיזציה", "ביצועים", "PageSpeed", "Core Web Vitals"]
 readTime: "5 דקות קריאה"
 tldr:

@@ -6,7 +6,7 @@ slug: "app-development-cost-guide-2025"
 author: "איתי אוסט"
 date: "2025-01-01"
 lastUpdated: "2026-07-11"
-category: "אפליקציות מובייל"
+category: "פיתוח אפליקציות"
 tags: ["בניית אפליקציה", "פיתוח אפליקציה", "מחיר אפליקציה", "עלות אפליקציה", "כמה עולה אפליקציה", "React Native", "iOS", "Android"]
 featured: true
 tldr:

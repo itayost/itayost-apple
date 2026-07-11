@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/blog'
+import { getAllGuides } from '@/lib/guides'
 import { portfolioData } from '@/data/portfolio'
 import { getAllServices } from '@/data/services'
 
@@ -103,6 +104,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.1,
     },
   ]
+
+  // Add pillar guide pages with real dates (higher priority than posts:
+  // these are the evergreen anchor pages of the topic clusters)
+  const guides = await getAllGuides()
+  const guidePages: MetadataRoute.Sitemap = guides.map(guide => ({
+    url: `${baseUrl}/guides/${guide.slug}`,
+    lastModified: new Date(guide.lastUpdated || guide.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+  pages.push(...guidePages)
 
   // Add dynamic blog posts with real dates
   const posts = await getAllPosts()

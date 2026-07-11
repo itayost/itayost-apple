@@ -121,9 +121,9 @@ export const seoConfig = {
       canonical: 'https://www.itayost.com/blog',
     },
     guides: {
-      title: 'מדריכים | מדריכי פיתוח ותכנות',
-      description: 'מדריכים מפורטים ומעשיים לפיתוח אתרים ואפליקציות. למדו React, Next.js, Node.js, TypeScript ועוד. מדריכים בעברית עם דוגמאות קוד.',
-      keywords: ['מדריכי תכנות', 'לימוד פיתוח', 'React tutorial', 'Next.js guide', 'מדריך עברית'],
+      title: 'מדריכים מלאים לבעלי עסקים | מחירים, CRM ואתרים',
+      description: 'מדריכי עומק בעברית לבעלי עסקים: כמה עולה פרויקט דיגיטלי בישראל, איך בוחרים מערכת CRM, ואיך בונים אתר שמביא לקוחות. מחירים אמיתיים והשוואות.',
+      keywords: ['מדריך בניית אתר', 'כמה עולה אתר', 'מערכת CRM לעסק', 'אתר שמביא לקוחות', 'מדריך עברית'],
       canonical: 'https://www.itayost.com/guides',
     },
     faq: {
@@ -464,7 +464,9 @@ export const seoConfig = {
       },
     },
 
-    breadcrumbs: (pathname: string) => {
+    // `labels` lets dynamic pages map a slug segment to a human name
+    // (e.g. a guide slug -> the guide title) instead of the raw slug.
+    breadcrumbs: (pathname: string, labels?: Record<string, string>) => {
       const paths = pathname.split('/').filter(Boolean)
       const items = [
         {
@@ -477,7 +479,7 @@ export const seoConfig = {
 
       paths.forEach((path, index) => {
         const url = `https://www.itayost.com/${paths.slice(0, index + 1).join('/')}`
-        const name = {
+        const name = labels?.[path] || {
           services: 'שירותים',
           portfolio: 'תיק עבודות',
           about: 'אודות',

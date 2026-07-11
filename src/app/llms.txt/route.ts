@@ -7,6 +7,7 @@
  */
 
 import { getAllPosts } from '@/lib/blog'
+import { getAllGuides } from '@/lib/guides'
 import { getAllServices } from '@/data/services'
 
 const SITE_URL = 'https://www.itayost.com'
@@ -14,13 +15,18 @@ const SITE_URL = 'https://www.itayost.com'
 export const revalidate = 3600
 
 export async function GET() {
-  const [services, posts] = await Promise.all([
+  const [services, posts, guides] = await Promise.all([
     Promise.resolve(getAllServices()),
     getAllPosts(),
+    getAllGuides(),
   ])
 
   const servicesBlock = services
     .map(s => `- [${s.name}](${SITE_URL}/services/${s.slug}): ${s.description}`)
+    .join('\n')
+
+  const guidesBlock = guides
+    .map(g => `- [${g.title}](${SITE_URL}/guides/${g.slug}): ${g.description}`)
     .join('\n')
 
   const postsBlock = posts
@@ -55,6 +61,12 @@ ${servicesBlock}
 - [About](${SITE_URL}/about): Background on Itay Ostraich
 - [Clients](${SITE_URL}/clients): Testimonials and success stories
 - [Contact](${SITE_URL}/contact): Contact form and WhatsApp (054-499-4417)
+
+## Pillar Guides
+
+Comprehensive Hebrew guides, each anchoring a topic cluster of related blog posts:
+
+${guidesBlock}
 
 ## Blog Posts
 

@@ -50,7 +50,9 @@ export default function AuthorBio({ author = 'איתי אוסטרייך' }: Auth
               transition={{ delay: 0.2, duration: 0.5, ease: bouncyEasing }}
             >
               <h3 className="text-xl sm:text-2xl font-bold text-brand-navy mb-1">
-                {author}
+                <Link href="/about" className="hover:text-brand-blue transition-colors">
+                  {author}
+                </Link>
               </h3>
               <p className="text-brand-blue font-semibold mb-4">
                 Full-Stack Developer
