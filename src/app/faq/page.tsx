@@ -19,10 +19,11 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
+  // Organization is already emitted on every page by the root layout with the
+  // same @id, so only page-specific nodes go here to avoid duplicate graph nodes.
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
-      seoConfig.structuredData.organization,
       seoConfig.structuredData.breadcrumbs('/faq'),
       seoConfig.structuredData.faqPage,
     ],

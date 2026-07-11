@@ -138,7 +138,7 @@ export default async function Page({ params }: PageProps) {
         '@id': `https://www.itayost.com/blog/${slug}/#article`,
         headline: post.title,
         description: post.description || post.excerpt,
-        image: post.image || 'https://www.itayost.com/og-image.png',
+        image: post.image || 'https://www.itayost.com/og-image.jpg',
         datePublished: post.date,
         dateModified: post.lastUpdated || post.date,
         wordCount,
@@ -172,7 +172,7 @@ export default async function Page({ params }: PageProps) {
         },
         primaryImageOfPage: {
           '@type': 'ImageObject',
-          url: post.image || 'https://www.itayost.com/og-image.png'
+          url: post.image || 'https://www.itayost.com/og-image.jpg'
         },
         datePublished: post.date,
         dateModified: post.lastUpdated || post.date,

@@ -231,7 +231,59 @@ async function getReferrerAnalysis(apiKey: string, projectId: string, days: numb
   return hogqlQuery(apiKey, projectId, query)
 }
 
-// 8. Recent persons: latest active users with their events
+// AI answer-engine referrer domains tracked as a GEO channel. This is a floor
+// metric only: a large share of AI-sourced traffic loses its referrer and
+// lands as Direct, so treat these numbers as a minimum, not the true volume.
+const AI_ENGINE_DOMAINS = [
+  'chatgpt.com',
+  'chat.openai.com',
+  'perplexity.ai',
+  'claude.ai',
+  'gemini.google.com',
+  'copilot.microsoft.com',
+]
+
+// 8. AI-engine referrals: GEO channel visibility (referrer + utm_source floor)
+async function getAiReferrers(apiKey: string, projectId: string, days: number) {
+  const domainList = AI_ENGINE_DOMAINS.map(d => `'${d}'`).join(', ')
+
+  const [byReferrer, byUtm] = await Promise.all([
+    hogqlQuery(apiKey, projectId, `
+      SELECT
+        properties.$referring_domain as engine,
+        count() as pageviews,
+        uniq(distinct_id) as unique_users
+      FROM events
+      WHERE event = '$pageview'
+        AND timestamp >= now() - interval ${days} day
+        AND properties.$referring_domain IN (${domainList})
+      GROUP BY engine
+      ORDER BY pageviews DESC
+    `),
+    // ChatGPT and others append utm_source even when the referrer is lost.
+    hogqlQuery(apiKey, projectId, `
+      SELECT
+        properties.utm_source as engine,
+        count() as pageviews,
+        uniq(distinct_id) as unique_users
+      FROM events
+      WHERE event = '$pageview'
+        AND timestamp >= now() - interval ${days} day
+        AND properties.utm_source IN (${domainList})
+      GROUP BY engine
+      ORDER BY pageviews DESC
+    `),
+  ])
+
+  return {
+    byReferrer,
+    byUtm,
+    trackedDomains: AI_ENGINE_DOMAINS,
+    note: 'Floor metric: AI traffic that loses its referrer lands as Direct.',
+  }
+}
+
+// 9. Recent persons: latest active users with their events
 async function getRecentPersons(apiKey: string, projectId: string) {
   const res = await fetch(
     `${POSTHOG_API}/projects/${projectId}/persons/?order=-last_seen&limit=20`,
@@ -252,7 +304,7 @@ async function getRecentPersons(apiKey: string, projectId: string) {
   }))
 }
 
-// 9. CRO behavior signals: rage clicks, dead clicks, rapid navigation
+// 10. CRO behavior signals: rage clicks, dead clicks, rapid navigation
 async function getBehaviorSignals(apiKey: string, projectId: string, days: number) {
   // Dead clicks: clicks on non-interactive elements
   const deadClicks = await hogqlQuery(apiKey, projectId, `
@@ -306,14 +358,15 @@ export async function GET(request: NextRequest) {
     switch (report) {
       case 'overview': {
         // Combined overview with key behavioral data
-        const [journey, events, funnel, sessions, signals] = await Promise.all([
+        const [journey, events, funnel, sessions, signals, aiReferrers] = await Promise.all([
           getUserJourney(apiKey, projectId, days),
           getEventBreakdown(apiKey, projectId, days),
           getConversionFunnel(apiKey, projectId, days),
           getSessionAnalysis(apiKey, projectId, days),
           getBehaviorSignals(apiKey, projectId, days),
+          getAiReferrers(apiKey, projectId, days),
         ])
-        data = { journey, events, funnel, sessions, signals }
+        data = { journey, events, funnel, sessions, signals, aiReferrers }
         break
       }
 
@@ -345,6 +398,10 @@ export async function GET(request: NextRequest) {
         data = await getReferrerAnalysis(apiKey, projectId, days)
         break
 
+      case 'ai-referrers':
+        data = await getAiReferrers(apiKey, projectId, days)
+        break
+
       case 'persons':
         data = await getRecentPersons(apiKey, projectId)
         break
@@ -355,7 +412,7 @@ export async function GET(request: NextRequest) {
 
       default:
         return NextResponse.json(
-          { error: `Unknown report: ${report}. Available: overview, journey, events, autocapture, sessions, funnel, engagement, referrers, persons, signals` },
+          { error: `Unknown report: ${report}. Available: overview, journey, events, autocapture, sessions, funnel, engagement, referrers, ai-referrers, persons, signals` },
           { status: 400 }
         )
     }

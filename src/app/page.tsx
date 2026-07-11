@@ -55,13 +55,12 @@ export default async function HomePage() {
   const posts = await getAllPosts()
   const latestPosts = posts.slice(0, 3)
 
-  // Structured data for homepage
+  // Structured data for homepage. Organization/WebSite/LocalBusiness are
+  // already emitted on every page by the root layout with the same @id values,
+  // so only page-specific nodes go here to avoid duplicate graph nodes.
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
-      seoConfig.structuredData.organization,
-      seoConfig.structuredData.website,
-      seoConfig.structuredData.localBusiness,
       seoConfig.structuredData.breadcrumbs('/'),
     ],
   }

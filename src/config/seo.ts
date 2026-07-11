@@ -670,23 +670,6 @@ export const seoConfig = {
     },
   },
 
-  // Robots.txt content
-  robots: `User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /_next/
-Disallow: /static/
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-Sitemap: https://www.itayost.com/sitemap.xml
-Sitemap: https://www.itayost.com/sitemap-0.xml`,
-
   // Additional meta tags for security
   securityHeaders: {
     'Content-Security-Policy': [

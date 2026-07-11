@@ -9,7 +9,6 @@ tags: ["חנות אונליין", "Ecommerce", "Shopify", "WooCommerce", "מסח
 readTime: "15 דקות קריאה"
 image: "/images/blog/ecommerce-guide.jpg"
 featured: true
-schemaType: "howto"
 ---
 
 # בניית חנות אונליין בישראל: מדריך שלם מתחילים ועד השקה (2025)

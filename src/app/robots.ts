@@ -53,6 +53,18 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/', '/admin/'],
       },
+      // Anthropic's search/citation crawler (separate from ClaudeBot training).
+      {
+        userAgent: 'Claude-SearchBot',
+        allow: '/',
+        disallow: ['/api/', '/admin/'],
+      },
+      // Perplexity's user-triggered fetch agent (separate from PerplexityBot indexing).
+      {
+        userAgent: 'Perplexity-User',
+        allow: '/',
+        disallow: ['/api/', '/admin/'],
+      },
       // Common Crawl - the corpus most AI models train from.
       {
         userAgent: 'CCBot',
