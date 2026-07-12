@@ -6,6 +6,7 @@ import { getGuideBySlug } from '@/lib/guides'
 import { getClustersForPost } from '@/config/clusters'
 import { JsonLd } from '@/components/common/JsonLd'
 import { seoConfig } from '@/config/seo'
+import { toSchemaDate } from '@/lib/dates'
 
 interface PageProps {
   params: Promise<{
@@ -115,8 +116,8 @@ export default async function Page({ params }: PageProps) {
     name: post.title,
     description: post.description || post.excerpt,
     author: { '@id': 'https://www.itayost.com/#author' },
-    datePublished: post.date,
-    dateModified: post.lastUpdated || post.date,
+    datePublished: toSchemaDate(post.date),
+    dateModified: toSchemaDate(post.lastUpdated || post.date),
     inLanguage: 'he-IL',
     step: post.steps.map((s, i) => ({
       '@type': 'HowToStep',
@@ -151,8 +152,8 @@ export default async function Page({ params }: PageProps) {
         headline: post.title,
         description: post.description || post.excerpt,
         image: post.image || 'https://www.itayost.com/og-image.jpg',
-        datePublished: post.date,
-        dateModified: post.lastUpdated || post.date,
+        datePublished: toSchemaDate(post.date),
+        dateModified: toSchemaDate(post.lastUpdated || post.date),
         wordCount,
         author: { '@id': 'https://www.itayost.com/#author' },
         publisher: {
@@ -186,8 +187,8 @@ export default async function Page({ params }: PageProps) {
           '@type': 'ImageObject',
           url: post.image || 'https://www.itayost.com/og-image.jpg'
         },
-        datePublished: post.date,
-        dateModified: post.lastUpdated || post.date,
+        datePublished: toSchemaDate(post.date),
+        dateModified: toSchemaDate(post.lastUpdated || post.date),
         inLanguage: 'he-IL',
       },
       // HowTo schema (conditionally included for guide posts)

@@ -3,6 +3,7 @@ import BlogListingClient from './BlogListingClient'
 import { seoConfig } from '@/config/seo'
 import { JsonLd } from '@/components/common/JsonLd'
 import { getAllPosts } from '@/lib/blog'
+import { toSchemaDate } from '@/lib/dates'
 
 export const metadata: Metadata = {
   title: seoConfig.pages.blog.title,
@@ -65,7 +66,7 @@ export default async function Page() {
             name: post.title,
             headline: post.title,
             description: post.description,
-            datePublished: post.date,
+            datePublished: toSchemaDate(post.date),
             author: {
               '@type': 'Person',
               name: post.author,

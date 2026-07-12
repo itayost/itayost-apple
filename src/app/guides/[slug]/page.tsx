@@ -7,6 +7,7 @@ import { getPostBySlug } from '@/lib/blog'
 import { JsonLd } from '@/components/common/JsonLd'
 import { seoConfig } from '@/config/seo'
 import type { ClusterMember } from '@/components/guides/ClusterMemberList'
+import { toSchemaDate } from '@/lib/dates'
 
 interface PageProps {
   params: Promise<{
@@ -110,8 +111,8 @@ export default async function Page({ params }: PageProps) {
         headline: guide.title,
         description: guide.description,
         image: 'https://www.itayost.com/og-image.jpg',
-        datePublished: guide.date,
-        dateModified: guide.lastUpdated || guide.date,
+        datePublished: toSchemaDate(guide.date),
+        dateModified: toSchemaDate(guide.lastUpdated || guide.date),
         wordCount,
         author: { '@id': 'https://www.itayost.com/#author' },
         publisher: { '@id': 'https://www.itayost.com/#organization' },
@@ -133,8 +134,8 @@ export default async function Page({ params }: PageProps) {
         name: guide.title,
         description: guide.description,
         isPartOf: { '@id': 'https://www.itayost.com/#website' },
-        datePublished: guide.date,
-        dateModified: guide.lastUpdated || guide.date,
+        datePublished: toSchemaDate(guide.date),
+        dateModified: toSchemaDate(guide.lastUpdated || guide.date),
         inLanguage: 'he-IL',
       },
       // ItemList: the cluster's reading path (the "collection" semantics)
