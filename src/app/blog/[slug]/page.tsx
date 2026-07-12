@@ -20,16 +20,23 @@ export async function generateStaticParams() {
   return slugs.map(slug => ({ slug }))
 }
 
+// All posts are enumerated at build time (content lives in the repo), so
+// unknown slugs must return a real HTTP 404. Without this, the loading.tsx
+// boundary streams a 200 shell before the page's notFound() runs, and Google
+// flags every dead blog URL as a soft 404.
+export const dynamicParams = false
+
 // Generate metadata for each blog post
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
 
   if (!post) {
-    return {
-      title: 'מאמר לא נמצא',
-      description: 'המאמר שחיפשת לא קיים'
-    }
+    // Throwing here (not just in the page body) is what makes the response a
+    // real HTTP 404. If generateMetadata resolves normally, Next commits a
+    // 200 and starts streaming before the page's notFound() runs — Google
+    // then flags the URL as a soft 404.
+    notFound()
   }
 
   const seoTitle = post.metaTitle || post.title

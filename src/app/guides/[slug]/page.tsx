@@ -20,15 +20,19 @@ export async function generateStaticParams() {
   return slugs.map(slug => ({ slug }))
 }
 
+// Guides are enumerated at build time; unknown slugs must be a real HTTP 404
+// (see the matching comment in blog/[slug]/page.tsx).
+export const dynamicParams = false
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const guide = await getGuideBySlug(slug)
 
   if (!guide) {
-    return {
-      title: 'מדריך לא נמצא',
-      description: 'המדריך שחיפשת לא קיים',
-    }
+    // Throw in generateMetadata so the response is a real HTTP 404 (see the
+    // matching comment in blog/[slug]/page.tsx — returning fallback metadata
+    // commits a 200 before the page body's notFound() runs).
+    notFound()
   }
 
   const seoTitle = guide.metaTitle || guide.title

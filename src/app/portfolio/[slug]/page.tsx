@@ -22,16 +22,20 @@ export async function generateStaticParams() {
   }))
 }
 
+// Projects are enumerated at build time; unknown slugs must be a real HTTP 404
+// (see the matching comment in blog/[slug]/page.tsx).
+export const dynamicParams = false
+
 // Generate metadata for each portfolio item
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const project = portfolioData.find(item => item.slug === slug)
 
   if (!project) {
-    return {
-      title: 'פרויקט לא נמצא',
-      description: 'הפרויקט המבוקש לא נמצא במערכת'
-    }
+    // Throw in generateMetadata so the response is a real HTTP 404 (see the
+    // matching comment in blog/[slug]/page.tsx — returning fallback metadata
+    // commits a 200 before the page body's notFound() runs).
+    notFound()
   }
 
   return {

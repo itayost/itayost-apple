@@ -149,6 +149,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/seo-guide-2024',
+        destination: '/blog/seo-basics-small-business-israel',
+        permanent: true,
+      },
+      {
         source: encodeURI('/blog/בניית-חנות-אונליין-בישראל-מדריך-שלם'),
         destination: '/blog/building-online-store-israel-complete-guide',
         permanent: true,
