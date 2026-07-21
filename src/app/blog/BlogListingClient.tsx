@@ -269,7 +269,7 @@ export default function BlogListingClient({ posts }: BlogListingClientProps) {
               רוצים תוכן בנושא מסוים?
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-xl sm:text-2xl text-white/90 leading-relaxed">
-              ספרו לנו איזה נושאים מעניינים אתכם ונכין עבורכם תוכן איכותי
+              ספרו לי איזה נושאים מעניינים אתכם ואכין עבורכם תוכן איכותי
             </p>
             <motion.div
               whileHover={{

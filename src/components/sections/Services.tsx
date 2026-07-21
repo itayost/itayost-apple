@@ -61,7 +61,7 @@ export default function Services() {
           </h2>
 
           <p className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto">
-            כל עסק הוא ייחודי. אנו נתאים עבורכם פתרון מדויק ללא שימוש בתבניות מוכנות מראש.
+            כל עסק הוא ייחודי. אתאים עבורכם פתרון מדויק ללא שימוש בתבניות מוכנות מראש.
           </p>
         </motion.div>
 
@@ -162,7 +162,7 @@ export default function Services() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h3 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
-                למה לבחור בנו?
+                למה לבחור בי?
               </h3>
 
               <div className="space-y-6">

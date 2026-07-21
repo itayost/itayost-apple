@@ -111,7 +111,7 @@ export function MobileWhatsAppBar() {
               href={PHONE_TEL_HREF}
               onClick={handleCallClick}
               className="flex items-center justify-center w-12 h-12 bg-brand-navy hover:bg-brand-navy/90 active:bg-brand-navy/80 text-white rounded-2xl shadow-lg transition-colors no-underline"
-              aria-label="התקשרו אלינו"
+              aria-label="התקשרו אליי"
             >
               <Phone size={22} />
             </a>

@@ -35,7 +35,7 @@ export default function ServicePortfolio({ portfolioIds, color, accentColor }: S
             עבודות קשורות
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-brand-gray-700">
-            פרויקטים שביצענו בתחום זה
+            פרויקטים שביצעתי בתחום זה
           </p>
         </div>
 

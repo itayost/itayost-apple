@@ -126,7 +126,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 text-brand-gray-500 text-sm"
         >
           <Users className="w-4 h-4" />
-          <span>למעלה מ-50 עסקים כבר סומכים עלינו</span>
+          <span>למעלה מ-50 עסקים כבר סומכים עליי</span>
         </motion.div>
       </div>
     </section>

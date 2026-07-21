@@ -217,7 +217,7 @@ export const content = {
       },
       submit: 'שלח הודעה',
       sending: 'שולח...',
-      success: 'תודה על ההודעה! אחזור אליכם בהקדם.',
+      success: 'תודה, אחזור אליכם בהקדם.',
       error: 'משהו השתבש. אנא נסו שוב.',
     },
     info: {
@@ -411,7 +411,7 @@ export const content = {
     },
     caseStudies: {
       title: 'סיפורי הצלחה',
-      subtitle: 'פרויקטים שהצליחנו להביא לתוצאות מדהימות',
+      subtitle: 'פרויקטים שהבאתי לתוצאות מדידות',
       viewMore: 'קרא עוד',
     },
     cta: {

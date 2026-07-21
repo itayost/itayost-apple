@@ -38,7 +38,7 @@ export default function BlogPostError({
             שגיאה בטעינת הפוסט
           </h1>
           <p className="text-lg text-brand-gray-600 mb-8 leading-relaxed">
-            מצטערים, לא הצלחנו לטעון את הפוסט. ייתכן שהוא הוסר או שיש בעיה זמנית בשרת.
+            מצטער, לא הצלחתי לטעון את הפוסט. ייתכן שהוא הוסר או שיש בעיה זמנית בשרת.
           </p>
 
           {/* Error Details (Development Only) */}

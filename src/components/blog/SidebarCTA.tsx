@@ -46,7 +46,7 @@ const defaultContent = {
   icon: Sparkles,
   title: 'צריכים עזרה?',
   description: 'רוצים לדעת איך ליישם את מה שקראתם? נשמח לעזור!',
-  cta: 'דברו איתנו',
+  cta: 'דברו איתי',
 }
 
 interface SidebarCTAProps {

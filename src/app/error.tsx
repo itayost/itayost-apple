@@ -65,7 +65,7 @@ export default function Error({
           transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
           className="text-brand-gray-700 mb-8 leading-relaxed text-lg"
         >
-          מצטערים, נתקלנו בשגיאה בלתי צפויה. אנחנו עובדים על תיקון הבעיה.
+          מצטער, נתקלתי בשגיאה בלתי צפויה. אני עובד על תיקון הבעיה.
         </motion.p>
 
         {/* Error Details (Development Only) */}
@@ -142,7 +142,7 @@ export default function Error({
             href="/contact"
             className="text-brand-blue hover:underline font-semibold"
           >
-            צור איתנו קשר
+            צרו איתי קשר
           </Link>
         </motion.p>
       </div>
