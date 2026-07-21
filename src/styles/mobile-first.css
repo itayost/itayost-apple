@@ -75,9 +75,11 @@ h3 {
   line-height: 1.4;
 }
 
-/* Touch-friendly buttons */
+/* Touch-friendly targets.
+   Deliberately NOT applied to bare `a`: that forced every inline link in body
+   copy and blog prose into a 48px-tall inline-flex box, breaking line-height.
+   Anchors that are genuine tap targets should carry .touchable. */
 button,
-a,
 .touchable {
   min-height: var(--touch-target-min);
   min-width: var(--touch-target-min);
@@ -223,10 +225,17 @@ img {
   }
 }
 
-/* High contrast mode support */
+/* High contrast mode support.
+   Scoped to elements that actually have a border: the previous `*` selector
+   gave every element on the page a 2px border, which broke layout outright
+   for exactly the users this is meant to help. */
 @media (prefers-contrast: high) {
-  * {
-    border-width: 2px !important;
+  button,
+  input,
+  select,
+  textarea,
+  .touchable {
+    border-width: 2px;
   }
 }
 

@@ -20,7 +20,9 @@ import { Heebo } from 'next/font/google'
 // Configure Heebo font with optimizations
 const heebo = Heebo({
   subsets: ['hebrew', 'latin'],
-  weight: ['400', '500', '600', '700'], // Only load necessary weights
+  // 800 is required by the desktop h1/h2 rules in globals.css; without it the
+  // browser synthesizes a faux-bold from 700 and stems render smeared.
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-heebo',
   display: 'swap', // Prevent font loading from blocking render
   preload: true, // Preload font files
@@ -173,8 +175,8 @@ export default function RootLayout({
         )}
         
         {/* Preconnect for Performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* No fonts.googleapis/gstatic preconnect: next/font/google self-hosts
+            Heebo at build time, so neither origin is ever requested. */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />

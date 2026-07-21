@@ -130,7 +130,10 @@ function ArrowButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className={`hidden md:flex absolute top-1/2 -translate-y-1/2 ${position} z-10 h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 hover:bg-white`}
+      // Resting opacity is intentionally non-zero: these were opacity-0 until
+      // hover, so on a touch-capable desktop (no hover) the only affordance
+      // that the row scrolled was the partial card peek.
+      className={`hidden md:flex absolute top-1/2 -translate-y-1/2 ${position} z-10 h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-60 group-hover:opacity-100 focus-visible:opacity-100 transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 hover:bg-white`}
     >
       <Icon className="h-5 w-5 text-brand-navy" aria-hidden="true" />
     </button>

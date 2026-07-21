@@ -12,6 +12,10 @@ module.exports = {
           blue: '#3b82f6',
           green: '#10b981',
           orange: '#f97316',
+          // Desaturated violet chosen to sit between brand-navy and brand-blue.
+          // Referenced by 21 classes across blog/guides that previously emitted
+          // no CSS because this key was missing.
+          purple: '#7c68c4',
           gray: {
             50: '#f9fafb',
             100: '#f3f4f6',
@@ -54,8 +58,15 @@ module.exports = {
           900: '#111827',
         },
       },
+      boxShadow: {
+        // hover:shadow-3xl was used in 10+ files without ever being defined,
+        // so those hover states silently no-opped. Tinted with brand-navy
+        // rather than pure black to match the colored shadows in globals.css.
+        '3xl': '0 35px 60px -15px rgba(30, 58, 95, 0.28)',
+      },
       fontFamily: {
         sans: [
+          'var(--font-heebo)',
           '-apple-system',
           'BlinkMacSystemFont',
           '"SF Pro Text"',

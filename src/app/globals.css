@@ -98,7 +98,8 @@
 
   body {
     font-family: var(--font-heebo), 'Heebo', 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-    font-feature-settings: "ss01", "ss02", "cv01";
+    /* ss01/ss02/cv01 are Inter stylistic sets; Heebo does not ship them, so
+       the previous declaration here was inert. */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -872,7 +873,9 @@
   textarea:focus-visible {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
-    border-radius: 4px;
+    /* No border-radius override here: it reshaped rounded-full buttons into
+       near-square ones on focus. Modern browsers already follow the element's
+       own radius when drawing the outline. */
   }
 
   /* Remove default outline for mouse users */
