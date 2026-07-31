@@ -27,3 +27,7 @@ _Avoid_: Keyword group, topic
 **Calculator**:
 An interactive Hebrew pricing tool on the site (e.g. מחשבון עלות תחזוקת אתר). Exists to win clicks an AI Overview cannot satisfy and to attract links.
 _Avoid_: Widget, tool page
+
+**Snippet Standard**:
+The rule set a page's search snippet must satisfy: rendered title (including brand suffix) within Google's display budget, description substantial but untruncated, price front-loaded where the page states one.
+_Avoid_: Title rules, meta guidelines

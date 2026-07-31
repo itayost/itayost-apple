@@ -1,9 +1,18 @@
+// Snippet standard: the full rendered <title> must fit Google's ~60-character
+// display budget, and the brand suffix spends part of that budget. These are
+// shared by every title template and by the content invariant tests, so what
+// "fits in the SERP" has exactly one definition.
+export const SITE_TITLE_SUFFIX = ' | ITAYOST'
+export const SERP_TITLE_MAX = 60
+export const META_DESCRIPTION_MIN = 70
+export const META_DESCRIPTION_MAX = 160
+
 // SEO configuration for all pages
 export const seoConfig = {
   // Default SEO
   default: {
     title: 'ITAYOST | מערכות, אוטומציות ובניית אתרים לעסקים',
-    titleTemplate: '%s | ITAYOST',
+    titleTemplate: `%s${SITE_TITLE_SUFFIX}`,
     description: 'מערכות ניהול, אוטומציות ואתרים שעוזרים לעסקים לעבוד חכם יותר. חוסכים לכם שעות עבודה בשבוע ומביאים יותר לקוחות.',
     keywords: [
       'מערכות ניהול',
@@ -166,7 +175,7 @@ export const seoConfig = {
     },
     'crm-systems': {
       title: 'בניית מערכת CRM לפי הזמנה | הקוד בבעלותך',
-      description: 'בניית מערכת CRM לפי הזמנה — בנויה לעסק שלך, לא תבנית גנרית. הקוד בבעלותך, בלי נעילה לספק. חיבור ל-WhatsApp, Gmail וחשבוניות ישראליות. הצעת מחיר תוך 24 שעות.',
+      description: 'בניית מערכת CRM לפי הזמנה — הקמה מ-₪15,000, בלי תשלום פר משתמש. הקוד בבעלותך, חיבור ל-WhatsApp, Gmail וחשבוניות ישראליות. הצעת מחיר תוך 24 שעות.',
       keywords: [
         'מערכת CRM',
         'בניית מערכת CRM',
@@ -203,8 +212,11 @@ export const seoConfig = {
       canonical: 'https://www.itayost.com/services/automations',
     },
     'mobile-apps': {
-      title: 'אפליקציות מובייל | React Native לiOS ו-Android',
-      description: 'פיתוח אפליקציות מובייל ב-React Native — אפליקציה אחת ל-iOS ולאנדרואיד. כמה עולה לפתח אפליקציה? טווחי מחירים אמיתיים, לוחות זמנים והצעת מחיר חינם תוך 24 שעות.',
+      // Buyers search price/outcome, not frameworks — the stack stays in the
+      // body as proof, never in the title. Description claims must exist on
+      // the page itself or Google rewrites the snippet.
+      title: 'פיתוח אפליקציות לעסקים | כמה עולה ומה התהליך',
+      description: 'כמה עולה לפתח אפליקציה? אפליקציה אחת ל-iOS ולאנדרואיד במקום שתי אפליקציות נפרדות — תהליך ברור, לוחות זמנים אמיתיים והצעת מחיר תוך 24 שעות.',
       keywords: ['אפליקציות מובייל', 'React Native', 'פיתוח אפליקציה', 'iOS', 'Android', 'Expo', 'אפליקציה לעסק'],
       canonical: 'https://www.itayost.com/services/mobile-apps',
     },

@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import BlogPostPage from './BlogPostPage'
 import { getPostBySlug, getAllPostSlugs, getRelatedPosts } from '@/lib/blog'
+import { SITE_TITLE_SUFFIX } from '@/config/seo'
 import { getGuideBySlug } from '@/lib/guides'
 import { getClustersForPost } from '@/config/clusters'
 import { JsonLd } from '@/components/common/JsonLd'
@@ -42,10 +43,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoTitle = post.metaTitle || post.title
 
   return {
-    // `absolute` bypasses the root layout's `%s | ITAYOST` template. Without it
-    // the blog title was double-branded (`… | בלוג ITAYOST | ITAYOST`), pushing
-    // titles past ~60 chars and truncating them in the SERP.
-    title: { absolute: `${seoTitle} | בלוג ITAYOST` },
+    // `absolute` bypasses the root layout's titleTemplate — otherwise the
+    // title is double-branded (`… | ITAYOST | ITAYOST`) and blows the SERP
+    // budget enforced by the content invariant tests.
+    title: { absolute: `${seoTitle}${SITE_TITLE_SUFFIX}` },
     description: post.description || post.excerpt,
     keywords: post.tags,
     authors: [{ name: post.author }],

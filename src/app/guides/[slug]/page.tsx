@@ -5,7 +5,7 @@ import { getGuideBySlug, getAllGuideSlugs } from '@/lib/guides'
 import { getClusterByPillarSlug } from '@/config/clusters'
 import { getPostBySlug } from '@/lib/blog'
 import { JsonLd } from '@/components/common/JsonLd'
-import { seoConfig } from '@/config/seo'
+import { seoConfig, SITE_TITLE_SUFFIX } from '@/config/seo'
 import type { ClusterMember } from '@/components/guides/ClusterMemberList'
 import { toSchemaDate } from '@/lib/dates'
 
@@ -38,9 +38,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoTitle = guide.metaTitle || guide.title
 
   return {
-    // `absolute` bypasses the root layout's `%s | ITAYOST` template to avoid
+    // `absolute` bypasses the root layout's titleTemplate to avoid
     // double-branding (same fix as the blog titles).
-    title: { absolute: `${seoTitle} | ITAYOST` },
+    title: { absolute: `${seoTitle}${SITE_TITLE_SUFFIX}` },
     description: guide.description,
     openGraph: {
       title: seoTitle,

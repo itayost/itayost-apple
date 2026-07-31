@@ -30,10 +30,33 @@ const customSchema = {
   ],
 }
 
+// Article bodies conventionally open with a `# ` heading, but the page
+// templates already render the title as the page's H1 — leaving crawlers with
+// two H1s on every article. Demote body H1s to H2 so the template owns the
+// only H1. Runs before rehype-slug so anchor ids are generated on the final
+// heading levels. Mutates the tree in place — a deliberate deviation from the
+// no-mutation rule: unified transformers own their tree and the whole rehype
+// plugin ecosystem mutates it by contract.
+function rehypeDemoteH1() {
+  interface HastNode {
+    type: string
+    tagName?: string
+    children?: HastNode[]
+  }
+  const demote = (node: HastNode) => {
+    if (node.tagName === 'h1') {
+      node.tagName = 'h2'
+    }
+    node.children?.forEach(demote)
+  }
+  return (tree: HastNode) => demote(tree)
+}
+
 export async function markdownToHtml(markdown: string): Promise<string> {
   const processed = await remark()
     .use(remarkGfm)
     .use(remarkRehype)
+    .use(rehypeDemoteH1)
     // rehype-slug runs before sanitize; the schema allows `id` on all tags,
     // so in-page #anchor links (guide TOCs) resolve.
     .use(rehypeSlug)
