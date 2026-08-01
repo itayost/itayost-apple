@@ -59,3 +59,7 @@ brand-voice-guide.md
 content-bank-posts.md
 campaign-plan-*.md
 weekly-cro-report-*.md
+
+# graphify knowledge graph: commit graph.json/GRAPH_REPORT.md, skip local-only artifacts
+graphify-out/cost.json
+graphify-out/cache/
