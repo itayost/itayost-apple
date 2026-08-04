@@ -2,6 +2,7 @@ import { describe, test, expect } from 'vitest'
 import { getAllPosts } from './blog'
 import { getAllGuides } from './guides'
 import {
+  seoConfig,
   SITE_TITLE_SUFFIX,
   SERP_TITLE_MAX,
   META_DESCRIPTION_MIN,
@@ -28,6 +29,11 @@ const LEGACY_LONG_TITLES = [
   'seo-basics-small-business-israel',
   'website-speed-optimization-guide',
 ]
+
+// Static pages that predate the standard, same ratchet rules as above.
+// 'home' additionally double-brands (its title starts with the brand AND the
+// layout template appends the suffix) — fixing it is a content decision.
+const LEGACY_LONG_PAGE_TITLES = ['home', 'web-development', 'landing-pages']
 
 const renderedTitleLength = (seoTitle: string) =>
   seoTitle.length + SITE_TITLE_SUFFIX.length
@@ -83,6 +89,53 @@ describe('content snippet invariants', () => {
     // Assert
     expect(titleViolations).toEqual([])
     expect(descViolations).toEqual([])
+  })
+
+  test('every non-legacy seoConfig page renders a title within the SERP budget', () => {
+    // Arrange
+    const pages = Object.entries(seoConfig.pages).filter(
+      ([slug]) => !LEGACY_LONG_PAGE_TITLES.includes(slug)
+    )
+
+    // Act
+    const violations = pages
+      .filter(([, page]) => renderedTitleLength(page.title) > SERP_TITLE_MAX)
+      .map(([slug, page]) => `${slug} (${renderedTitleLength(page.title)})`)
+
+    // Assert
+    expect(violations).toEqual([])
+  })
+
+  test('every seoConfig page description is within the meta description range', () => {
+    // Arrange
+    const pages = Object.entries(seoConfig.pages)
+
+    // Act
+    const violations = pages
+      .filter(
+        ([, page]) =>
+          page.description.length < META_DESCRIPTION_MIN ||
+          page.description.length > META_DESCRIPTION_MAX
+      )
+      .map(([slug, page]) => `${slug} (${page.description.length})`)
+
+    // Assert
+    expect(violations).toEqual([])
+  })
+
+  test('ratchet: every grandfathered page slug still violates, so fixed pages leave the list', () => {
+    // Arrange
+    const pages = seoConfig.pages as Record<string, { title: string }>
+
+    // Act
+    const fixedButStillListed = LEGACY_LONG_PAGE_TITLES.filter(slug => {
+      const page = pages[slug]
+      if (!page) return true // removed pages must leave the list too
+      return renderedTitleLength(page.title) <= SERP_TITLE_MAX
+    })
+
+    // Assert
+    expect(fixedButStillListed).toEqual([])
   })
 
   test('ratchet: every grandfathered slug still violates, so fixed posts leave the list', async () => {

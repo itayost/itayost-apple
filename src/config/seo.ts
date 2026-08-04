@@ -174,7 +174,7 @@ export const seoConfig = {
       canonical: 'https://www.itayost.com/services/ecommerce',
     },
     'crm-systems': {
-      title: 'בניית מערכת CRM לפי הזמנה | הקוד בבעלותך',
+      title: 'בניית מערכת CRM לפי הזמנה | מ-₪15,000, הקוד שלך',
       description: 'בניית מערכת CRM לפי הזמנה — הקמה מ-₪15,000, בלי תשלום פר משתמש. הקוד בבעלותך, חיבור ל-WhatsApp, Gmail וחשבוניות ישראליות. הצעת מחיר תוך 24 שעות.',
       keywords: [
         'מערכת CRM',
@@ -215,8 +215,8 @@ export const seoConfig = {
       // Buyers search price/outcome, not frameworks — the stack stays in the
       // body as proof, never in the title. Description claims must exist on
       // the page itself or Google rewrites the snippet.
-      title: 'פיתוח אפליקציות לעסקים | כמה עולה ומה התהליך',
-      description: 'כמה עולה לפתח אפליקציה? אפליקציה אחת ל-iOS ולאנדרואיד במקום שתי אפליקציות נפרדות — תהליך ברור, לוחות זמנים אמיתיים והצעת מחיר תוך 24 שעות.',
+      title: 'פיתוח אפליקציה לעסק — מ-₪15,000, iOS ואנדרואיד',
+      description: 'כמה עולה לפתח אפליקציה? מ-₪15,000 לאפליקציה אחת שרצה גם ב-iOS וגם באנדרואיד, במקום שני פיתוחים נפרדים. תהליך ברור והצעת מחיר תוך 24 שעות.',
       keywords: ['אפליקציות מובייל', 'React Native', 'פיתוח אפליקציה', 'iOS', 'Android', 'Expo', 'אפליקציה לעסק'],
       canonical: 'https://www.itayost.com/services/mobile-apps',
     },
@@ -669,7 +669,7 @@ export const seoConfig = {
           name: 'האם אתה בונה אפליקציות מובייל?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'כן, אני בונה אפליקציות מובייל עם React Native - אפליקציה אחת שעובדת גם על iOS וגם על Android. מחירים: אפליקציה פשוטה 25,000-40,000 ש"ח, אפליקציה מורכבת (התחברות, תשלומים, פוש) 40,000-70,000 ש"ח. כולל פיתוח, בדיקות והעלאה לחנויות (App Store ו-Google Play).',
+            text: 'כן, אני בונה אפליקציות מובייל עם React Native - אפליקציה אחת שעובדת גם על iOS וגם על Android. מחירים: אפליקציה פשוטה (MVP) 15,000-35,000 ש"ח, אפליקציה מורכבת (התחברות, תשלומים, פוש) 35,000-70,000 ש"ח. כולל פיתוח, בדיקות והעלאה לחנויות (App Store ו-Google Play).',
           },
         },
         {
