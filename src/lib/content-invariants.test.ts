@@ -1,6 +1,11 @@
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
 import { describe, test, expect } from 'vitest'
 import { getAllPosts } from './blog'
 import { getAllGuides } from './guides'
+import { categoryServiceMap } from '@/config/categoryServices'
+import { clusters } from '@/config/clusters'
 import {
   seoConfig,
   SITE_TITLE_SUFFIX,
@@ -37,6 +42,34 @@ const LEGACY_LONG_PAGE_TITLES = ['home', 'web-development', 'landing-pages']
 
 const renderedTitleLength = (seoTitle: string) =>
   seoTitle.length + SITE_TITLE_SUFFIX.length
+
+// Service routes that actually have a page.tsx under src/app/services/.
+// /services/custom-software and /services/applications are empty dirs that 404.
+const VALID_SERVICE_SLUGS = [
+  'web-development',
+  'mobile-apps',
+  'crm-systems',
+  'ecommerce',
+  'landing-pages',
+  'ui-ux-design',
+  'automations',
+]
+
+const readMarkdownFiles = (dir: string) => {
+  const abs = path.join(process.cwd(), dir)
+  return fs
+    .readdirSync(abs)
+    .filter(f => f.endsWith('.md') && f !== 'README.md')
+    .map(f => {
+      const { data, content } = matter(fs.readFileSync(path.join(abs, f), 'utf8'))
+      return { slug: f.replace(/\.md$/, ''), data, body: content }
+    })
+}
+
+const serviceLinksIn = (body: string) =>
+  Array.from(body.matchAll(/\]\(\/services\/([a-z-]+)/g)).flatMap(m =>
+    m[1] ? [m[1]] : []
+  )
 
 describe('content snippet invariants', () => {
   test('every non-legacy blog post renders a title within the SERP budget', async () => {
@@ -136,6 +169,49 @@ describe('content snippet invariants', () => {
 
     // Assert
     expect(fixedButStillListed).toEqual([])
+  })
+
+  test('every category used in content resolves to a specific service mapping', () => {
+    // Arrange
+    const files = [...readMarkdownFiles('content/blog'), ...readMarkdownFiles('content/guides')]
+
+    // Act
+    const unmapped = files
+      .filter(f => f.data.category && !categoryServiceMap[f.data.category])
+      .map(f => `${f.slug} (${f.data.category})`)
+
+    // Assert
+    expect(unmapped).toEqual([])
+  })
+
+  test('every /services link in content points to a real service route', () => {
+    // Arrange
+    const files = [...readMarkdownFiles('content/blog'), ...readMarkdownFiles('content/guides')]
+
+    // Act
+    const broken = files.flatMap(f =>
+      serviceLinksIn(f.body)
+        .filter(slug => !VALID_SERVICE_SLUGS.includes(slug))
+        .map(slug => `${f.slug} -> /services/${slug}`)
+    )
+
+    // Assert
+    expect(broken).toEqual([])
+  })
+
+  test('every cluster-member post links to at least one service page in its body', () => {
+    // Arrange
+    const posts = readMarkdownFiles('content/blog')
+    const memberSlugs = Array.from(new Set(clusters.flatMap(c => c.memberSlugs)))
+
+    // Act
+    const missing = memberSlugs.filter(slug => {
+      const post = posts.find(p => p.slug === slug)
+      return !post || serviceLinksIn(post.body).length === 0
+    })
+
+    // Assert
+    expect(missing).toEqual([])
   })
 
   test('ratchet: every grandfathered slug still violates, so fixed posts leave the list', async () => {

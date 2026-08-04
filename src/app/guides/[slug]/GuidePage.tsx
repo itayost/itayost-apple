@@ -8,6 +8,7 @@ import { KeyTakeaways, FAQSection, SourcesList, AuthorBio } from '@/components/b
 import { ClusterMemberList, type ClusterMember } from '@/components/guides/ClusterMemberList'
 import { PROSE_CLASSES } from '@/lib/prose'
 import { bouncyEasing } from '@/constants/animations'
+import { getClusterByPillarSlug } from '@/config/clusters'
 
 interface GuidePageProps {
   guide: Guide
@@ -15,6 +16,7 @@ interface GuidePageProps {
 }
 
 export default function GuidePage({ guide, members }: GuidePageProps) {
+  const cluster = getClusterByPillarSlug(guide.slug)
   return (
     <main className="min-h-screen bg-white">
       {/* Hero */}
@@ -116,19 +118,37 @@ export default function GuidePage({ guide, members }: GuidePageProps) {
             <p className="mx-auto mb-8 max-w-xl text-lg text-white/90">
               שיחה קצרה בלי התחייבות, ותקבלו תשובה ישירה על עלות וזמנים
             </p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2, ease: bouncyEasing }}
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-brand-blue shadow-xl hover:shadow-2xl transition-shadow"
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, ease: bouncyEasing }}
               >
-                צור קשר
-                <ArrowLeft size={18} />
-              </Link>
-            </motion.div>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-brand-blue shadow-xl hover:shadow-2xl transition-shadow"
+                >
+                  צור קשר
+                  <ArrowLeft size={18} />
+                </Link>
+              </motion.div>
+
+              {cluster && (
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: bouncyEasing }}
+                >
+                  <Link
+                    href={`/services/${cluster.serviceId}`}
+                    className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-8 py-4 font-semibold text-white hover:bg-white/20 transition-colors"
+                  >
+                    {cluster.serviceAnchor}
+                    <ArrowLeft size={18} />
+                  </Link>
+                </motion.div>
+              )}
+            </div>
           </motion.div>
         </div>
       </section>

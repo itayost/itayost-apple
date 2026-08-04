@@ -11,81 +11,7 @@ import {
   trackCtaClick,
 } from '@/lib/analytics'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
-
-// Category to service mapping
-const categoryServiceMap: Record<string, { serviceId: string; serviceName: string; ctaMessage: string }> = {
-  'פיתוח אתרים': {
-    serviceId: 'web-development',
-    serviceName: 'פיתוח אתרים',
-    ctaMessage: 'רוצים אתר מקצועי שמביא תוצאות?',
-  },
-  'טכנולוגיה': {
-    serviceId: 'web-development',
-    serviceName: 'פתרונות טכנולוגיים',
-    ctaMessage: 'צריכים פתרון טכנולוגי מותאם?',
-  },
-  'מדריכים': {
-    serviceId: 'web-development',
-    serviceName: 'שירותי פיתוח',
-    ctaMessage: 'רוצים שניישם את זה עבורכם?',
-  },
-  'אבטחת אתרים': {
-    serviceId: 'web-development',
-    serviceName: 'אבטחת אתרים',
-    ctaMessage: 'רוצים לוודא שהאתר שלכם מאובטח?',
-  },
-  'עיצוב אתרים': {
-    serviceId: 'ui-ux-design',
-    serviceName: 'עיצוב UI/UX',
-    ctaMessage: 'רוצים עיצוב שמרשים ומוכר?',
-  },
-  'מסחר אלקטרוני': {
-    serviceId: 'ecommerce',
-    serviceName: 'חנויות אונליין',
-    ctaMessage: 'רוצים חנות אונליין שמוכרת?',
-  },
-  'SEO ושיווק': {
-    serviceId: 'web-development',
-    serviceName: 'אתרים שמושכים לקוחות',
-    ctaMessage: 'רוצים אתר שמביא לקוחות חדשים?',
-  },
-  'פיתוח אפליקציות': {
-    serviceId: 'mobile-apps',
-    serviceName: 'פיתוח אפליקציות מובייל',
-    ctaMessage: 'רוצים אפליקציה מקצועית ל-iOS ולאנדרואיד?',
-  },
-  'אפליקציות מובייל': {
-    serviceId: 'mobile-apps',
-    serviceName: 'פיתוח אפליקציות מובייל',
-    ctaMessage: 'רוצים אפליקציה מקצועית ל-iOS ולאנדרואיד?',
-  },
-  'מערכות ניהול': {
-    serviceId: 'crm-systems',
-    serviceName: 'מערכות ניהול ו-CRM מותאמות אישית',
-    ctaMessage: 'רוצים מערכת ניהול שמתאימה בדיוק לעסק שלכם?',
-  },
-  'המרות וחווית משתמש': {
-    serviceId: 'ui-ux-design',
-    serviceName: 'עיצוב חוויית משתמש שממירה',
-    ctaMessage: 'רוצים חוויית משתמש שממירה יותר מבקרים ללקוחות?',
-  },
-  'ביצועים וטכנולוגיה': {
-    serviceId: 'web-development',
-    serviceName: 'אתרים מהירים ב-Next.js',
-    ctaMessage: 'רוצים אתר מהיר שעובר את כל מבחני הביצועים?',
-  },
-  'דפי נחיתה': {
-    serviceId: 'landing-pages',
-    serviceName: 'בניית דפי נחיתה ממירים',
-    ctaMessage: 'רוצים דף נחיתה שממיר יותר מבקרים ללקוחות?',
-  },
-}
-
-const defaultService = {
-  serviceId: 'web-development',
-  serviceName: 'פתרונות דיגיטליים',
-  ctaMessage: 'רוצים שנעזור לכם להצליח?',
-}
+import { getServiceForCategory } from '@/config/categoryServices'
 
 interface InlineServiceCTAProps {
   category: string
@@ -99,7 +25,8 @@ interface InlineServiceCTAProps {
 
 export default function InlineServiceCTA({ category, variant = 'full' }: InlineServiceCTAProps) {
   const pathname = usePathname() ?? ''
-  const service = categoryServiceMap[category] || defaultService
+  const service = getServiceForCategory(category)
+  const serviceHref = `/services/${service.serviceId}`
   const whatsappLink = buildWhatsAppUrl(`היי, קראתי את המאמר שלך בבלוג ומעוניין לשמוע עוד על ${service.serviceName}`)
   const isCompact = variant === 'compact'
 
@@ -111,6 +38,10 @@ export default function InlineServiceCTA({ category, variant = 'full' }: InlineS
 
   const handleContactClick = () => {
     trackCtaClick('contact_blog_cta', 'blog_cta', '/contact')
+  }
+
+  const handleServiceClick = () => {
+    trackCtaClick('service_blog_cta', 'blog_cta', serviceHref)
   }
 
   return (
@@ -201,6 +132,21 @@ export default function InlineServiceCTA({ category, variant = 'full' }: InlineS
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-brand-blue font-semibold shadow-lg hover:shadow-xl transition-shadow"
               >
                 צור קשר
+                <ArrowLeft className="w-5 h-5" />
+              </Link>
+            </motion.div>
+
+            {/* Service page link */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                href={serviceHref}
+                onClick={handleServiceClick}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 backdrop-blur-sm text-white font-semibold hover:bg-white/20 transition-colors"
+              >
+                עוד על {service.serviceName}
                 <ArrowLeft className="w-5 h-5" />
               </Link>
             </motion.div>

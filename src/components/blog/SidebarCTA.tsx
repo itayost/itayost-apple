@@ -5,8 +5,9 @@ import { motion } from 'framer-motion'
 import { MessageCircle, ArrowLeft, Sparkles, Code, ShoppingBag, Palette, Zap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { bouncyEasing } from '@/constants/animations'
-import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
+import { trackWhatsAppClick, trackGenerateLead, trackCtaClick } from '@/lib/analytics'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
+import { getServiceForCategory } from '@/config/categoryServices'
 
 // Category-specific content
 const categoryContent: Record<string, { icon: LucideIcon; title: string; description: string; cta: string }> = {
@@ -57,6 +58,8 @@ interface SidebarCTAProps {
 export function SidebarCTA({ className = '', category }: SidebarCTAProps) {
   const content = category ? categoryContent[category] || defaultContent : defaultContent
   const Icon = content.icon
+  const service = getServiceForCategory(category)
+  const serviceHref = `/services/${service.serviceId}`
 
   return (
     <motion.div
@@ -109,6 +112,16 @@ export function SidebarCTA({ className = '', category }: SidebarCTAProps) {
           <MessageCircle size={16} />
           או שלחו וואטסאפ
         </a>
+
+        {/* Service page link */}
+        <Link
+          href={serviceHref}
+          onClick={() => trackCtaClick('service_blog_sidebar', 'blog_sidebar', serviceHref)}
+          className="mt-4 flex items-center justify-center gap-1.5 text-sm text-white/80 hover:text-white underline underline-offset-4 transition-colors"
+        >
+          עוד על {service.serviceName}
+          <ArrowLeft size={14} />
+        </Link>
       </div>
     </motion.div>
   )

@@ -13,6 +13,10 @@ export interface TopicCluster {
   label: string
   // Ordered reading path of blog post slugs
   memberSlugs: string[]
+  // Primary /services/[slug] route this cluster sells (pillar CTA links here)
+  serviceId: string
+  // Commercial anchor text for the service link
+  serviceAnchor: string
 }
 
 export const clusters: TopicCluster[] = [
@@ -28,6 +32,8 @@ export const clusters: TopicCluster[] = [
       'custom-website-vs-wix-squarespace-2026',
       'ai-website-builders-vs-developer-2026',
     ],
+    serviceId: 'web-development',
+    serviceAnchor: 'בניית אתר מותאם אישית לעסק',
   },
   {
     id: 'crm',
@@ -38,6 +44,8 @@ export const clusters: TopicCluster[] = [
       'crm-vs-excel-spreadsheets',
       'custom-crm-vs-monday-hubspot-2026',
     ],
+    serviceId: 'crm-systems',
+    serviceAnchor: 'בניית מערכת CRM לפי הזמנה',
   },
   {
     id: 'websites',
@@ -53,6 +61,8 @@ export const clusters: TopicCluster[] = [
       'mobile-first-design-importance-2025',
       'nextjs-vs-wordpress-2025',
     ],
+    serviceId: 'web-development',
+    serviceAnchor: 'פיתוח אתרים שמביאים לקוחות',
   },
 ]
 
