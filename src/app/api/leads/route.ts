@@ -26,13 +26,24 @@ function truncate(value: string, max = 500): string {
  * Returns a structured result. The internal `error` field is for server-side
  * logs and should NEVER be surfaced verbatim to the client — upstream CRM 404
  * pages can be HTML and would render unreadably in the form's error alert.
+ *
+ * The CRM intake endpoint requires a shared secret (`x-lead-secret`). It is read
+ * here, on the server, and never reaches the visitor's browser — which is the
+ * whole reason this proxy route exists. Without it the CRM answers 401.
  */
 async function submitLeadToCRM(lead: CRMLead): Promise<CRMResponse & { internalError?: string }> {
+  const crmSecret = process.env.CRM_LEAD_SECRET ?? ''
+
+  if (!crmSecret) {
+    console.error('[/api/leads] CRM_LEAD_SECRET is not set — the CRM will reject this lead')
+  }
+
   try {
     const response = await fetch(CRM_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-lead-secret': crmSecret,
       },
       body: JSON.stringify(lead),
       signal: AbortSignal.timeout(10000), // 10 second timeout
