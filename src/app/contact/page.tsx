@@ -24,7 +24,6 @@ export default function Page() {
     '@graph': [
       seoConfig.structuredData.organization,
       seoConfig.structuredData.breadcrumbs('/contact'),
-      seoConfig.structuredData.faqPage,
       {
         '@type': 'ContactPage',
         '@id': 'https://www.itayost.com/contact/#webpage',

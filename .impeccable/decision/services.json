@@ -1,0 +1,67 @@
+{
+  "title": "Service pages (all 7): choose the structure",
+  "question": "One shared template for every service page (CRM, automations, websites, landing pages, apps, e-commerce, UI/UX). Pick the composition, or re-roll.",
+  "seed": { "key": "6af9b5d8", "scope": "surface", "mode": "persuade", "dealtIndices": [7, 1, 6] },
+  "options": [
+    {
+      "id": "service-landing",
+      "label": "Service Landing, Pad-Built",
+      "kicker": "THE ROLL",
+      "lineage": "the familiar service page, executed in the pad world",
+      "thesis": "Hero with the service promise and action, then what's included, how it works, real work, questions, and a closing slip.",
+      "palette": ["#2B3FD6", "#FBFBF8", "#F2DF6E", "#F4C6D2"],
+      "materials": ["carbon hero", "ruled feature lines", "numbered process", "stapled client copies"],
+      "viewport": "Carbon field: service name as Karantina headline, tagline, tear-slip CTA with reply stamp, WhatsApp line. Below: long description as a readable column, features as ruled lines, process steps with durations, client copies, FAQ, related services, closing slip.",
+      "risk": "Familiar order; distinction lives in the pad parts.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "carbon hero: name, tagline, CTA", "x": 0, "y": 0, "w": 12, "h": 3, "accent": true },
+        { "label": "long description", "x": 3, "y": 3, "w": 6, "h": 1 },
+        { "label": "features as ruled lines", "x": 0, "y": 4, "w": 12, "h": 2 },
+        { "label": "process 1-6 with durations", "x": 0, "y": 6, "w": 12, "h": 2 },
+        { "label": "client copies", "x": 0, "y": 8, "w": 12, "h": 2 },
+        { "label": "FAQ", "x": 2, "y": 10, "w": 8, "h": 1 },
+        { "label": "closing slip", "x": 0, "y": 11, "w": 12, "h": 1 }
+      ]}
+    },
+    {
+      "id": "work-order",
+      "label": "The Work Order",
+      "lineage": "a printed work-order form for this job",
+      "thesis": "The page is the order form for this service: what's included is ticked, the schedule is printed, the fine print answers questions.",
+      "palette": ["#FBFBF8", "#D7263D", "#2B3FD6", "#F2DF6E"],
+      "materials": ["order form header", "checkbox lines", "schedule table", "fine print", "tear-off slip"],
+      "viewport": "A tall paper sheet on carbon: form header with service name and No., ticked included-items list, a schedule table (step, what happens, duration), then fine-print FAQ and a tear-off slip at the bottom edge to order.",
+      "risk": "Form metaphor can make long SEO text feel cramped; needs generous reading width.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "form header: service name, No., CTA", "x": 1, "y": 0, "w": 10, "h": 2, "accent": true },
+        { "label": "why this service (long text)", "x": 1, "y": 2, "w": 10, "h": 2 },
+        { "label": "ticked: what's included", "x": 1, "y": 4, "w": 10, "h": 2 },
+        { "label": "schedule table", "x": 1, "y": 6, "w": 10, "h": 2 },
+        { "label": "client copies", "x": 1, "y": 8, "w": 10, "h": 1 },
+        { "label": "fine print FAQ", "x": 1, "y": 9, "w": 10, "h": 2 },
+        { "label": "tear-off slip", "x": 1, "y": 11, "w": 10, "h": 1 }
+      ]}
+    },
+    {
+      "id": "questions-first",
+      "label": "Answers First",
+      "lineage": "the questions owners actually ask before buying",
+      "thesis": "Lead with the price, time and fit questions people search for; features and work back up the answers.",
+      "palette": ["#FBFBF8", "#2B3FD6", "#F2DF6E", "#15161A"],
+      "materials": ["numbered question lines", "answer sheets", "sticky order slip"],
+      "viewport": "Short carbon hero with the service name and CTA, then the FAQ as the main column (price, time, how it differs) with a sticky order slip beside it; features, process and work follow as supporting evidence.",
+      "risk": "Pushes the offer narrative below dense answers; weaker for visitors who are not comparison shopping.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "compact carbon hero", "x": 0, "y": 0, "w": 12, "h": 2 },
+        { "label": "FAQ as main column", "x": 4, "y": 2, "w": 8, "h": 5, "accent": true },
+        { "label": "sticky order slip", "x": 0, "y": 2, "w": 4, "h": 2 },
+        { "label": "features", "x": 0, "y": 7, "w": 12, "h": 2 },
+        { "label": "process + work", "x": 0, "y": 9, "w": 12, "h": 2 },
+        { "label": "closing slip", "x": 0, "y": 11, "w": 12, "h": 1 }
+      ]}
+    }
+  ],
+  "reroll": true,
+  "buildPath": { "value": "code", "toggle": false },
+  "steer": true
+}

@@ -1,537 +1,260 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import {
-  User,
-  Code2,
-  Rocket,
-  Target,
-  Heart,
-  Users,
-  Database,
-  Smartphone,
-  Sparkles
-} from 'lucide-react'
-import { bouncyEasing } from '@/constants/animations'
-import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowLeft, MessageCircle } from 'lucide-react'
+import { aboutPage } from '@/config/aboutPage'
+import { getFeaturedPortfolio } from '@/data/portfolio'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
+import { trackCtaClick, trackGenerateLead, trackWhatsAppClick } from '@/lib/analytics'
+import { ClientCopyCard } from '@/components/pad/ClientCopyCard'
+import { PenTick } from '@/components/pad/PenTick'
+import { TearSlipLink } from '@/components/pad/TearSlipLink'
 
-const skills = [
-  { name: 'React / Next.js', level: 95, color: 'bg-brand-blue', priority: 1 },
-  { name: 'TypeScript / JavaScript', level: 92, color: 'bg-brand-navy', priority: 1 },
-  { name: 'Node.js / Express', level: 88, color: 'bg-brand-green', priority: 1 },
-  { name: 'Python / Django', level: 85, color: 'bg-brand-orange', priority: 2 },
-  { name: 'MongoDB / SQL', level: 87, color: 'bg-brand-blue', priority: 1 },
-  { name: 'React Native / Swift', level: 82, color: 'bg-brand-navy', priority: 2 },
-  { name: 'UI/UX Design', level: 90, color: 'bg-brand-orange', priority: 1 },
-  { name: 'Java / Android Studio', level: 80, color: 'bg-brand-gray-600', priority: 2 }
-]
+const PAGE = '/about'
+const whatsappHref = buildWhatsAppUrl(aboutPage.whatsappMessage)
 
-const technologies = [
-  'React', 'Next.js', 'TypeScript', 'JavaScript', 'Node.js', 'Express',
-  'Python', 'Django', 'Java', 'C', 'Swift', 'React Native',
-  'MongoDB', 'PostgreSQL', 'MySQL', 'Supabase', 'Firebase',
-  'REST API', 'GraphQL', 'Git', 'Docker', 'AWS', 'Vercel',
-  'Tailwind CSS', 'Material-UI', 'Framer Motion', 'GSAP',
-  'Android Studio', 'Xcode', 'VS Code', 'Figma'
-]
-
-const values = [
-  {
-    icon: Heart,
-    title: 'תמיד זמין',
-    description: 'עונה בוואטסאפ, בדרך כלל תוך שעה. נסו את זה עם סוכנות.',
-    color: 'bg-red-500'
-  },
-  {
-    icon: Target,
-    title: 'תוצאות, לא סיסמאות',
-    description: 'מעל 95 ב-PageSpeed, מעל 15 שעות נחסכות בשבוע. מספרים, לא מילים.',
-    color: 'bg-brand-orange'
-  },
-  {
-    icon: Users,
-    title: 'עומד במילה',
-    description: 'לוח זמנים ומחיר סגורים מראש. אם יהיה שינוי תדעו על כך מראש.',
-    color: 'bg-brand-blue'
-  },
-  {
-    icon: Rocket,
-    title: 'בלי הפתעות בחשבון',
-    description: 'מחיר שמתאים לעסק שלכם, ללא תוספות מפתיעות.',
-    color: 'bg-brand-green'
-  }
-]
-
-const achievements = [
-  { number: 'מעל 50', label: 'עסקים ששדרגו', color: 'bg-brand-blue' },
-  { number: '100%', label: 'שביעות רצון', color: 'bg-brand-orange' },
-  { number: '15', label: 'שעות נחסכות בממוצע', color: 'bg-brand-green' },
-  { number: '30%', label: 'גידול בהכנסות', color: 'bg-yellow-400' }
-]
+const trackWhatsApp = () => {
+  trackWhatsAppClick(PAGE, 'about')
+  trackGenerateLead('whatsapp', PAGE)
+}
 
 export default function AboutPage() {
-  const [showAllSkills, setShowAllSkills] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  // Show only top 5 skills on mobile unless expanded
-  const displayedSkills = isMobile && !showAllSkills
-    ? skills.filter(s => s.priority === 1).slice(0, 5)
-    : skills
+  const work = getFeaturedPortfolio().slice(0, 3)
+  const prefersReducedMotion = useReducedMotion()
 
   return (
-    <main className="pt-20 lg:pt-24 min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-              className="mb-6"
+    <div className="pad-world">
+      {/* Who is behind the pad */}
+      <section aria-labelledby="about-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-12 lg:gap-x-12 lg:pb-24 lg:pt-36">
+          <div className="lg:col-span-7">
+            <h1
+              id="about-heading"
+              className="font-pad-display text-[clamp(3.5rem,2rem+5vw,6rem)] font-bold leading-[0.88] [text-wrap:balance]"
             >
-              <motion.div
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue/10 rounded-full"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <User className="w-5 h-5 text-brand-blue" />
-                <span className="text-base font-bold text-brand-blue">
-                  אודות
-                </span>
-              </motion.div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
-            >
-              איתי אוסטרייך
-              <span className="block mt-2 text-brand-blue">
-                בונה מערכות ואתרים לעסקים
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
-              className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto"
-            >
-              עוזר לבעלי עסקים להפסיק לבזבז שעות על ניהול ידני
-              <br />
-              ולהתחיל להביא יותר לקוחות
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* Two Column Content Section */}
-      <section className="py-16 lg:py-24 bg-section-light-blue">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Text */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-            >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-navy mb-6">
-                למה עסקים ברמת גן והמרכז בוחרים בי?
-              </h2>
-
-              <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                <strong>אני איתי, מפתח עצמאי מרמת גן.</strong> ב-5 השנים האחרונות בניתי מעל 100
-                מערכות ואתרים למעל 50 עסקים: מסעדות, נדל&quot;ן, חנויות, אקדמיות, ועוד.
-              </p>
-
-              <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                <strong>אני בן אדם אחד, לא סוכנות.</strong> אתם מדברים ישירות עם מי שבונה את
-                המערכת שלכם בוואטסאפ, מפתח מול לקוח. יותר מהיר, יותר אישי, יותר הגיוני.
-              </p>
-
-              <p className="text-lg sm:text-xl text-brand-gray-700 mb-4 leading-relaxed">
-                <strong>אני מאמין שטכנולוגיה צריכה לעבוד בשבילכם, לא להפך.</strong> בלי ז&apos;רגון,
-                בלי הפתעות בחשבון, ובלי להיעלם אחרי ההשקה. רק פתרונות שעובדים ושירות אישי
-                של מישהו שמכיר את העסק שלכם.
-              </p>
-
-              <p className="text-lg sm:text-xl text-brand-gray-700 mb-8">
-                📍 <strong>ממוקם ברמת גן</strong> | עובד עם עסקים בכל הארץ
-                <br />
-                📞 זמין בוואטסאפ, טלפון, וידאו ופגישות אישיות
-              </p>
-
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-block px-8 py-4 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-                >
-                  בואו נדבר
-                </Link>
-                <Link
-                  href="/portfolio"
-                  className="inline-block px-8 py-4 bg-white border-3 border-brand-navy text-brand-navy rounded-full font-semibold text-lg hover:bg-brand-navy hover:text-white transition-all duration-300 hover:scale-105 active:scale-95"
-                >
-                  צפייה בעבודות
-                </Link>
-                <a
-                  href="https://github.com/itayost"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-8 py-4 bg-brand-navy text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-                >
-                  GitHub
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Right Column - Visual */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-              className="relative"
-            >
-              <div className="relative w-full max-w-md mx-auto">
-                {/* Main visual */}
-                <motion.div
-                  className="relative bg-brand-blue rounded-3xl p-8 text-white shadow-2xl"
-                  whileHover={{
-                    y: -8,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                >
-                  <div className="flex flex-col items-center justify-center min-h-[300px]">
-                    <motion.div
-                      animate={{
-                        rotate: [0, 10, -10, 0],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      <Code2 size={64} className="mb-4" />
-                    </motion.div>
-                    <h3 className="text-2xl lg:text-3xl font-bold mb-2">מתמחה בפתרונות שמניבים תוצאות</h3>
-                    <p className="text-white/90 text-center text-lg">
-                      אתרים, מערכות CRM ואפליקציות מותאמות<br />
-                      שחוסכות זמן ומגדילות הכנסות
-                    </p>
-                    <div className="flex gap-6 mt-8">
-                      <div className="text-center">
-                        <div className="text-3xl font-bold">15</div>
-                        <div className="text-sm text-white/80">שעות נחסכות</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold">30%</div>
-                        <div className="text-sm text-white/80">גידול בהכנסות</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold">24/7</div>
-                        <div className="text-sm text-white/80">זמינות</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Floating elements */}
-                  <motion.div
-                    className="absolute -top-6 -end-6 w-24 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center"
-                    animate={{
-                      y: [0, -10, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <Database className="text-brand-orange" size={32} />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute -bottom-6 -start-6 w-24 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center"
-                    animate={{
-                      y: [0, 10, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1.5
-                    }}
-                  >
-                    <Smartphone className="text-brand-green" size={32} />
-                  </motion.div>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-            className="text-center mb-16"
-          >
-            <motion.div
-              className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange/10 rounded-full mb-6"
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.3, ease: bouncyEasing }
-              }}
-            >
-              <Sparkles className="w-5 h-5 text-brand-orange" />
-              <span className="text-base font-bold text-brand-orange">
-                הכישורים שלי
-              </span>
-            </motion.div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-4">
-              טכנולוגיות מתקדמות
-            </h2>
-            <p className="text-xl sm:text-2xl text-brand-gray-700">
-              כלים מקצועיים לפתרונות מקצועיים - מעודכן תמיד עם הטכנולוגיות החדשות
-            </p>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto">
-            {/* Skill Bars */}
-            <div className="grid gap-6 mb-6">
-              {displayedSkills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05, duration: 0.5, ease: bouncyEasing }}
-                  whileHover={{
-                    y: -5,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-shadow"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-bold text-brand-navy text-lg">{skill.name}</span>
-                    <span className="text-base font-semibold text-brand-gray-600">{skill.level}%</span>
-                  </div>
-                  <div className="relative h-4 bg-brand-gray-100 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, delay: index * 0.05, ease: bouncyEasing }}
-                      className={`absolute top-0 left-0 h-full ${skill.color} rounded-full`}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Show More Button - Mobile Only */}
-            {isMobile && !showAllSkills && skills.length > displayedSkills.length && (
-              <motion.button
-                onClick={() => setShowAllSkills(true)}
-                className="w-full mb-12 py-4 text-brand-blue font-semibold text-lg bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all"
-                whileHover={{
-                  scale: 1.02,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.98,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                הצג עוד כישורים ({skills.length - displayedSkills.length})
-              </motion.button>
-            )}
-
-            {/* Technology Tags */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2, ease: bouncyEasing }}
-              className="bg-white rounded-3xl p-8 shadow-lg"
-            >
-              <h3 className="text-2xl font-bold text-brand-navy mb-6 text-center">
-                טכנולוגיות נוספות
-              </h3>
-              <div className="flex flex-wrap gap-3 justify-center">
-                {technologies.map((tech, index) => (
-                  <motion.span
-                    key={tech}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      delay: index * 0.02,
-                      duration: 0.3,
-                      ease: bouncyEasing
-                    }}
-                    whileHover={{
-                      scale: 1.1,
-                      y: -3,
-                      transition: { duration: 0.2, ease: bouncyEasing }
-                    }}
-                    className="px-4 py-2 bg-brand-gray-100 rounded-full text-sm font-medium text-brand-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue transition-colors cursor-default"
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="py-16 lg:py-24 bg-section-light-blue">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-4">
-              הערכים שמנחים אותי
-            </h2>
-            <p className="text-xl sm:text-2xl text-brand-gray-700">
-              העקרונות שעומדים בבסיס העבודה שלי
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5, ease: bouncyEasing }}
-                whileHover={{
-                  y: -8,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-2xl transition-shadow"
-              >
-                <motion.div
-                  className={`w-20 h-20 ${value.color} rounded-2xl flex items-center justify-center text-white mx-auto mb-6`}
-                  whileHover={{
-                    rotate: [0, -10, 10, -10, 0],
-                    transition: { duration: 0.5, ease: bouncyEasing }
-                  }}
-                >
-                  <value.icon size={36} />
-                </motion.div>
-                <h3 className="text-xl font-bold text-brand-navy mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-brand-gray-700 leading-relaxed">
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Achievements Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {achievements.map((achievement, index) => (
-              <motion.div
-                key={achievement.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5, ease: bouncyEasing }}
-                whileHover={{
-                  y: -8,
-                  rotate: index % 2 === 0 ? 2 : -2,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                className={`${achievement.color} rounded-3xl p-8 text-center text-white shadow-lg hover:shadow-2xl transition-shadow`}
-              >
-                <div className="text-4xl md:text-5xl font-bold mb-3">
-                  {achievement.number}
-                </div>
-                <div className="text-sm md:text-base font-medium">
-                  {achievement.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-brand-blue">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              יש לכם פרויקט? בואו נדבר!
-            </h2>
-            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              שיחת ייעוץ ראשונית חינם - נדבר על הצרכים של העסק שלכם
-              ואיך אוכל לעזור לכם לחסוך זמן, לגדול ולהצליח יותר.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-block px-10 py-5 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 active:scale-95"
-              >
-                צור קשר
-              </Link>
+              {aboutPage.name}
+            </h1>
+            <p className="mt-4 text-2xl font-semibold text-pad-yellow sm:text-3xl">{aboutPage.role}</p>
+            <p className="mt-5 max-w-[48ch] text-lg leading-relaxed text-pad-carbon-ink sm:text-xl">{aboutPage.intro}</p>
+            <div className="mt-10">
               <a
-                href={buildWhatsAppUrl('היי, קראתי עליך ואשמח לשמוע עוד')}
+                href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => {
-                  trackWhatsAppClick('/about', 'about')
-                  trackGenerateLead('whatsapp', '/about')
-                }}
-                className="inline-block px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 active:scale-95"
+                onClick={trackWhatsApp}
+                className="pad-perf-top pad-sheet-shadow group relative inline-flex min-h-[3.5rem] items-center gap-4 bg-pad-yellow py-4 pe-5 ps-6 text-pad-ink transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:-rotate-1 motion-reduce:transition-none"
+                style={{ ['--pad-perf-ground' as string]: '#2B3FD6' }}
               >
-                WhatsApp
+                <MessageCircle aria-hidden="true" className="h-5 w-5" />
+                <span className="text-lg font-bold sm:text-xl">{aboutPage.whatsappCta}</span>
               </a>
             </div>
-          </motion.div>
+          </div>
+
+          {/* The card sheet: the facts, in the margin */}
+          <div className="pad-paper pad-sheet-shadow relative px-6 pb-6 pt-5 text-pad-ink sm:px-8 lg:col-span-5 lg:rotate-[1.2deg]">
+            <span aria-hidden="true" className="absolute inset-y-0 start-4 w-px bg-pad-red/60" />
+            <p className="border-b-[3px] border-double border-pad-red pb-2 ps-4 font-pad-display text-3xl font-bold leading-none text-pad-ink">
+              {aboutPage.card.title}
+            </p>
+            <dl className="ps-4">
+              {aboutPage.card.facts.map((fact) => (
+                <div key={fact.label} className="border-b border-pad-rule py-3">
+                  <dt className="text-sm font-bold text-pad-red">{fact.label}</dt>
+                  <dd className="mt-0.5 text-lg leading-snug">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </section>
-    </main>
+
+      {/* The story, with the vision as a margin note */}
+      <section aria-labelledby="about-story-heading" className="pad-paper">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-12 lg:gap-x-16 lg:py-24">
+          <article className="relative lg:col-span-8">
+            <span aria-hidden="true" className="absolute inset-y-0 -start-6 hidden w-px bg-pad-red/50 lg:block" />
+            <h2 id="about-story-heading" className="font-pad-display text-6xl font-bold leading-none text-pad-ink">
+              {aboutPage.story.title}
+            </h2>
+            {/* The story sits on the pad's printed rules: the line box is one --pad-line
+                tall and the rules are lifted to the text baseline (half a line minus the
+                font's descent), so the text rests on them instead of being struck through. */}
+            <div
+              className="pad-ruled mt-6 [--pad-line:2.5rem]"
+              style={{ backgroundPositionY: 'calc(0.3em - 1.25rem)', fontSize: '1.25rem' }}
+            >
+              {aboutPage.story.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="max-w-[62ch] leading-[2.5rem] text-pad-ink">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </article>
+          <aside className="lg:col-span-4">
+            <h2 className="border-b-[3px] border-double border-pad-red pb-2 font-pad-display text-3xl font-bold text-pad-red">
+              {aboutPage.story.missionTitle}
+            </h2>
+            <p className="mt-4 font-pad-hand text-2xl leading-relaxed text-pad-ballpoint">{aboutPage.story.mission}</p>
+          </aside>
+        </div>
+      </section>
+
+      {/* How the work runs */}
+      <section aria-labelledby="about-process-heading" className="bg-pad-yellow">
+        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-24">
+          <h2 id="about-process-heading" className="font-pad-display text-6xl font-bold leading-none text-pad-ink">
+            {aboutPage.process.title}
+          </h2>
+          <ol className="mt-10 border-t-[3px] border-double border-pad-red">
+            {aboutPage.process.steps.map((step, index) => (
+              <li
+                key={step.title}
+                className="grid grid-cols-[3rem_1fr] gap-x-4 border-b border-pad-red/40 py-6 md:items-baseline md:gap-x-8"
+              >
+                <span aria-hidden="true" className="font-pad-display text-5xl font-bold leading-none text-pad-red">
+                  {index + 1}
+                </span>
+                <p className="flex flex-col gap-1 text-lg leading-snug text-pad-ink md:flex-row md:items-baseline md:gap-4">
+                  <span className="text-2xl font-bold md:flex-shrink-0">{step.title}</span>
+                  {/* Dotted leader carries the rule from the step to its description */}
+                  <span aria-hidden="true" className="hidden min-w-8 flex-1 border-b-2 border-dotted border-pad-red/60 md:block" />
+                  <span className="md:flex-shrink-0 md:text-end">{step.description}</span>
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* What I promise, and what I build with */}
+      <section aria-labelledby="about-values-heading" className="pad-paper">
+        <div className="mx-auto grid max-w-6xl gap-14 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:gap-x-16 lg:py-24">
+          <div>
+            <h2 id="about-values-heading" className="font-pad-display text-5xl font-bold leading-none text-pad-ink">
+              {aboutPage.values.title}
+            </h2>
+            <p className="mt-3 text-xl text-pad-ink-soft">{aboutPage.values.subtitle}</p>
+            <ul className="mt-8 border-t-[3px] border-double border-pad-red">
+              {aboutPage.values.items.map((value) => (
+                <li key={value.title} className="grid grid-cols-[2.25rem_1fr] gap-x-4 border-b border-pad-rule py-5">
+                  <span aria-hidden="true" className="relative mt-1 h-7 w-7 border-2 border-pad-ink">
+                    <PenTick />
+                  </span>
+                  <div>
+                    <h3 className="font-pad-display text-3xl font-bold leading-none text-pad-ink">{value.title}</h3>
+                    <p className="mt-2 text-lg leading-snug text-pad-ink-soft">{value.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-pad-display text-5xl font-bold leading-none text-pad-ink">{aboutPage.tools.title}</h2>
+            <p className="mt-3 text-xl text-pad-ink-soft">{aboutPage.tools.subtitle}</p>
+            {/* Printed on the pad's own rules, two tools to a line, not a pill wrap */}
+            <dl className="mt-8 border-t-[3px] border-double border-pad-red">
+              {aboutPage.tools.groups.map((group) => (
+                <div key={group.label} className="border-b border-pad-rule py-5">
+                  <dt className="font-pad-display text-2xl leading-none text-pad-red">{group.label}</dt>
+                  <dd className="mt-3">
+                    <ul className="grid gap-x-8 sm:grid-cols-2" dir="ltr">
+                      {group.items.map((tool) => (
+                        <li
+                          key={tool}
+                          className="flex items-baseline gap-3 border-b border-pad-rule/70 py-2 text-lg font-bold text-pad-ink last:border-b-0 sm:[&:nth-last-child(2):nth-child(odd)]:border-b-0"
+                        >
+                          <span aria-hidden="true" className="h-1.5 w-1.5 flex-shrink-0 bg-pad-red" />
+                          {tool}
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      {/* The proof: real client copies */}
+      {work.length > 0 && (
+        <section aria-labelledby="about-work-heading" className="bg-pad-pink">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+              <div>
+                <h2 id="about-work-heading" className="font-pad-display text-5xl font-bold leading-none text-pad-ink sm:text-6xl">
+                  {aboutPage.work.title}
+                </h2>
+                <p className="mt-3 text-xl text-pad-ink">{aboutPage.work.subtitle}</p>
+              </div>
+              <Link
+                href="/portfolio"
+                onClick={() => trackCtaClick(aboutPage.work.allLabel, 'about', '/portfolio')}
+                className="group inline-flex min-h-11 items-center gap-2 self-start text-lg font-bold text-pad-ink underline decoration-pad-red decoration-2 underline-offset-[6px] md:self-auto"
+              >
+                {aboutPage.work.allLabel}
+                <ArrowLeft aria-hidden="true" className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
+              </Link>
+            </div>
+            <ul className="pad-scroll-x -mx-5 mt-12 flex snap-x snap-mandatory items-start gap-6 overflow-x-auto px-5 pb-6 pt-4 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0">
+              {work.map((item, index) => (
+                <li key={item.slug} className="w-[82%] flex-shrink-0 snap-center sm:w-[60%] md:w-auto">
+                  <ClientCopyCard item={item} index={index} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* Signed close */}
+      <section aria-labelledby="about-close-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-12 lg:py-24">
+          <div className="lg:col-span-7">
+            <h2 id="about-close-heading" className="font-pad-display text-6xl font-bold leading-[0.88] [text-wrap:balance] sm:text-7xl">
+              {aboutPage.close.title}
+            </h2>
+            <p className="mt-5 max-w-[46ch] text-xl leading-relaxed text-pad-carbon-ink">{aboutPage.close.subtitle}</p>
+            <div className="mt-10">
+              <TearSlipLink href="/contact" onClick={() => trackCtaClick(aboutPage.close.button, 'about', '/contact')}>
+                {aboutPage.close.button}
+              </TearSlipLink>
+            </div>
+          </div>
+          <div className="lg:col-span-4 lg:col-start-9">
+            {/* The signature always renders; the one authored moment is the pen
+                underline stroking in beneath it, so a reveal that never fires
+                can never erase the mark. */}
+            <p className="relative inline-block font-pad-hand text-4xl text-pad-yellow" style={{ transform: 'rotate(-3deg)' }}>
+              {aboutPage.name}
+              <motion.svg
+                aria-hidden="true"
+                viewBox="0 0 220 14"
+                preserveAspectRatio="none"
+                className="absolute inset-x-0 -bottom-2 h-3 w-full text-pad-yellow"
+                fill="none"
+              >
+                <motion.path
+                  d="M4 9c38 3 78 1 116-1 30-2 60-3 96 1"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  initial={prefersReducedMotion ? false : { pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                />
+              </motion.svg>
+            </p>
+            <p className="mt-1 border-t-2 border-pad-carbon-ink pt-2 text-sm font-bold text-pad-carbon-ink">
+              {aboutPage.close.signatureLabel}
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

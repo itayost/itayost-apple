@@ -14,20 +14,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { seoConfig } from '@/config/seo'
 
-// Import Google Fonts
-import { Heebo } from 'next/font/google'
-
-// Configure Heebo font with optimizations
-const heebo = Heebo({
-  subsets: ['hebrew', 'latin'],
-  // 800 is required by the desktop h1/h2 rules in globals.css; without it the
-  // browser synthesizes a faux-bold from 700 and stems render smeared.
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-heebo',
-  display: 'swap', // Prevent font loading from blocking render
-  preload: true, // Preload font files
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Arial', 'sans-serif'],
-})
+import { fontVariables } from './fonts'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.itayost.com'),
@@ -94,7 +81,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#0071E3',
+  themeColor: '#2B3FD6',
 }
 
 // Structured Data Script Component
@@ -158,7 +145,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="he" dir="rtl" className={heebo.variable}>
+    <html lang="he" dir="rtl" className={fontVariables}>
       <head>
         {/* Favicons */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -176,7 +163,7 @@ export default function RootLayout({
         
         {/* Preconnect for Performance */}
         {/* No fonts.googleapis/gstatic preconnect: next/font/google self-hosts
-            Heebo at build time, so neither origin is ever requested. */}
+            every face at build time, so neither origin is ever requested. */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -185,7 +172,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://eu.i.posthog.com" />
 
         {/* Theme Color */}
-        <meta name="theme-color" content="#0071E3" />
+        <meta name="theme-color" content="#2B3FD6" />
       </head>
       <body className="antialiased">
         <StructuredData />

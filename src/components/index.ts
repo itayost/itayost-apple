@@ -2,11 +2,9 @@
 export { Navigation } from './layout/Navigation'
 export { Footer } from './layout/Footer'
 
-// Section Components
-export { default as Hero } from './sections/Hero'
-export { default as Services } from './sections/Services'
-export { default as Portfolio } from './sections/Portfolio'
-export { default as Contact } from './sections/Contact'
+// Homepage (Carbon Order Pad) Components
+export { PadHero } from './pad/PadHero'
+export { PadContact } from './pad/PadContact'
 
 // Common Components
 export { WhatsAppButton } from './common/WhatsAppButton'

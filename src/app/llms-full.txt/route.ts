@@ -116,7 +116,7 @@ ${servicesBlock}
 
 Based in Ramat Gan, Israel. Serves businesses across Israel.
 - Phone/WhatsApp: 054-499-4417
-- Email: itayost1@gmail.com
+- Email: itay@itayost.com
 - Website: ${SITE_URL}
 
 ## Machine-Readable Surfaces

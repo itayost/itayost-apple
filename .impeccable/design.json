@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-18T00:00:00Z",
+  "title": "Design System: ItayOst",
+  "extensions": {
+    "colorMeta": {
+      "carbon": {
+        "role": "primary",
+        "displayName": "Carbon Blue",
+        "canonical": "#2B3FD6",
+        "tonalRamp": [
+          "#0E1547",
+          "#162173",
+          "#1B2A9E",
+          "#2B3FD6",
+          "#5566E2",
+          "#8290EC",
+          "#B3BCF5",
+          "#E3E7FC"
+        ]
+      },
+      "carbon-deep": {
+        "role": "primary",
+        "displayName": "Carbon Deep",
+        "canonical": "#1B2A9E",
+        "tonalRamp": [
+          "#0A1038",
+          "#111A5E",
+          "#1B2A9E",
+          "#2A3BC0",
+          "#5262D4",
+          "#8490E3",
+          "#B8C0F0",
+          "#E6E9FB"
+        ]
+      },
+      "carbon-ink": {
+        "role": "primary",
+        "displayName": "Carbon Ink",
+        "canonical": "#C9D0FF",
+        "tonalRamp": [
+          "#1C2266",
+          "#343D99",
+          "#5560C2",
+          "#7B85DD",
+          "#A2AAF0",
+          "#C9D0FF",
+          "#DEE2FF",
+          "#F2F4FF"
+        ]
+      },
+      "print-red": {
+        "role": "secondary",
+        "displayName": "Print Red",
+        "canonical": "#D7263D",
+        "tonalRamp": [
+          "#420A12",
+          "#6E111E",
+          "#9C192B",
+          "#D7263D",
+          "#E35A6B",
+          "#EC8B97",
+          "#F4BCC3",
+          "#FBE8EA"
+        ]
+      },
+      "yellow-copy": {
+        "role": "tertiary",
+        "displayName": "Yellow Copy",
+        "canonical": "#F2DF6E",
+        "tonalRamp": [
+          "#3D350C",
+          "#665917",
+          "#8F7E22",
+          "#BBA636",
+          "#DCC553",
+          "#F2DF6E",
+          "#F8EBA6",
+          "#FDF8DD"
+        ]
+      },
+      "pink-copy": {
+        "role": "tertiary",
+        "displayName": "Pink Copy",
+        "canonical": "#F4C6D2",
+        "tonalRamp": [
+          "#3F1622",
+          "#6A2A3C",
+          "#944259",
+          "#BD6680",
+          "#DB94A8",
+          "#F4C6D2",
+          "#F9DDE5",
+          "#FDF2F5"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet White",
+        "canonical": "#FBFBF8",
+        "tonalRamp": [
+          "#262622",
+          "#44443F",
+          "#66665F",
+          "#8A8A83",
+          "#B0B0A9",
+          "#D5D5CF",
+          "#EDEDE9",
+          "#FBFBF8"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#15161A",
+        "tonalRamp": [
+          "#15161A",
+          "#2A2C33",
+          "#3F414B",
+          "#575A66",
+          "#737682",
+          "#9598A3",
+          "#BBBDC5",
+          "#E2E3E8"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#4A4C57",
+        "tonalRamp": [
+          "#17181C",
+          "#2C2D34",
+          "#4A4C57",
+          "#62646F",
+          "#7E808A",
+          "#9FA0A8",
+          "#C3C4CA",
+          "#E6E7EA"
+        ]
+      },
+      "rule-blue": {
+        "role": "neutral",
+        "displayName": "Rule Blue",
+        "canonical": "#B9C6E8",
+        "tonalRamp": [
+          "#1F2A4A",
+          "#35446F",
+          "#506193",
+          "#7384B4",
+          "#98A7D0",
+          "#B9C6E8",
+          "#D5DDF2",
+          "#EEF2FA"
+        ]
+      },
+      "ballpoint": {
+        "role": "neutral",
+        "displayName": "Ballpoint",
+        "canonical": "#1F2A8C",
+        "tonalRamp": [
+          "#0B0F33",
+          "#141B5C",
+          "#1F2A8C",
+          "#3440B0",
+          "#5E68C8",
+          "#8C94DB",
+          "#BCC1EC",
+          "#E6E8F9"
+        ]
+      },
+      "whatsapp-green": {
+        "role": "neutral",
+        "displayName": "WhatsApp Green",
+        "canonical": "#0F7A40",
+        "tonalRamp": [
+          "#04230F",
+          "#0B5E31",
+          "#0F7A40",
+          "#27995A",
+          "#52B67E",
+          "#85CFA4",
+          "#B9E5CB",
+          "#E6F6EC"
+        ]
+      },
+      "whatsapp-deep": {
+        "role": "neutral",
+        "displayName": "WhatsApp Deep",
+        "canonical": "#0B5E31"
+      },
+      "board-line": {
+        "role": "neutral",
+        "displayName": "Board Line",
+        "canonical": "#3A3C46"
+      },
+      "board-text": {
+        "role": "neutral",
+        "displayName": "Board Text",
+        "canonical": "#C9CBD6"
+      },
+      "board-alert": {
+        "role": "neutral",
+        "displayName": "Board Alert",
+        "canonical": "#FF8A98"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (Karantina)",
+        "purpose": "Hero h1 only; second line in Yellow Copy."
+      },
+      "headline": {
+        "displayName": "Headline (Karantina)",
+        "purpose": "Section h2s, 3.75rem to 6rem, line-height 0.85 to 0.9."
+      },
+      "title": {
+        "displayName": "Title (Karantina)",
+        "purpose": "Service names, client titles, step numbers, form headers and No. form numbers."
+      },
+      "body": {
+        "displayName": "Body (Assistant)",
+        "purpose": "Intros and explanation, 34ch to 52ch, tabular numerals."
+      },
+      "label": {
+        "displayName": "Label (Assistant bold)",
+        "purpose": "CTAs, links, form-line labels, nav items."
+      },
+      "hand": {
+        "displayName": "Ballpoint (Playpen Sans Hebrew)",
+        "purpose": "Scrawled notes, pain lines, filled-in values, signatures. Never headings or buttons."
+      },
+      "article-body": {
+        "displayName": "Article Body",
+        "purpose": "Long-form prose through the shared contract in src/lib/prose.ts. Measure capped at 62ch inside whatever column holds it; paragraphs 1.5rem apart on 1.9 leading."
+      }
+    },
+    "shadows": [
+      {
+        "name": "paper-rest",
+        "value": "0 1px 1px rgba(21,22,26,0.08), 0 12px 28px -10px rgba(10,20,80,0.45)",
+        "purpose": "Every sheet, slip, filed copy and dropdown resting on a ground."
+      },
+      {
+        "name": "header-lift",
+        "value": "0 10px 24px -14px rgba(10,20,80,0.45)",
+        "purpose": "Nav bar after scrolling 20px; mobile bar casts the same shadow upward."
+      },
+      {
+        "name": "lifting-sheet",
+        "value": "drop-shadow(0 18px 22px rgba(8,14,70,0.55))",
+        "purpose": "Hero top sheet during the carbon lift, fading with progress."
+      },
+      {
+        "name": "binding",
+        "value": "0 4px 8px rgba(0,0,0,0.35)",
+        "purpose": "The pad binding strip only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Slip and copy hover lifts, dropdown and mobile menu entry."
+      },
+      {
+        "name": "duration-lift",
+        "value": "300ms",
+        "purpose": "Slip, button and arrow hover transitions."
+      },
+      {
+        "name": "duration-copy",
+        "value": "500ms",
+        "purpose": "Filed client copy lift and straighten."
+      },
+      {
+        "name": "carbon-lift",
+        "value": "rotateX 0 to 104deg over scroll progress 0.08 to 0.62; opacity 1 to 0 at 0.5 to 0.56; copy rises 10px to 0 at 0.3 to 0.75",
+        "purpose": "The one scroll-linked timeline. Reduced motion renders both sheets static, side by side."
+      },
+      {
+        "name": "reading-progress",
+        "value": "spring(stiffness 120, damping 30, restDelta 0.001)",
+        "purpose": "The article page's one scroll-linked timeline: scaleX on a 4px Print Red rule fixed under the header, origin on the inline-start side."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tear-off Slip (primary CTA)",
+      "kind": "button",
+      "refersTo": "slip-primary",
+      "description": "The primary action: a perforated yellow slip with a reply stamp that lifts and tilts on hover.",
+      "html": "<div class=\"ds-slip-ground\"><a href=\"#\" class=\"ds-slip\"><span class=\"ds-slip-label\">בואו נדבר, אחזור אליכם תוך שעה</span><svg class=\"ds-slip-arrow\" aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 19-7-7 7-7\"/><path d=\"M19 12H5\"/></svg><span class=\"ds-slip-stamp\" aria-hidden=\"true\">מענה תוך שעה</span></a></div>",
+      "css": ".ds-slip-ground { direction: rtl; background: #2B3FD6; padding: 40px 24px 24px; } .ds-slip { position: relative; display: inline-flex; align-items: center; gap: 16px; min-height: 3.5rem; padding: 16px 20px 16px 24px; padding-inline-start: 24px; padding-inline-end: 20px; background: #F2DF6E; color: #15161A; text-decoration: none; font-family: Assistant, system-ui, sans-serif; box-shadow: 0 1px 1px rgba(21,22,26,0.08), 0 12px 28px -10px rgba(10,20,80,0.45); transition: transform 300ms cubic-bezier(0.16,1,0.3,1); } .ds-slip::before { content: ''; position: absolute; inset-inline: 0; top: -3px; height: 6px; background-image: radial-gradient(circle at 3px 3px, #2B3FD6 2.2px, transparent 2.6px); background-size: 11px 6px; background-repeat: repeat-x; } .ds-slip-label { font-size: 1.25rem; font-weight: 700; line-height: 1.25; } .ds-slip-arrow { transition: transform 300ms; } .ds-slip-stamp { position: absolute; top: -20px; inset-inline-end: 12px; transform: rotate(-7deg); border: 2px solid #D7263D; background: #F2DF6E; color: #D7263D; padding: 4px 10px 2px; font-family: Karantina, 'Arial Narrow', sans-serif; font-size: 1.5rem; font-weight: 700; line-height: 1; } .ds-slip:hover { transform: translateY(-4px) rotate(-1deg); } .ds-slip:hover .ds-slip-arrow { transform: translateX(-4px); } .ds-slip:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; border-radius: 2px; } @media (prefers-reduced-motion: reduce) { .ds-slip, .ds-slip-arrow { transition: none; } .ds-slip:hover { transform: none; } }"
+    },
+    {
+      "name": "Carbon Button",
+      "kind": "button",
+      "refersTo": "button-carbon",
+      "description": "Solid carbon action for the nav CTA and mobile menu CTA.",
+      "html": "<a href=\"#\" class=\"ds-btn-carbon\">התחל פרויקט</a>",
+      "css": ".ds-btn-carbon { display: inline-block; background: #2B3FD6; color: #fff; padding: 10px 24px; font-family: Assistant, system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; text-decoration: none; transition: transform 300ms, background-color 300ms; } .ds-btn-carbon:hover { background: #1B2A9E; transform: translateY(-2px) rotate(-1deg); } .ds-btn-carbon:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; border-radius: 2px; } @media (prefers-reduced-motion: reduce) { .ds-btn-carbon { transition: none; } }"
+    },
+    {
+      "name": "Ink Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline-ink",
+      "description": "Secondary action on the yellow copy; inverts on hover.",
+      "html": "<div style=\"background:#F2DF6E;padding:24px;direction:rtl\"><a href=\"#\" class=\"ds-btn-ink\">לכל השירותים <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 19-7-7 7-7\"/><path d=\"M19 12H5\"/></svg></a></div>",
+      "css": ".ds-btn-ink { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #15161A; color: #15161A; padding: 12px 20px; font-family: Assistant, system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; text-decoration: none; transition: background-color 150ms, color 150ms; } .ds-btn-ink:hover { background: #15161A; color: #F2DF6E; } .ds-btn-ink:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; }"
+    },
+    {
+      "name": "Newsletter Field",
+      "kind": "input",
+      "refersTo": "input-newsletter",
+      "description": "Paper field joined flush to a yellow submit on the ink footer.",
+      "html": "<form class=\"ds-news\" onsubmit=\"return false\"><label class=\"ds-sr\" for=\"ds-email\">אימייל</label><input id=\"ds-email\" class=\"ds-news-input\" type=\"email\" placeholder=\"כתובת אימייל\"><button class=\"ds-news-btn\" type=\"submit\">הרשמה</button></form>",
+      "css": ".ds-news { direction: rtl; display: flex; background: #15161A; padding: 24px; } .ds-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .ds-news-input { flex: 1; background: #FBFBF8; border: 2px solid #FBFBF8; border-radius: 0; padding: 12px 16px; font-family: Assistant, system-ui, sans-serif; font-size: 1.125rem; color: #15161A; caret-color: #2B3FD6; } .ds-news-input::placeholder { color: #4A4C57; } .ds-news-input:focus-visible { outline: none; box-shadow: 0 0 0 4px #F2DF6E; } .ds-news-btn { background: #F2DF6E; color: #15161A; border: 0; border-radius: 0; padding: 12px 28px; font-family: Assistant, system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; cursor: pointer; transition: background-color 150ms; } .ds-news-btn:hover { background: #fff; } .ds-news-btn:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Paper header with a printed double red rule; current page circled in red ballpoint.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-mark\">ITAYOST</span><nav class=\"ds-nav-links\"><a href=\"#\" class=\"ds-nav-link is-current\" aria-current=\"page\"><svg class=\"ds-pen-circle\" aria-hidden=\"true\" viewBox=\"0 0 120 44\" preserveAspectRatio=\"none\" fill=\"none\"><path d=\"M8 26C9 10 44 4 72 5c28 1 44 9 42 20-2 12-38 16-64 15C24 39 5 33 9 20c2-6 10-10 20-12\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>בית</a><a href=\"#\" class=\"ds-nav-link\">שירותים</a><a href=\"#\" class=\"ds-nav-link\">תיק עבודות</a><a href=\"#\" class=\"ds-nav-cta\">התחל פרויקט</a></nav></header>",
+      "css": ".ds-nav { direction: rtl; position: relative; display: flex; align-items: center; justify-content: space-between; height: 5rem; padding: 0 32px; background: #FBFBF8; color: #15161A; font-family: Assistant, system-ui, sans-serif; } .ds-nav::after { content: ''; position: absolute; inset-inline: 0; bottom: 0; height: 5px; border-top: 1px solid #D7263D; border-bottom: 1px solid #D7263D; } .ds-nav-mark { font-family: Karantina, 'Arial Narrow', sans-serif; font-size: 2.25rem; font-weight: 700; line-height: 1; } .ds-nav-links { display: flex; align-items: center; gap: 36px; } .ds-nav-link { position: relative; color: #15161A; font-size: 1.125rem; font-weight: 600; text-decoration: none; transition: color 150ms; } .ds-nav-link:hover { color: #2B3FD6; } .ds-pen-circle { position: absolute; left: -12px; right: -12px; top: -8px; width: calc(100% + 1.5rem); height: calc(100% + 1rem); color: #D7263D; pointer-events: none; } .ds-nav-cta { background: #2B3FD6; color: #fff; padding: 10px 24px; font-size: 1.125rem; font-weight: 700; text-decoration: none; transition: transform 300ms, background-color 300ms; } .ds-nav-cta:hover { background: #1B2A9E; transform: translateY(-2px) rotate(-1deg); } .ds-nav-link:focus-visible, .ds-nav-cta:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; border-radius: 2px; }"
+    },
+    {
+      "name": "Category Tag",
+      "kind": "chip",
+      "refersTo": "sheet",
+      "description": "Red printed tag for categories and the example label.",
+      "html": "<span class=\"ds-tag\">מערכת</span>",
+      "css": ".ds-tag { display: inline-block; border: 1px solid #D7263D; color: #D7263D; background: #FBFBF8; padding: 0 6px; font-family: Assistant, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; }"
+    },
+    {
+      "name": "Filed Client Copy",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "A real client project as a stapled, numbered copy that straightens on hover.",
+      "html": "<div class=\"ds-copy-ground\"><a href=\"#\" class=\"ds-copy\"><span class=\"ds-staple\" aria-hidden=\"true\"></span><div class=\"ds-copy-head\"><span>עותק לקוח</span><span class=\"ds-copy-no\" dir=\"ltr\">No. 0148</span></div><div class=\"ds-copy-screen\"></div><div class=\"ds-copy-title-row\"><h3 class=\"ds-copy-title\">Garden of Eden</h3><span class=\"ds-copy-tag\">מערכת</span></div><p class=\"ds-copy-sub\">מערכת ניהול לחדר כושר</p></a></div>",
+      "css": ".ds-copy-ground { direction: rtl; background: #F4C6D2; padding: 32px; } .ds-copy { position: relative; display: block; max-width: 360px; padding: 20px 20px 24px; background: #FBFBF8; color: #15161A; text-decoration: none; font-family: Assistant, system-ui, sans-serif; box-shadow: 0 1px 1px rgba(21,22,26,0.08), 0 12px 28px -10px rgba(10,20,80,0.45); transform: rotate(-1deg); transition: transform 500ms cubic-bezier(0.16,1,0.3,1); } .ds-copy:hover { transform: translateY(-8px) rotate(0deg); } .ds-copy:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; border-radius: 2px; } .ds-staple { position: absolute; top: -6px; inset-inline-start: 32px; width: 40px; height: 8px; border: 2px solid #8A8FA8; border-bottom: 0; transform: rotate(-6deg); box-shadow: 0 1px 0 rgba(0,0,0,0.25); } .ds-copy-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed rgba(215,38,61,0.5); padding-bottom: 8px; font-size: 0.875rem; font-weight: 700; color: #D7263D; } .ds-copy-no { font-family: Karantina, 'Arial Narrow', sans-serif; font-size: 1.125rem; font-weight: 400; line-height: 1; } .ds-copy-screen { margin-top: 16px; aspect-ratio: 4 / 3; background: #EEF1F6; border: 1px solid rgba(21,22,26,0.15); } .ds-copy-title-row { margin-top: 20px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; } .ds-copy-title { margin: 0; font-family: Karantina, 'Arial Narrow', sans-serif; font-size: 2.25rem; font-weight: 700; line-height: 1; } .ds-copy-tag { border: 1px solid #D7263D; color: #D7263D; padding: 0 6px; font-size: 0.875rem; font-weight: 700; } .ds-copy-sub { margin: 8px 0 0; color: #4A4C57; line-height: 1.375; } @media (prefers-reduced-motion: reduce) { .ds-copy { transition: none; } }"
+    },
+    {
+      "name": "Ruled Order Line",
+      "kind": "custom",
+      "refersTo": "sheet",
+      "description": "Services as a printed order form: checkbox, Karantina name, tagline, arrow; ballpoint tick on systems lines.",
+      "html": "<ol class=\"ds-order\"><li><a href=\"#\" class=\"ds-order-line\"><span class=\"ds-box\" aria-hidden=\"true\"><svg viewBox=\"0 0 32 32\" fill=\"none\"><path d=\"M5 17c3 2 6 6 8 9 4-9 9-17 15-23\" stroke=\"#1F2A8C\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span><span class=\"ds-order-name\">מערכות CRM</span><span class=\"ds-order-tag\">כל הלידים והלקוחות במקום אחד</span></span><svg class=\"ds-order-arrow\" aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 19-7-7 7-7\"/><path d=\"M19 12H5\"/></svg></a></li></ol>",
+      "css": ".ds-order { direction: rtl; list-style: none; margin: 0; padding: 0 24px; background: #F2DF6E; border-top: 3px double #D7263D; font-family: Assistant, system-ui, sans-serif; } .ds-order li { border-bottom: 1px solid rgba(215,38,61,0.5); } .ds-order-line { display: grid; grid-template-columns: 2.75rem 1fr auto; column-gap: 16px; align-items: start; padding: 24px 0; color: #15161A; text-decoration: none; transition: background-color 150ms; } .ds-order-line:hover { background: rgba(21,22,26,0.04); } .ds-order-line:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; } .ds-box { position: relative; margin-top: 4px; width: 28px; height: 28px; border: 2px solid #15161A; } .ds-box svg { position: absolute; top: -8px; inset-inline-start: 0; width: 36px; height: 36px; } .ds-order-name { display: block; font-family: Karantina, 'Arial Narrow', sans-serif; font-size: 2.25rem; font-weight: 700; line-height: 1; } .ds-order-tag { display: block; margin-top: 8px; font-size: 1.125rem; line-height: 1.375; color: rgba(21,22,26,0.8); } .ds-order-arrow { margin-top: 8px; transition: transform 300ms; } .ds-order-line:hover .ds-order-arrow { transform: translateX(-8px); }"
+    },
+    {
+      "name": "Printed Form Line",
+      "kind": "input",
+      "refersTo": "input-form-line",
+      "description": "A writable ruled line: red printed label, value written in ballpoint, Assistant placeholder as a hint, red dashed focus, red error underline kept while focused.",
+      "html": "<div class=\"ds-fl-sheet\"><div class=\"ds-fl\"><label for=\"ds-fl-name\" class=\"ds-fl-label\">שם מלא <span aria-hidden=\"true\">*</span></label><div><input id=\"ds-fl-name\" class=\"ds-fl-input\" placeholder=\"ישראל ישראלי\"></div></div><div class=\"ds-fl\"><label for=\"ds-fl-phone\" class=\"ds-fl-label\">טלפון <span aria-hidden=\"true\">*</span></label><div><input id=\"ds-fl-phone\" class=\"ds-fl-input is-error\" dir=\"ltr\" type=\"tel\" aria-invalid=\"true\" aria-describedby=\"ds-fl-err\" placeholder=\"050-1234567\"><p id=\"ds-fl-err\" class=\"ds-fl-error\"><svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"/><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"/></svg>מספר טלפון לא תקין</p></div></div></div>",
+      "css": ".ds-fl-sheet { direction: rtl; background: #FBFBF8; padding: 16px 32px 24px; font-family: Assistant, system-ui, sans-serif; } .ds-fl { display: grid; grid-template-columns: 7rem 1fr; align-items: baseline; gap: 16px; border-bottom: 1px solid #B9C6E8; padding: 20px 0 12px; } .ds-fl-label { font-size: 1rem; font-weight: 700; color: #D7263D; } .ds-fl-input { width: 100%; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; padding: 8px 4px; font-family: 'Playpen Sans Hebrew', cursive; font-size: 1.5rem; color: #1F2A8C; caret-color: #2B3FD6; } .ds-fl-input[dir=ltr] { text-align: end; } .ds-fl-input::placeholder { font-family: Assistant, system-ui, sans-serif; font-size: 1.125rem; color: #4A4C57; } .ds-fl-input:focus { outline: none; } .ds-fl-input:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; border-bottom-color: #2B3FD6; } .ds-fl-input.is-error, .ds-fl-input.is-error:focus-visible { border-bottom-color: #D7263D; } .ds-fl-error { margin: 4px 0 0; display: flex; align-items: center; gap: 6px; font-size: 0.875rem; font-weight: 700; color: #D7263D; }"
+    },
+    {
+      "name": "Carbon Receipt",
+      "kind": "card",
+      "refersTo": "receipt-carbon",
+      "description": "Success state: the visitor's pink carbon copy of the request, perforated, echoing values in ballpoint under a rotated red stamp.",
+      "html": "<div class=\"ds-rc-ground\"><div class=\"ds-rc\" role=\"status\"><div class=\"ds-rc-head\"><span class=\"ds-rc-title\">העתק לקוח</span><span class=\"ds-rc-no\" dir=\"ltr\">No. 0155</span></div><dl class=\"ds-rc-dl\"><dt>שם</dt><dd>ישראל ישראלי</dd><dt>טלפון</dt><dd><span dir=\"ltr\">050-1234567</span></dd></dl><p class=\"ds-rc-msg\">תודה על הפנייה! אחזור אליכם תוך שעה בימי עבודה.</p><span class=\"ds-rc-stamp\" aria-hidden=\"true\">התקבל</span></div></div>",
+      "css": ".ds-rc-ground { direction: rtl; background: #FBFBF8; padding: 40px 32px 32px; font-family: Assistant, system-ui, sans-serif; } .ds-rc { position: relative; max-width: 420px; background: #F4C6D2; padding: 20px 24px 24px; transform: rotate(-1.5deg); box-shadow: 0 1px 1px rgba(21,22,26,0.08), 0 12px 28px -10px rgba(10,20,80,0.45); color: #2B3FD6; text-shadow: 0 0 0.7px rgba(43,63,214,0.55); } .ds-rc::before { content: ''; position: absolute; inset-inline: 0; top: -3px; height: 6px; background-image: radial-gradient(circle at 3px 3px, #FBFBF8 2.2px, transparent 2.6px); background-size: 11px 6px; background-repeat: repeat-x; } .ds-rc-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px dashed rgba(43,63,214,0.4); padding-bottom: 8px; font-family: Karantina, 'Arial Narrow', sans-serif; } .ds-rc-title { font-size: 1.5rem; font-weight: 700; } .ds-rc-no { font-size: 1.25rem; } .ds-rc-dl { margin: 12px 0 0; display: grid; grid-template-columns: 5rem 1fr; row-gap: 8px; } .ds-rc-dl dt { font-weight: 700; } .ds-rc-dl dd { margin: 0; font-family: 'Playpen Sans Hebrew', cursive; font-size: 1.25rem; } .ds-rc-msg { margin: 16px 0 0; font-weight: 700; color: #15161A; text-shadow: none; } .ds-rc-stamp { position: absolute; top: -16px; inset-inline-end: 20px; transform: rotate(8deg); border: 3px solid #D7263D; background: #F4C6D2; color: #D7263D; text-shadow: none; padding: 4px 12px 2px; font-family: Karantina, 'Arial Narrow', sans-serif; font-size: 1.875rem; font-weight: 700; line-height: 1; }"
+    },
+    {
+      "name": "Channel Line",
+      "kind": "custom",
+      "refersTo": "button-carbon",
+      "description": "Direct contact channels as filled form lines on the carbon field: yellow icon, carbon-ink label, bold value with a yellow underline.",
+      "html": "<ul class=\"ds-ch\"><li><a href=\"#\" class=\"ds-ch-link\"><svg class=\"ds-ch-icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z\"/></svg><span class=\"ds-ch-label\">טלפון</span><span class=\"ds-ch-value\" dir=\"ltr\">054-499-4417</span></a></li><li><a href=\"#\" class=\"ds-ch-link\"><svg class=\"ds-ch-icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\"/><path d=\"m22 7-10 5L2 7\"/></svg><span class=\"ds-ch-label\">אימייל</span><span class=\"ds-ch-value\" dir=\"ltr\">itay@itayost.com</span></a></li></ul>",
+      "css": ".ds-ch { direction: rtl; list-style: none; margin: 0; padding: 16px 32px; background: #2B3FD6; font-family: Assistant, system-ui, sans-serif; } .ds-ch li { border-top: 1px solid rgba(201,208,255,0.3); } .ds-ch li:last-child { border-bottom: 1px solid rgba(201,208,255,0.3); } .ds-ch-link { display: flex; align-items: center; gap: 16px; min-height: 3.5rem; padding: 12px 0; color: #fff; text-decoration: none; } .ds-ch-icon { flex-shrink: 0; color: #F2DF6E; } .ds-ch-label { width: 5rem; flex-shrink: 0; font-size: 1rem; font-weight: 700; color: #C9D0FF; } .ds-ch-value { font-size: 1.25rem; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(242,223,110,0.4); text-decoration-thickness: 2px; text-underline-offset: 6px; transition: text-decoration-color 150ms; } .ds-ch-link:hover .ds-ch-value { text-decoration-color: #F2DF6E; } .ds-ch-link:focus-visible { outline: 2px dashed #F2DF6E; outline-offset: 4px; border-radius: 2px; }"
+    },
+    {
+      "name": "Index Sheet",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "The pad's index of what is filed: counts per category written in the ballpoint face on a tilted sheet over the carbon field. One shared component, used by the blog and guides indexes only; the total row is optional and prints in Print Red.",
+      "html": "<div class=\"ds-index-sheet\"><span class=\"ds-index-margin\" aria-hidden=\"true\"></span><p class=\"ds-index-head\">תוכן הבלוג</p><dl class=\"ds-index-list\"><div class=\"ds-index-row\"><dt>פיתוח אתרים</dt><dd class=\"ds-index-count\">7</dd></div><div class=\"ds-index-row\"><dt>מסחר אלקטרוני</dt><dd class=\"ds-index-count\">4</dd></div><div class=\"ds-index-row ds-index-total\"><dt>סה״כ מאמרים</dt><dd>11</dd></div></dl></div>",
+      "css": ".ds-index-sheet { position: relative; background: #FBFBF8; color: #15161A; padding: 20px 32px 24px; border-radius: 0; transform: rotate(1.2deg); box-shadow: 0 1px 1px rgba(21,22,26,0.08), 0 12px 28px -10px rgba(10,20,80,0.45); direction: rtl; } .ds-index-margin { position: absolute; inset-block: 0; inset-inline-start: 16px; width: 1px; background: rgba(215,38,61,0.6); } .ds-index-head { margin: 0 0 8px; padding-inline-start: 16px; padding-bottom: 8px; border-bottom: 3px double #D7263D; font-family: Karantina, \"Arial Narrow\", sans-serif; font-size: 1.875rem; font-weight: 700; line-height: 1; } .ds-index-list { margin: 0; padding-inline-start: 16px; } .ds-index-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid #B9C6E8; } .ds-index-row dt { font-family: Assistant, system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; } .ds-index-count { font-family: \"Playpen Sans Hebrew\", cursive; font-size: 1.25rem; color: #1F2A8C; margin: 0; } .ds-index-total { border-bottom: 0; } .ds-index-total dt { color: #D7263D; } .ds-index-total dd { margin: 0; font-family: Karantina, \"Arial Narrow\", sans-serif; font-size: 1.875rem; line-height: 1; color: #D7263D; }"
+    },
+    {
+      "name": "Divider Tab",
+      "kind": "chip",
+      "refersTo": "tab-divider",
+      "description": "The pad's tabs, shared by the blog's category filter and the section-jump strip on the FAQ and the legal documents: square, bottom-open boxes that break through a printed double red rule, each carrying its count, the active one marked with aria-current.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab ds-tab-active\" type=\"button\" aria-pressed=\"true\">הכל<span class=\"ds-tab-count\">11</span></button><button class=\"ds-tab\" type=\"button\" aria-pressed=\"false\">פיתוח אתרים<span class=\"ds-tab-count\">7</span></button></div>",
+      "css": ".ds-tabs { display: flex; gap: 4px; align-items: flex-end; padding-top: 12px; border-bottom: 3px double #D7263D; background: #FBFBF8; direction: rtl; } .ds-tab { display: inline-flex; align-items: center; gap: 8px; min-height: 2.75rem; margin-bottom: -3px; padding: 10px 16px 8px; border: 2px solid rgba(21,22,26,0.2); border-bottom: 0; border-radius: 0; background: rgba(251,251,248,0.6); color: #4A4C57; font-family: Assistant, system-ui, sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: color 0.2s, border-color 0.2s; } .ds-tab:hover { border-color: rgba(21,22,26,0.5); color: #15161A; } .ds-tab:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; } .ds-tab-active { border-color: #D7263D; background: #FBFBF8; color: #15161A; } .ds-tab-count { font-family: Karantina, \"Arial Narrow\", sans-serif; font-size: 1.125rem; line-height: 1; color: #D7263D; }"
+    },
+    {
+      "name": "Takeaways Note",
+      "kind": "custom",
+      "refersTo": "note-takeaways",
+      "description": "The answer-first summary torn into the article: a yellow pad note in an ink box, each line ticked in ballpoint.",
+      "html": "<aside class=\"ds-note\"><h2 class=\"ds-note-head\">השורה התחתונה</h2><ul class=\"ds-note-list\"><li><span class=\"ds-note-box\" aria-hidden=\"true\"><svg class=\"ds-note-tick\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#1F2A8C\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M4 13.5 L9.5 19 L20 4\"/></svg></span><span class=\"ds-note-text\">אתר מהיר מוריד נטישה ומעלה פניות.</span></li></ul></aside>",
+      "css": ".ds-note { margin: 32px 0; padding: 20px 28px; border: 2px solid #15161A; border-radius: 0; background: rgba(242,223,110,0.4); color: #15161A; direction: rtl; } .ds-note-head { margin: 0; padding-bottom: 8px; border-bottom: 3px double #D7263D; font-family: Karantina, \"Arial Narrow\", sans-serif; font-size: 1.875rem; font-weight: 700; line-height: 1; } .ds-note-list { margin: 16px 0 0; padding: 0; list-style: none; } .ds-note-list li { display: grid; grid-template-columns: 1.75rem 1fr; gap: 12px; margin-bottom: 12px; } .ds-note-box { position: relative; display: block; width: 1.25rem; height: 1.25rem; margin-top: 2px; border: 2px solid #15161A; } .ds-note-tick { position: absolute; top: -6px; inset-inline-start: 0; width: 1.5rem; height: 1.5rem; } .ds-note-text { font-family: Assistant, system-ui, sans-serif; font-size: 1.125rem; line-height: 1.625; }"
+    },
+    {
+      "name": "Article Prose",
+      "kind": "custom",
+      "refersTo": "article-body",
+      "description": "The shared long-form contract: printed headings, capped measure, carbon links, and quoted matter printed behind the red rule rather than handwritten.",
+      "html": "<div class=\"ds-prose\"><h2>איך בוחרים ספק</h2><p>הטקסט נדפס על הפנקס, בשורת קריאה אחת קבועה, כך שהעמודה סביבו לא קובעת את המידה.</p><blockquote>ציטוט נדפס, לא נכתב בעט.</blockquote><p><a href=\"#\">קישור בתוך המאמר</a></p></div>",
+      "css": ".ds-prose { max-width: 62ch; direction: rtl; color: #15161A; font-family: Assistant, system-ui, sans-serif; } .ds-prose h2 { margin: 56px 0 20px; padding-bottom: 8px; border-bottom: 3px double #D7263D; font-family: Karantina, \"Arial Narrow\", sans-serif; font-size: 2.25rem; font-weight: 700; line-height: 1; } .ds-prose h2:first-child { margin-top: 0; } .ds-prose p { margin: 0 0 24px; font-size: 1.125rem; line-height: 1.9; } .ds-prose a { color: #2B3FD6; font-weight: 700; text-decoration: none; border-bottom: 2px solid rgba(43,63,214,0.3); transition: border-color 0.2s; } .ds-prose a:hover { border-bottom-color: #2B3FD6; } .ds-prose a:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; } .ds-prose blockquote { margin: 0 0 24px; padding: 4px 20px 4px 0; padding-inline-start: 20px; border-inline-start: 2px solid #D7263D; background: transparent; font-size: 1.125rem; font-weight: 600; font-style: normal; line-height: 1.9; }"
+    },
+    {
+      "name": "Margin Index",
+      "kind": "nav",
+      "refersTo": "margin-index-item",
+      "description": "A legal document's clauses listed in its margin, the clause being read marked by a ballpoint rule down its inline-start edge and its number in full Print Red.",
+      "html": "<nav class=\"ds-margin-index\"><p class=\"ds-margin-head\">סעיפי המסמך</p><ol class=\"ds-margin-list\"><li><a class=\"ds-margin-item ds-margin-item-active\" href=\"#a\" aria-current=\"true\"><span class=\"ds-margin-num\" dir=\"ltr\">01</span>תנאי שימוש</a></li><li><a class=\"ds-margin-item\" href=\"#b\"><span class=\"ds-margin-num\" dir=\"ltr\">02</span>פרטיות</a></li><li><a class=\"ds-margin-item\" href=\"#c\"><span class=\"ds-margin-num\" dir=\"ltr\">03</span>עוגיות</a></li></ol></nav>",
+      "css": ".ds-margin-index { direction: rtl; width: 17rem; background: #FBFBF8; } .ds-margin-head { margin: 0 0 8px; padding-bottom: 8px; border-bottom: 3px double #D7263D; font-family: Karantina, \"Arial Narrow\", sans-serif; font-size: 1.5rem; font-weight: 700; line-height: 1; color: #15161A; } .ds-margin-list { margin: 0; padding: 0; list-style: none; } .ds-margin-list li { border-bottom: 1px solid #B9C6E8; } .ds-margin-item { display: flex; align-items: baseline; gap: 12px; min-height: 2.75rem; padding: 8px 12px 8px 0; border-inline-start: 2px solid transparent; font-family: Assistant, system-ui, sans-serif; font-size: 1rem; font-weight: 700; color: #4A4C57; text-decoration: none; transition: color 0.2s, border-color 0.2s; } .ds-margin-item:hover { color: #2B3FD6; } .ds-margin-item:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; } .ds-margin-item-active { border-inline-start-color: #1F2A8C; color: #15161A; } .ds-margin-num { font-family: Karantina, \"Arial Narrow\", sans-serif; font-size: 1.125rem; line-height: 1; color: rgba(215,38,61,0.5); } .ds-margin-item-active .ds-margin-num { color: #D7263D; }"
+    },
+    {
+      "name": "Document Contact Line",
+      "kind": "custom",
+      "refersTo": "input-form-line",
+      "description": "How a legal document ends: filled form lines, a Print Red label with a small icon over a ballpoint value on a ruled line, under a 2px ink rule.",
+      "html": "<dl class=\"ds-doc-contact\"><div class=\"ds-doc-line\"><dt class=\"ds-doc-label\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M4 4h16v16H4z\"/><path d=\"m4 6 8 6 8-6\"/></svg>אימייל</dt><dd><a class=\"ds-doc-value\" dir=\"ltr\" href=\"#\">itay@itayost.com</a></dd></div><div class=\"ds-doc-line\"><dt class=\"ds-doc-label\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z\"/></svg>טלפון</dt><dd><a class=\"ds-doc-value\" dir=\"ltr\" href=\"#\">054-499-4417</a></dd></div></dl>",
+      "css": ".ds-doc-contact { direction: rtl; margin: 0; border-top: 2px solid #15161A; background: #FBFBF8; } .ds-doc-line { display: grid; grid-template-columns: 7rem 1fr; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px solid #B9C6E8; } .ds-doc-label { display: flex; align-items: center; gap: 8px; font-family: Assistant, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; color: #D7263D; } .ds-doc-line dd { margin: 0; } .ds-doc-value { display: inline-flex; align-items: center; min-height: 2.75rem; font-family: \"Playpen Sans Hebrew\", cursive; font-size: 1.5rem; color: #1F2A8C; text-decoration: underline; text-decoration-color: rgba(31,42,140,0.3); text-decoration-thickness: 2px; text-underline-offset: 6px; } .ds-doc-value:hover { text-decoration-color: #1F2A8C; } .ds-doc-value:focus-visible { outline: 2px dashed #D7263D; outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Carbon Order Pad",
+    "overview": "The site is the duplicate order pad an Israeli small business actually runs on: a white original, pink and yellow carbon copies, red printed rules and form numbers, ballpoint scrawl on top and a clean pressed-through record underneath. Every surface is a pad part (a sheet, a numbered order line, a tear-off slip, a stapled filed copy, a signature line) laid on a drenched carbon-blue field. The world refuses the SaaS hero with a floating dashboard on a gradient and the faceless agency card grid.\n\nDensity is editorial and loud: very large condensed display type, generous section padding, long ruled lists instead of card grids. Paper carries a faint fibre texture, never a flat fill. Sheets sit slightly rotated with a soft paper shadow, so the page reads as physical stationery rather than interface chrome. Motion is almost absent; the one authored moment is the carbon lift in the hero, where one scroll-linked timeline peels the scrawled top sheet away to reveal the carbon copy.\n\nScope: the world covers every route, and the rollout is complete. The homepage (`src/app/page.tsx`), the global shell (navigation, footer, mobile WhatsApp bar, floating WhatsApp button, skip link), `/contact`, the `/services` index (numbered order lines, process as a ruled list on the pink copy) and its seven service pages (through `src/components/service-page/`), `/portfolio` and its case studies (`src/components/case-study/`), `/about`, `/clients` (the work log), `/faq` (the numbered fine print), the legal documents (`/privacy-policy`, `/terms`, on the shared document chassis), the reading surfaces (`/blog`, `/blog/[slug]`, `/guides`, `/guides/[slug]`, with the shared article typography in `src/lib/prose.ts`), every route-level loading state (`src/components/pad/PadLoading.tsx`) and all three error surfaces (`src/app/not-found.tsx`, `src/app/error.tsx`, `src/app/blog/[slug]/error.tsx`). Each is wrapped in `.pad-world`. No `brand-*` or `apple-*` class is applied in any rendered component; Heebo is gone from `src/app/fonts.ts`, `globals.css` and the Tailwind `sans` stack, and `body` itself now carries the pad body face, so the pad face is the default even outside `.pad-world`.",
+    "keyCharacteristics": [
+      "Carbon-blue field, three paper stocks (white sheet, pink copy, yellow copy), red print, near-black ink.",
+      "Three voices of type: printed form (Karantina), plain body (Assistant), ballpoint (Playpen Sans Hebrew).",
+      "Square corners everywhere; form comes from rules, perforations, staples and rotation.",
+      "Hebrew RTL first: logical start/end properties, the red margin rule on the inline-start side.",
+      "Long reads are printed on the pad: one capped measure, a red margin rule, a margin column, filed copies.",
+      "One scroll-linked timeline per page (carbon lift, or the reading-progress rule on an article); everything else is small hover lifts and reduced-motion safe."
+    ],
+    "rules": [
+      {
+        "name": "The Red Stays On Paper Rule",
+        "body": "Print Red never sits directly on Carbon Blue (about 1.4:1). On the carbon field, printed rules, form numbers and stamps switch to Carbon Ink and Yellow Copy. A stamp on the carbon field is a Yellow Copy border and Yellow Copy label, never red: the 404's \"בוטל\" over the numeral and the error boundaries' \"תקלה\" both stamp in yellow.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper Stock Rule",
+        "body": "Section grounds rotate through the pad's stocks (carbon, sheet, yellow, pink, sheet, carbon, ink footer). No other background colors, no gradients, no glass.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Voices Rule",
+        "body": "Print speaks in Karantina, explanation in Assistant, the owner in Playpen. Handwriting is never used for a heading, a button label, running body copy or quoted matter; the pen is reserved for short authored notes, counts and signatures.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tight Display Rule",
+        "body": "Display and headline line-height stays at or under 0.9 with zero letter-spacing; the condensed face earns its size.",
+        "section": "typography"
+      },
+      {
+        "name": "The 62ch Measure Rule",
+        "body": "Article prose carries `max-w-[62ch]` inside whatever column holds it, so the column never sets the measure. Measured on the shipped articles: about 69 Hebrew characters per line at 1440, and 43 to 45 at 390 where the viewport, not the cap, is the limit. Standalone reading blocks outside the contract (FAQ answers, intros, excerpts) cap at 60ch to 70ch.",
+        "section": "typography"
+      },
+      {
+        "name": "The You Are Here Rule",
+        "body": "A document long enough to need a jump list must also say where the reader is. Both jump surfaces derive their active state from the same IntersectionObserver band (`src/hooks/useActiveSection.ts`, a band from 140px below the top to 35% up from the bottom) and mark it with `aria-current`, not colour alone.",
+        "section": "layout"
+      },
+      {
+        "name": "The Ruled List Rule",
+        "body": "Anything countable prints as a ruled list, never a card grid. This includes the sequences that usually become numbered cards: the seven service order lines, the six process steps and the work log.",
+        "section": "layout"
+      },
+      {
+        "name": "The Carbon Lift Rule",
+        "body": "One scroll-linked timeline per page and no more: the hero sheet lift on the homepage, the reading-progress rule on an article. Nothing else animates on its own. Under reduced motion both hero sheets render side by side, static.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Navy Shadow Rule",
+        "body": "Shadows are tinted toward the carbon field (rgba(10,20,80)), never neutral grey glows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do build every new surface from pad parts: sheets, ruled order lines, tear-off slips, stapled copies, signature lines.",
+      "Do put the fibre texture on every Sheet surface and the paper-rest shadow on anything that sits on a ground.",
+      "Do switch printed rules to Carbon Ink and Yellow Copy when they sit on the carbon field.",
+      "Do use logical start/end properties, left-pointing forward arrows, and the red margin rule on the inline-start side.",
+      "Do mark authored demo UI as an example, in a red bordered tag.",
+      "Do gate every hover lift and the carbon lift behind `motion-reduce` / `useReducedMotion`.",
+      "Do render every article through the shared prose contract in `src/lib/prose.ts`, and keep its measure capped at 62ch inside whatever column holds it.",
+      "Do let a wide article table keep its width and scroll inside `.pad-table-scroll` on the thin red scrollbar.",
+      "Do print a real date on a filed copy of real content.",
+      "Do derive every printed count, year, field and tally from the shipped data (`src/data/portfolio.ts` for the work log, the FAQPage JSON-LD object for the FAQ), so the page cannot outrun the record.",
+      "Do mark the reader's place in any document long enough to need a jump list, in both the tabs and the margin index, with `aria-current`.",
+      "Do stamp in Yellow Copy when the stamp lands on the carbon field.",
+      "Do end a legal document on filled form lines; pages are allowed to end differently.",
+      "Do render every route-level loading state as the printed empty form (`PadLoading`)."
+    ],
+    "donts": [
+      "Don't use rounded SaaS cards, pills, gradients, glass or emoji tiles.",
+      "Don't put Print Red text directly on Carbon Blue.",
+      "Don't add a second self-running or scroll-linked animation to a page that already has one.",
+      "Don't set headings, buttons, running body copy or quoted matter in the ballpoint face; blockquotes are printed in Assistant behind the red rule.",
+      "Don't use a physical-direction utility (`border-l`, `pl`, `ml`) in article typography; the contract is logical only.",
+      "Don't shrink or collapse an article table to fit its column.",
+      "Don't invent a serial or form number on a filed copy of a real article.",
+      "Don't use `overflow-x: hidden` on a section or main that contains sticky content; use `clip`.",
+      "Don't pull legacy `brand-*`, `apple-*`, `section-*` colors or Heebo into pad-world surfaces.",
+      "Don't put a Print Red stamp, rule or figure on the carbon field; on carbon a stamp is Yellow Copy.",
+      "Don't turn a countable sequence (services, process steps, work log, clauses) into a card grid.",
+      "Don't publish a client quote, star rating or outcome percentage that the client has not confirmed in writing.",
+      "Don't replace a loading state with a spinner, shimmer or skeleton cards."
+    ]
+  }
+}

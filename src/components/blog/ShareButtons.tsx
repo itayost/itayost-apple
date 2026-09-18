@@ -56,39 +56,27 @@ export function ShareButtons({ url, title, className = '' }: ShareButtonsProps) 
 
   return (
     <div className={`${className}`}>
-      <h3 className="text-sm font-semibold text-brand-gray-600 mb-3">שתפו את המאמר</h3>
+      <h3 className="mb-3 text-sm font-bold text-pad-red">שתפו את המאמר</h3>
       <div className="flex gap-2">
         {shareLinks.map((link, index) => (
-          <motion.a
+          <a
             key={link.label}
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-12 h-12 rounded-xl ${link.bgColor} ${link.textColor} flex items-center justify-center ${link.color} hover:text-white transition-colors`}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.1, duration: 0.3, ease: bouncyEasing }}
-            whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-            whileTap={{ scale: 0.95 }}
+            className="flex h-12 w-12 items-center justify-center border-2 border-pad-ink text-pad-ink transition-colors hover:bg-pad-ink hover:text-pad-yellow"
             aria-label={`שתף ב-${link.label}`}
           >
-            <link.icon size={18} />
-          </motion.a>
+            <link.icon aria-hidden="true" size={18} />
+          </a>
         ))}
 
-        <motion.button
+        <button
+          type="button"
           onClick={copyToClipboard}
-          className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
-            copied
-              ? 'bg-green-500 text-white'
-              : 'bg-brand-gray-100 text-brand-gray-600 hover:bg-brand-blue hover:text-white'
+          className={`flex h-12 w-12 items-center justify-center border-2 transition-colors ${
+            copied ? 'border-pad-whatsapp bg-pad-whatsapp text-white' : 'border-pad-ink text-pad-ink hover:bg-pad-ink hover:text-pad-yellow'
           }`}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.3, ease: bouncyEasing }}
-          whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="העתק קישור"
         >
           <AnimatePresence mode="wait">
             {copied ? (
@@ -111,7 +99,7 @@ export function ShareButtons({ url, title, className = '' }: ShareButtonsProps) 
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.button>
+        </button>
       </div>
     </div>
   )
@@ -156,15 +144,15 @@ export function ShareButtonsMobile({ url, title }: ShareButtonsProps) {
   }
 
   return (
-    <div className="flex items-center justify-center gap-3 py-4">
-      <span className="text-sm text-brand-gray-600">שתפו:</span>
+    <div className="flex items-center justify-center gap-3 py-4" dir="rtl">
+      <span className="text-sm font-bold text-pad-red">שתפו:</span>
       {shareLinks.map((link) => (
         <a
           key={link.label}
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`w-12 h-12 rounded-full ${link.bgColor} text-white flex items-center justify-center`}
+          className="flex h-12 w-12 items-center justify-center border-2 border-pad-ink text-pad-ink transition-colors hover:bg-pad-ink hover:text-pad-yellow"
           aria-label={`שתף ב-${link.label}`}
         >
           <link.icon size={18} />
@@ -172,8 +160,9 @@ export function ShareButtonsMobile({ url, title }: ShareButtonsProps) {
       ))}
       <button
         onClick={copyToClipboard}
-        className={`w-12 h-12 rounded-full flex items-center justify-center ${
-          copied ? 'bg-green-500 text-white' : 'bg-brand-gray-200 text-brand-gray-700'
+        type="button"
+        className={`flex h-12 w-12 items-center justify-center border-2 transition-colors ${
+          copied ? 'border-pad-whatsapp bg-pad-whatsapp text-white' : 'border-pad-ink text-pad-ink'
         }`}
         aria-label="העתק קישור"
       >

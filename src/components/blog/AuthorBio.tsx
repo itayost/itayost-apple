@@ -1,9 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { MessageCircle, Mail, Briefcase, ArrowLeft } from 'lucide-react'
-import { bouncyEasing } from '@/constants/animations'
+import { ArrowLeft, MessageCircle } from 'lucide-react'
 import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
@@ -15,139 +13,40 @@ export default function AuthorBio({ author = 'איתי אוסטרייך' }: Auth
   const whatsappLink = buildWhatsAppUrl('היי, קראתי את המאמר שלך ורציתי לשאול...')
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: bouncyEasing }}
-      className="my-12 rounded-3xl bg-gradient-to-bl from-brand-gray-50 to-white border border-brand-gray-200 overflow-hidden"
-    >
-      <div className="p-6 sm:p-8">
-        <div className="flex flex-col sm:flex-row gap-6">
-          {/* Avatar */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.5, ease: bouncyEasing }}
-            className="flex-shrink-0"
+    <aside className="my-12 border-y-[3px] border-double border-pad-red py-6">
+      <p className="text-sm font-bold text-pad-red">נכתב על ידי</p>
+      <div className="mt-2 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h3 className="font-pad-hand text-4xl text-pad-ballpoint" style={{ transform: 'rotate(-2deg)' }}>
+            <Link href="/about" className="hover:text-pad-carbon">
+              {author}
+            </Link>
+          </h3>
+          <p className="mt-2 text-base text-pad-ink-soft">בונה מערכות, אתרים ואוטומציות לעסקים קטנים בישראל.</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              trackWhatsAppClick(window.location.pathname, 'author_bio')
+              trackGenerateLead('whatsapp', window.location.pathname)
+            }}
+            className="inline-flex min-h-11 items-center gap-2 text-base font-bold text-pad-carbon underline decoration-pad-carbon/30 decoration-2 underline-offset-4 hover:decoration-pad-carbon"
           >
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-brand-blue via-brand-purple to-brand-orange p-[3px]">
-              <div className="w-full h-full rounded-2xl bg-white flex items-center justify-center">
-                <span className="text-4xl font-bold bg-gradient-to-br from-brand-blue to-brand-purple bg-clip-text text-transparent">
-                  {author.charAt(0)}
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Info */}
-          <div className="flex-1 min-w-0">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.5, ease: bouncyEasing }}
-            >
-              <h3 className="text-xl sm:text-2xl font-bold text-brand-navy mb-1">
-                <Link href="/about" className="hover:text-brand-blue transition-colors">
-                  {author}
-                </Link>
-              </h3>
-              <p className="text-brand-blue font-semibold mb-4">
-                Full-Stack Developer
-              </p>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5, ease: bouncyEasing }}
-              className="text-brand-gray-700 leading-relaxed mb-6"
-            >
-              מפתח Full-Stack עם למעלה מ-5 שנות ניסיון ומעל 100 פרויקטים מוצלחים.
-              מתמחה בבניית אתרים, מערכות CRM, אוטומציות ואפליקציות מובייל לעסקים קטנים ובינוניים בישראל.
-              עובד עם Next.js, React, TypeScript ו-React Native.
-            </motion.p>
-
-            {/* Contact Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.5, ease: bouncyEasing }}
-              className="flex flex-wrap gap-3"
-            >
-              <motion.a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  trackWhatsAppClick(window.location.pathname, 'author_bio')
-                  trackGenerateLead('whatsapp', window.location.pathname)
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#25D366] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-shadow"
-              >
-                <MessageCircle className="w-4 h-4" />
-                וואטסאפ
-              </motion.a>
-
-              <motion.a
-                href="mailto:itayost1@gmail.com"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-brand-gray-100 text-brand-navy text-sm font-semibold hover:bg-brand-gray-200 transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                אימייל
-              </motion.a>
-
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link
-                  href="/portfolio"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-brand-gray-100 text-brand-navy text-sm font-semibold hover:bg-brand-gray-200 transition-colors"
-                >
-                  <Briefcase className="w-4 h-4" />
-                  פרויקטים
-                </Link>
-              </motion.div>
-            </motion.div>
-          </div>
+            <MessageCircle aria-hidden="true" size={16} />
+            שאלו אותי בוואטסאפ
+          </a>
+          <Link
+            href="/about"
+            className="inline-flex min-h-11 items-center gap-1.5 text-base font-bold text-pad-ink underline decoration-pad-red decoration-2 underline-offset-4"
+          >
+            עוד עליי
+            <ArrowLeft aria-hidden="true" size={16} />
+          </Link>
         </div>
       </div>
-
-      {/* Bottom CTA Bar */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        className="px-6 sm:px-8 py-4 bg-gradient-to-l from-brand-blue/5 to-brand-purple/5 border-t border-brand-gray-200"
-      >
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <p className="text-brand-gray-700 font-medium">
-            יש לכם פרויקט בראש? בואו נדבר!
-          </p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-blue text-white font-semibold shadow-lg hover:shadow-xl transition-shadow"
-            >
-              צור קשר
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
-          </motion.div>
-        </div>
-      </motion.div>
-    </motion.div>
+    </aside>
   )
 }

@@ -1,297 +1,151 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
-import { BookOpen, Calendar, Clock, ArrowLeft, Sparkles } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { content } from '@/config/content'
 import { BlogPost } from '@/lib/blog'
 import { blogCategories } from '@/lib/blog-constants'
-import { bouncyEasing } from '@/constants/animations'
+import { IndexSheet } from '@/components/pad/IndexSheet'
+import { TearSlipLink } from '@/components/pad/TearSlipLink'
 
 interface BlogListingClientProps {
   posts: BlogPost[]
 }
 
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('he-IL', { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(iso))
+
+/** The blog as the pad's own index of articles: divider tabs, then ruled entries. */
 export default function BlogListingClient({ posts }: BlogListingClientProps) {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   // Use centralized blog categories from lib/blog.ts
+  const countFor = (categoryId: string) =>
+    categoryId === 'all' ? posts.length : posts.filter((post) => post.category === categoryId).length
+
+  // The four fullest categories, for the hero's index sheet
+  const topCategories = blogCategories
+    .filter((category) => category.id !== 'all')
+    .map((category) => ({ ...category, count: countFor(category.id) }))
+    .filter((category) => category.count > 0)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 4)
 
   // Filter posts by category
-  const filteredPosts =
-    selectedCategory === 'all'
-      ? posts
-      : posts.filter(post => post.category === selectedCategory)
+  const filteredPosts = selectedCategory === 'all' ? posts : posts.filter((post) => post.category === selectedCategory)
 
   return (
-    <main className="min-h-screen bg-white pt-20 lg:pt-24">
-      {/* Hero Section */}
-      <section className="bg-white py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-              className="mb-6"
-            >
-              <motion.div
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue/10 rounded-full"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Sparkles className="w-5 h-5 text-brand-blue" />
-                <span className="text-base font-bold text-brand-blue">
-                  {content.blog.sectionLabel}
-                </span>
-              </motion.div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
-              className="mb-6 text-4xl font-bold text-brand-navy md:text-5xl lg:text-7xl"
+    <div className="pad-world">
+      <section aria-labelledby="blog-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-14 pt-28 sm:px-8 lg:grid-cols-12 lg:gap-x-12 lg:pb-16 lg:pt-36">
+          <div className="lg:col-span-7">
+            <h1
+              id="blog-heading"
+              className="font-pad-display text-[clamp(3.5rem,2rem+5vw,6rem)] font-bold leading-[0.88] [text-wrap:balance]"
             >
               {content.blog.title}
-              <span className="mt-2 block text-brand-blue">
-                {content.blog.subtitle}
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
-              className="mx-auto max-w-3xl text-xl sm:text-2xl text-brand-gray-700"
-            >
+              <span className="block text-pad-yellow">{content.blog.subtitle}</span>
+            </h1>
+            <p className="mt-6 max-w-[52ch] text-xl leading-relaxed text-pad-carbon-ink sm:text-2xl">
               {content.blog.description}
-            </motion.p>
+            </p>
           </div>
+
+          {/* The pad's index sheet: what is filed under the tabs */}
+          <IndexSheet
+            title="תוכן הבלוג"
+            className="lg:col-span-5 lg:rotate-[1.2deg]"
+            rows={topCategories.map((category) => ({
+              key: category.id,
+              label: category.label,
+              value: countFor(category.id),
+            }))}
+            total={{ label: 'סה״כ מאמרים', value: posts.length }}
+          />
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="border-b border-brand-gray-200 bg-white py-8">
-        <div className="container mx-auto px-4">
-          {/* Desktop: Centered tabs */}
-          <div className="hidden sm:flex justify-center">
-            <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
-              {blogCategories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                    selectedCategory === category.id
-                      ? 'bg-brand-navy text-white shadow-lg'
-                      : 'text-brand-gray-700 hover:text-brand-navy'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                >
-                  {category.label}
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile: Scrollable tabs */}
+      {/* Divider tabs, sticky under the site header */}
+      <div className="sticky top-16 z-30 border-b-[3px] border-double border-pad-red bg-pad-sheet lg:top-20">
+        <div className="mx-auto flex max-w-6xl items-end justify-between gap-4 px-5 pt-3 sm:px-8">
           <div
-            className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide"
-            style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            role="group"
+            aria-label="סינון מאמרים לפי קטגוריה"
+            className="pad-scroll-x -mb-[3px] flex gap-1 overflow-x-auto"
           >
-            <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
-              {blogCategories.map((category) => (
-                <motion.button
+            {blogCategories.map((category) => {
+              const isActive = selectedCategory === category.id
+              const count = countFor(category.id)
+              if (count === 0 && category.id !== 'all') return null
+              return (
+                <button
                   key={category.id}
+                  type="button"
+                  aria-pressed={isActive}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                    selectedCategory === category.id
-                      ? 'bg-brand-navy text-white shadow-lg'
-                      : 'text-brand-gray-700 hover:text-brand-navy'
+                  className={`flex min-h-11 flex-shrink-0 items-center gap-2 border-2 border-b-0 px-4 pb-2 pt-2.5 text-base font-bold transition-colors ${
+                    isActive
+                      ? 'border-pad-red bg-pad-sheet text-pad-ink'
+                      : 'border-pad-ink/20 bg-pad-sheet/60 text-pad-ink-soft hover:border-pad-ink/50 hover:text-pad-ink'
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
                 >
                   {category.label}
-                </motion.button>
-              ))}
-            </div>
+                  <span className="font-pad-display text-lg leading-none text-pad-red">{count}</span>
+                </button>
+              )
+            })}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Blog Posts */}
-      <section className="bg-section-light-blue py-16 lg:py-24">
-        <div className="container mx-auto px-4">
+      <section aria-label={content.blog.sectionLabel} className="pad-paper">
+        <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8 lg:py-20">
           {filteredPosts.length === 0 ? (
-            // No Posts Message
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-              className="mx-auto max-w-2xl text-center"
-            >
-              <motion.div
-                className="rounded-3xl bg-white p-12 shadow-lg"
-                whileHover={{
-                  y: -8,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <motion.div
-                  className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-2xl bg-brand-blue"
-                  animate={{
-                    rotate: [0, 10, -10, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <BookOpen size={48} className="text-white" />
-                </motion.div>
-
-                <h2 className="mb-4 text-3xl font-bold text-brand-navy">
-                  אין מאמרים בקטגוריה זו
-                </h2>
-
-                <p className="mb-8 text-xl text-brand-gray-700 leading-relaxed">
-                  בחר קטגוריה אחרת או חזור לכל המאמרים
-                </p>
-
-                <motion.button
-                  onClick={() => setSelectedCategory('all')}
-                  whileHover={{
-                    scale: 1.05,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-blue px-8 py-4 font-semibold text-white shadow-2xl hover:shadow-3xl transition-shadow"
-                >
-                  כל המאמרים
-                  <ArrowLeft className="h-5 w-5" />
-                </motion.button>
-              </motion.div>
-            </motion.div>
-          ) : (
-            // Blog Posts Grid
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {filteredPosts.map((post, index) => (
-                <motion.article
-                  key={post.slug}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: index * 0.1,
-                    duration: 0.6,
-                    ease: bouncyEasing
-                  }}
-                  whileHover={{
-                    y: -12,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  className="overflow-hidden rounded-2xl md:rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-shadow"
-                >
-                  <Link href={`/blog/${post.slug}`} className="flex md:block">
-                    {post.image ? (
-                      <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-full md:h-48 flex-shrink-0">
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 128px, (max-width: 1024px) 50vw, 33vw"
-                        />
-                      </div>
-                    ) : (
-                      <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-full md:h-48 flex-shrink-0 bg-brand-blue" />
-                    )}
-
-                    <div className="flex-1 p-4 md:p-6 flex flex-col justify-center md:block min-w-0">
-                      <div className="mb-1 md:mb-3 flex items-center gap-3 md:gap-4 text-xs md:text-sm text-brand-gray-600">
-                        <span className="flex items-center gap-1">
-                          <Calendar size={14} />
-                          {new Date(post.date).toLocaleDateString('he-IL')}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock size={14} />
-                          {post.readTime}
-                        </span>
-                      </div>
-
-                      <h3 className="mb-1 md:mb-2 text-base md:text-xl font-bold text-brand-navy line-clamp-2">
-                        {post.title}
-                      </h3>
-
-                      <p className="mb-0 md:mb-4 text-sm md:text-base text-brand-gray-700 line-clamp-2 md:line-clamp-3">
-                        {post.excerpt}
-                      </p>
-
-                      <motion.span
-                        className="hidden md:inline-flex items-center gap-1 font-semibold text-brand-blue"
-                        whileHover={{ x: -3 }}
-                        transition={{ duration: 0.2, ease: bouncyEasing }}
-                      >
-                        {content.blog.readMore}
-                        <ArrowLeft size={16} />
-                      </motion.span>
-                    </div>
-                  </Link>
-                </motion.article>
-              ))}
+            <div className="py-16 text-center">
+              <h2 className="font-pad-display text-4xl font-bold text-pad-ink">{content.blog.comingSoon.title}</h2>
+              <p className="mx-auto mt-4 max-w-[52ch] text-lg text-pad-ink-soft">{content.blog.comingSoon.message}</p>
+              <div className="mt-8 flex justify-center">
+                <TearSlipLink href="/contact" groundColor="#FBFBF8">
+                  {content.blog.comingSoon.cta}
+                </TearSlipLink>
+              </div>
             </div>
+          ) : (
+            <ul className="border-t-2 border-pad-ink">
+              {filteredPosts.map((post) => (
+                <li key={post.slug} className="border-b border-pad-rule">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="group block py-6 transition-colors hover:bg-pad-yellow/25"
+                  >
+                    <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <time dateTime={post.date} className="text-sm font-bold text-pad-red">
+                        {formatDate(post.date)}
+                      </time>
+                      <span className="border border-pad-red px-1.5 text-sm font-bold text-pad-red">
+                        {post.category}
+                      </span>
+                      <span className="text-sm text-pad-ink-soft">{post.readTime}</span>
+                    </div>
+                    <h2 className="mt-2 font-pad-display text-3xl font-bold leading-none text-pad-ink sm:text-4xl">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 max-w-[70ch] text-lg leading-snug text-pad-ink-soft">{post.excerpt}</p>
+                    <span className="mt-3 inline-flex items-center gap-2 text-base font-bold text-pad-carbon">
+                      {content.blog.readMore}
+                      <ArrowLeft
+                        aria-hidden="true"
+                        className="h-4 w-4 transition-transform group-hover:-translate-x-1 motion-reduce:transition-none"
+                      />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="bg-brand-blue py-16 lg:py-24">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-          >
-            <h2 className="mb-6 text-3xl font-bold text-white lg:text-5xl">
-              רוצים תוכן בנושא מסוים?
-            </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-xl sm:text-2xl text-white/90 leading-relaxed">
-              ספרו לי איזה נושאים מעניינים אתכם ואכין עבורכם תוכן איכותי
-            </p>
-            <motion.div
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.3, ease: bouncyEasing }
-              }}
-              whileTap={{
-                scale: 0.95,
-                transition: { duration: 0.3, ease: bouncyEasing }
-              }}
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-orange px-10 py-5 font-semibold text-white text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-              >
-                שלחו הצעה
-                <ArrowLeft className="h-5 w-5" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-    </main>
+    </div>
   )
 }

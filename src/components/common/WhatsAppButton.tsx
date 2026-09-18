@@ -62,43 +62,16 @@ export function WhatsAppButton() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          exit={{ scale: 0, rotate: 180 }}
-          transition={{
-            type: "spring",
-            stiffness: 260,
-            damping: 20
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           onClick={handleClick}
-          className="fixed bottom-6 start-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full hidden sm:flex items-center justify-center shadow-lg hover:shadow-xl transition-colors transition-shadow group"
-          style={{
-            transform: 'translateZ(0)',
-            willChange: 'transform',
-            bottom: 'calc(1.5rem + env(safe-area-inset-bottom))'
-          }}
+          className="group fixed start-6 z-50 hidden h-14 w-14 items-center justify-center border-2 border-pad-sheet bg-pad-whatsapp shadow-[0_10px_22px_-8px_rgba(10,20,80,0.55)] transition-[transform,background-color] duration-300 hover:-translate-y-1 hover:-rotate-3 hover:bg-pad-whatsapp-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pad-red motion-reduce:transition-none sm:flex"
+          style={{ bottom: 'calc(1.5rem + env(safe-area-inset-bottom))' }}
           aria-label="צור קשר בוואטסאפ"
         >
-            {/* Pulse effect */}
-            <motion.div
-              className="absolute inset-0 bg-green-500 rounded-full"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.7, 0, 0.7]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-          {/* Icon */}
-          <MessageCircle
-            size={28}
-            className="text-white relative z-10 group-hover:scale-110 transition-transform"
-            fill="white"
-          />
+          <MessageCircle aria-hidden="true" size={26} className="text-white" />
         </motion.button>
       )}
     </AnimatePresence>

@@ -1,0 +1,63 @@
+{
+  "title": "Contact page: choose the structure",
+  "question": "The world is settled (Carbon Order Pad). Pick how the contact page is composed, or re-roll.",
+  "options": [
+    {
+      "id": "carbon-receipt",
+      "label": "Your Request, In Carbon",
+      "kicker": "THE ROLL",
+      "lineage": "duplicate order pad: you keep the pink copy",
+      "thesis": "A two-line order slip; sending it drops out your carbon-copy receipt with a reply-by stamp.",
+      "palette": ["#2B3FD6", "#FBFBF8", "#F4C6D2", "#D7263D"],
+      "materials": ["order slip", "pink carbon receipt", "reply-by stamp"],
+      "viewport": "Carbon field. Start side: headline and one-hour promise. End side: the white slip with name and phone form lines and a big send button; WhatsApp and phone as tear-off tabs under the slip.",
+      "risk": "The receipt moment only exists after submit; before that the page must still feel alive.",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "nav", "x": 0, "y": 0, "w": 12, "h": 1 },
+        { "label": "headline + reply promise", "x": 7, "y": 1, "w": 5, "h": 4 },
+        { "label": "order slip: name / phone / send", "x": 1, "y": 1, "w": 6, "h": 5, "accent": true },
+        { "label": "tear-off tabs: WhatsApp / phone", "x": 1, "y": 6, "w": 6, "h": 1 },
+        { "label": "pink receipt (after send)", "x": 2, "y": 7, "w": 5, "h": 2 },
+        { "label": "hours + 2 FAQ lines", "x": 7, "y": 6, "w": 5, "h": 3 }
+      ]}
+    },
+    {
+      "id": "split-field",
+      "label": "Three Ways, Ranked",
+      "lineage": "printed price list next to a pad",
+      "thesis": "Carbon side ranks the ways to reach Itay by speed; paper side holds the form.",
+      "palette": ["#2B3FD6", "#FBFBF8", "#F2DF6E", "#15161A"],
+      "materials": ["ranked contact lines", "ruled form sheet"],
+      "viewport": "Half carbon, half paper. Carbon: WhatsApp (minutes), phone (now), form (within the hour) as big numbered lines. Paper: the form with ruled lines and send.",
+      "risk": "Ranking channels can pull people away from the form, which feeds the CRM.",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "nav", "x": 0, "y": 0, "w": 12, "h": 1 },
+        { "label": "carbon: 1 WhatsApp / 2 phone / 3 form", "x": 6, "y": 1, "w": 6, "h": 6, "accent": true },
+        { "label": "paper: ruled form + send", "x": 0, "y": 1, "w": 6, "h": 6 },
+        { "label": "hours strip", "x": 0, "y": 7, "w": 12, "h": 1 },
+        { "label": "2 FAQ lines", "x": 0, "y": 8, "w": 12, "h": 2 }
+      ]}
+    },
+    {
+      "id": "callback-slot",
+      "label": "Pick Your Callback",
+      "lineage": "appointment book page",
+      "thesis": "Name, phone, and a tap on a printed time strip: when should Itay call?",
+      "palette": ["#FBFBF8", "#2B3FD6", "#F2DF6E", "#D7263D"],
+      "materials": ["appointment book grid", "circled time slot"],
+      "viewport": "Paper page styled as the day's appointment book: time strip across the top (today / tomorrow slots), form lines beneath, circled slot in red ballpoint, send slip.",
+      "risk": "An extra choice before sending can lower completions; slot times must not promise availability that is not real.",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "nav", "x": 0, "y": 0, "w": 12, "h": 1 },
+        { "label": "headline", "x": 2, "y": 1, "w": 8, "h": 2 },
+        { "label": "time strip: today / tomorrow slots", "x": 1, "y": 3, "w": 10, "h": 2, "accent": true },
+        { "label": "form lines + send", "x": 2, "y": 5, "w": 8, "h": 3 },
+        { "label": "WhatsApp / phone line", "x": 2, "y": 8, "w": 8, "h": 1 },
+        { "label": "FAQ", "x": 2, "y": 9, "w": 8, "h": 1 }
+      ]}
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "steer": true
+}

@@ -1,9 +1,5 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Clock, ArrowLeft } from 'lucide-react'
-import { bouncyEasing } from '@/constants/animations'
+import { ArrowLeft, Clock } from 'lucide-react'
 
 export interface ClusterMember {
   slug: string
@@ -18,45 +14,38 @@ interface ClusterMemberListProps {
 
 // Ordered reading path of a pillar guide's cluster posts. The numbering is
 // deliberate: it mirrors the ItemList JSON-LD and signals topical hierarchy.
+// Pad world: the path is printed as numbered order lines, not cards.
 export function ClusterMemberList({ members }: ClusterMemberListProps) {
   if (members.length === 0) return null
 
   return (
     <section aria-label="מסלול קריאה" className="my-12">
-      <h2 className="mb-6 text-2xl font-bold text-brand-navy">
-        מסלול הקריאה המלא
-      </h2>
-      <ol className="space-y-4">
+      <h2 className="font-pad-display text-4xl font-bold leading-none text-pad-ink">מסלול הקריאה המלא</h2>
+      <ol className="mt-5 border-t-[3px] border-double border-pad-red">
         {members.map((member, index) => (
-          <motion.li
-            key={member.slug}
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05, duration: 0.4, ease: bouncyEasing }}
-          >
+          <li key={member.slug} className="border-b border-pad-rule">
             <Link
               href={`/blog/${member.slug}`}
-              className="group flex items-start gap-4 rounded-2xl border border-brand-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-lg"
+              className="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-4 py-4 transition-colors hover:bg-pad-yellow/25"
             >
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-brand-blue/10 font-bold text-brand-blue">
+              <span aria-hidden="true" className="font-pad-display text-3xl font-bold leading-none text-pad-red">
                 {index + 1}
               </span>
-              <span className="min-w-0 flex-1">
-                <span className="block font-bold text-brand-navy group-hover:text-brand-blue transition-colors">
-                  {member.title}
-                </span>
-                <span className="mt-1 block text-sm text-brand-gray-600 line-clamp-2">
-                  {member.description}
-                </span>
-                <span className="mt-2 flex items-center gap-1.5 text-xs text-brand-gray-500">
-                  <Clock size={12} />
-                  {member.readTime}
-                </span>
+              <span className="min-w-0">
+                <span className="block text-lg font-bold leading-snug text-pad-ink">{member.title}</span>
+                <span className="mt-1 line-clamp-2 block text-base text-pad-ink-soft">{member.description}</span>
               </span>
-              <ArrowLeft size={18} className="mt-1 flex-shrink-0 text-brand-blue transition-transform group-hover:-translate-x-1" />
+              <span className="flex items-center gap-2 whitespace-nowrap text-sm text-pad-ink-soft">
+                <Clock aria-hidden="true" size={14} />
+                {member.readTime}
+                <ArrowLeft
+                  aria-hidden="true"
+                  size={16}
+                  className="text-pad-carbon transition-transform group-hover:-translate-x-1 motion-reduce:transition-none"
+                />
+              </span>
             </Link>
-          </motion.li>
+          </li>
         ))}
       </ol>
     </section>

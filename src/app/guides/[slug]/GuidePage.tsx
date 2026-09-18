@@ -1,13 +1,11 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Calendar, Clock, RefreshCw, ArrowLeft, BookOpen } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, RefreshCw } from 'lucide-react'
 import { Guide } from '@/lib/guides'
 import { KeyTakeaways, FAQSection, SourcesList, AuthorBio } from '@/components/blog'
 import { ClusterMemberList, type ClusterMember } from '@/components/guides/ClusterMemberList'
+import { PadBreadcrumbs } from '@/components/pad/PadBreadcrumbs'
+import { TearSlipLink } from '@/components/pad/TearSlipLink'
 import { PROSE_CLASSES } from '@/lib/prose'
-import { bouncyEasing } from '@/constants/animations'
 import { getClusterByPillarSlug } from '@/config/clusters'
 
 interface GuidePageProps {
@@ -15,143 +13,100 @@ interface GuidePageProps {
   members: ClusterMember[]
 }
 
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('he-IL', { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(iso))
+
+/** A pillar guide: the long read on the pad, with its cluster as the reading path. */
 export default function GuidePage({ guide, members }: GuidePageProps) {
   const cluster = getClusterByPillarSlug(guide.slug)
+
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-brand-navy via-brand-blue to-brand-purple pt-32 pb-16 lg:pt-40 lg:pb-24">
-        <div className="container mx-auto px-4">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: bouncyEasing }}
-            className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-semibold text-white mb-6"
-          >
-            <BookOpen size={14} />
-            מדריך מלא
-          </motion.span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.5, ease: bouncyEasing }}
-            className="max-w-4xl text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white"
-          >
-            {guide.title}
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/85"
-          >
-            <span className="flex items-center gap-1.5">
-              <Calendar size={14} />
-              {new Date(guide.date).toLocaleDateString('he-IL', { year: 'numeric', month: 'short', day: 'numeric' })}
-            </span>
-            {guide.lastUpdated && guide.lastUpdated !== guide.date && (
-              <span className="flex items-center gap-1.5 font-medium">
-                <RefreshCw size={14} />
-                עודכן: {new Date(guide.lastUpdated).toLocaleDateString('he-IL', { year: 'numeric', month: 'short', day: 'numeric' })}
-              </span>
-            )}
-            <span className="flex items-center gap-1.5">
-              <Clock size={14} />
-              {guide.readTime}
-            </span>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="py-12 lg:py-16">
-        <div className="container mx-auto px-4">
-          <article className="mx-auto max-w-3xl">
-            {guide.description && (
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5, ease: bouncyEasing }}
-                className="mb-10 text-xl lg:text-2xl leading-relaxed text-brand-gray-700 font-medium"
-              >
-                {guide.description}
-              </motion.p>
-            )}
-
-            <KeyTakeaways items={guide.tldr} />
-
-            <ClusterMemberList members={members} />
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+    <div className="pad-world">
+      <section aria-labelledby="guide-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto max-w-6xl px-5 pb-14 pt-24 sm:px-8 lg:pb-16 lg:pt-32">
+          <PadBreadcrumbs homeLabel="דף הבית" items={[{ label: 'מדריכים', href: '/guides' }, { label: guide.title }]} />
+          <div className="mt-6 flex flex-wrap items-start gap-x-5 gap-y-3">
+            <h1
+              id="guide-heading"
+              className="max-w-[22ch] font-pad-display text-[clamp(2.75rem,1.6rem+4vw,4.75rem)] font-bold leading-[0.92] [text-wrap:balance]"
             >
-              <div
-                className={PROSE_CLASSES}
-                dangerouslySetInnerHTML={{ __html: guide.content }}
-              />
-            </motion.div>
+              {guide.title}
+            </h1>
+            <span className="mt-2 rotate-[-4deg] border-2 border-pad-yellow px-2.5 pb-0.5 pt-1 font-pad-display text-xl font-bold leading-none text-pad-yellow">
+              מדריך מלא
+            </span>
+          </div>
 
-            <FAQSection items={guide.faq} />
-            <SourcesList items={guide.sources} />
-
-            <AuthorBio />
-          </article>
+          <dl className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-pad-carbon-ink/30 pt-4 text-pad-carbon-ink">
+            <div className="flex items-center gap-1.5">
+              <dt className="sr-only">תאריך</dt>
+              <Calendar aria-hidden="true" size={15} />
+              <dd>
+                <time dateTime={guide.date}>{formatDate(guide.date)}</time>
+              </dd>
+            </div>
+            {guide.lastUpdated && guide.lastUpdated !== guide.date && (
+              <div className="flex items-center gap-1.5 text-pad-yellow">
+                <dt className="sr-only">עודכן</dt>
+                <RefreshCw aria-hidden="true" size={15} />
+                <dd>
+                  עודכן: <time dateTime={guide.lastUpdated}>{formatDate(guide.lastUpdated)}</time>
+                </dd>
+              </div>
+            )}
+            <div className="flex items-center gap-1.5">
+              <dt className="sr-only">זמן קריאה</dt>
+              <Clock aria-hidden="true" size={15} />
+              <dd>{guide.readTime}</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-gradient-to-br from-brand-blue to-brand-purple py-16 lg:py-20 text-center">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: bouncyEasing }}
-          >
-            <h2 className="mb-4 text-2xl lg:text-4xl font-bold text-white">
+      <div className="pad-paper">
+        <article className="relative mx-auto max-w-3xl px-5 py-14 sm:px-8 lg:py-20">
+          <span aria-hidden="true" className="absolute inset-y-0 start-0 hidden w-px bg-pad-red/50 lg:block" />
+          {guide.description && (
+            <p className="max-w-[60ch] border-b border-pad-rule pb-6 text-xl font-semibold leading-relaxed text-pad-ink sm:text-2xl">
+              {guide.description}
+            </p>
+          )}
+
+          <KeyTakeaways items={guide.tldr} />
+          <ClusterMemberList members={members} />
+
+          <div className={PROSE_CLASSES} dangerouslySetInnerHTML={{ __html: guide.content }} />
+
+          <FAQSection items={guide.faq} />
+          <SourcesList items={guide.sources} />
+          <AuthorBio />
+        </article>
+      </div>
+
+      <section aria-labelledby="guide-close-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:py-20">
+          <div>
+            <h2 id="guide-close-heading" className="font-pad-display text-5xl font-bold leading-[0.9] sm:text-6xl">
               רוצים לדבר על הפרויקט שלכם?
             </h2>
-            <p className="mx-auto mb-8 max-w-xl text-lg text-white/90">
+            <p className="mt-4 max-w-[46ch] text-lg leading-relaxed text-pad-carbon-ink">
               שיחה קצרה בלי התחייבות, ותקבלו תשובה ישירה על עלות וזמנים
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2, ease: bouncyEasing }}
+          </div>
+          <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+            <TearSlipLink href="/contact">צור קשר</TearSlipLink>
+            {cluster && (
+              <Link
+                href={`/services/${cluster.serviceId}`}
+                className="group inline-flex min-h-11 items-center gap-2 text-lg font-bold text-white underline decoration-pad-yellow decoration-2 underline-offset-[6px] hover:text-pad-yellow"
               >
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-brand-blue shadow-xl hover:shadow-2xl transition-shadow"
-                >
-                  צור קשר
-                  <ArrowLeft size={18} />
-                </Link>
-              </motion.div>
-
-              {cluster && (
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                >
-                  <Link
-                    href={`/services/${cluster.serviceId}`}
-                    className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-8 py-4 font-semibold text-white hover:bg-white/20 transition-colors"
-                  >
-                    {cluster.serviceAnchor}
-                    <ArrowLeft size={18} />
-                  </Link>
-                </motion.div>
-              )}
-            </div>
-          </motion.div>
+                {cluster.serviceAnchor}
+                <ArrowLeft aria-hidden="true" size={18} className="transition-transform group-hover:-translate-x-1" />
+              </Link>
+            )}
+          </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

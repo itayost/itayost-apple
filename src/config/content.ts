@@ -63,8 +63,8 @@ export const content = {
       },
       {
         icon: '🔧',
-        title: 'תחזוקה ותמיכה',
-        description: 'שירותי תחזוקה שוטפת ותמיכה טכנית מלאה',
+        title: 'תחזוקה',
+        description: 'שירותי תחזוקה שוטפת לאתר ולמערכת',
       },
     ],
     learnMore: 'למידע נוסף',
@@ -144,8 +144,8 @@ export const content = {
         },
         {
           icon: '🚀',
-          title: 'השקה ותמיכה',
-          description: 'עלייה לאוויר ותמיכה מלאה',
+          title: 'השקה',
+          description: 'עלייה לאוויר והדרכה מלאה',
         },
       ],
     },
@@ -227,7 +227,7 @@ export const content = {
       hours: 'שעות פעילות',
     },
     details: {
-      email: 'itayost1@gmail.com',
+      email: 'itay@itayost.com',
       phone: '054-499-4417',
       address: 'רמת גן',
       hours: 'ראשון-חמישי: 9:00 - 21:00\nשישי: 9:00 - 15:00',
@@ -384,8 +384,8 @@ export const content = {
   clients: {
     title: 'הלקוחות',
     subtitle: 'שלי',
-    description: 'סיפורי הצלחה, המלצות אמיתיות ולקוחות מרוצים שבחרו לעבוד איתי',
-    sectionLabel: 'לקוחות מרוצים',
+    description: 'יומן העבודה שלי: מי הלקוח, מה נבנה ומתי',
+    sectionLabel: 'יומן עבודה',
     stats: {
       clients: 'לקוחות מרוצים',
       projects: 'פרויקטים הושלמו',
@@ -394,7 +394,7 @@ export const content = {
     },
     testimonials: {
       title: 'מה הלקוחות אומרים',
-      subtitle: 'המלצות אמיתיות מלקוחות מרוצים',
+      subtitle: 'ציטוטים יפורסמו רק אחרי אישור בכתב מהלקוח',
     },
     industries: {
       title: 'התעשיות שאני עובד איתן',

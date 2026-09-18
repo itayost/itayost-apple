@@ -62,3 +62,6 @@ weekly-cro-report-*.md
 # graphify: local tool output, regenerable. Only the report is committed.
 graphify-out/*
 !graphify-out/GRAPH_REPORT.md
+
+# Impeccable design review captures (large screenshot sets, regenerable)
+.impeccable/review/

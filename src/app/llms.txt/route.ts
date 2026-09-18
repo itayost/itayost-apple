@@ -46,7 +46,7 @@ export async function GET() {
 - **Specialty**: Custom CRM systems and Hebrew-RTL web/mobile applications for Israeli SMBs. Hand-coded with Next.js and React Native rather than no-code platforms.
 - **Pricing model**: One-time build fee + flat monthly maintenance. No per-seat / per-user fees.
 - **Languages of delivery**: Hebrew (primary) and English.
-- **Contact**: 054-499-4417 (phone/WhatsApp), itayost1@gmail.com.
+- **Contact**: 054-499-4417 (phone/WhatsApp), itay@itayost.com.
 
 ## Services
 
@@ -59,7 +59,7 @@ ${servicesBlock}
 - [Blog](${SITE_URL}/blog): Hebrew-language articles on web development, app development, SEO, security, and technology comparisons for Israeli business owners
 - [FAQ](${SITE_URL}/faq): Frequently asked questions about services, pricing, process, and technology
 - [About](${SITE_URL}/about): Background on Itay Ostraich
-- [Clients](${SITE_URL}/clients): Testimonials and success stories
+- [Clients](${SITE_URL}/clients): The work log — which client, what was built, when
 - [Contact](${SITE_URL}/contact): Contact form and WhatsApp (054-499-4417)
 
 ## Pillar Guides
@@ -80,7 +80,7 @@ Next.js 14, React, TypeScript, Tailwind CSS, Node.js, React Native, Framer Motio
 
 Based in Ramat Gan, Israel. Serves businesses across Israel (remote work supported).
 - Phone/WhatsApp: 054-499-4417
-- Email: itayost1@gmail.com
+- Email: itay@itayost.com
 - Website: ${SITE_URL}
 
 ## Machine-Readable Surfaces
