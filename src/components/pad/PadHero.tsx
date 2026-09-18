@@ -45,25 +45,37 @@ function Pad({ sectionRef, isDesktop }: PadProps) {
   })
   const { scrollYProgress: padProgress } = useScroll({
     target: padRef,
-    offset: ['start 0.9', 'start 0.15'],
+    offset: ['start 0.95', 'start 0.05'],
   })
   // The source is fixed for the life of this mount; PadHero remounts the pad
   // (keyed on the layout) when the viewport crosses the desktop breakpoint.
   const progress = isDesktop ? sectionProgress : padProgress
 
+  // Desktop pins the hero, so the lift can start immediately. A phone has the
+  // pad partly below the fold at rest, so the lift starts later: the sheet is
+  // still flat when it first comes into view, and it peels while the pad sits
+  // in the middle of the screen rather than at the bottom edge.
+  // On a phone the pad is already a third of the way through this range when
+  // the page loads, so the lift starts well past that: the sheet is flat while
+  // it comes into view and peels once the pad fills the screen.
+  const LIFT = isDesktop ? [0.08, 0.62] : [0.45, 0.95]
+  const EDGE_ON = isDesktop ? [0.5, 0.56] : [0.86, 0.92]
+  const COPY_LIFT = isDesktop ? [0.3, 0.75] : [0.72, 1]
+  const REVEAL_AT = isDesktop ? 0.38 : 0.8
+
   // Rows of the CRM play in once the sheet is mostly up; they stay in afterwards.
   const [isRevealed, setIsRevealed] = useState(false)
   useMotionValueEvent(progress, 'change', (value) => {
-    if (value > 0.38) setIsRevealed(true)
+    if (value > REVEAL_AT) setIsRevealed(true)
   })
 
-  const rotateX = useTransform(progress, [0.08, 0.62], [0, 104])
+  const rotateX = useTransform(progress, LIFT, [0, 104])
   // Fade out as the sheet passes edge-on so its mirrored back never shows through.
-  const sheetOpacity = useTransform(progress, [0.5, 0.56], [1, 0])
-  const copyLift = useTransform(progress, [0.3, 0.75], [10, 0])
+  const sheetOpacity = useTransform(progress, EDGE_ON, [1, 0])
+  const copyLift = useTransform(progress, COPY_LIFT, [10, 0])
   const shadowFilter = useTransform(
     progress,
-    (value) => `drop-shadow(0 18px 22px rgba(8,14,70,${Math.max(0, 0.55 - Math.max(0, value - 0.08) * 1.5)}))`
+    (value) => `drop-shadow(0 18px 22px rgba(8,14,70,${Math.max(0, 0.55 - Math.max(0, value - 0.08) * 1.5)}))`,
   )
 
   if (prefersReducedMotion) {
@@ -110,13 +122,9 @@ export function PadHero() {
   const isDesktop = useIsDesktop()
 
   return (
-    <section
-      ref={sectionRef}
-      aria-labelledby="hero-heading"
-      className="relative bg-pad-carbon text-white lg:h-[185vh]"
-    >
+    <section ref={sectionRef} aria-labelledby="hero-heading" className="relative bg-pad-carbon text-white lg:h-[185vh]">
       <div className="lg:sticky lg:top-0 lg:flex lg:h-[100svh] lg:items-center">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-12 lg:gap-10 lg:pb-10 lg:pt-24">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-5 pb-12 pt-20 sm:gap-14 sm:px-8 sm:pb-20 sm:pt-24 lg:grid-cols-12 lg:gap-10 lg:pb-10 lg:pt-24">
           <div className="lg:col-span-6 xl:col-span-5 xl:pe-2">
             <div className="mb-6 flex items-end justify-between gap-4 border-y-[3px] border-double border-pad-carbon-ink/60 py-2 text-pad-carbon-ink">
               <span className="font-pad-display text-2xl leading-none sm:text-3xl">{hero.formTitle}</span>
@@ -127,7 +135,7 @@ export function PadHero() {
 
             <h1
               id="hero-heading"
-              className="font-pad-display text-[clamp(4.25rem,2.5rem+4.5vw,6rem)] font-bold leading-[0.88] text-white [text-wrap:balance]"
+              className="font-pad-display text-[clamp(3.5rem,2rem+5vw,6rem)] font-bold leading-[0.88] text-white [text-wrap:balance]"
             >
               {hero.title.map((line, index) => (
                 <span key={line} className={`block ${index === 1 ? 'text-pad-yellow' : ''}`}>
@@ -136,10 +144,10 @@ export function PadHero() {
               ))}
             </h1>
 
-            <p className="mt-6 max-w-[34ch] text-xl font-semibold text-white sm:text-2xl">{hero.subtitle}</p>
+            <p className="mt-5 max-w-[34ch] text-xl font-semibold text-white sm:mt-6 sm:text-2xl">{hero.subtitle}</p>
             <p className="mt-3 max-w-[46ch] text-lg leading-relaxed text-pad-carbon-ink">{hero.lead}</p>
 
-            <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8">
+            <div className="mt-7 flex flex-col items-start gap-5 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8">
               <TearSlipLink
                 href="/contact"
                 stamp={hero.replyStamp}
