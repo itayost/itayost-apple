@@ -2,17 +2,9 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { AlertCircle, Home, RefreshCw } from 'lucide-react'
-import { bouncyEasing } from '@/constants/animations'
+import { RefreshCw } from 'lucide-react'
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
+export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // Log error to error reporting service (Sentry, LogRocket, etc.)
     // In production, you should send this to your error tracking service
@@ -23,129 +15,56 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
-      <div className="max-w-md w-full text-center">
-        {/* Error Icon */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: bouncyEasing }}
-          className="mb-8 flex justify-center"
-        >
-          <motion.div
-            className="relative"
-            animate={{
-              rotate: [0, -10, 10, -10, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div className="absolute inset-0 bg-red-500/10 blur-3xl rounded-full" />
-            <div className="relative bg-red-100 rounded-3xl p-6">
-              <AlertCircle className="w-16 h-16 text-red-600" />
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Error Message */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
-          className="text-3xl font-bold text-brand-navy mb-4"
-        >
-          משהו השתבש
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
-          className="text-brand-gray-700 mb-8 leading-relaxed text-lg"
-        >
-          מצטער, נתקלתי בשגיאה בלתי צפויה. אני עובד על תיקון הבעיה.
-        </motion.p>
-
-        {/* Error Details (Development Only) */}
-        {process.env.NODE_ENV === 'development' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6, ease: bouncyEasing }}
-            className="mb-8 p-4 bg-red-50 border-2 border-red-200 rounded-2xl text-right"
-          >
-            <p className="text-sm text-red-800 font-mono break-all">
-              {error.message}
+    <div className="pad-world">
+      <section className="bg-pad-carbon text-white">
+        <div className="mx-auto max-w-6xl px-5 pb-20 pt-32 sm:px-8 lg:pb-24 lg:pt-40">
+          <div className="max-w-[46ch]">
+            <span className="inline-block rotate-[-4deg] border-2 border-pad-yellow px-2.5 pb-0.5 pt-1 font-pad-display text-xl font-bold leading-none text-pad-yellow">
+              תקלה
+            </span>
+            <h1 className="mt-5 font-pad-display text-[clamp(2.75rem,1.6rem+4vw,4.75rem)] font-bold leading-[0.9] [text-wrap:balance]">
+              משהו השתבש
+            </h1>
+            <p className="mt-5 text-xl leading-relaxed text-pad-carbon-ink">
+              מצטער, נתקלתי בשגיאה בלתי צפויה. אני עובד על תיקון הבעיה.
             </p>
-            {error.digest && (
-              <p className="text-xs text-red-600 mt-2">
-                Error ID: {error.digest}
-              </p>
-            )}
-          </motion.div>
-        )}
+          </div>
 
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6, ease: bouncyEasing }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <motion.button
-            onClick={reset}
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.3, ease: bouncyEasing }
-            }}
-            whileTap={{
-              scale: 0.95,
-              transition: { duration: 0.3, ease: bouncyEasing }
-            }}
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transition-shadow"
-          >
-            <RefreshCw className="w-5 h-5" />
-            נסה שוב
-          </motion.button>
+          {process.env.NODE_ENV === 'development' && (
+            <div className="mt-8 max-w-[70ch] border-2 border-pad-yellow/60 bg-pad-carbon-deep px-5 py-4">
+              <p className="break-all font-mono text-sm text-pad-yellow">{error.message}</p>
+              {error.digest && <p className="mt-2 font-mono text-xs text-pad-carbon-ink">Error ID: {error.digest}</p>}
+            </div>
+          )}
 
-          <motion.div
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.3, ease: bouncyEasing }
-            }}
-            whileTap={{
-              scale: 0.95,
-              transition: { duration: 0.3, ease: bouncyEasing }
-            }}
-          >
+          <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+            <button
+              type="button"
+              onClick={reset}
+              className="inline-flex min-h-14 items-center gap-2 bg-pad-yellow px-6 text-lg font-bold text-pad-ink transition-transform duration-300 hover:-translate-y-0.5 motion-reduce:transition-none"
+            >
+              <RefreshCw aria-hidden="true" className="h-5 w-5" />
+              נסה שוב
+            </button>
             <Link
               href="/"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-brand-blue font-semibold rounded-full border-2 border-brand-blue hover:bg-brand-blue/5 transition-all"
+              className="inline-flex min-h-11 items-center text-lg font-bold text-white underline decoration-pad-yellow decoration-2 underline-offset-[6px] hover:text-pad-yellow"
             >
-              <Home className="w-5 h-5" />
               חזרה לדף הבית
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
 
-        {/* Support Link */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6, ease: bouncyEasing }}
-          className="mt-8 text-sm text-brand-gray-500"
-        >
-          אם הבעיה נמשכת,{' '}
-          <Link
-            href="/contact"
-            className="text-brand-blue hover:underline font-semibold"
-          >
-            צרו איתי קשר
-          </Link>
-        </motion.p>
-      </div>
+          <p className="mt-10 border-t border-pad-carbon-ink/30 pt-5 text-pad-carbon-ink">
+            אם הבעיה נמשכת,{' '}
+            <Link
+              href="/contact"
+              className="font-bold text-white underline decoration-pad-yellow/50 decoration-2 underline-offset-4 hover:decoration-pad-yellow"
+            >
+              צרו איתי קשר
+            </Link>
+          </p>
+        </div>
+      </section>
     </div>
   )
 }

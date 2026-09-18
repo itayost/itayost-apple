@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import { servicesData } from '@/data/services'
-import { bouncyEasing } from '@/constants/animations'
 import { trackCtaClick, trackContactClick, trackPhoneClick } from '@/lib/analytics'
 import { PHONE_TEL_HREF } from '@/lib/whatsapp'
 
@@ -19,42 +19,54 @@ const navItems = [
   { href: '/contact', label: 'צור קשר' }
 ]
 
+const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const
+const CTA_LABEL = 'התחל פרויקט'
+
+/** A ballpoint loop drawn around the current page, like circling an item on the pad. */
+function PenCircle() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 120 44"
+      preserveAspectRatio="none"
+      className="pointer-events-none absolute -inset-x-3 -inset-y-2 h-[calc(100%+1rem)] w-[calc(100%+1.5rem)] text-pad-red"
+      fill="none"
+    >
+      <path
+        d="M8 26C9 10 44 4 72 5c28 1 44 9 42 20-2 12-38 16-64 15C24 39 5 33 9 20c2-6 10-10 20-12"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+const isActive = (pathname: string, href: string) =>
+  href === '/services' ? pathname === href || pathname.startsWith('/services/') : pathname === href
+
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
-  const [navClass, setNavClass] = useState('nav-default')
+  const [isScrolled, setIsScrolled] = useState(false)
+  const servicesToggleRef = useRef<HTMLButtonElement>(null)
   const pathname = usePathname()
 
   useEffect(() => {
-    let scrollY = 0
     let ticking = false
-
-    const updateNavbar = () => {
-      scrollY = window.scrollY
-
-      if (scrollY > 20) {
-        setNavClass('nav-scrolled')
-      } else {
-        setNavClass('nav-default')
-      }
-
+    const update = () => {
+      setIsScrolled(window.scrollY > 20)
       ticking = false
     }
-
     const requestTick = () => {
       if (!ticking) {
-        requestAnimationFrame(updateNavbar)
+        requestAnimationFrame(update)
         ticking = true
       }
     }
-
-    // Simple throttled scroll handler
     window.addEventListener('scroll', requestTick, { passive: true })
-
-    return () => {
-      window.removeEventListener('scroll', requestTick)
-    }
+    return () => window.removeEventListener('scroll', requestTick)
   }, [])
 
   // Close menu on route change
@@ -105,204 +117,139 @@ export function Navigation() {
 
   return (
     <>
-      {/* Main Navigation */}
       <header
-        className={`fixed top-0 left-0 right-0 h-16 lg:h-20 z-50 transition-all duration-200 ${
-          navClass === 'nav-scrolled'
-            ? 'bg-white/95 backdrop-blur-md shadow-sm'
-            : 'bg-white/80 backdrop-blur-sm'
+        className={`pad-world fixed inset-x-0 top-0 z-50 h-16 bg-pad-sheet transition-shadow duration-300 lg:h-20 ${
+          isScrolled ? 'shadow-[0_10px_24px_-14px_rgba(10,20,80,0.45)]' : ''
         }`}
-        style={{ transform: 'translateZ(0)' }}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
-          <div className="flex items-center justify-between h-full">
-            {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center gap-3 text-2xl font-bold text-brand-navy hover:text-brand-blue transition-colors"
-            >
-              <Image
-                src="/logo.png"
-                alt="לוגו ITAYOST"
-                width={50}
-                height={50}
-                className="w-10 h-10 lg:w-12 lg:h-12"
-                priority
-              />
-              <span>ITAYOST</span>
-            </Link>
+        {/* Printed double rule along the bottom of the form header */}
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[5px] border-y border-pad-red" />
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
-              {navItems.map((item) => (
-                item.hasDropdown ? (
-                  <div
-                    key={item.href}
-                    className="relative"
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
-                  >
-                    <motion.div
-                      whileHover={{ y: -2 }}
-                      transition={{ duration: 0.2, ease: bouncyEasing }}
-                    >
-                      <Link
-                        href={item.href}
-                        className={`text-base lg:text-lg font-medium transition-colors flex items-center gap-1 ${
-                          pathname === item.href || pathname.startsWith('/services/')
-                            ? 'text-brand-blue'
-                            : 'text-brand-navy hover:text-brand-blue'
-                        }`}
-                      >
-                        {item.label}
-                        <motion.svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          animate={{ rotate: isServicesOpen ? 180 : 0 }}
-                          transition={{ duration: 0.3, ease: bouncyEasing }}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </motion.svg>
-                      </Link>
-                    </motion.div>
+        <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-5 sm:px-8">
+          <Link href="/" className="flex min-h-11 items-center gap-3 text-pad-ink">
+            <Image src="/logo.png" alt="לוגו ITAYOST" width={50} height={50} className="h-9 w-9 lg:h-11 lg:w-11" priority />
+            <span className="font-pad-display text-3xl font-bold leading-none lg:text-4xl">ITAYOST</span>
+          </Link>
 
-                    {/* Dropdown Menu */}
-                    <AnimatePresence>
-                      {isServicesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          transition={{ duration: 0.2, ease: bouncyEasing }}
-                          className="absolute top-full right-0 mt-2 w-72 bg-white rounded-3xl shadow-2xl border border-gray-100 py-2 z-50"
-                        >
-                          <div className="px-4 py-2 border-b border-gray-100">
-                            <motion.div
-                              whileHover={{ x: -3 }}
-                              transition={{ duration: 0.2, ease: bouncyEasing }}
-                            >
-                              <Link
-                                href="/services"
-                                className="block text-base font-bold text-brand-navy hover:text-brand-blue transition-colors"
-                              >
-                                כל השירותים
-                              </Link>
-                            </motion.div>
-                          </div>
-                          {servicesData.map((service, index) => (
-                            <motion.div
-                              key={service.id}
-                              initial={{ opacity: 0, x: 20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{
-                                delay: index * 0.05,
-                                duration: 0.3,
-                                ease: bouncyEasing
-                              }}
-                            >
-                              <Link
-                                href={`/services/${service.slug}`}
-                                className="block px-4 py-3 hover:bg-brand-blue/5 transition-colors rounded-2xl mx-2"
-                              >
-                                <motion.div
-                                  className="flex items-start gap-3"
-                                  whileHover={{ x: -3 }}
-                                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                                >
-                                  <span className="text-2xl flex-shrink-0">{service.icon}</span>
-                                  <div>
-                                    <div className="font-semibold text-gray-900 text-base">{service.name}</div>
-                                    <div className="text-sm text-gray-600 line-clamp-1">{service.tagline}</div>
-                                  </div>
-                                </motion.div>
-                              </Link>
-                            </motion.div>
-                          ))}
-
-                          {/* Quick Quote CTA */}
-                          <div className="px-4 py-3 mt-2 border-t border-gray-100">
-                            <motion.div
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                              transition={{ duration: 0.2, ease: bouncyEasing }}
-                            >
-                              <Link
-                                href="/contact"
-                                className="block w-full py-3 bg-brand-orange text-white text-center rounded-2xl font-semibold text-sm shadow-md hover:shadow-lg transition-shadow"
-                                onClick={() => trackCtaClick('קבלו הצעת מחיר מהירה', 'nav_dropdown', '/contact')}
-                              >
-                                קבלו הצעת מחיר מהירה
-                              </Link>
-                            </motion.div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
+          <nav aria-label="ניווט ראשי" className="hidden items-center gap-9 lg:flex">
+            {navItems.map((item) =>
+              item.hasDropdown ? (
+                <div
+                  key={item.href}
+                  className="relative flex items-center gap-1"
+                  onMouseEnter={() => setIsServicesOpen(true)}
+                  onMouseLeave={() => setIsServicesOpen(false)}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node)) setIsServicesOpen(false)
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape' && isServicesOpen) {
+                      setIsServicesOpen(false)
+                      servicesToggleRef.current?.focus()
+                    }
+                  }}
+                >
                   <Link
-                    key={item.href}
                     href={item.href}
-                    className={`text-base lg:text-lg font-medium transition-all duration-200 hover:-translate-y-0.5 inline-block ${
-                      pathname === item.href
-                        ? 'text-brand-blue'
-                        : 'text-brand-navy hover:text-brand-blue'
-                    }`}
+                    aria-current={isActive(pathname, item.href) ? 'page' : undefined}
+                    className="relative text-lg font-semibold text-pad-ink transition-colors hover:text-pad-carbon"
                   >
+                    {isActive(pathname, item.href) && <PenCircle />}
                     {item.label}
                   </Link>
-                )
-              ))}
+                  <button
+                    ref={servicesToggleRef}
+                    type="button"
+                    aria-expanded={isServicesOpen}
+                    aria-controls="services-menu"
+                    aria-label="פתיחת רשימת השירותים"
+                    onClick={() => setIsServicesOpen((open) => !open)}
+                    className="flex h-8 w-8 items-center justify-center text-pad-ink transition-colors hover:text-pad-carbon"
+                  >
+                    <ChevronDown
+                      aria-hidden="true"
+                      className={`h-4 w-4 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
 
-              <Link
-                href="/contact"
-                className="px-7 py-3 bg-brand-orange text-white rounded-full font-semibold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-                onClick={() => trackCtaClick('התחל פרויקט', 'nav', '/contact')}
-              >
-                התחל פרויקט
-              </Link>
-            </nav>
+                  <AnimatePresence>
+                    {isServicesOpen && (
+                      <motion.div
+                        id="services-menu"
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.25, ease: EASE_OUT_EXPO }}
+                        className="absolute end-0 top-full w-80 pt-4"
+                      >
+                        <div className="pad-paper pad-sheet-shadow border-t-4 border-pad-carbon">
+                          <Link
+                            href="/services"
+                            className="block border-b-2 border-pad-ink px-5 py-3 font-pad-display text-2xl font-bold text-pad-ink hover:text-pad-carbon"
+                          >
+                            כל השירותים
+                          </Link>
+                          <ul>
+                            {servicesData.map((service) => (
+                              <li key={service.id}>
+                                <Link
+                                  href={`/services/${service.slug}`}
+                                  className="block border-b border-pad-rule px-5 py-3 transition-colors hover:bg-pad-yellow/40"
+                                >
+                                  <span className="block text-base font-bold text-pad-ink">{service.name}</span>
+                                  <span className="line-clamp-1 block text-sm text-pad-ink-soft">{service.tagline}</span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="p-4">
+                            <Link
+                              href="/contact"
+                              className="block bg-pad-yellow px-4 py-3 text-center font-bold text-pad-ink transition-colors hover:bg-pad-ink hover:text-pad-yellow"
+                              onClick={() => trackCtaClick('קבלו הצעת מחיר מהירה', 'nav_dropdown', '/contact')}
+                            >
+                              קבלו הצעת מחיר מהירה
+                            </Link>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive(pathname, item.href) ? 'page' : undefined}
+                  className="relative text-lg font-semibold text-pad-ink transition-colors hover:text-pad-carbon"
+                >
+                  {isActive(pathname, item.href) && <PenCircle />}
+                  {item.label}
+                </Link>
+              )
+            )}
 
-            {/* Mobile Menu Toggle */}
-            <motion.button
-              onClick={toggleMenu}
-              className="lg:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5"
-              aria-label="תפריט"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ duration: 0.2, ease: bouncyEasing }}
+            <Link
+              href="/contact"
+              className="bg-pad-carbon px-6 py-2.5 text-lg font-bold text-white transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:-rotate-1 hover:bg-pad-carbon-deep motion-reduce:transition-none"
+              onClick={() => trackCtaClick(CTA_LABEL, 'nav', '/contact')}
             >
-              <motion.span
-                className="block w-6 h-0.5 bg-brand-navy"
-                animate={{
-                  rotate: isMenuOpen ? 45 : 0,
-                  y: isMenuOpen ? 4 : 0
-                }}
-                transition={{ duration: 0.3, ease: bouncyEasing }}
-              />
-              <motion.span
-                className="block w-6 h-0.5 bg-brand-navy"
-                animate={{
-                  opacity: isMenuOpen ? 0 : 1
-                }}
-                transition={{ duration: 0.2 }}
-              />
-              <motion.span
-                className="block w-6 h-0.5 bg-brand-navy"
-                animate={{
-                  rotate: isMenuOpen ? -45 : 0,
-                  y: isMenuOpen ? -4 : 0
-                }}
-                transition={{ duration: 0.3, ease: bouncyEasing }}
-              />
-            </motion.button>
-          </div>
+              {CTA_LABEL}
+            </Link>
+          </nav>
+
+          <button
+            type="button"
+            onClick={toggleMenu}
+            className="flex h-12 w-12 items-center justify-center text-pad-ink lg:hidden"
+            aria-label="תפריט"
+            aria-expanded={isMenuOpen}
+          >
+            <Menu className="h-7 w-7" />
+          </button>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -310,109 +257,67 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+            className="fixed inset-0 z-40 bg-pad-carbon/60 lg:hidden"
             onClick={toggleMenu}
           />
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.aside
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.3, ease: bouncyEasing }}
-            className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-white z-50 lg:hidden"
+            initial={{ y: '-100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '-100%' }}
+            transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
+            className="pad-world pad-paper fixed inset-x-0 top-0 z-50 max-h-[100svh] overflow-y-auto border-b-4 border-pad-carbon lg:hidden"
+            aria-label="תפריט נייד"
           >
-            <div className="flex flex-col h-full p-6">
-              {/* Menu Header */}
-              <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col px-5 pb-8 pt-3">
+              <div className="flex items-center justify-between border-b-[3px] border-double border-pad-red pb-3">
                 <div className="flex items-center gap-3">
-                  <Image
-                    src="/logo.png"
-                    alt="לוגו ITAYOST"
-                    width={40}
-                    height={40}
-                    className="w-10 h-10"
-                  />
-                  <span className="text-2xl font-bold text-brand-navy">
-                    ITAYOST
-                  </span>
+                  <Image src="/logo.png" alt="לוגו ITAYOST" width={40} height={40} className="h-9 w-9" />
+                  <span className="font-pad-display text-3xl font-bold text-pad-ink">ITAYOST</span>
                 </div>
-                <motion.button
+                <button
+                  type="button"
                   onClick={toggleMenu}
-                  className="w-12 h-12 flex items-center justify-center"
+                  className="flex h-12 w-12 items-center justify-center text-pad-ink"
                   aria-label="סגור תפריט"
-                  whileHover={{
-                    rotate: 90,
-                    scale: 1.1
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ duration: 0.3, ease: bouncyEasing }}
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </motion.button>
+                  <X className="h-7 w-7" />
+                </button>
               </div>
 
-              {/* Menu Items */}
-              <nav className="flex-1 overflow-y-auto">
-                <ul className="space-y-2">
-                  {navItems.map((item, index) => (
-                    <motion.li
-                      key={item.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: index * 0.05,
-                        duration: 0.3,
-                        ease: bouncyEasing
-                      }}
-                    >
+              <nav aria-label="ניווט ראשי נייד">
+                <ul>
+                  {navItems.map((item) => (
+                    <li key={item.href} className="border-b border-pad-rule">
                       {item.hasDropdown ? (
                         <div>
-                          <motion.button
+                          <button
+                            type="button"
                             onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-medium transition-colors ${
-                              pathname.startsWith('/services')
-                                ? 'bg-brand-blue text-white'
-                                : 'hover:bg-brand-blue/5'
-                            }`}
-                            whileTap={{ scale: 0.98 }}
-                            transition={{ duration: 0.2, ease: bouncyEasing }}
+                            aria-expanded={isMobileServicesOpen}
+                            className="flex w-full items-center justify-between py-4 font-pad-display text-4xl font-bold text-pad-ink"
                           >
-                            <span>{item.label}</span>
-                            <motion.svg
-                              className="w-5 h-5"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              animate={{ rotate: isMobileServicesOpen ? 180 : 0 }}
-                              transition={{ duration: 0.3, ease: bouncyEasing }}
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </motion.svg>
-                          </motion.button>
-
-                          {/* Mobile Services Submenu */}
+                            <span className={isActive(pathname, item.href) ? 'text-pad-carbon' : ''}>{item.label}</span>
+                            <ChevronDown
+                              aria-hidden="true"
+                              className={`h-6 w-6 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`}
+                            />
+                          </button>
                           <AnimatePresence>
                             {isMobileServicesOpen && (
                               <motion.ul
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.3, ease: bouncyEasing }}
-                                className="mt-2 mr-4 space-y-1 overflow-hidden"
+                                transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
+                                className="overflow-hidden pb-3 ps-4"
                               >
                                 <li>
-                                  <Link
-                                    href="/services"
-                                    onClick={toggleMenu}
-                                    className="block px-4 py-2 text-sm rounded-lg hover:bg-brand-blue/5 font-semibold transition-colors"
-                                  >
+                                  <Link href="/services" onClick={toggleMenu} className="block py-2 text-lg font-bold text-pad-ink">
                                     כל השירותים
                                   </Link>
                                 </li>
@@ -421,14 +326,11 @@ export function Navigation() {
                                     <Link
                                       href={`/services/${service.slug}`}
                                       onClick={toggleMenu}
-                                      className={`block px-4 py-2 text-sm rounded-lg hover:bg-brand-blue/5 transition-colors ${
-                                        pathname === `/services/${service.slug}` ? 'bg-brand-blue/5' : ''
+                                      className={`block py-2 text-lg ${
+                                        pathname === `/services/${service.slug}` ? 'font-bold text-pad-carbon' : 'text-pad-ink'
                                       }`}
                                     >
-                                      <div className="flex items-center gap-2">
-                                        <span className="text-lg">{service.icon}</span>
-                                        <span>{service.name}</span>
-                                      </div>
+                                      {service.name}
                                     </Link>
                                   </li>
                                 ))}
@@ -437,76 +339,53 @@ export function Navigation() {
                           </AnimatePresence>
                         </div>
                       ) : (
-                        <motion.div
-                          whileTap={{ scale: 0.98 }}
-                          transition={{ duration: 0.2, ease: bouncyEasing }}
+                        <Link
+                          href={item.href}
+                          onClick={toggleMenu}
+                          aria-current={pathname === item.href ? 'page' : undefined}
+                          className={`block py-4 font-pad-display text-4xl font-bold ${
+                            pathname === item.href ? 'text-pad-carbon' : 'text-pad-ink'
+                          }`}
                         >
-                          <Link
-                            href={item.href}
-                            onClick={toggleMenu}
-                            className={`block px-4 py-3 rounded-2xl font-medium transition-colors ${
-                              pathname === item.href
-                                ? 'bg-brand-blue text-white'
-                                : 'hover:bg-brand-blue/5'
-                            }`}
-                          >
-                            {item.label}
-                          </Link>
-                        </motion.div>
+                          {item.label}
+                        </Link>
                       )}
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               </nav>
 
-              {/* Menu Footer */}
-              <motion.div
-                className="pt-6 mt-6 border-t"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.3, ease: bouncyEasing }}
+              <Link
+                href="/contact"
+                onClick={() => {
+                  trackCtaClick(CTA_LABEL, 'mobile_nav', '/contact')
+                  toggleMenu()
+                }}
+                className="mt-8 block bg-pad-carbon py-4 text-center text-xl font-bold text-white"
               >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                >
-                  <Link
-                    href="/contact"
-                    onClick={() => {
-                      trackCtaClick('התחל פרויקט', 'mobile_nav', '/contact')
-                      toggleMenu()
-                    }}
-                    className="block w-full py-4 bg-brand-orange text-white text-center rounded-2xl font-semibold text-lg shadow-lg"
-                  >
-                    התחל פרויקט
-                  </Link>
-                </motion.div>
+                {CTA_LABEL}
+              </Link>
 
-                <div className="mt-6 space-y-2 text-base text-gray-700">
-                  <motion.a
-                    href={PHONE_TEL_HREF}
-                    className="block font-medium hover:text-brand-blue transition-colors"
-                    whileHover={{ x: -3 }}
-                    transition={{ duration: 0.2, ease: bouncyEasing }}
-                    onClick={() => {
-                      trackContactClick('phone', 'nav')
-                      trackPhoneClick(window.location.pathname, 'nav')
-                    }}
-                  >
-                    054-499-4417
-                  </motion.a>
-                  <motion.a
-                    href="mailto:itayost1@gmail.com"
-                    className="block font-medium hover:text-brand-blue transition-colors"
-                    whileHover={{ x: -3 }}
-                    transition={{ duration: 0.2, ease: bouncyEasing }}
-                    onClick={() => trackContactClick('email', 'nav')}
-                  >
-                    itayost1@gmail.com
-                  </motion.a>
-                </div>
-              </motion.div>
+              <div className="mt-6 flex flex-col gap-2 text-lg text-pad-ink">
+                <a
+                  href={PHONE_TEL_HREF}
+                  dir="ltr"
+                  className="self-start font-bold"
+                  onClick={() => {
+                    trackContactClick('phone', 'nav')
+                    trackPhoneClick(window.location.pathname, 'nav')
+                  }}
+                >
+                  054-499-4417
+                </a>
+                <a
+                  href="mailto:itay@itayost.com"
+                  className="self-start font-bold"
+                  onClick={() => trackContactClick('email', 'nav')}
+                >
+                  itay@itayost.com
+                </a>
+              </div>
             </div>
           </motion.aside>
         )}

@@ -1,0 +1,66 @@
+{
+  "title": "Case studies (all 10) + portfolio index: choose the structure",
+  "question": "One template for every /portfolio/<slug> page; the /portfolio index files the same copies with divider tabs. No client quotes or ratings, only countable facts about what was built.",
+  "seed": { "key": "ca51654a", "scope": "surface", "mode": "persuade", "dealtIndices": [6, 5, 4] },
+  "options": [
+    {
+      "id": "editorial-read",
+      "label": "The Project Story",
+      "kicker": "THE ROLL",
+      "lineage": "a magazine-style case study on pad paper",
+      "thesis": "A long read: the client's problem, what was built, and the screens, with facts set in the margin like printed side notes.",
+      "palette": ["#FBFBF8", "#2B3FD6", "#F4C6D2", "#D7263D"],
+      "materials": ["wide screen plate", "margin fact notes", "ruled reading column"],
+      "viewport": "Carbon strip with breadcrumbs, project title in Karantina and subtitle; a large stapled desktop screenshot overlapping into paper below. Then a reading column (about the project, features) with a narrow margin of facts (client, year, duration, category, tech), live-site link, and a closing slip.",
+      "risk": "Several projects have short descriptions; the long-read shape can feel thin for them.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "carbon: breadcrumbs, title, subtitle", "x": 0, "y": 0, "w": 12, "h": 2 },
+        { "label": "stapled desktop screenshot", "x": 1, "y": 2, "w": 10, "h": 4, "accent": true },
+        { "label": "reading column: about + features", "x": 4, "y": 6, "w": 8, "h": 4 },
+        { "label": "margin facts", "x": 0, "y": 6, "w": 3, "h": 3 },
+        { "label": "more projects", "x": 0, "y": 10, "w": 12, "h": 1 },
+        { "label": "closing slip", "x": 0, "y": 11, "w": 12, "h": 1 }
+      ]}
+    },
+    {
+      "id": "build-diary",
+      "label": "The Build Diary",
+      "lineage": "a dated job log kept on the pad",
+      "thesis": "The project told as a work log: what the client needed, what was built in which order, and what shipped.",
+      "palette": ["#F2DF6E", "#15161A", "#2B3FD6", "#FBFBF8"],
+      "materials": ["dated log lines", "ballpoint notes", "screens pinned to entries"],
+      "viewport": "Short carbon header with title and live link. Below, a yellow log sheet: entries (the need, the plan, features built, delivered) with screenshots pinned beside the relevant entry; facts strip; closing slip.",
+      "risk": "The data has no real dates per step; the log must avoid inventing a timeline.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "carbon header: title, live link", "x": 0, "y": 0, "w": 12, "h": 2 },
+        { "label": "log entry: the need", "x": 1, "y": 2, "w": 6, "h": 2, "accent": true },
+        { "label": "pinned screen", "x": 7, "y": 2, "w": 4, "h": 3 },
+        { "label": "log entries: built / delivered", "x": 1, "y": 4, "w": 6, "h": 4 },
+        { "label": "facts strip", "x": 0, "y": 8, "w": 12, "h": 1 },
+        { "label": "more projects", "x": 0, "y": 9, "w": 12, "h": 2 },
+        { "label": "closing slip", "x": 0, "y": 11, "w": 12, "h": 1 }
+      ]}
+    },
+    {
+      "id": "delivered-order",
+      "label": "Delivered Order",
+      "lineage": "the original work order, stamped delivered",
+      "thesis": "Each project is its filled work order: client, category, what was ordered (features), with a red 'סופק' stamp and the screens clipped on.",
+      "palette": ["#2B3FD6", "#FBFBF8", "#D7263D", "#F4C6D2"],
+      "materials": ["filled order form", "red delivered stamp", "clipped screenshots"],
+      "viewport": "Carbon field with a large tilted order form: header 'עותק לקוח No.', client name and project title as form lines, ticked features, a red 'סופק' stamp, desktop and mobile screenshots clipped to the side; below, about text, tech, more projects and a closing slip.",
+      "risk": "Strong metaphor, but a lot of form chrome before the screens; must keep the screenshots big.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "order form: client, title, ticked features, stamp", "x": 5, "y": 1, "w": 7, "h": 5, "accent": true },
+        { "label": "clipped screens: desktop + mobile", "x": 0, "y": 1, "w": 5, "h": 5 },
+        { "label": "about the project", "x": 2, "y": 6, "w": 8, "h": 2 },
+        { "label": "tech + facts", "x": 2, "y": 8, "w": 8, "h": 1 },
+        { "label": "more projects", "x": 0, "y": 9, "w": 12, "h": 2 },
+        { "label": "closing slip", "x": 0, "y": 11, "w": 12, "h": 1 }
+      ]}
+    }
+  ],
+  "reroll": true,
+  "buildPath": { "value": "code", "toggle": false },
+  "steer": true
+}

@@ -102,7 +102,8 @@ button,
 /* Prevent horizontal scroll on mobile */
 main,
 section {
-  overflow-x: hidden;
+  /* clip, not hidden: hidden creates a scroll container and breaks sticky. */
+  overflow-x: clip;
 }
 
 /* Mobile-first images */

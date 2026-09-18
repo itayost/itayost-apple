@@ -2,9 +2,9 @@ export function SkipNavigation() {
   return (
     <a
       href="#main-content"
-      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:start-4 z-50
-                 bg-brand-blue text-white px-4 py-2 rounded-lg focus:outline-none
-                 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-blue"
+      className="sr-only z-50 bg-pad-carbon px-5 py-3 text-base font-bold text-white
+                 focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:outline
+                 focus:outline-2 focus:outline-offset-2 focus:outline-pad-yellow"
     >
       דלג לתוכן הראשי
     </a>

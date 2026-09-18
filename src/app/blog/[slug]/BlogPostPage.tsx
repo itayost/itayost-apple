@@ -1,15 +1,24 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { BlogPost } from '@/lib/blog'
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { Calendar, Clock, User, Tag, ArrowLeft, RefreshCw } from 'lucide-react'
-import { BlogBreadcrumbs } from '@/components/common/Breadcrumbs'
-import { ShareButtons, ShareButtonsMobile, SidebarCTA, InlineServiceCTA, AuthorBio, KeyTakeaways, FAQSection, SourcesList, ClusterPillarLink } from '@/components/blog'
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
+import { ArrowLeft, Calendar, Clock, RefreshCw, User } from 'lucide-react'
+import { BlogPost } from '@/lib/blog'
+import {
+  AuthorBio,
+  ClusterPillarLink,
+  FAQSection,
+  InlineServiceCTA,
+  KeyTakeaways,
+  ShareButtons,
+  ShareButtonsMobile,
+  SidebarCTA,
+  SourcesList,
+} from '@/components/blog'
 import type { PillarRef } from '@/components/blog/ClusterPillarLink'
-import { bouncyEasing } from '@/constants/animations'
+import { PadBreadcrumbs } from '@/components/pad/PadBreadcrumbs'
+import { TearSlipLink } from '@/components/pad/TearSlipLink'
 import { splitHtmlAtMiddleHeading } from '@/lib/blog-content'
 import { PROSE_CLASSES } from '@/lib/prose'
 
@@ -20,6 +29,12 @@ interface BlogPostPageProps {
   clusterPillars?: PillarRef[]
 }
 
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('he-IL', { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(iso))
+
+// Related posts are filed copies: stapled, dated and never stacked square.
+const FILED_TILTS = ['-rotate-1', 'rotate-[0.6deg]', '-rotate-[0.4deg]', 'rotate-[0.5deg]', '-rotate-[0.8deg]']
+
 export default function BlogPostPage({ post, relatedPosts, clusterPillars }: BlogPostPageProps) {
   // Use consistent URL for hydration - update on client after mount
   const [postUrl, setPostUrl] = useState(`https://www.itayost.com/blog/${post.slug}`)
@@ -28,345 +43,201 @@ export default function BlogPostPage({ post, relatedPosts, clusterPillars }: Blo
     setPostUrl(window.location.href)
   }, [])
 
+  // The reading progress rule: a printed pad rule that fills as you read.
+  // Reduced motion keeps the rule but drops the spring, so it tracks the
+  // scroll exactly instead of easing.
+  const prefersReducedMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll()
+  const smoothed = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 })
+  const progress = prefersReducedMotion ? scrollYProgress : smoothed
+
   // Split the article so a CTA sits mid-read (null for short posts → one block).
   const contentParts = splitHtmlAtMiddleHeading(post.content)
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative pt-20 lg:pt-24">
-        {post.image ? (
-          <div className="relative h-64 sm:h-80 lg:h-96">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+    <div className="pad-world">
+      <motion.div
+        aria-hidden="true"
+        style={{ scaleX: progress }}
+        className="fixed inset-x-0 top-16 z-40 h-1 origin-right bg-pad-red lg:top-20"
+      />
 
-            {/* Title overlay on image */}
-            <div className="absolute bottom-0 inset-x-0 p-6 lg:p-12">
-              <div className="container mx-auto">
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: bouncyEasing }}
-                  className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-semibold text-white mb-4"
-                >
-                  <Tag size={14} />
-                  {post.category}
-                </motion.span>
-
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1, duration: 0.5, ease: bouncyEasing }}
-                  className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-4xl"
-                >
-                  {post.title}
-                </motion.h1>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="relative bg-gradient-to-br from-brand-blue via-brand-purple to-brand-orange py-16 lg:py-24">
-            <div className="container mx-auto px-4">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: bouncyEasing }}
-                className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-semibold text-white mb-6"
-              >
-                <Tag size={14} />
-                {post.category}
-              </motion.span>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.5, ease: bouncyEasing }}
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight max-w-4xl"
-              >
-                {post.title}
-              </motion.h1>
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* Breadcrumbs & Meta */}
-      <section className="border-b border-brand-gray-200 bg-brand-gray-50 py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <BlogBreadcrumbs postTitle={post.title} />
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="flex flex-wrap items-center gap-4 text-sm text-brand-gray-600"
+      {/* The article's title strip */}
+      <section aria-labelledby="post-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto max-w-6xl px-5 pb-14 pt-24 sm:px-8 lg:pb-16 lg:pt-32">
+          <PadBreadcrumbs homeLabel="דף הבית" items={[{ label: 'בלוג', href: '/blog' }, { label: post.title }]} />
+          <div className="mt-6 flex flex-wrap items-start gap-x-5 gap-y-3">
+            <h1
+              id="post-heading"
+              className="max-w-[22ch] font-pad-display text-[clamp(2.75rem,1.6rem+4vw,4.75rem)] font-bold leading-[0.92] [text-wrap:balance]"
             >
-              <Link href="/about" className="flex items-center gap-1.5 hover:text-brand-blue transition-colors">
-                <User size={14} />
-                {post.author}
-              </Link>
-              <span className="flex items-center gap-1.5">
-                <Calendar size={14} />
-                {new Date(post.date).toLocaleDateString('he-IL', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric'
-                })}
-              </span>
-              {post.lastUpdated && (
-                <span className="flex items-center gap-1.5 text-brand-blue font-medium">
-                  <RefreshCw size={14} />
-                  עודכן: {new Date(post.lastUpdated).toLocaleDateString('he-IL', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
-                  })}
-                </span>
-              )}
-              <span className="flex items-center gap-1.5">
-                <Clock size={14} />
-                {post.readTime}
-              </span>
-            </motion.div>
+              {post.title}
+            </h1>
+            <span className="mt-2 rotate-[-4deg] border-2 border-pad-yellow px-2.5 pb-0.5 pt-1 font-pad-display text-xl font-bold leading-none text-pad-yellow">
+              {post.category}
+            </span>
           </div>
+
+          <dl className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-pad-carbon-ink/30 pt-4 text-pad-carbon-ink">
+            <div className="flex items-center gap-1.5">
+              <dt className="sr-only">מחבר</dt>
+              <User aria-hidden="true" size={15} />
+              <dd>
+                <Link
+                  href="/about"
+                  className="font-bold text-white underline decoration-pad-yellow/50 decoration-2 underline-offset-4 hover:decoration-pad-yellow"
+                >
+                  {post.author}
+                </Link>
+              </dd>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <dt className="sr-only">תאריך</dt>
+              <Calendar aria-hidden="true" size={15} />
+              <dd>
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
+              </dd>
+            </div>
+            {post.lastUpdated && (
+              <div className="flex items-center gap-1.5 text-pad-yellow">
+                <dt className="sr-only">עודכן</dt>
+                <RefreshCw aria-hidden="true" size={15} />
+                <dd>
+                  עודכן: <time dateTime={post.lastUpdated}>{formatDate(post.lastUpdated)}</time>
+                </dd>
+              </div>
+            )}
+            <div className="flex items-center gap-1.5">
+              <dt className="sr-only">זמן קריאה</dt>
+              <Clock aria-hidden="true" size={15} />
+              <dd>{post.readTime}</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      {/* Main Content Area */}
-      <section className="py-12 lg:py-16">
-        <div className="container mx-auto px-4">
-          <div className="lg:grid lg:grid-cols-[1fr,280px] lg:gap-12 xl:gap-16">
-            {/* Article Content */}
-            <article className="max-w-none">
-              {/* Description */}
-              {post.description && (
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.5, ease: bouncyEasing }}
-                  className="mb-10 text-xl lg:text-2xl leading-relaxed text-brand-gray-700 font-medium"
-                >
-                  {post.description}
-                </motion.p>
-              )}
+      {/* The page of the pad: body on the rules, margin beside it */}
+      <div className="pad-paper">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[17rem_minmax(0,36rem)] lg:gap-x-14 lg:py-20">
+          <article className="relative min-w-0 lg:col-start-2">
+            <span aria-hidden="true" className="absolute inset-y-0 -start-6 hidden w-px bg-pad-red/50 lg:block" />
 
-              {/* TL;DR / answer-first summary (from frontmatter `tldr`) */}
-              <KeyTakeaways items={post.tldr} />
+            {post.description && (
+              <p className="max-w-[60ch] border-b border-pad-rule pb-6 text-xl font-semibold leading-relaxed text-pad-ink sm:text-2xl">
+                {post.description}
+              </p>
+            )}
 
-              {/* Member-to-pillar backlink(s) for cluster posts */}
-              <ClusterPillarLink pillars={clusterPillars} />
+            {/* TL;DR / answer-first summary (from frontmatter `tldr`) */}
+            <KeyTakeaways items={post.tldr} />
 
-              {/* Article Content — split with a mid-article CTA when long enough */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              >
-                {contentParts ? (
-                  <>
-                    <div
-                      className={PROSE_CLASSES}
-                      dangerouslySetInnerHTML={{ __html: contentParts[0] }}
-                    />
-                    <InlineServiceCTA category={post.category} variant="compact" />
-                    <div
-                      className={PROSE_CLASSES}
-                      dangerouslySetInnerHTML={{ __html: contentParts[1] }}
-                    />
-                  </>
-                ) : (
-                  <div
-                    className={PROSE_CLASSES}
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                  />
-                )}
-              </motion.div>
+            {/* Member-to-pillar backlink(s) for cluster posts */}
+            <ClusterPillarLink pillars={clusterPillars} />
 
-              {/* Tags */}
-              {post.tags && post.tags.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.5, ease: bouncyEasing }}
-                  className="mt-12 pt-8 border-t border-brand-gray-200"
-                >
-                  <h3 className="text-sm font-semibold text-brand-gray-600 mb-4">תגיות</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-brand-gray-100 px-4 py-2 text-sm font-medium text-brand-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue transition-colors cursor-default"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
+            {/* Article Content — split with a mid-article CTA when long enough */}
+            {contentParts ? (
+              <>
+                <div className={PROSE_CLASSES} dangerouslySetInnerHTML={{ __html: contentParts[0] }} />
+                <InlineServiceCTA category={post.category} variant="compact" />
+                <div className={PROSE_CLASSES} dangerouslySetInnerHTML={{ __html: contentParts[1] }} />
+              </>
+            ) : (
+              <div className={PROSE_CLASSES} dangerouslySetInnerHTML={{ __html: post.content }} />
+            )}
 
-              {/* FAQ + Sources (from frontmatter; mirror the JSON-LD) */}
-              <FAQSection items={post.faq} />
-              <SourcesList items={post.sources} />
-
-              {/* Inline Service CTA */}
-              <InlineServiceCTA category={post.category} />
-
-              {/* Author Bio */}
-              <AuthorBio author={post.author} />
-
-              {/* Mobile Share Buttons */}
-              <div className="lg:hidden mt-8 pt-8 border-t border-brand-gray-200">
-                <ShareButtonsMobile url={postUrl} title={post.title} />
+            {post.tags && post.tags.length > 0 && (
+              <div className="mt-12 border-t border-pad-rule pt-6">
+                <h2 className="text-sm font-bold text-pad-red">תגיות</h2>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <li key={tag} className="border border-pad-red px-2 py-0.5 text-sm font-bold text-pad-red">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </article>
+            )}
 
-            {/* Sticky Sidebar - Desktop Only */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-24 space-y-6">
-                <ShareButtons url={postUrl} title={post.title} />
-                <SidebarCTA category={post.category} />
+            {/* FAQ + Sources (from frontmatter; mirror the JSON-LD) */}
+            <FAQSection items={post.faq} />
+            <SourcesList items={post.sources} />
 
-                {/* Tags in sidebar */}
-                {post.tags && post.tags.length > 0 && (
-                  <div className="rounded-2xl bg-brand-gray-50 p-5">
-                    <h3 className="text-sm font-semibold text-brand-gray-600 mb-3">תגיות</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.slice(0, 6).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-brand-gray-600 shadow-sm"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </aside>
-          </div>
+            <InlineServiceCTA category={post.category} />
+            <AuthorBio author={post.author} />
+
+            <div className="mt-8 border-t border-pad-rule pt-6 lg:hidden">
+              <ShareButtonsMobile url={postUrl} title={post.title} />
+            </div>
+          </article>
+
+          {/* The margin: pinned in the margin itself, against the red rule */}
+          <aside className="hidden lg:col-start-1 lg:row-start-1 lg:block">
+            <div className="sticky top-28 space-y-6">
+              <ShareButtons url={postUrl} title={post.title} />
+              <SidebarCTA category={post.category} />
+            </div>
+          </aside>
         </div>
-      </section>
+      </div>
 
-      {/* Related Posts */}
+      {/* Related reading, filed on the pink copy */}
       {relatedPosts.length > 0 && (
-        <section className="border-t border-brand-gray-200 bg-section-light-blue py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: bouncyEasing }}
-              className="mb-10 text-center text-2xl lg:text-3xl font-bold text-brand-navy"
-            >
+        <section aria-labelledby="related-heading" className="bg-pad-pink">
+          <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-20">
+            <h2 id="related-heading" className="font-pad-display text-5xl font-bold leading-none text-pad-ink">
               מאמרים קשורים
-            </motion.h2>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+            </h2>
+            <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {relatedPosts.map((relatedPost, index) => (
-                <motion.article
-                  key={relatedPost.slug}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: index * 0.1,
-                    duration: 0.5,
-                    ease: bouncyEasing
-                  }}
-                  whileHover={{
-                    y: -8,
-                    transition: { duration: 0.25, ease: bouncyEasing }
-                  }}
-                  className="group overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow"
-                >
-                  <Link href={`/blog/${relatedPost.slug}`}>
-                    {/* Image or gradient */}
-                    <div className="relative h-44 overflow-hidden">
-                      {relatedPost.image ? (
-                        <Image
-                          src={relatedPost.image}
-                          alt={relatedPost.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-purple to-brand-orange" />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-
-                      {/* Category badge */}
-                      <span className="absolute bottom-3 end-3 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-brand-navy">
-                        {relatedPost.category}
-                      </span>
+                <li key={relatedPost.slug}>
+                  <Link
+                    href={`/blog/${relatedPost.slug}`}
+                    className={`pad-paper pad-sheet-shadow group relative flex h-full flex-col p-5 pb-6 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:rotate-0 motion-reduce:transition-none ${
+                      FILED_TILTS[index % FILED_TILTS.length]
+                    }`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute -top-1.5 start-8 z-10 h-2 w-10 rotate-[-6deg] border-2 border-b-0 border-[#8A8FA8] shadow-[0_1px_0_rgba(0,0,0,0.25)]"
+                    />
+                    <div className="flex items-baseline justify-between gap-3 border-b border-dashed border-pad-red/50 pb-2 text-sm">
+                      <span className="font-bold text-pad-red">{relatedPost.category}</span>
+                      <time dateTime={relatedPost.date} className="font-pad-display text-lg leading-none text-pad-red">
+                        {formatDate(relatedPost.date)}
+                      </time>
                     </div>
-
-                    <div className="p-5">
-                      <h3 className="mb-2 text-lg font-bold text-brand-navy line-clamp-2 group-hover:text-brand-blue transition-colors">
-                        {relatedPost.title}
-                      </h3>
-
-                      <p className="mb-4 text-sm text-brand-gray-600 line-clamp-2">
-                        {relatedPost.excerpt}
-                      </p>
-
-                      <div className="flex items-center gap-4 text-xs text-brand-gray-500">
-                        <span className="flex items-center gap-1">
-                          <Calendar size={12} />
-                          {new Date(relatedPost.date).toLocaleDateString('he-IL')}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock size={12} />
-                          {relatedPost.readTime}
-                        </span>
-                      </div>
-                    </div>
+                    <h3 className="mt-4 font-pad-display text-3xl font-bold leading-none text-pad-ink">
+                      {relatedPost.title}
+                    </h3>
+                    <p className="mt-3 line-clamp-3 text-base leading-snug text-pad-ink-soft">{relatedPost.excerpt}</p>
+                    <span className="mt-auto flex items-center gap-2 pt-5 text-base font-bold text-pad-carbon">
+                      {relatedPost.readTime}
+                      <ArrowLeft
+                        aria-hidden="true"
+                        className="h-4 w-4 transition-transform group-hover:-translate-x-1 motion-reduce:transition-none"
+                      />
+                    </span>
                   </Link>
-                </motion.article>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-br from-brand-blue to-brand-purple py-16 lg:py-20 text-center">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: bouncyEasing }}
-          >
-            <h2 className="mb-4 text-2xl lg:text-4xl font-bold text-white">
+      <section aria-labelledby="post-close-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:py-20">
+          <div>
+            <h2 id="post-close-heading" className="font-pad-display text-5xl font-bold leading-[0.9] sm:text-6xl">
               רוצים לדבר על הפרויקט שלכם?
             </h2>
-            <p className="mx-auto mb-8 max-w-xl text-lg text-white/90">
+            <p className="mt-4 max-w-[44ch] text-lg leading-relaxed text-pad-carbon-ink">
               נשמח לעזור לכם להפוך את הרעיונות שלכם למציאות
             </p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2, ease: bouncyEasing }}
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-brand-blue shadow-xl hover:shadow-2xl transition-shadow"
-              >
-                צור קשר
-                <ArrowLeft size={18} />
-              </Link>
-            </motion.div>
-          </motion.div>
+          </div>
+          <TearSlipLink href="/contact">צור קשר</TearSlipLink>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

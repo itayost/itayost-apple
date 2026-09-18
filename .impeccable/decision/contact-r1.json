@@ -1,0 +1,210 @@
+{
+  "title": "Contact page: choose the structure",
+  "question": "Safer hand. Pick how the contact page is composed, or re-roll.",
+  "options": [
+    {
+      "id": "form-in-hero",
+      "label": "Form In The Hero",
+      "kicker": "THE ROLL",
+      "lineage": "the standard contact hero, on the carbon field",
+      "thesis": "Headline and the two-field form share the first viewport; nothing to scroll for.",
+      "palette": [
+        "#2B3FD6",
+        "#FBFBF8",
+        "#F2DF6E",
+        "#15161A"
+      ],
+      "materials": [
+        "paper form sheet",
+        "printed form header"
+      ],
+      "viewport": "Carbon field. Start side: headline, one-hour promise, WhatsApp and phone as plain links. End side: white paper sheet with name, phone, yellow send slip. Below: hours strip, 2 FAQ lines.",
+      "risk": "Familiar by design; distinction lives only in the paper details.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {
+            "label": "nav",
+            "x": 0,
+            "y": 0,
+            "w": 12,
+            "h": 1
+          },
+          {
+            "label": "headline + promise + WhatsApp / phone",
+            "x": 6,
+            "y": 1,
+            "w": 6,
+            "h": 5
+          },
+          {
+            "label": "form sheet: name / phone / send",
+            "x": 0,
+            "y": 1,
+            "w": 6,
+            "h": 5,
+            "accent": true
+          },
+          {
+            "label": "hours strip",
+            "x": 0,
+            "y": 6,
+            "w": 12,
+            "h": 1
+          },
+          {
+            "label": "FAQ",
+            "x": 2,
+            "y": 7,
+            "w": 8,
+            "h": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "channels-then-form",
+      "label": "Channels, Then Form",
+      "lineage": "today's page order, rebuilt",
+      "thesis": "Three channel tabs up top (WhatsApp, phone, email), the form sheet right under them.",
+      "palette": [
+        "#FBFBF8",
+        "#2B3FD6",
+        "#F2DF6E",
+        "#D7263D"
+      ],
+      "materials": [
+        "tear-off tabs",
+        "ruled form sheet"
+      ],
+      "viewport": "Paper page. Headline centered, a row of three perforated tabs, then the form sheet with send, then hours and FAQ.",
+      "risk": "Channels above the form may pull clicks away from the CRM form.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {
+            "label": "nav",
+            "x": 0,
+            "y": 0,
+            "w": 12,
+            "h": 1
+          },
+          {
+            "label": "headline",
+            "x": 2,
+            "y": 1,
+            "w": 8,
+            "h": 2
+          },
+          {
+            "label": "tabs: WhatsApp / phone / email",
+            "x": 1,
+            "y": 3,
+            "w": 10,
+            "h": 2
+          },
+          {
+            "label": "form sheet + send",
+            "x": 2,
+            "y": 5,
+            "w": 8,
+            "h": 3,
+            "accent": true
+          },
+          {
+            "label": "hours + FAQ",
+            "x": 2,
+            "y": 8,
+            "w": 8,
+            "h": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "channel-tabs",
+      "label": "Choose How To Talk",
+      "lineage": "divider tabs on an order book",
+      "thesis": "One sheet with three divider tabs: leave details (default), WhatsApp, or call.",
+      "palette": [
+        "#FBFBF8",
+        "#2B3FD6",
+        "#F4C6D2",
+        "#15161A"
+      ],
+      "materials": [
+        "index divider tabs",
+        "paper sheet"
+      ],
+      "viewport": "Headline on carbon, then a single paper sheet with divider tabs on top; the form tab is open by default, the others swap the sheet to a WhatsApp or call panel.",
+      "risk": "Hides WhatsApp and phone behind a tab click.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {
+            "label": "nav",
+            "x": 0,
+            "y": 0,
+            "w": 12,
+            "h": 1
+          },
+          {
+            "label": "headline on carbon",
+            "x": 1,
+            "y": 1,
+            "w": 10,
+            "h": 2
+          },
+          {
+            "label": "tabs: form / WhatsApp / call",
+            "x": 2,
+            "y": 3,
+            "w": 8,
+            "h": 1
+          },
+          {
+            "label": "active sheet: form + send",
+            "x": 2,
+            "y": 4,
+            "w": 8,
+            "h": 4,
+            "accent": true
+          },
+          {
+            "label": "hours + FAQ",
+            "x": 2,
+            "y": 8,
+            "w": 8,
+            "h": 2
+          }
+        ]
+      }
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": false
+  },
+  "steer": true,
+  "seed": {
+    "key": "317d8cb9",
+    "scope": "surface",
+    "mode": "persuade",
+    "reroll": 1,
+    "dealtIndices": [
+      4,
+      6,
+      7
+    ],
+    "note": "register steer (safer) requested by user; CLI accepts --register only for direction rounds, so the re-roll ran without it"
+  }
+}

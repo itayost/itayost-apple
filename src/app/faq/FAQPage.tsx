@@ -1,310 +1,96 @@
-'use client'
+import { faqPageCopy, faqSections } from '@/config/faqPage'
+import { PenCross } from '@/components/pad/PenCross'
+import { SectionTabs } from '@/components/pad/SectionTabs'
+import { FAQCta } from './FAQCta'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
-import {
-  HelpCircle,
-  ChevronDown,
-  MessageCircle,
-  Sparkles
-} from 'lucide-react'
-import { content } from '@/config/content'
-import { seoConfig } from '@/config/seo'
-import { bouncyEasing } from '@/constants/animations'
-import { trackWhatsAppClick, trackGenerateLead } from '@/lib/analytics'
-import { buildWhatsAppUrl } from '@/lib/whatsapp'
-
-// Extract FAQ items from SEO config
-const faqItems = seoConfig.structuredData.faqPage.mainEntity.map((item: { name: string; acceptedAnswer: { text: string } }) => ({
-  question: item.name,
-  answer: item.acceptedAnswer.text,
-  category: 'general'
-}))
-
-// Additional FAQ items
-const additionalFAQs = [
-  {
-    question: 'באיזה טכנולוגיות אתה משתמש?',
-    answer: 'אני עובד עם הטכנולוגיות המתקדמות ביותר: React, Next.js, Node.js, TypeScript, MongoDB, PostgreSQL ועוד. בוחר את הטכנולוגיה המתאימה ביותר לכל פרויקט.',
-    category: 'technical'
-  },
-  {
-    question: 'האם אתה עושה גם עיצוב?',
-    answer: 'כן! אני מציע שירותי עיצוב UI/UX מלאים, כולל עיצוב ממשק משתמש, חווית משתמש, ברנדינג וזהות ויזואלית.',
-    category: 'general'
-  },
-  {
-    question: 'מה קורה אם אני רוצה לשנות משהו באמצע?',
-    answer: 'אין בעיה! אני עובד עם עדכונים שוטפים. שינויים קטנים זה חלק מהתהליך. לשינויים גדולים נתאם ציפיות ולוחות זמנים מחדש.',
-    category: 'process'
-  },
-  {
-    question: 'האם אני יכול לנהל את האתר בעצמי?',
-    answer: 'בהחלט! אני בונה מערכות ניהול פשוטות ונוחות לשימוש. בנוסף, אני מספק הדרכה מלאה ותיעוד ברור.',
-    category: 'support'
-  },
-  {
-    question: 'האם אתה עובד עם לקוחות מחוץ לישראל?',
-    answer: 'כן, אני עובד עם לקוחות מכל הארץ ומחוצה לה. רוב התקשורת דרך וידאו קונפרנס, וואטסאפ וכלי שיתוף פעולה מקוונים.',
-    category: 'general'
-  }
-]
-
-const allFAQs = [...faqItems, ...additionalFAQs]
-
+/**
+ * The FAQ as the pad's fine print: numbered clauses filed under printed
+ * headings, each one unfolding in place. Native <details> so the answers are
+ * in the HTML for crawlers and the page works without JavaScript.
+ */
 export default function FAQPage() {
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const categories = [
-    { key: 'all', label: 'הכל' },
-    ...Object.entries(content.faq.categories).map(([key, label]) => ({ key, label }))
-  ]
-
-  const filteredFAQs = selectedCategory === 'all'
-    ? allFAQs
-    : allFAQs.filter(faq => faq.category === selectedCategory)
+  const sections = faqSections()
+  const clauseCount = sections.reduce((total, section) => total + section.clauses.length, 0)
+  // Clause numbers run once through the whole document, so no two rows on the
+  // page carry the same number.
+  const clausesBefore = (sectionIndex: number) =>
+    sections.slice(0, sectionIndex).reduce((total, section) => total + section.clauses.length, 0)
 
   return (
-    <main className="pt-20 lg:pt-24 min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-              className="mb-6"
-            >
-              <motion.div
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-green/10 rounded-full"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Sparkles className="w-5 h-5 text-brand-green" />
-                <span className="text-base font-bold text-brand-green">
-                  {content.faq.sectionLabel}
-                </span>
-              </motion.div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
-            >
-              {content.faq.title}
-              <span className="block mt-2 text-brand-green">
-                {content.faq.subtitle}
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
-              className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto"
-            >
-              {content.faq.description}
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* Category Filter */}
-      <section className="py-8 bg-white border-b border-brand-gray-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Desktop: Centered tabs */}
-          <div className="hidden sm:flex justify-center">
-            <div className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full">
-              {categories.map(({ key, label }) => (
-                <motion.button
-                  key={key}
-                  onClick={() => {
-                    setSelectedCategory(key)
-                    setOpenIndex(null)
-                  }}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap ${
-                    selectedCategory === key
-                      ? 'bg-brand-green text-white shadow-lg'
-                      : 'text-brand-gray-700 hover:text-brand-green'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                >
-                  {label}
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile: Scrollable tabs */}
-          <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <div className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4" style={{ width: 'max-content' }}>
-              {categories.map(({ key, label }) => (
-                <motion.button
-                  key={key}
-                  onClick={() => {
-                    setSelectedCategory(key)
-                    setOpenIndex(null)
-                  }}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap ${
-                    selectedCategory === key
-                      ? 'bg-brand-green text-white shadow-lg'
-                      : 'text-brand-gray-700'
-                  }`}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                >
-                  {label}
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Items */}
-      <section className="py-16 lg:py-24 bg-section-light-blue">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-4">
-              {filteredFAQs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: index * 0.05,
-                    duration: 0.6,
-                    ease: bouncyEasing
-                  }}
-                  whileHover={{
-                    y: -4,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow"
-                >
-                  <button
-                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full px-6 lg:px-8 py-5 lg:py-6 flex items-center justify-between text-right hover:bg-brand-gray-50 transition-colors"
-                  >
-                    <span className="text-lg lg:text-xl font-bold text-brand-navy flex-1 pr-4">
-                      {faq.question}
-                    </span>
-                    <motion.div
-                      animate={{ rotate: openIndex === index ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: bouncyEasing }}
-                      className="flex-shrink-0"
-                    >
-                      <div className="w-10 h-10 bg-brand-green rounded-2xl flex items-center justify-center">
-                        <ChevronDown className="w-6 h-6 text-white" />
-                      </div>
-                    </motion.div>
-                  </button>
-
-                  <AnimatePresence>
-                    {openIndex === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: bouncyEasing }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 lg:px-8 pb-5 lg:pb-6 text-brand-gray-700 text-lg leading-relaxed">
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-brand-green">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
+    <div className="pad-world">
+      <section aria-labelledby="faq-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto max-w-6xl px-5 pb-14 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
+          <h1
+            id="faq-heading"
+            className="font-pad-display text-[clamp(3.5rem,2rem+5vw,6rem)] font-bold leading-[0.88] [text-wrap:balance]"
           >
-            <motion.div
-              className="mb-6"
-              animate={{
-                rotate: [0, -10, 10, -10, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <MessageCircle size={64} className="text-white mx-auto" />
-            </motion.div>
-            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
-              לא מצאתם את התשובה?
-            </h2>
-            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              אני כאן לעזור! צרו איתי קשר ואענה על כל שאלה
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white text-brand-green rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-                >
-                  צרו קשר
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <a
-                  href={buildWhatsAppUrl('היי, יש לי שאלה שלא מצאתי תשובה אליה באתר')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    trackWhatsAppClick('/faq', 'faq')
-                    trackGenerateLead('whatsapp', '/faq')
-                  }}
-                  className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white/20 backdrop-blur text-white border-2 border-white/30 rounded-full font-semibold text-lg hover:bg-white/30 transition-all"
-                >
-                  WhatsApp
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
+            {faqPageCopy.title}
+            <span className="block text-pad-yellow">{faqPageCopy.subtitle}</span>
+          </h1>
+          <p className="mt-6 max-w-[52ch] text-xl leading-relaxed text-pad-carbon-ink sm:text-2xl">
+            {faqPageCopy.description}
+          </p>
+          <p className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-pad-carbon-ink/30 pt-4 text-pad-carbon-ink">
+            <span>
+              <span className="font-pad-display text-2xl leading-none text-pad-yellow">{clauseCount}</span>{' '}
+              {faqPageCopy.clausesLabel}
+            </span>
+            <span>
+              <span className="font-pad-display text-2xl leading-none text-pad-yellow">{sections.length}</span>{' '}
+              {faqPageCopy.sectionsLabel}
+            </span>
+          </p>
         </div>
       </section>
-    </main>
+
+      <SectionTabs
+        ariaLabel={faqPageCopy.sectionsLabel}
+        tabs={sections.map((section) => ({ id: section.id, label: section.label, count: section.clauses.length }))}
+      />
+
+      <section aria-label={faqPageCopy.listLabel} className="pad-paper">
+        <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8 lg:py-20">
+          {sections.map((section, sectionIndex) => (
+            <div key={section.id} id={section.id} className="mb-14 scroll-mt-32 last:mb-0">
+              <h2 className="border-b-[3px] border-double border-pad-red pb-2 font-pad-display text-4xl font-bold leading-none text-pad-ink lg:text-5xl">
+                {section.heading}
+              </h2>
+              <div>
+                {section.clauses.map((clause, index) => (
+                  <details
+                    key={clause.question}
+                    open={sectionIndex === 0 && index === 0}
+                    className="group border-b border-pad-rule"
+                  >
+                    <summary className="grid min-h-16 cursor-pointer list-none grid-cols-[2.5rem_1fr_1.75rem] items-center gap-x-4 py-4 [&::-webkit-details-marker]:hidden">
+                      <span aria-hidden="true" className="font-pad-display text-xl leading-none text-pad-red">
+                        {String(clausesBefore(sectionIndex) + index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="text-lg font-bold leading-snug text-pad-ink sm:text-xl">{clause.question}</span>
+                      <PenCross />
+                    </summary>
+                    <p className="-mt-1 max-w-[62ch] pb-6 ps-[3.5rem] text-base leading-[1.9] text-pad-ink-soft sm:text-lg">
+                      {clause.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="faq-cta-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:py-20">
+          <div>
+            <h2 id="faq-cta-heading" className="font-pad-display text-5xl font-bold leading-[0.9] sm:text-6xl">
+              {faqPageCopy.ctaTitle}
+            </h2>
+            <p className="mt-4 max-w-[44ch] text-lg leading-relaxed text-pad-carbon-ink">{faqPageCopy.ctaText}</p>
+          </div>
+          <FAQCta />
+        </div>
+      </section>
+    </div>
   )
 }

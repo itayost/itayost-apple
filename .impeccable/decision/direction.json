@@ -1,0 +1,125 @@
+{
+  "title": "ItayOst homepage: choose the visual world",
+  "question": "The roll assigned The Till Tape. Keep it, take my pick or an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Till Tape",
+      "kicker": "THE ROLL",
+      "lineage": "thermal register receipts from every Israeli shop counter",
+      "thesis": "Your business's chaos, printed out as one clean itemized system.",
+      "palette": ["#F2F3EF", "#16181A", "#E0287A", "#2B3FD6"],
+      "materials": ["thermal paper", "dot-leader line items", "rubber PAID stamp"],
+      "viewport": "A long receipt prints down the page: messy inputs (WhatsApp, Excel, notebook) itemized, subtotal becomes 'one system', stamped with a live 'reply by HH:MM' and the WhatsApp action.",
+      "risk": "Mono receipt type can feel cold or cheap if the paper, ink fade and stamp are not crafted with care.",
+      "raised": [
+        { "from": "challenger-cereal-aisle", "raise": "The end-of-roll magenta commits as a full field that owns whole regions, not a sprinkled accent." },
+        { "from": "challenger-pulp-rack", "raise": "Every section heading uses a fixed three-tier stack: the pain, the fix, the promise." },
+        { "from": "challenger-night-city", "raise": "The page is time-indexed: timestamps and the reply-by stamp are computed from the visitor's real clock." },
+        { "from": "challenger-paper-automata", "raise": "One scroll-driven print timeline drives all motion; nothing animates on its own." },
+        { "from": "challenger-oscilloscope", "raise": "Everything is measured on one strict tape column with dot-leaders; no floating cards anywhere." }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "The Carbon Order Pad",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "duplicate order pads (פנקס הזמנות) with carbon copies",
+      "thesis": "The handwritten pad every business runs on, re-issued as a system.",
+      "palette": ["#2F4FD8", "#F4C6D2", "#F2DF6E", "#1C1C1C"],
+      "materials": ["carbon paper", "numbered duplicate sheets", "ballpoint"],
+      "viewport": "A torn pad sheet with scribbled orders; the carbon copy underneath shows the same order as a clean CRM record, with the WhatsApp action on the sheet.",
+      "risk": "Handwriting and paper textures can tip into cute or Wix-like; it is also the closest to what a model would pick first."
+    },
+    {
+      "id": "challenger-cereal-aisle",
+      "label": "Cereal Aisle Planogram",
+      "verdict": "declined",
+      "lineage": "supermarket shelf facings",
+      "thesis": "Services as box facings on a saturated shelf.",
+      "palette": ["#D62828", "#F7C51E", "#FFFFFF"],
+      "materials": ["coated board", "starburst violators"],
+      "viewport": "A shelf of service boxes, CRM box pulled proud.",
+      "risk": "Reads childish; owners do not see their business in it.",
+      "case": "Fuses poorly: loses audience identification and hides the systems offer.",
+      "kept": "Total commitment of one saturated color field."
+    },
+    {
+      "id": "challenger-pulp-rack",
+      "label": "Pulp Paperback Rack",
+      "verdict": "declined",
+      "lineage": "drugstore paperback spinners",
+      "thesis": "Each service a lurid cover promising drama.",
+      "palette": ["#1B2A52", "#F2C12E", "#C8102E"],
+      "materials": ["painted covers", "pulp stock"],
+      "viewport": "A face-out cover for the CRM service.",
+      "risk": "Melodrama undercuts trust.",
+      "case": "Fuses poorly: wrong register for a trusted local builder.",
+      "kept": "Fixed three-tier hook hierarchy."
+    },
+    {
+      "id": "challenger-night-city",
+      "label": "Rain Night Cityscape",
+      "verdict": "declined",
+      "lineage": "blue-hour urban nocturne",
+      "thesis": "The business as a lit city of connected systems.",
+      "palette": ["#1C3FAA", "#0B0D12", "#F2A33A"],
+      "materials": ["wet reflections", "window grids"],
+      "viewport": "Skyline with lit windows as automations.",
+      "risk": "Dark neon drifts into the SaaS look to avoid.",
+      "case": "Fuses poorly: abstract, and close to the banned template look.",
+      "kept": "Time-indexed state tied to the visitor's clock."
+    },
+    {
+      "id": "challenger-paper-automata",
+      "label": "Paper Automata Crank",
+      "verdict": "declined",
+      "lineage": "hand-cranked cut-paper automata",
+      "thesis": "One crank turns the whole business.",
+      "palette": ["#FFFFFF", "#B08A5B", "#C8102E"],
+      "materials": ["cut paper", "kraft board"],
+      "viewport": "A crank that sets leads, orders and invoices moving.",
+      "risk": "Whimsy outweighs the offer.",
+      "case": "Fuses partly: good automation metaphor, weak audience identification and clarity.",
+      "kept": "A single timeline drives every motion."
+    },
+    {
+      "id": "challenger-ebru",
+      "label": "Ebru Marbling",
+      "verdict": "declined",
+      "lineage": "floated-pigment marbling",
+      "thesis": "Chaos combed into pattern.",
+      "palette": ["#1F4E79", "#E9C46A", "#E76F51"],
+      "materials": ["pigment on water"],
+      "viewport": "A fluid canvas combed into order.",
+      "risk": "Artsy; offer and action get lost.",
+      "case": "Fuses poorly: too artsy to convert.",
+      "kept": "One continuous surface, no card shells."
+    },
+    {
+      "id": "challenger-oscilloscope",
+      "label": "Oscilloscope Bench",
+      "verdict": "declined",
+      "lineage": "CRT signal instruments",
+      "thesis": "Noisy business signal locked into a clean trace.",
+      "palette": ["#0A0F0A", "#39FF6A", "#F2A33A"],
+      "materials": ["phosphor", "etched graticule"],
+      "viewport": "A noisy trace that locks when the system is on.",
+      "risk": "Dark-with-neon SaaS cliché.",
+      "case": "Fuses poorly: engineer's world, not the owner's.",
+      "kept": "Everything measured against one strict grid."
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A clean freelance-studio site: founder photo, service grid, project gallery, contact.",
+    "palette": ["#FFFFFF", "#111827", "#2563EB"],
+    "materials": ["clean grid", "project screenshots"],
+    "viewport": "Headline and CTA beside a portrait or product mockup, service cards below.",
+    "risk": "Indistinguishable from every other developer site by design."
+  },
+  "steer": true
+}

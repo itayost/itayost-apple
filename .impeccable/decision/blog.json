@@ -1,0 +1,66 @@
+{
+  "title": "Blog & guides: choose the reading structure",
+  "question": "Read mode: comprehension first. One template for articles (27 posts + 3 guides) and a matching index. The article keeps its takeaways, FAQ, sources, author, share and CTA blocks.",
+  "seed": { "key": "d78b68f8", "scope": "surface", "mode": "read", "dealtIndices": [4, 6, 2] },
+  "options": [
+    {
+      "id": "notebook-spread",
+      "label": "The Notebook Spread",
+      "kicker": "THE ROLL",
+      "lineage": "a page of the pad, annotated while reading",
+      "thesis": "The article is the ruled page; the takeaways, sources and CTA live in the margin as pen notes and pinned slips.",
+      "palette": ["#FBFBF8", "#2B3FD6", "#D7263D", "#F2DF6E"],
+      "materials": ["ruled reading column", "margin pen notes", "pinned CTA slip"],
+      "viewport": "Carbon strip with breadcrumbs, category stamp, title and read time. Then the ruled column: takeaways as a boxed note at the top, body on the rules, the margin carrying share, a pinned service slip and progress; FAQ and sources as fine print; author sheet and related posts at the end.",
+      "risk": "Margin furniture can crowd the text on mid-size screens; needs a strict reading measure.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "carbon strip: crumbs, title, read time", "x": 0, "y": 0, "w": 12, "h": 2 },
+        { "label": "takeaways note", "x": 3, "y": 2, "w": 6, "h": 1 },
+        { "label": "ruled body column", "x": 3, "y": 3, "w": 6, "h": 6, "accent": true },
+        { "label": "margin: share, service slip", "x": 9, "y": 3, "w": 3, "h": 3 },
+        { "label": "FAQ + sources fine print", "x": 3, "y": 9, "w": 6, "h": 1 },
+        { "label": "author sheet", "x": 3, "y": 10, "w": 6, "h": 1 },
+        { "label": "related posts", "x": 0, "y": 11, "w": 12, "h": 1 }
+      ]}
+    },
+    {
+      "id": "filed-memo",
+      "label": "The Filed Memo",
+      "lineage": "an internal memo filed in the pad",
+      "thesis": "Every article opens as a memo: subject, date, who it is for, and the short answer, before the long explanation.",
+      "palette": ["#FBFBF8", "#D7263D", "#2B3FD6", "#F4C6D2"],
+      "materials": ["memo header block", "short-answer box", "ruled body"],
+      "viewport": "Paper page with a red double-ruled memo header (נושא / תאריך / למי / זמן קריאה), then the takeaways as the short answer in a boxed slip, then the ruled body; FAQ, sources, author and a closing slip.",
+      "risk": "Memo framing suits how-to posts better than opinion pieces.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "memo header block", "x": 2, "y": 0, "w": 8, "h": 2 },
+        { "label": "short answer box", "x": 2, "y": 2, "w": 8, "h": 2, "accent": true },
+        { "label": "ruled body", "x": 2, "y": 4, "w": 8, "h": 5 },
+        { "label": "FAQ + sources", "x": 2, "y": 9, "w": 8, "h": 1 },
+        { "label": "author + CTA slip", "x": 2, "y": 10, "w": 8, "h": 1 },
+        { "label": "related posts", "x": 0, "y": 11, "w": 12, "h": 1 }
+      ]}
+    },
+    {
+      "id": "guided-read",
+      "label": "Guided Read",
+      "lineage": "a long read with the pad's own index",
+      "thesis": "A sticky contents list on the start side tracks where you are; the body reads wide and calm.",
+      "palette": ["#FBFBF8", "#2B3FD6", "#F2DF6E", "#D7263D"],
+      "materials": ["sticky contents sheet", "ruled body", "progress rule"],
+      "viewport": "Carbon strip with title and read time; below, a sticky contents sheet (the article's headings) beside the ruled body, with a red progress rule along the top; takeaways open the body; FAQ, sources, author, related.",
+      "risk": "Contents needs headings extracted from markdown; short posts gain little from it.",
+      "wireframe": { "cols": 12, "rows": 12, "regions": [
+        { "label": "carbon strip + progress rule", "x": 0, "y": 0, "w": 12, "h": 2 },
+        { "label": "sticky contents sheet", "x": 0, "y": 2, "w": 3, "h": 5 },
+        { "label": "ruled body with takeaways", "x": 3, "y": 2, "w": 8, "h": 7, "accent": true },
+        { "label": "FAQ + sources", "x": 3, "y": 9, "w": 8, "h": 1 },
+        { "label": "author + CTA slip", "x": 3, "y": 10, "w": 8, "h": 1 },
+        { "label": "related posts", "x": 0, "y": 11, "w": 12, "h": 1 }
+      ]}
+    }
+  ],
+  "reroll": true,
+  "buildPath": { "value": "code", "toggle": false },
+  "steer": true
+}

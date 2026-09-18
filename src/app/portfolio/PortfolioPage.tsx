@@ -2,477 +2,180 @@
 
 import { useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { portfolioData, portfolioCategories } from '@/data/portfolio'
-import {
-  Eye,
-  Globe,
-  Smartphone,
-  ShoppingBag,
-  Code2,
-  Filter,
-  ArrowLeft,
-  TrendingUp,
-  Clock,
-  Users,
-  Sparkles,
-  LucideIcon
-} from 'lucide-react'
-import { bouncyEasing } from '@/constants/animations'
-import { trackPortfolioClick, trackCtaClick } from '@/lib/analytics'
-import {
-  CardCarousel,
-  cardCarouselItemClass,
-} from '@/components/common/CardCarousel'
+import { ArrowLeft } from 'lucide-react'
+import { portfolioCategories, portfolioData } from '@/data/portfolio'
+import { portfolioPage } from '@/config/portfolioPage'
+import { trackCtaClick } from '@/lib/analytics'
+import { ClientCopyCard } from '@/components/pad/ClientCopyCard'
+import { TearSlipLink } from '@/components/pad/TearSlipLink'
 
-// Icon mapping for categories (extends centralized categories with icons)
-const categoryIcons: Record<string, LucideIcon> = {
-  all: Filter,
-  web: Globe,
-  mobile: Smartphone,
-  ecommerce: ShoppingBag,
-  system: Code2,
-}
+const { index: copy } = portfolioPage
 
-const getIcon = (category: string) => {
-  switch(category) {
-    case 'mobile': return Smartphone
-    case 'ecommerce': return ShoppingBag
-    case 'system': return Code2
-    default: return Globe
-  }
+/**
+ * Leading copies span two columns so every row fills: on the 3-column grid
+ * (3 - n % 3) % 3 copies go wide, alternating with single copies, on the 2-column grid the first copy
+ * goes wide when the count is odd. No copy is ever left alone on a row.
+ */
+function wideCopyClass(position: number, count: number): string {
+  if (count < 2) return ''
+  const isWideOnSmall = count % 2 === 1 && position === 0
+  // Each wide copy shares its row with one single copy, so wide copies sit at
+  // every other position from the start: 0, 2, ...
+  const wideOnLargeCount = (3 - (count % 3)) % 3
+  const isWideOnLarge = position % 2 === 0 && position / 2 < wideOnLargeCount
+  const classes: string[] = []
+  if (isWideOnSmall) classes.push('sm:col-span-2')
+  if (isWideOnLarge) classes.push('lg:col-span-2')
+  else if (isWideOnSmall) classes.push('lg:col-span-1')
+  return classes.join(' ')
 }
 
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const [hasInteracted, setHasInteracted] = useState(false)
   const gridRef = useRef<HTMLElement | null>(null)
 
-  // Only show chips for categories that actually have projects.
-  // Keeps "all" first, drops any chip whose category has zero items.
-  const availableCategories = useMemo(() => {
-    return portfolioCategories.filter(
-      c => c.id === 'all' || portfolioData.some(p => p.category === c.id)
-    )
-  }, [])
+  // Only show tabs for categories that actually have projects; "all" stays first.
+  const availableCategories = useMemo(
+    () => portfolioCategories.filter((c) => c.id === 'all' || portfolioData.some((p) => p.category === c.id)),
+    [],
+  )
+  const countFor = (categoryId: string) =>
+    categoryId === 'all' ? portfolioData.length : portfolioData.filter((p) => p.category === categoryId).length
 
-  const filteredProjects = selectedCategory === 'all'
-    ? portfolioData
-    : portfolioData.filter(p => p.category === selectedCategory)
+  const filteredProjects =
+    selectedCategory === 'all' ? portfolioData : portfolioData.filter((p) => p.category === selectedCategory)
 
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategory(categoryId)
-    if (!hasInteracted) setHasInteracted(true)
-    // Bring the grid into view so users on mobile (where the chip bar is sticky
-    // and the grid sits below the fold) get immediate visible feedback.
+    // Bring the copies into view so a mobile visitor (tabs sticky, grid below the
+    // fold) sees the result immediately; filtered results render without delay.
     requestAnimationFrame(() => {
-      gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      gridRef.current?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
     })
   }
 
   return (
-    <main className="pt-20 lg:pt-24 min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-              className="mb-6"
-            >
-              <motion.div
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange/10 rounded-full"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Sparkles className="w-5 h-5 text-brand-orange" />
-                <span className="text-base font-bold text-brand-orange">
-                  תיק העבודות שלי
-                </span>
-              </motion.div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
-            >
-              פרויקטים שיצרתי
-              <span className="block mt-2 text-brand-orange">
-                עם תשוקה וחדשנות
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
-              className="text-xl sm:text-2xl text-brand-gray-700"
-            >
-              כל פרויקט מספר סיפור של אתגר שהפך להצלחה, רעיון שהפך למציאות
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* Category Filter */}
-      <section className="py-8 sticky top-16 lg:top-20 bg-white z-30 shadow-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Desktop: Centered tabs */}
-          <div className="hidden sm:flex justify-center">
-            <div
-              role="tablist"
-              aria-label="סינון פרויקטים לפי קטגוריה"
-              className="inline-flex gap-2 p-2 bg-brand-gray-100 rounded-full"
-            >
-              {availableCategories.map((category) => {
-                const Icon = categoryIcons[category.id] || Filter
-                const isActive = selectedCategory === category.id
-                return (
-                  <motion.button
-                    key={category.id}
-                    role="tab"
-                    aria-selected={isActive}
-                    onClick={() => handleCategoryChange(category.id)}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-base transition-all whitespace-nowrap ${
-                      isActive
-                        ? 'bg-brand-navy text-white shadow-lg'
-                        : 'text-brand-gray-700 hover:text-brand-navy'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: bouncyEasing }}
-                  >
-                    <Icon className="w-5 h-5 flex-shrink-0" />
-                    <span>{category.label}</span>
-                  </motion.button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Mobile: Scrollable tabs */}
-          <div className="sm:hidden overflow-x-auto -mx-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <div
-              role="tablist"
-              aria-label="סינון פרויקטים לפי קטגוריה"
-              className="flex gap-2 p-2 bg-brand-gray-100 rounded-full mx-4"
-              style={{ width: 'max-content' }}
-            >
-              {availableCategories.map((category) => {
-                const Icon = categoryIcons[category.id] || Filter
-                const isActive = selectedCategory === category.id
-                return (
-                  <motion.button
-                    key={category.id}
-                    role="tab"
-                    aria-selected={isActive}
-                    onClick={() => handleCategoryChange(category.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap ${
-                      isActive
-                        ? 'bg-brand-navy text-white shadow-lg'
-                        : 'text-brand-gray-700'
-                    }`}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: bouncyEasing }}
-                  >
-                    <Icon className="w-4 h-4 flex-shrink-0" />
-                    <span>{category.label}</span>
-                  </motion.button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Result count: immediate visual feedback after filter change */}
-          <div
-            className="mt-3 text-center text-sm text-brand-gray-700"
-            aria-live="polite"
+    <div className="pad-world">
+      <section aria-labelledby="portfolio-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-12 lg:gap-x-12 lg:pb-20 lg:pt-36">
+          <div className="lg:col-span-7">
+          <h1
+            id="portfolio-heading"
+            className="font-pad-display text-[clamp(3.75rem,2rem+5.5vw,6.5rem)] font-bold leading-[0.88] [text-wrap:balance]"
           >
-            {filteredProjects.length === 1
-              ? 'פרויקט אחד'
-              : `${filteredProjects.length} פרויקטים`}
+            {copy.title.map((line, lineIndex) => (
+              <span key={line} className={`block ${lineIndex === 1 ? 'text-pad-yellow' : ''}`}>
+                {line}
+              </span>
+            ))}
+          </h1>
+          <p className="mt-6 max-w-[48ch] text-xl leading-relaxed text-pad-carbon-ink sm:text-2xl">{copy.subtitle}</p>
+          </div>
+
+          {/* The pad's own index sheet: how many copies are filed under each tab */}
+          <div className="pad-paper pad-sheet-shadow relative px-6 pb-6 pt-5 text-pad-ink sm:px-8 lg:col-span-5 lg:rotate-[1.2deg]">
+            <span aria-hidden="true" className="absolute inset-y-0 start-4 w-px bg-pad-red/60" />
+            <p className="border-b-[3px] border-double border-pad-red pb-2 ps-4 font-pad-display text-3xl font-bold leading-none text-pad-ink">
+              {copy.sheetTitle}
+            </p>
+            <dl className="ps-4">
+              {availableCategories
+                .filter((category) => category.id !== 'all')
+                .map((category) => (
+                  <div key={category.id} className="flex items-baseline justify-between gap-4 border-b border-pad-rule py-2.5">
+                    <dt className="text-lg font-bold">{category.label}</dt>
+                    <dd className="font-pad-hand text-xl text-pad-ballpoint">{countFor(category.id)}</dd>
+                  </div>
+                ))}
+              <div className="flex items-baseline justify-between gap-4 py-2.5 ps-0">
+                <dt className="text-lg font-bold text-pad-red">{copy.sheetTotalLabel}</dt>
+                <dd className="font-pad-display text-3xl leading-none text-pad-red">{portfolioData.length}</dd>
+              </div>
+            </dl>
           </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section
-        ref={gridRef}
-        className="py-16 lg:py-24 bg-section-light-blue scroll-mt-32 lg:scroll-mt-40"
-      >
-        <div className="container mx-auto px-4">
+      {/* Divider tabs, sticky under the site header */}
+      <div className="sticky top-16 z-30 border-b-[3px] border-double border-pad-red bg-pad-sheet lg:top-20">
+        <div className="mx-auto flex max-w-6xl items-end justify-between gap-4 px-5 pt-3 sm:px-8">
+          <div role="group" aria-label={copy.filterLabel} className="pad-scroll-x -mb-[3px] flex gap-1 overflow-x-auto">
+            {availableCategories.map((category) => {
+              const isActive = selectedCategory === category.id
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => handleCategoryChange(category.id)}
+                  className={`flex min-h-11 flex-shrink-0 items-center gap-2 border-2 border-b-0 px-4 pb-2 pt-2.5 text-base font-bold transition-colors ${
+                    isActive
+                      ? 'border-pad-red bg-pad-pink text-pad-ink'
+                      : 'border-pad-ink/20 bg-pad-sheet text-pad-ink-soft hover:border-pad-ink/50 hover:text-pad-ink'
+                  }`}
+                >
+                  {category.label}
+                  <span className="font-pad-display text-lg leading-none text-pad-red">{countFor(category.id)}</span>
+                </button>
+              )
+            })}
+          </div>
+          <p aria-live="polite" className="hidden flex-shrink-0 pb-2 font-pad-hand text-lg text-pad-ballpoint sm:block">
+            {filteredProjects.length === 1 ? copy.countOne : copy.countMany(filteredProjects.length)}
+          </p>
+        </div>
+      </div>
+
+      <section ref={gridRef} aria-label={copy.filterLabel} className="scroll-mt-40 bg-pad-pink">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
           {filteredProjects.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-xl text-brand-gray-700 mb-6">
-                אין כרגע פרויקטים בקטגוריה זו
-              </p>
+            <div className="py-16 text-center">
+              <p className="text-xl text-pad-ink">{copy.empty}</p>
               <button
                 type="button"
                 onClick={() => handleCategoryChange('all')}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-navy text-white rounded-full font-semibold hover:bg-brand-blue transition-colors"
+                className="mt-6 min-h-11 border-2 border-pad-ink px-5 py-2 text-lg font-bold text-pad-ink transition-colors hover:bg-pad-ink hover:text-pad-pink"
               >
-                הצג את כל הפרויקטים
+                {copy.showAll}
               </button>
             </div>
           ) : (
-          <CardCarousel key={selectedCategory}>
-            {filteredProjects.map((project, index) => {
-              const Icon = getIcon(project.category)
-              // After the first chip interaction we skip the staggered entry
-              // animation. Re-rendering with opacity:0 + per-card delays made
-              // filtered results appear "dead" for up to a second (PostHog
-              // dead-click signal). Only the initial mount stays animated.
-              const animateProps = hasInteracted
-                ? { initial: false as const, animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
-                : {
-                    initial: { opacity: 0, y: 40 },
-                    animate: { opacity: 1, y: 0 },
-                    transition: { delay: index * 0.1, duration: 0.6, ease: bouncyEasing },
-                  }
-              return (
-                <Link
-                  key={project.id}
-                  href={`/portfolio/${project.slug}`}
-                  className={`block ${cardCarouselItemClass}`}
-                  onClick={() => trackPortfolioClick(project.title, project.category)}
-                >
-                  <motion.article
-                    {...animateProps}
-                    whileHover={{
-                      y: -12,
-                      transition: { duration: 0.3, ease: bouncyEasing }
-                    }}
-                    className="group"
-                  >
-                  <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                    {/* Image/Preview */}
-                    <div className="relative h-64 bg-brand-gray-100 overflow-hidden">
-                      {project.image ? (
-                        <Image
-                          src={project.image}
-                          alt={`${project.title} - ${project.description} | ${project.category === 'web' ? 'אתר' : project.category === 'mobile' ? 'אפליקציה' : 'מערכת'} עבור ${project.client}`}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover"
-                          priority={index < 3}
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center bg-brand-blue/10">
-                          <Icon size={64} className="text-brand-blue/30" />
-                        </div>
-                      )}
-
-                      {/* Hover Overlay — pointer-events-none so it never intercepts a card tap */}
-                      <div className="pointer-events-none absolute inset-0 bg-brand-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="text-white text-center p-6">
-                          <p className="text-lg font-semibold mb-2">לחץ לפרטים מלאים</p>
-                          {project.stats && (
-                            <div className="flex items-center justify-center gap-4 text-sm">
-                              {Object.entries(project.stats).slice(0, 2).map(([key, value]) => (
-                                <span key={key} className="flex items-center gap-1">
-                                  {key === 'efficiency' || key === 'conversion' ? <TrendingUp size={16} /> :
-                                   key === 'students' || key === 'users' ? <Users size={16} /> :
-                                   key === 'time' ? <Clock size={16} /> :
-                                   <Eye size={16} />}
-                                  {value}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Live Badge */}
-                      {project.link && (
-                        <div className="absolute top-4 start-4">
-                          <motion.span
-                            className="px-4 py-2 bg-brand-green text-white rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg"
-                            animate={{
-                              scale: [1, 1.05, 1],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                            Live
-                          </motion.span>
-                        </div>
-                      )}
-
-                      {/* Category Badge */}
-                      <div className="absolute top-4 end-4">
-                        <span className="px-4 py-2 bg-white rounded-full text-sm font-semibold shadow-lg">
-                          {project.client}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-2xl font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors">
-                        {project.title}
-                      </h3>
-
-                      <p className="text-brand-gray-700 mb-4 leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.slice(0, 3).map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="px-3 py-1.5 bg-brand-gray-100 rounded-full text-sm font-medium text-brand-gray-700"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                        {project.tags.length > 3 && (
-                          <span className="px-3 py-1.5 text-sm text-brand-gray-500 font-medium">
-                            +{project.tags.length - 3}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* CTA */}
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-brand-gray-500 font-medium">
-                          {project.duration} • {project.year}
-                        </span>
-                        <motion.div
-                          className="text-brand-blue"
-                          whileHover={{ x: -5 }}
-                          transition={{ duration: 0.2, ease: bouncyEasing }}
-                        >
-                          <ArrowLeft size={20} />
-                        </motion.div>
-                      </div>
-                    </div>
-                  </div>
-                  </motion.article>
-                </Link>
-              )
-            })}
-          </CardCarousel>
+            // items-start: a copy is as tall as its content, never stretched to leave blank paper
+            <ul className="grid items-start gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredProjects.map((project, position) => (
+                <li key={project.slug} className={wideCopyClass(position, filteredProjects.length)}>
+                  <ClientCopyCard item={project} index={position} />
+                </li>
+              ))}
+            </ul>
           )}
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-4">
-              המספרים מדברים
+      <section aria-labelledby="portfolio-close-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-10 px-5 py-20 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:py-24">
+          <div>
+            <h2 id="portfolio-close-heading" className="font-pad-display text-6xl font-bold leading-[0.88] sm:text-7xl">
+              {copy.closeTitle}
             </h2>
-            <p className="text-xl sm:text-2xl text-brand-gray-700">
-              תוצאות מוכחות שמעידות על איכות העבודה
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { value: 'מעל 50', label: 'פרויקטים הושלמו', color: 'bg-brand-blue' },
-              { value: '100%', label: 'לקוחות מרוצים', color: 'bg-brand-orange' },
-              { value: '200%', label: 'ROI ממוצע', color: 'bg-brand-green' },
-              { value: '5★', label: 'דירוג ממוצע', color: 'bg-yellow-400' }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.1,
-                  duration: 0.5,
-                  ease: bouncyEasing
-                }}
-                className={`${stat.color} rounded-3xl p-8 text-center text-white shadow-lg`}
-              >
-                <div className="text-4xl md:text-5xl font-bold mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm md:text-base opacity-90 font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
+            <p className="mt-5 max-w-[44ch] text-xl leading-relaxed text-pad-carbon-ink">{copy.closeBody}</p>
+          </div>
+          <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+            <TearSlipLink href="/contact" onClick={() => trackCtaClick(copy.closeCta, 'portfolio', '/contact')}>
+              {copy.closeCta}
+            </TearSlipLink>
+            <Link
+              href="/services"
+              onClick={() => trackCtaClick(copy.closeServices, 'portfolio', '/services')}
+              className="group inline-flex min-h-11 items-center gap-2 text-lg font-bold text-white underline decoration-pad-yellow decoration-2 underline-offset-[6px] hover:text-pad-yellow"
+            >
+              {copy.closeServices}
+              <ArrowLeft aria-hidden="true" className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-brand-blue">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              יש לך פרויקט בראש?
-            </h2>
-            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              בואו נדבר על איך אפשר להפוך את הרעיון שלך למציאות דיגיטלית מרשימה
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Link
-                  href="/contact"
-                  className="inline-block px-10 py-5 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-                  onClick={() => trackCtaClick('בואו נתחיל', 'portfolio', '/contact')}
-                >
-                  בואו נתחיל
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Link
-                  href="/services"
-                  className="inline-block px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-                  onClick={() => trackCtaClick('השירותים שלי', 'portfolio', '/services')}
-                >
-                  השירותים שלי
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </main>
+    </div>
   )
 }

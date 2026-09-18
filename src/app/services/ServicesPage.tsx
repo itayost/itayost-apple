@@ -1,381 +1,134 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import {
-  Code2,
-  Smartphone,
-  Palette,
-  Zap,
-  Settings,
-  Shield,
-  HeartHandshake,
-  TrendingUp,
-  Sparkles,
-  CheckCircle,
-  ArrowLeft,
-  BarChart3,
-  ShoppingCart,
-  Target,
-  LucideIcon
-} from 'lucide-react'
 import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 import { getAllServicesSorted } from '@/data/services'
-import { bouncyEasing } from '@/constants/animations'
-import { getServiceColors } from '@/lib/colors'
+import { TearSlipLink } from '@/components/pad/TearSlipLink'
+import { PenTick } from '@/components/pad/PenTick'
 
-// Icon mapping from lucideIcon string to actual component
-const iconMap: Record<string, LucideIcon> = {
-  'Code2': Code2,
-  'Smartphone': Smartphone,
-  'Zap': Zap,
-  'BarChart3': BarChart3,
-  'ShoppingCart': ShoppingCart,
-  'Palette': Palette,
-  'Target': Target,
-}
-
-const process = [
-  {
-    icon: HeartHandshake,
-    title: 'שיחה קצרה',
-    description: 'שתפו אותי בצרכים שלכם ואשמח להתאים לכם פתרון',
-    color: 'bg-red-500'
-  },
-  {
-    icon: Settings,
-    title: 'תוכנית ברורה',
-    description: 'תדעו בדיוק מה נבנה, כמה זה עולה, ומתי זה מוכן',
-    color: 'bg-brand-blue'
-  },
-  {
-    icon: Code2,
-    title: 'בנייה עם עדכונים',
-    description: 'תראו התקדמות כל שבוע, בלי הפתעות',
-    color: 'bg-brand-orange'
-  },
-  {
-    icon: Shield,
-    title: 'בדיקות',
-    description: 'בדיקות על כל מכשיר ודפדפן לפני ההשקה',
-    color: 'bg-brand-green'
-  },
-  {
-    icon: Zap,
-    title: 'השקה',
-    description: 'עולים לאוויר ביחד עם הדרכה מלאה',
-    color: 'bg-yellow-400'
-  },
-  {
-    icon: TrendingUp,
-    title: 'תמיכה + אחריות',
-    description: '6 חודשי אחריות כלולים, ותמיכה שוטפת',
-    color: 'bg-brand-navy'
-  }
+// The pad's own sequence of work, from the first call to the warranty. Copy is
+// unchanged from the page this replaced.
+const PROCESS = [
+  { title: 'שיחה קצרה', description: 'שתפו אותי בצרכים שלכם ואשמח להתאים לכם פתרון' },
+  { title: 'תוכנית ברורה', description: 'תדעו בדיוק מה נבנה, כמה זה עולה, ומתי זה מוכן' },
+  { title: 'בנייה עם עדכונים', description: 'תראו התקדמות כל שבוע, בלי הפתעות' },
+  { title: 'בדיקות', description: 'בדיקות על כל מכשיר ודפדפן לפני ההשקה' },
+  { title: 'השקה', description: 'עולים לאוויר ביחד עם הדרכה מלאה' },
+  { title: 'אחריות', description: '6 חודשי אחריות כלולים' },
 ]
 
+/**
+ * The services hub as the pad's order lines: every service is a numbered line
+ * you can order, with what it includes printed underneath it.
+ */
 export default function ServicesPage() {
   const services = getAllServicesSorted()
 
   return (
-    <main className="pt-20 lg:pt-24 min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-16 lg:py-24 bg-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5" />
-
-        <div className="container relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-              className="mb-6"
-            >
-              <motion.div
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue/10 rounded-full"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Sparkles className="w-5 h-5 text-brand-blue" />
-                <span className="text-base font-bold text-brand-blue">
-                  השירותים שלי
-                </span>
-              </motion.div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
-            >
-              לכל עסק
-              <span className="block mt-2 text-brand-blue">
-                צרכים אחרים
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
-              className="text-xl sm:text-2xl text-brand-gray-700"
-            >
-              בין אם אתם זקוקים לאתר שמביא לקוחות. אולי מערכת שעושה סדר. אולי אוטומציה שחוסכת שעות. בואו נבין יחד.
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section className="py-16 lg:py-24 bg-section-light-blue">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {services.map((service, index) => {
-              const IconComponent = iconMap[service.lucideIcon] || Code2
-              const serviceColors = getServiceColors(service.color)
-
-              return (
-                <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: index * 0.1,
-                    duration: 0.6,
-                    ease: bouncyEasing
-                  }}
-                  whileHover={{
-                    y: -12,
-                    transition: { duration: 0.3, ease: bouncyEasing }
-                  }}
-                  className="bg-white rounded-3xl p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-shadow h-full flex flex-col"
-                >
-                  <div className="flex items-start gap-6 mb-6">
-                    <motion.div
-                      className={`w-20 h-20 ${serviceColors.bg} rounded-2xl flex items-center justify-center text-white flex-shrink-0`}
-                      whileHover={{
-                        rotate: [0, -10, 10, -10, 0],
-                        scale: 1.1,
-                        transition: { duration: 0.5, ease: bouncyEasing }
-                      }}
-                    >
-                      <IconComponent size={36} />
-                    </motion.div>
-
-                    <div className="flex-1">
-                      <h3 className="text-2xl sm:text-3xl font-bold text-brand-navy mb-2">
-                        {service.name}
-                      </h3>
-                      <p className="text-brand-gray-700 text-lg">
-                        {service.tagline}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p className="text-brand-gray-700 mb-6 leading-relaxed text-lg">
-                    {service.description}
-                  </p>
-
-                  <div className="mb-6">
-                    <h4 className="font-bold text-brand-navy mb-4 text-lg">
-                      מה כולל השירות:
-                    </h4>
-                    <ul className="space-y-3">
-                      {service.features.slice(0, 6).map((feature, idx) => (
-                        <motion.li
-                          key={idx}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            delay: 0.3 + idx * 0.05,
-                            duration: 0.5,
-                            ease: bouncyEasing
-                          }}
-                          className="flex items-start gap-3 text-brand-gray-700"
-                        >
-                          <CheckCircle className="w-5 h-5 text-brand-green flex-shrink-0 mt-0.5" />
-                          <span>{feature.title}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {service.technologies && service.technologies.length > 0 && (
-                    <div className="mb-6 flex-1">
-                      <h4 className="font-bold text-brand-navy mb-4 text-lg">
-                        טכנולוגיות:
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {service.technologies.map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className="px-4 py-2 bg-brand-gray-100 rounded-full text-sm font-medium text-brand-gray-700"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex items-center justify-between pt-6 border-t border-brand-gray-200 mt-auto">
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="text-brand-blue font-bold hover:underline"
-                    >
-                      למידע נוסף
-                    </Link>
-
-                    <motion.div
-                      whileHover={{
-                        scale: 1.05,
-                        transition: { duration: 0.3, ease: bouncyEasing }
-                      }}
-                      whileTap={{
-                        scale: 0.95,
-                        transition: { duration: 0.3, ease: bouncyEasing }
-                      }}
-                    >
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
-                      >
-                        <span>קבל הצעה</span>
-                        <ArrowLeft className="w-5 h-5" />
-                      </Link>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-            className="text-center mb-16"
+    <div className="pad-world">
+      <section aria-labelledby="services-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto max-w-6xl px-5 pb-14 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
+          <h1
+            id="services-heading"
+            className="font-pad-display text-[clamp(3.5rem,2rem+5vw,6rem)] font-bold leading-[0.88] [text-wrap:balance]"
           >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-navy mb-4">
-              איך עובדים יחד
-            </h2>
-            <p className="text-xl sm:text-2xl text-brand-gray-700 max-w-3xl mx-auto">
-              תהליך מסודר ושקוף מתחילת הפרויקט ועד להשקה
-            </p>
-          </motion.div>
+            מה אפשר
+            <span className="block text-pad-yellow">להזמין</span>
+          </h1>
+          <p className="mt-6 max-w-[54ch] text-xl leading-relaxed text-pad-carbon-ink sm:text-2xl">
+            שבעה סוגי עבודה, כל אחד עם עמוד משלו שמסביר בדיוק מה נכלל, איך זה עובד וכמה זמן זה לוקח.
+          </p>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {process.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.1,
-                  duration: 0.5,
-                  ease: bouncyEasing
-                }}
-                whileHover={{
-                  y: -8,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-shadow text-center"
-              >
-                <div className="relative inline-block mb-6">
-                  <motion.div
-                    className={`w-20 h-20 ${step.color} rounded-2xl flex items-center justify-center text-white`}
-                    whileHover={{
-                      rotate: 360,
-                      transition: { duration: 0.6, ease: bouncyEasing }
-                    }}
-                  >
-                    <step.icon size={36} />
-                  </motion.div>
-                  <div className="absolute -top-2 -start-2 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg">
-                    {index + 1}
+      {/* The order lines */}
+      <section aria-label="השירותים" className="pad-paper">
+        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 lg:py-20">
+          <ul className="border-t-2 border-pad-ink">
+            {services.map((service, index) => (
+              <li key={service.id} className="border-b border-pad-rule">
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="group grid gap-x-8 gap-y-3 py-8 transition-colors hover:bg-pad-yellow/25 lg:grid-cols-12"
+                >
+                  <div className="lg:col-span-5">
+                    <div className="flex items-baseline gap-4">
+                      <span
+                        aria-hidden="true"
+                        className="font-pad-display text-2xl leading-none text-pad-red"
+                        dir="ltr"
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <h2 className="font-pad-display text-4xl font-bold leading-none text-pad-ink sm:text-5xl">
+                        {service.name}
+                      </h2>
+                    </div>
+                    <p className="mt-3 text-lg leading-snug text-pad-ink-soft">{service.tagline}</p>
                   </div>
-                </div>
 
-                <h3 className="text-xl font-bold text-brand-navy mb-3">
+                  <ul className="lg:col-span-6">
+                    {service.features.slice(0, 3).map((feature) => (
+                      <li key={feature.title} className="flex items-baseline gap-3 py-1">
+                        <PenTick className="h-4 w-4 flex-shrink-0 translate-y-0.5" />
+                        <span className="text-base text-pad-ink">{feature.title}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <span className="flex items-center gap-2 text-base font-bold text-pad-carbon lg:col-span-1 lg:justify-end">
+                    לפרטים
+                    <ArrowLeft
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform group-hover:-translate-x-1 motion-reduce:transition-none"
+                    />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* The work order: how a project runs, start to warranty */}
+      <section aria-labelledby="process-heading" className="bg-pad-pink">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-20">
+          <h2
+            id="process-heading"
+            className="font-pad-display text-5xl font-bold leading-none text-pad-ink sm:text-6xl"
+          >
+            איך זה עובד
+          </h2>
+          <ol className="mt-8 border-t-2 border-pad-ink">
+            {PROCESS.map((step, index) => (
+              <li
+                key={step.title}
+                className="grid items-baseline gap-x-6 gap-y-1 border-b border-pad-ink/20 py-5 md:grid-cols-12"
+              >
+                <span className="font-pad-display text-2xl leading-none text-pad-red md:col-span-1" dir="ltr">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 className="font-pad-display text-3xl font-bold leading-none text-pad-ink md:col-span-4">
                   {step.title}
                 </h3>
-                <p className="text-brand-gray-700 leading-relaxed">
-                  {step.description}
-                </p>
-              </motion.div>
+                <p className="text-lg leading-snug text-pad-ink-soft md:col-span-7">{step.description}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-brand-blue text-white">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              מוכנים להתחיל?
+      <section aria-labelledby="services-cta-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:py-20">
+          <div>
+            <h2 id="services-cta-heading" className="font-pad-display text-5xl font-bold leading-[0.9] sm:text-6xl">
+              לא בטוחים מה מתאים לכם?
             </h2>
-            <p className="text-xl sm:text-2xl mb-8 text-white/90 leading-relaxed">
-              בואו נדבר על הפרויקט הבא שלכם ונראה איך אפשר להפוך את הרעיון למציאות
+            <p className="mt-4 max-w-[44ch] text-lg leading-relaxed text-pad-carbon-ink">
+              ספרו לי מה העסק צריך ואגיד לכם איזו עבודה פותרת את זה, גם אם זו לא העבודה הגדולה ביותר.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center px-10 py-5 bg-brand-orange text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-                >
-                  קבל הצעת מחיר
-                </Link>
-              </motion.div>
-
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Link
-                  href="/portfolio"
-                  className="inline-flex items-center justify-center px-10 py-5 bg-white text-brand-blue rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-                >
-                  צפו בעבודות שלי
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
+          </div>
+          <TearSlipLink href="/contact">צור קשר</TearSlipLink>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

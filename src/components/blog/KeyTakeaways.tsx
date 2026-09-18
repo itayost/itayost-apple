@@ -1,4 +1,4 @@
-import { CheckCircle2 } from 'lucide-react'
+import { PenTick } from '@/components/pad/PenTick'
 
 interface KeyTakeawaysProps {
   items?: string[]
@@ -7,20 +7,22 @@ interface KeyTakeawaysProps {
 // Front-loaded answer-first summary ("TL;DR"). Rendered above the article body
 // from the post's `tldr` frontmatter so LLMs can extract the key facts without
 // parsing the whole post. Renders nothing when no tldr is provided.
+// Pad world: a note boxed off from the article, each line pen-ticked.
 export function KeyTakeaways({ items }: KeyTakeawaysProps) {
   if (!items || items.length === 0) return null
 
   return (
-    <aside className="my-8 rounded-2xl border-r-4 border-brand-blue bg-gradient-to-l from-brand-blue/5 to-brand-purple/5 p-6 sm:p-8">
-      <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-brand-navy sm:text-xl">
-        <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-blue" />
+    <aside className="my-8 border-2 border-pad-ink bg-pad-yellow/40 px-5 py-5 sm:px-7">
+      <h2 className="border-b-[3px] border-double border-pad-red pb-2 font-pad-display text-3xl font-bold leading-none text-pad-ink">
         השורה התחתונה
       </h2>
-      <ul className="space-y-2.5">
-        {items.map((item, i) => (
-          <li key={i} className="flex gap-2.5 leading-relaxed text-brand-gray-700">
-            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
-            <span>{item}</span>
+      <ul className="mt-4 space-y-3">
+        {items.map((item) => (
+          <li key={item} className="grid grid-cols-[1.75rem_1fr] gap-x-3">
+            <span aria-hidden="true" className="relative mt-0.5 h-5 w-5 border-2 border-pad-ink">
+              <PenTick className="absolute -top-1.5 start-0 h-6 w-6" />
+            </span>
+            <span className="text-lg leading-relaxed text-pad-ink">{item}</span>
           </li>
         ))}
       </ul>

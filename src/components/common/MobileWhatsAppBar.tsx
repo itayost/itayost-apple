@@ -89,31 +89,30 @@ export function MobileWhatsAppBar() {
           className="fixed bottom-0 inset-x-0 z-40 sm:hidden"
           style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
         >
-          {/* Subtle gradient backdrop - pointer-events-none so it never eats clicks */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white to-white/90 backdrop-blur-sm" />
-
-          <div className="relative flex items-center gap-2 px-4 py-2">
-            {/* WhatsApp button — primary CTA (native anchor for reliable iOS behavior) */}
+          <div
+            className="pad-world pad-paper relative flex items-center gap-2 border-t-2 border-dashed border-pad-red/60 px-4 py-2.5 shadow-[0_-10px_24px_-14px_rgba(10,20,80,0.5)]"
+          >
+            {/* WhatsApp button: primary CTA (native anchor for reliable iOS behavior) */}
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleWhatsAppClick}
-              className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-green-500 hover:bg-green-600 active:bg-green-700 text-white rounded-2xl font-bold text-base shadow-lg transition-colors no-underline"
+              className="flex flex-1 items-center justify-center gap-2 bg-pad-whatsapp py-3.5 text-base font-bold text-white no-underline transition-colors active:bg-pad-whatsapp-deep"
               aria-label="שלחו הודעה בוואטסאפ"
             >
-              <MessageCircle size={22} fill="white" />
+              <MessageCircle aria-hidden="true" size={22} />
               <span>שלחו הודעה בוואטסאפ</span>
             </a>
 
-            {/* Call button — secondary CTA */}
+            {/* Call button: secondary CTA */}
             <a
               href={PHONE_TEL_HREF}
               onClick={handleCallClick}
-              className="flex items-center justify-center w-12 h-12 bg-brand-navy hover:bg-brand-navy/90 active:bg-brand-navy/80 text-white rounded-2xl shadow-lg transition-colors no-underline"
+              className="flex h-12 w-12 items-center justify-center bg-pad-carbon text-white no-underline transition-colors active:bg-pad-carbon-deep"
               aria-label="התקשרו אליי"
             >
-              <Phone size={22} />
+              <Phone aria-hidden="true" size={22} />
             </a>
           </div>
         </motion.div>

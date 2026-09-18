@@ -1,31 +1,14 @@
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 import { seoConfig } from '@/config/seo'
 import { JsonLd } from '@/components/common/JsonLd'
 import { getAllPosts } from '@/lib/blog'
-import LatestBlogPosts from '@/components/common/LatestBlogPosts'
-import Hero from '@/components/sections/Hero'
-
-const Services = dynamic(() => import('@/components/sections/Services'), {
-  loading: () => <div className="min-h-[600px] bg-white" />,
-  ssr: true
-})
-
-const Portfolio = dynamic(() => import('@/components/sections/Portfolio'), {
-  loading: () => <div className="min-h-[600px] bg-brand-gray-50" />,
-  ssr: true
-})
-
-const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
-  loading: () => <div className="min-h-[400px] bg-section-light-blue" />,
-  ssr: true
-})
-
-const Contact = dynamic(() => import('@/components/sections/Contact'), {
-  loading: () => <div className="min-h-[600px] bg-white" />,
-  ssr: true
-})
+import { PadHero } from '@/components/pad/PadHero'
+import { PainLines } from '@/components/pad/PainLines'
+import { OrderForm } from '@/components/pad/OrderForm'
+import { ClientCopies } from '@/components/pad/ClientCopies'
+import { PersonSheet } from '@/components/pad/PersonSheet'
+import { PadNotes } from '@/components/pad/PadNotes'
+import { PadContact } from '@/components/pad/PadContact'
 
 export const metadata: Metadata = {
   title: seoConfig.pages.home.title,
@@ -68,40 +51,16 @@ export default async function HomePage() {
   return (
     <>
       <JsonLd data={structuredData} />
-      <main className="overflow-hidden bg-white performance-container">
-        {/* Hero section */}
-        <Hero />
-
-        {/* Services section */}
-        <Suspense fallback={<div className="min-h-[600px]" />}>
-          <Services />
-        </Suspense>
-
-        {/* Portfolio section */}
-        <Suspense fallback={<div className="min-h-[600px]" />}>
-          <Portfolio />
-        </Suspense>
-
-        {/* Testimonials section */}
-        <Suspense fallback={<div className="min-h-[400px]" />}>
-          <Testimonials />
-        </Suspense>
-
-        {/* Latest blog posts */}
-        {latestPosts.length > 0 && (
-          <LatestBlogPosts
-            posts={latestPosts}
-            title="מהבלוג שלי"
-            description="מאמרים, טיפים ומדריכים בנושאי פיתוח אתרים וטכנולוגיה"
-            showAll={true}
-          />
-        )}
-
-        {/* Contact section */}
-        <Suspense fallback={<div className="min-h-[600px]" />}>
-          <Contact />
-        </Suspense>
-      </main>
+      {/* The root layout already renders <main>; this is the page's own world. */}
+      <div className="pad-world overflow-x-clip bg-pad-carbon">
+        <PadHero />
+        <PainLines />
+        <OrderForm />
+        <ClientCopies />
+        <PersonSheet />
+        <PadNotes posts={latestPosts} />
+        <PadContact />
+      </div>
     </>
   )
 }

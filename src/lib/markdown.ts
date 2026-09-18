@@ -52,11 +52,38 @@ function rehypeDemoteH1() {
   return (tree: HastNode) => demote(tree)
 }
 
+// Comparison tables in articles are wider than the reading column on a phone.
+// Wrap each table in its own scroller so the table keeps its full width and
+// the page body never scrolls sideways. Same mutation contract as above.
+function rehypeWrapTables() {
+  interface HastNode {
+    type: string
+    tagName?: string
+    properties?: Record<string, unknown>
+    children?: HastNode[]
+  }
+  const wrap = (node: HastNode) => {
+    if (!node.children) return
+    node.children = node.children.map((child) => {
+      wrap(child)
+      if (child.tagName !== 'table') return child
+      return {
+        type: 'element',
+        tagName: 'div',
+        properties: { className: ['pad-table-scroll'] },
+        children: [child],
+      }
+    })
+  }
+  return (tree: HastNode) => wrap(tree)
+}
+
 export async function markdownToHtml(markdown: string): Promise<string> {
   const processed = await remark()
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeDemoteH1)
+    .use(rehypeWrapTables)
     // rehype-slug runs before sanitize; the schema allows `id` on all tags,
     // so in-page #anchor links (guide TOCs) resolve.
     .use(rehypeSlug)

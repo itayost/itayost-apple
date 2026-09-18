@@ -1,335 +1,172 @@
-'use client'
-
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import {
-  FileText,
-  Shield,
-  Cookie,
-  Copyright,
-  Sparkles
-} from 'lucide-react'
 import { content } from '@/config/content'
-import { bouncyEasing } from '@/constants/animations'
+import { PROSE_CLASSES } from '@/lib/prose'
+import { DocumentContact } from '@/components/pad/DocumentContact'
+import { MarginIndex } from '@/components/pad/MarginIndex'
+import { SectionTabs } from '@/components/pad/SectionTabs'
 
 const sections = [
   {
     id: 'terms',
-    icon: FileText,
     title: content.terms.sections.terms,
     content: `
-      <h3 class="text-xl font-bold mb-4">1. קבלת התנאים</h3>
-      <p class="mb-4">
+      <h3>1. קבלת התנאים</h3>
+      <p>
         השימוש באתר itayost.com מהווה הסכמה מלאה לתנאי השימוש המפורטים כאן.
         אם אינך מסכים לתנאים אלה, נא להימנע משימוש באתר.
       </p>
 
-      <h3 class="text-xl font-bold mb-4">2. שירותים</h3>
-      <p class="mb-4">
+      <h3>2. שירותים</h3>
+      <p>
         ITAYOST מספקת שירותי פיתוח תוכנה, עיצוב ויעוץ טכנולוגי. כל השירותים ניתנים
         על בסיס "כפי שהם" (AS IS) ואנו שומרים על הזכות לשנות או להפסיק שירותים בכל עת.
       </p>
 
-      <h3 class="text-xl font-bold mb-4">3. זכויות יוצרים</h3>
-      <p class="mb-4">
+      <h3>3. זכויות יוצרים</h3>
+      <p>
         כל התוכן באתר, לרבות טקסט, גרפיקה, לוגו, קוד ועיצוב, מוגן בזכויות יוצרים
         השייכות ל-ITAYOST. אין להעתיק, לשכפל או להפיץ תוכן כלשהו ללא אישור בכתב.
       </p>
 
-      <h3 class="text-xl font-bold mb-4">4. הגבלת אחריות</h3>
-      <p class="mb-4">
+      <h3>4. הגבלת אחריות</h3>
+      <p>
         ITAYOST לא תהיה אחראית לכל נזק ישיר או עקיף הנובע משימוש באתר או בשירותים,
         לרבות אובדן רווחים, נתונים או הזדמנויות עסקיות.
       </p>
 
-      <h3 class="text-xl font-bold mb-4">5. שינויים בתנאים</h3>
-      <p class="mb-4">
+      <h3>5. שינויים בתנאים</h3>
+      <p>
         אנו שומרים על הזכות לעדכן תנאים אלה בכל עת. שינויים יכנסו לתוקף מיד עם
         פרסומם באתר. המשך שימוש באתר לאחר שינויים מהווה הסכמה לתנאים המעודכנים.
       </p>
-    `
+    `,
   },
   {
     id: 'privacy',
-    icon: Shield,
     title: content.terms.sections.privacy,
     content: `
-      <h3 class="text-xl font-bold mb-4">1. איסוף מידע</h3>
-      <p class="mb-4">
-        אנו אוספים מידע שאתם מספקים לנו בצורה פעילה, כגון שם, אימייל, טלפון ופרטי
-        פרויקט בעת יצירת קשר או מילוי טפסים באתר.
+      <p>
+        מדיניות הפרטיות המלאה היא המסמך הקובע בכל מה שנוגע לאיסוף מידע, שימוש בו,
+        שיתופו, אבטחתו וזכויותיכם לגביו. כדי שלא יהיו שתי גרסאות שונות, הפרטים
+        מופיעים במסמך אחד בלבד.
       </p>
-
-      <h3 class="text-xl font-bold mb-4">2. שימוש במידע</h3>
-      <p class="mb-4">
-        אנו משתמשים במידע שנאסף כדי:
+      <p>
+        <a href="/privacy-policy">קראו את מדיניות הפרטיות המלאה</a>
       </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
-        <li>לספק ולשפר את השירותים שלנו</li>
-        <li>לתקשר איתכם בנוגע לפרויקטים ושירותים</li>
-        <li>לשלוח עדכונים שיווקיים (רק באישורכם)</li>
-        <li>לשפר את חוויית המשתמש באתר</li>
-      </ul>
-
-      <h3 class="text-xl font-bold mb-4">3. שיתוף מידע</h3>
-      <p class="mb-4">
-        אנו לא מוכרים או משתפים את המידע האישי שלכם עם צדדים שלישיים, למעט במקרים
-        הבאים:
-      </p>
-      <ul class="list-disc list-inside mb-4 mr-4">
-        <li>כאשר נדרש על פי חוק</li>
-        <li>עם ספקי שירות המסייעים בהפעלת האתר (כגון אחסון ענן)</li>
-        <li>באישורכם המפורש</li>
-      </ul>
-
-      <h3 class="text-xl font-bold mb-4">4. אבטחת מידע</h3>
-      <p class="mb-4">
-        אנו נוקטים באמצעי אבטחה סבירים להגנה על המידע שלכם, כולל הצפנה, גישה
-        מוגבלת ואחסון מאובטח. עם זאת, אין אבטחה מושלמת באינטרנט.
-      </p>
-
-      <h3 class="text-xl font-bold mb-4">5. זכויותיכם</h3>
-      <p class="mb-4">
-        יש לכם זכות לגשת, לתקן או למחוק את המידע האישי שלכם. צרו קשר לכל בקשה.
-      </p>
-    `
+    `,
   },
   {
     id: 'cookies',
-    icon: Cookie,
     title: content.terms.sections.cookies,
     content: `
-      <h3 class="text-xl font-bold mb-4">1. מהם Cookies?</h3>
-      <p class="mb-4">
-        Cookies הם קבצי טקסט קטנים המאוחסנים במחשב או במכשיר הנייד שלכם בעת גלישה
-        באתר. הם מאפשרים לאתר לזכור את העדפותיכם ולשפר את חוויית הגלישה.
+      <p>
+        השימוש ב-Cookies באתר מתואר במלואו בסעיף העוגיות של מדיניות הפרטיות, יחד עם
+        האפשרויות שלכם לנהל או לחסום אותן.
       </p>
-
-      <h3 class="text-xl font-bold mb-4">2. סוגי Cookies שאנו משתמשים בהם</h3>
-      <ul class="list-disc list-inside mb-4 mr-4">
-        <li><strong>Cookies הכרחיים:</strong> נדרשים להפעלת האתר ותפקודו הבסיסי</li>
-        <li><strong>Cookies אנליטיים:</strong> עוזרים לנו להבין איך משתמשים באתר (Google Analytics)</li>
-        <li><strong>Cookies פונקציונליים:</strong> זוכרים את ההעדפות והבחירות שלכם</li>
-      </ul>
-
-      <h3 class="text-xl font-bold mb-4">3. ניהול Cookies</h3>
-      <p class="mb-4">
-        אתם יכולים לנהל או למחוק Cookies דרך הגדרות הדפדפן שלכם. שימו לב שחסימת
-        Cookies מסוימים עלולה להשפיע על תפקוד האתר.
+      <p>
+        <a href="/privacy-policy#cookies">קראו על השימוש ב-Cookies</a>
       </p>
-
-      <h3 class="text-xl font-bold mb-4">4. Google Analytics</h3>
-      <p class="mb-4">
-        אנו משתמשים ב-Google Analytics לאיסוף נתונים סטטיסטיים אנונימיים על השימוש
-        באתר. מידע זה עוזר לנו לשפר את השירות.
-      </p>
-    `
+    `,
   },
   {
     id: 'copyright',
-    icon: Copyright,
     title: content.terms.sections.copyright,
     content: `
-      <h3 class="text-xl font-bold mb-4">1. בעלות על תוכן</h3>
-      <p class="mb-4">
+      <h3>1. בעלות על תוכן</h3>
+      <p>
         כל התוכן באתר itayost.com, לרבות אך לא רק טקסט, עיצוב גרפי, לוגואים,
         תמונות, קוד ותוכנה, הוא רכושה הבלעדי של ITAYOST ומוגן על ידי חוקי זכויות
         יוצרים ישראליים ובינלאומיים.
       </p>
 
-      <h3 class="text-xl font-bold mb-4">2. שימוש מותר</h3>
-      <p class="mb-4">
+      <h3>2. שימוש מותר</h3>
+      <p>
         אתם רשאים לצפות ולהדפיס תוכן מהאתר לשימוש אישי בלבד. כל שימוש מסחרי, העתקה,
         שכפול, הפצה או שידור של תוכן כלשהו מהאתר אסורים ללא אישור בכתב מראש.
       </p>
 
-      <h3 class="text-xl font-bold mb-4">3. סימני מסחר</h3>
-      <p class="mb-4">
+      <h3>3. סימני מסחר</h3>
+      <p>
         "ITAYOST" והלוגו שלנו הם סימני מסחר רשומים. אין להשתמש בהם ללא אישור מפורש
         בכתב.
       </p>
 
-      <h3 class="text-xl font-bold mb-4">4. תוכן של משתמשים</h3>
-      <p class="mb-4">
+      <h3>4. תוכן של משתמשים</h3>
+      <p>
         כל תוכן שאתם מעלים או משתפים דרך האתר (כגון הודעות בטפסי יצירת קשר) נשאר
         בבעלותכם, אך אתם מעניקים לנו רישיון להשתמש בו לצורך מתן השירות.
       </p>
 
-      <h3 class="text-xl font-bold mb-4">5. הפרות</h3>
-      <p class="mb-4">
+      <h3>5. הפרות</h3>
+      <p>
         הפרה של זכויות היוצרים שלנו עלולה לגרור צעדים משפטיים. אם אתם סבורים שתוכן
         באתר מפר את זכויות היוצרים שלכם, צרו איתנו קשר מיד.
       </p>
-    `
-  }
+    `,
+  },
 ]
 
 export default function TermsPage() {
-  const [activeSection, setActiveSection] = useState('terms')
-
-  const activeContent = sections.find(s => s.id === activeSection)
-
   return (
-    <main className="pt-20 lg:pt-24 min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: bouncyEasing }}
-              className="mb-6"
-            >
-              <motion.div
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-navy/10 rounded-full"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3, ease: bouncyEasing }
-                }}
-              >
-                <Sparkles className="w-5 h-5 text-brand-navy" />
-                <span className="text-base font-bold text-brand-navy">
-                  {content.terms.sectionLabel}
-                </span>
-              </motion.div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6, ease: bouncyEasing }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold text-brand-navy mb-6"
-            >
-              {content.terms.title}
-              <span className="block mt-2 text-brand-gray-700">
-                {content.terms.subtitle}
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: bouncyEasing }}
-              className="text-xl sm:text-2xl text-brand-gray-600 max-w-3xl mx-auto mb-4"
-            >
-              {content.terms.description}
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6, ease: bouncyEasing }}
-              className="text-sm text-brand-gray-500"
-            >
-              {content.terms.lastUpdated}: ינואר 2025
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section Tabs */}
-      <section className="py-8 bg-white border-b border-brand-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {sections.map((section) => {
-              const Icon = section.icon
-              return (
-                <motion.button
-                  key={section.id}
-                  onClick={() => setActiveSection(section.id)}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-3xl font-semibold transition-all ${
-                    activeSection === section.id
-                      ? 'bg-brand-navy text-white shadow-lg'
-                      : 'bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: bouncyEasing }}
-                >
-                  <motion.div
-                    whileHover={{
-                      rotate: [0, -10, 10, -10, 0],
-                      transition: { duration: 0.5, ease: bouncyEasing }
-                    }}
-                  >
-                    <Icon size={24} />
-                  </motion.div>
-                  <span className="text-sm">{section.title}</span>
-                </motion.button>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Content Section */}
-      <section className="py-16 lg:py-24 bg-section-light-blue">
-        <div className="container mx-auto px-4">
-          <motion.div
-            key={activeSection}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: bouncyEasing }}
-            className="max-w-4xl mx-auto bg-white rounded-3xl p-8 lg:p-12 shadow-lg"
+    <div className="pad-world">
+      <section aria-labelledby="terms-heading" className="bg-pad-carbon text-white">
+        <div className="mx-auto max-w-6xl px-5 pb-14 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
+          <h1
+            id="terms-heading"
+            className="font-pad-display text-[clamp(3.5rem,2rem+5vw,6rem)] font-bold leading-[0.88] [text-wrap:balance]"
           >
-            <div className="flex items-center gap-4 mb-8">
-              {activeContent && (
-                <>
-                  <div className="w-12 h-12 bg-brand-navy rounded-2xl flex items-center justify-center">
-                    <activeContent.icon size={24} className="text-white" />
-                  </div>
-                  <h2 className="text-3xl font-bold text-brand-navy">
-                    {activeContent.title}
-                  </h2>
-                </>
-              )}
-            </div>
+            {content.terms.title}
+            <span className="block text-pad-yellow">{content.terms.subtitle}</span>
+          </h1>
+          <p className="mt-6 max-w-[54ch] text-xl leading-relaxed text-pad-carbon-ink sm:text-2xl">
+            {content.terms.description}
+          </p>
+          <p className="mt-6 border-t border-pad-carbon-ink/30 pt-4 text-pad-carbon-ink">
+            {content.terms.lastUpdated}: ספטמבר 2026
+          </p>
+        </div>
+      </section>
 
-            <div
-              className="prose prose-lg max-w-none text-brand-gray-700 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: activeContent?.content || '' }}
+      <SectionTabs
+        ariaLabel="סעיפי המסמך"
+        className="lg:hidden"
+        tabs={sections.map((section) => ({ id: section.id, label: section.title }))}
+      />
+
+      {/* The document on the pad: body on the rules, index pinned in the margin */}
+      <div className="pad-paper">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[17rem_minmax(0,36rem)] lg:gap-x-14 lg:py-20">
+          <article className="relative min-w-0 lg:col-start-2">
+            <span aria-hidden="true" className="absolute inset-y-0 -start-6 hidden w-px bg-pad-red/50 lg:block" />
+            {sections.map((section) => (
+              <section
+                key={section.id}
+                id={section.id}
+                aria-label={section.title}
+                className="mb-16 scroll-mt-32 last:mb-0"
+              >
+                <h2 className="border-b-[3px] border-double border-pad-red pb-2 font-pad-display text-4xl font-bold leading-none text-pad-ink lg:text-5xl">
+                  {section.title}
+                </h2>
+                <div className={`mt-6 ${PROSE_CLASSES}`} dangerouslySetInnerHTML={{ __html: section.content }} />
+              </section>
+            ))}
+          </article>
+
+          <aside className="hidden lg:col-start-1 lg:row-start-1 lg:block">
+            <MarginIndex
+              title="סעיפי המסמך"
+              items={sections.map((section) => ({ id: section.id, title: section.title }))}
             />
-          </motion.div>
+          </aside>
         </div>
-      </section>
+      </div>
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-brand-navy">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: bouncyEasing }}
-          >
-            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
-              יש לכם שאלות?
-            </h2>
-            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-              אם יש לכם שאלות לגבי תנאי השימוש או מדיניות הפרטיות, אנחנו כאן לעזור
-            </p>
-            <motion.div
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.3, ease: bouncyEasing }
-              }}
-              whileTap={{
-                scale: 0.95,
-                transition: { duration: 0.3, ease: bouncyEasing }
-              }}
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-10 py-5 bg-white text-brand-navy rounded-full font-semibold text-lg shadow-2xl hover:shadow-3xl transition-shadow"
-              >
-                צרו קשר
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-    </main>
+      <DocumentContact
+        heading="שאלה על התנאים?"
+        note="אם משהו במסמך לא ברור, אשמח להסביר בדיוק למה הוא שם ומה הוא אומר בפועל."
+        whatsAppMessage="היי, יש לי שאלה על תנאי השימוש"
+        source="terms"
+      />
+    </div>
   )
 }

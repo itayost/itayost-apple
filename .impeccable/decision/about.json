@@ -1,0 +1,65 @@
+{
+  "title": "About page: choose the structure",
+  "question": "No figures (no 100+/50+/percentages), tools instead of skill bars, no photo. Pick the composition, or re-roll.",
+  "seed": { "key": "94717097", "scope": "surface", "mode": "persuade", "dealtIndices": [6, 5, 7] },
+  "options": [
+    {
+      "id": "day-in-the-life",
+      "label": "What Happens When You Hire Me",
+      "kicker": "THE ROLL",
+      "lineage": "the job as it actually runs, on the pad",
+      "thesis": "About told as the working relationship: who you talk to, what the first week looks like, what you get, and what I will not do.",
+      "palette": ["#2B3FD6", "#FBFBF8", "#F2DF6E", "#D7263D"],
+      "materials": ["numbered order lines", "signed sheet", "tool labels"],
+      "viewport": "Carbon field: 'אדם אחד. לא סוכנות.' with the plain story beneath and a slip to talk. Then the four process steps as a printed schedule, the promises as ruled lines, the tools as printed labels, and a signed closing sheet.",
+      "risk": "Least 'about me' of the three; a visitor looking for background gets working style first.",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "carbon: who I am + slip", "x": 0, "y": 0, "w": 12, "h": 3, "accent": true },
+        { "label": "the work: 4 steps with durations", "x": 0, "y": 3, "w": 12, "h": 2 },
+        { "label": "what I promise (ruled lines)", "x": 0, "y": 5, "w": 7, "h": 2 },
+        { "label": "tools", "x": 7, "y": 5, "w": 5, "h": 2 },
+        { "label": "signed sheet + CTA", "x": 0, "y": 7, "w": 12, "h": 3 }
+      ]}
+    },
+    {
+      "id": "values-first",
+      "label": "Four Rules",
+      "lineage": "the rules printed on the back of the pad",
+      "thesis": "The four working principles lead at full scale; the story and the tools support them.",
+      "palette": ["#FBFBF8", "#D7263D", "#2B3FD6", "#F2DF6E"],
+      "materials": ["large printed rules", "ballpoint notes", "tool labels"],
+      "viewport": "Short carbon strip with the name and role, then each principle as a huge numbered rule on paper with a plain sentence beneath; the story, tools and process follow; closing slip.",
+      "risk": "Principles read as slogans unless each one is backed by something concrete.",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "carbon strip: name, role", "x": 0, "y": 0, "w": 12, "h": 2 },
+        { "label": "rule 1", "x": 0, "y": 2, "w": 6, "h": 2, "accent": true },
+        { "label": "rule 2", "x": 6, "y": 2, "w": 6, "h": 2 },
+        { "label": "rule 3", "x": 0, "y": 4, "w": 6, "h": 2 },
+        { "label": "rule 4", "x": 6, "y": 4, "w": 6, "h": 2 },
+        { "label": "story + tools", "x": 0, "y": 6, "w": 12, "h": 2 },
+        { "label": "closing slip", "x": 0, "y": 8, "w": 12, "h": 2 }
+      ]}
+    },
+    {
+      "id": "classic-about",
+      "label": "Story, Then Proof",
+      "lineage": "the familiar about page, pad-built",
+      "thesis": "Hero, the story in your own words, how you work, tools, then the work itself and a slip.",
+      "palette": ["#2B3FD6", "#FBFBF8", "#F4C6D2", "#F2DF6E"],
+      "materials": ["reading column", "margin notes", "client copies"],
+      "viewport": "Carbon hero with name and role; a reading column for the story with margin notes (city, works in Hebrew and English, direct on WhatsApp); process steps; tools; a strip of client copies as proof; closing slip.",
+      "risk": "Familiar shape; leans on the copy being good.",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "carbon hero", "x": 0, "y": 0, "w": 12, "h": 2 },
+        { "label": "story column", "x": 4, "y": 2, "w": 8, "h": 3, "accent": true },
+        { "label": "margin notes", "x": 0, "y": 2, "w": 4, "h": 2 },
+        { "label": "how I work + tools", "x": 0, "y": 5, "w": 12, "h": 2 },
+        { "label": "client copies", "x": 0, "y": 7, "w": 12, "h": 2 },
+        { "label": "closing slip", "x": 0, "y": 9, "w": 12, "h": 1 }
+      ]}
+    }
+  ],
+  "reroll": true,
+  "buildPath": { "value": "code", "toggle": false },
+  "steer": true
+}

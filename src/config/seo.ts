@@ -137,8 +137,8 @@ export const seoConfig = {
     },
     faq: {
       title: 'שאלות נפוצות | כל מה שרציתם לדעת',
-      description: 'תשובות לשאלות הנפוצות ביותר על שירותי הפיתוח, מחירים, לוחות זמנים, תהליך העבודה ותמיכה טכנית. קבלו תשובות ברורות לכל השאלות.',
-      keywords: ['שאלות נפוצות', 'FAQ', 'מחירון פיתוח', 'זמני פיתוח', 'תמיכה טכנית'],
+      description: 'תשובות לשאלות הנפוצות ביותר על שירותי הפיתוח, לוחות זמנים ותהליך העבודה. קבלו תשובות ברורות לכל השאלות.',
+      keywords: ['שאלות נפוצות', 'FAQ', 'זמני פיתוח', 'תהליך העבודה'],
       canonical: 'https://www.itayost.com/faq',
     },
     terms: {
@@ -154,9 +154,9 @@ export const seoConfig = {
       canonical: 'https://www.itayost.com/privacy-policy',
     },
     clients: {
-      title: 'לקוחות ומלצות | סיפורי הצלחה',
-      description: 'הכירו את הלקוחות המרוצים שלי, קראו המלצות אמיתיות וסיפורי הצלחה. למעלה מ-50 עסקים סומכים עליי לפתרונות דיגיטליים.',
-      keywords: ['לקוחות', 'המלצות', 'ביקורות', 'סיפורי הצלחה', 'לקוחות מרוצים', 'תיקי עבודות'],
+      title: 'לקוחות | הפרויקטים שנמסרו',
+      description: 'יומן העבודה שלי: מי הלקוח, מה נבנה ומתי. אתרים, מערכות ניהול, חנויות ואפליקציות לעסקים קטנים בישראל.',
+      keywords: ['לקוחות', 'פרויקטים', 'תיק עבודות', 'בניית אתרים לעסקים', 'מערכות ניהול לעסקים'],
       canonical: 'https://www.itayost.com/clients',
     },
 
@@ -174,8 +174,8 @@ export const seoConfig = {
       canonical: 'https://www.itayost.com/services/ecommerce',
     },
     'crm-systems': {
-      title: 'בניית מערכת CRM לפי הזמנה | מ-₪15,000, הקוד שלך',
-      description: 'בניית מערכת CRM לפי הזמנה — הקמה מ-₪15,000, בלי תשלום פר משתמש. הקוד בבעלותך, חיבור ל-WhatsApp, Gmail וחשבוניות ישראליות. הצעת מחיר תוך 24 שעות.',
+      title: 'בניית מערכת CRM לפי הזמנה | בלי תשלום פר משתמש',
+      description: 'בניית מערכת CRM לפי הזמנה, בלי תשלום פר משתמש. הקוד בבעלותך, חיבור ל-WhatsApp, Gmail וחשבוניות ישראליות. הצעת מחיר תוך 24 שעות.',
       keywords: [
         'מערכת CRM',
         'בניית מערכת CRM',
@@ -215,8 +215,8 @@ export const seoConfig = {
       // Buyers search price/outcome, not frameworks — the stack stays in the
       // body as proof, never in the title. Description claims must exist on
       // the page itself or Google rewrites the snippet.
-      title: 'פיתוח אפליקציה לעסק — מ-₪15,000, iOS ואנדרואיד',
-      description: 'כמה עולה לפתח אפליקציה? מ-₪15,000 לאפליקציה אחת שרצה גם ב-iOS וגם באנדרואיד, במקום שני פיתוחים נפרדים. תהליך ברור והצעת מחיר תוך 24 שעות.',
+      title: 'פיתוח אפליקציה לעסק — iOS ואנדרואיד בפיתוח אחד',
+      description: 'אפליקציה אחת שרצה גם ב-iOS וגם באנדרואיד, במקום שני פיתוחים נפרדים. תהליך ברור והצעת מחיר תוך 24 שעות.',
       keywords: ['אפליקציות מובייל', 'React Native', 'פיתוח אפליקציה', 'iOS', 'Android', 'Expo', 'אפליקציה לעסק'],
       canonical: 'https://www.itayost.com/services/mobile-apps',
     },
@@ -255,7 +255,7 @@ export const seoConfig = {
         '@type': 'ContactPoint',
         telephone: '+972-54-499-4417',
         contactType: 'sales',
-        email: 'itayost1@gmail.com',
+        email: 'itay@itayost.com',
         areaServed: 'IL',
         availableLanguage: ['Hebrew', 'English'],
       },
@@ -301,7 +301,7 @@ export const seoConfig = {
       },
       url: 'https://www.itayost.com',
       telephone: '+972-54-499-4417',
-      email: 'itayost1@gmail.com',
+      email: 'itay@itayost.com',
       // Cross-reference the Google Business Profile so AI/search engines
       // merge the on-site LocalBusiness node with the GBP entity.
       sameAs: [
@@ -350,13 +350,6 @@ export const seoConfig = {
           longitude: 34.849708
         },
         geoRadius: '50000'
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5.0',
-        reviewCount: '10',
-        bestRating: '5',
-        worstRating: '1',
       },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
@@ -601,21 +594,13 @@ export const seoConfig = {
           },
         },
 
-        // Support & Maintenance
-        {
-          '@type': 'Question',
-          name: 'האם אתה נותן תמיכה אחרי המסירה?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'כן, כלול בכל פרויקט: 6 חודשי אחריות מלאה לתקלות טכניות, חודש תמיכה חינם, והדרכה מלאה. אחרי זה אפשר להמשיך עם חבילת תחזוקה חודשית (500-1500 ש"ח) שכוללת עדכוני אבטחה, גיבויים, שינויי תוכן ותמיכה טכנית. אני זמין בווטסאפ, מייל וטלפון.',
-          },
-        },
+        // Maintenance
         {
           '@type': 'Question',
           name: 'מה כלול בחבילת התחזוקה?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'חבילת תחזוקה חודשית כוללת עדכוני אבטחה, גיבוי יומי, מעקב תקינות (uptime monitoring), שינויי תוכן (עד שעתיים בחודש), תמיכה טכנית (מענה תוך 24 שעות) ודוחות ביצועים. שלוש רמות: חבילה בסיסית 500 ש"ח, מתקדמת 1000 ש"ח, פרימיום 1500 ש"ח (כולל שיפורים ופיצ\'רים חדשים).',
+            text: 'חבילת תחזוקה חודשית כוללת עדכוני אבטחה, גיבוי יומי, מעקב תקינות (uptime monitoring), שינויי תוכן (עד שעתיים בחודש) ודוחות ביצועים. שלוש רמות: חבילה בסיסית 500 ש"ח, מתקדמת 1000 ש"ח, פרימיום 1500 ש"ח (כולל שיפורים ופיצ\'רים חדשים).',
           },
         },
 
@@ -669,7 +654,7 @@ export const seoConfig = {
           name: 'האם אתה בונה אפליקציות מובייל?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'כן, אני בונה אפליקציות מובייל עם React Native - אפליקציה אחת שעובדת גם על iOS וגם על Android. מחירים: אפליקציה פשוטה (MVP) 15,000-35,000 ש"ח, אפליקציה מורכבת (התחברות, תשלומים, פוש) 35,000-70,000 ש"ח. כולל פיתוח, בדיקות והעלאה לחנויות (App Store ו-Google Play).',
+            text: 'כן, אני בונה אפליקציות מובייל עם React Native - אפליקציה אחת שעובדת גם על iOS וגם על Android. המחיר נקבע לפי היקף האפליקציה: מספר המסכים, התחברות משתמשים, תשלומים והתראות. כולל פיתוח, בדיקות והעלאה לחנויות (App Store ו-Google Play), והצעת מחיר מפורטת תוך 24 שעות.',
           },
         },
         {
@@ -677,7 +662,7 @@ export const seoConfig = {
           name: 'האם אתה בונה חנויות אונליין?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'כן, אני בונה חנויות אונליין מותאמות אישית במחיר של 20,000-35,000 ש"ח. כולל: קטלוג מוצרים, עגלת קניות, מערכת תשלומים (אשראי, PayPal, Bit), ניהול הזמנות, חיבור למשלוחים, דוחות ואנליטיקס. אפשר גם אינטגרציה עם מערכות קיימות (ניהול מלאי, חשבשבת). החנות תהיה מהירה, מאובטחת ומותאמת למובייל.',
+            text: 'כן, אני בונה חנויות אונליין מותאמות אישית. כולל: קטלוג מוצרים, עגלת קניות, מערכת תשלומים (אשראי, PayPal, Bit), ניהול הזמנות, חיבור למשלוחים, דוחות ואנליטיקס. אפשר גם אינטגרציה עם מערכות קיימות (ניהול מלאי, חשבשבת). החנות תהיה מהירה, מאובטחת ומותאמת למובייל.',
           },
         },
       ],

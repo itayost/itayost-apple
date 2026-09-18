@@ -2,15 +2,9 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { AlertCircle, ArrowRight, RefreshCw } from 'lucide-react'
+import { ArrowLeft, RefreshCw } from 'lucide-react'
 
-export default function BlogPostError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
+export default function BlogPostError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // Log error to error reporting service
     if (process.env.NODE_ENV === 'development') {
@@ -20,61 +14,47 @@ export default function BlogPostError({
   }, [error])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-gray-50 to-white">
-      <div className="container mx-auto px-4 py-16 sm:py-24">
-        <div className="max-w-2xl mx-auto text-center">
-          {/* Error Icon */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-red-500/20 blur-3xl rounded-full" />
-              <div className="relative bg-red-100 rounded-full p-6">
-                <AlertCircle className="w-16 h-16 text-red-600" />
-              </div>
-            </div>
+    <div className="pad-world">
+      <section className="bg-pad-carbon text-white">
+        <div className="mx-auto max-w-6xl px-5 pb-20 pt-32 sm:px-8 lg:pb-24 lg:pt-40">
+          <div className="max-w-[46ch]">
+            <span className="inline-block rotate-[-4deg] border-2 border-pad-yellow px-2.5 pb-0.5 pt-1 font-pad-display text-xl font-bold leading-none text-pad-yellow">
+              תקלה
+            </span>
+            <h1 className="mt-5 font-pad-display text-[clamp(2.75rem,1.6rem+4vw,4.75rem)] font-bold leading-[0.9] [text-wrap:balance]">
+              המאמר לא נטען
+            </h1>
+            <p className="mt-5 text-xl leading-relaxed text-pad-carbon-ink">
+              מצטער, משהו השתבש בטעינת המאמר. אפשר לנסות שוב או לחזור לרשימת המאמרים.
+            </p>
           </div>
 
-          {/* Error Message */}
-          <h1 className="text-3xl sm:text-4xl font-bold text-brand-gray-900 mb-4">
-            שגיאה בטעינת הפוסט
-          </h1>
-          <p className="text-lg text-brand-gray-600 mb-8 leading-relaxed">
-            מצטער, לא הצלחתי לטעון את הפוסט. ייתכן שהוא הוסר או שיש בעיה זמנית בשרת.
-          </p>
-
-          {/* Error Details (Development Only) */}
           {process.env.NODE_ENV === 'development' && (
-            <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg text-right">
-              <p className="text-sm text-red-800 font-mono break-all">
-                {error.message}
-              </p>
-              {error.digest && (
-                <p className="text-xs text-red-600 mt-2">
-                  Error ID: {error.digest}
-                </p>
-              )}
+            <div className="mt-8 max-w-[70ch] border-2 border-pad-yellow/60 bg-pad-carbon-deep px-5 py-4">
+              <p className="break-all font-mono text-sm text-pad-yellow">{error.message}</p>
+              {error.digest && <p className="mt-2 font-mono text-xs text-pad-carbon-ink">Error ID: {error.digest}</p>}
             </div>
           )}
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
             <button
+              type="button"
               onClick={reset}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-blue text-white font-medium rounded-full hover:bg-brand-blue/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+              className="inline-flex min-h-14 items-center gap-2 bg-pad-yellow px-6 text-lg font-bold text-pad-ink transition-transform duration-300 hover:-translate-y-0.5 motion-reduce:transition-none"
             >
-              <RefreshCw className="w-5 h-5" />
+              <RefreshCw aria-hidden="true" className="h-5 w-5" />
               נסה שוב
             </button>
-
             <Link
               href="/blog"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-brand-blue font-medium rounded-full border-2 border-brand-blue hover:bg-brand-blue/5 transition-all duration-200 hover:scale-105"
+              className="group inline-flex min-h-11 items-center gap-2 text-lg font-bold text-white underline decoration-pad-yellow decoration-2 underline-offset-[6px] hover:text-pad-yellow"
             >
               חזרה לבלוג
-              <ArrowRight className="w-5 h-5" />
+              <ArrowLeft aria-hidden="true" className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             </Link>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

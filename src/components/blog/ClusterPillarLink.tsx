@@ -1,9 +1,5 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { BookOpen, ArrowLeft } from 'lucide-react'
-import { bouncyEasing } from '@/constants/animations'
 
 export interface PillarRef {
   title: string
@@ -21,32 +17,27 @@ export function ClusterPillarLink({ pillars }: ClusterPillarLinkProps) {
   if (!pillars || pillars.length === 0) return null
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.25, duration: 0.5, ease: bouncyEasing }}
-      className="mb-10 space-y-3"
-    >
-      {pillars.map(pillar => (
+    <nav aria-label="מדריך מקיף בנושא" className="mb-10 border-y-[3px] border-double border-pad-red">
+      {pillars.map((pillar) => (
         <Link
           key={pillar.href}
           href={pillar.href}
-          className="group flex items-center gap-3 rounded-2xl border border-brand-blue/20 bg-brand-blue/5 px-5 py-4 transition-colors hover:bg-brand-blue/10"
+          className="group flex min-h-16 items-center gap-4 border-b border-pad-rule py-3 last:border-b-0"
         >
-          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-brand-blue text-white">
-            <BookOpen size={18} />
-          </span>
-          <span className="flex-1 text-brand-navy">
-            <span className="block text-xs font-semibold text-brand-blue">
-              המאמר הזה הוא חלק מהמדריך המלא
-            </span>
-            <span className="font-bold group-hover:text-brand-blue transition-colors">
+          <BookOpen aria-hidden="true" size={20} className="flex-shrink-0 text-pad-red" />
+          <span className="flex-1">
+            <span className="block text-sm font-bold text-pad-red">המדריך המלא</span>
+            <span className="block text-lg font-bold text-pad-ink underline decoration-pad-carbon/25 decoration-2 underline-offset-4 transition-colors group-hover:decoration-pad-carbon">
               {pillar.title}
             </span>
           </span>
-          <ArrowLeft size={18} className="flex-shrink-0 text-brand-blue transition-transform group-hover:-translate-x-1" />
+          <ArrowLeft
+            aria-hidden="true"
+            size={18}
+            className="flex-shrink-0 text-pad-carbon transition-transform group-hover:-translate-x-1 motion-reduce:transition-none"
+          />
         </Link>
       ))}
-    </motion.div>
+    </nav>
   )
 }

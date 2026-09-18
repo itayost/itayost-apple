@@ -6,6 +6,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Carbon Order Pad world (homepage + shell). See DESIGN.md.
+        'pad': {
+          carbon: '#2B3FD6',
+          'carbon-deep': '#1B2A9E',
+          'carbon-ink': '#C9D0FF',
+          sheet: '#FBFBF8',
+          pink: '#F4C6D2',
+          yellow: '#F2DF6E',
+          red: '#D7263D',
+          ink: '#15161A',
+          'ink-soft': '#4A4C57',
+          rule: '#B9C6E8',
+          ballpoint: '#1F2A8C',
+          whatsapp: '#0F7A40',
+          'whatsapp-deep': '#0B5E31',
+          'board-line': '#3A3C46',
+          'board-text': '#C9CBD6',
+          'board-alert': '#FF8A98',
+        },
         // New brand color system
         'brand': {
           navy: '#1e3a5f',
@@ -65,8 +84,11 @@ module.exports = {
         '3xl': '0 35px 60px -15px rgba(30, 58, 95, 0.28)',
       },
       fontFamily: {
+        'pad-display': ['var(--font-pad-display)', '"Arial Narrow"', 'sans-serif'],
+        'pad-body': ['var(--font-pad-body)', 'system-ui', 'Segoe UI', 'Arial', 'sans-serif'],
+        'pad-hand': ['var(--font-pad-hand)', 'cursive'],
         sans: [
-          'var(--font-heebo)',
+          'var(--font-pad-body)',
           '-apple-system',
           'BlinkMacSystemFont',
           '"SF Pro Text"',
@@ -75,7 +97,6 @@ module.exports = {
           'Helvetica',
           'Arial',
           '"Noto Sans Hebrew"',
-          '"Heebo"',
           'sans-serif',
         ],
       },

@@ -28,25 +28,6 @@ export interface PortfolioItem {
   featured: boolean
   features: string[]
   results: Array<{ label: string; value: string }>
-  testimonial: {
-    text: string
-    author: string
-    role: string
-  }
-  review: {
-    '@type': string
-    reviewRating: {
-      '@type': string
-      ratingValue: string
-      bestRating: string
-    }
-    author: {
-      '@type': string
-      name: string
-    }
-    reviewBody: string
-    datePublished: string
-  }
 }
 
 // Centralized categories for portfolio filtering
@@ -67,13 +48,14 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'מערכת לניהול הזמנות אוכל וניהול מלאי',
     category: 'system',
     description: 'מערכת ניהול מלאי והזמנות אוכל - שמירת נתוני לקוחות כולל רגישויות ואלרגיות להתאמת הזמנות',
-    longDescription: 'פיתחתי מערכת מקיפה לניהול מטבח מסחרי הכוללת ניהול מלאי חכם, מעקב אחר הזמנות, וניהול פרופילי לקוחות עם התחשבות באלרגיות ומגבלות תזונתיות. המערכת מאפשרת למסעדות לנהל את כל תהליכי המטבח בצורה יעילה ומדויקת.',
+    longDescription:
+      'פיתחתי מערכת מקיפה לניהול מטבח מסחרי הכוללת ניהול מלאי חכם, מעקב אחר הזמנות, וניהול פרופילי לקוחות עם התחשבות באלרגיות ומגבלות תזונתיות. המערכת מאפשרת למסעדות לנהל את כל תהליכי המטבח בצורה יעילה ומדויקת.',
     image: '/images/AmosKitchen-display.webp',
     imageSizes: {
       desktop: '/images/AmosKitchen-desktop.webp',
       display: '/images/AmosKitchen-display.webp',
       mobile: '/images/AmosKitchen-mobile.webp',
-      thumbnail: '/images/AmosKitchen-thumbnail.webp'
+      thumbnail: '/images/AmosKitchen-thumbnail.webp',
     },
     tags: ['React', 'Node.js', 'Supabase', 'PostgreSQL'],
     technologies: ['React', 'Node.js', 'Supabase'],
@@ -84,7 +66,7 @@ export const portfolioData: PortfolioItem[] = [
       efficiency: '+40%',
       orders: '1000+/חודש',
       accuracy: '99.9%',
-      time: '-60%'
+      time: '-60%',
     },
     client: 'Kitchen Optimizer',
     year: '2024',
@@ -96,33 +78,14 @@ export const portfolioData: PortfolioItem[] = [
       'מעקב רגישויות והעדפות תזונתיות',
       'ניהול הזמנות אוטומטי',
       'דוחות וניתוחים מתקדמים',
-      'ממשק ידידותי למשתמש'
+      'ממשק ידידותי למשתמש',
     ],
     results: [
       { label: 'שיפור יעילות', value: '40%' },
       { label: 'דיוק בהזמנות', value: '99.9%' },
       { label: 'חיסכון בזמן', value: '60%' },
-      { label: 'שביעות רצון', value: '100%' }
+      { label: 'שביעות רצון', value: '100%' },
     ],
-    testimonial: {
-      text: 'המערכת שינתה לחלוטין את האופן שבו אנחנו מנהלים את המטבח. חסכנו המון זמן וכסף, והלקוחות שלנו מרוצים יותר מתמיד.',
-      author: 'עמוס כהן',
-      role: 'בעל מסעדה'
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'עמוס כהן'
-      },
-      reviewBody: 'המערכת שינתה לחלוטין את האופן שבו אנחנו מנהלים את המטבח. חסכנו המון זמן וכסף, והלקוחות שלנו מרוצים יותר מתמיד.',
-      datePublished: '2024-01-15'
-    }
   },
   {
     id: 2,
@@ -131,13 +94,14 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'אתר תדמית למסעדה',
     category: 'web',
     description: 'אתר תדמית מרשים למסעדה עם תפריט אינטראקטיבי וחוויית משתמש מעולה',
-    longDescription: 'עיצוב ופיתוח אתר תדמית יוקרתי למסעדת Lola Martin. האתר כולל תפריט אינטראקטיבי, גלריית תמונות מרהיבה, מערכת הזמנת שולחנות, ואינטגרציה עם רשתות חברתיות. דגש מיוחד על חוויית משתמש מעולה במובייל.',
+    longDescription:
+      'עיצוב ופיתוח אתר תדמית יוקרתי למסעדת Lola Martin. האתר כולל תפריט אינטראקטיבי, גלריית תמונות מרהיבה, מערכת הזמנת שולחנות, ואינטגרציה עם רשתות חברתיות. דגש מיוחד על חוויית משתמש מעולה במובייל.',
     image: '/images/LolaMartin-display.webp',
     imageSizes: {
       desktop: '/images/LolaMartin-desktop.webp',
       display: '/images/LolaMartin-display.webp',
       mobile: '/images/LolaMartin-mobile.webp',
-      thumbnail: '/images/LolaMartin-thumbnail.webp'
+      thumbnail: '/images/LolaMartin-thumbnail.webp',
     },
     tags: ['Next.js', 'Vercel', 'Tailwind CSS', 'Framer Motion'],
     technologies: ['Vercel', 'Next.js'],
@@ -148,7 +112,7 @@ export const portfolioData: PortfolioItem[] = [
       views: '50K+/חודש',
       reservations: '+200%',
       loadTime: '0.8s',
-      mobile: '75%'
+      mobile: '75%',
     },
     client: 'Lola Martin Restaurant',
     year: '2024',
@@ -161,33 +125,14 @@ export const portfolioData: PortfolioItem[] = [
       'תפריט אינטראקטיבי',
       'מערכת הזמנות אונליין',
       'גלריית תמונות דינמית',
-      'אופטימיזציה למנועי חיפוש'
+      'אופטימיזציה למנועי חיפוש',
     ],
     results: [
       { label: 'עלייה בהזמנות', value: '200%' },
       { label: 'זמן טעינה', value: '0.8s' },
       { label: 'תנועה מובייל', value: '75%' },
-      { label: 'ציון SEO', value: '98/100' }
+      { label: 'ציון SEO', value: '98/100' },
     ],
-    testimonial: {
-      text: 'האתר החדש הביא לנו פי 2 הזמנות אונליין. העיצוב מדהים והלקוחות מתלהבים!',
-      author: 'מרטין לוי',
-      role: 'בעל המסעדה'
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'מרטין לוי'
-      },
-      reviewBody: 'האתר החדש הביא לנו פי 2 הזמנות אונליין. העיצוב מדהים והלקוחות מתלהבים!',
-      datePublished: '2024-02-20'
-    }
   },
   {
     id: 3,
@@ -196,13 +141,14 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'אתר תדמית לאקדמיית ספרות',
     category: 'web',
     description: 'אתר תדמית לאקדמיית ספרות עם מערכת CRM למעקב אחר לידים',
-    longDescription: 'פיתוח פלטפורמה מקיפה לאקדמיית ספרות The Fader, הכוללת אתר תדמית מרשים, מערכת רישום לקורסים, ומערכת CRM מתקדמת למעקב אחר לידים ותלמידים. אינטגרציה מלאה עם Google APIs לניהול יומנים ואירועים.',
+    longDescription:
+      'פיתוח פלטפורמה מקיפה לאקדמיית ספרות The Fader, הכוללת אתר תדמית מרשים, מערכת רישום לקורסים, ומערכת CRM מתקדמת למעקב אחר לידים ותלמידים. אינטגרציה מלאה עם Google APIs לניהול יומנים ואירועים.',
     image: '/images/TheFader-display.webp',
     imageSizes: {
       desktop: '/images/TheFader-desktop.webp',
       display: '/images/TheFader-display.webp',
       mobile: '/images/TheFader-mobile.webp',
-      thumbnail: '/images/TheFader-thumbnail.webp'
+      thumbnail: '/images/TheFader-thumbnail.webp',
     },
     tags: ['Next.js', 'Google API', 'Python', 'CRM', 'PostgreSQL'],
     technologies: ['Next.js', 'GoogleAPI', 'Python'],
@@ -213,7 +159,6 @@ export const portfolioData: PortfolioItem[] = [
       students: '500+',
       conversion: '35%',
       automation: '80%',
-      satisfaction: '4.9★'
     },
     client: 'The Fader Academy',
     year: '2024',
@@ -226,33 +171,13 @@ export const portfolioData: PortfolioItem[] = [
       'ניהול קורסים ותלמידים',
       'אינטגרציה עם Google Calendar',
       'מערכת תשלומים מאובטחת',
-      'דוחות וניתוחים מתקדמים'
+      'דוחות וניתוחים מתקדמים',
     ],
     results: [
       { label: 'תלמידים רשומים', value: '500+' },
       { label: 'שיעור המרה', value: '35%' },
       { label: 'אוטומציה', value: '80%' },
-      { label: 'דירוג', value: '4.9★' }
     ],
-    testimonial: {
-      text: 'המערכת חסכה לנו אינספור שעות עבודה ושיפרה משמעותית את חווית הלמידה של התלמידים.',
-      author: 'ד״ר רחל פדר',
-      role: 'מנהלת האקדמיה'
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'ד״ר רחל פדר'
-      },
-      reviewBody: 'המערכת חסכה לנו אינספור שעות עבודה ושיפרה משמעותית את חווית הלמידה של התלמידים.',
-      datePublished: '2024-03-10'
-    }
   },
   {
     id: 4,
@@ -261,13 +186,14 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'דף נחיתה לסוכן נדל״ן',
     category: 'web',
     description: 'דף נחיתה מותאם אישית לסוכן נדל״ן עם מערכת ניהול לידים',
-    longDescription: 'עיצוב ופיתוח דף נחיתה ממוקד המרות לסוכן נדל״ן מוביל. הדף כולל טפסי יצירת קשר חכמים, גלריית נכסים דינמית, מערכת ניהול לידים, ואינטגרציה עם מערכות שיווק. דגש על חוויית משתמש מעולה ושיעורי המרה גבוהים.',
+    longDescription:
+      'עיצוב ופיתוח דף נחיתה ממוקד המרות לסוכן נדל״ן מוביל. הדף כולל טפסי יצירת קשר חכמים, גלריית נכסים דינמית, מערכת ניהול לידים, ואינטגרציה עם מערכות שיווק. דגש על חוויית משתמש מעולה ושיעורי המרה גבוהים.',
     image: '/images/TalNadlan-display.webp',
     imageSizes: {
       desktop: '/images/TalNadlan-desktop.webp',
       display: '/images/TalNadlan-display.webp',
       mobile: '/images/TalNadlan-mobile.webp',
-      thumbnail: '/images/TalNadlan-thumbnail.webp'
+      thumbnail: '/images/TalNadlan-thumbnail.webp',
     },
     tags: ['Next.js', 'Vercel', 'Lead Generation', 'Analytics'],
     technologies: ['Next.js', 'Vercel'],
@@ -278,7 +204,7 @@ export const portfolioData: PortfolioItem[] = [
       leads: '200+/חודש',
       conversion: '15%',
       pageSpeed: '95/100',
-      roi: '450%'
+      roi: '450%',
     },
     client: 'טל כהן - יועץ נדל״ן',
     year: '2024',
@@ -291,33 +217,14 @@ export const portfolioData: PortfolioItem[] = [
       'טפסי לידים חכמים',
       'גלריית נכסים דינמית',
       'מערכת ניתוח ביצועים',
-      'אופטימיזציה למובייל'
+      'אופטימיזציה למובייל',
     ],
     results: [
       { label: 'לידים חודשיים', value: '200+' },
       { label: 'שיעור המרה', value: '15%' },
       { label: 'מהירות טעינה', value: '95/100' },
-      { label: 'החזר השקעה', value: '450%' }
+      { label: 'החזר השקעה', value: '450%' },
     ],
-    testimonial: {
-      text: 'דף הנחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
-      author: 'טל כהן',
-      role: 'יועץ נדל״ן בכיר'
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'טל כהן'
-      },
-      reviewBody: 'דף הנחיתה הזה הכפיל את כמות הלידים שלי. ההשקעה החזירה את עצמה תוך חודש!',
-      datePublished: '2024-04-05'
-    }
   },
   {
     id: 5,
@@ -326,13 +233,14 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'אתר לחברת תיווך נדל״ן',
     category: 'web',
     description: 'אתר מקצועי לחברת תיווך נדל״ן בחיפה והצפון עם מערכת ניהול נכסים',
-    longDescription: 'פיתוח אתר מקיף לחברת Shepes Group, משרד תיווך נדל״ן מוביל בחיפה והצפון. האתר כולל תצוגת תיק עבודות, מערכת ניהול נכסים, אינטגרציה עם WhatsApp לתקשורת מיידית, וממשק ניהול לידים. דגש על SEO מקומי ואופטימיזציה להמרות.',
+    longDescription:
+      'פיתוח אתר מקיף לחברת Shepes Group, משרד תיווך נדל״ן מוביל בחיפה והצפון. האתר כולל תצוגת תיק עבודות, מערכת ניהול נכסים, אינטגרציה עם WhatsApp לתקשורת מיידית, וממשק ניהול לידים. דגש על SEO מקומי ואופטימיזציה להמרות.',
     image: '/images/ShepesGroup-display.webp',
     imageSizes: {
       desktop: '/images/ShepesGroup-desktop.webp',
       display: '/images/ShepesGroup-display.webp',
       mobile: '/images/ShepesGroup-mobile.webp',
-      thumbnail: '/images/ShepesGroup-thumbnail.webp'
+      thumbnail: '/images/ShepesGroup-thumbnail.webp',
     },
     tags: ['Next.js', 'Tailwind CSS', 'RTL', 'SEO', 'WhatsApp'],
     technologies: ['Next.js', 'Vercel', 'Tailwind'],
@@ -343,7 +251,7 @@ export const portfolioData: PortfolioItem[] = [
       properties: '150+',
       leads: '+180%',
       seo: '96/100',
-      uptime: '99.9%'
+      uptime: '99.9%',
     },
     client: 'Shepes Group - תיווך נדל״ן',
     year: '2024',
@@ -357,33 +265,14 @@ export const portfolioData: PortfolioItem[] = [
       'אינטגרציה עם WhatsApp',
       'SEO מקומי לאזור חיפה',
       'טפסי יצירת קשר חכמים',
-      'ממשק ניהול נכסים'
+      'ממשק ניהול נכסים',
     ],
     results: [
       { label: 'נכסים בניהול', value: '150+' },
       { label: 'עלייה בלידים', value: '180%' },
       { label: 'ציון SEO', value: '96/100' },
-      { label: 'זמינות', value: '99.9%' }
+      { label: 'זמינות', value: '99.9%' },
     ],
-    testimonial: {
-      text: 'האתר הפך להיות כלי השיווק המרכזי שלנו. קיבלנו פי 2 יותר פניות מאשר בעבר!',
-      author: 'גלית ושחים שפס',
-      role: 'בעלי משרד התיווך'
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'גלית ושחים שפס'
-      },
-      reviewBody: 'האתר הפך להיות כלי השיווק המרכזי שלנו. קיבלנו פי 2 יותר פניות מאשר בעבר!',
-      datePublished: '2024-05-20'
-    }
   },
   {
     id: 6,
@@ -392,13 +281,14 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'אתר הוצאה לאור וקורסים',
     category: 'web',
     description: 'פלטפורמה דיגיטלית לספר הומאופתיה וקורסים מקוונים',
-    longDescription: 'פיתוח פלטפורמה מתקדמת לשיווק ספר "נס התמר" - ספר ייחודי המשלב תורה והומאופתיה. האתר כולל חנות מקוונת, אינטגרציה עם Headstart לגיוס המונים, מערכת רישום לקורסים, תוכן וידאו, ותמיכה בעברית ואנגלית. עיצוב פרימיום עם אלמנטים עיצוביים מותאמים אישית.',
+    longDescription:
+      'פיתוח פלטפורמה מתקדמת לשיווק ספר "נס התמר" - ספר ייחודי המשלב תורה והומאופתיה. האתר כולל חנות מקוונת, אינטגרציה עם Headstart לגיוס המונים, מערכת רישום לקורסים, תוכן וידאו, ותמיכה בעברית ואנגלית. עיצוב פרימיום עם אלמנטים עיצוביים מותאמים אישית.',
     image: '/images/NeshaTamar-display.webp',
     imageSizes: {
       desktop: '/images/NeshaTamar-desktop.webp',
       display: '/images/NeshaTamar-display.webp',
       mobile: '/images/NeshaTamar-mobile.webp',
-      thumbnail: '/images/NeshaTamar-thumbnail.webp'
+      thumbnail: '/images/NeshaTamar-thumbnail.webp',
     },
     tags: ['Next.js', 'E-commerce', 'Multilingual', 'Video', 'Crowdfunding'],
     technologies: ['Next.js', 'Tailwind', 'Headstart'],
@@ -409,7 +299,6 @@ export const portfolioData: PortfolioItem[] = [
       sales: '500+',
       students: '120+',
       languages: '2',
-      rating: '4.9★'
     },
     client: 'נס התמר - הוצאה לאור',
     year: '2024',
@@ -424,33 +313,13 @@ export const portfolioData: PortfolioItem[] = [
       'תמיכה דו-לשונית (עברית/אנגלית)',
       'אינטגרציית וידאו YouTube',
       'עיצוב פרימיום מותאם אישית',
-      'Structured data לספרים'
+      'Structured data לספרים',
     ],
     results: [
       { label: 'ספרים נמכרו', value: '500+' },
       { label: 'תלמידים בקורס', value: '120+' },
       { label: 'שפות', value: '2' },
-      { label: 'דירוג משתמשים', value: '4.9★' }
     ],
-    testimonial: {
-      text: 'האתר מקצועי ויפהפה, ועזר לנו להגיע לקהל רחב בהרבה ממה שדמיינו. המערכת פשוטה לתפעול!',
-      author: 'תמר אשל',
-      role: 'מחברת ומורה להומאופתיה'
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'תמר אשל'
-      },
-      reviewBody: 'האתר מקצועי ויפהפה, ועזר לנו להגיע לקהל רחב בהרבה ממה שדמיינו. המערכת פשוטה לתפעול!',
-      datePublished: '2024-06-15'
-    }
   },
   {
     id: 7,
@@ -458,8 +327,10 @@ export const portfolioData: PortfolioItem[] = [
     title: 'Garden of Eden',
     subtitle: 'מערכת ניהול אקדמיית כדורגל',
     category: 'system',
-    description: 'פלטפורמה לניהול מאמנים ומתאמנים עם מבדקים גופניים וקוגנטיביים, ציונים אוטומטיים וכרטיס שחקן בסגנון EA FC',
-    longDescription: 'פיתוח פלטפורמה מלאה לאקדמיית כדורגל Garden of Eden המשרתת מאמנים, מתאמנים והנהלה. המערכת כוללת שלושה ממשקי משתמש נפרדים: מתאמנים צופים בציוניהם בכרטיס שחקן אינטראקטיבי בסגנון EA FC, מאמנים מבצעים ומנהלים מבדקים גופניים וקוגנטיביים, ומנהלים שולטים בכל היבטי הניהול. אימות באמצעות WhatsApp OTP ואינטגרציה עם שער תשלומים Meshulam.',
+    description:
+      'פלטפורמה לניהול מאמנים ומתאמנים עם מבדקים גופניים וקוגנטיביים, ציונים אוטומטיים וכרטיס שחקן בסגנון EA FC',
+    longDescription:
+      'פיתוח פלטפורמה מלאה לאקדמיית כדורגל Garden of Eden המשרתת מאמנים, מתאמנים והנהלה. המערכת כוללת שלושה ממשקי משתמש נפרדים: מתאמנים צופים בציוניהם בכרטיס שחקן אינטראקטיבי בסגנון EA FC, מאמנים מבצעים ומנהלים מבדקים גופניים וקוגנטיביים, ומנהלים שולטים בכל היבטי הניהול. אימות באמצעות WhatsApp OTP ואינטגרציה עם שער תשלומים Meshulam.',
     image: '/images/EdenGarden.png',
     imageSizes: {
       desktop: '/images/EdenGarden.png',
@@ -476,7 +347,6 @@ export const portfolioData: PortfolioItem[] = [
       trainees: '100+',
       assessments: '500+',
       roles: '3',
-      rating: '4.9★',
     },
     client: 'Garden of Eden Football Academy',
     year: '2025',
@@ -496,27 +366,7 @@ export const portfolioData: PortfolioItem[] = [
       { label: 'מתאמנים פעילים', value: '100+' },
       { label: 'מבדקים שבוצעו', value: '500+' },
       { label: 'ממשקי משתמש', value: '3' },
-      { label: 'דירוג', value: '4.9★' },
     ],
-    testimonial: {
-      text: 'המערכת שינתה את האופן שבו אנחנו מנהלים את האקדמיה. המתאמנים מתלהבים מכרטיס השחקן האישי שלהם.',
-      author: 'מנהל Garden of Eden',
-      role: 'מנהל האקדמיה',
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5',
-      },
-      author: {
-        '@type': 'Person',
-        name: 'מנהל Garden of Eden',
-      },
-      reviewBody: 'המערכת שינתה את האופן שבו אנחנו מנהלים את האקדמיה. המתאמנים מתלהבים מכרטיס השחקן האישי שלהם.',
-      datePublished: '2025-01-15',
-    },
   },
   {
     id: 8,
@@ -525,7 +375,8 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'חנות ספרי קידוד לילדים',
     category: 'ecommerce',
     description: 'חנות אינטרנטית לספרי ומחברות קידוד לילדים עם עגלת קניות, חבילות, ומשחקים דיגיטליים',
-    longDescription: 'פיתוח חנות e-commerce מלאה ל-FutureKids - פלטפורמה לחינוך טכנולוגי לילדים. החנות כוללת ספרים ומחברות תרגול בנושאי AI, הצפנה ואלגוריתמים, עגלת קניות מלאה, חבילות מיוחדות, תשלום מאובטח, תוכן גיימיפיקציה ושיעורים דיגיטליים.',
+    longDescription:
+      'פיתוח חנות e-commerce מלאה ל-FutureKids - פלטפורמה לחינוך טכנולוגי לילדים. החנות כוללת ספרים ומחברות תרגול בנושאי AI, הצפנה ואלגוריתמים, עגלת קניות מלאה, חבילות מיוחדות, תשלום מאובטח, תוכן גיימיפיקציה ושיעורים דיגיטליים.',
     image: '/images/FutureKids.png',
     imageSizes: {
       desktop: '/images/FutureKids.png',
@@ -564,25 +415,6 @@ export const portfolioData: PortfolioItem[] = [
       { label: 'נושאים', value: '3' },
       { label: 'זמן טעינה', value: '0.9s' },
     ],
-    testimonial: {
-      text: 'החנות מקצועית ונוחה לשימוש. הילדים מתלהבים מהתוכן הדיגיטלי הנלווה לספרים.',
-      author: 'לקוח FutureKids',
-      role: 'הורה',
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5',
-      },
-      author: {
-        '@type': 'Person',
-        name: 'לקוח FutureKids',
-      },
-      reviewBody: 'החנות מקצועית ונוחה לשימוש. הילדים מתלהבים מהתוכן הדיגיטלי הנלווה לספרים.',
-      datePublished: '2025-02-01',
-    },
   },
   {
     id: 9,
@@ -591,7 +423,8 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'מערכת ניהול תורים חכמה',
     category: 'system',
     description: 'מערכת ניהול תורים לקליניקה עם אינטגרציית WhatsApp לתזכורות, אישורי הגעה, וניהול ביטולים חכם',
-    longDescription: 'פיתוח מערכת ניהול תורים מתקדמת לקליניקת גבות Amit EyeBrows. המערכת מנהלת תורים ושולחת תזכורות אוטומטיות ב-WhatsApp ללקוחות לפני הגעתם. כאשר לקוח מבטל תור, המערכת מזהה את הלקוחות הבאים בתור ושואלת אם ברצונם להקדים - כך מנוהל לוח הזמנים של הקליניקה בצורה יעילה אוטומטית.',
+    longDescription:
+      'פיתוח מערכת ניהול תורים מתקדמת לקליניקת גבות Amit EyeBrows. המערכת מנהלת תורים ושולחת תזכורות אוטומטיות ב-WhatsApp ללקוחות לפני הגעתם. כאשר לקוח מבטל תור, המערכת מזהה את הלקוחות הבאים בתור ושואלת אם ברצונם להקדים - כך מנוהל לוח הזמנים של הקליניקה בצורה יעילה אוטומטית.',
     image: '/images/AmitEyeBrows.png',
     imageSizes: {
       desktop: '/images/AmitEyeBrows.png',
@@ -629,25 +462,6 @@ export const portfolioData: PortfolioItem[] = [
       { label: 'ניצולת יומן', value: '+35%' },
       { label: 'זמינות', value: '99.9%' },
     ],
-    testimonial: {
-      text: 'המערכת חסכה לי המון זמן בטלפון. הלקוחות מקבלים תזכורות אוטומטיות והביטולים מנוהלים לבד.',
-      author: 'אמית',
-      role: 'בעלת הקליניקה',
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5',
-      },
-      author: {
-        '@type': 'Person',
-        name: 'אמית',
-      },
-      reviewBody: 'המערכת חסכה לי המון זמן בטלפון. הלקוחות מקבלים תזכורות אוטומטיות והביטולים מנוהלים לבד.',
-      datePublished: '2025-03-01',
-    },
   },
   {
     id: 10,
@@ -656,7 +470,8 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: 'מערכת CRM לתיווך נדל״ן',
     category: 'system',
     description: 'מערכת CRM לניהול לקוחות ונכסים בתחום הנדל״ן עם מנוע התאמה אוטומטי ו-PWA לנייד',
-    longDescription: 'פיתוח מערכת CRM מקיפה לסוכנות נדל״ן הכוללת ניהול לקוחות (קונים ושוכרים) עם פרופיל מלא, ניהול נכסים עם תמונות, ומנוע התאמה אוטומטי שמתאים בין לקוחות לנכסים לפי קריטריונים. המערכת מגיעה כ-PWA לשימוש נוח מהנייד בשטח.',
+    longDescription:
+      'פיתוח מערכת CRM מקיפה לסוכנות נדל״ן הכוללת ניהול לקוחות (קונים ושוכרים) עם פרופיל מלא, ניהול נכסים עם תמונות, ומנוע התאמה אוטומטי שמתאים בין לקוחות לנכסים לפי קריטריונים. המערכת מגיעה כ-PWA לשימוש נוח מהנייד בשטח.',
     image: '/images/TaCRM.png',
     imageSizes: {
       desktop: '/images/TaCRM.png',
@@ -694,25 +509,6 @@ export const portfolioData: PortfolioItem[] = [
       { label: 'התאמות אוטומטיות', value: 'יומי' },
       { label: 'שימוש מנייד', value: '70%' },
     ],
-    testimonial: {
-      text: 'המערכת שינתה את אופן העבודה שלנו. ההתאמה האוטומטית חוסכת שעות עבודה ביום.',
-      author: 'מנהל TA Real Estate',
-      role: 'מנהל סוכנות נדל״ן',
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5',
-      },
-      author: {
-        '@type': 'Person',
-        name: 'מנהל TA Real Estate',
-      },
-      reviewBody: 'המערכת שינתה את אופן העבודה שלנו. ההתאמה האוטומטית חוסכת שעות עבודה ביום.',
-      datePublished: '2025-03-10',
-    },
   },
 ]
 
@@ -720,7 +516,7 @@ export const portfolioData: PortfolioItem[] = [
 
 // Get featured projects (for homepage)
 export const getFeaturedPortfolio = (): PortfolioItem[] => {
-  return portfolioData.filter(p => p.featured)
+  return portfolioData.filter((p) => p.featured)
 }
 
 // Get all projects sorted by ID
@@ -731,17 +527,17 @@ export const getAllPortfolioSorted = (): PortfolioItem[] => {
 // Get projects by category
 export const getPortfolioByCategory = (category: string): PortfolioItem[] => {
   if (category === 'all') return portfolioData
-  return portfolioData.filter(p => p.category === category)
+  return portfolioData.filter((p) => p.category === category)
 }
 
 // Get projects by IDs (for service pages)
 export const getPortfolioByIds = (ids: string[]): PortfolioItem[] => {
-  return portfolioData.filter(p => ids.includes(p.id.toString()))
+  return portfolioData.filter((p) => ids.includes(p.id.toString()))
 }
 
 // Get single project by slug
 export const getPortfolioBySlug = (slug: string): PortfolioItem | undefined => {
-  return portfolioData.find(p => p.slug === slug)
+  return portfolioData.find((p) => p.slug === slug)
 }
 
 export default portfolioData
