@@ -384,6 +384,14 @@ The FAQ page is the document's fine print: clauses filed under printed Karantina
 
 The services index is what can be ordered: a ruled list under a 2px Ink top rule, one line per service, each a block link tinting Yellow Copy at 25% on hover. The line prints a zero-padded Print Red Karantina number (`dir="ltr"`) beside the service name in Karantina (2.25rem to 3rem), its tagline in Soft Ink, up to three features each pen-ticked with the hand-drawn `PenTick`, and a Carbon "details" label with a nudging left arrow. The process follows on the pink copy as a numbered ruled list (2px Ink top rule, Ink dividers at 20%): number, Karantina step title, Soft Ink description on one 12-column row. Neither is ever a card grid.
 
+### Why Note (service pages)
+
+A service's long description is never one paragraph. `ServiceWhy` cuts it into sentences at render time (`src/lib/service-copy.ts`; the words are untouched, they are SEO copy): the first sentence is the statement in Assistant 600 (1.375rem, 1.5rem from `sm`), and every sentence after it is its own ruled line under a 2px Ink top rule, 1px Rule Blue dividers, Ink at 1.125rem / 1.7 (1.25rem from `sm`). A Latin-only parenthetical carrying a year or a named institution is a source note and prints at 0.8em in Soft Ink, so the citations stop competing with the Hebrew. Below `sm` only the statement and two lines show; the rest folds behind a ruled toggle row (Carbon bold label, Soft Ink line count, the turning `PenCross`, `aria-expanded`). The folded lines stay in the HTML at every width, and from `sm` the fold does not exist.
+
+### The Phone Measure Rule
+
+Long copy on a phone is chunked, not shrunk: one statement, then short ruled lines, then a fold. A running paragraph that would pass about ten lines at 390px is a design defect on a phone even when the copy cannot change.
+
 ### Document Contact (how a document ends)
 
 The foot of a legal document is a filled-in form, not another carbon band (`src/components/pad/DocumentContact.tsx`): a Sheet section opened by a 2px Ink top rule, a Karantina heading, a note capped at 54ch, then a `dl` under a second 2px Ink rule. Each line is a `7rem / 1fr` grid on a 1px Rule Blue rule: a Print Red bold label (0.875rem) led by a 14px icon, and the value written in the ballpoint face (1.5rem, Ballpoint) underlined at 30% and solid on hover, in a hit area at least 2.75rem tall. Email and phone values are `dir="ltr"`.
