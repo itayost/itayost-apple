@@ -2,6 +2,8 @@ import type { Service, ServiceFAQ, ServiceFeature, ServiceProcess } from '@/data
 import { servicePage } from '@/config/servicePage'
 import { PenTick } from '@/components/pad/PenTick'
 import { PenCross } from '@/components/pad/PenCross'
+import { splitCitations, splitSentences } from '@/lib/service-copy'
+import { MoreLines } from './MoreLines'
 
 interface SectionHeadingProps {
   id: string
@@ -19,13 +21,39 @@ function SectionHeading({ id, title, subtitle, tone = 'ink' }: SectionHeadingPro
       >
         {title}
       </h2>
-      <p className="mt-3 text-xl text-pad-ink-soft">{subtitle}</p>
+      <p className="mt-3 text-lg text-pad-ink-soft sm:text-xl">{subtitle}</p>
     </div>
   )
 }
 
-/** The long description, set as a readable column on paper. */
+/** Lines a phone shows before the rest of the note folds away. */
+const WHY_VISIBLE_LINES = 2
+
+function WhyLine({ sentence }: { sentence: string }) {
+  return (
+    <p className="border-b border-pad-rule py-3.5 text-lg leading-[1.7] text-pad-ink sm:text-xl sm:leading-[1.75]">
+      {splitCitations(sentence).map((part, index) =>
+        part.isCitation ? (
+          <span key={index} className="text-[0.8em] text-pad-ink-soft">
+            {part.text}
+          </span>
+        ) : (
+          part.text
+        ),
+      )}
+    </p>
+  )
+}
+
+/**
+ * The long description as a written note: the first sentence is the statement,
+ * every sentence after it is its own ruled line with the sources printed small.
+ */
 export function ServiceWhy({ service }: { service: Service }) {
+  const [lead, ...lines] = splitSentences(service.longDescription)
+  const shown = lines.slice(0, WHY_VISIBLE_LINES)
+  const folded = lines.slice(WHY_VISIBLE_LINES)
+
   return (
     <section aria-labelledby="service-why-heading" className="pad-paper">
       <div className="relative mx-auto max-w-3xl px-8 py-20 sm:px-12 lg:py-24">
@@ -33,7 +61,21 @@ export function ServiceWhy({ service }: { service: Service }) {
         <h2 id="service-why-heading" className="font-pad-display text-4xl font-bold text-pad-red">
           {servicePage.descriptionTitle}
         </h2>
-        <p className="mt-6 text-xl leading-[1.8] text-pad-ink">{service.longDescription}</p>
+        <p className="mt-5 text-[1.375rem] font-semibold leading-snug text-pad-ink sm:text-2xl">{lead}</p>
+        {lines.length > 0 && (
+          <div className="mt-6 border-t-2 border-pad-ink">
+            {shown.map((sentence) => (
+              <WhyLine key={sentence} sentence={sentence} />
+            ))}
+            {folded.length > 0 && (
+              <MoreLines count={folded.length}>
+                {folded.map((sentence) => (
+                  <WhyLine key={sentence} sentence={sentence} />
+                ))}
+              </MoreLines>
+            )}
+          </div>
+        )}
       </div>
     </section>
   )
