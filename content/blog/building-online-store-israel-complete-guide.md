@@ -7,7 +7,6 @@ author: "איתי אוסטרייך"
 category: "מסחר אלקטרוני"
 tags: ["חנות אונליין", "Ecommerce", "Shopify", "WooCommerce", "מסחר אלקטרוני", "עסקים בישראל"]
 readTime: "15 דקות קריאה"
-image: "/images/blog/ecommerce-guide.jpg"
 featured: true
 tldr:
   - "שוק המסחר האלקטרוני בישראל הגיע ל-9.5 מיליארד דולר ב-2024 (eCommerceDB), ו-59% מהקניות אונליין מתבצעות ממכשירים ניידים (Statista)."
