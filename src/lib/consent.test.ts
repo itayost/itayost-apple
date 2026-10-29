@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { allowedTrackers, decide, readConsent, writeConsent } from './consent'
+import { allowedTrackers, analyticsCookieNames, decide, isAnalyticsStorageKey, readConsent, writeConsent } from './consent'
 
 // Israel's Privacy Protection Law, Amendment 13, and the regulator's Feb 2026 consent paper: nothing
 // measures a visitor until they say so, and analytics and marketing are separate choices.
@@ -43,5 +43,14 @@ describe('consent', () => {
     const blocked = { getItem: () => { throw new Error('SecurityError') }, setItem: () => { throw new Error('SecurityError') } }
     expect(readConsent(blocked)).toBeNull()
     expect(() => writeConsent(blocked, decide({ analytics: true, marketing: true }, at))).not.toThrow()
+  })
+})
+
+describe('withdrawing analytics', () => {
+  it('finds what GA4, PostHog and Clarity stored, and nothing else', () => {
+    expect(analyticsCookieNames('_ga=GA1.1.1; _ga_CSP6=GS1; ph_phc_x_posthog=%7B%7D; _clck=a; theme=dark; _gat=1')).toEqual(['_ga', '_ga_CSP6', 'ph_phc_x_posthog', '_clck'])
+    expect(isAnalyticsStorageKey('ph_phc_x_posthog')).toBe(true)
+    expect(isAnalyticsStorageKey('itayost:consent')).toBe(false)
+    expect(isAnalyticsStorageKey('itayost:attribution')).toBe(false)
   })
 })

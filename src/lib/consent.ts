@@ -54,3 +54,19 @@ export function browserStorage(): Storage | null {
     return null
   }
 }
+
+// What GA4, PostHog and Clarity keep about a visitor in this browser: their cookies (_ga, _ga_*,
+// ph_*, _clck, _clsk) and PostHog's localStorage entries (ph_*). Withdrawing analytics clears them,
+// so no identifier outlives the consent it was set under.
+const ANALYTICS_NAME = /^(_ga|_ga_.+|ph_.+|_clck|_clsk)$/
+
+export function analyticsCookieNames(cookieHeader: string): string[] {
+  return cookieHeader
+    .split(';')
+    .map((part) => part.split('=')[0]?.trim() ?? '')
+    .filter((name) => ANALYTICS_NAME.test(name))
+}
+
+export function isAnalyticsStorageKey(key: string): boolean {
+  return ANALYTICS_NAME.test(key)
+}

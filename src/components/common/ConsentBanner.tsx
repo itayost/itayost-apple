@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useId, useState } from 'react'
 import { OPEN_CONSENT_EVENT, decide } from '@/lib/consent'
-import { saveConsent, useConsent } from '@/lib/use-consent'
+import { forgetAnalytics, saveConsent, useConsent } from '@/lib/use-consent'
 
 // The cookie choice (src/lib/consent.ts): asked once, with "only necessary" as easy as "allow all",
 // and analytics and marketing as separate choices behind "settings". Nothing that measures a visitor
@@ -25,6 +25,11 @@ export function ConsentBanner() {
     window.addEventListener(OPEN_CONSENT_EVENT, open)
     return () => window.removeEventListener(OPEN_CONSENT_EVENT, open)
   }, [])
+
+  // A visitor who did not allow analytics keeps nothing of it, even what an earlier visit left behind.
+  useEffect(() => {
+    if (consent && !consent.analytics) forgetAnalytics()
+  }, [consent])
 
   if (!mounted || (consent && !reopened)) return null
 
