@@ -7,6 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { WhatsAppButton } from '@/components/common/WhatsAppButton'
 import { MobileWhatsAppBar } from '@/components/common/MobileWhatsAppBar'
 import { WebVitals } from '@/components/common/WebVitals'
+import { MarketingBeacon } from '@/components/common/MarketingBeacon'
 import { SkipNavigation } from '@/components/common/SkipNavigation'
 import { MicrosoftClarity } from '@/components/common/MicrosoftClarity'
 import { MotionProvider } from '@/components/common/MotionProvider'
@@ -181,6 +182,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <WebVitals />
+        <MarketingBeacon />
         <SkipNavigation />
         <MotionProvider>
           <Navigation />
