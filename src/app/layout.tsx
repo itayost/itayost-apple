@@ -8,6 +8,8 @@ import { WhatsAppButton } from '@/components/common/WhatsAppButton'
 import { MobileWhatsAppBar } from '@/components/common/MobileWhatsAppBar'
 import { WebVitals } from '@/components/common/WebVitals'
 import { MarketingBeacon } from '@/components/common/MarketingBeacon'
+import { GoogleAnalytics } from '@/components/common/GoogleAnalytics'
+import { ConsentBanner } from '@/components/common/ConsentBanner'
 import { SkipNavigation } from '@/components/common/SkipNavigation'
 import { MicrosoftClarity } from '@/components/common/MicrosoftClarity'
 import { MotionProvider } from '@/components/common/MotionProvider'
@@ -112,34 +114,6 @@ function StructuredData() {
 }
 
 // Google Analytics Component
-function GoogleAnalytics() {
-  const GA_ID = process.env.NEXT_PUBLIC_GA_ID
-
-  // Return null if GA_ID is not configured
-  if (!GA_ID) {
-    return null
-  }
-
-  return (
-    <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = function(){dataLayer.push(arguments);};
-          window.gtag('js', new Date());
-          window.gtag('config', '${GA_ID}', {
-            page_path: window.location.pathname,
-          });
-        `}
-      </Script>
-    </>
-  )
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -190,6 +164,7 @@ export default function RootLayout({
           <Footer />
           <WhatsAppButton />
           <MobileWhatsAppBar />
+          <ConsentBanner />
         </MotionProvider>
       </body>
     </html>

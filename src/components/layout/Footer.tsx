@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { OPEN_CONSENT_EVENT } from '@/lib/consent'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -234,7 +235,17 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-pad-board-line pt-8 md:flex-row md:items-center">
-          <p className="text-base text-pad-board-text">© {new Date().getFullYear()} ITAYOST. כל הזכויות שמורות.</p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <p className="text-base text-pad-board-text">© {new Date().getFullYear()} ITAYOST. כל הזכויות שמורות.</p>
+            {/* Opens the cookie choice again (src/components/common/ConsentBanner.tsx). */}
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}
+              className="min-h-11 text-base text-pad-board-text underline underline-offset-4 hover:text-pad-yellow"
+            >
+              הגדרות עוגיות
+            </button>
+          </div>
 
           <div className="flex items-center gap-2">
             {socialLinks.map((social) => (
