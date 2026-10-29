@@ -121,10 +121,12 @@ export async function POST(request: NextRequest) {
     // in the PostHog event stream without the user ever seeing the raw error.
     const posthog = getPostHogServer()
     if (posthog) {
+      // No visitor id and no IP (Amendment 13): a one-off id, and no person profile.
       posthog.capture({
-        distinctId: ip,
+        distinctId: crypto.randomUUID(),
         event: 'lead_submitted',
         properties: {
+          $process_person_profile: false,
           success: result.success,
           projectType: validatedLead.projectType,
           source: 'contact_form',

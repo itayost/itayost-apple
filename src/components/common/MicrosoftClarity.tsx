@@ -2,12 +2,14 @@
 
 import { useEffect } from 'react'
 import Script from 'next/script'
+import { useConsent } from '@/lib/use-consent'
 
 export function MicrosoftClarity() {
+  const consent = useConsent()
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID
 
-  // Only load in production and if ID is configured
-  if (!clarityId || process.env.NODE_ENV !== 'production') {
+  // Only in production, if configured, and once the visitor allowed analytics (src/lib/consent.ts)
+  if (!clarityId || process.env.NODE_ENV !== 'production' || !consent?.analytics) {
     return null
   }
 

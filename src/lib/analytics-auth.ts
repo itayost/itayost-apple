@@ -1,3 +1,4 @@
+import { createHash, timingSafeEqual } from 'node:crypto'
 import { NextRequest, NextResponse } from 'next/server'
 
 /**
@@ -33,13 +34,21 @@ export function authenticateAnalyticsRequest(request: NextRequest): NextResponse
     return FORBIDDEN
   }
 
-  // Validate the x-api-key header
+  // Validate the x-api-key header: the site's key, or client-hub's own (ANALYTICS_HUB_KEY), so the
+  // hub reads these numbers without sharing the key other tools use. An unset hub key matches nothing.
   const providedKey = request.headers.get('x-api-key')
+  const hubKey = process.env.ANALYTICS_HUB_KEY
 
-  if (!providedKey || providedKey !== expectedKey) {
+  if (!providedKey || (!keysMatch(providedKey, expectedKey) && !(hubKey && keysMatch(providedKey, hubKey)))) {
     return UNAUTHORIZED
   }
 
   // Authenticated
   return null
+}
+
+// Compared as hashes, so the time taken says nothing about how much of a key was right.
+function keysMatch(provided: string, expected: string): boolean {
+  const digest = (value: string) => createHash('sha256').update(value).digest()
+  return timingSafeEqual(digest(provided), digest(expected))
 }
