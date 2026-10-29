@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { visitAttribution } from '@/lib/attribution'
 
 // CRM API Schema based on the actual CRM endpoint
 export const CRMLeadSchema = z.object({
@@ -12,7 +13,10 @@ export const CRMLeadSchema = z.object({
   projectType: z.string().optional(),
   estimatedBudget: z.number().optional(),
   notes: z.string().optional(),
-  source: z.enum(['WEBSITE', 'PHONE', 'WHATSAPP', 'REFERRAL', 'OTHER']).default('WEBSITE')
+  source: z.enum(['WEBSITE', 'PHONE', 'WHATSAPP', 'REFERRAL', 'OTHER']).default('WEBSITE'),
+  // The visit's tags for the Lead's Origin (src/lib/attribution.ts); the hub validates them, and a
+  // malformed one never costs the Lead.
+  attribution: z.unknown().optional(),
 })
 
 export type CRMLead = z.infer<typeof CRMLeadSchema>
@@ -80,7 +84,7 @@ export async function submitLead(lead: CRMLead): Promise<CRMResponse> {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(lead)
+      body: JSON.stringify({ ...lead, attribution: visitAttribution() })
     })
 
     // The API should always return JSON, but defend against an upstream
