@@ -17,9 +17,9 @@ export function GoogleAnalytics() {
           window.dataLayer = window.dataLayer || [];
           window.gtag = function(){dataLayer.push(arguments);};
           window.gtag('js', new Date());
-          window.gtag('config', '${GA_ID}', {
-            page_path: window.location.pathname,
-          });
+          // No page_path here: a config parameter sticks to every later hit, so client-side
+          // navigations were all recorded under the landing page's path.
+          window.gtag('config', '${GA_ID}');
         `}
       </Script>
     </>
