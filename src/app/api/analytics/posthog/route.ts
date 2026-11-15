@@ -93,7 +93,7 @@ async function getAutoCapture(apiKey: string, projectId: string, days: number) {
   const query = `
     SELECT
       properties.$event_type as interaction_type,
-      properties.tag_name as element_tag,
+      extract(elements_chain, '^([a-zA-Z0-9-]+)') as element_tag,
       properties.$el_text as element_text,
       properties.$current_url as page_url,
       count() as total_count,
@@ -306,18 +306,19 @@ async function getRecentPersons(apiKey: string, projectId: string) {
 
 // 10. CRO behavior signals: rage clicks, dead clicks, rapid navigation
 async function getBehaviorSignals(apiKey: string, projectId: string, days: number) {
-  // Dead clicks: clicks on non-interactive elements
+  // Dead clicks: PostHog's own $dead_click event (capture_dead_clicks in src/lib/posthog-client.ts),
+  // a click followed by no navigation, scroll or DOM change. $autocapture cannot answer this: it only
+  // records clicks on interactive elements, and this project has no tag_name property, so filtering
+  // autocapture on it counted every click as dead.
   const deadClicks = await hogqlQuery(apiKey, projectId, `
     SELECT
-      properties.tag_name as element,
-      properties.$el_text as text,
+      extract(elements_chain, '^([a-zA-Z0-9-]+)') as element,
+      coalesce(properties.$el_text, extract(elements_chain, 'text="([^"]*)"')) as text,
       properties.$current_url as page,
       count() as click_count,
       uniq(distinct_id) as users
     FROM events
-    WHERE event = '$autocapture'
-      AND properties.$event_type = 'click'
-      AND properties.tag_name NOT IN ('a', 'button', 'input', 'select', 'textarea')
+    WHERE event = '$dead_click'
       AND timestamp >= now() - interval ${days} day
     GROUP BY element, text, page
     ORDER BY click_count DESC
