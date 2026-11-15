@@ -43,6 +43,12 @@ async function hogqlQuery(apiKey: string, projectId: string, query: string) {
   return data.results
 }
 
+// The PostHog project also holds the sibling site (kama-nigmar.co.il), local dev servers and Vercel
+// preview deployments. Every report query keeps to the production site, or their visitors and clicks
+// count as itayost.com's.
+const PRODUCTION_HOSTS = ['www.itayost.com', 'itayost.com']
+const ON_SITE = `properties.$host IN (${PRODUCTION_HOSTS.map((host) => `'${host}'`).join(', ')})`
+
 // Helper: format dates
 function daysAgo(n: number): string {
   const d = new Date()
@@ -61,6 +67,7 @@ async function getUserJourney(apiKey: string, projectId: string, days: number) {
       uniq(distinct_id) as unique_users
     FROM events
     WHERE event = '$pageview'
+      AND ${ON_SITE}
       AND timestamp >= now() - interval ${days} day
     GROUP BY page
     ORDER BY views DESC
@@ -79,7 +86,8 @@ async function getEventBreakdown(apiKey: string, projectId: string, days: number
       min(timestamp) as first_seen,
       max(timestamp) as last_seen
     FROM events
-    WHERE timestamp >= now() - interval ${days} day
+    WHERE ${ON_SITE}
+      AND timestamp >= now() - interval ${days} day
       AND event NOT LIKE '$%'
     GROUP BY event
     ORDER BY total_count DESC
@@ -100,6 +108,7 @@ async function getAutoCapture(apiKey: string, projectId: string, days: number) {
       uniq(distinct_id) as unique_users
     FROM events
     WHERE event = '$autocapture'
+      AND ${ON_SITE}
       AND timestamp >= now() - interval ${days} day
     GROUP BY interaction_type, element_tag, element_text, page_url
     ORDER BY total_count DESC
@@ -121,6 +130,7 @@ async function getSessionAnalysis(apiKey: string, projectId: string, days: numbe
       uniq(properties.$session_id) as sessions
     FROM events
     WHERE event = '$pageview'
+      AND ${ON_SITE}
       AND timestamp >= now() - interval ${days} day
     GROUP BY device, browser, os, referrer
     ORDER BY pageviews DESC
@@ -150,6 +160,7 @@ async function getConversionFunnel(apiKey: string, projectId: string, days: numb
       FROM events
       WHERE event = '$pageview'
         AND ${notChatGPT}
+        AND ${ON_SITE}
         AND timestamp >= now() - interval ${days} day
     `),
     hogqlQuery(apiKey, projectId, `
@@ -157,6 +168,7 @@ async function getConversionFunnel(apiKey: string, projectId: string, days: numb
       FROM events
       WHERE event NOT LIKE '$%'
         AND ${notChatGPT}
+        AND ${ON_SITE}
         AND timestamp >= now() - interval ${days} day
     `),
     hogqlQuery(apiKey, projectId, `
@@ -164,6 +176,7 @@ async function getConversionFunnel(apiKey: string, projectId: string, days: numb
       FROM events
       WHERE event IN ('cta_click', 'contact_click', 'service_view', 'portfolio_click')
         AND ${notChatGPT}
+        AND ${ON_SITE}
         AND timestamp >= now() - interval ${days} day
     `),
     hogqlQuery(apiKey, projectId, `
@@ -171,6 +184,7 @@ async function getConversionFunnel(apiKey: string, projectId: string, days: numb
       FROM events
       WHERE event IN ('generate_lead', 'whatsapp_click', 'contact_click')
         AND ${notChatGPT}
+        AND ${ON_SITE}
         AND timestamp >= now() - interval ${days} day
     `),
     // Excluded ChatGPT visitors — surfaced so the report states the exclusion
@@ -180,6 +194,7 @@ async function getConversionFunnel(apiKey: string, projectId: string, days: numb
       FROM events
       WHERE event = '$pageview'
         AND coalesce(person.properties.$initial_referring_domain, '') = '${EXCLUDED_FUNNEL_REFERRER}'
+        AND ${ON_SITE}
         AND timestamp >= now() - interval ${days} day
     `),
   ])
@@ -204,7 +219,8 @@ async function getPageEngagement(apiKey: string, projectId: string, days: number
       uniq(distinct_id) as unique_users,
       uniq(properties.$session_id) as sessions
     FROM events
-    WHERE timestamp >= now() - interval ${days} day
+    WHERE ${ON_SITE}
+      AND timestamp >= now() - interval ${days} day
     GROUP BY page, device
     ORDER BY total_events DESC
     LIMIT 30
@@ -222,6 +238,7 @@ async function getReferrerAnalysis(apiKey: string, projectId: string, days: numb
       uniq(distinct_id) as unique_users
     FROM events
     WHERE event = '$pageview'
+      AND ${ON_SITE}
       AND timestamp >= now() - interval ${days} day
       AND properties.$referring_domain != ''
     GROUP BY referrer, referring_domain
@@ -255,6 +272,7 @@ async function getAiReferrers(apiKey: string, projectId: string, days: number) {
         uniq(distinct_id) as unique_users
       FROM events
       WHERE event = '$pageview'
+        AND ${ON_SITE}
         AND timestamp >= now() - interval ${days} day
         AND properties.$referring_domain IN (${domainList})
       GROUP BY engine
@@ -268,6 +286,7 @@ async function getAiReferrers(apiKey: string, projectId: string, days: number) {
         uniq(distinct_id) as unique_users
       FROM events
       WHERE event = '$pageview'
+        AND ${ON_SITE}
         AND timestamp >= now() - interval ${days} day
         AND properties.utm_source IN (${domainList})
       GROUP BY engine
@@ -319,6 +338,7 @@ async function getBehaviorSignals(apiKey: string, projectId: string, days: numbe
       uniq(distinct_id) as users
     FROM events
     WHERE event = '$dead_click'
+      AND ${ON_SITE}
       AND timestamp >= now() - interval ${days} day
     GROUP BY element, text, page
     ORDER BY click_count DESC
@@ -333,6 +353,7 @@ async function getBehaviorSignals(apiKey: string, projectId: string, days: numbe
       uniq(distinct_id) as users
     FROM events
     WHERE event = '$pageleave'
+      AND ${ON_SITE}
       AND timestamp >= now() - interval ${days} day
     GROUP BY page
     ORDER BY views DESC
