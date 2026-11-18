@@ -116,13 +116,13 @@ significantly affect the ranking of your explicit pages on Google Search, and es
 mode.
 
 If you're concerned about exposing your video file too broadly, you can also verify if Googlebot
-requests to your server [really are from Google](../../crawling-indexing/verifying-googlebot.md).
+requests to your server [really are from Google](../../crawling-docs/crawlers-fetchers/verify-google-requests.md).
 
 ### Allow Googlebot to crawl without age gate
 
 If you have content behind an age gate or other access restriction, be sure to allow Googlebot to
 crawl your content without triggering the age gate. You can do this by
-[verifying Googlebot requests](../../crawling-indexing/verifying-googlebot.md) and
+[verifying Googlebot requests](../../crawling-docs/crawlers-fetchers/verify-google-requests.md) and
 serving the content without age gate.
 
 If you don't allow Googlebot to crawl without triggering the age gate, it may cause your site to

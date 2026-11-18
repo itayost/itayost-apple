@@ -121,7 +121,7 @@ your time when optimizing your Google Search performance.
      good opportunity to fine tune your content or focus on queries that will bring relevant traffic.
 4. **Top position, low CTR**: Those queries might have a low CTR for various reasons. Check the
    largest bubbles to find signs of the following:
-   - Your competitors may have [structured data markup](../appearance/search-result-features.md)
+   - Your competitors may have [structured data markup](../appearance/visual-elements-gallery.md)
      and are showing up with rich results, which might attract users to click their results instead of
      yours. Consider optimizing for the most common
      [visual elements in Google Search](../appearance/visual-elements-gallery.md).

@@ -110,7 +110,7 @@ Here's an overview of how to add structured data to your site.
 ## Guidelines
 
 For your page to be eligible for carousel rich results (beta), you must follow the [Search Essentials](../../essentials.md)
-and [general structured data guidelines](../../guides/sd-policies.md). In addition,
+and [general structured data guidelines](sd-policies.md). In addition,
 the following guidelines apply to carousel rich results (beta):
 
 - Use of generic types is allowed. However, to use recommended properties, you must use the

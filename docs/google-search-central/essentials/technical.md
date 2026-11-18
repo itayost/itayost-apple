@@ -42,7 +42,7 @@ To test a specific page, use the [URL Inspection tool](https://support.google.co
 ## The page works (it's not an error page)
 
 Google only indexes pages that are served with an
-[HTTP `200 (success)` status code](https://developers.google.com/crawling/docs/troubleshooting/http-status-codes#2xx-success).
+[HTTP `200 (success)` status code](../crawling-docs/troubleshooting/http-status-codes.md#2xx-success).
 Client and server error pages aren't indexed. You can check the HTTP status code for a given
 page with the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289).
 

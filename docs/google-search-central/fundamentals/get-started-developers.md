@@ -74,8 +74,8 @@ that Googlebot can find all the URLs on your site:
 While Google does run JavaScript, there are some differences and limitations that you need
 to account for when designing your pages and applications to accommodate how crawlers access
 and render your content.
-Learn more about the [basics of JavaScript SEO](../guides/javascript-seo-basics.md) or how to [fix
-Search-related JavaScript problems](../guides/fix-search-javascript.md).
+Learn more about the [basics of JavaScript SEO](../crawling-indexing/javascript/javascript-seo-basics.md) or how to [fix
+Search-related JavaScript problems](../crawling-indexing/javascript/fix-search-javascript.md).
 
 To learn more about how Google handles JavaScript when crawling, rendering, and indexing, see the following video.
 
@@ -134,7 +134,7 @@ There are several ways to block Googlebot:
   [password-protect your
   page](../crawling-indexing/control-what-you-share.md)).
 - To block Googlebot from crawling your page,
-  [create a robots.txt](../crawling-indexing/robots/create-robots-txt.md).
+  [create a robots.txt](../crawling-docs/robots-txt/create-robots-txt.md).
   A robots.txt is not a mechanism for keeping a web page out of Google. To
   keep a web page out of Google, use the `noindex` robots rules, or
   [password-protect](../crawling-indexing/control-what-you-share.md) your page.
@@ -162,6 +162,6 @@ A rich result can include styling, images, or other interactive features that ca
 site stand out more in Search results. You can help Google understand your page better and
 show rich results for it in Search by providing explicit clues about the meaning of a page
 [with structured data on the page](../appearance/structured-data/intro-structured-data.md). If
-you're not sure where to start, [explore our gallery of available features](../guides/search-gallery.md).
+you're not sure where to start, [explore our gallery of available features](../appearance/structured-data/search-gallery.md).
 
 ![A carousel of recipes in search results](https://developers.google.com/static/search/docs/images/recipe-host-carousel-rich-result.png)

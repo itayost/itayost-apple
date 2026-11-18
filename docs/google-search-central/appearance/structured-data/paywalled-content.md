@@ -226,8 +226,8 @@ As such, they are subject to Search's
 ## Make sure Google can crawl and index your pages
 
 If you want Google to crawl and index your content, including the paywalled sections, make
-sure [Googlebot](../../crawling-indexing/verifying-googlebot.md), and
-[`Googlebot-News`](../../crawling-indexing/overview-google-crawlers.md#googlebot-news) if
+sure [Googlebot](../../crawling-docs/crawlers-fetchers/verify-google-requests.md), and
+[`Googlebot-News`](../../crawling-docs/crawlers-fetchers/overview-google-crawlers.md#googlebot-news) if
 applicable, can access your page.
 
 Use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289)

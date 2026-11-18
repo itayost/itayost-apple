@@ -139,7 +139,7 @@ content.
 - Include links directly on the pages using `<a href>` tags;
   don't use JavaScript to navigate between pages. Googlebot might not detect navigation from
   JavaScript code. For more information about how Google processes JavaScript, see
-  [Understand the JavaScript SEO basics](../../guides/javascript-seo-basics.md).
+  [Understand the JavaScript SEO basics](../../crawling-indexing/javascript/javascript-seo-basics.md).
 - Include meaningful text between `<a href>` and `</a>` tags where possible, such as
   the title of the product being linked to. Don't use generic phrases such as "click here".
 - Avoid linking to, or at least indexing, pages without useful content. If a category has no items, use a
@@ -154,4 +154,4 @@ Want to learn more? Check out the following resources:
 - [Help Google understand your site structure](help-google-understand-your-ecommerce-site-structure.md)
 - [Avoid creating duplicate content](../../crawling-indexing/consolidate-duplicate-urls.md)
 - [Pagination, incremental page loading, and their impact on Search](pagination-and-incremental-page-loading.md)
-- [Managing crawling of faceted navigation URLs](../../crawling-indexing/crawling-managing-faceted-navigation.md)
+- [Managing crawling of faceted navigation URLs](../../crawling-docs/faceted-navigation.md)

@@ -44,7 +44,7 @@ some time, when the user gains reputation, you can allow their content to be ind
 will greatly demotivate spammers from interacting with your platform.
 
 Since oftentimes spammers are motivated by leaving a link to their site, consider adding a
-[`nofollow` or `ugc`](../advanced/guidelines/qualify-outbound-links.md)
+[`nofollow` or `ugc`](../crawling-indexing/qualify-outbound-links.md)
 `rel` attribute to all links in untrusted content.
 
 ## Only index content meant for Search

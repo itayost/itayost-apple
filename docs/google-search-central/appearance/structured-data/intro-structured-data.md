@@ -54,7 +54,7 @@ The structured data on the page describes the content of that page. Don't create
 blank or empty pages just to hold structured data, and don't add structured data about
 information that is not visible to the user, even if the information is accurate. For more technical
 and quality guidelines, see the [Structured data
-general guidelines](../../guides/sd-policies.md).
+general guidelines](sd-policies.md).
 
 The [Rich Results Test](https://search.google.com/test/rich-results) is an easy and useful
 tool for validating your structured data, and in some cases, previewing a feature in Google Search. Try it out:
@@ -99,7 +99,7 @@ properly implemented per the feature's documentation.
 
 | Formats | |
 | --- | --- |
-| [JSON-LD](https://json-ld.org/)\* **(Recommended)** | A JavaScript notation embedded in a `<script>` tag in the `<head>` and `<body>` elements of an HTML page. The markup is not interleaved with the user-visible text, which makes nested data items easier to express, such as the `Country` of a `PostalAddress` of a `MusicVenue` of an `Event`. Also, Google can read JSON-LD data when it is [dynamically injected into the page's contents](../../guides/generate-structured-data-with-javascript.md), such as by JavaScript code or embedded widgets in your content management system. |
+| [JSON-LD](https://json-ld.org/)\* **(Recommended)** | A JavaScript notation embedded in a `<script>` tag in the `<head>` and `<body>` elements of an HTML page. The markup is not interleaved with the user-visible text, which makes nested data items easier to express, such as the `Country` of a `PostalAddress` of a `MusicVenue` of an `Event`. Also, Google can read JSON-LD data when it is [dynamically injected into the page's contents](generate-structured-data-with-javascript.md), such as by JavaScript code or embedded widgets in your content management system. |
 | [Microdata](https://html.spec.whatwg.org/multipage/microdata.html#microdata) | An open-community HTML specification used to nest structured data within HTML content. Like RDFa, it uses HTML tag attributes to name the properties you want to expose as structured data. It is typically used in the `<body>` element, but can be used in the `<head>` element. |
 | [RDFa](https://rdfa.info/) | An HTML5 extension that supports linked data by introducing [HTML tag attributes](https://www.w3.org/TR/rdfa-lite/#the-attributes) that correspond to the user-visible content that you want to describe for search engines. RDFa is commonly used in both the `<head>` and `<body>` sections of the HTML page. |
 

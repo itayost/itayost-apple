@@ -74,7 +74,7 @@ interest-based feeds, such as articles and videos, as well as filter out content
 that's not wanted or that might confuse readers. For example, Discover might not
 recommend job applications, petitions, forms, code repositories, or satirical
 content without any context. Discover makes use of
-[SafeSearch](../crawling-indexing/safesearch.md) but beyond that filters
+[SafeSearch](../specialty/explicit/guidelines.md) but beyond that filters
 out content that might be seen as shocking or unexpected.
 
 ## Why Discover traffic might change over time

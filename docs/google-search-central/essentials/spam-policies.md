@@ -23,7 +23,7 @@ human review that can result in a [manual action](https://support.google.com/web
 Sites that violate our policies may rank lower in results or not appear in results at all.
 
 If you believe that a site is violating Google's spam policies, let us know by
-[filing a search quality user report](../advanced/guidelines/report-spam.md).
+[filing a search quality user report](https://developers.google.com/search/help/report-quality-issues).
 We're focused on developing scalable and automated solutions to problems, and we'll use these
 reports to further improve our spam detection systems.
 

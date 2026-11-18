@@ -25,7 +25,7 @@ For other links, use one or more of the following values:
 | --- | --- |
 | `rel="sponsored"` | Mark links that are advertisements or paid placements (commonly called *paid links*) with the `sponsored` value. Read more about [Google's stance on paid links](../essentials/spam-policies.md#link-spam).     ``` <a rel="sponsored" href="https://cheese.example.com/Appenzeller_cheese">Appenzeller</a> ```  **Note:** The `nofollow` attribute was [previously recommended](https://developers.google.com/search/blog/2019/09/evolving-nofollow-new-ways-to-identify) for these types of links and is still an acceptable way to flag them, though `sponsored` is preferred. |
 | `rel="ugc"` | We recommend marking user-generated content (UGC) links, such as comments and forum posts, with the `ugc` value.     ``` <a rel="ugc" href="https://cheese.example.com/Appenzeller_cheese">Appenzeller</a> ```   If you want to recognize and reward trustworthy contributors, you might remove this attribute from links posted by members or users who have consistently made high-quality contributions over time. Read more about how to [prevent user-generated spam on your site and platform](../monitor-debug/prevent-abuse.md). |
-| `rel="nofollow"` | Use the `nofollow` value when other values don't apply, and you'd rather Google not associate your site with, or crawl the linked page from, your site. For links within your own site, use the [robots.txt `disallow` rule](robots/robots_txt.md#disallow).     ``` <a rel="nofollow" href="https://cheese.example.com/Appenzeller_cheese">Appenzeller</a> ``` |
+| `rel="nofollow"` | Use the `nofollow` value when other values don't apply, and you'd rather Google not associate your site with, or crawl the linked page from, your site. For links within your own site, use the [robots.txt `disallow` rule](../crawling-docs/robots-txt/robots-txt-spec.md#disallow).     ``` <a rel="nofollow" href="https://cheese.example.com/Appenzeller_cheese">Appenzeller</a> ``` |
 | *Multiple values* | You may specify multiple `rel` values as a space- or comma-separated list. **Examples:**     ``` <p>I love <a rel="ugc nofollow" href="https://cheese.example.com/Appenzeller_cheese">Appenzeller</a> cheese.</p> ```      ``` <p>I hate <a rel="ugc,nofollow" href="https://cheese.example.com/blue_cheese">Blue</a> cheese.</p> ``` |
 
 Links marked with these `rel` attributes will generally not be followed. Remember
@@ -36,7 +36,7 @@ except `nofollow`, which is also available as
 [robots `meta` tag](special-tags.md).
 
 If you need to prevent Google from fetching a link to a page on your own site, use the
-[robots.txt `disallow` rule](robots/robots_txt.md#disallow).
+[robots.txt `disallow` rule](../crawling-docs/robots-txt/robots-txt-spec.md#disallow).
 
 To prevent Google from indexing a page, allow crawling and use the
 [`noindex` robots rule](block-indexing.md).

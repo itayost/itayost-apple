@@ -82,5 +82,5 @@ if possible, we recommend that sites follow these best practices:
 
 For content behind a mandatory age gate for adult users, we recommend allowing Googlebot
 to crawl your content without triggering the age gate. You can do this by
-[verifying Googlebot requests](../crawling-indexing/verifying-googlebot.md)
+[verifying Googlebot requests](../crawling-docs/crawlers-fetchers/verify-google-requests.md)
 and serving the content without age gate.

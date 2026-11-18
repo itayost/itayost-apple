@@ -49,7 +49,7 @@ ensure your URLs are not findable on the web.
 - **Different crawlers interpret syntax differently.**  
   Although respectable web crawlers follow the rules in a robots.txt file, each crawler
   might interpret the rules differently. You should know the
-  [proper syntax](robots_txt.md#syntax) for addressing
+  [proper syntax](../../crawling-docs/robots-txt/robots-txt-spec.md#syntax) for addressing
   different web crawlers as some might not understand certain instructions.
 - **A page that's disallowed in robots.txt can
   still be indexed if linked to from other sites.**  
@@ -69,12 +69,12 @@ some rules to counteract other rules. Learn how to
 ## Create or update a robots.txt file
 
 If you decided that you need one, learn how to
-[create a robots.txt file](create-robots-txt.md). Or if
+[create a robots.txt file](../../crawling-docs/robots-txt/create-robots-txt.md). Or if
 you already have one, learn how to
-[update it](submit-updated-robots-txt.md).
+[update it](../../crawling-docs/robots-txt/submit-updated-robots-txt.md).
 
 Want to learn more? Check out the following resources:
 
-- [How to write and submit a robots.txt file](https://developers.google.com/crawling/docs/robots-txt/create-robots-txt)
-- [Update your robots.txt file](https://developers.google.com/crawling/docs/robots-txt/submit-updated-robots-txt)
-- [How Google interprets the robots.txt specification](https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec)
+- [How to write and submit a robots.txt file](../../crawling-docs/robots-txt/create-robots-txt.md)
+- [Update your robots.txt file](../../crawling-docs/robots-txt/submit-updated-robots-txt.md)
+- [How Google interprets the robots.txt specification](../../crawling-docs/robots-txt/robots-txt-spec.md)

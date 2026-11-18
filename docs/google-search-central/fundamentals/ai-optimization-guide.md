@@ -128,7 +128,7 @@ continue to be worthwhile, for example:
   generative AI search features, ensure your content is crawlable, as Google Search generative AI
   models use publicly accessible, crawlable content to learn patterns and provide relevant,
   grounded responses. For very large and frequently updated sites, review our guide to
-  [optimizing your crawl budget](https://developers.google.com/crawling/docs/crawl-budget).
+  [optimizing your crawl budget](../crawling-docs/crawl-budget.md).
 - **When it comes to semantic HTML, focus on human readability and don't worry about
   perfect code:** While it's not required to have perfectly semantic HTML (the web in
   general is not valid HTML, and Google can understand it), it's generally a good idea to try to

@@ -29,7 +29,7 @@ practicing with codelabs.
    [structured data markup](../../appearance/structured-data/intro-structured-data.md) across both the
    canonical and AMP pages.
 7. Apply common content best practices:
-   1. Make sure that your [robots.txt file](../robots/robots_txt.md) doesn't
+   1. Make sure that your [robots.txt file](../../crawling-docs/robots-txt/robots-txt-spec.md) doesn't
       block your AMP page.
       Use [robots `meta` tags,
       `data-nosnippet`, and `X-Robots-Tag`](../robots-meta-tag.md) where appropriate.

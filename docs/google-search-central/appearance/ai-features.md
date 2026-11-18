@@ -110,14 +110,14 @@ more time on the site).
 ## Controlling your content in AI features in Search
 
 AI is built into Search and integral to how Search functions, which is why robots.txt directives
-for [Googlebot](../crawling-indexing/overview-google-crawlers.md) is the control
+for [Googlebot](../crawling-docs/crawlers-fetchers/overview-google-crawlers.md) is the control
 for site owners to manage access to how their sites are crawled for Search. To limit the
 information shown from your pages in Search, use [`nosnippet`,
 `data-nosnippet`, `max-snippet`](../crawling-indexing/robots-meta-tag.md), or
 [`noindex`](../crawling-indexing/block-indexing.md) controls.
 
 To limit AI training and grounding in some of Google's other systems, read more
-[about Google-Extended](../crawling-indexing/google-common-crawlers.md#google-extended).
+[about Google-Extended](../crawling-docs/crawlers-fetchers/google-common-crawlers.md#google-extended).
 
 ### Troubleshooting preview controls
 

@@ -8,12 +8,12 @@ license: 'Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.
 
 # Validate your AMP content
 
-After you've [created AMP content](../../guides/enhance-amp.md), here are
+After you've [created AMP content](enhance-amp.md), here are
 some ways to validate your AMP content:
 
 - Use the [AMP Test Tool](https://search.google.com/test/amp) to
   ensure that your AMP content is valid.
-- For [applicable AMP content types](../../guides/about-amp.md), use the [Rich Results Test](https://search.google.com/test/rich-results) to verify that your structured data parses properly.
+- For [applicable AMP content types](../amp.md), use the [Rich Results Test](https://search.google.com/test/rich-results) to verify that your structured data parses properly.
 - Use the [AMP status report](https://search.google.com/search-console/amp)
   to monitor the performance of all AMP pages on your site.
 
@@ -35,8 +35,8 @@ If your AMP page doesn't appear in Google Search, try the following steps:
    - Remove all robots `meta` tags and `X-Robots-Tag` HTTP headers from your
      canonical and AMP content. For more information, see [Robots `meta` tag and `X-Robots-Tag` HTTP header specifications](../robots-meta-tag.md).
 4. Ensure that your structured data follows the structured data guidelines for
-   [your page and feature type](../../guides/search-gallery.md). For more information about structured data
-   requirements for AMP, see [About AMP on Google Search](../../guides/about-amp.md).
+   [your page and feature type](../../appearance/structured-data/search-gallery.md). For more information about structured data
+   requirements for AMP, see [About AMP on Google Search](../amp.md).
 
 If your AMP page still isn't appearing in Google Search after completing the
 steps, here are some additional reasons:

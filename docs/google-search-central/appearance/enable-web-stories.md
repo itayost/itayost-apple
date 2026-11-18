@@ -28,7 +28,7 @@ Here's an overview of how to enable Web Stories on Google:
 2. [Make sure the Web Story is valid AMP](#valid-amp).
 3. [Verify the metadata](#metadata).
 4. [Check if the Web Story is indexed](#indexed).
-5. Follow the [Web Story Content Policies](../guides/web-stories-content-policy.md).
+5. Follow the [Web Story Content Policies](web-stories-content-policy.md).
 
 ## Feature availability
 
@@ -51,7 +51,7 @@ that apply to publishing regular web pages. There are two ways to get started:
   [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools/device-mode#device)
   to simulate different device sizes and formats.
 
-To ensure a smooth process, review the [Best practices for creating Web Stories](../guides/web-stories-creation-best-practices.md).
+To ensure a smooth process, review the [Best practices for creating Web Stories](web-stories-creation-best-practices.md).
 
 ## Make sure the Web Story is valid AMP
 

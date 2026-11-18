@@ -21,7 +21,7 @@ AMP pages can appear in Google Search as a [rich result](../appearance/structure
 just like other pages on the web. To help Google better understand your page, you can add
 [structured data](../appearance/structured-data/intro-structured-data.md) to your page. Adding structured data doesn't guarantee that your page appears as a rich
 result in Search results. For more information, refer to the
-[Structured Data General Guidelines](../guides/sd-policies.md).
+[Structured Data General Guidelines](../appearance/structured-data/sd-policies.md).
 
 AMP pages can also appear as Web Stories. Learn more about how to
 [enable Web Stories on Google Search](../appearance/enable-web-stories.md).

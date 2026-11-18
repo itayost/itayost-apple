@@ -128,4 +128,4 @@ list of results ordered by price.
 To avoid indexing variations of the same list of results, block unwanted URLs from being indexed with the
 [`noindex` robots `meta` tag](../../crawling-indexing/block-indexing.md)
 or discourage crawling of particular
-[URL patterns with a robots.txt file](../../crawling-indexing/robots/robots_txt.md#url-matching-based-on-path-values).
+[URL patterns with a robots.txt file](../../crawling-docs/robots-txt/robots-txt-spec.md#url-matching-based-on-path-values).

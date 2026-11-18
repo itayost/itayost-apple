@@ -33,7 +33,7 @@ data with Google Tag Manager, follow these steps:
 
 1. [Set up and install Google Tag Manager](https://support.google.com/tagmanager/answer/6103696) on your site.
 2. Add a new **Custom HTML** tag to the container.
-3. Paste a [supported structured data](../../guides/search-gallery.md) block into the tag content.
+3. Paste a [supported structured data](search-gallery.md) block into the tag content.
 4. Install the container as shown in the **Install Google Tag Manager** section of your container's admin menu.
 5. To add the tag to your website, publish your container in the Google Tag Manager interface.
 6. [Test your implementation](#testing).

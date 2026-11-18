@@ -60,4 +60,4 @@ If you notice that Google Search is crawling these problematic URLs, we recommen
   blocking dynamic URLs, such as URLs that generate search results, or URLs that can create
   infinite spaces, such as calendars, and ordering and filtering functions.
 - If your site has faceted navigation, learn how to
-  [manage crawling of those faceted navigation URLs](crawling-managing-faceted-navigation.md#prevent-crawling-of-faceted-navigation-urls).
+  [manage crawling of those faceted navigation URLs](../crawling-docs/faceted-navigation.md#prevent-crawling-of-faceted-navigation-urls).

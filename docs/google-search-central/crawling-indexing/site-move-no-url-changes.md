@@ -65,7 +65,7 @@ in Search Console.
 
 **Caution**: Check your firewall configuration or denial of service (DoS) protection. Make
 sure it does not block Googlebot's ability to reach the DNS or the hosting provider's servers.
-[Learn how to verify Googlebot](verifying-googlebot.md#use-automatic-solutions).
+[Learn how to verify Googlebot](../crawling-docs/crawlers-fetchers/verify-google-requests.md#use-automatic-solutions).
 
 ### Lower the TTL value for your DNS records
 

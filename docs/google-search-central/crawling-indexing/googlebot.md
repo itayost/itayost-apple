@@ -11,13 +11,13 @@ license: 'Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.
 Googlebot is the generic name for two types of
 [web crawlers](../fundamentals/how-search-works.md) used by Google Search:
 
-- [**Googlebot Smartphone**](google-common-crawlers.md#googlebot-smartphone):
+- [**Googlebot Smartphone**](../crawling-docs/crawlers-fetchers/google-common-crawlers.md#googlebot-smartphone):
   a mobile crawler that simulates a user on a mobile device.
-- [**Googlebot Desktop**](google-common-crawlers.md#googlebot-desktop):
+- [**Googlebot Desktop**](../crawling-docs/crawlers-fetchers/google-common-crawlers.md#googlebot-desktop):
   a desktop crawler that simulates a user on desktop.
 
 You can identify the subtype of Googlebot by looking at the
-[HTTP `user-agent` request header](overview-google-crawlers.md)
+[HTTP `user-agent` request header](../crawling-docs/crawlers-fetchers/overview-google-crawlers.md)
 in the request. However, both crawler types obey the same product token (user agent token) in
 robots.txt, and so you cannot selectively target either Googlebot Smartphone or Googlebot
 Desktop using robots.txt.
@@ -32,7 +32,7 @@ crawler, and a minority using the desktop crawler.
 For most sites, Googlebot shouldn't access your site more than once every few seconds on
 average. However, due to delays it's possible that the rate will appear to be slightly higher
 over short periods. If your site is having trouble keeping up with Google's crawling requests, you
-can [reduce the crawl rate.](reduce-crawl-rate.md)
+can [reduce the crawl rate.](../crawling-docs/crawlers-fetchers/reduce-crawl-rate.md)
 
 When crawling for Google Search, Googlebot crawls the first 2MB of a
 [supported file type](indexable-file-types.md), and
@@ -43,13 +43,13 @@ Once the cutoff limit is reached, Googlebot stops the fetch and only sends the a
 part of the file for indexing consideration. The file size limit is applied on the uncompressed
 data.
 Other Google crawlers, for example Googlebot Video and Googlebot Image, may have
-[different limits](https://developers.google.com/crawling/docs/crawlers-fetchers/overview-google-crawlers#file-size-limits).
+[different limits](../crawling-docs/crawlers-fetchers/overview-google-crawlers.md#file-size-limits).
 
 When crawling from IP addresses in the US, the timezone of Googlebot is
 [Pacific Time](https://g.co/kgs/WSf8oR).
 
 Other
-[technical properties of Googlebot](overview-google-crawlers.md#crawl-technical-props)
+[technical properties of Googlebot](../crawling-docs/crawlers-fetchers/overview-google-crawlers.md#crawl-technical-props)
 are described in the overview of Google's crawlers.
 
 ## Blocking Googlebot from visiting your site
@@ -80,6 +80,6 @@ Before you decide to block Googlebot, be aware that the HTTP `user-agent` reques
 header used by Googlebot is often spoofed by other crawlers. It's important to verify that a
 problematic request actually comes from Google. The best way to verify that a request actually
 comes from Googlebot is to
-[use a reverse DNS lookup](verifying-googlebot.md#manual)
+[use a reverse DNS lookup](../crawling-docs/crawlers-fetchers/verify-google-requests.md#manual)
 on the source IP of the request, or to match the source IP against the
-[Googlebot IP ranges](verifying-googlebot.md#use-automatic-solutions).
+[Googlebot IP ranges](../crawling-docs/crawlers-fetchers/verify-google-requests.md#use-automatic-solutions).

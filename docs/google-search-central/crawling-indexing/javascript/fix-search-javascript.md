@@ -10,14 +10,14 @@ license: 'Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.
 
 This guide helps you identify and fix JavaScript issues that may be blocking your page, or specific content on JavaScript powered pages, from showing up in Google Search.
 While Google Search does run JavaScript, there are some differences and limitations that you need to account for when designing your pages and applications to accommodate how crawlers access and render your content.
-Our [guide on JavaScript SEO basics](../../guides/javascript-seo-basics.md) has more information on how you can optimize your JavaScript site for Google Search.
+Our [guide on JavaScript SEO basics](javascript-seo-basics.md) has more information on how you can optimize your JavaScript site for Google Search.
 
 Googlebot is designed to be a good citizen of the web. Crawling is its [main priority](https://developers.google.com/search/blog/2017/01/what-crawl-budget-means-for-googlebot), while making sure it doesn't degrade the experience of users visiting the site.
 Googlebot and its Web Rendering Service (WRS) component continuously analyze and identify resources that don't contribute to essential page content and may not fetch such resources.
 For example, reporting and error requests that don't contribute to essential page content, and other similar types of requests are unused or unnecessary to extract essential page content. Client-side analytics may not provide a full or accurate representation of Googlebot and WRS activity on your site.
 Use [the crawl stats report in Google Search Console](https://support.google.com/webmasters/answer/9679690) to monitor Googlebot and WRS activity and feedback on your site.
 
-If you suspect that JavaScript issues might be blocking your page, or specific content on JavaScript powered pages, from showing up in Google Search, follow these steps. If you're not sure if JavaScript is the main cause, follow our [general debugging guide](../../guides/debug.md) to determine the specific issue.
+If you suspect that JavaScript issues might be blocking your page, or specific content on JavaScript powered pages, from showing up in Google Search, follow these steps. If you're not sure if JavaScript is the main cause, follow our [general debugging guide](https://developers.google.com/search/help/debug) to determine the specific issue.
 
 1. **To test how Google crawls and renders a URL**, use the [Rich Results Test](https://search.google.com/test/rich-results) or the [URL Inspection Tool](https://support.google.com/webmasters/answer/9012289) in Search Console.
    You can see loaded resources, JavaScript console output and exceptions, rendered DOM, and more information.
@@ -121,7 +121,7 @@ If you suspect that JavaScript issues might be blocking your page, or specific c
      
    WRS flattens the [light DOM and shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom#lightdom).
    If the web components you use aren't using [`<slot>` mechanism](https://developers.google.com/web/fundamentals/web-components/shadowdom#slots) for light DOM content, consult the documentation of the web component for further information or use another web component instead.
-   For more information, see [best practices for web components](../../guides/javascript-seo-basics.md#web-components).
+   For more information, see [best practices for web components](javascript-seo-basics.md#web-components).
 10. **If you're using a JavaScript-based paywall, consider the implementation.**
       
     Some JavaScript paywall solutions include the full content in the server response, then use

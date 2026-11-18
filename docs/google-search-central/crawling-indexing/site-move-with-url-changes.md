@@ -255,7 +255,7 @@ Keep in mind the following:
   recommend that you use HTTP permanent redirects if possible, such as `301` and
   `308`.
 - **Avoid chaining redirects.** While Googlebot can
-  [follow up to 10 hops](https://developers.google.com/crawling/docs/troubleshooting/http-status-codes#3xx-redirection)
+  [follow up to 10 hops](../crawling-docs/troubleshooting/http-status-codes.md#3xx-redirection)
   in a "chain" of multiple redirects (for example, Page 1
   > Page 2
   > Page 3), we advise redirecting to the final

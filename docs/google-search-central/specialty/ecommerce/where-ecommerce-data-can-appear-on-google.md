@@ -44,7 +44,7 @@ on Google:
 - **Merchant product reviews**. Show that you are interested in helping shoppers find
   the best product for their needs by providing in-depth reviews of products you sell. When
   linking to products on third-party sites for financial gain, refer to our guidance on
-  [paid links](../../advanced/guidelines/paid-links.md).
+  [paid links](../../essentials/spam-policies.md).
 - **Customer product reviews**. Consider accepting ratings and reviews from customers to
   help new shoppers better understand your products.
 - **Your catalog**. Provide informative product descriptions that match search terms used

@@ -110,7 +110,7 @@ are some examples of irrelevant data:
 
 - Try to use the most specific applicable type and property names defined by schema.org
   for your markup.
-- Follow all additional guidelines given in the [documentation for your specific rich result type](../../guides/search-gallery.md).
+- Follow all additional guidelines given in the [documentation for your specific rich result type](search-gallery.md).
 
 ### Images
 
@@ -149,7 +149,7 @@ or specify each item individually:
 
 These examples are trimmed for brevity, and they don't
 include all the required and recommended properties for the features. For a full example, refer to the
-[specific structured data type documentation](../../guides/search-gallery.md).
+[specific structured data type documentation](search-gallery.md).
 
 ### Nesting
 

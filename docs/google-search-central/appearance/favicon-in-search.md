@@ -62,10 +62,10 @@ A favicon isn't guaranteed to appear in Google Search results, even if all guide
   **Supported**: `https://news.example.com` (this is a subdomain-level home page)
     
   **Not supported**: `https://example.com/news` (this is a subdirectory-level home page)
-- [Googlebot](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers#googlebot)
+- [Googlebot](../crawling-docs/crawlers-fetchers/google-common-crawlers.md#googlebot)
   must be able to crawl the home page, follow any redirects from there to the page where the
   favicon is specified, and
-  [Googlebot-Image](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers#googlebot-image)
+  [Googlebot-Image](../crawling-docs/crawlers-fetchers/google-common-crawlers.md#googlebot-image)
   must be able to crawl the favicon file.
   These URLs must not be blocked from crawling by a
   [`robots.txt` file](../crawling-indexing/control-what-you-share.md)

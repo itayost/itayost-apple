@@ -58,7 +58,7 @@ The next time Google crawls the `dogs.jpg` image, we'll see this rule and drop y
 image from our search results.
 
 Rules may include
-[special characters](robots/robots_txt.md#url-matching-based-on-path-values)
+[special characters](../crawling-docs/robots-txt/robots-txt-spec.md#url-matching-based-on-path-values)
 for more flexibility and control. Specifically, the `*` character matches any sequence
 of characters which lets you to match multiple image paths with one rule.
 

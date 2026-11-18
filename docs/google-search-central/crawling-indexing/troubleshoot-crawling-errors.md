@@ -45,7 +45,7 @@ warnings, that means that Googlebot can't crawl as many URLs from your site as i
 - Read the [documentation
   for the Crawl Stats report](https://support.google.com/webmasters/answer/9679690) to learn how to find and handle some availability issues.
 - **Block pages from crawling if you don't want them to be crawled.** (See *[manage
-  your inventory](https://developers.google.com/crawling/docs/crawl-budget#manage_inventory)*)
+  your inventory](../crawling-docs/crawl-budget.md#manage_inventory)*)
 - **Increase page loading and rendering speed.** (See *[Improve
   your site's crawl efficiency](#improve_crawl_efficiency)*)
 - **Increase your server capacity.** If Google consistently seems to be crawling
@@ -83,12 +83,12 @@ such as news sites.
 
 If you are adding pages to your site and they are not being crawled in a reasonable amount of
 time, either Google doesn't know about them, the content is blocked, your site has reached its
-maximum serving capacity, or you are [out of crawl budget](https://developers.google.com/crawling/docs/crawl-budget#more-crawl-budget).
+maximum serving capacity, or you are [out of crawl budget](../crawling-docs/crawl-budget.md#more-crawl-budget).
 
 1. Tell Google about your new pages: update your sitemaps to reflect new URLs.
 2. Examine your robots.txt rules to confirm that you're not accidentally blocking pages.
 3. Review your crawling priorities (a.k.a. use your crawl budget wisely). [Manage
-   your inventory](https://developers.google.com/crawling/docs/crawl-budget#manage_inventory) and [improve your site's crawling efficiency](#improve_crawl_efficiency).
+   your inventory](../crawling-docs/crawl-budget.md#manage_inventory) and [improve your site's crawling efficiency](#improve_crawl_efficiency).
 4. [Check that you're not running out of serving capacity](#availability_issues).
    Googlebot will scale back its crawling if it detects that your servers are having trouble
    responding to crawl requests.
@@ -170,7 +170,7 @@ Google generally supports the
 [`If-Modified-Since` and `If-None-Match` HTTP request headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/If-Modified-Since)
 for crawling. Google's crawlers don't send the headers with all crawl attempts; it depends on
 the use case of the request (for example,
-[AdsBot](https://developers.google.com/crawling/docs/crawlers-fetchers/google-special-case-crawlers#adsbot) is more
+[AdsBot](../crawling-docs/crawlers-fetchers/google-special-case-crawlers.md#adsbot) is more
 likely to set the `If-Modified-Since` and `If-None-Match` HTTP request
 headers). If our crawlers send the `If-Modified-Since` header, the header's value
 is the [date and time](https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since)
@@ -197,11 +197,11 @@ another part of your site unless Google is already hitting your site's serving l
 Exposing many URLs on your site that you don't want crawled by Search can negatively affect a
 site's crawling and indexing. Typically these URLs fall into the following categories:
 
-- [Faceted navigation](https://developers.google.com/crawling/docs/faceted-navigation)
+- [Faceted navigation](../crawling-docs/faceted-navigation.md)
   and [session identifiers](https://developers.google.com/search/blog/2007/09/google-duplicate-content-caused-by-url):
   Faceted navigation is typically duplicate content from the site; session identifiers and
   other URL parameters that simply sort or filter the page don't provide new content. Learn how to
-  [manage crawling of faceted navigation pages](https://developers.google.com/crawling/docs/faceted-navigation).
+  [manage crawling of faceted navigation pages](../crawling-docs/faceted-navigation.md).
 - [Duplicate content](consolidate-duplicate-urls.md):
   Help Google identify duplicate content to avoid unnecessary crawling.
 - [`soft 404` pages](#soft-404-errors): Return a `404`
@@ -338,7 +338,7 @@ Googlebot:
    more than 2 days will cause Google to drop those URLs from the index.
 3. Monitor your crawling and your host capacity over time.
 4. If the problematic crawler is one of the
-   [AdsBot crawlers](https://developers.google.com/crawling/docs/crawlers-fetchers/google-special-case-crawlers#adsbot-mobile-web),
+   [AdsBot crawlers](../crawling-docs/crawlers-fetchers/google-special-case-crawlers.md#adsbot-mobile-web),
    the problem is likely that you have created
    [Dynamic Search Ad targets](https://support.google.com/google-ads/answer/2497706)
    for your site that Google is trying to crawl. This crawl will reoccur every 3 weeks. If you don't

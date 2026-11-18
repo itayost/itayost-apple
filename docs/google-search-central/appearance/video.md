@@ -85,7 +85,7 @@ helps Google discover and process the videos consistently, confirm they are stil
 collect signals on the videos.
 
 If you are concerned about bad actors (for example, hackers or spammers) accessing your content,
-you can [verify Googlebot](../crawling-indexing/verifying-googlebot.md) before
+you can [verify Googlebot](../crawling-docs/crawlers-fetchers/verify-google-requests.md) before
 displaying a stable version of your media URLs. For example, you can choose to serve the
 [`contentUrl`](structured-data/video.md#content-url)
 property only to trusted clients like Googlebot, whereas other clients accessing your page wouldn't
@@ -251,7 +251,7 @@ Google needs to successfully fetch the actual bytes of a video file to enable fe
 Google won't expose the video file directly in search results, and users
 clicking a video result will land on your site to watch the video. You can also verify if a web
 crawler accessing your server
-[really is Googlebot](../crawling-indexing/verifying-googlebot.md).
+[really is Googlebot](../crawling-docs/crawlers-fetchers/verify-google-requests.md).
 
 Allow Google to find and fetch your video files by following these best practices:
 
@@ -387,7 +387,7 @@ In this video sitemap example, the video will only appear in search results in C
 SafeSearch is a setting in Google user accounts that specifies whether to show or block explicit
 images, videos, and websites in Google Search results. Make sure Google understands the nature of
 your site so that Google can apply SafeSearch filters to your site if appropriate.
-[Learn more about labeling SafeSearch pages](../crawling-indexing/safesearch.md).
+[Learn more about labeling SafeSearch pages](../specialty/explicit/guidelines.md).
 
 ## Monitor video watch pages with Search Console
 

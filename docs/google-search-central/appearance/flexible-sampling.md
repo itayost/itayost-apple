@@ -80,7 +80,7 @@ degraded.
 ## How to indicate paywalled content
 
 Enclose paywalled content with structured data in order to help Google
-differentiate paywalled content from the practice of [cloaking](../advanced/guidelines/cloaking.md),
+differentiate paywalled content from the practice of [cloaking](../essentials/spam-policies.md),
 where the content served to Googlebot is different from the content served to users.
 If you don't want the content to be accessible to the browser at the time of serving, choose a
 paywall implementation that doesn't supply the paywalled content to the browser.

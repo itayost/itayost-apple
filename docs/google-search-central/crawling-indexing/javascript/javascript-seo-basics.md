@@ -9,11 +9,11 @@ license: 'Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.
 # Understand the JavaScript SEO basics
 
 Do you suspect that JavaScript issues might be blocking your page or some of your content from showing up in Google Search?
-Learn how to fix JavaScript-related problems with our [troubleshooting guide](../../guides/fix-search-javascript.md).
+Learn how to fix JavaScript-related problems with our [troubleshooting guide](fix-search-javascript.md).
 
 JavaScript is an important part of the web platform because it provides many features that turn the web into a powerful application platform.
 Making your JavaScript-powered web applications discoverable via Google Search can help you find new users and re-engage existing users as they search for the content your web app provides.
-While Google Search runs JavaScript with an [evergreen version of Chromium](https://developers.google.com/search/blog/2019/05/the-new-evergreen-googlebot), there are [a few things that you can optimize](../../guides/fix-search-javascript.md).
+While Google Search runs JavaScript with an [evergreen version of Chromium](https://developers.google.com/search/blog/2019/05/the-new-evergreen-googlebot), there are [a few things that you can optimize](fix-search-javascript.md).
 
 This guide describes how Google Search processes JavaScript and best practices for improving JavaScript web apps for Google Search.
 
@@ -66,19 +66,19 @@ If you can't set the canonical URL in the HTML, then you can use JavaScript to s
 ## Write compatible code
 
 Browsers offer many APIs and JavaScript is a quickly-evolving language. Google has some limitations regarding which APIs and JavaScript features it supports. To make sure your code is
-compatible with Google, follow our [guidelines for troubleshooting JavaScript problems](../../guides/fix-search-javascript.md).
+compatible with Google, follow our [guidelines for troubleshooting JavaScript problems](fix-search-javascript.md).
 
 We recommend [using differential serving and polyfills](https://web.dev/articles/codelab-serve-modern-code) if you feature-detect a missing browser API that you need.
 Since some browser features cannot be polyfilled, we recommend that you check the polyfill documentation for potential limitations.
 
 ## Use meaningful HTTP status codes
 
-Googlebot uses [HTTP status codes](../http-network-errors.md) to find out if something went wrong when crawling the page.
+Googlebot uses [HTTP status codes](../../crawling-docs/troubleshooting/http-status-codes.md) to find out if something went wrong when crawling the page.
 
 To tell Googlebot if a page can't be crawled or indexed, use a meaningful status code, like a `404` for a page that could not be found or a `401` code for pages behind a login.
 You can use HTTP status codes to tell Googlebot if a page has moved to a new URL, so that the index can be updated accordingly.
 
-Here's a [list of HTTP status codes](../http-network-errors.md#http-status-codes) and how they effect Google Search.
+Here's a [list of HTTP status codes](../../crawling-docs/troubleshooting/http-status-codes.md#http-status-codes) and how they effect Google Search.
 
 ### Avoid `soft 404` errors in single-page apps
 
@@ -254,7 +254,7 @@ Check out the [web.dev guide on long-lived caching strategies](https://web.dev/a
 
 ## Use structured data
 
-When using [structured data](../../appearance/structured-data/intro-structured-data.md) on your pages, you can use [JavaScript to generate the required JSON-LD and inject it into the page](../../guides/generate-structured-data-with-javascript.md#testing). Make sure to [test your implementation](../../guides/debug.md) to avoid issues.
+When using [structured data](../../appearance/structured-data/intro-structured-data.md) on your pages, you can use [JavaScript to generate the required JSON-LD and inject it into the page](../../appearance/structured-data/generate-structured-data-with-javascript.md#testing). Make sure to [test your implementation](https://developers.google.com/search/help/debug) to avoid issues.
 
 ## Follow best practices for web components
 
@@ -304,4 +304,4 @@ After rendering, Google can index this content:
 ## Fix images and lazy-loaded content
 
 Images can be quite costly on bandwidth and performance. A good strategy is to use lazy-loading to only load images when the user is about to see them.
-To make sure you're implementing lazy-loading in a search-friendly way, follow [our lazy-loading guidelines](../../guides/lazy-loading.md).
+To make sure you're implementing lazy-loading in a search-friendly way, follow [our lazy-loading guidelines](lazy-loading.md).

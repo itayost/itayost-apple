@@ -55,9 +55,9 @@ If you're already familiar with the fundamentals of SEO, there's more you can do
 - [home](appearance/structured-data/intro-structured-data.md)
 
   #### [Use structured data to enable rich results](appearance/structured-data/intro-structured-data.md)
-- [code](guides/javascript-seo-basics.md)
+- [code](crawling-indexing/javascript/javascript-seo-basics.md)
 
-  #### [Learn JavaScript SEO](guides/javascript-seo-basics.md)
+  #### [Learn JavaScript SEO](crawling-indexing/javascript/javascript-seo-basics.md)
 
 ## Monitor your performance with Search Console
 

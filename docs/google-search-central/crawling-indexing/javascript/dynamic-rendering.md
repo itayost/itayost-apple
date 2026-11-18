@@ -26,7 +26,7 @@ Dynamic rendering is a workaround and not a recommended solution, because it cre
 ## Sites that might use dynamic rendering
 
 Dynamic rendering was a workaround for indexable, public JavaScript-generated content that changes rapidly, or
-content that uses [JavaScript features that aren't supported by the crawlers](../../guides/rendering.md)
+content that uses [JavaScript features that aren't supported by the crawlers](fix-search-javascript.md)
 you care about. Not all sites need to use dynamic rendering, and there are better solutions than dynamic rendering as explained in
 [an overview of rendering on the web](https://web.dev/articles/rendering-on-the-web).
 

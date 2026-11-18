@@ -96,7 +96,7 @@ signals to the new site.
   for paid links**, links that require login, or untrusted content (such as
   user-submitted content) to avoid passing your quality signals on to them, or having their
   bad quality reflect on you.
-- **[Managing your crawl budget](../crawling-indexing/large-site-managing-crawl-budget.md)**:
+- **[Managing your crawl budget](../crawling-docs/crawl-budget.md)**:
   If your site is particularly large (hundreds of millions of pages that change periodically,
   or perhaps tens of millions of pages that change frequently), Google might not be able to
   crawl your entire site as often as you'd
@@ -116,7 +116,7 @@ signals to the new site.
   to block these URLs.
 - Review the [list of which file types are indexable by Google](../crawling-indexing/indexable-file-types.md).
 - In the unlikely situation that **Google seems to be crawling your site too
-  much**, you can [reduce the crawl rate](../crawling-indexing/reduce-crawl-rate.md)
+  much**, you can [reduce the crawl rate](../crawling-docs/crawlers-fetchers/reduce-crawl-rate.md)
   for your site. However, this should be a rare occurrence.
 - If your site is still HTTP, we recommend [migrating to HTTPS](https://web.dev/articles/enable-https),
   for your [users' security, as well as your own](https://developers.google.com/search/blog/2018/12/why-how-to-secure-your-website-https).
@@ -165,11 +165,11 @@ them on Google in the best way:
   on the image host page. To block an image from being indexed,
   [use a robots.txt `Disallow` rule](../crawling-indexing/prevent-images-on-your-page.md).
 - **For children:** If your content is specifically for children,
-  [tag your pages or site as child-directed](../advanced/guidelines/tag-child-directed-treatment.md)
+  [tag your pages or site as child-directed](https://support.google.com/webmasters/answer/3221080)
   in order to comply with the Children's Online
   Privacy Protection Act ([COPPA](https://business.ftc.gov/privacy-and-security/childrens-privacy)).
 - **Adult sites**: If your site (or specific pages) contain adult-only content, you
-  might consider [tagging it as adult content](../crawling-indexing/safesearch.md),
+  might consider [tagging it as adult content](../specialty/explicit/guidelines.md),
   which will filter it in SafeSearch results.
 - **News:** If you run a news site, here are some important considerations:
   - If you have news content, be sure to read the [Google Publisher Center help documentation](https://support.google.com/news/publisher-center/).
@@ -218,7 +218,7 @@ default crawler for websites.
 
 ## Control your search appearance
 
-Google provides [many kinds of search result features and experiences in Google Search](../appearance/search-result-features.md),
+Google provides [many kinds of search result features and experiences in Google Search](../appearance/visual-elements-gallery.md),
 including review stars and special result types for specific types of information such as
 events or recipes. See which ones are appropriate for your site and consider implementing them.
 You can [provide a favicon](../appearance/favicon-in-search.md)
@@ -233,4 +233,4 @@ entirely if you wish. See how to use `meta` tags to [limit text or image use whe
 ## Using Search Console
 
 Search Console offers a broad range of reports to help you monitor and optimize your site
-performance on Google Search. Learn more about [what reports to use](../advanced/guidelines/search-console.md).
+performance on Google Search. Learn more about [what reports to use](../monitor-debug/search-console-start.md).

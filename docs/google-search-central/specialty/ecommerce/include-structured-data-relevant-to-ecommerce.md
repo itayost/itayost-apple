@@ -19,7 +19,7 @@ Structured data in general is not specific to ecommerce, although some structure
 are. The following resources are useful to learn more about structured data for your ecommerce website.
 
 - For an introduction to how Google uses structured data, see
-  [Understand how structured data works](../../guides/intro-structured-data.md).
+  [Understand how structured data works](../../appearance/structured-data/intro-structured-data.md).
 - To understand the breadth of structured data (also called schema markup) for an ecommerce website, see
   [schema.org](https://schema.org/). Google supports many, but not
   all of, the types of structured data defined by schema.org.

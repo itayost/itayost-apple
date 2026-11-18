@@ -401,7 +401,7 @@ action](https://support.google.com/webmasters/answer/2604824) against it. Once y
 
 - [Search Essentials](../../essentials.md)
 - [General structured data guidelines](sd-policies.md)
-- [Carousel guidelines](../../guides/mark-up-listings.md) (if applicable). The
+- [Carousel guidelines](carousel.md) (if applicable). The
   Restaurant carousel is currently limited to a small set of restaurant providers. If you would
   like to participate, [register your interest](https://docs.google.com/a/google.com/forms/d/e/1FAIpQLSdZCJXAe2TtpiBe8Lx2dWR6LatLcCbFq7SZsyWqH6xJ7ulbaQ/viewform) in our form.
 

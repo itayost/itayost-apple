@@ -285,7 +285,7 @@ and
 [using a slow network connection emulator](https://developer.chrome.com/docs/devtools/network/reference#throttling).
 
 If an image is referenced on multiple pages within a larger website, consider the
-[site's overall crawl budget](../crawling-indexing/large-site-managing-crawl-budget.md).
+[site's overall crawl budget](../crawling-docs/crawl-budget.md).
 In particular, consistently reference the image with the same URL, so that Google can
 cache and reuse the image without needing to request it multiple times.
 
@@ -315,4 +315,4 @@ Alternatively, you can
 SafeSearch is a setting in Google user accounts that specifies whether to show, blur, or block
 explicit images, videos, and websites in Google Search results. Make sure Google understands the
 nature of your site so that Google can apply SafeSearch filters to your site if appropriate.
-[Learn more about labeling pages for SafeSearch](../crawling-indexing/safesearch.md).
+[Learn more about labeling pages for SafeSearch](../specialty/explicit/guidelines.md).

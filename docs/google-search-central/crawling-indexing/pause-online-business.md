@@ -45,7 +45,7 @@ following:
   availability attribute](https://support.google.com/merchants/answer/6324448).
 - **Tell Google about your updates**: To ask Google to recrawl a
   limited number of pages (for example, the home page), use [Search Console](ask-google-to-recrawl.md). For a larger number of pages (for example, all of your product
-  pages), [use sitemaps](../guides/submit-URLs.md).
+  pages), [use sitemaps](ask-google-to-recrawl.md).
 
 ## Not recommended: Disable the whole website
 
@@ -153,7 +153,7 @@ That's fine. Make sure that people can't buy the non-essential products by
 ### Can I ask Google to crawl less while my site is temporarily closed?
 
 Yes, you can [reduce the Googlebot
-crawl rate](../guides/reduce-crawl-rate.md), though it's not recommended for most cases. This may have some impact
+crawl rate](../crawling-docs/crawlers-fetchers/reduce-crawl-rate.md), though it's not recommended for most cases. This may have some impact
 on the freshness of your results in Search. For example, it may take longer for Search
 to reflect that all of your products are currently not available. On the other hand,
 if Googlebot's crawling causes critical server resource issues, this is a valid
@@ -165,7 +165,7 @@ you're ready to go back in business.
 To ask Google to recrawl a limited number of pages (for example, the home page), use
 [Search Console](ask-google-to-recrawl.md).
 For a larger number of pages (for example, all of your product pages),
-[use sitemaps](../guides/submit-URLs.md).
+[use sitemaps](ask-google-to-recrawl.md).
 
 ### What if I block a specific region from accessing my site?
 

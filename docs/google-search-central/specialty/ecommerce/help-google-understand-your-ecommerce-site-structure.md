@@ -43,7 +43,7 @@ These sources can include links to pages on a site that a crawler would not othe
 To ensure Googlebot correctly locates the link, use `<a href>` tags when
 creating links to other content. Don't use JavaScript events on other HTML DOM elements for
 navigation. If you want to learn more about JavaScript and indexing page content, see
-[Understand the JavaScript SEO basics](../../guides/javascript-seo-basics.md).
+[Understand the JavaScript SEO basics](../../crawling-indexing/javascript/javascript-seo-basics.md).
 
 ## Promote your best categories or products
 
@@ -61,4 +61,4 @@ ultimate ecommerce SEO best practice is to create useful and interesting content
 users.
 
 For further reading, see also
-[Managing crawling of faceted navigation URLs](../../crawling-indexing/crawling-managing-faceted-navigation.md).
+[Managing crawling of faceted navigation URLs](../../crawling-docs/faceted-navigation.md).

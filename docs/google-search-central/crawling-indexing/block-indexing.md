@@ -96,7 +96,7 @@ If you need to remove a page of your site quickly from Google's search results, 
 
 Another reason could also be that the robots.txt file is blocking the URL from Google web
 crawlers, so they can't see the tag. To unblock your page from Google, you must
-[edit your robots.txt file](robots/submit-updated-robots-txt.md).
+[edit your robots.txt file](../crawling-docs/robots-txt/submit-updated-robots-txt.md).
 
 Finally, make sure that the `noindex` rule is visible to Googlebot. To test if your
 `noindex` implementation is correct, use the

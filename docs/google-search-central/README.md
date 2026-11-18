@@ -1,10 +1,10 @@
 # Google Search Central docs (local mirror)
 
-Markdown copy of https://developers.google.com/search/docs, fetched 2026-11-18 by `scripts/fetch-google-search-docs.py`. Re-run the script to refresh it.
+Markdown copy of https://developers.google.com/search/docs (plus the https://developers.google.com/crawling/docs pages its navigation links to), fetched 2026-11-18 by `scripts/fetch-google-search-docs.py`. Re-run the script to refresh it.
 
 Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); code samples under Apache 2.0. Converted to Markdown, unmodified otherwise. Site policies: https://developers.google.com/site-policies
 
-164 pages. Each file starts with its source URL and Google's "last updated" date.
+186 pages. Each file starts with its source URL and Google's "last updated" date.
 
 ## Pages (navigation order)
 
@@ -34,8 +34,12 @@ Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.org/licens
 - [How to combine sitemap extensions](crawling-indexing/sitemaps/combine-sitemap-extensions.md)
 - [Ask Google to recrawl your URLs](crawling-indexing/ask-google-to-recrawl.md)
 - [Troubleshoot Google Search crawling errors](crawling-indexing/troubleshoot-crawling-errors.md)
+- [Overview of Google crawlers and fetchers (user agents)](crawling-docs/crawlers-fetchers/overview-google-crawlers.md)
 - [Googlebot](crawling-indexing/googlebot.md)
+- [Reduce the Google crawl rate](crawling-docs/crawlers-fetchers/reduce-crawl-rate.md)
+- [Verify requests from Google crawlers and fetchers](crawling-docs/crawlers-fetchers/verify-google-requests.md)
 - [Introduction to robots.txt](crawling-indexing/robots/intro.md)
+- [How Google interprets the robots.txt specification](crawling-docs/robots-txt/robots-txt-spec.md)
 - [What is canonicalization](crawling-indexing/canonicalization.md)
 - [How to specify a canonical URL with rel="canonical" and other methods](crawling-indexing/consolidate-duplicate-urls.md)
 - [Fix canonicalization issues](crawling-indexing/canonicalization-troubleshooting.md)
@@ -172,6 +176,24 @@ Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.org/licens
 - [Guidelines for sites with explicit content](specialty/explicit/guidelines.md)
 - [What to do if your site is incorrectly flagged as explicit in Google Search results](specialty/explicit/troubleshooting.md)
 
-## Pages not in the navigation
+## Linked from the docs, not in the navigation
 
+- [Things to know about Google's web crawling](crawling-docs/about-crawling.md)
+- [Changelog](crawling-docs/changelog.md)
+- [Optimize your crawl budget](crawling-docs/crawl-budget.md)
+- [Allow Google-Agent traffic](crawling-docs/crawlers-fetchers/allow-google-agent.md)
+- [APIs-Google user agent](crawling-docs/crawlers-fetchers/apis-user-agent.md)
+- [Feedfetcher](crawling-docs/crawlers-fetchers/feedfetcher.md)
+- [List of Google's common crawlers](crawling-docs/crawlers-fetchers/google-common-crawlers.md)
+- [List of Google's special-case crawlers](crawling-docs/crawlers-fetchers/google-special-case-crawlers.md)
+- [List of Google user-triggered fetchers](crawling-docs/crawlers-fetchers/google-user-triggered-fetchers.md)
+- [Google Read Aloud user agent](crawling-docs/crawlers-fetchers/read-aloud-user-agent.md)
+- [Authenticate requests with Web Bot Auth (experimental)](crawling-docs/crawlers-fetchers/web-bot-auth.md)
+- [Managing crawling of faceted navigation URLs](crawling-docs/faceted-navigation.md)
+- [Myths and facts about crawling](crawling-docs/myths-about-crawling.md)
+- [How to write and submit a robots.txt file](crawling-docs/robots-txt/create-robots-txt.md)
+- [Update your robots.txt file](crawling-docs/robots-txt/submit-updated-robots-txt.md)
+- [Useful robots.txt rules](crawling-docs/robots-txt/useful-robots-txt-rules.md)
+- [Debug network and DNS errors for Google's crawlers](crawling-docs/troubleshooting/dns-network-errors.md)
+- [How HTTP status codes affect Google's crawlers](crawling-docs/troubleshooting/http-status-codes.md)
 - [Get your website on Google](fundamentals/get-on-google.md)

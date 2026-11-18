@@ -8,7 +8,7 @@ license: 'Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.
 
 # Web Story Content Policies on Google
 
-For your [Web Stories](../guides/enable-web-stories.md) to be eligible to appear on
+For your [Web Stories](enable-web-stories.md) to be eligible to appear on
 Google Discover and Search as single results, they must
 comply with [Discover policies](https://support.google.com/websearch/answer/9982767),
 [Google Search Essentials](../essentials.md), and [Google Search's overall policies](https://support.google.com/websearch/answer/10622781).

@@ -9,7 +9,7 @@ license: 'Content (c) Google, licensed under CC BY 4.0 (https://creativecommons.
 # Mobile site and mobile-first indexing best practices
 
 Google uses the mobile version of a site's content, crawled with the
-[smartphone agent](../overview-google-crawlers.md),
+[smartphone agent](../../crawling-docs/crawlers-fetchers/overview-google-crawlers.md),
 for indexing and ranking. This is called **mobile-first indexing**.
 
 While it's not required to have a mobile version of your pages to have your content included
@@ -63,7 +63,7 @@ Make sure that Google can access and render your mobile page content and resourc
 - **Let Google crawl your resources.** Some resources have different URLs on the
   mobile site from those on the desktop site. If you want Google to crawl your URLs, make sure
   that you're not blocking the URL with the
-  [`disallow` rule](../robots/robots_txt.md#disallow).
+  [`disallow` rule](../../crawling-docs/robots-txt/robots-txt-spec.md#disallow).
 
 ## Make sure that content is the same on desktop and mobile
 

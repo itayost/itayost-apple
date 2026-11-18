@@ -56,13 +56,13 @@ it. We use a huge set of computers to crawl billions of pages on the web. The pr
 does the fetching is called [Googlebot](../crawling-indexing/googlebot.md)
 (also known as a crawler, robot, bot, or spider). Googlebot uses an algorithmic process to
 determine which sites to crawl, how often, and how many pages to fetch from each site.
-[Google's crawlers](../crawling-indexing/overview-google-crawlers.md)
+[Google's crawlers](../crawling-docs/crawlers-fetchers/overview-google-crawlers.md)
 are also programmed such that they try not to crawl the site too fast to avoid overloading it.
 This mechanism is based on the responses of the site (for example,
-[HTTP 500 errors mean "slow down"](../crawling-indexing/http-network-errors.md#http-status-codes)).
+[HTTP 500 errors mean "slow down"](../crawling-docs/troubleshooting/http-status-codes.md#http-status-codes)).
 
 However, Googlebot doesn't crawl all the pages it discovered. Some pages may be
-[disallowed for crawling](../crawling-indexing/robots/robots_txt.md#disallow) by the
+[disallowed for crawling](../crawling-docs/robots-txt/robots-txt-spec.md#disallow) by the
 site owner, other pages may not be accessible without logging in to the site.
 
 During the crawl, Google renders the page and
@@ -76,8 +76,8 @@ content.
 Crawling depends on whether Google's crawlers can access the site. Some common issues with
 Googlebot accessing sites include:
 
-- [Problems with the server handling the site](../crawling-indexing/http-network-errors.md#http-status-codes)
-- [Network issues](https://developers.google.com/crawling/docs/troubleshooting/dns-network-errors)
+- [Problems with the server handling the site](../crawling-docs/troubleshooting/http-status-codes.md#http-status-codes)
+- [Network issues](../crawling-docs/troubleshooting/dns-network-errors.md)
 - [robots.txt rules preventing Googlebot's access to the page](../crawling-indexing/robots/intro.md)
 
 ## Indexing

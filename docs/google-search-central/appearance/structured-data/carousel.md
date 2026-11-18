@@ -558,7 +558,7 @@ Here's an example of a single, all-in-one-page:
 ## Guidelines
 
 For your page to be eligible for a carousel rich result, you must follow the
-[Search Essentials](../../essentials.md) and [general structured data guidelines](../../guides/sd-policies.md).
+[Search Essentials](../../essentials.md) and [general structured data guidelines](sd-policies.md).
 In addition, the following guidelines apply to carousel structured data:
 
 - All items in the list must be of the same type. For example, if a list is about recipes,

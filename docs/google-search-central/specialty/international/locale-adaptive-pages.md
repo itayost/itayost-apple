@@ -32,11 +32,11 @@ to Googlebot if it appears to come from Australia.
 
 - Googlebot uses the same user agent string for all crawling configurations. Learn more about
   the [user agent strings used
-  by Google crawlers](../../crawling-indexing/overview-google-crawlers.md).
+  by Google crawlers](../../crawling-docs/crawlers-fetchers/overview-google-crawlers.md).
 - You can [verify Googlebot
-  geo-distributed crawls](../../crawling-indexing/verifying-googlebot.md) using reverse DNS lookups.
+  geo-distributed crawls](../../crawling-docs/crawlers-fetchers/verify-google-requests.md) using reverse DNS lookups.
 - If your site is using the [*robots exclusion protocol*](https://www.rfc-editor.org/rfc/rfc9309.html),
   make sure you apply it consistently
   across locales. This means that [robots `meta` tags](../../crawling-indexing/robots-meta-tag.md)
-  and the [robots.txt file](../../crawling-indexing/robots/create-robots-txt.md) must
+  and the [robots.txt file](../../crawling-docs/robots-txt/create-robots-txt.md) must
   specify the same rules in each locale.
