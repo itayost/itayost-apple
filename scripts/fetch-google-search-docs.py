@@ -133,6 +133,7 @@ def to_markdown(html, path):
             el.decompose()
     for h in body.find_all('h1'):
         h.decompose()
+    links = list(dict.fromkeys(doc_links(soup)))  # before rewrite_links turns hrefs into local paths
     rewrite_links(body, path)
     text = markdownify(str(body), heading_style='ATX', bullets='-', code_language='')
     text = re.sub(r'\n{3,}', '\n\n', text).strip()
@@ -149,7 +150,7 @@ def to_markdown(html, path):
         '',
         '',
     ])
-    return soup, title, header + text + '\n'
+    return soup, title, header + text + '\n', links
 
 
 def resolve_redirected_links(aliases):
@@ -198,7 +199,7 @@ def main():
                 continue
             seen.add(final)
             path = final
-        soup, title, markdown = to_markdown(html, path)
+        soup, title, markdown, links = to_markdown(html, path)
         titles[path] = title
         if path == ROOT_PATH:
             order = nav_order(soup)
@@ -207,7 +208,7 @@ def main():
         with open(dest, 'w', encoding='utf-8') as fh:
             fh.write(markdown)
         print(f'[{len(titles)}] {path}')
-        for link in doc_links(soup):
+        for link in links:
             if link not in seen and link not in queue:
                 queue.append(link)
         time.sleep(DELAY_SECONDS)
