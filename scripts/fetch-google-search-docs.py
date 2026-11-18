@@ -7,7 +7,8 @@ source URL, Google's "last updated" date and the CC BY 4.0 attribution.
 
 Usage (needs network access to developers.google.com):
     python3 -m venv .venv && .venv/bin/pip install beautifulsoup4 markdownify
-    .venv/bin/python scripts/fetch-google-search-docs.py
+    .venv/bin/python scripts/fetch-google-search-docs.py               # full crawl
+    .venv/bin/python scripts/fetch-google-search-docs.py --index-only  # rebuild README only
 
 Content is (c) Google, licensed under CC BY 4.0; code samples under Apache 2.0.
 https://developers.google.com/site-policies
@@ -47,7 +48,8 @@ def normalize(href):
     path = urlsplit(urljoin(BASE + ROOT_PATH + '/', href)).path.rstrip('/')
     if path != ROOT_PATH and not path.startswith(ROOT_PATH + '/'):
         return None
-    return path
+    # Pages also link a ".md" alias of themselves; it serves the same page.
+    return path[:-3] if path.endswith('.md') else path
 
 
 def out_file(path):
@@ -161,6 +163,27 @@ def main():
                 queue.append(link)
         time.sleep(DELAY_SECONDS)
 
+    write_index(titles, order)
+
+
+def titles_on_disk():
+    """Page path -> title, read back from the mirrored files' front matter."""
+    titles = {}
+    for dirpath, _, files in os.walk(OUT_DIR):
+        for name in files:
+            if not name.endswith('.md') or name == 'README.md':
+                continue
+            full = os.path.join(dirpath, name)
+            rel = os.path.relpath(full, OUT_DIR)[:-3].replace(os.sep, '/')
+            path = ROOT_PATH if rel == 'index' else f'{ROOT_PATH}/{rel}'
+            with open(full, encoding='utf-8') as fh:
+                head = fh.read(600)
+            match = re.search(r"^title: (['\"])(.*)\1$", head, re.M)
+            titles[path] = match.group(2) if match else rel
+    return titles
+
+
+def write_index(titles, order):
     listed = [p for p, _ in order if p in titles]
     extra = sorted(p for p in titles if p not in listed)
     lines = [
@@ -186,4 +209,9 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if '--index-only' in sys.argv:
+        # Rebuild README from the files already on disk (one request for the nav order).
+        root_html = fetch(ROOT_PATH)
+        write_index(titles_on_disk(), nav_order(BeautifulSoup(root_html or '', 'html.parser')))
+    else:
+        main()
