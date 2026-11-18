@@ -52,7 +52,7 @@ export const servicesData: Service[] = [
     name: 'פיתוח אתרים',
     tagline: 'אתר מהיר שמביא לקוחות, לא סתם כרטיס ביקור דיגיטלי',
     description: 'בניית אתרים מקצועיים עם הטכנולוגיות המתקדמות ביותר - Next.js, React, TypeScript. אתרים שנטענים תוך שנייה, מדורגים גבוה בגוגל וממירים מבקרים ללקוחות.',
-    longDescription: 'מתמחה בפיתוח אתרים מודרניים עם Next.js 14 - הפריימוורק המוביל מבית Vercel. בניגוד לוורדפרס (שבו נמצאו 11,334 פרצות אבטחה ב-2025 לפי Patchstack), Next.js מציע מהירות יוצאת דופן, אבטחה מובנית וSEO מעולה. לפי מחקר של Google ו-Deloitte, שיפור של 0.1 שנייה במהירות האתר מגדיל המרות ב-8.4%. כל אתר שאני בונה מותאם למובייל מלכתחילה (63% מתעבורת האינטרנט מגיעה ממובייל לפי StatCounter 2025), תומך בעברית RTL ברמה הגבוהה ביותר, ומאופטם למנועי חיפוש מהיום הראשון.',
+    longDescription: 'מתמחה בפיתוח אתרים מודרניים עם Next.js 14 - הפריימוורק המוביל מבית Vercel. בניגוד לוורדפרס (שבו נמצאו 11,334 פרצות אבטחה ב-2025 לפי Patchstack), Next.js מציע מהירות יוצאת דופן, אבטחה מובנית וSEO מעולה. לפי מחקר של Deloitte ו-Google, שיפור של 0.1 שנייה במהירות אתר המובייל הגדיל המרות בקמעונאות ב-8.4%. כל אתר שאני בונה מותאם למובייל מלכתחילה (כ-60% מהגלישה בעולם היא ממובייל לפי StatCounter 2025), תומך בעברית RTL ברמה הגבוהה ביותר, ומאופטם למנועי חיפוש מהיום הראשון.',
     icon: '💻',
     lucideIcon: 'Code2',
     color: 'brand-blue',
@@ -155,7 +155,21 @@ export const servicesData: Service[] = [
       secondary: 'צפה בעבודות'
     },
     relatedServices: ['ui-ux-design', 'landing-pages', 'ecommerce'],
-    lastUpdated: '2026-03-06'
+    sources: [
+      {
+        title: 'Patchstack: State of WordPress Security in 2026',
+        url: 'https://patchstack.com/whitepaper/state-of-wordpress-security-in-2026/'
+      },
+      {
+        title: 'Deloitte / Google: Milliseconds Make Millions (2020)',
+        url: 'https://www.deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions.html'
+      },
+      {
+        title: 'StatCounter: Desktop vs Mobile vs Tablet Market Share Worldwide (2025)',
+        url: 'https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet'
+      }
+    ],
+    lastUpdated: '2026-11-18'
   },
 
   {
@@ -164,7 +178,7 @@ export const servicesData: Service[] = [
     name: 'חנויות אונליין',
     tagline: 'חנות אונליין שעובדת בשבילכם 24/7',
     description: 'בניית חנויות אונליין מותאמות עם מערכות תשלום ישראליות (Bit, PayBox), משלוחים, ניהול מלאי ודוחות.',
-    longDescription: 'שוק המסחר האלקטרוני בישראל הגיע ל-$9.5 מיליארד ב-2024 (eCommerceDB) וצומח 8.1% בשנה. 59% מהקניות מתבצעות ממובייל (Statista, 2025) ושיעור נטישת עגלה ממוצע הוא 70.19% (Baymard Institute) - לכן חנות מותאמת עם UX מצוין היא קריטית. אני בונה חנויות עם שליטה מלאה, תשלומים ישראליים מובנים (Bit, PayBox) והקוד בבעלותך. תמחור: עלות הקמה חד פעמית + דמי ניהול חודשיים קבועים שמכסים אחסון, גיבויים ותחזוקה - בלי לשלם לפי כמות מוצרים או הזמנות.',
+    longDescription: 'שוק המסחר האלקטרוני בישראל הסתכם בכ-$10.2 מיליארד ב-2025 (ECDB, 2025). כ-59% ממכירות המסחר המקוון בעולם נעשות במובייל (Statista, 2025), ושיעור נטישת העגלה הממוצע הוא 70.22% (Baymard Institute, 2025) - לכן חנות מותאמת עם UX מצוין היא קריטית. אני בונה חנויות עם שליטה מלאה, תשלומים ישראליים מובנים (Bit, PayBox) והקוד בבעלותך. תמחור: עלות הקמה חד פעמית + דמי ניהול חודשיים קבועים שמכסים אחסון, גיבויים ותחזוקה - בלי לשלם לפי כמות מוצרים או הזמנות.',
     icon: '🛒',
     lucideIcon: 'ShoppingCart',
     color: 'brand-green',
@@ -267,7 +281,21 @@ export const servicesData: Service[] = [
       secondary: 'ראה דוגמאות'
     },
     relatedServices: ['web-development', 'automations', 'crm-systems'],
-    lastUpdated: '2026-03-06'
+    sources: [
+      {
+        title: 'ECDB: E-commerce market in Israel (2025)',
+        url: 'https://ecdb.com/resources/sample-data/market/il/all'
+      },
+      {
+        title: 'Statista: Mobile commerce share of retail e-commerce worldwide (2025)',
+        url: 'https://www.statista.com/statistics/1449284/retail-mobile-commerce-revenue-worldwide/'
+      },
+      {
+        title: 'Baymard Institute: Cart Abandonment Rate (2025)',
+        url: 'https://baymard.com/blog/cart-abandonment-rate'
+      }
+    ],
+    lastUpdated: '2026-11-18'
   },
 
   {
@@ -418,7 +446,7 @@ export const servicesData: Service[] = [
     name: 'עיצוב UI/UX',
     tagline: 'עיצוב שמרגיש נכון ומעודד פעולה',
     description: 'עיצוב ממשקים ומסעות משתמש עם דגש על המרה. מבוסס על מחקר, נתונים ועקרונות פסיכולוגיה.',
-    longDescription: 'עיצוב טוב הוא לא רק יפה - הוא עובד. לפי Forrester Research, כל $1 שמושקע ב-UX מחזיר $100. משתמשים מגבשים דעה על אתר תוך 50 מילישניות בלבד (Carleton University, 2006), ו-75% מהצרכנים שופטים אמינות עסק לפי עיצוב האתר (Stanford University). חברות מובלות עיצוב הכו את מדד S&P 500 ב-211% לאורך 10 שנים (Design Management Institute). הגישה שלי מבוססת על מחקר, נתונים ופסיכולוגיה של המרה. אני עובד עם Figma ומתמחה בעיצוב ממשקים מורכבים. כל עיצוב עובר בדיקות עם 5 משתמשים - מספיק לגלות 85% מבעיות השימושיות (Nielsen Norman Group).',
+    longDescription: 'עיצוב טוב הוא לא רק יפה - הוא עובד. חברות ברבעון העליון של מדד העיצוב של McKinsey הגדילו הכנסות ב-32 נקודות אחוז יותר מהמתחרות שלהן לאורך 5 שנים (McKinsey, 2018). משתמשים מגבשים דעה על המראה של אתר תוך 50 מילישניות בלבד (Carleton University, 2006), ובמחקר של סטנפורד המראה היה הגורם שהוזכר הכי הרבה כשאנשים העריכו את האמינות של אתר (Stanford, 2002). חברות מובלות עיצוב הכו את מדד S&P 500 ב-211% לאורך 10 שנים (Design Management Institute). הגישה שלי מבוססת על מחקר, נתונים ופסיכולוגיה של המרה. אני עובד עם Figma ומתמחה בעיצוב ממשקים מורכבים. כל עיצוב עובר בדיקות עם 5 משתמשים - מספיק לגלות 85% מבעיות השימושיות (Nielsen Norman Group).',
     icon: '🎨',
     lucideIcon: 'Palette',
     color: 'brand-orange',
@@ -529,7 +557,25 @@ export const servicesData: Service[] = [
       secondary: 'צפה בעיצובים שלי'
     },
     relatedServices: ['web-development', 'landing-pages', 'mobile-apps'],
-    lastUpdated: '2026-03-06'
+    sources: [
+      {
+        title: 'McKinsey: The Business Value of Design (2018)',
+        url: 'https://www.mckinsey.com/capabilities/prosper-and-growth/our-insights/the-business-value-of-design'
+      },
+      {
+        title: 'Nature: Web users judge sites in the blink of an eye (2006)',
+        url: 'https://www.nature.com/news/2006/060109/full/news060109-13.html'
+      },
+      {
+        title: 'Stanford / Consumer WebWatch: How Do People Evaluate a Web Site\'s Credibility? (2002)',
+        url: 'https://advocacy.consumerreports.org/research/how-do-people-evaluate-a-web-sites-credibility'
+      },
+      {
+        title: 'Nielsen Norman Group: Why You Only Need to Test with 5 Users',
+        url: 'https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/'
+      }
+    ],
+    lastUpdated: '2026-11-18'
   },
 
   {
@@ -658,7 +704,7 @@ export const servicesData: Service[] = [
     name: 'אוטומציות',
     tagline: 'תנו למחשב לעשות את העבודה המשעממת',
     description: 'אוטומציה של תהליכים עסקיים, חיבור בין מערכות קיימות, והפחתת עבודה ידנית חוזרת.',
-    longDescription: 'תפסיקו לעשות ידנית מה שמחשב יכול לעשות בשבילכם. לפי Zapier, אוטומציה יכולה לחסוך 240 שעות בשנה לעובד. 60% מהארגונים משיגים ROI תוך 12 חודשים מהטמעת אוטומציה (Kissflow, 2025). הזנת נתונים ידנית כוללת שיעור שגיאות של 1-4%, לעומת 0.01-0.04% במערכות אוטומטיות (Quality Magazine, 2024). אני מחבר בין הכלים שאתם כבר משתמשים בהם (Gmail, Google Sheets, WhatsApp, CRM) ויוצר תהליכים שעובדים בלי מגע יד אדם.',
+    longDescription: 'תפסיקו לעשות ידנית מה שמחשב יכול לעשות בשבילכם. 53% מהעובדים מעריכים שאוטומציה יכולה לחסוך להם עד שעתיים ביום, כ-240 שעות בשנה (WorkMarket, 2017). שיעור הטעויות הממוצע בהזנת נתונים ידנית הוא כ-1% (Quality Magazine, 2022), ובתהליך אוטומטי אין הקלדה חוזרת שבה הטעויות נוצרות. אני מחבר בין הכלים שאתם כבר משתמשים בהם (Gmail, Google Sheets, WhatsApp, CRM) ויוצר תהליכים שעובדים בלי מגע יד אדם.',
     icon: '⚡',
     lucideIcon: 'Zap',
     color: 'brand-green',
@@ -769,7 +815,17 @@ export const servicesData: Service[] = [
       secondary: 'ראה דוגמאות'
     },
     relatedServices: ['crm-systems', 'ecommerce', 'web-development'],
-    lastUpdated: '2026-03-06'
+    sources: [
+      {
+        title: 'WorkMarket: 2020 In(Sight) Report (2017)',
+        url: 'https://www.globenewswire.com/news-release/2017/7/13/1044173/0/en/WorkMarket-2020-In-Sight-Report-What-AI-Automation-Really-Mean-For-Work.html'
+      },
+      {
+        title: 'Quality Magazine: Manual Data Entry and Its Effects on Quality (2022)',
+        url: 'https://www.qualitymag.com/articles/96853-manual-data-entry-and-its-effects-on-quality'
+      }
+    ],
+    lastUpdated: '2026-11-18'
   },
 
   {
@@ -778,7 +834,7 @@ export const servicesData: Service[] = [
     name: 'אפליקציות מובייל',
     tagline: 'אפליקציה אחת שעובדת על כל מכשיר',
     description: 'פיתוח אפליקציות מובייל Cross-Platform עם React Native. אפליקציה אחת שעובדת על כל המכשירים.',
-    longDescription: 'אפליקציות מובייל שנראות ומרגישות נייטיביות - גם ב-iOS וגם ב-Android. React Native חוסך 30-40% בעלויות ו-40% בזמן פיתוח לעומת Native (HashStudioz/Binmile, 2025), ומחזיק 35% מנתח שוק הפריימוורקים חוצי-פלטפורמות (Stack Overflow Developer Survey, 2024). אני משתמש ב-React Native ו-Expo כדי לפתח אפליקציה אחת שעובדת על כל המכשירים. טיפ: משתמשים שמקבלים Push Notifications ב-90 הימים הראשונים נשמרים פי 3 יותר (Airship, 2025).',
+    longDescription: 'אפליקציות מובייל שנראות ומרגישות נייטיביות - גם ב-iOS וגם ב-Android. מהניסיון שלי, אפליקציה אחת ב-React Native חוסכת בדרך כלל 30-40% מהעלות לעומת שתי אפליקציות Native נפרדות, ו-React Native הוא אחד משני הפריימוורקים חוצי-הפלטפורמות הנפוצים ביותר (Stack Overflow Developer Survey, 2024). אני משתמש ב-React Native ו-Expo כדי לפתח אפליקציה אחת שעובדת על כל המכשירים. טיפ: משתמשים שקיבלו Push Notifications ב-90 הימים הראשונים נשמרו בשיעור גבוה כמעט פי 3 (Airship, 2017).',
     icon: '📱',
     lucideIcon: 'Smartphone',
     color: 'brand-navy',
@@ -865,7 +921,7 @@ export const servicesData: Service[] = [
       },
       {
         question: 'מה ההבדל בין React Native לפיתוח נייטיבי?',
-        answer: 'React Native מאפשר לפתח אפליקציה אחת ל-iOS ו-Android, במקום שתיים נפרדות. חוסך 40-60% בעלויות ובזמן פיתוח.'
+        answer: 'React Native מאפשר לפתח אפליקציה אחת ל-iOS ו-Android, במקום שתיים נפרדות. מהניסיון שלי זה חוסך בדרך כלל 30-40% מהעלות.'
       },
       {
         question: 'כמה זמן לוקח לפתח אפליקציה?',
@@ -893,7 +949,17 @@ export const servicesData: Service[] = [
       secondary: 'ראה דוגמאות'
     },
     relatedServices: ['ui-ux-design', 'crm-systems', 'automations'],
-    lastUpdated: '2026-03-06'
+    sources: [
+      {
+        title: 'Stack Overflow Developer Survey 2024: Technology',
+        url: 'https://survey.stackoverflow.co/2024/technology'
+      },
+      {
+        title: 'Airship: How push notifications impact mobile app retention (2017)',
+        url: 'https://www.airship.com/newsroom/new-urban-airship-mobile-app-retention-study/'
+      }
+    ],
+    lastUpdated: '2026-11-18'
   }
 ]
 

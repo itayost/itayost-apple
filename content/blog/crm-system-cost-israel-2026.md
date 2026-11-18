@@ -31,8 +31,6 @@ sources:
     url: "https://nucleusresearch.com/research/single/crm-returns-3-10-per-dollar-spent/"
   - title: "Nucleus Research: CRM benefit areas with the greatest ROI impact (2024)"
     url: "https://nucleusresearch.com/research/single/crm-benefit-areas-with-the-greatest-roi-impact/"
-  - title: "EngageBay — SMB CRM churn statistics"
-    url: "https://www.engagebay.com/"
 ---
 
 **מערכת CRM מותאמת בישראל עולה ₪15,000-25,000 הקמה למערכת בסיסית ו-₪25,000-50,000 למערכת מתקדמת, בתוספת דמי ניהול חודשיים קבועים של ₪500-1,800.** המחיר נראה גבוה לעומת מנוי SaaS חודשי — אבל ב-CRM מותאם אתם משלמים פעם אחת על המערכת, הקוד והנתונים בבעלותכם, והעלות לא מטפסת כשהצוות גדל. במדריך הזה אפרק בדיוק לאן הולך הכסף, מה מייקר פרויקט, ואיך זה מצטבר מול Monday ו-HubSpot לאורך שלוש שנים.
@@ -77,7 +75,7 @@ sources:
 
 ב-SaaS העלות **לא נעצרת** — היא ממשיכה ועולה ככל שמוסיפים משתמשים. ב-CRM מותאם רוב העלות היא חד-פעמית, ואחרי שנה 1 נשארים רק דמי הניהול הקבועים. לכן עסקים שחושבים לטווח ארוך חוסכים לרוב 30,000-80,000 ש"ח בשנה.
 
-> 💡 חשוב להבין: "חינם" של HubSpot הוא נקודת פתיחה. לפי EngageBay, 74% מהעסקים הקטנים עוברים לכלי אחר תוך שנה בגלל קפיצות מחיר ומורכבות.
+> 💡 חשוב להבין: "חינם" של HubSpot הוא נקודת פתיחה. אוטומציות ודוחות מתקדמים דורשים את תוכנית Professional, והמחיר קופץ בהתאם.
 
 ## האם זה משתלם? ה-ROI של CRM
 
