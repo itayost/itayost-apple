@@ -231,18 +231,49 @@ describe('content snippet invariants', () => {
   })
 })
 
-// CRM figures retired in November 2026 because no current primary source backs
-// them. The replacements are the Nucleus Research 2023 ($3.10) and 2024 (51%
-// time savings) studies in src/data/statistics.ts.
+// Figures retired in November 2026 because no current primary source backs
+// them (src/data/statistics.ts holds the replacements). The list names the
+// claim or the source it leaned on, so a copy-paste from an old draft fails here.
 const RETIRED_CLAIMS: { label: string; pattern: RegExp }[] = [
   { label: 'Nucleus 2014 $8.71 CRM ROI', pattern: /8\.71/ },
   { label: 'untraceable "29% more sales" CRM lift', pattern: /29%\**\s*במכירות|מכירות ב-\**29%/ },
   { label: 'untraceable "34% productivity" CRM lift', pattern: /34%\**\s*בפרודוקטיביות/ },
   { label: 'unverified "47-55% of CRM projects fail"', pattern: /47%?-55%/ },
+  { label: '"-4.42% conversion per second" (not in Portent\'s current study)', pattern: /4\.42%/ },
+  { label: 'manual vs automated "0.01-0.04%" error rate (vendor blogs)', pattern: /0\.01%?-0\.04%/ },
+  { label: '"74% leave HubSpot within a year" (vendor claim)', pattern: /74% מהעסקים/ },
+  { label: 'Forrester "$1 in UX returns $100"', pattern: /מחזיר \$100/ },
+  { label: 'Gartner "$5,600 per minute" downtime', pattern: /\$5,600/ },
+  ...['Tinyform', 'HashStudioz', 'Binmile', 'ContentPowered', 'FirstPageSage', 'Grand View Research',
+    'EngageBay', 'Kissflow', 'SOASTA'].map(name => ({
+    label: `untraceable source "${name}"`,
+    pattern: new RegExp(name),
+  })),
+]
+
+const contentAndServiceSources = () => [
+  ...[...readMarkdownFiles('content/blog'), ...readMarkdownFiles('content/guides')].flatMap(f =>
+    ((f.data.sources ?? []) as { url: string }[]).map(s => ({ where: f.slug, url: s.url }))
+  ),
+  ...servicesData.flatMap(s => (s.sources ?? []).map(src => ({ where: `service:${s.slug}`, url: src.url }))),
 ]
 
 describe('content statistic invariants', () => {
-  test('no retired CRM statistic appears in content or service copy', () => {
+  test('every cited source links to the study itself, not a site homepage', () => {
+    // Arrange
+    const sources = contentAndServiceSources()
+
+    // Act
+    const homepageOnly = sources
+      .filter(({ url }) => ['', '/'].includes(new URL(url).pathname))
+      .map(({ where, url }) => `${where}: ${url}`)
+
+    // Assert
+    expect(sources.length).toBeGreaterThan(0)
+    expect(homepageOnly).toEqual([])
+  })
+
+  test('no retired statistic appears in content or service copy', () => {
     // Arrange
     const texts = [
       ...[...readMarkdownFiles('content/blog'), ...readMarkdownFiles('content/guides')].map(f => ({
