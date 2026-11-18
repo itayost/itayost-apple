@@ -12,6 +12,7 @@
     "analyze": "ANALYZE=true next build",
     "test": "vitest run",
     "test:watch": "vitest",
+    "seo:snapshot": "NODE_USE_ENV_PROXY=1 node scripts/seo-snapshot.mjs",
     "prebuild": "vitest run"
   },
   "dependencies": {
