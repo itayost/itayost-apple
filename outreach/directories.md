@@ -49,27 +49,15 @@ After each submission, record here: date, listing URL, whether the website link 
 | easy | | |
 | THE INDEX | | |
 
-## Client-site footer credits (with permission)
+## Existing listings
 
-**Credit snippet (one line, for client site footers):**
+| Site | Found | Links to itayost.com | nofollow? |
+|---|---|---|---|
+| Otomatzia (profile page) | 2026-11-18, external backlinks review | yes | not checked: open the profile, inspect the link, read its `rel` |
 
-```html
-<a href="https://www.itayost.com" rel="dofollow">נבנה על ידי ITAYOST — בניית אתרים ומערכות לעסקים</a>
-```
+## Client-site credits
 
-Short variant: `עוצב ופותח על ידי <a href="https://www.itayost.com">ITAYOST</a>`
-
-**Permission ask (WhatsApp, per client):**
-
-היי, שאלה קטנה — אכפת לכם שאוסיף שורת קרדיט קטנה בתחתית האתר, משהו כמו "נבנה על ידי ITAYOST" עם קישור? זה דיסקרטי, לא מפריע לעיצוב, ועוזר לי מאוד. אם לא נוח לכם — אין שום בעיה.
-
-**Candidate sites:** Garden of Eden, Active Plus 60 (active-plus-website), HaMerhav deploys (per-client permission from May).
-
-| Site | Permission | Added |
-|---|---|---|
-| Garden of Eden | | |
-| Active Plus 60 | | |
-| HaMerhav (May) | | |
+Moved to `outreach/client-credits.md` (2026-11-18). The old snippet here used `rel="dofollow"`, which is not a real value, and a keyword anchor ("בניית אתרים ומערכות לעסקים"), which Google's link spam policy flags when it repeats across client footers. The new kit uses a brand anchor only.
 
 ## Status log
 
