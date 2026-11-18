@@ -35,6 +35,8 @@ sources:
     url: "https://web.dev/case-studies/vodafone"
   - title: "SISTRIX: Core Web Vitals is a measurable ranking factor (2021)"
     url: "https://www.sistrix.com/blog/core-web-vitals-is-a-measurable-ranking-factor/"
+  - title: "StatCounter: נתח מובייל מהגלישה העולמית (2025)"
+    url: "https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet"
 ---
 
 # מהירות אתר - למה כל שנייה משפיעה על המכירות והדירוג בגוגל
@@ -191,7 +193,7 @@ Cache הוא מנגנון שמאחסן גרסה "מוכנה" של האתר בז�
 - **מכשירים חלשים יותר**: לא כולם הולכים עם iPhone 15 Pro
 - **גולשים פחות סבלניים**: במובייל הציפייה למהירות עוד יותר גבוהה
 
-בישראל, 70% מהחיפושים בגוגל מבוצעים ממובייל. זה אומר שרוב הלקוחות הפוטנציאליים שלכם חווים את האתר במובייל - ואם הוא איטי שם, הם הולכים למתחרה.
+כ-60% מהגלישה באינטרנט בעולם היא ממובייל (StatCounter, 2025). זה אומר שרוב הלקוחות הפוטנציאליים שלכם חווים את האתר במובייל - ואם הוא איטי שם, הם הולכים למתחרה.
 
 ### אופטימיזציה ייעודית למובייל
 

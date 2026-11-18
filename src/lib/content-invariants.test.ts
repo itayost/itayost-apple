@@ -244,6 +244,9 @@ const RETIRED_CLAIMS: { label: string; pattern: RegExp }[] = [
   { label: '"74% leave HubSpot within a year" (vendor claim)', pattern: /74% מהעסקים/ },
   { label: 'Forrester "$1 in UX returns $100"', pattern: /מחזיר \$100/ },
   { label: 'Gartner "$5,600 per minute" downtime', pattern: /\$5,600/ },
+  { label: 'NN/g "80% of AI sites share a structure" (no source)', pattern: /80% מאתרי/ },
+  { label: 'SEJ "62% of AI sites fail SEO" (no source)', pattern: /62% (מאתרי|נכשלים)/ },
+  { label: '"95% fewer hack attempts after React" (no source)', pattern: /95% ירידה בניסיונות/ },
   ...['Tinyform', 'HashStudioz', 'Binmile', 'ContentPowered', 'FirstPageSage', 'Grand View Research',
     'EngageBay', 'Kissflow', 'SOASTA'].map(name => ({
     label: `untraceable source "${name}"`,
