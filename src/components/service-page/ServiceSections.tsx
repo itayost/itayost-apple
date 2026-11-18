@@ -3,6 +3,7 @@ import { servicePage } from '@/config/servicePage'
 import { PenTick } from '@/components/pad/PenTick'
 import { PenCross } from '@/components/pad/PenCross'
 import { splitCitations, splitSentences } from '@/lib/service-copy'
+import { SourcesList } from '@/components/blog/SourcesList'
 import { MoreLines } from './MoreLines'
 
 interface SectionHeadingProps {
@@ -76,6 +77,7 @@ export function ServiceWhy({ service }: { service: Service }) {
             )}
           </div>
         )}
+        <SourcesList items={service.sources} />
       </div>
     </section>
   )

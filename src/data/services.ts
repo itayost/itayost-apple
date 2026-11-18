@@ -41,6 +41,7 @@ export interface Service {
     secondary: string
   }
   relatedServices?: string[] // IDs of related services for internal linking
+  sources?: { title: string; url: string }[] // The studies cited in longDescription, linked under it
   lastUpdated?: string // ISO date string for schema freshness signals
 }
 
@@ -275,7 +276,7 @@ export const servicesData: Service[] = [
     name: 'בניית מערכת CRM מותאמת אישית',
     tagline: 'CRM מותאם לעסק — בעברית מלאה, ללא עמלת מושב לכל משתמש',
     description: 'בניית מערכת CRM מותאמת אישית לניהול לקוחות, עסקאות, משימות ואוטומציה. עברית מלאה, חיבור ישיר למפתח, ללא עמלת מושב לכל משתמש.',
-    longDescription: 'בניית מערכת CRM מותאמת אישית היא לב העסק. לפי Nucleus Research, CRM מחזיר $8.71 על כל דולר שמושקע. עסקים עם CRM רואים עלייה של 29% במכירות ו-34% בפרודוקטיביות (Salesforce, 2024). במקום להסתדר עם פתרונות גנריים כמו HubSpot או Salesforce (47-55% מהטמעות CRM נכשלות לפי Forrester, בעיקר בגלל חוסר התאמה ועמלות מושב חודשיות שגדלות עם הצוות), אני בונה מערכות CRM לפי הזמנה שמתאימות בדיוק לתהליכי העבודה שלך. ניהול לידים, מעקב אחר עסקאות, אוטומציות, תזכורות, דוחות - הכל במקום אחד, בעברית, ב-RTL. המערכת משתלבת עם הכלים הקיימים שלך (דואר, לוח שנה, WhatsApp Business, מערכות הנהלת חשבונות בישראליות) ונגישה מכל מכשיר. תמחור ברור: עלות הקמה חד פעמית בפיתוח + דמי ניהול חודשיים קבועים שמכסים אחסון, גיבויים ותחזוקה - בלי לקנות מושב לכל משתמש כמו ב-Monday/HubSpot, כך שהעלות לא גדלה כשהצוות מתרחב. הקוד והנתונים שלך, ללא תלות בספק, מתאים לעסקים בישראל שמחפשים פתרון CRM בעברית עם הטמעה צמודה.',
+    longDescription: 'בניית מערכת CRM מותאמת אישית היא לב העסק. הטמעת CRM מחזירה בממוצע $3.10 על כל דולר שמושקע (Nucleus Research, 2023). 51% מהתשואה הזאת מגיעים מחיסכון בזמן עבודה ומייעול תהליכים, והגדלת ההכנסות היא הרכיב שתורם הכי מעט (Nucleus Research, 2024). כלומר, CRM מחזיר את עצמו רק כשהצוות באמת עובד איתו, ופתרונות גנריים כמו HubSpot או Salesforce לא תמיד מתאימים לתהליך שלך וגובים עמלת מושב חודשית שגדלה עם הצוות. לכן אני בונה מערכות CRM לפי הזמנה שמתאימות בדיוק לתהליכי העבודה שלך. ניהול לידים, מעקב אחר עסקאות, אוטומציות, תזכורות, דוחות - הכל במקום אחד, בעברית, ב-RTL. המערכת משתלבת עם הכלים הקיימים שלך (דואר, לוח שנה, WhatsApp Business, מערכות הנהלת חשבונות בישראליות) ונגישה מכל מכשיר. תמחור ברור: עלות הקמה חד פעמית בפיתוח + דמי ניהול חודשיים קבועים שמכסים אחסון, גיבויים ותחזוקה - בלי לקנות מושב לכל משתמש כמו ב-Monday/HubSpot, כך שהעלות לא גדלה כשהצוות מתרחב. הקוד והנתונים שלך, ללא תלות בספק, מתאים לעסקים בישראל שמחפשים פתרון CRM בעברית עם הטמעה צמודה.',
     icon: '📊',
     lucideIcon: 'BarChart3',
     color: 'brand-navy',
@@ -398,7 +399,17 @@ export const servicesData: Service[] = [
       secondary: 'ראה דוגמאות'
     },
     relatedServices: ['automations', 'web-development', 'mobile-apps'],
-    lastUpdated: '2026-05-03'
+    sources: [
+      {
+        title: 'Nucleus Research: CRM returns $3.10 per dollar spent (2023)',
+        url: 'https://nucleusresearch.com/research/single/crm-returns-3-10-per-dollar-spent/'
+      },
+      {
+        title: 'Nucleus Research: CRM benefit areas with the greatest ROI impact (2024)',
+        url: 'https://nucleusresearch.com/research/single/crm-benefit-areas-with-the-greatest-roi-impact/'
+      }
+    ],
+    lastUpdated: '2026-11-18'
   },
 
   {

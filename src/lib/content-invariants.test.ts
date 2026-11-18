@@ -6,6 +6,7 @@ import { getAllPosts } from './blog'
 import { getAllGuides } from './guides'
 import { categoryServiceMap } from '@/config/categoryServices'
 import { clusters } from '@/config/clusters'
+import { servicesData } from '@/data/services'
 import {
   seoConfig,
   SITE_TITLE_SUFFIX,
@@ -227,5 +228,36 @@ describe('content snippet invariants', () => {
 
     // Assert
     expect(fixedButStillListed).toEqual([])
+  })
+})
+
+// CRM figures retired in November 2026 because no current primary source backs
+// them. The replacements are the Nucleus Research 2023 ($3.10) and 2024 (51%
+// time savings) studies in src/data/statistics.ts.
+const RETIRED_CLAIMS: { label: string; pattern: RegExp }[] = [
+  { label: 'Nucleus 2014 $8.71 CRM ROI', pattern: /8\.71/ },
+  { label: 'untraceable "29% more sales" CRM lift', pattern: /29%\**\s*במכירות|מכירות ב-\**29%/ },
+  { label: 'untraceable "34% productivity" CRM lift', pattern: /34%\**\s*בפרודוקטיביות/ },
+  { label: 'unverified "47-55% of CRM projects fail"', pattern: /47%?-55%/ },
+]
+
+describe('content statistic invariants', () => {
+  test('no retired CRM statistic appears in content or service copy', () => {
+    // Arrange
+    const texts = [
+      ...[...readMarkdownFiles('content/blog'), ...readMarkdownFiles('content/guides')].map(f => ({
+        where: f.slug,
+        text: JSON.stringify(f.data) + f.body,
+      })),
+      ...servicesData.map(s => ({ where: `service:${s.slug}`, text: JSON.stringify(s) })),
+    ]
+
+    // Act
+    const hits = texts.flatMap(({ where, text }) =>
+      RETIRED_CLAIMS.filter(c => c.pattern.test(text)).map(c => `${where}: ${c.label}`)
+    )
+
+    // Assert
+    expect(hits).toEqual([])
   })
 })

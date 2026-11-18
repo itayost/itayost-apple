@@ -179,24 +179,29 @@ export const statistics: Statistic[] = [
   },
 
   // --- CRM ---
+  // Retired 2026-11: the 2014 Nucleus "$8.71" figure (superseded by its own
+  // 2023 study below), the "29% sales / 34% productivity / 42% forecast"
+  // figures (no primary Salesforce source could be traced) and the "47-55%
+  // fail" range (traces to a 2009 Forrester study at best; the 55% to nothing).
+  // content-invariants.test.ts keeps them out of the site copy.
   {
     id: 'crm-roi',
-    claim: 'CRM מחזיר בממוצע $8.71 על כל $1 שמושקע',
-    claimEn: 'CRM returns an average of $8.71 for every $1 spent',
-    value: '$8.71',
-    source: 'Nucleus Research',
-    year: 2014,
-    url: 'https://nucleusresearch.com/research/single/crm-pays-back-8-71-for-every-dollar-spent/',
+    claim: 'CRM מחזיר בממוצע $3.10 על כל $1 שמושקע',
+    claimEn: 'CRM returns an average of $3.10 for every $1 spent',
+    value: '$3.10',
+    source: 'Nucleus Research, CRM returns $3.10 per dollar spent',
+    year: 2023,
+    url: 'https://nucleusresearch.com/research/single/crm-returns-3-10-per-dollar-spent/',
     category: 'crm',
   },
   {
-    id: 'crm-sales-improvement',
-    claim: 'עסקים שמשתמשים ב-CRM רואים עלייה של 29% במכירות, 34% בפרודוקטיביות ו-42% בדיוק תחזיות',
-    claimEn: 'Businesses using CRM see 29% increase in sales, 34% in productivity, and 42% in forecast accuracy',
-    value: '29%',
-    source: 'Salesforce',
+    id: 'crm-roi-time-savings',
+    claim: '51% מהתשואה של CRM מגיעים מחיסכון בזמן עבודה ומייעול תהליכים; הגדלת ההכנסות תורמת הכי מעט',
+    claimEn: 'Time savings and process efficiency make up 51% of total CRM ROI; increased revenue contributes the least',
+    value: '51%',
+    source: 'Nucleus Research, CRM benefit areas with the greatest ROI impact',
     year: 2024,
-    url: 'https://www.salesforce.com/crm/',
+    url: 'https://nucleusresearch.com/research/single/crm-benefit-areas-with-the-greatest-roi-impact/',
     category: 'crm',
   },
   {
@@ -207,16 +212,6 @@ export const statistics: Statistic[] = [
     source: 'Bain & Company / Harvard Business Review',
     year: 2014,
     url: 'https://hbr.org/2014/10/the-value-of-keeping-the-right-customers',
-    category: 'crm',
-  },
-  {
-    id: 'crm-failure-rate',
-    claim: 'שיעור הכישלון בהטמעת CRM הוא 47-55%, בעיקר בגלל אימוץ איטי (49%), ניהול שינוי לקוי (36%) והגדרת דרישות לקויה (33%)',
-    claimEn: 'CRM implementation failure rate is 47-55%, primarily due to slow adoption (49%), poor change management (36%), and poor requirements (33%)',
-    value: '47-55%',
-    source: 'Forrester Research',
-    year: 2025,
-    url: 'https://www.forrester.com/blogs/poor-change-management-kills-crm-success-here-is-how-to-get-it-right/',
     category: 'crm',
   },
 

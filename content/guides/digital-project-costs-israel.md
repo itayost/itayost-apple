@@ -3,7 +3,7 @@ title: "כמה עולה פרויקט דיגיטלי לעסק בישראל? מד�
 metaTitle: "כמה עולה פרויקט דיגיטלי לעסק? מחירון 2026"
 description: "כמה עולה פרויקט דיגיטלי בישראל ב-2026? אתר 8,000-25,000 ₪, חנות 20,000-35,000 ₪, אפליקציה מ-15,000 ₪, CRM מ-15,000 ₪ ותחזוקה 400-2,000 ₪ בחודש."
 date: "2026-07-11"
-lastUpdated: "2026-07-11"
+lastUpdated: "2026-11-18"
 readTime: "13 דקות קריאה"
 tldr:
   - "אתר תדמית בישראל עולה 8,000-15,000 ₪, אתר עסקי מתקדם 15,000-25,000 ₪, חנות אונליין 20,000-35,000 ₪ ודף נחיתה מתחיל בכ-3,000 ₪."
@@ -36,8 +36,10 @@ sources:
     url: "https://www.gartner.com/"
   - title: "Sucuri — Hacked Website Report 2023 (90% מאתרי CMS שנפרצים הם WordPress)"
     url: "https://sucuri.net/"
-  - title: "Nucleus Research — CRM ROI ($8.71 על כל $1 שמושקע)"
-    url: "https://nucleusresearch.com/"
+  - title: "Nucleus Research: CRM returns $3.10 per dollar spent (2023)"
+    url: "https://nucleusresearch.com/research/single/crm-returns-3-10-per-dollar-spent/"
+  - title: "Nucleus Research: CRM benefit areas with the greatest ROI impact (2024)"
+    url: "https://nucleusresearch.com/research/single/crm-benefit-areas-with-the-greatest-roi-impact/"
   - title: "Nielsen Norman Group — 80% מאתרי AI חולקים את אותו מבנה"
     url: "https://www.nngroup.com/"
   - title: "Statista — שוק האפליקציות העולמי צפוי להגיע ל-$673 מיליארד עד 2027"
@@ -120,7 +122,7 @@ sources:
 
 מה מייקר פרויקט CRM: כמות האוטומציות (תזכורות, הקצאת לידים, פולו-אפ), אינטגרציות לכלים קיימים (WhatsApp Business, חשבוניות ישראליות, Gmail ולוח שנה), מורכבות הדוחות, ניהול הרשאות והיקף הנתונים שצריך לייבא ממערכת קודמת.
 
-והאם זה משתלם? לפי Nucleus Research, ה-ROI הממוצע של CRM הוא 8.71 דולר על כל דולר שמושקע, ועסקים עם CRM מדווחים על עלייה של 29% במכירות. את ההשוואה המלאה מול Monday ו-HubSpot ואת פירוק העלויות כתבתי ב[מדריך מחירי מערכות CRM בישראל](/blog/crm-system-cost-israel-2026), ופרטים על העבודה שלי בתחום יש בעמוד [מערכות CRM מותאמות אישית](/services/crm-systems).
+והאם זה משתלם? לפי Nucleus Research, ה-ROI הממוצע של CRM הוא 3.10 דולר על כל דולר שמושקע (2023), ויותר ממחצית ממנו מגיע מחיסכון בזמן עבודה ומייעול תהליכים (2024). את ההשוואה המלאה מול Monday ו-HubSpot ואת פירוק העלויות כתבתי ב[מדריך מחירי מערכות CRM בישראל](/blog/crm-system-cost-israel-2026), ופרטים על העבודה שלי בתחום יש בעמוד [מערכות CRM מותאמות אישית](/services/crm-systems).
 
 ## כמה עולה תחזוקה חודשית?
 
