@@ -16,6 +16,7 @@ import { MotionProvider } from '@/components/common/MotionProvider'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { seoConfig } from '@/config/seo'
+import { verificationCode } from '@/lib/site-verification'
 
 import { fontVariables } from './fonts'
 
@@ -113,7 +114,10 @@ function StructuredData() {
   )
 }
 
-// Google Analytics Component
+// Placeholder values in the env template must not reach the page.
+const googleVerification = verificationCode('google', process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION)
+const bingVerification = verificationCode('bing', process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION)
+
 export default function RootLayout({
   children,
 }: {
@@ -129,12 +133,8 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         
         {/* Verification Tags */}
-        {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
-          <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION} />
-        )}
-        {process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION && (
-          <meta name="msvalidate.01" content={process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION} />
-        )}
+        {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+        {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
         
         {/* Preconnect for Performance */}
         {/* No fonts.googleapis/gstatic preconnect: next/font/google self-hosts

@@ -6,7 +6,8 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/', '/static/'],
+        // Keep /_next/ crawlable: it holds the JS and CSS crawlers need to render pages.
+        disallow: ['/api/', '/admin/'],
       },
       {
         userAgent: 'Googlebot',
