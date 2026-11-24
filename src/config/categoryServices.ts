@@ -59,6 +59,11 @@ export const categoryServiceMap: Record<string, CategoryService> = {
     serviceName: 'מערכות ניהול ו-CRM מותאמות אישית',
     ctaMessage: 'רוצים מערכת ניהול שמתאימה בדיוק לעסק שלכם?',
   },
+  'אוטומציה ו-AI': {
+    serviceId: 'automations',
+    serviceName: 'אוטומציות ובינה מלאכותית לעסקים',
+    ctaMessage: 'רוצים שהעסק יענה ללקוחות גם כשאתם לא זמינים?',
+  },
   'המרות וחווית משתמש': {
     serviceId: 'ui-ux-design',
     serviceName: 'עיצוב חוויית משתמש שממירה',

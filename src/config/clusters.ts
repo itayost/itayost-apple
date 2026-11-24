@@ -43,6 +43,7 @@ export const clusters: TopicCluster[] = [
       'crm-system-cost-israel-2026',
       'crm-vs-excel-spreadsheets',
       'custom-crm-vs-monday-hubspot-2026',
+      'automated-lead-follow-up-report',
     ],
     serviceId: 'crm-systems',
     serviceAnchor: 'בניית מערכת CRM לפי הזמנה',
