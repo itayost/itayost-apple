@@ -1,20 +1,20 @@
-# Directory Submission Kit — itayost.com
+# Directory Submission Kit: itayost.com
 
-**H2 plan, Month 1.** Everything below is copy-paste-ready so submissions take one sitting. Keep NAP identical everywhere — it must match the LocalBusiness schema in `src/config/seo.ts`.
+**H2 plan, Month 1.** Everything below is copy-paste-ready so submissions take one sitting. Keep NAP (name, address, phone) identical everywhere: it must match the LocalBusiness schema in `src/config/seo.ts` and the Google Business Profile.
 
 ## NAP block (use verbatim, everywhere)
 
 | Field | Value |
 |---|---|
-| שם העסק | ITAYOST — איתי אוסטרייך |
+| שם העסק | ITAYOST - איתי אוסטרייך |
 | תחום | פיתוח תוכנה / בניית אתרים / מערכות CRM |
-| כתובת | רמת גן (ללא כתובת רחוב — עסק שירות) |
+| כתובת | רמת גן (ללא כתובת רחוב, עסק שירות) |
 | טלפון | 054-499-4417 |
-| אימייל | itayost1@gmail.com |
+| אימייל | itay@itayost.com |
 | אתר | https://www.itayost.com |
 | שעות | א'-ה' 09:00-21:00, ו' 09:00-15:00 |
 
-Note: the LocalBusiness schema uses itayost1@gmail.com — if you prefer itay@itayost.com in directories, update the schema first so NAP stays consistent.
+Email: the LocalBusiness schema uses itay@itayost.com (Google Workspace mail on the domain, checked 2026-11-24), so directories use it too. If the Google Business Profile shows a different email or business name, change the profile or this table so all three match.
 
 ## Descriptions
 
@@ -24,7 +24,7 @@ Note: the LocalBusiness schema uses itayost1@gmail.com — if you prefer itay@it
 
 **ארוך (~500 תווים):**
 
-אני איתי אוסטרייך, מפתח Full-Stack מרמת גן. אני בונה לעסקים קטנים ובינוניים אתרים מהירים, מערכות CRM לפי הזמנה, אוטומציות ואפליקציות מובייל — הכל בהתאמה אישית מלאה. בניגוד למערכות מדף עם תשלום חודשי פר משתמש, אצלי הקוד בבעלות הלקוח והעלות לא גדלה כשהצוות מתרחב. המערכות מתחברות ל-WhatsApp, Gmail וחשבוניות ישראליות. שירות אישי: מדברים ישירות עם המפתח, הצעת מחיר תוך 24 שעות, ותמיכה מלאה אחרי המסירה. עובד עם לקוחות בכל הארץ.
+אני איתי אוסטרייך, מפתח Full-Stack מרמת גן. אני בונה לעסקים קטנים ובינוניים אתרים מהירים, מערכות CRM לפי הזמנה, אוטומציות ואפליקציות מובייל, הכל בהתאמה אישית מלאה. בניגוד למערכות מדף עם תשלום חודשי פר משתמש, אצלי הקוד בבעלות הלקוח והעלות לא גדלה כשהצוות מתרחב. המערכות מתחברות ל-WhatsApp, Gmail וחשבוניות ישראליות. שירות אישי: מדברים ישירות עם המפתח, הצעת מחיר תוך 24 שעות, ותמיכה מלאה אחרי המסירה. עובד עם לקוחות בכל הארץ.
 
 **קטגוריות מומלצות:** בניית אתרים, פיתוח תוכנה, מערכות מידע / CRM, מחשבים ואינטרנט.
 
@@ -37,7 +37,7 @@ Note: the LocalBusiness schema uses itayost1@gmail.com — if you prefer itay@it
 | 1 | B144 (בזק) | https://www.b144.co.il/selfRegister/ | הרשמה עצמית חינם, אינדקס עם סמכות דומיין גבוהה |
 | 2 | דפי זהב | https://www.d.co.il/LandingPage/AddBusiness/ | הוספת עסק חינם, האינדקס הוותיק והמוכר בישראל |
 | 3 | easy (איזי) | https://easy.co.il | פרופיל עסק חינם, נפח גלישה גבוה |
-| 4 | THE INDEX | https://theindex.co.il/ | הוספה חינם ומהירה |
+| 4 | THE INDEX | https://theindex.co.il/addbiz/ | הוספה חינם ומהירה (דורש התחברות) |
 | 5 | Google Business Profile | קיים כבר | לוודא שהפרטים זהים ל-NAP למעלה (טלפון, שעות, קטגוריות) |
 
 After each submission, record here: date, listing URL, whether the website link is dofollow.
@@ -62,3 +62,4 @@ Moved to `outreach/client-credits.md` (2026-11-18). The old snippet here used `r
 ## Status log
 
 - 2026-08-04: kit prepared; directories verified via web search ([B144](https://www.b144.co.il/selfRegister/), [דפי זהב](https://www.d.co.il/LandingPage/AddBusiness/), [THE INDEX](https://theindex.co.il/), [רשימת אינדקסים](https://www.yydevelopment.co.il/directories-websites/)). Nothing submitted yet — Itay submits.
+- 2026-11-24: links rechecked from the cloud session. דפי זהב and THE INDEX answer; B144 timed out and easy blocked automated requests (both likely fine in a normal browser). Email in the NAP table changed to itay@itayost.com to match the schema. Each directory needs Itay's own login and phone verification, so Itay submits.
