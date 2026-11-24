@@ -162,4 +162,4 @@ Never put the analytics key, raw query dumps or code in an email.
 
 - Done 2026-11-24 (issue #13): the phone link on `/privacy-policy` and `/terms` now sends `phone_click` too.
 - Done 2026-11-24 (issue #12): `src/app/robots.ts` no longer blocks `/_next/` for `*`; `src/app/robots.test.ts` keeps it that way.
-- Done 2026-11-24 (issue #14, code part): placeholder verification codes in env vars no longer reach the page (`src/lib/site-verification.ts`). Bing Webmaster Tools import is still Itay's.
+- Done 2026-11-24 (issue #14): placeholder verification codes in env vars no longer reach the page (`src/lib/site-verification.ts`), and Itay imported the site into Bing Webmaster Tools from Search Console.
