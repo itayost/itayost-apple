@@ -41,10 +41,11 @@ async function gsc(report, limit) {
   return res.json()
 }
 
-const [overview, queryPages, pages] = await Promise.all([
+const [overview, queryPages, pages, queries] = await Promise.all([
   gsc('overview'),
   gsc('query-pages', 5000),
   gsc('pages', 1000),
+  gsc('queries', 1000),
 ])
 
 const t = overview.data
@@ -65,6 +66,15 @@ const snapshot = {
   opportunities: findOpportunities(queryPages.data ?? [], pages.data ?? []),
   pages: (pages.data ?? []).map(({ page, clicks, impressions, ctr, position, changes }) => ({
     page,
+    clicks,
+    impressions,
+    ctr,
+    position,
+    changes,
+  })),
+  // Query-level numbers, used to update seo-strategy/loop/keywords.csv each week.
+  queries: (queries.data ?? []).map(({ query, clicks, impressions, ctr, position, changes }) => ({
+    query,
     clicks,
     impressions,
     ctr,

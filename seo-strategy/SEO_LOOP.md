@@ -160,5 +160,6 @@ Never put the analytics key, raw query dumps or code in an email.
 
 ## Backlog seeded on 2026-11-18
 
-- `phone_click` has had no events in PostHog in the past 30 days. The phone link on `/privacy-policy` and `/terms` (`src/components/pad/DocumentContact.tsx`) sends only `contact_click`. This is a tracking fix, so it is a hand-back.
-- `src/app/robots.ts` blocks `/_next/` for `*`. Googlebot and Bingbot have their own groups and are unaffected, but other crawlers cannot fetch the JS/CSS needed to render pages. This is a robots change, so it is a hand-back.
+- Done 2026-11-24 (issue #13): the phone link on `/privacy-policy` and `/terms` now sends `phone_click` too.
+- Done 2026-11-24 (issue #12): `src/app/robots.ts` no longer blocks `/_next/` for `*`; `src/app/robots.test.ts` keeps it that way.
+- Done 2026-11-24 (issue #14): placeholder verification codes in env vars no longer reach the page (`src/lib/site-verification.ts`), and Itay imported the site into Bing Webmaster Tools from Search Console.

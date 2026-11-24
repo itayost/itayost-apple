@@ -2,7 +2,7 @@
 
 import { Mail, MessageCircle, Phone } from 'lucide-react'
 import { home } from '@/config/home'
-import { trackContactClick, trackGenerateLead, trackWhatsAppClick } from '@/lib/analytics'
+import { trackContactClick, trackGenerateLead, trackPhoneClick, trackWhatsAppClick } from '@/lib/analytics'
 import { buildWhatsAppUrl, PHONE_TEL_HREF } from '@/lib/whatsapp'
 
 const { contact } = home
@@ -52,7 +52,10 @@ export function DocumentContact({ heading, note, whatsAppMessage, source }: Docu
       href: PHONE_TEL_HREF,
       external: false,
       ltr: true,
-      onClick: () => trackContactClick('phone', source),
+      onClick: () => {
+        trackContactClick('phone', source)
+        trackPhoneClick(window.location.pathname, source)
+      },
     },
   ]
 
