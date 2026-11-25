@@ -26,24 +26,38 @@ About or credits page:
 <p>האתר עוצב ופותח על ידי <a href="https://www.itayost.com">איתי אוסטרייך (ITAYOST)</a>.</p>
 ```
 
-## Status (checked 2026-11-24)
+## Status (updated 2026-11-25)
 
-Every live client site in the portfolio was fetched and its footer read. Four already credit ITAYOST with a followed link and a brand anchor, so they need no message.
+Every client site found in the three Vercel teams was checked. On 2026-11-25 a centered "עוצב ופותח על ידי ITAYOST" line linking to `https://www.itayost.com` (`rel="noopener"`, no `nofollow`, no `noreferrer`) was merged into each site that lacked one, and each live footer was checked after deploy.
 
-| Client | Site | What I built | Credit on the site now | Next step |
-|---|---|---|---|---|
-| The Fader Academy | thefader.co.il | אתר + מערכת CRM | "עוצב ופותח על ידי ItayOst", link to `https://itayost.com` | Done. Optional: case-study ask below |
-| Lola Martin | lolamartin.co.il | אתר תדמית למסעדה | "נבנה על ידי ItayOst", link to `https://www.itayost.com/` | Done |
-| FutureKids | kidcode.org.il | חנות אונליין | "בנייה ועיצוב: ItayOst", link to `https://itayost.com` | Done |
-| Neshatamar | neshatamar.com | | Link to `https://itayost.com` | Done |
-| Garden of Eden | edengarden.co.il | מערכת ניהול אקדמיית כדורגל | None | Send the message below |
-| טל נדל"ן | tanadlan.com | דף נחיתה לסוכן נדל"ן | Footer reads "© 2026 ItayOst. כל הזכויות שמורות": the copyright names ITAYOST instead of the client, with no link | Fix the copyright line to the client's name; ask about a credit link |
-| Shepes Group | shepes-group.co.il | אתר לחברת תיווך | Same wrong copyright line, no link | Same as Tal |
+| Client | Live site | Credit | Status |
+|---|---|---|---|
+| טל נדל"ן | tanadlan.com | New line; copyright fixed to טל אזולאי | Live |
+| Shepes Group | shepes-group.co.il | New line; copyright fixed to Shepes Group | Live |
+| Garden of Eden | edengarden.co.il | New line | Live |
+| כמה נגמר? | kama-nigmar.co.il | New line, replaced the unlinked "נבנה על ידי ItayOst" | Live |
+| מזון ייעוץ מס | mta.co.il | New line | Live |
+| CELLFIX | cellfix.co.il | New line | Live |
+| איתי זיו | itai-ziv.co.il | New line | Live |
+| המבריקן | hamavrikan.co.il | New line merged | **Not live**: the domain is attached to a different Vercel project, see notes |
+| El Caballero | elcaballero.co.il | New line | Live |
+| ירין מנוח | yarinmanoah.com | New line (home page; /privacy has no footer) | Live |
+| פעילים + | peilimplus.co.il | New line | Live |
+| המרכז לשיפור התנועה | improve-movement.co.il | New line, replaced the old "בנייה ועיצוב: ItayOst" link | Live |
+| מסוב תרבות | mesobtarbut.com | New line | Live |
+| Invoxa | invoxa.co.il | New line | Live |
+| Nexora AI (Itay's own product) | nexoraai.co.il | New line | Live |
+| The Fader Academy | thefader.co.il | Existing: "עוצב ופותח על ידי ItayOst" to `https://itayost.com` | Live, older format |
+| Lola Martin | lolamartin.co.il | Existing: "נבנה על ידי ItayOst" to `https://www.itayost.com/` | Live, older format |
+| FutureKids | kidcode.org.il | Existing: "בנייה ועיצוב: ItayOst" to `https://itayost.com` | Live, older format |
+| נס התמר | neshatamar.com | Existing: "נבנה על ידי ItayOst" to `https://itayost.com` | Live, older format |
+| ג'קו | jacko.co.il | Existing: "נבנה עם ♥ על ידי ItayOst" to `https://ItayOst.com`, no `rel` | Live, older format |
+| PAZ CAPITAL | paz-capital.co.il | Existing: "נבנה ועוצב עם ♥ על ידי itayost" to `https://itayost.com` | Live, older format |
 
 Notes:
-- Three of the existing links point to `https://itayost.com`, which answers with a **307 (temporary)** redirect to `https://www.itayost.com/`. Links still pass through it, but a permanent redirect is the clearer signal. In Vercel > Project > Domains, set `itayost.com` to redirect to `www.itayost.com` with **308 Permanent**. When you next touch those client sites, point the links at `https://www.itayost.com`.
-- The copyright line on Tal and Shepes is worth fixing even if they say no to the credit: it is their site.
-- Active Plus 60 and HaMerhav (May) have no live site in the portfolio, so there is nothing to credit.
+- **hamavrikan.co.il is served by a different Vercel project** than `hamavrikan-website`, so merges to that repo do not reach the live domain (the new footer is on `hamavrikan-website.vercel.app`). To move the domain to this project, Vercel asks for these TXT records at `_vercel.hamavrikan.co.il`: `vc-domain-verify=hamavrikan.co.il,a549b299b598c3c71dbb` and `vc-domain-verify=www.hamavrikan.co.il,2e166f794861a6aa2450`. The records there now carry older codes. Removing the domain from the other project also works.
+- The older-format credits use `rel="noopener noreferrer"`, which hides the referrer, so clicks from them do not show as referrals. Three point to `https://itayost.com`, which answers with a 307 (temporary) redirect; setting it to 308 in Vercel > Domains is the clearer signal.
+- Active Plus 60 and HaMerhav (May) have no live site, so there is nothing to credit.
 
 ## WhatsApp messages
 
@@ -99,3 +113,4 @@ Each link opens WhatsApp with the message filled in; pick the contact and send. 
 
 - 2026-11-18: kit rewritten (brand anchor, no `dofollow`, one credit per site); Fader, Lola Martin and FutureKids added. Nothing sent yet. Itay sends.
 - 2026-11-24: all portfolio sites checked. Fader, Lola Martin, FutureKids and Neshatamar already link to itayost.com, so no ask is needed. Messages ready for Garden of Eden (no credit), Tal and Shepes (wrong copyright line, no link). Itay sends.
+- 2026-11-25: credit line merged on 15 sites (Tal, Shepes and Garden of Eden approved by the clients; the rest on Itay's instruction) and confirmed live on 14. Hamavrikan waits on its domain moving to the right Vercel project.
