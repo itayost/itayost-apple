@@ -39,7 +39,7 @@ Every client site found in the three Vercel teams was checked. On 2026-11-25 a c
 | מזון ייעוץ מס | mta.co.il | New line | Live |
 | CELLFIX | cellfix.co.il | New line | Live |
 | איתי זיו | itai-ziv.co.il | New line | Live |
-| המבריקן | hamavrikan.co.il | New line merged | **Not live**: the domain is attached to a different Vercel project, see notes |
+| המבריקן | hamavrikan.co.il | New line merged in `hamavrikan-website`, but that is not the code that is live | **Not live**, see notes |
 | El Caballero | elcaballero.co.il | New line | Live |
 | ירין מנוח | yarinmanoah.com | New line (home page; /privacy has no footer) | Live |
 | פעילים + | peilimplus.co.il | New line | Live |
@@ -55,7 +55,7 @@ Every client site found in the three Vercel teams was checked. On 2026-11-25 a c
 | PAZ CAPITAL | paz-capital.co.il | Existing: "נבנה ועוצב עם ♥ על ידי itayost" to `https://itayost.com` | Live, older format |
 
 Notes:
-- **hamavrikan.co.il is served by a different Vercel project** than `hamavrikan-website`, so merges to that repo do not reach the live domain (the new footer is on `hamavrikan-website.vercel.app`). To move the domain to this project, Vercel asks for these TXT records at `_vercel.hamavrikan.co.il`: `vc-domain-verify=hamavrikan.co.il,a549b299b598c3c71dbb` and `vc-domain-verify=www.hamavrikan.co.il,2e166f794861a6aa2450`. The records there now carry older codes. Removing the domain from the other project also works.
+- **hamavrikan.co.il runs a newer version of the site than the `hamavrikan-website` repo.** The live domain is attached to a Vercel project outside the three teams. Its homepage has content that neither `main` nor `feat/blog` has: prices from 299 ₪, 525 Google reviews, an articles menu item and the city links section. The credit merged into `hamavrikan-website` therefore shows only on `hamavrikan-website.vercel.app`. **Do not move the domain to the `hamavrikan-website` project**: that would replace the live site with the older version. The credit has to be added in the code and the Vercel project that actually serve the domain.
 - The older-format credits use `rel="noopener noreferrer"`, which hides the referrer, so clicks from them do not show as referrals. Three point to `https://itayost.com`, which answers with a 307 (temporary) redirect; setting it to 308 in Vercel > Domains is the clearer signal.
 - Active Plus 60 and HaMerhav (May) have no live site, so there is nothing to credit.
 
@@ -113,4 +113,4 @@ Each link opens WhatsApp with the message filled in; pick the contact and send. 
 
 - 2026-11-18: kit rewritten (brand anchor, no `dofollow`, one credit per site); Fader, Lola Martin and FutureKids added. Nothing sent yet. Itay sends.
 - 2026-11-24: all portfolio sites checked. Fader, Lola Martin, FutureKids and Neshatamar already link to itayost.com, so no ask is needed. Messages ready for Garden of Eden (no credit), Tal and Shepes (wrong copyright line, no link). Itay sends.
-- 2026-11-25: credit line merged on 15 sites (Tal, Shepes and Garden of Eden approved by the clients; the rest on Itay's instruction) and confirmed live on 14. Hamavrikan waits on its domain moving to the right Vercel project.
+- 2026-11-25: credit line merged on 15 sites (Tal, Shepes and Garden of Eden approved by the clients; the rest on Itay's instruction) and confirmed live on 14. Hamavrikan's live site is served from other code, so the credit still has to be added there.
